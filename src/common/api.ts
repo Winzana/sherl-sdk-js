@@ -51,7 +51,7 @@ const errorFactory = new ErrorFactory('api', 'API');
  * Axios configuration
  */
 export const initializeApi = (apiUrl?: string): void => {
-  axios.defaults.baseURL = apiUrl || 'https://api.winzana.space';
+  axios.defaults.baseURL = apiUrl || 'https://api.sherl.io';
   axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
   axios.defaults.headers.post['Content-Type'] = 'application/json';
   axios.defaults.headers.get['Content-Type'] = 'application/json';
