@@ -13,7 +13,7 @@ module.exports = {
         alt: 'Sherl Logo',
         src: 'img/logo.png',
       },
-      links: [
+      items: [
         {
           to: 'docs/introduction',
           activeBasePath: 'docs',
@@ -60,7 +60,7 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} Winzana - Built with Docusaurus.`,
     },
   },
-  plugins: ['@docusaurus/plugin-content-pages'],
+  plugins: [],
   presets: [
     [
       '@docusaurus/preset-classic',
