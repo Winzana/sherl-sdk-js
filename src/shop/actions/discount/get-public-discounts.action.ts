@@ -2,12 +2,12 @@ import { Pagination } from '../../../common/api';
 import { IDiscountResponse } from '../../types/discount/types';
 import { DiscountApi } from '../../api/discount/client';
 
-export const getPublicDiscounts = async (
+export const ListPublicDiscount = async (
   page = 1,
   itemsPerPage = 10,
   filters: { [key: string]: any },
 ): Promise<Pagination<IDiscountResponse[]>> => {
-  const response = await DiscountApi.getPublicDiscounts(
+  const response = await DiscountApi.ListPublicDiscount(
     page,
     itemsPerPage,
     filters,

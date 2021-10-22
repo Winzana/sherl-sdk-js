@@ -1,4 +1,7 @@
-import { IDiscountResponse, IDiscountParameter } from '../../types/discount/types';
+import {
+  IDiscountResponse,
+  IDiscountParameter,
+} from '../../types/discount/types';
 import { Pagination } from '../../../common/api';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from './endpoints';
@@ -25,7 +28,7 @@ class DiscountApi {
    * @static
    * @memberof DiscountApi
    */
-  public static getDiscountByParams = (params: { [key: string]: any }) =>
+  public static getDiscountParams = (params: { [key: string]: any }) =>
     fetcher.get<Pagination<IDiscountResponse>>(endpoints.GET_DISCOUNT_BY, {
       params,
     });
@@ -53,7 +56,7 @@ class DiscountApi {
    * @static
    * @memberof DiscountApi
    */
-  public static getPublicDiscounts = (
+  public static ListPublicDiscount = (
     page = 1,
     itemsPerPage = 10,
     filters: { [key: string]: any },
