@@ -9,6 +9,7 @@ import { Fetcher } from '../../common/api';
 import { errorFactory } from '../errors';
 import { StringUtils } from '../../common/utils/string';
 import { Pagination } from '../../common/api';
+import { IAddress } from '../../common/types';
 
 const fetcher = new Fetcher(errorFactory);
 
@@ -60,10 +61,8 @@ class PersonApi {
    * @static
    * @memberof PersonApi
    */
-  public static postPerson = (personData: IPersonRegister) =>
-    fetcher.post<IPersonRegister>(endpoints.POST_PERSON, {
-      personData,
-    });
+  public static postPerson = (data: IPersonRegister) =>
+    fetcher.post<IPersonRegister>(endpoints.POST_PERSON, data);
 
   public static getConfigs = () =>
     fetcher.get<IConfigResponse[]>(endpoints.GET_CONFIG);

@@ -3,11 +3,11 @@ import { PersonApi } from '../api/client';
 import { IPersonRegister } from '../types';
 
 export const registerPerson = async (
-  personData: IPersonRegister,
+  data: IPersonRegister,
 ): Promise<string> => {
   let response: ApiResponse<PersonApi> | null = null;
   try {
-    response = await PersonApi.postPerson(personData);
+    response = await PersonApi.postPerson(data);
   } catch ({ response: responseError, stack, isAxiosError, ...rest }) {
     throw new Error('Cannot reach API');
   }
