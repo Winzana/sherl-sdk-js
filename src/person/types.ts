@@ -1,4 +1,4 @@
-import { IGeoCoordinates, IPlace } from '../common/types';
+import { IGeoCoordinates, IPlace, IAddress } from '../common/types';
 
 export interface IPersonMeResponse {
   id: string;
@@ -243,4 +243,16 @@ export interface ILemonwayCard {
   type: string;
   default: boolean;
   webKitToken: string;
+}
+
+export interface IPersonRegister {
+  id: string;
+  firstName: string;
+  lastName: string;
+  address?: IAddress;
+  phoneNumber: string;
+  birthDate: Date;
+  email: string;
+  password: string;
+  confirmPassword: string;
 }

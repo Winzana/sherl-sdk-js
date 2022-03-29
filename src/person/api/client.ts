@@ -1,4 +1,9 @@
-import { IPersonMeResponse, ILocation, IConfigResponse } from '../types';
+import {
+  IPersonMeResponse,
+  ILocation,
+  IConfigResponse,
+  IPersonRegister,
+} from '../types';
 import { endpoints } from './endpoints';
 import { Fetcher } from '../../common/api';
 import { errorFactory } from '../errors';
@@ -47,6 +52,17 @@ class PersonApi {
       page,
       itemsPerPage,
       ...filters,
+    });
+
+  /**
+   * Post new person.
+   *
+   * @static
+   * @memberof PersonApi
+   */
+  public static postPerson = (personData: IPersonRegister) =>
+    fetcher.post<IPersonRegister>(endpoints.POST_PERSON, {
+      personData,
     });
 
   public static getConfigs = () =>

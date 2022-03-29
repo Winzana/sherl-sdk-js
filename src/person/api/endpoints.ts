@@ -5,4 +5,5 @@ export const endpoints = {
   GET_PERSONS: '/api/persons',
   GET_CONFIG: '/api/persons/config',
   GET_VIRTUAL_MONEY: '/api/people/virtual-money',
+  POST_PERSON: '/api/persons/register-with-email-and-password',
 };
