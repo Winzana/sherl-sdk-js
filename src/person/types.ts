@@ -256,3 +256,18 @@ export interface IPersonRegister {
   password: string;
   confirmPassword: string;
 }
+
+export interface IPersonNew extends IPersonRegister {
+  mobilePhoneNumber: string;
+  nationality: string;
+  jobTitle: string;
+  gender?: string;
+  faxNumber?: string;
+  affiliation?: {
+    id: string;
+    uri: string;
+    legalName: string;
+    location: {};
+    subOrganizations: [string];
+  };
+}

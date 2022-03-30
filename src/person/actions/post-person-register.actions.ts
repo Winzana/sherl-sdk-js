@@ -7,7 +7,7 @@ export const registerPerson = async (
 ): Promise<string> => {
   let response: ApiResponse<PersonApi> | null = null;
   try {
-    response = await PersonApi.postPerson(data);
+    response = await PersonApi.postPersonRegister(data);
   } catch ({ response: responseError, stack, isAxiosError, ...rest }) {
     throw new Error('Cannot reach API');
   }

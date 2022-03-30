@@ -56,13 +56,22 @@ class PersonApi {
     });
 
   /**
-   * Post new person.
+   * Post register person with email & password.
    *
    * @static
    * @memberof PersonApi
    */
-  public static postPerson = (data: IPersonRegister) =>
-    fetcher.post<IPersonRegister>(endpoints.POST_PERSON, data);
+  public static postPersonRegister = (data: IPersonRegister) =>
+    fetcher.post<IPersonRegister>(endpoints.POST_PERSON_REGISTER, data);
+
+  /**
+   * Post add new person.
+   *
+   * @static
+   * @memberof PersonApi
+   */
+  public static postPersonNew = (data: IPersonRegister) =>
+    fetcher.post<IPersonRegister>(endpoints.POST_PERSON_REGISTER, data);
 
   public static getConfigs = () =>
     fetcher.get<IConfigResponse[]>(endpoints.GET_CONFIG);
