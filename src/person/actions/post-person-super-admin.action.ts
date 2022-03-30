@@ -1,10 +1,16 @@
 import { ApiResponse } from '../../common/api';
 import { PersonApi } from '../api/client';
-import { IPersonSuperAdmin } from '../types';
 
-export const addNewSuperAdmin = async (
-  data: IPersonSuperAdmin,
-): Promise<string> => {
+/**
+ * create new super administrator
+ * @param data IPersonSuperAdmin
+ * @returns
+ */
+export const addNewSuperAdmin = async (data: {
+  firstName: string;
+  lastName: string;
+  email: string;
+}): Promise<string> => {
   let response: ApiResponse<PersonApi> | null = null;
   try {
     response = await PersonApi.postPersonNewSuperAdmin(data);

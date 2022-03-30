@@ -88,7 +88,10 @@ class PersonApi {
    * @memberof PersonApi
    */
   public static postPersonNewSuperAdmin = (data: IPersonSuperAdmin) =>
-    fetcher.post<IPersonSuperAdmin>(endpoints.POST_PERSON_SUPER_ADMIN, data);
+    fetcher.post<IPersonSuperAdmin>(endpoints.POST_PERSON_SUPER_ADMIN, {
+      ...data,
+      id: uuidv4(),
+    });
 
   public static getConfigs = () =>
     fetcher.get<IConfigResponse[]>(endpoints.GET_CONFIG);
