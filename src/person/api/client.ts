@@ -3,6 +3,7 @@ import {
   ILocation,
   IConfigResponse,
   IPersonRegister,
+  IPersonNew,
 } from '../types';
 import { endpoints } from './endpoints';
 import { Fetcher } from '../../common/api';
@@ -70,8 +71,8 @@ class PersonApi {
    * @static
    * @memberof PersonApi
    */
-  public static postPersonNew = (data: IPersonRegister) =>
-    fetcher.post<IPersonRegister>(endpoints.POST_PERSON_REGISTER, data);
+  public static postPersonNew = (data: IPersonNew) =>
+    fetcher.post<IPersonRegister>(endpoints.POST_PERSON_NEW, data);
 
   public static getConfigs = () =>
     fetcher.get<IConfigResponse[]>(endpoints.GET_CONFIG);
