@@ -246,7 +246,6 @@ export interface ILemonwayCard {
 }
 
 export interface IPersonRegister {
-  id: string;
   firstName: string;
   lastName: string;
   address?: IAddress;

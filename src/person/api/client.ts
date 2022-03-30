@@ -63,7 +63,10 @@ class PersonApi {
    * @memberof PersonApi
    */
   public static postPersonRegister = (data: IPersonRegister) =>
-    fetcher.post<IPersonRegister>(endpoints.POST_PERSON_REGISTER, data);
+    fetcher.post<IPersonRegister>(endpoints.POST_PERSON_REGISTER, {
+      ...data,
+      id: uuidv4(),
+    });
 
   /**
    * Post add new person.
