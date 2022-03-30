@@ -258,7 +258,6 @@ export interface IPersonRegister {
 }
 
 export interface IPersonNew {
-  id: string;
   firstName: string;
   lastName: string;
   address?: IAddress;

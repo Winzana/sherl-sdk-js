@@ -10,7 +10,7 @@ import { Fetcher } from '../../common/api';
 import { errorFactory } from '../errors';
 import { StringUtils } from '../../common/utils/string';
 import { Pagination } from '../../common/api';
-import { IAddress } from '../../common/types';
+import { v4 as uuidv4 } from 'uuid';
 
 const fetcher = new Fetcher(errorFactory);
 
@@ -72,7 +72,10 @@ class PersonApi {
    * @memberof PersonApi
    */
   public static postPersonNew = (data: IPersonNew) =>
-    fetcher.post<IPersonRegister>(endpoints.POST_PERSON_NEW, data);
+    fetcher.post<IPersonRegister>(endpoints.POST_PERSON_NEW, {
+      ...data,
+      id: uuidv4(),
+    });
 
   public static getConfigs = () =>
     fetcher.get<IConfigResponse[]>(endpoints.GET_CONFIG);
