@@ -93,6 +93,18 @@ class PersonApi {
       id: uuidv4(),
     });
 
+  /**
+   * Post add person to black list
+   *
+   * @static
+   * @memberof PersonApi
+   */
+  public static postPersonBlackList = (id: string) =>
+    fetcher.post<any>(
+      StringUtils.bindContext(endpoints.POST_PERSON_BLACK_LIST, { id }),
+      { id },
+    );
+
   public static getConfigs = () =>
     fetcher.get<IConfigResponse[]>(endpoints.GET_CONFIG);
 
