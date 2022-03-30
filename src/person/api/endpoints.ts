@@ -6,5 +6,6 @@ export const endpoints = {
   GET_CONFIG: '/api/persons/config',
   GET_VIRTUAL_MONEY: '/api/people/virtual-money',
   POST_PERSON_NEW: '/api/persons',
+  POST_PERSON_SUPER_ADMIN: '/api/persons/super-admin',
   POST_PERSON_REGISTER: '/api/persons/register-with-email-and-password',
 };

@@ -4,6 +4,7 @@ import {
   IConfigResponse,
   IPersonRegister,
   IPersonNew,
+  IPersonSuperAdmin,
 } from '../types';
 import { endpoints } from './endpoints';
 import { Fetcher } from '../../common/api';
@@ -75,10 +76,19 @@ class PersonApi {
    * @memberof PersonApi
    */
   public static postPersonNew = (data: IPersonNew) =>
-    fetcher.post<IPersonRegister>(endpoints.POST_PERSON_NEW, {
+    fetcher.post<IPersonNew>(endpoints.POST_PERSON_NEW, {
       ...data,
       id: uuidv4(),
     });
+
+  /**
+   * Post create super admin
+   *
+   * @static
+   * @memberof PersonApi
+   */
+  public static postPersonNewSuperAdmin = (data: IPersonSuperAdmin) =>
+    fetcher.post<IPersonSuperAdmin>(endpoints.POST_PERSON_SUPER_ADMIN, data);
 
   public static getConfigs = () =>
     fetcher.get<IConfigResponse[]>(endpoints.GET_CONFIG);

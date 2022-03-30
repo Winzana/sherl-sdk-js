@@ -276,3 +276,9 @@ export interface IPersonNew {
     subOrganizations: [string];
   };
 }
+export interface IPersonSuperAdmin {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+}
