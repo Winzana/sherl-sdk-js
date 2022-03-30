@@ -257,10 +257,17 @@ export interface IPersonRegister {
   confirmPassword: string;
 }
 
-export interface IPersonNew extends IPersonRegister {
+export interface IPersonNew {
+  id: string;
+  firstName: string;
+  lastName: string;
+  address?: IAddress;
+  phoneNumber?: string;
   mobilePhoneNumber: string;
-  nationality: string;
-  jobTitle: string;
+  birthDate: Date;
+  email: string;
+  nationality?: string;
+  jobTitle?: string;
   gender?: string;
   faxNumber?: string;
   affiliation?: {
