@@ -58,6 +58,23 @@ class Fetcher {
       throw err;
     });
   }
+
+  public async put<T>(
+    url: string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    data?: { [key: string]: any },
+  ): Promise<ApiResponse<T>> {
+    return axios.put<T>(url, data).catch((err: AxiosError) => {
+      if (err.response && err.response.status) {
+        throw this.errorFactory.create(
+          getErrorCodeByHttpStatus(err.response.status),
+          { message: err.response?.data?.message },
+        );
+      }
+
+      throw err;
+    });
+  }
 }
 
 export { Fetcher };
