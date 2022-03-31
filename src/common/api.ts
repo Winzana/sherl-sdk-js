@@ -28,9 +28,26 @@ class Fetcher {
   public async post<T>(
     url: string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    data: { [key: string]: any },
+    data?: { [key: string]: any },
   ): Promise<ApiResponse<T>> {
     return axios.post<T>(url, data).catch((err: AxiosError) => {
+      if (err.response && err.response.status) {
+        throw this.errorFactory.create(
+          getErrorCodeByHttpStatus(err.response.status),
+          { message: err.response?.data?.message },
+        );
+      }
+
+      throw err;
+    });
+  }
+
+  public async delete<T>(
+    url: string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    data?: { [key: string]: any },
+  ): Promise<ApiResponse<T>> {
+    return axios.delete<T>(url, data).catch((err: AxiosError) => {
       if (err.response && err.response.status) {
         throw this.errorFactory.create(
           getErrorCodeByHttpStatus(err.response.status),
