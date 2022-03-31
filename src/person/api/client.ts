@@ -102,7 +102,17 @@ class PersonApi {
   public static postPersonBlackList = (id: string) =>
     fetcher.post<any>(
       StringUtils.bindContext(endpoints.POST_PERSON_BLACK_LIST, { id }),
-      { id },
+    );
+
+  /**
+   * Post add person to black list
+   *
+   * @static
+   * @memberof PersonApi
+   */
+  public static deleteAddressByUserId = (id: string) =>
+    fetcher.delete<any>(
+      StringUtils.bindContext(endpoints.DELETE_ADDESS_BY_USERID, { id }),
     );
 
   public static getConfigs = () =>

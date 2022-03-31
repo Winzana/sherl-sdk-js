@@ -6,10 +6,10 @@ import { PersonApi } from '../api/client';
  * @param id string
  * @returns
  */
-export const addPersonBlackList = async (id: string): Promise<string> => {
+export const deletePersonAddressById = async (id: string): Promise<string> => {
   let response: ApiResponse<PersonApi> | null = null;
   try {
-    response = await PersonApi.postPersonBlackList(id);
+    response = await PersonApi.deleteAddressByUserId(id);
   } catch ({ response: responseError, stack, isAxiosError, ...rest }) {
     throw new Error('Cannot reach API');
   }
