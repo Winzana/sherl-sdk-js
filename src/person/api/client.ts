@@ -12,6 +12,7 @@ import { errorFactory } from '../errors';
 import { StringUtils } from '../../common/utils/string';
 import { Pagination } from '../../common/api';
 import { v4 as uuidv4 } from 'uuid';
+import { IPlace } from '../../common/types';
 
 const fetcher = new Fetcher(errorFactory);
 
@@ -105,7 +106,7 @@ class PersonApi {
     );
 
   /**
-   * Post add person to black list
+   * Delete person address by id
    *
    * @static
    * @memberof PersonApi
@@ -113,6 +114,18 @@ class PersonApi {
   public static deleteAddressByUserId = (id: string) =>
     fetcher.delete<any>(
       StringUtils.bindContext(endpoints.DELETE_ADDESS_BY_USERID, { id }),
+    );
+
+  /**
+   * Put person address by id
+   *
+   * @static
+   * @memberof PersonApi
+   */
+  public static putAddressByUserId = (id: string, data: IPlace) =>
+    fetcher.put<any>(
+      StringUtils.bindContext(endpoints.PUT_ADDRESS_BY_PERSON_ID, { id }),
+      { ...data, id: uuidv4() },
     );
 
   public static getConfigs = () =>

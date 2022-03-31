@@ -10,4 +10,5 @@ export const endpoints = {
   POST_PERSON_SUPER_ADMIN: '/api/persons/super-admin',
   POST_PERSON_BLACK_LIST: '/api/persons/:id/add-to-black-list',
   POST_PERSON_REGISTER: '/api/persons/register-with-email-and-password',
+  PUT_ADDRESS_BY_PERSON_ID: '/api/persons/addresses/:id',
 };

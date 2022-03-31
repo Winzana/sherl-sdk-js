@@ -1,15 +1,19 @@
 import { ApiResponse } from '../../common/api';
+import { IPlace } from '../../common/types';
 import { PersonApi } from '../api/client';
 
 /**
- * delete address by person id
+ * Update an address to current Person.
  * @param id string
  * @returns
  */
-export const deletePersonAddressById = async (id: string): Promise<string> => {
+export const updatePersonAddressById = async (
+  id: string,
+  data: IPlace,
+): Promise<string> => {
   let response: ApiResponse<PersonApi> | null = null;
   try {
-    response = await PersonApi.deleteAddressByUserId(id);
+    response = await PersonApi.putAddressByUserId(id, data);
   } catch ({ response: responseError, stack, isAxiosError, ...rest }) {
     throw new Error('Cannot reach API');
   }
