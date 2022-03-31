@@ -1,5 +1,5 @@
 export interface IPlace {
-  id: string;
+  id?: string;
   uri: string;
   country: string;
   locality: string;
@@ -18,6 +18,7 @@ export interface IPlace {
   updatedAt: Date;
   type: string;
   isDefault: boolean;
+  googleToken: string;
 }
 
 export interface IAddress {
