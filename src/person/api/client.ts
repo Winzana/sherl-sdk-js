@@ -117,6 +117,17 @@ class PersonApi {
     );
 
   /**
+   * Delete person by id
+   *
+   * @static
+   * @memberof PersonApi
+   */
+  public static deleteUserById = (id: string) =>
+    fetcher.delete<any>(
+      StringUtils.bindContext(endpoints.DELETE_PERSON_BY_USERID, { id }),
+    );
+
+  /**
    * Put person address by id
    *
    * @static

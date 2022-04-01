@@ -1,5 +1,6 @@
 export const endpoints = {
   DELETE_ADDESS_BY_USERID: '/api/persons/addresses/:id',
+  DELETE_PERSON_BY_USERID: '/api/persons/:id',
   GET_ME: '/api/persons/me',
   GET_ONE_BY_USERID: '/api/persons/:id',
   GET_POSITION: '/api/persons/current-address',

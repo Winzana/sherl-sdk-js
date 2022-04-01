@@ -1,4 +1,5 @@
 export * from './delete-person-address.action';
+export * from './delete-person-by-id.action';
 export * from './get-me.action';
 export * from './get-one.action';
 export * from './get-position.action';
