@@ -220,8 +220,8 @@ export interface ILocation {
   region: string;
   postalCode: string;
   streetAddress: string;
-  latitude: string;
-  longitude: string;
+  latitude: number;
+  longitude: number;
 }
 
 export interface IOpeningHoursSpecification {
@@ -275,7 +275,11 @@ export interface IPersonNew {
     location: {};
     subOrganizations: [string];
   };
+  metadata?: Record<string, any>;
+  latitude?: number;
+  longitude?: number;
 }
+
 export interface IPersonSuperAdmin {
   id?: string;
   firstName: string;

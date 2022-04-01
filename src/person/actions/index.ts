@@ -10,3 +10,4 @@ export * from './post-person-register.actions';
 export * from './post-person-super-admin.action';
 export * from './post-person-black-list.action';
 export * from './put-person-address.action';
+export * from './put-person-by-id.action';

@@ -139,6 +139,18 @@ class PersonApi {
       { ...data, id: uuidv4() },
     );
 
+  /**
+   * Put person by id
+   *
+   * @static
+   * @memberof PersonApi
+   */
+  public static putUserById = (id: string, data: IPersonNew) =>
+    fetcher.put<any>(
+      StringUtils.bindContext(endpoints.PUT_PERSON_BY_ID, { id }),
+      data,
+    );
+
   public static getConfigs = () =>
     fetcher.get<IConfigResponse[]>(endpoints.GET_CONFIG);
 
