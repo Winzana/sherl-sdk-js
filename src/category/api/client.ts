@@ -11,10 +11,21 @@ class CategoryApi {
    * Post add new category.
    *
    * @static
-   * @memberof ContactApi
+   * @memberof CategoryApi
    */
   public static postCategoryNew = (data: ICategoryNew) =>
     fetcher.post<ICategoryNew>(endpoints.POST_CATEGORY_NEW, data);
+
+  /**
+   * Get categories.
+   *
+   * @static
+   * @memberof CategoryApi
+   */
+  public static getProductionCategories = (id: string) =>
+    fetcher.get<ICategoryNew>(
+      StringUtils.bindContext(endpoints.GET__CATEGORIS, { id }),
+    );
 }
 
 export { CategoryApi };
