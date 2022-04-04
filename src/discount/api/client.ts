@@ -1,4 +1,8 @@
-import { IDiscountResponse, IDiscountParameter } from '../types';
+import {
+  IDiscountResponse,
+  IDiscountParameter,
+  IValidateDiscountCode,
+} from '../types';
 import { Pagination } from '../../common/api';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from './endpoints';
@@ -80,6 +84,21 @@ class DiscountApi {
       })
       .catch(_err => {
         throw errorFactory.create(DiscountErr.POST_FAILED);
+      });
+
+  /**
+   * Post validate discount
+   *
+   * @param parameter @IValidateDiscountCode
+   * @returns
+   */
+  public static postValidateDiscount = (parameter: IValidateDiscountCode) =>
+    fetcher
+      .post<any>(endpoints.POST_VALIDATE_CODE, {
+        ...parameter,
+      })
+      .catch(_err => {
+        throw errorFactory.create(DiscountErr.POST_VAL_DISCOUNT_FAILED);
       });
 
   /**

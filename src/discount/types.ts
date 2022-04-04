@@ -1,3 +1,4 @@
+import { validate } from 'uuid';
 import { IOrganizationResponse } from '../organization/types';
 import { IProductResponse, ICategoryResponse } from '../product/types';
 
@@ -48,34 +49,39 @@ export enum DiscountTypeEnum {
 }
 
 export interface IDiscountParameter {
-  id: 'string';
-  name: 'string';
-  availableFrom: 'Date';
-  availableUntil: 'Date';
+  id: string;
+  name: string;
+  availableFrom: Date;
+  availableUntil: Date;
   enabled: boolean;
   highlight: boolean;
   cumulative: boolean;
-  discountType: 'percent';
-  code: 'string';
+  discountType: DiscountTypeEnum;
+  code: string;
   percentage: number;
   amount: number;
   quantity: number;
   quantityPerUser: number;
-  customers: ['string'];
+  customers: [string];
   visibleToPublic: boolean;
   productRestrictions: [
     {
       requiredQuantity: number;
-      productUri: 'string';
-      categoryUri: 'string';
+      productUri: string;
+      categoryUri: string;
     },
   ];
   dateRestrictions: [
     {
-      date: 'Date';
-      dayOfWeek: 'string';
-      fromHour: 'Date';
-      toHour: 'Date';
+      date: Date;
+      dayOfWeek: string;
+      fromHour: Date;
+      toHour: Date;
     },
   ];
+}
+
+export interface IValidateDiscountCode {
+  code: string;
+  productUri: string;
 }

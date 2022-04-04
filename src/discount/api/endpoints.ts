@@ -6,5 +6,5 @@ export const endpoints = {
   POST_DISCOUNT: '/api/shop/discounts',
   DELETE_DISCOUNT_ID: '/api/shop/discounts/:id',
   PUT_DISCOUNT_ID: '/api/shop/discounts/:id',
-  //POST_VALIDATE
+  POST_VALIDATE_CODE: '/api/shop/discounts/validate-code',
 };
