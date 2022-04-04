@@ -75,6 +75,17 @@ class DiscountApi {
       .catch(_err => {
         throw errorFactory.create(DiscountErr.POST_FAILED);
       });
+
+  /**
+   * Delete one discount by id.
+   *
+   * @static
+   * @memberof DiscountApi
+   */
+  public static deleteDiscount = (id: string) =>
+    fetcher.delete<IDiscountResponse>(
+      StringUtils.bindContext(endpoints.DELETE_DISCOUNT_ID, { id }),
+    );
 }
 
 export { DiscountApi };

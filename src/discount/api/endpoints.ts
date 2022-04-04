@@ -4,4 +4,7 @@ export const endpoints = {
   GET_DISCOUNTS: '/api/shop/discounts',
   GET_PUBLIC_DISCOUNTS: '/api/public/shop/discounts',
   POST_DISCOUNT: '/api/shop/discounts',
+  DELETE_DISCOUNT_ID: '/api/shop/discounts/:id',
+  //PUT
+  //POST_VALIDATE
 };
