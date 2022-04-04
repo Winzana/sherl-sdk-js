@@ -67,6 +67,12 @@ class DiscountApi {
       },
     );
 
+  /**
+   * Post new discount
+   *
+   * @param parameter @IDiscountParameter
+   * @returns
+   */
   public static postDiscount = (parameter: IDiscountParameter) =>
     fetcher
       .post<IDiscountResponse>(endpoints.POST_DISCOUNT, {
@@ -86,6 +92,22 @@ class DiscountApi {
     fetcher.delete<IDiscountResponse>(
       StringUtils.bindContext(endpoints.DELETE_DISCOUNT_ID, { id }),
     );
+
+  /**
+   * PUT update existing discount
+   *
+   * @param parameter @IDiscountParameter
+   * @returns
+   */
+  public static putDiscount = (parameter: IDiscountParameter, id: string) =>
+    fetcher
+      .put<IDiscountResponse>(
+        StringUtils.bindContext(endpoints.PUT_DISCOUNT_ID, { id }),
+        { ...parameter },
+      )
+      .catch(_err => {
+        throw errorFactory.create(DiscountErr.PUT_FAILED);
+      });
 }
 
 export { DiscountApi };
