@@ -7,10 +7,13 @@ import { IContactNew } from '../types';
  * @param data
  * @returns
  */
-export const addNewContactMsg = async (data: IContactNew): Promise<string> => {
+export const addNewContactMsgById = async (
+  id: string,
+  data: IContactNew,
+): Promise<string> => {
   let response: ApiResponse<ContactApi> | null = null;
   try {
-    response = await ContactApi.postContactNew(data);
+    response = await ContactApi.postContactNewById(id, data);
   } catch ({ response: responseError, stack, isAxiosError, ...rest }) {
     throw new Error('Cannot reach API');
   }
