@@ -44,6 +44,14 @@ class CategoryApi {
     fetcher.get<ICategoryNew>(
       StringUtils.bindContext(endpoints.GET__CATEGORIS, { id }),
     );
+  /**
+   * Get public categories.
+   *
+   * @static
+   * @memberof CategoryApi
+   */
+  public static getPublicCategories = () =>
+    fetcher.get<ICategoryNew>(endpoints.GET_PUBLIC_CATEGORIES);
 
   /**
    * Delete category.
