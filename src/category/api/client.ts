@@ -58,6 +58,17 @@ class CategoryApi {
     );
 
   /**
+   * Get sub categories.
+   *
+   * @static
+   * @memberof CategoryApi
+   */
+  public static getSubCategories = (id: string) =>
+    fetcher.get<ICategoryNew>(
+      StringUtils.bindContext(endpoints.GET_SUB_CATEGORIES, { id }),
+    );
+
+  /**
    * Get public categories.
    *
    * @static
