@@ -12,3 +12,7 @@ export interface ICategoryNew {
     others: {};
   };
 }
+
+export interface ICategoryUpdate extends ICategoryNew {
+  isPublic: boolean;
+}

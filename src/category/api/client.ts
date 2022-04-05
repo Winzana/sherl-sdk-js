@@ -1,4 +1,4 @@
-import { ICategoryNew } from '../types';
+import { ICategoryNew, ICategoryUpdate } from '../types';
 import { endpoints } from './endpoints';
 import { Fetcher } from '../../common/api';
 import { errorFactory } from '../errors';
@@ -32,6 +32,18 @@ class CategoryApi {
         ...data,
         id: uuidv4(),
       },
+    );
+
+  /**
+   * Put update category.
+   *
+   * @static
+   * @memberof CategoryApi
+   */
+  public static putCategory = (data: ICategoryUpdate, id: string) =>
+    fetcher.put<ICategoryUpdate>(
+      StringUtils.bindContext(endpoints.PUT_CATEGORY, { id }),
+      data,
     );
 
   /**
