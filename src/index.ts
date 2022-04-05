@@ -2,6 +2,7 @@ import { init } from './common';
 
 export { init };
 export * from './auth';
+export * from './category';
 export * from './contact';
 export * from './discount';
 export * from './order';

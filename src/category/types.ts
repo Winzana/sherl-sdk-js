@@ -1,14 +1,14 @@
 export interface ICategoryNew {
-  id: string;
-  globalUri: string;
+  id?: string;
+  globalUri?: string;
   name: string;
   color: string;
-  taxeValue: number;
+  taxeValue?: number;
   position: number;
   seo: {
     title: string;
     description: string;
-    keywords: string[];
+    keywords: string;
     others: {};
   };
 }
