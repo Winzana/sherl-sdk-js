@@ -5,6 +5,6 @@ export const endpoints = {
   GET_SUB_CATEGORY: '/api/shop/products/categories/:id',
   GET_MAIN_AND_SUB_CATEGORIES: '/api/shop/products/categories/all', //not complete
   GET_PUBLIC_CATEGORIES: '/api/shop/products/categories/public', //not complete
-  DELETE_CATEGORY: '/api/shop/products/categories/:id', //not complete
+  DELETE_CATEGORY: '/api/shop/products/categories/:id',
   PUT_CATEGORY: '/api/shop/products/categories/:id', //not complete
 };

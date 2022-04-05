@@ -44,6 +44,17 @@ class CategoryApi {
     fetcher.get<ICategoryNew>(
       StringUtils.bindContext(endpoints.GET__CATEGORIS, { id }),
     );
+
+  /**
+   * Delete category.
+   *
+   * @static
+   * @memberof CategoryApi
+   */
+  public static deleteCategory = (id: string) =>
+    fetcher.delete<ICategoryNew>(
+      StringUtils.bindContext(endpoints.DELETE_CATEGORY, { id }),
+    );
 }
 
 export { CategoryApi };
