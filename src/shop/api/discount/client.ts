@@ -28,7 +28,7 @@ class DiscountApi {
    * @static
    * @memberof DiscountApi
    */
-  public static getDiscountParams = (params: { [key: string]: any }) =>
+  public static getDiscountByParams = (params: { [key: string]: any }) =>
     fetcher.get<Pagination<IDiscountResponse>>(endpoints.GET_DISCOUNT_BY, {
       params,
     });
@@ -56,7 +56,7 @@ class DiscountApi {
    * @static
    * @memberof DiscountApi
    */
-  public static ListPublicDiscount = (
+  public static getPublicDiscounts = (
     page = 1,
     itemsPerPage = 10,
     filters: { [key: string]: any },
