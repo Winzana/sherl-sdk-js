@@ -2,7 +2,6 @@ import { ApiResponse } from '../../../common/api';
 import { IOrderResponse } from '../../types/order/types';
 import { OrderApi } from '../../api/order/client';
 
-
 export const getOrder = async (id: string): Promise<IOrderResponse> => {
   let response: ApiResponse<IOrderResponse> | null = null;
 

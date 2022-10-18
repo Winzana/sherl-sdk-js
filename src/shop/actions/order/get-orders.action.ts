@@ -2,7 +2,6 @@ import { Pagination } from '../../../common/api';
 import { IOrderResponse } from '../../types/order/types';
 import { OrderApi } from '../../api/order/client';
 
-
 export const getOrders = async (
   page = 1,
   itemsPerPage = 10,

@@ -4,7 +4,10 @@ import {
   IOpeningHoursSpecification,
   IImageObject,
 } from '../person/types';
-import { ICategoryResponse, IProductResponse } from '../shop/types/product/types';
+import {
+  ICategoryResponse,
+  IProductResponse,
+} from '../shop/types/product/types';
 
 export interface IOrganizationResponse extends IModel {
   id: string;

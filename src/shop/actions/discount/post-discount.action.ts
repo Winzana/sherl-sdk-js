@@ -1,6 +1,9 @@
 import { DiscountApi } from '../../api/discount/client';
 import { DiscountErr, errorFactory } from '../../errors/discount/errors';
-import { IDiscountParameter, IDiscountResponse } from '../../types/discount/types';
+import {
+  IDiscountParameter,
+  IDiscountResponse,
+} from '../../types/discount/types';
 
 export const postDiscount = async (
   parameter: IDiscountParameter,
