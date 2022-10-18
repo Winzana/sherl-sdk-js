@@ -5,186 +5,51 @@ title: Discount
 
 ## Get discount list
 
-To retrieve a list of all public discount, witch you can filter with parameters
+Retrieve a list of all public discount, which you can filter with parameters
 
 ```ts
-const discountlist = await sherl.discount().list(1,10 {your_key: "Your_value"})
+// Require authentication
+const discounts = await Sherl.discount.getDiscounts(1, 10, {
+  /* Filters */
+});
+
+// Public
+const discounts = await Sherl.discount.getPublicDiscounts(1, 10, {
+  /* Filters */
+});
 ```
 
-Return object
-
-```ts
-{
-  "results": [
-      {
-        id: string;
-        uri: string;
-        name: string;
-        ownerUri: string;
-        owner: IOrganizationResponse;
-        consumerId: string;
-        availableFrom: Date;
-        availableUntil: Date;
-        public: boolean;
-        visibleToPublic: boolean;
-        enabled: boolean;
-        highlight: boolean;
-        cumulative: boolean;
-        discountType: DiscountTypeEnum;
-        code: string;
-        percentage: number;
-        amount: number;
-        quantity: number;
-        quantityPerUser: number;
-        customers: string[];
-        productRestrictions: IProductRestriction[];
-        dateRestrictions: IDateRestriction[];
-        createdAt: Date;
-        updatedAt: Date;
-      }],
-  "view": {
-    "total": number_of_item,
-    "page": "1",
-    "itemsPerPage": "10"
-  }
-```
-
-## Get discount public list
-
-To retrieve a list of all public discount, witch you can filter with parameters
-
-```ts
-const discountpublicList = await sherl
-  .discount()
-  .publicList(1, 10, { your_key: 'Your_value' });
-```
-
-Return object
-
-```ts
-{
-  "results": [
-      {
-        id: string;
-        uri: string;
-        name: string;
-        ownerUri: string;
-        owner: IOrganizationResponse;
-        consumerId: string;
-        availableFrom: Date;
-        availableUntil: Date;
-        public: boolean;
-        visibleToPublic: boolean;
-        enabled: boolean;
-        highlight: boolean;
-        cumulative: boolean;
-        discountType: DiscountTypeEnum;
-        code: string;
-        percentage: number;
-        amount: number;
-        quantity: number;
-        quantityPerUser: number;
-        customers: string[];
-        productRestrictions: IProductRestriction[];
-        dateRestrictions: IDateRestriction[];
-        createdAt: Date;
-        updatedAt: Date;
-      }],
-  "view": {
-    "total": number_of_item,
-    "page": "1",
-    "itemsPerPage": "10"
-  }
-```
+Return a paginated array of Discount.
 
 ## Get one discount by id
 
-To retrieve a discount with is ID
+Retrieve a discount by ID.
 
 ```ts
-const discountone = await sherl
-  .discount()
-  .one('836ba098-5059-474b-b46e-7b6fff5d5c7f');
+const discount = await Sherl.discount.getDiscount('discount-id');
 ```
 
-Return object
-
-```ts
-{
-    id: string;
-    uri: string;
-    name: string;
-    ownerUri: string;
-    owner: IOrganizationResponse;
-    consumerId: string;
-    availableFrom: Date;
-    availableUntil: Date;
-    public: boolean;
-    visibleToPublic: boolean;
-    enabled: boolean;
-    highlight: boolean;
-    cumulative: boolean;
-    discountType: DiscountTypeEnum;
-    code: string;
-    percentage: number;
-    amount: number;
-    quantity: number;
-    quantityPerUser: number;
-    customers: string[];
-    productRestrictions: IProductRestriction[];
-    dateRestrictions: IDateRestriction[];
-    createdAt: Date;
-    updatedAt: Date;
-}
-```
+Return a Discount.
 
 ## Get one discount by params
 
-To retrieve a discount with parameters
+Retrieve a discount by parameters.
 
 ```ts
-const discountoneParams = await sherl
-  .discount()
-  .oneParams({ your_key: 'Your_value', your_key: 'Your_value' });
+const discount = await Sherl.discount.getDiscountByParams({
+  your_key: 'Your_value',
+  your_key: 'Your_value',
+});
 ```
 
-Return object
-
-```ts
-{
-    id: string;
-    uri: string;
-    name: string;
-    ownerUri: string;
-    owner: IOrganizationResponse;
-    consumerId: string;
-    availableFrom: Date;
-    availableUntil: Date;
-    public: boolean;
-    visibleToPublic: boolean;
-    enabled: boolean;
-    highlight: boolean;
-    cumulative: boolean;
-    discountType: DiscountTypeEnum;
-    code: string;
-    percentage: number;
-    amount: number;
-    quantity: number;
-    quantityPerUser: number;
-    customers: string[];
-    productRestrictions: IProductRestriction[];
-    dateRestrictions: IDateRestriction[];
-    createdAt: Date;
-    updatedAt: Date;
-}
-```
+Return a Discount.
 
 ## Post Discount
 
-Create a discount
+Create a discount.
 
 ```ts
-const postDiscount = await sherl.discount().postDiscount({
+const discount = await Sherl.discount.postDiscount({
   id: 'string';
   name: 'string';
   availableFrom: 'Date';
@@ -218,33 +83,4 @@ const postDiscount = await sherl.discount().postDiscount({
 })
 ```
 
-Return object
-
-```ts
-{
-    id: string;
-    uri: string;
-    name: string;
-    ownerUri: string;
-    owner: IOrganizationResponse;
-    consumerId: string;
-    availableFrom: Date;
-    availableUntil: Date;
-    public: boolean;
-    visibleToPublic: boolean;
-    enabled: boolean;
-    highlight: boolean;
-    cumulative: boolean;
-    discountType: DiscountTypeEnum;
-    code: string;
-    percentage: number;
-    amount: number;
-    quantity: number;
-    quantityPerUser: number;
-    customers: string[];
-    productRestrictions: IProductRestriction[];
-    dateRestrictions: IDateRestriction[];
-    createdAt: Date;
-    updatedAt: Date;
-}
-```
+Create a Discount.

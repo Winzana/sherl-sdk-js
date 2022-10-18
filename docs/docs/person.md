@@ -3,235 +3,67 @@ id: person
 title: Person
 ---
 
-## Get person me
+## Get current person
 
-To retrieve user informations.
+<span class="badge badge--warning">Require authentication</span>
 
-```ts
-const me = await sherl.person().me();
-```
-
-Return object
+Retrieve logged-in person informations.
 
 ```ts
-{
-  id: string;
-  uri: string;
-  consumerId: string;
-  userId: string;
-  firstName: string;
-  lastName: string;
-  address: IPlace;
-  myAddresses: IPlace[];
-  subscriptionLocation: IGeoCoordinates;
-  phoneNumber: string;
-  mobilePhoneNumber: string;
-  faxNumber: string;
-  nationality: string;
-  affiliation: IOrganization;
-  birthDate: Date;
-  email: string;
-  gender: string;
-  latitude: number;
-  longitude: number;
-  jobTitle: string;
-  enabled: boolean;
-  legalNotice: ILegalNotice;
-  privacyPolicy: IPrivacyPolicy;
-  createdAt: Date;
-  updatedAt: Date;
-  picture: IImageObject;
-  settings: ISettings;
-  organizationFavorites: string[];
-  mangopayUserId: string;
-  mangopayWalletId: string;
-  mangopayCards: IMangopayCard[];
-  stripe: IStripe;
-  lemonway: ILemonway;
-  type: IPersonTypeEnum;
-  frequentedEstablishments: IFrequentedEstablishments[];
-  metadatas: { [key: string]: any };
-  statistics: {
-    lastVisit: Date;
-    firstVisit: Date;
-    totalVisit: number;
-    amountLastOrder: number;
-    amountTotalOrder: number;
-    frequentedEstablishments: IFrequentedEstablishments[];
-    loyalCustomer: boolean;
-  };
-}
+const me = await Sherl.person.getMe();
 ```
+
+Return a Person.
 
 ## Get person by id
 
-To retrieve user informations with is id
+<span class="badge badge--warning">Require authentication</span>
+
+Retrieve person informations by ID.
 
 ```ts
-const oneById = await sherl.person().findOne('ID');
+const person = await Sherl.person.getPersonById('id');
 ```
 
-Return object
+Return a Person.
+
+## Get list of persons
+
+<span class="badge badge--warning">Require authentication</span>
+
+Retrieve a list of persons.
 
 ```ts
-{
-  id: string;
-  uri: string;
-  consumerId: string;
-  userId: string;
-  firstName: string;
-  lastName: string;
-  address: IPlace;
-  myAddresses: IPlace[];
-  subscriptionLocation: IGeoCoordinates;
-  phoneNumber: string;
-  mobilePhoneNumber: string;
-  faxNumber: string;
-  nationality: string;
-  affiliation: IOrganization;
-  birthDate: Date;
-  email: string;
-  gender: string;
-  latitude: number;
-  longitude: number;
-  jobTitle: string;
-  enabled: boolean;
-  legalNotice: ILegalNotice;
-  privacyPolicy: IPrivacyPolicy;
-  createdAt: Date;
-  updatedAt: Date;
-  picture: IImageObject;
-  settings: ISettings;
-  organizationFavorites: string[];
-  mangopayUserId: string;
-  mangopayWalletId: string;
-  mangopayCards: IMangopayCard[];
-  stripe: IStripe;
-  lemonway: ILemonway;
-  type: IPersonTypeEnum;
-  frequentedEstablishments: IFrequentedEstablishments[];
-  metadatas: { [key: string]: any };
-  statistics: {
-    lastVisit: Date;
-    firstVisit: Date;
-    totalVisit: number;
-    amountLastOrder: number;
-    amountTotalOrder: number;
-    frequentedEstablishments: IFrequentedEstablishments[];
-    loyalCustomer: boolean;
-  };
-}
+const persons = await Sherl.person.getPersons(1, 10, {
+  /* Filters */
+});
 ```
 
-## Get list of users informations
+Return a paginated array of Person.
 
-To retrieve users informations
+## Get person address
+
+<span class="badge badge--warning">Require authentication</span>
+
+Retrieve person address by position.
 
 ```ts
-const persons = await sherl.person().list(1, 10);
+const address = await Sherls.person.getCurrentAddress({
+  longitude: 'your_longitude',
+  latitude: 'your_latitude',
+});
 ```
 
-Return object
+Return a Place.
+
+## Get person configuration
+
+<span class="badge badge--warning">Require authentication</span>
+
+Retrieve person configuration vars.
 
 ```ts
-{
-  "results":[{
-  id: string;
-  uri: string;
-  consumerId: string;
-  userId: string;
-  firstName: string;
-  lastName: string;
-  address: IPlace;
-  myAddresses: IPlace[];
-  subscriptionLocation: IGeoCoordinates;
-  phoneNumber: string;
-  mobilePhoneNumber: string;
-  faxNumber: string;
-  nationality: string;
-  affiliation: IOrganization;
-  birthDate: Date;
-  email: string;
-  gender: string;
-  latitude: number;
-  longitude: number;
-  jobTitle: string;
-  enabled: boolean;
-  legalNotice: ILegalNotice;
-  privacyPolicy: IPrivacyPolicy;
-  createdAt: Date;
-  updatedAt: Date;
-  picture: IImageObject;
-  settings: ISettings;
-  organizationFavorites: string[];
-  mangopayUserId: string;
-  mangopayWalletId: string;
-  mangopayCards: IMangopayCard[];
-  stripe: IStripe;
-  lemonway: ILemonway;
-  type: IPersonTypeEnum;
-  frequentedEstablishments: IFrequentedEstablishments[];
-  metadatas: { [key: string]: any };
-  statistics: {
-    lastVisit: Date;
-    firstVisit: Date;
-    totalVisit: number;
-    amountLastOrder: number;
-    amountTotalOrder: number;
-    frequentedEstablishments: IFrequentedEstablishments[];
-    loyalCustomer: boolean;
-  };
-}],
-  "view": {
-    "total": number_of_item,
-    "page": "1",
-    "itemsPerPage": "10"
-  }
+const config = await Sherl.person.getConfigs();
 ```
 
-## Get user position
-
-To retrieve user position
-
-```ts
-const currentAddress = await sherl
-  .person()
-  .position({ longitude: 'your_longitude', latitude: 'your_latitude' });
-```
-
-Return object
-
-```ts
-{
-  id: string;
-  country: string;
-  locality: string;
-  region: string;
-  postalCode: string;
-  streetAddress: string;
-  latitude: string;
-  longitude: string;
-}
-```
-
-## Get user config
-
-To retrieve pro user config
-
-```ts
-const config = await sherl.person().config();
-```
-
-Return object
-
-```ts
-{
-  id: string;
-  code: string;
-  value: any;
-  consumer: string;
-  position: number;
-  appliedTo?: string;
-  isPublic?: boolean;
-}
-```
+Return an array of Configuration.
