@@ -75,7 +75,7 @@ class DiscountApi {
       .post<IDiscountResponse>(endpoints.POST_DISCOUNT, {
         ...parameter,
       })
-      .catch(_err => {
+      .catch((_err) => {
         throw errorFactory.create(DiscountErr.POST_FAILED);
       });
 }
