@@ -7,6 +7,6 @@ export function isNodeEnv(): boolean {
   return typeof process !== 'undefined';
 }
 
-export function getGlobalObject(): (Window | NodeJS.Global) & SherlGlobal {
-  return isNodeEnv() ? global : window;
+export function getGlobalObject() {
+  return (isNodeEnv() ? global : window) as SherlGlobal;
 }
