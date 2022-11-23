@@ -3,6 +3,9 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   coverageReporters: ['text'],
+  transform: {
+    '^.+\\.jsx?$': 'babel-jest',
+  },
   collectCoverageFrom: [
     'src/**/*.ts',
     '!src/**/index.ts',
