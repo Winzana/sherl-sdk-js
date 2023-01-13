@@ -1,11 +1,12 @@
 import { IPersonMeResponse, ILocation, IConfigResponse } from '../types';
 import { endpoints } from './endpoints';
-import { Fetcher } from '../../common/api';
+import { Fetcher, initializeConsoleApi } from '../../common/api';
 import { errorFactory } from '../errors';
 import { StringUtils } from '../../common/utils/string';
 import { Pagination } from '../../common/api';
 
-const fetcher = new Fetcher(errorFactory);
+const axiosInstance = initializeConsoleApi();
+const fetcher = new Fetcher(errorFactory, axiosInstance);
 
 class PersonApi {
   /**
@@ -29,7 +30,7 @@ class PersonApi {
    */
   public static getCurrentAddress = (position: { [key: string]: string }) =>
     fetcher.get<Pagination<ILocation[]>>(endpoints.GET_POSITION, {
-      position
+      position,
     });
 
   /**

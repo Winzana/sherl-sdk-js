@@ -1,17 +1,20 @@
-import axios, { AxiosResponse, AxiosError } from 'axios';
+import axios, { AxiosResponse, AxiosError, AxiosInstance } from 'axios';
 import { getGlobalObject } from './store';
 import { ErrorFactory, CommonErr, getErrorCodeByHttpStatus } from './errors';
 
 class Fetcher {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  constructor(private readonly errorFactory: ErrorFactory<any>) {}
+  constructor(
+    private readonly errorFactory: ErrorFactory<any>,
+    private axios: AxiosInstance,
+  ) {}
 
   public async get<T>(
     url: string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     params?: { [key: string]: any },
   ): Promise<ApiResponse<T>> {
-    return axios
+    return this.axios
       .get<T>(url, { params })
       .catch((err: AxiosError) => {
         if (err.response && err.response.status) {
@@ -30,7 +33,7 @@ class Fetcher {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: { [key: string]: any },
   ): Promise<ApiResponse<T>> {
-    return axios.post<T>(url, data).catch((err: AxiosError) => {
+    return this.axios.post<T>(url, data).catch((err: AxiosError) => {
       if (err.response && err.response.status) {
         throw this.errorFactory.create(
           getErrorCodeByHttpStatus(err.response.status),
@@ -48,18 +51,19 @@ export { Fetcher };
 const errorFactory = new ErrorFactory('api', 'API');
 
 /**
- * Axios configuration
+ * Axios Sherl API configuration
  */
-export const initializeApi = (apiUrl?: string): void => {
-  axios.defaults.baseURL = apiUrl || 'https://api.sherl.io';
-  axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-  axios.defaults.headers.post['Content-Type'] = 'application/json';
-  axios.defaults.headers.get['Content-Type'] = 'application/json';
-  axios.defaults.headers.put['Content-Type'] = 'application/json';
-  axios.defaults.headers.get.Authorization = 'Bearer';
-  axios.defaults.headers.put.Authorization = 'Bearer';
+export const initializeSherlApi = (apiUrl?: string): AxiosInstance => {
+  const axiosInstance = axios.create({});
+  axiosInstance.defaults.baseURL = apiUrl || 'https://api.sherl.io';
+  axiosInstance.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+  axiosInstance.defaults.headers.post['Content-Type'] = 'application/json';
+  axiosInstance.defaults.headers.get['Content-Type'] = 'application/json';
+  axiosInstance.defaults.headers.put['Content-Type'] = 'application/json';
+  axiosInstance.defaults.headers.get.Authorization = 'Bearer';
+  axiosInstance.defaults.headers.put.Authorization = 'Bearer';
 
-  axios.interceptors.request.use(
+  axiosInstance.interceptors.request.use(
     config => {
       const globalObject = getGlobalObject();
 
@@ -76,6 +80,41 @@ export const initializeApi = (apiUrl?: string): void => {
     },
     error => Promise.reject(error),
   );
+  return axiosInstance;
+};
+
+/**
+ * Axios Console API configuration
+ */
+export const initializeConsoleApi = (apiUrl?: string): AxiosInstance => {
+  const axiosInstance = axios.create({});
+  axiosInstance.defaults.baseURL = apiUrl || 'https://api.sherl.io';
+  axiosInstance.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+  axiosInstance.defaults.headers.post['Content-Type'] = 'application/json';
+  axiosInstance.defaults.headers.get['Content-Type'] = 'application/json';
+  axiosInstance.defaults.headers.put['Content-Type'] = 'application/json';
+  axiosInstance.defaults.headers.get.Authorization = 'Bearer';
+  axiosInstance.defaults.headers.put.Authorization = 'Bearer';
+
+  axiosInstance.interceptors.request.use(
+    config => {
+      const globalObject = getGlobalObject();
+
+      if (
+        typeof globalObject.CONSOLE_API_KEY === 'undefined' ||
+        typeof globalObject.CONSOLE_API_SECRET === 'undefined'
+      ) {
+        throw errorFactory.create(CommonErr.MISSING_CREDENTIALS);
+      }
+
+      config.headers.common['X-WZ-API-KEY'] = globalObject.CONSOLE_API_KEY;
+      config.headers.common['X-WZ-API-SECRET'] =
+        globalObject.CONSOLE_API_SECRET;
+      return config;
+    },
+    error => Promise.reject(error),
+  );
+  return axiosInstance;
 };
 
 export const registerBearerToken = (token: string): void => {

@@ -4,13 +4,14 @@ import {
   IPublicProductResponse,
   IPublicCategoryResponse,
 } from '../types';
-import { Pagination } from '../../common/api';
+import { Pagination, initializeConsoleApi } from '../../common/api';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from './endpoints';
 import { Fetcher } from '../../common/api';
 import { errorFactory } from '../errors';
 
-const fetcher = new Fetcher(errorFactory);
+const axiosInstance = initializeConsoleApi();
+const fetcher = new Fetcher(errorFactory, axiosInstance);
 
 class ProductApi {
   /**

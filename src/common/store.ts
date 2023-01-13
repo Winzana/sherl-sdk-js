@@ -1,6 +1,8 @@
 export interface SherlGlobal {
   SHERL_API_KEY?: string;
   SHERL_API_SECRET?: string;
+  CONSOLE_API_KEY?: string;
+  CONSOLE_API_SECRET?: string;
 }
 
 export function isNodeEnv(): boolean {

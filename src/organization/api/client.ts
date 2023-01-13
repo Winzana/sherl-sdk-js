@@ -1,14 +1,14 @@
 import { IOrganizationResponse } from '../types';
-import { Pagination } from '../../common/api';
+import { Pagination, initializeConsoleApi } from '../../common/api';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from './endpoints';
 import { Fetcher } from '../../common/api';
 import { errorFactory } from '../errors';
 
-const fetcher = new Fetcher(errorFactory);
+const axiosInstance = initializeConsoleApi();
+const fetcher = new Fetcher(errorFactory, axiosInstance);
 
 class OrganizationApi {
-
   /**
    * Get one Organization.
    *
@@ -16,9 +16,9 @@ class OrganizationApi {
    * @memberof OrganizationApi
    */
   public static getOrganization = (id: string) =>
-  fetcher.get<IOrganizationResponse>(
-    StringUtils.bindContext(endpoints.GET_ORGANIZATION, { id }),
-  );
+    fetcher.get<IOrganizationResponse>(
+      StringUtils.bindContext(endpoints.GET_ORGANIZATION, { id }),
+    );
 
   /**
    * Get list of Organization.
@@ -31,22 +31,28 @@ class OrganizationApi {
     itemsPerPage = 10,
     filters: { [key: string]: any },
   ) =>
-    fetcher.get<Pagination<IOrganizationResponse[]>>(endpoints.GET_ORGANIZATIONS, {
-      page,
-      itemsPerPage,
-      ...filters,
-    });
-
-    public static getPublicOrganizations = (
-      page = 1,
-      itemsPerPage = 10,
-      filters: { [key: string]: any },
-    ) =>
-      fetcher.get<Pagination<IOrganizationResponse[]>>(endpoints.GET_PUBLIC_ORGANIZATIONS, {
+    fetcher.get<Pagination<IOrganizationResponse[]>>(
+      endpoints.GET_ORGANIZATIONS,
+      {
         page,
         itemsPerPage,
         ...filters,
-      });
+      },
+    );
+
+  public static getPublicOrganizations = (
+    page = 1,
+    itemsPerPage = 10,
+    filters: { [key: string]: any },
+  ) =>
+    fetcher.get<Pagination<IOrganizationResponse[]>>(
+      endpoints.GET_PUBLIC_ORGANIZATIONS,
+      {
+        page,
+        itemsPerPage,
+        ...filters,
+      },
+    );
 
   /**
    * Get one public Organization by id.
@@ -55,9 +61,9 @@ class OrganizationApi {
    * @memberof OrganizationApi
    */
   public static getPublicOrganization = (id: string) =>
-  fetcher.get<IOrganizationResponse>(
-    StringUtils.bindContext(endpoints.GET_PUBLIC_ORGANIZATION_ID, { id }),
-  );
+    fetcher.get<IOrganizationResponse>(
+      StringUtils.bindContext(endpoints.GET_PUBLIC_ORGANIZATION_ID, { id }),
+    );
 
   /**
    * Get one public Organization by slug.
@@ -66,9 +72,9 @@ class OrganizationApi {
    * @memberof OrganizationApi
    */
   public static getPublicOrganizationBySlug = (slug: string) =>
-  fetcher.get<IOrganizationResponse>(
-    StringUtils.bindContext(endpoints.GET_PUBLIC_ORGANIZATION_SLUG, { slug }),
-  );
+    fetcher.get<IOrganizationResponse>(
+      StringUtils.bindContext(endpoints.GET_PUBLIC_ORGANIZATION_SLUG, { slug }),
+    );
 }
 
 export { OrganizationApi };

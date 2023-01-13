@@ -1,9 +1,10 @@
-import { Fetcher } from '../../common/api';
+import { Fetcher, initializeSherlApi } from '../../common/api';
 import { ApiLoginResponse } from '../types';
 import { endpoints } from './endpoints';
 import { AuthErr, errorFactory } from '../errors';
 
-const fetcher = new Fetcher(errorFactory);
+const axiosInstance = initializeSherlApi();
+const fetcher = new Fetcher(errorFactory, axiosInstance);
 
 class AuthApi {
   public static postRequestLoginCredential = (
