@@ -1,4 +1,9 @@
-import { IPersonMeResponse, ILocation, IConfigResponse } from '../types';
+import {
+  IPersonMeResponse,
+  ILocation,
+  IConfigResponse,
+  IPersonRegister,
+} from '../types';
 import { endpoints } from './endpoints';
 import { Fetcher } from '../../common/api';
 import { errorFactory } from '../errors';
@@ -29,7 +34,7 @@ class PersonApi {
    */
   public static getCurrentAddress = (position: { [key: string]: string }) =>
     fetcher.get<Pagination<ILocation[]>>(endpoints.GET_POSITION, {
-      position
+      position,
     });
 
   /**
@@ -54,6 +59,12 @@ class PersonApi {
 
   public static getVirtualMoney = () =>
     fetcher.get<IPersonMeResponse[]>(endpoints.GET_VIRTUAL_MONEY);
+
+  public static registerWithEmailAndPassword = (data: IPersonRegister) =>
+    fetcher.post<IPersonMeResponse[]>(
+      endpoints.REGISTER_WITH_EMAIL_AND_PASSWORD,
+      data,
+    );
 }
 
 export { PersonApi };
