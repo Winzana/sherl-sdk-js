@@ -1,4 +1,3 @@
-import { registerBearerToken } from '../common/api';
 import { signInWithEmailAndPassword } from './actions';
 
 class AuthProvider {
@@ -9,13 +8,7 @@ class AuthProvider {
     password: string,
   ) => {
     const token = await signInWithEmailAndPassword(email, password);
-    this.registerToken(token);
     return token;
-  };
-
-  private registerToken = (accessToken: string): void => {
-    this.token = accessToken;
-    registerBearerToken(accessToken);
   };
 }
 

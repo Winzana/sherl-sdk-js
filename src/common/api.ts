@@ -50,6 +50,17 @@ export { Fetcher };
 
 const errorFactory = new ErrorFactory('api', 'API');
 
+export const registerBearerToken = (axios: AxiosInstance): void => {
+  const globalObject = getGlobalObject();
+  axios.interceptors.request.use(
+    config => {
+      config.headers.Authorization = `Bearer ${globalObject.INSTANCE_TOKEN}`;
+      return config;
+    },
+    error => Promise.reject(error),
+  );
+};
+
 /**
  * Axios Sherl API configuration
  */
@@ -110,21 +121,17 @@ export const initializeConsoleApi = (apiUrl?: string): AxiosInstance => {
       config.headers.common['X-WZ-API-KEY'] = globalObject.CONSOLE_API_KEY;
       config.headers.common['X-WZ-API-SECRET'] =
         globalObject.CONSOLE_API_SECRET;
+
+      console.log(globalObject.INSTANCE_TOKEN);
+
+      if (typeof globalObject.INSTANCE_TOKEN !== 'undefined') {
+        registerBearerToken(axiosInstance);
+      }
       return config;
     },
     error => Promise.reject(error),
   );
   return axiosInstance;
-};
-
-export const registerBearerToken = (token: string): void => {
-  axios.interceptors.request.use(
-    config => {
-      config.headers.Authorization = `Bearer ${token}`;
-      return config;
-    },
-    error => Promise.reject(error),
-  );
 };
 
 export type ApiResponse<T> = AxiosResponse<T>;

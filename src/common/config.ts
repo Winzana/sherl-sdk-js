@@ -26,7 +26,7 @@ export function init(options: InitOptions): void {
 
   const globalObject = getGlobalObject();
   globalObject.SHERL_API_KEY = options.apiSherlKey;
-  globalObject.SHERL_API_SECRET = options.apiSherlKey;
+  globalObject.SHERL_API_SECRET = options.apiSherlSecret;
 
   if (options.apiConsoleKey && options.apiConsoleSecret) {
     globalObject.CONSOLE_API_KEY = options.apiConsoleKey;
