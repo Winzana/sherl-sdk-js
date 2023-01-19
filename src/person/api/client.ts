@@ -60,7 +60,13 @@ class PersonApi {
   public static getVirtualMoney = () =>
     fetcher.get<IPersonMeResponse[]>(endpoints.GET_VIRTUAL_MONEY);
 
-  public static registerWithEmailAndPassword = (data: IPersonRegister) =>
+  /**
+   * Register person.
+   *
+   * @static
+   * @memberof PersonApi
+   */
+  public static postRequestRegisterCredential = (data: IPersonRegister) =>
     fetcher.post<IPersonMeResponse[]>(
       endpoints.REGISTER_WITH_EMAIL_AND_PASSWORD,
       data,
