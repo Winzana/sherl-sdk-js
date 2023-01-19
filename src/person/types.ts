@@ -254,5 +254,20 @@ export interface IPersonRegister {
   confirmPassword: string;
   email: string;
   phoneNumber: string;
-  adress: IAddress;
+  address: {
+    id: string;
+    uri: string;
+    createdAt: string;
+    country: string;
+    locality: string;
+    region: string;
+    department: string;
+    postalCode: string;
+    streetAddress: string;
+    complementaryStreetAddress: string;
+    name: string;
+    originId: string;
+    latitude: number;
+    longitude: number;
+  };
 }

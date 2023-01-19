@@ -6,9 +6,9 @@ export const registerWithEmailAndPassword = async (
 ): Promise<IPersonMeResponse[]> => {
   const response = await PersonApi.postRequestRegisterCredential(data);
 
-  if (response.status !== 200) {
+  if (response.status !== 201) {
     throw new Error(
-      `Failed to fetch products API (status: ${response.status})`,
+      `Failed to register new user (status: ${response.status})`,
     );
   }
 
