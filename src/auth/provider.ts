@@ -1,5 +1,5 @@
 import { registerBearerToken } from '../common/api';
-import { signInWithEmailAndPassword } from './actions';
+import { signInWithEmailAndPassword, refreshToken } from './actions';
 
 class AuthProvider {
   public token: string | undefined;
@@ -17,6 +17,12 @@ class AuthProvider {
     this.token = accessToken;
     registerBearerToken(accessToken);
   };
+
+  public refreshToken = async () => {
+    const token = await refreshToken();
+    this.registerToken(token);
+    return token;
+  }
 }
 
 export { AuthProvider };
