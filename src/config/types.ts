@@ -1,0 +1,26 @@
+import { IPlace } from '../common/types';
+
+export enum ConfigPayment {
+  'SHOP_PAYMENT_ACCEPT_ADVANCE_PAYMENT_EXTERNAL' = 'SHOP_PAYMENT_ACCEPT_ADVANCE_PAYMENT_EXTERNAL',
+  'SHOP_PAYMENT_ACCEPT_ADVANCE_PAYMENT_CARD' = 'SHOP_PAYMENT_ACCEPT_ADVANCE_PAYMENT_CARD',
+  'SHOP_PAYMENT_ACCEPT_EXTERNAL' = 'SHOP_PAYMENT_ACCEPT_EXTERNAL',
+  'SHOP_PAYMENT_ACCEPT_CARD' = 'SHOP_PAYMENT_ACCEPT_CARD',
+}
+
+export type ConfigCode =
+  | 'CALENDAR_MAX_DISTANCE_FROM_OWNER'
+  | 'CALENDAR_MAX_DISTANCE_BETWEEN_EVENTS'
+  | 'CALENDAR_LOCATION_RESTRICTION_TYPE'
+  | 'CALENDAR_ALLOWED_LOCALITIES'
+  | 'WEBSITE_PUB_HEADER'
+  | 'CALENDAR_RECURRENCE_ENABLED'
+  | 'OFF_PEAK_HOURS_PERCENTAGE'
+  | ConfigPayment;
+
+export type IConfigValue = { [key: number]: any } | IPlace[] | number | string;
+
+export interface ApiConfigResponse {
+  isPublic?: boolean;
+  code: ConfigCode;
+  value: IConfigValue;
+}
