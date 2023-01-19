@@ -18,6 +18,10 @@ class AuthApi {
       .catch((_err) => {
         throw errorFactory.create(AuthErr.LOGIN_FAILED);
       });
+
+  public static getLogout = () =>
+    fetcher
+      .get<ApiLoginResponse>(endpoints.LOGOUT);
 }
 
 export { AuthApi };
