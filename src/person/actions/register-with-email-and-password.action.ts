@@ -7,9 +7,7 @@ export const registerWithEmailAndPassword = async (
   const response = await PersonApi.postRequestRegisterCredential(data);
 
   if (response.status !== 201) {
-    throw new Error(
-      `Failed to register new user (status: ${response.status})`,
-    );
+    throw new Error(`Failed to register new user (status: ${response.status})`);
   }
 
   return response.data;

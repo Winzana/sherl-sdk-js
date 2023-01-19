@@ -2,7 +2,9 @@ import { ApiResponse } from '../../common/api';
 import { IOrderResponse } from '../types';
 import { OrderApi } from '../api/client';
 
-export const getOrganizationOrders = async (id: string): Promise<IOrderResponse[]> => {
+export const getOrganizationOrders = async (
+  id: string,
+): Promise<IOrderResponse[]> => {
   let response: ApiResponse<IOrderResponse[]> | null = null;
 
   try {

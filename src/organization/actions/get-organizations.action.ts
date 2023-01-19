@@ -7,7 +7,11 @@ export const getOrganizations = async (
   itemsPerPage = 10,
   filters: { [key: string]: any },
 ): Promise<Pagination<IOrganizationResponse[]>> => {
-  const response = await OrganizationApi.getOrganizations(page, itemsPerPage, filters);
+  const response = await OrganizationApi.getOrganizations(
+    page,
+    itemsPerPage,
+    filters,
+  );
 
   if (response.status !== 200) {
     throw new Error(
@@ -17,4 +21,3 @@ export const getOrganizations = async (
 
   return response.data;
 };
-

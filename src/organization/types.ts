@@ -162,7 +162,6 @@ export interface ITaxonomyValue {
   updatedAt?: Date;
 }
 
-
 export interface IModel {
   toJson(): any;
 }

@@ -1,7 +1,7 @@
-import { IOrganizationResponse, IOffer } from "../organization/types";
-import { IPersonMeResponse } from "../person/types";
-import { IAddress } from "../common/types";
-import { IProductResponse, ICategoryResponse } from "../product/types";
+import { IOrganizationResponse, IOffer } from '../organization/types';
+import { IPersonMeResponse } from '../person/types';
+import { IAddress } from '../common/types';
+import { IProductResponse, ICategoryResponse } from '../product/types';
 
 export interface IOrderResponse {
   id: string;
@@ -51,25 +51,25 @@ export interface IDiscount {
   id: string;
   uri: string;
   name: string;
-  ownerUri: string; 
+  ownerUri: string;
   owner: IOrganizationResponse;
   consumerId: string;
-  availableFrom: Date; 
+  availableFrom: Date;
   availableUntil: Date;
   public: boolean;
   visibleToPublic: boolean;
   enabled: boolean;
-  highlight: boolean; 
+  highlight: boolean;
   cumulative: boolean;
-  discountType: DiscountTypeEnum; 
-  code: string; 
+  discountType: DiscountTypeEnum;
+  code: string;
   percentage: number;
   amount: number;
-  quantity: number; 
-  quantityPerUser: number; 
-  customers: string[]; 
-  productRestrictions: IProductRestriction[]; 
-  dateRestrictions: IDateRestriction[]; 
+  quantity: number;
+  quantityPerUser: number;
+  customers: string[];
+  productRestrictions: IProductRestriction[];
+  dateRestrictions: IDateRestriction[];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -77,14 +77,14 @@ export interface IDiscount {
 export interface IDateRestriction {
   date: Date;
   dayOfWeek: string;
-  fromHour: Date; 
+  fromHour: Date;
   toHour: Date;
 }
 
 export interface IProductRestriction {
-  requiredQuantity: number; 
-  product: IProductResponse; 
-  categoryUri: string; 
+  requiredQuantity: number;
+  product: IProductResponse;
+  categoryUri: string;
   category: ICategoryResponse;
 }
 
@@ -92,7 +92,6 @@ export enum DiscountTypeEnum {
   PERCENT = 'percent',
   AMOUNT = 'amount',
 }
-
 
 export interface IOrderStatusHistory {
   id: string;
@@ -105,7 +104,8 @@ export interface IOrderStatusHistory {
   longitude: number;
 }
 
-export interface IOrderCommission { //extends mangopay.transfer.TransferData
+export interface IOrderCommission {
+  //extends mangopay.transfer.TransferData
   createdAt: Date;
 }
 
@@ -142,7 +142,6 @@ export interface IOrderItemProductOptionItem {
   priceTaxIncluded: number;
   quantity: number;
 }
-
 
 export enum ShopMeansOfPaymentEnum {
   CARD = 'CARD', // Par carte
