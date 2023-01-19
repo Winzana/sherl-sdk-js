@@ -29,7 +29,7 @@ class PersonApi {
    */
   public static getCurrentAddress = (position: { [key: string]: string }) =>
     fetcher.get<Pagination<ILocation[]>>(endpoints.GET_POSITION, {
-      position
+      position,
     });
 
   /**

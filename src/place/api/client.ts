@@ -23,7 +23,6 @@ class PlaceApi {
       itemsPerPage,
       ...filters,
     });
-
 }
 
 export { PlaceApi };

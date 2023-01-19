@@ -143,7 +143,7 @@ export interface IPublicCategoryResponse {
   updatedAt: Date;
   aggCategory: string;
   is: false;
-  // seo: SEO; Besoin de SEO ? Je ne l'ai pas dans mes interfaces 
+  // seo: SEO; Besoin de SEO ? Je ne l'ai pas dans mes interfaces
 }
 
 export enum ShopProductTypeEnum {
