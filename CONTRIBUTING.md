@@ -86,30 +86,18 @@ ln -s /path-to/sherl-sdk-js/_bundles/sherl-sdk.min.js ./
 2. Make your changes in a new git branch.
 3. Commit your changes using a message that follows our [commit message guidelines](CONTRIBUTING.md#git-commit-messages).
 4. Push your branch to GitHub.
-5. In GitHub, send a pull request to `sherl-sdk-js:next`.
+5. In GitHub, send a pull request to `sherl-sdk-js:develop`.
    - We will review your changes and possibly suggest changes.
 
 #### Notes on semantic-release
 
 We use [semantic-release](https://github.com/semantic-release/semantic-release) for automated version management and package publishing.
 
-We have different distribution channels (branches) to manage package versions:
+Currently, we only have one distribution channel to manage package versions as the package is under active development:
 
 - **master**
   - package tag: `@latest`
   - main version
-- **next**
-  - package tag: `@next`
-  - features waiting for feedback (see [semantic-release documentation](https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/distribution-channels.md#publishing-on-distribution-channels))
-- **beta**
-  - package tag: `@beta`
-  - pre-release (see [semantic-release documentation](https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/pre-releases.md))
-
-Those versions can be installed by adding the tag after the package name:
-
-```
-npm install @sherl/sdk@next
-```
 
 ## Styleguides
 
