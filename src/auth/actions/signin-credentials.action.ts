@@ -7,7 +7,7 @@ export const signInWithEmailAndPassword = async (
 ): Promise<string> => {
   const response = await AuthApi.postRequestLoginCredential(email, password);
 
-  if (!response.data.access_token) {
+  if (!response.data || !response.data.access_token) {
     throw errorFactory.create(AuthErr.LOGIN_FAILED);
   }
 

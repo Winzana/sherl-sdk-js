@@ -1,4 +1,4 @@
-import axios, { AxiosResponse, AxiosError } from 'axios';
+import axios, { AxiosResponse, AxiosError, AxiosRequestConfig } from 'axios';
 import { getGlobalObject } from './store';
 import { ErrorFactory, CommonErr, getErrorCodeByHttpStatus } from './errors';
 
@@ -13,7 +13,7 @@ class Fetcher {
   ): Promise<ApiResponse<T>> {
     return axios
       .get<T>(url, { params })
-      .catch((err: AxiosError) => {
+      .catch((err: AxiosError<ApiResponseError>) => {
         if (err.response && err.response.status) {
           throw this.errorFactory.create(
             getErrorCodeByHttpStatus(err.response.status),
@@ -30,16 +30,18 @@ class Fetcher {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: { [key: string]: any },
   ): Promise<ApiResponse<T>> {
-    return axios.post<T>(url, data).catch((err: AxiosError) => {
-      if (err.response && err.response.status) {
-        throw this.errorFactory.create(
-          getErrorCodeByHttpStatus(err.response.status),
-          { message: err.response?.data?.message },
-        );
-      }
+    return axios
+      .post<T>(url, data)
+      .catch((err: AxiosError<ApiResponseError>) => {
+        if (err.response && err.response.status) {
+          throw this.errorFactory.create(
+            getErrorCodeByHttpStatus(err.response.status),
+            { message: err.response?.data?.message },
+          );
+        }
 
-      throw err;
-    });
+        throw err;
+      });
   }
 }
 
@@ -50,6 +52,10 @@ const errorFactory = new ErrorFactory('api', 'API');
 /**
  * Axios configuration
  */
+interface CustomAxiosRequestConfig extends Omit<AxiosRequestConfig, 'headers'> {
+  headers?: any; // this was "any" at v0.21.1 but now broken between 0.21.4 >= 0.27.2
+  // Lets make it any again to make it work again.
+}
 export const initializeApi = (apiUrl?: string): void => {
   axios.defaults.baseURL = apiUrl || 'https://api.sherl.io';
   axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
@@ -60,7 +66,7 @@ export const initializeApi = (apiUrl?: string): void => {
   axios.defaults.headers.put.Authorization = 'Bearer';
 
   axios.interceptors.request.use(
-    config => {
+    (config: CustomAxiosRequestConfig) => {
       const globalObject = getGlobalObject();
 
       if (
@@ -74,17 +80,17 @@ export const initializeApi = (apiUrl?: string): void => {
       config.headers.common['X-WZ-API-SECRET'] = globalObject.SHERL_API_SECRET;
       return config;
     },
-    error => Promise.reject(error),
+    (error) => Promise.reject(error),
   );
 };
 
 export const registerBearerToken = (token: string): void => {
   axios.interceptors.request.use(
-    config => {
+    (config: CustomAxiosRequestConfig) => {
       config.headers.Authorization = `Bearer ${token}`;
       return config;
     },
-    error => Promise.reject(error),
+    (error) => Promise.reject(error),
   );
 };
 

@@ -4,7 +4,10 @@ import {
   IOpeningHoursSpecification,
   IImageObject,
 } from '../person/types';
-import { ICategoryResponse, IProductResponse } from '../product/types';
+import {
+  ICategoryResponse,
+  IProductResponse,
+} from '../shop/types/product/types';
 
 export interface IOrganizationResponse extends IModel {
   id: string;
@@ -161,7 +164,6 @@ export interface ITaxonomyValue {
   createdAt: Date;
   updatedAt?: Date;
 }
-
 
 export interface IModel {
   toJson(): any;

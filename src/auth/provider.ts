@@ -13,7 +13,7 @@ class AuthProvider {
     return token;
   };
 
-  private registerToken = (accessToken: string): void => {
+  public registerToken = (accessToken: string): void => {
     this.token = accessToken;
     registerBearerToken(accessToken);
   };

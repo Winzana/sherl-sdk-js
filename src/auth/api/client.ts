@@ -15,7 +15,7 @@ class AuthApi {
         username,
         password,
       })
-      .catch(_err => {
+      .catch((_err) => {
         throw errorFactory.create(AuthErr.LOGIN_FAILED);
       });
 }
