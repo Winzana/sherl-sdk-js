@@ -20,6 +20,7 @@ class AuthProvider {
 
   public logout = async () => {
     await logout();
+    this.token = undefined;
   };
 }
 
