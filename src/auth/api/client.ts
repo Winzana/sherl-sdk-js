@@ -16,9 +16,15 @@ class AuthApi {
         username,
         password,
       })
-      .catch(_err => {
+      .catch((_err) => {
         throw errorFactory.create(AuthErr.LOGIN_FAILED);
       });
+
+  public static getLogout = () =>
+    fetcher.get<ApiLoginResponse>(endpoints.LOGOUT);
+
+  public static postRefreshToken = () =>
+    fetcher.post<ApiLoginResponse>(endpoints.REFRESH_TOKEN, {});
 }
 
 export { AuthApi };

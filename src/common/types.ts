@@ -37,7 +37,7 @@ export interface IAddress {
   uri: string;
 }
 
-export interface IGeoCoordinates extends IAddress{
+export interface IGeoCoordinates extends IAddress {
   latitude: number;
   longitude: number;
 }

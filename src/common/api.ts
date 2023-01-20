@@ -1,4 +1,4 @@
-import axios, { AxiosResponse, AxiosError, AxiosInstance } from 'axios';
+import axios, { AxiosResponse, AxiosError, AxiosRequestConfig, AxiosInstance } from 'axios';
 import { getGlobalObject } from './store';
 import { ErrorFactory, CommonErr, getErrorCodeByHttpStatus } from './errors';
 
@@ -16,7 +16,7 @@ class Fetcher {
   ): Promise<ApiResponse<T>> {
     return this.axios
       .get<T>(url, { params })
-      .catch((err: AxiosError) => {
+      .catch((err: AxiosError<ApiResponseError>) => {
         if (err.response && err.response.status) {
           throw this.errorFactory.create(
             getErrorCodeByHttpStatus(err.response.status),
@@ -33,16 +33,18 @@ class Fetcher {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: { [key: string]: any },
   ): Promise<ApiResponse<T>> {
-    return this.axios.post<T>(url, data).catch((err: AxiosError) => {
-      if (err.response && err.response.status) {
-        throw this.errorFactory.create(
-          getErrorCodeByHttpStatus(err.response.status),
-          { message: err.response?.data?.message },
-        );
-      }
+    return this.axios
+      .post<T>(url, data)
+      .catch((err: AxiosError<ApiResponseError>) => {
+        if (err.response && err.response.status) {
+          throw this.errorFactory.create(
+            getErrorCodeByHttpStatus(err.response.status),
+            { message: err.response?.data?.message },
+          );
+        }
 
-      throw err;
-    });
+        throw err;
+      });
   }
 }
 
@@ -53,13 +55,21 @@ const errorFactory = new ErrorFactory('api', 'API');
 export const registerBearerToken = (axios: AxiosInstance): void => {
   const globalObject = getGlobalObject();
   axios.interceptors.request.use(
-    config => {
+    (config: CustomAxiosRequestConfig) => {
       config.headers.Authorization = `Bearer ${globalObject.INSTANCE_TOKEN}`;
       return config;
     },
     error => Promise.reject(error),
   );
 };
+
+/**
+ * Axios configuration
+ */
+interface CustomAxiosRequestConfig extends Omit<AxiosRequestConfig, 'headers'> {
+  headers?: any; // this was "any" at v0.21.1 but now broken between 0.21.4 >= 0.27.2
+  // Lets make it any again to make it work again.
+}
 
 /**
  * Axios Sherl API configuration
@@ -75,7 +85,7 @@ export const initializeSherlApi = (apiUrl?: string): AxiosInstance => {
   axiosInstance.defaults.headers.put.Authorization = 'Bearer';
 
   axiosInstance.interceptors.request.use(
-    config => {
+    (config: CustomAxiosRequestConfig) => {
       const globalObject = getGlobalObject();
 
       if (
@@ -89,7 +99,7 @@ export const initializeSherlApi = (apiUrl?: string): AxiosInstance => {
       config.headers.common['X-WZ-API-SECRET'] = globalObject.SHERL_API_SECRET;
       return config;
     },
-    error => Promise.reject(error),
+    (error) => Promise.reject(error),
   );
   return axiosInstance;
 };
@@ -108,7 +118,7 @@ export const initializeConsoleApi = (apiUrl?: string): AxiosInstance => {
   axiosInstance.defaults.headers.put.Authorization = 'Bearer';
 
   axiosInstance.interceptors.request.use(
-    config => {
+    (config: CustomAxiosRequestConfig) => {
       const globalObject = getGlobalObject();
 
       if (
@@ -129,7 +139,7 @@ export const initializeConsoleApi = (apiUrl?: string): AxiosInstance => {
       }
       return config;
     },
-    error => Promise.reject(error),
+    (error) => Promise.reject(error),
   );
   return axiosInstance;
 };

@@ -1,6 +1,6 @@
 {
   "name": "@sherl/sdk",
-  "version": "1.0.1",
+  "version": "1.4.0",
   "description": "Sherl SDK for JavaScript",
   "main": "lib/index.js",
   "module": "lib-esm/index.js",
@@ -11,8 +11,8 @@
     "build:commonjs:watch": "tsc -w --preserveWatchOutput",
     "build:esm": "tsc -m es6 --outDir ./lib-esm",
     "build:esm:watch": "tsc -m es6 --outDir ./lib-esm -w --preserveWatchOutput",
-    "build:bundle": "webpack",
-    "build:bundle.min": "webpack --output-filename [name].min.js --devtool false --mode production",
+    "build:bundle": "webpack --mode production",
+    "build:bundle.min": "webpack --output-filename [name].min.js --mode production",
     "build:bundle:watch": "webpack -w",
     "watch": "run-p build:commonjs:watch build:esm:watch build:bundle:watch",
     "lint": "run-s lint:prettier lint:eslint",
@@ -22,7 +22,10 @@
     "fix:prettier": "prettier --write \"src/**/*.ts\"",
     "fix:eslint": "eslint src/**/*.ts --fix -f stylish",
     "clean": "rimraf _bundles lib lib-esm",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --ci --coverage"
   },
   "repository": {
     "type": "git",
@@ -36,22 +39,25 @@
   },
   "homepage": "https://github.com/Winzana/sherl-sdk-js#readme",
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.27.2"
   },
   "devDependencies": {
-    "@types/node": "^13.13.14",
-    "@typescript-eslint/eslint-plugin": "^2.34.0",
-    "@typescript-eslint/parser": "^2.34.0",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-prettier": "^3.1.4",
+    "@types/jest": "^29.2.0",
+    "@types/node": "^18.11.2",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
+    "eslint": "^8.25.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "jest": "^29.2.1",
     "npm-run-all": "^4.1.5",
-    "prettier": "^1.19.1",
+    "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
-    "semantic-release": "^17.4.2",
-    "ts-loader": "^6.2.1",
-    "typescript": "^3.9.7",
-    "webpack": "^5.15.0",
+    "semantic-release": "^19.0.5",
+    "ts-jest": "^29.0.3",
+    "ts-loader": "^9.4.1",
+    "typescript": "^4.8.4",
+    "webpack": "^5.74.0",
     "webpack-cli": "^5.0.1"
   },
   "publishConfig": {

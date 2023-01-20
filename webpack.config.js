@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   entry: {
-    'sherl-sdk': './src/index.ts'
+    'sherl-sdk': './src/index.ts',
   },
   module: {
     rules: [

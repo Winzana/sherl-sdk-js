@@ -1,3 +1,3 @@
 export const endpoints = {
-  GET_PLACES: '/api/public/places'
-}
+  GET_PLACES: '/api/public/places',
+};
