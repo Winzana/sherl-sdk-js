@@ -21,6 +21,9 @@ class AuthApi {
 
   public static getLogout = () =>
     fetcher.get<ApiLoginResponse>(endpoints.LOGOUT);
+
+  public static postRefreshToken = () =>
+    fetcher.post<ApiLoginResponse>(endpoints.REFRESH_TOKEN, {});
 }
 
 export { AuthApi };
