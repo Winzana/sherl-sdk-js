@@ -18,6 +18,9 @@ class AuthApi {
       .catch((_err) => {
         throw errorFactory.create(AuthErr.LOGIN_FAILED);
       });
+
+  public static postRefreshToken = () =>
+    fetcher.post<ApiLoginResponse>(endpoints.REFRESH_TOKEN, {});
 }
 
 export { AuthApi };
