@@ -1,5 +1,5 @@
 import { registerBearerToken } from '../common/api';
-import { logout, signInWithEmailAndPassword } from "./actions";
+import { logout, signInWithEmailAndPassword } from './actions';
 
 class AuthProvider {
   public token: string | undefined;
@@ -20,7 +20,7 @@ class AuthProvider {
 
   public logout = async () => {
     await logout();
-  }
+  };
 }
 
 export { AuthProvider };

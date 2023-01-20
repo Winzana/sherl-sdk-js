@@ -20,8 +20,7 @@ class AuthApi {
       });
 
   public static getLogout = () =>
-    fetcher
-      .get<ApiLoginResponse>(endpoints.LOGOUT);
+    fetcher.get<ApiLoginResponse>(endpoints.LOGOUT);
 }
 
 export { AuthApi };
