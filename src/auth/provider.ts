@@ -1,12 +1,12 @@
-import { registerBearerToken } from '../common/api';
-import { signInWithEmailAndPassword, refreshToken } from './actions';
+import { registerBearerToken } from "../common/api";
+import { signInWithEmailAndPassword, refreshToken } from "./actions";
 
 class AuthProvider {
   public token: string | undefined;
 
   public signInWithEmailAndPassword = async (
     email: string,
-    password: string,
+    password: string
   ) => {
     const token = await signInWithEmailAndPassword(email, password);
     this.registerToken(token);
@@ -22,7 +22,7 @@ class AuthProvider {
     const token = await refreshToken();
     this.registerToken(token);
     return token;
-  }
+  };
 }
 
 export { AuthProvider };
