@@ -5,7 +5,7 @@ export const refreshToken = async (): Promise<string> => {
   const response = await AuthApi.postRefreshToken();
 
   if (!response.data.access_token) {
-    throw errorFactory.create(AuthErr.LOGIN_FAILED);
+    throw errorFactory.create(AuthErr.AUTH_FAILED);
   }
 
   return response.data.access_token;
