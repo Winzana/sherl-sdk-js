@@ -15,12 +15,13 @@ describe('Config', () => {
     const apiConsoleSecret = 'CONSOLE_API_KEY';
 
     init({ apiSherlKey, apiSherlSecret, apiConsoleKey, apiConsoleSecret });
-    
 
     expect((global as SherlGlobal).SHERL_API_KEY).toEqual(apiSherlKey);
     expect((global as SherlGlobal).SHERL_API_SECRET).toEqual(apiSherlSecret);
     expect((global as SherlGlobal).CONSOLE_API_KEY).toEqual(apiConsoleKey);
-    expect((global as SherlGlobal).CONSOLE_API_SECRET).toEqual(apiConsoleSecret);
+    expect((global as SherlGlobal).CONSOLE_API_SECRET).toEqual(
+      apiConsoleSecret,
+    );
     expect(initializeConsoleApi).toHaveBeenCalled();
   });
 

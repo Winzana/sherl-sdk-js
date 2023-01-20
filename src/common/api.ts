@@ -1,4 +1,9 @@
-import axios, { AxiosResponse, AxiosError, AxiosRequestConfig, AxiosInstance } from 'axios';
+import axios, {
+  AxiosResponse,
+  AxiosError,
+  AxiosRequestConfig,
+  AxiosInstance,
+} from 'axios';
 import { getGlobalObject } from './store';
 import { ErrorFactory, CommonErr, getErrorCodeByHttpStatus } from './errors';
 
@@ -59,7 +64,7 @@ export const registerBearerToken = (axios: AxiosInstance): void => {
       config.headers.Authorization = `Bearer ${globalObject.INSTANCE_TOKEN}`;
       return config;
     },
-    error => Promise.reject(error),
+    (error) => Promise.reject(error),
   );
 };
 
