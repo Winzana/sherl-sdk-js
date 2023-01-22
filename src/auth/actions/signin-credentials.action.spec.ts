@@ -1,6 +1,9 @@
 import { signInWithEmailAndPassword } from './signin-credentials.action';
-import { AuthApi } from '../api/client';
+// import { AuthApi } from '../api/client';
 import { AuthErr, errorFactory } from '../errors';
+import { Fetcher } from '../../common/api';
+import { ErrorFactory } from '../../common/errors';
+import axios from 'axios';
 
 jest.mock('../errors', () => ({
   ...jest.requireActual('../errors'),
@@ -11,41 +14,52 @@ jest.mock('../errors', () => ({
   },
 }));
 
+const fetcher = new Fetcher(axios.create(), new ErrorFactory('test', 'Test'));
+
 describe('signInWithEmailAndPassword', () => {
   it('should execute sign in request and return access token', async () => {
     jest
-      .spyOn(AuthApi, 'postRequestLoginCredential')
-      .mockImplementation(
+      .spyOn(fetcher, 'post')
+      .mockImplementationOnce(
         jest.fn(() =>
           Promise.resolve({ data: { access_token: 'token' } } as any),
         ),
       );
 
-    const response = await signInWithEmailAndPassword(
-      'mail@example.com',
-      'password',
-    );
+    const payload = {
+      email: 'mail@example.com',
+      password: 'password',
+    };
 
-    expect(AuthApi.postRequestLoginCredential).toHaveBeenCalled();
+    const response = await signInWithEmailAndPassword(fetcher, payload);
+    expect(fetcher.post).toHaveBeenCalledWith(expect.anything(), {
+      username: payload.email,
+      password: payload.password,
+    });
     expect(response).toEqual('token');
   });
-
   it('should throw error if API response is empty', async () => {
     jest
-      .spyOn(AuthApi, 'postRequestLoginCredential')
-      .mockImplementation(
+      .spyOn(fetcher, 'post')
+      .mockImplementationOnce(
         jest.fn(() => Promise.resolve({ data: null } as any)),
       );
 
-    let thrownError = null;
+    const payload = {
+      email: 'mail@example.com',
+      password: 'password',
+    };
 
+    let thrownError = null;
     try {
-      await signInWithEmailAndPassword('mail@example.com', 'password');
+      await signInWithEmailAndPassword(fetcher, payload);
     } catch (err) {
       thrownError = err;
     }
-
-    expect(AuthApi.postRequestLoginCredential).toHaveBeenCalled();
+    expect(fetcher.post).toHaveBeenCalledWith(expect.anything(), {
+      username: payload.email,
+      password: payload.password,
+    });
     expect(errorFactory.create).toHaveBeenCalledWith(AuthErr.LOGIN_FAILED);
     expect(thrownError).not.toBeNull();
   });

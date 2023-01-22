@@ -1,17 +1,20 @@
 import { AuthProvider } from '../provider';
 import * as action from '../actions/signin-credentials.action';
 import { registerBearerToken } from '../../common/api';
+import { SherlClient } from '../../common';
 
 jest.mock('../../common/api', () => ({
   ...jest.requireActual('../../common/api'),
   registerBearerToken: jest.fn(),
 }));
 
+const testClient = new SherlClient({ apiKey: '', apiSecret: '' });
+
 describe('AuthProvider', () => {
   let provider: AuthProvider;
 
   beforeEach(() => {
-    provider = new AuthProvider();
+    provider = new AuthProvider(testClient);
   });
 
   it('should sign in and register token', async () => {
@@ -26,8 +29,10 @@ describe('AuthProvider', () => {
     );
 
     expect(action.signInWithEmailAndPassword).toHaveBeenCalled();
-    expect(provider.token).toEqual(expectedToken);
-    expect(registerBearerToken).toHaveBeenCalledWith(expectedToken);
+    expect(registerBearerToken).toHaveBeenCalledWith(
+      expect.anything(),
+      expectedToken,
+    );
     expect(result).toEqual(expectedToken);
   });
 });
