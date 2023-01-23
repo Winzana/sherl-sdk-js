@@ -1,4 +1,3 @@
-import { SherlGlobal } from '../store';
 import { initializeApi } from '../../common/api';
 import { init } from '../config';
 
