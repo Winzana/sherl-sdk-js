@@ -1,5 +1,5 @@
 import { Fetcher } from './api';
-import { SherlClient } from './config';
+import { SherlClient } from './client';
 import { ErrorFactory } from './errors';
 
 export abstract class AbstractProvider {

@@ -1,5 +1,5 @@
 import { initializeApi } from '../../common/api';
-import { init } from '../config';
+import { init } from '../client';
 
 jest.mock('../../common/api', () => ({
   ...jest.requireActual('../../common/api'),
