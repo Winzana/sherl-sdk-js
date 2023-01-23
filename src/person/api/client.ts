@@ -1,7 +1,7 @@
 import { IPersonMeResponse, ILocation, IConfigResponse } from '../types';
 import { endpoints } from './endpoints';
 import { Fetcher } from '../../common/api';
-import { errorFactory } from '../errors';
+import { errorFactory, PersonErr } from '../errors';
 import { StringUtils } from '../../common/utils/string';
 import { Pagination } from '../../common/api';
 
@@ -54,6 +54,19 @@ class PersonApi {
 
   public static getVirtualMoney = () =>
     fetcher.get<IPersonMeResponse[]>(endpoints.GET_VIRTUAL_MONEY);
+
+  public static putPersonById = (
+    id: string,
+    params: Partial<IPersonMeResponse>,
+  ) =>
+    fetcher
+      .put<IPersonMeResponse>(endpoints.PUT_ONE_BY_USERID, {
+        id,
+        params,
+      })
+      .catch(() => {
+        throw errorFactory.create(PersonErr.POST_FAILED);
+      });
 }
 
 export { PersonApi };
