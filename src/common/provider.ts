@@ -13,7 +13,7 @@ export abstract class AbstractProvider {
   }
 
   protected withFetcher =
-    <T extends any[], R>(method: (fetcher: Fetcher, ...args: T) => R) =>
+    <T extends unknown[], R>(method: (fetcher: Fetcher, ...args: T) => R) =>
     (...args: T) =>
       method(this.fetcher, ...args);
 }
