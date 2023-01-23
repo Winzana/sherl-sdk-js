@@ -1,3 +1,4 @@
-import * as actions from './actions';
+import { SherlClient } from '../common';
+import { PersonProvider } from './provider';
 
-export const person = { ...actions };
+export const person = (client: SherlClient) => new PersonProvider(client);

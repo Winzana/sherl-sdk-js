@@ -1,13 +1,21 @@
-import { Pagination } from '../../../common/api';
+import { Fetcher, Pagination } from '../../../common/api';
+import { endpoints } from '../../api/endpoints';
 import { IOrderResponse } from '../../types/order/types';
-import { OrderApi } from '../../api/order/client';
 
 export const getOrders = async (
+  fetcher: Fetcher,
   page = 1,
   itemsPerPage = 10,
   filters: { [key: string]: any },
 ): Promise<Pagination<IOrderResponse[]>> => {
-  const response = await OrderApi.getOrders(page, itemsPerPage, filters);
+  const response = await fetcher.get<Pagination<IOrderResponse[]>>(
+    endpoints.GET_CUSTOMER_ORDERS,
+    {
+      page,
+      itemsPerPage,
+      ...filters,
+    },
+  );
 
   if (response.status !== 200) {
     throw new Error(

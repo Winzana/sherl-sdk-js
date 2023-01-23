@@ -4,5 +4,4 @@ export const endpoints = {
   GET_POSITION: '/api/persons/current-address',
   GET_PERSONS: '/api/persons',
   GET_CONFIG: '/api/persons/config',
-  GET_VIRTUAL_MONEY: '/api/people/virtual-money',
 };

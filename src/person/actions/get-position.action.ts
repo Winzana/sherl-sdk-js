@@ -1,11 +1,19 @@
-import { Pagination } from '../../common/api';
+import { Fetcher, Pagination } from '../../common/api';
+import { endpoints } from '../api/endpoints';
 import { ILocation } from '../types';
-import { PersonApi } from '../api/client';
 
-export const getCurrentAddress = async (position: {
-  [key: string]: string;
-}): Promise<Pagination<ILocation[]>> => {
-  const response = await PersonApi.getCurrentAddress(position);
+export const getCurrentAddress = async (
+  fetcher: Fetcher,
+  position: {
+    [key: string]: string;
+  },
+): Promise<Pagination<ILocation[]>> => {
+  const response = await fetcher.get<Pagination<ILocation[]>>(
+    endpoints.GET_POSITION,
+    {
+      position,
+    },
+  );
 
   if (response.status !== 200) {
     throw new Error(

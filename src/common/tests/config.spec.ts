@@ -1,6 +1,5 @@
-import { SherlGlobal } from '../store';
 import { initializeApi } from '../../common/api';
-import { init } from '../config';
+import { init } from '../client';
 
 jest.mock('../../common/api', () => ({
   ...jest.requireActual('../../common/api'),
@@ -12,10 +11,10 @@ describe('Config', () => {
     const apiKey = 'API_KEY';
     const apiSecret = 'API_SECRET';
 
-    init({ apiKey, apiSecret });
+    const client = init({ apiKey, apiSecret });
 
-    expect((global as SherlGlobal).SHERL_API_KEY).toEqual(apiKey);
-    expect((global as SherlGlobal).SHERL_API_SECRET).toEqual(apiSecret);
+    expect(client.getOptions().apiKey).toEqual(apiKey);
+    expect(client.getOptions().apiSecret).toEqual(apiSecret);
     expect(initializeApi).toHaveBeenCalled();
   });
 
