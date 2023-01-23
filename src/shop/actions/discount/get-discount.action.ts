@@ -1,12 +1,18 @@
-import { ApiResponse } from '../../../common/api';
+import { ApiResponse, Fetcher } from '../../../common/api';
+import { StringUtils } from '../../../common/utils/string';
+import { endpoints } from '../../api/endpoints';
 import { IDiscountResponse } from '../../types/discount/types';
-import { DiscountApi } from '../../api/discount/client';
 
-export const getDiscount = async (id: string): Promise<IDiscountResponse> => {
+export const getDiscount = async (
+  fetcher: Fetcher,
+  id: string,
+): Promise<IDiscountResponse> => {
   let response: ApiResponse<IDiscountResponse> | null = null;
 
   try {
-    response = await DiscountApi.getDiscount(id);
+    response = await fetcher.get<IDiscountResponse>(
+      StringUtils.bindContext(endpoints.GET_DISCOUNT_ID, { id }),
+    );
   } catch ({ name, response: responseError, stack, isAxiosError, ...rest }) {
     throw new Error('Cannot reach API');
   }

@@ -11,6 +11,7 @@ module.exports = {
     '!src/**/endpoints.ts',
     '!src/**/client.ts',
   ],
+  testPathIgnorePatterns: ['/node_modules/', '/lib/', '/lib-esm/'],
   // coverageThreshold: {
   //   global: {
   //     branches: 50,
