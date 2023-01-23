@@ -1,4 +1,3 @@
-import { getGlobalObject } from './store';
 import { initializeApi, registerBearerToken } from './api';
 import { ErrorFactory, CommonErr } from './errors';
 import { AxiosInstance } from 'axios';

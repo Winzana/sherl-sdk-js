@@ -10,7 +10,7 @@ export const getAutomationSecondary = async (
   let response: ApiResponse<IOrderResponse> | null = null;
 
   try {
-    response = await fetcher.get<IOrderResponse>( /// Je ne sais pas s'il y a une interface ????????
+    response = await fetcher.get<IOrderResponse>(
       StringUtils.bindContext(endpoints.GET_ORDER_AUTOMATION_SECONDARY, { id }),
     );
   } catch ({ name, response: responseError, stack, isAxiosError, ...rest }) {
