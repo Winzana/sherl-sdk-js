@@ -1,13 +1,21 @@
-import { Pagination } from '../../../common/api';
+import { Fetcher, Pagination } from '../../../common/api';
+import { endpoints } from '../../api/endpoints';
 import { IDiscountResponse } from '../../types/discount/types';
-import { DiscountApi } from '../../api/discount/client';
 
 export const getDiscounts = async (
+  fetcher: Fetcher,
   page = 1,
   itemsPerPage = 10,
   filters: { [key: string]: any },
 ): Promise<Pagination<IDiscountResponse[]>> => {
-  const response = await DiscountApi.getDiscounts(page, itemsPerPage, filters);
+  const response = await fetcher.get<Pagination<IDiscountResponse[]>>(
+    endpoints.GET_DISCOUNTS,
+    {
+      page,
+      itemsPerPage,
+      ...filters,
+    },
+  );
 
   if (response.status !== 200) {
     throw new Error(

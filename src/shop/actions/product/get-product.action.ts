@@ -1,12 +1,18 @@
-import { ApiResponse } from '../../../common/api';
+import { ApiResponse, Fetcher } from '../../../common/api';
+import { StringUtils } from '../../../common/utils/string';
 import { IProductResponse } from '../../types/product/types';
-import { ProductApi } from '../../api/product/client';
+import { endpoints } from '../../api/endpoints';
 
-export const getProduct = async (id: string): Promise<IProductResponse> => {
+export const getProduct = async (
+  fetcher: Fetcher,
+  id: string,
+): Promise<IProductResponse> => {
   let response: ApiResponse<IProductResponse> | null = null;
 
   try {
-    response = await ProductApi.getProduct(id);
+    response = await fetcher.get<IProductResponse>(
+      StringUtils.bindContext(endpoints.GET_PRODUCT, { id }),
+    );
   } catch ({ name, response: responseError, stack, isAxiosError, ...rest }) {
     throw new Error('Cannot reach API');
   }

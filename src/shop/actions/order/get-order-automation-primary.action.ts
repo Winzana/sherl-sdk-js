@@ -1,14 +1,18 @@
-import { ApiResponse } from '../../../common/api';
+import { ApiResponse, Fetcher } from '../../../common/api';
+import { StringUtils } from '../../../common/utils/string';
+import { endpoints } from '../../api/endpoints';
 import { IOrderResponse } from '../../types/order/types';
-import { OrderApi } from '../../api/order/client';
 
 export const getAutomationPrimary = async (
+  fetcher: Fetcher,
   id: string,
 ): Promise<IOrderResponse> => {
   let response: ApiResponse<IOrderResponse> | null = null;
 
   try {
-    response = await OrderApi.getAutomationPrimary(id);
+    response = await fetcher.get<IOrderResponse>(
+      StringUtils.bindContext(endpoints.GET_ORDER_AUTOMATION_PRIMARY, { id }),
+    );
   } catch ({ name, response: responseError, stack, isAxiosError, ...rest }) {
     throw new Error('Cannot reach API');
   }
