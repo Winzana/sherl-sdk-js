@@ -62,7 +62,7 @@ class PersonApi {
     fetcher
       .put<IPersonMeResponse>(
         StringUtils.bindContext(endpoints.PUT_ONE_BY_USERID, { id }),
-        { ...params },
+        params,
       )
       .catch(() => {
         throw errorFactory.create(PersonErr.POST_FAILED);
