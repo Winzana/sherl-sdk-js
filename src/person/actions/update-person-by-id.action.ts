@@ -18,14 +18,14 @@ export const updatePersonById = async (
         params,
       )
       .catch(() => {
-        throw errorFactory.create(PersonErr.POST_FAILED);
+        throw errorFactory.create(PersonErr.PUT_FAILED);
       });
   } catch ({ name, response: responseError, stack, isAxiosError, ...rest }) {
     throw new Error('Cannot reach API');
   }
 
   if (!response.data) {
-    throw errorFactory.create(PersonErr.POST_FAILED);
+    throw errorFactory.create(PersonErr.PUT_FAILED);
   }
 
   return response.data;
