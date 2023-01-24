@@ -60,10 +60,10 @@ class PersonApi {
     params: Partial<IPersonMeResponse>,
   ) =>
     fetcher
-      .put<IPersonMeResponse>(endpoints.PUT_ONE_BY_USERID, {
-        id,
-        params,
-      })
+      .put<IPersonMeResponse>(
+        StringUtils.bindContext(endpoints.PUT_ONE_BY_USERID, { id }),
+        { ...params },
+      )
       .catch(() => {
         throw errorFactory.create(PersonErr.POST_FAILED);
       });
