@@ -1,15 +1,21 @@
-import { ApiResponse } from '../../../common/api';
+import { ApiResponse, Fetcher } from '../../../common/api';
+import { endpoints } from '../../api/endpoints';
 import { IPublicCategoryResponse } from '../../types/product/types';
-import { ProductApi } from '../../api/product/client';
 
-export const getPublicCategories = async (params?: {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: any;
-}): Promise<IPublicCategoryResponse[]> => {
+export const getPublicCategories = async (
+  fetcher: Fetcher,
+  params?: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [key: string]: any;
+  },
+): Promise<IPublicCategoryResponse[]> => {
   let response: ApiResponse<IPublicCategoryResponse[]> | null = null;
 
   try {
-    response = await ProductApi.getPublicCategories(params);
+    response = await fetcher.get<IPublicCategoryResponse[]>(
+      endpoints.GET_PUBLIC_CATEGORIES,
+      params,
+    );
   } catch ({ name, response: responseError, stack, isAxiosError, ...rest }) {
     throw new Error('Cannot reach API');
   }

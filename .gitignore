@@ -5,3 +5,4 @@ _bundles
 .vscode
 *.code-workspace
 coverage
+.DS_Store

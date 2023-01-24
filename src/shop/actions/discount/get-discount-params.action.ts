@@ -1,11 +1,19 @@
+import { Fetcher, Pagination } from '../../../common/api';
+import { endpoints } from '../../api/endpoints';
 import { IDiscountResponse } from '../../types/discount/types';
-import { DiscountApi } from '../../api/discount/client';
-import { Pagination } from '../../../common/api';
 
-export const getDiscountByParams = async (slug: {
-  [key: string]: any;
-}): Promise<Pagination<IDiscountResponse>> => {
-  const response = await DiscountApi.getDiscountByParams(slug);
+export const getDiscountByParams = async (
+  fetcher: Fetcher,
+  params: {
+    [key: string]: any;
+  },
+): Promise<Pagination<IDiscountResponse>> => {
+  const response = await fetcher.get<Pagination<IDiscountResponse>>(
+    endpoints.GET_DISCOUNT_BY,
+    {
+      params,
+    },
+  );
 
   if (response.status !== 200) {
     throw new Error(

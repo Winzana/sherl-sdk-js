@@ -1,3 +1,4 @@
+import { SherlClient } from '../common';
 import { AuthProvider } from './provider';
 
-export const auth = new AuthProvider();
+export const auth = (client: SherlClient) => new AuthProvider(client);

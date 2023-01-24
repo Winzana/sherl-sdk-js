@@ -1,32 +1,38 @@
-import { registerBearerToken } from '../common/api';
-import { logout, signInWithEmailAndPassword, refreshToken } from './actions';
+import { SherlClient } from '../common';
+import { AbstractProvider } from '../common/provider';
+import { signInWithEmailAndPassword, logout, refreshToken } from './actions';
+import { errorFactory } from './errors';
 
-class AuthProvider {
-  public token: string | undefined;
+class AuthProvider extends AbstractProvider {
+  constructor(client: SherlClient) {
+    super(client, errorFactory);
+  }
 
   public signInWithEmailAndPassword = async (
     email: string,
     password: string,
   ) => {
-    const token = await signInWithEmailAndPassword(email, password);
+    const token = await signInWithEmailAndPassword(this.fetcher, {
+      email,
+      password,
+    });
     this.registerToken(token);
     return token;
   };
 
   public registerToken = (accessToken: string): void => {
-    this.token = accessToken;
-    registerBearerToken(accessToken);
+    this.client.registerAuthToken(accessToken);
   };
 
   public refreshToken = async () => {
-    const token = await refreshToken();
+    const token = await refreshToken(this.fetcher);
     this.registerToken(token);
     return token;
   };
 
   public logout = async () => {
-    await logout();
-    this.token = undefined;
+    await logout(this.fetcher);
+    this.client.revokeAuthToken();
   };
 }
 
