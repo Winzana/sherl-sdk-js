@@ -6,7 +6,7 @@ import {
   getMe,
   getPersonById,
   getPersons,
-  updatePersonById as updatePersonById,
+  updatePersonById,
 } from './actions';
 import { errorFactory } from './errors';
 

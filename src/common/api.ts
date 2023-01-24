@@ -55,7 +55,7 @@ class Fetcher {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: { [key: string]: any },
   ): Promise<ApiResponse<T>> {
-    return axios
+    return this.apiInstance
       .put<T>(url, data)
       .catch((err: AxiosError<ApiResponseError>) => {
         if (err.response && err.response.status) {
