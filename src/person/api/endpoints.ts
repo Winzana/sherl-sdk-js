@@ -4,5 +4,5 @@ export const endpoints = {
   GET_POSITION: '/api/persons/current-address',
   GET_PERSONS: '/api/persons',
   GET_CONFIG: '/api/persons/config',
-  PUT_ONE_BY_USERID: '/api/persons/:id',
+  UPDATE_PERSON_BY_ID: '/api/persons/:id',
 };

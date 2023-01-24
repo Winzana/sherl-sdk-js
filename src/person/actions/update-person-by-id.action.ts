@@ -14,7 +14,7 @@ export const updatePersonById = async (
   try {
     response = await fetcher
       .put<IPersonMeResponse>(
-        StringUtils.bindContext(endpoints.PUT_ONE_BY_USERID, { id }),
+        StringUtils.bindContext(endpoints.UPDATE_PERSON_BY_ID, { id }),
         params,
       )
       .catch(() => {
