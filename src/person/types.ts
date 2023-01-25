@@ -244,9 +244,3 @@ export interface ILemonwayCard {
   default: boolean;
   webKitToken: string;
 }
-
-export interface IPasswordChange {
-  oldPassword: string;
-  password: string;
-  passwordRepeat: string;
-}

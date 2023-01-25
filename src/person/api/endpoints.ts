@@ -5,5 +5,4 @@ export const endpoints = {
   GET_PERSONS: '/api/persons',
   GET_CONFIG: '/api/persons/config',
   UPDATE_PERSON_BY_ID: '/api/persons/:id',
-  POST_CHANGE_MY_PASSWORD: '/api/user/password/change',
 };

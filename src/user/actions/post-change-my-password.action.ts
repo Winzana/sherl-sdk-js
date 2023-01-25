@@ -1,9 +1,9 @@
 import { ApiResponse, Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
-import { errorFactory, PersonErr } from '../errors';
-import { IPasswordChange } from '../types';
+import { errorFactory, PersonErr } from '../../person/errors';
+import { IPasswordChange } from '../../user/types';
 
-export const postChangePassword = async (
+export const postChangeMyPassword = async (
   fetcher: Fetcher,
   parameter: Partial<IPasswordChange>,
 ): Promise<IPasswordChange> => {
