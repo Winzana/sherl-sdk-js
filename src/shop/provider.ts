@@ -8,13 +8,19 @@ import {
   getPublicDiscounts,
   postDiscount,
 } from './actions/discount';
-import { getOrder, getOrders, getOrganizationOrders } from './actions/order';
+import {
+  getAutomationPrimary,
+  getAutomationSecondary,
+  getOrder,
+  getOrders,
+  getOrganizationOrders,
+} from './actions/order';
 import {
   getCategoriesById,
   getCategories,
   getProduct,
   getProducts,
-  getPublicCategoriesSlug,
+  getPublicCategoriesBySlug,
   getPublicCategoriesAndSub,
   getPublicCategories,
   getPublicProductBySlug,
@@ -34,7 +40,7 @@ class ShopProvider extends AbstractProvider {
   getCategories = this.withFetcher(getCategories);
   getProduct = this.withFetcher(getProduct);
   getProducts = this.withFetcher(getProducts);
-  getPublicCategoriesSlug = this.withFetcher(getPublicCategoriesSlug);
+  getPublicCategoriesBySlug = this.withFetcher(getPublicCategoriesBySlug);
   getPublicCategoriesAndSub = this.withFetcher(getPublicCategoriesAndSub);
   getPublicCategories = this.withFetcher(getPublicCategories);
   getPublicProductBySlug = this.withFetcher(getPublicProductBySlug);
@@ -52,6 +58,8 @@ class ShopProvider extends AbstractProvider {
   getOrder = this.withFetcher(getOrder);
   getOrders = this.withFetcher(getOrders);
   getOrganizationOrders = this.withFetcher(getOrganizationOrders);
+  getAutomationPrimary = this.withFetcher(getAutomationPrimary);
+  getAutomationSecondary = this.withFetcher(getAutomationSecondary);
 }
 
 export { ShopProvider };
