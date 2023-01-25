@@ -7,7 +7,7 @@ class UserProvider extends AbstractProvider {
   constructor(client: SherlClient) {
     super(client, errorFactory);
   }
-  public updateChangeMyPassword = this.withFetcher(updateMyPassword);
+  public updateMyPassword = this.withFetcher(updateMyPassword);
 }
 
 export { UserProvider };
