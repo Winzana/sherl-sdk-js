@@ -7,6 +7,7 @@ import {
   getPersonById,
   getPersons,
   updatePersonById,
+  postChangePassword as postChangeMyPassword,
 } from './actions';
 import { errorFactory } from './errors';
 
@@ -21,6 +22,7 @@ class PersonProvider extends AbstractProvider {
   public getPersons = this.withFetcher(getPersons);
   public getCurrentAddress = this.withFetcher(getCurrentAddress);
   public updatePersonById = this.withFetcher(updatePersonById);
+  public postChangeMyPassword = this.withFetcher(postChangeMyPassword);
 }
 
 export { PersonProvider };
