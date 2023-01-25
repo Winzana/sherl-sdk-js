@@ -7,8 +7,8 @@ export enum ConfigErr {
   NOT_FOUND = 'not-found',
 }
 export const errors = {
-  [ConfigErr.FETCH_ERROR]: 'Failed to fetch products API',
-  [ConfigErr.NOT_FOUND]: 'Place not found',
+  [ConfigErr.FETCH_ERROR]: 'Failed to fetch config API',
+  [ConfigErr.NOT_FOUND]: 'Config not found',
 };
 
 export const errorFactory = new ErrorFactory<Err>('config', 'Config', errors);
