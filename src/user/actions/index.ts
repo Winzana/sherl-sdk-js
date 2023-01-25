@@ -1,1 +1,1 @@
-export * from './post-change-my-password.action';
+export * from './update-change-my-password.action';
