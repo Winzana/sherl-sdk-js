@@ -6,6 +6,7 @@ import {
   getMe,
   getPersonById,
   getPersons,
+  updatePersonById,
 } from './actions';
 import { errorFactory } from './errors';
 
@@ -19,6 +20,7 @@ class PersonProvider extends AbstractProvider {
   public getPersonById = this.withFetcher(getPersonById);
   public getPersons = this.withFetcher(getPersons);
   public getCurrentAddress = this.withFetcher(getCurrentAddress);
+  public updatePersonById = this.withFetcher(updatePersonById);
 }
 
 export { PersonProvider };
