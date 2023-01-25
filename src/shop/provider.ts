@@ -20,7 +20,7 @@ import {
   getCategories,
   getProduct,
   getProducts,
-  getPublicCategoriesSlug,
+  getPublicCategoriesBySlug,
   getPublicCategoriesAndSub,
   getPublicCategories,
   getPublicProductBySlug,
@@ -40,7 +40,7 @@ class ShopProvider extends AbstractProvider {
   getCategories = this.withFetcher(getCategories);
   getProduct = this.withFetcher(getProduct);
   getProducts = this.withFetcher(getProducts);
-  getPublicCategoriesSlug = this.withFetcher(getPublicCategoriesSlug);
+  getPublicCategoriesBySlug = this.withFetcher(getPublicCategoriesBySlug);
   getPublicCategoriesAndSub = this.withFetcher(getPublicCategoriesAndSub);
   getPublicCategories = this.withFetcher(getPublicCategories);
   getPublicProductBySlug = this.withFetcher(getPublicProductBySlug);

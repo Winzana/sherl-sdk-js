@@ -2,7 +2,7 @@ import { Fetcher, Pagination } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
 import { IPublicCategoryResponse } from '../../types/product/types';
 
-export const getPublicCategoriesSlug = async (
+export const getPublicCategoriesBySlug = async (
   fetcher: Fetcher,
   slug: string,
 ): Promise<Pagination<IPublicCategoryResponse>> => {
