@@ -1,17 +1,23 @@
-import axios, { AxiosResponse, AxiosError, AxiosRequestConfig } from 'axios';
-import { getGlobalObject } from './store';
-import { ErrorFactory, CommonErr, getErrorCodeByHttpStatus } from './errors';
+import axios, {
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+} from 'axios';
+import { CommonErr, ErrorFactory, getErrorCodeByHttpStatus } from './errors';
 
 class Fetcher {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  constructor(private readonly errorFactory: ErrorFactory<any>) {}
+  constructor(
+    private readonly apiInstance: AxiosInstance,
+    private readonly errorFactory: ErrorFactory<string>,
+  ) {}
 
   public async get<T>(
     url: string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     params?: { [key: string]: any },
   ): Promise<ApiResponse<T>> {
-    return axios
+    return this.apiInstance
       .get<T>(url, { params })
       .catch((err: AxiosError<ApiResponseError>) => {
         if (err.response && err.response.status) {
@@ -30,8 +36,27 @@ class Fetcher {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: { [key: string]: any },
   ): Promise<ApiResponse<T>> {
-    return axios
+    return this.apiInstance
       .post<T>(url, data)
+      .catch((err: AxiosError<ApiResponseError>) => {
+        if (err.response && err.response.status) {
+          throw this.errorFactory.create(
+            getErrorCodeByHttpStatus(err.response.status),
+            { message: err.response?.data?.message },
+          );
+        }
+
+        throw err;
+      });
+  }
+
+  public async put<T>(
+    url: string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    data: { [key: string]: any },
+  ): Promise<ApiResponse<T>> {
+    return this.apiInstance
+      .put<T>(url, data)
       .catch((err: AxiosError<ApiResponseError>) => {
         if (err.response && err.response.status) {
           throw this.errorFactory.create(
@@ -56,36 +81,39 @@ interface CustomAxiosRequestConfig extends Omit<AxiosRequestConfig, 'headers'> {
   headers?: any; // this was "any" at v0.21.1 but now broken between 0.21.4 >= 0.27.2
   // Lets make it any again to make it work again.
 }
-export const initializeApi = (apiUrl?: string): void => {
-  axios.defaults.baseURL = apiUrl || 'https://api.sherl.io';
-  axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-  axios.defaults.headers.post['Content-Type'] = 'application/json';
-  axios.defaults.headers.get['Content-Type'] = 'application/json';
-  axios.defaults.headers.put['Content-Type'] = 'application/json';
-  axios.defaults.headers.get.Authorization = 'Bearer';
-  axios.defaults.headers.put.Authorization = 'Bearer';
+export const initializeApi = (
+  apiKey: string,
+  apiSecret: string,
+  apiUrl?: string,
+) => {
+  const axiosInstance = axios.create({
+    baseURL: apiUrl || 'https://api.sherl.io',
+  });
+  axiosInstance.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+  axiosInstance.defaults.headers.post['Content-Type'] = 'application/json';
+  axiosInstance.defaults.headers.get['Content-Type'] = 'application/json';
+  axiosInstance.defaults.headers.put['Content-Type'] = 'application/json';
+  axiosInstance.defaults.headers.get.Authorization = 'Bearer';
+  axiosInstance.defaults.headers.put.Authorization = 'Bearer';
 
-  axios.interceptors.request.use(
+  axiosInstance.interceptors.request.use(
     (config: CustomAxiosRequestConfig) => {
-      const globalObject = getGlobalObject();
-
-      if (
-        typeof globalObject.SHERL_API_KEY === 'undefined' ||
-        typeof globalObject.SHERL_API_SECRET === 'undefined'
-      ) {
+      if (typeof apiKey === 'undefined' || typeof apiSecret === 'undefined') {
         throw errorFactory.create(CommonErr.MISSING_CREDENTIALS);
       }
 
-      config.headers.common['X-WZ-API-KEY'] = globalObject.SHERL_API_KEY;
-      config.headers.common['X-WZ-API-SECRET'] = globalObject.SHERL_API_SECRET;
+      config.headers.common['X-WZ-API-KEY'] = apiKey;
+      config.headers.common['X-WZ-API-SECRET'] = apiSecret;
       return config;
     },
     (error) => Promise.reject(error),
   );
+
+  return axiosInstance;
 };
 
-export const registerBearerToken = (token: string): void => {
-  axios.interceptors.request.use(
+export const registerBearerToken = (instance: AxiosInstance, token: string) => {
+  return instance.interceptors.request.use(
     (config: CustomAxiosRequestConfig) => {
       config.headers.Authorization = `Bearer ${token}`;
       return config;
