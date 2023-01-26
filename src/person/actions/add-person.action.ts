@@ -6,14 +6,14 @@ import { IAddPerson } from '../types';
 export const addPerson = async (
   fetcher: Fetcher,
   person: IAddPerson,
-): Promise<IAddPerson> => {
+): Promise<void> => {
   const response = await fetcher
-    .post<IAddPerson>(endpoints.ADD_PERSON, { person })
+    .post<void>(endpoints.ADD_PERSON, { ...person })
     .catch((_err) => {
       throw errorFactory.create(PersonErr.ADD_USER_FAILED);
     });
 
-  if (!response.data) {
+  if (response.status !== 201) {
     throw errorFactory.create(PersonErr.ADD_USER_FAILED);
   }
 
