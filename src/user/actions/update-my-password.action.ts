@@ -5,19 +5,17 @@ import { errorFactory, UserErr } from '../errors';
 
 export const updateMyPassword = async (
   fetcher: Fetcher,
-  parameter: Partial<IPasswordChange>,
+  data: Partial<IPasswordChange>,
 ): Promise<IPasswordChange> => {
   let response: ApiResponse<IPasswordChange> | null = null;
 
   try {
     response = await fetcher
-      .post<IPasswordChange>(endpoints.UPDATE_MY_PASSWORD, {
-        ...parameter,
-      })
+      .post<IPasswordChange>(endpoints.UPDATE_MY_PASSWORD, data)
       .catch(() => {
         throw errorFactory.create(UserErr.UPDATE_MY_PASSWORD_FAILED);
       });
-  } catch ({ ...rest }) {
+  } catch (err) {
     throw new Error('Cannot reach API');
   }
 
