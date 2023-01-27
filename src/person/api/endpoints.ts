@@ -5,4 +5,6 @@ export const endpoints = {
   GET_PERSONS: '/api/persons',
   GET_CONFIG: '/api/persons/config',
   UPDATE_PERSON_BY_ID: '/api/persons/:id',
+  REGISTER_WITH_EMAIL_AND_PASSWORD:
+    '/api/persons/register-with-email-and-password',
 };
