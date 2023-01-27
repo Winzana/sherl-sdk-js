@@ -5,5 +5,5 @@ export const endpoints = {
   GET_PERSONS: '/api/persons',
   GET_CONFIG: '/api/persons/config',
   UPDATE_PERSON_BY_ID: '/api/persons/:id',
-  ADD_PERSON: '/api/persons',
+  POST_CREATE_PERSON: '/api/persons',
 };
