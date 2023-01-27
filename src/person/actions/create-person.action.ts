@@ -6,7 +6,7 @@ import { IPersonRegister } from '../types';
 export const createPerson = async (
   fetcher: Fetcher,
   person: IPersonRegister,
-): Promise<boolean> => {
+) => {
   try {
     const response = await fetcher
       .post<IPersonRegister>(endpoints.CREATE_PERSON, { ...person })
