@@ -7,3 +7,4 @@ export * from './place';
 export * from './config';
 export * from './shop';
 export * from './organization';
+export * from './user';
