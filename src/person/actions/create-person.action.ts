@@ -6,7 +6,7 @@ import { IPersonRegister } from '../types';
 export const createPerson = async (
   fetcher: Fetcher,
   person: IPersonRegister,
-): Promise<IPersonRegister> => {
+): Promise<boolean> => {
   try {
     const response = await fetcher
       .post<IPersonRegister>(endpoints.CREATE_PERSON, { ...person })
@@ -18,7 +18,7 @@ export const createPerson = async (
       throw errorFactory.create(PersonErr.CREATE_PERSON_FAILED);
     }
 
-    return JSON.parse(response.config.data);
+    return true;
   } catch (error) {
     throw errorFactory.create(PersonErr.CREATE_PERSON_FAILED);
   }
