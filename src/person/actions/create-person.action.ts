@@ -1,11 +1,11 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { PersonErr, errorFactory } from '../errors';
-import { ICreatePerson } from '../types';
+import { IPersonRegister } from '../types';
 
 export const createPerson = async (
   fetcher: Fetcher,
-  person: ICreatePerson,
+  person: IPersonRegister,
 ): Promise<void> => {
   const response = await fetcher
     .post<void>(endpoints.POST_CREATE_PERSON, { ...person })

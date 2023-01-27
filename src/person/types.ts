@@ -245,7 +245,7 @@ export interface ILemonwayCard {
   webKitToken: string;
 }
 
-export interface ICreatePerson {
+export interface IPersonRegister {
   id: string;
   birthDate: string;
   firstName: string;
