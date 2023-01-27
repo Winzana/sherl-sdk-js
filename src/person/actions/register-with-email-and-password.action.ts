@@ -7,11 +7,11 @@ import { errorFactory, PersonErr } from '../errors';
 export const registerWithEmailAndPassword = async (
   fetcher: Fetcher,
   data: IPersonRegister,
-): Promise<IPersonMeResponse[]> => {
+): Promise<IPersonMeResponse> => {
   try {
     console.log(data);
     const response = await fetcher
-      .post<IPersonMeResponse[]>(endpoints.REGISTER_WITH_EMAIL_AND_PASSWORD, {
+      .post<IPersonMeResponse>(endpoints.REGISTER_WITH_EMAIL_AND_PASSWORD, {
         ...data,
       })
       .catch(() => {
