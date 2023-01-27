@@ -5,7 +5,7 @@ export const endpoints = {
   GET_PERSONS: '/api/persons',
   GET_CONFIG: '/api/persons/config',
   UPDATE_PERSON_BY_ID: '/api/persons/:id',
-  POST_CREATE_PERSON: '/api/persons',
+  CREATE_PERSON: '/api/persons',
   REGISTER_WITH_EMAIL_AND_PASSWORD:
     '/api/persons/register-with-email-and-password',
 };
