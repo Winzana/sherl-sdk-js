@@ -244,3 +244,30 @@ export interface ILemonwayCard {
   default: boolean;
   webKitToken: string;
 }
+
+export interface IPersonRegister {
+  id: string;
+  birthDate: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  confirmPassword: string;
+  email: string;
+  phoneNumber: string;
+  address: {
+    id: string;
+    uri: string;
+    createdAt: string;
+    country: string;
+    locality: string;
+    region: string;
+    department: string;
+    postalCode: string;
+    streetAddress: string;
+    complementaryStreetAddress: string;
+    name: string;
+    originId: string;
+    latitude: number;
+    longitude: number;
+  };
+}
