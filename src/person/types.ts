@@ -271,3 +271,9 @@ export interface IPersonRegister {
     longitude: number;
   };
 }
+
+export interface IPictureRegister {
+  person: string;
+  mediaId: string;
+  file: File;
+}

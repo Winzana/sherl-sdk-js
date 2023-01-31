@@ -11,6 +11,7 @@ import {
   registerWithEmailAndPassword,
 } from './actions';
 import { errorFactory } from './errors';
+import { addPersonPicture } from "./actions/add-person-picture.action";
 
 class PersonProvider extends AbstractProvider {
   constructor(client: SherlClient) {
@@ -27,6 +28,7 @@ class PersonProvider extends AbstractProvider {
   public registerWithEmailAndPassword = this.withFetcher(
     registerWithEmailAndPassword,
   );
+  public addPersonPicture = this.withFetcher(addPersonPicture);
 }
 
 export { PersonProvider };
