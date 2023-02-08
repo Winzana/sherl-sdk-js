@@ -1,14 +1,14 @@
 import { ErrorFactory } from '../../../common/errors';
 
-type Err = 'fetch-failed' | 'not-found' | 'post-failed';
-
 export enum DiscountErr {
-  POST_FAILED = 'post-discount-failed',
+  POST_FAILED = 'discount/post-discount-failed',
+  FETCH_FAILED = 'discount/order/fetch-failed',
+  NOT_FOUND = 'discount/order/not-found',
 }
 
 export const errors = {
-  'fetch-failed': 'Failed to fetch discount API',
-  'not-found': 'Discount not found',
+  [DiscountErr.FETCH_FAILED]: 'Failed to fetch discount API',
+  [DiscountErr.NOT_FOUND]: 'Discount not found',
   [DiscountErr.POST_FAILED]: 'Post discount failed',
 };
 

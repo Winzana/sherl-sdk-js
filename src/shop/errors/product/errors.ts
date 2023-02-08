@@ -1,8 +1,8 @@
 import { ErrorFactory } from '../../../common/errors';
 
 export enum ProductErr {
-  FETCH_FAILED = 'fetch-failed',
-  NOT_FOUND = 'not-found',
+  FETCH_FAILED = 'product/fetch-failed',
+  NOT_FOUND = 'product/not-found',
 }
 
 export const errors = {
