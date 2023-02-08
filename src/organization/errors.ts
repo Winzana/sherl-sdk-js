@@ -7,8 +7,4 @@ export const errors = {
   'not-found': 'Product not found',
 };
 
-export const errorFactory = new ErrorFactory<Err>(
-  'organization',
-  'Organization',
-  errors,
-);
+export const errorFactory = new ErrorFactory<Err>('Organization', errors);

@@ -9,4 +9,4 @@ export const errors = {
   [AuthErr.AUTH_FAILED]: 'Could not authenticate',
 };
 
-export const errorFactory = new ErrorFactory<AuthErr>('', 'Auth', errors);
+export const errorFactory = new ErrorFactory<AuthErr>('Auth', errors);

@@ -11,4 +11,4 @@ export const errors = {
   [ConfigErr.NOT_FOUND]: 'Config not found',
 };
 
-export const errorFactory = new ErrorFactory<Err>('config', 'Config', errors);
+export const errorFactory = new ErrorFactory<Err>('Config', errors);

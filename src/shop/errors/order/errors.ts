@@ -7,4 +7,4 @@ export const errors = {
   'not-found': 'Order not found',
 };
 
-export const errorFactory = new ErrorFactory<Err>('order', 'Order', errors);
+export const errorFactory = new ErrorFactory<Err>('Order', errors);

@@ -90,7 +90,6 @@ export class SherlError extends Error {
 
 export class ErrorFactory<ErrorCode extends string> {
   constructor(
-    private readonly domain: string,
     private readonly domainName: string,
     private readonly errors?: ErrorMap<ErrorCode | CommonErrorCode>,
   ) {}

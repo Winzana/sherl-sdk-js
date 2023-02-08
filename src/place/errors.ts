@@ -7,4 +7,4 @@ export const errors = {
   'not-found': 'Place not found',
 };
 
-export const errorFactory = new ErrorFactory<Err>('place', 'Place', errors);
+export const errorFactory = new ErrorFactory<Err>('Place', errors);

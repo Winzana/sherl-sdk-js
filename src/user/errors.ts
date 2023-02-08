@@ -14,4 +14,4 @@ export const errors = {
   [UserErr.UPDATE_MY_PASSWORD_FAILED]: 'Failed to update password',
 };
 
-export const errorFactory = new ErrorFactory<UserErr>('user', 'User', errors);
+export const errorFactory = new ErrorFactory<UserErr>('User', errors);

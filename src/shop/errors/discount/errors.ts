@@ -12,8 +12,4 @@ export const errors = {
   [DiscountErr.POST_FAILED]: 'Post discount failed',
 };
 
-export const errorFactory = new ErrorFactory<DiscountErr>(
-  'discount',
-  'Discount',
-  errors,
-);
+export const errorFactory = new ErrorFactory<DiscountErr>('Discount', errors);
