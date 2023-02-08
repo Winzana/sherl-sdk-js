@@ -1,10 +1,13 @@
 import { ErrorFactory } from '../../../common/errors';
 
-type Err = 'fetch-failed' | 'not-found';
+export enum OrderErr {
+  FETCH_FAILED = 'order/fetch-failed',
+  NOT_FOUND = 'order/not-found',
+}
 
 export const errors = {
-  'fetch-failed': 'Failed to fetch order API',
-  'not-found': 'Order not found',
+  [OrderErr.FETCH_FAILED]: 'Failed to fetch order API',
+  [OrderErr.FETCH_FAILED]: 'Order not found',
 };
 
-export const errorFactory = new ErrorFactory<Err>('order', 'Order', errors);
+export const errorFactory = new ErrorFactory<OrderErr>('Order', errors);
