@@ -10,4 +10,7 @@ export const errors = {
   [OrganizationErr.NOT_FOUND]: 'Organization not found',
 };
 
-export const errorFactory = new ErrorFactory<OrganizationErr>('Organization', errors);
+export const errorFactory = new ErrorFactory<OrganizationErr>(
+  'Organization',
+  errors,
+);
