@@ -28,7 +28,7 @@ import {
   getPublicProducts,
 } from './actions/product';
 
-const errorFactory = new ErrorFactory('shop', 'Shop');
+const errorFactory = new ErrorFactory('Shop');
 
 class ShopProvider extends AbstractProvider {
   constructor(client: SherlClient) {
