@@ -72,7 +72,7 @@ class Fetcher {
 
 export { Fetcher };
 
-const errorFactory = new ErrorFactory('api', 'API');
+const errorFactory = new ErrorFactory('API');
 
 /**
  * Axios configuration

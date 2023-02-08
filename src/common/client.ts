@@ -8,7 +8,7 @@ export interface InitOptions {
   apiUrl?: string;
 }
 
-const errorFactory = new ErrorFactory('client', 'Client');
+const errorFactory = new ErrorFactory('Client');
 
 export class SherlClient {
   private apiInstance: AxiosInstance;

@@ -13,7 +13,7 @@ jest.mock('../errors', () => ({
   },
 }));
 
-const fetcher = new Fetcher(axios.create(), new ErrorFactory('test', 'Test'));
+const fetcher = new Fetcher(axios.create(), new ErrorFactory('Test'));
 
 describe('signInWithEmailAndPassword', () => {
   it('should execute sign in request and return access token', async () => {

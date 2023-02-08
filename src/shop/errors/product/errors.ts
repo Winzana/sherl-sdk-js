@@ -1,8 +1,8 @@
 import { ErrorFactory } from '../../../common/errors';
 
 export enum ProductErr {
-  FETCH_FAILED = 'fetch-failed',
-  NOT_FOUND = 'not-found',
+  FETCH_FAILED = 'product/fetch-failed',
+  NOT_FOUND = 'product/not-found',
 }
 
 export const errors = {
@@ -10,8 +10,4 @@ export const errors = {
   [ProductErr.NOT_FOUND]: 'Product not found',
 };
 
-export const errorFactory = new ErrorFactory<ProductErr>(
-  'product',
-  'Product',
-  errors,
-);
+export const errorFactory = new ErrorFactory<ProductErr>('Product', errors);
