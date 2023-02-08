@@ -105,7 +105,7 @@ export class ErrorFactory<ErrorCode extends string> {
    * @memberof ErrorFactory
    */
   create<K extends ErrorCode>(code: K | CommonErrorCode, data?: ErrorData) {
-    const identifier = `${this.domain}/${code}`;
+    const identifier = `${code}`;
 
     let template: string | undefined =
       (this.errors && this.errors[code]) ||
