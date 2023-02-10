@@ -6,6 +6,11 @@ import {
   getPublicOrganization,
   getPublicOrganizationBySlug,
   getPublicOrganizations,
+  addDocument,
+  updateDocument,
+  getAllDocuments,
+  addRib,
+  getAllRibs,
 } from './actions';
 import { errorFactory } from './errors';
 
@@ -21,6 +26,11 @@ class OrganizationProvider extends AbstractProvider {
     getPublicOrganizationBySlug,
   );
   public getPublicOrganizations = this.withFetcher(getPublicOrganizations);
+  public addDocument = this.withFetcher(addDocument);
+  public updateDocument = this.withFetcher(updateDocument);
+  public getAllDocuments = this.withFetcher(getAllDocuments);
+  public addRib = this.withFetcher(addRib);
+  public getAllRibs = this.withFetcher(getAllRibs);
 }
 
 export { OrganizationProvider };

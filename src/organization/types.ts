@@ -238,6 +238,72 @@ export interface IEmployee extends IPersonMeResponse, IModel {
   email: string;
 }
 
+export interface IAddDocument {
+  id: string;
+  type: string;
+  media: IMedia;
+}
+
+export interface IDocument {
+  id: string;
+  type: string;
+  media: IMedia;
+}
+
+export interface IMedia {
+  id: string;
+  uri: string;
+  caption: ICaption;
+  domain: string;
+}
+
+export interface ICaption {
+  id: string;
+  size: number;
+  contentUrl: string;
+  description: string;
+  name: string;
+  encodingFormat: string;
+}
+
+export interface IAddRib {
+  iban: string;
+  bic: string;
+}
+
+export interface IRib {
+  iban: string;
+  bic: string;
+}
+
+export interface ISetCommunication {
+  title: string;
+  message: string;
+  icon: string;
+}
+
+export interface ICommunication {
+  title: string;
+  message: string;
+  icon: string;
+}
+
+export interface IAddLogo {
+  logo: File;
+  organizationId: string;
+  logoId: string;
+}
+
+export interface IAddLogoResponse {}
+
+export interface IDeleteLogoResponse {}
+
+export interface IDeleteLogo {
+  logo: IDeleteLogoResponse;
+  organizationId: string;
+  logoId: string;
+}
+
 // //old
 // export interface IOrganizationResponse {
 //   isPaymentAllowed: boolean;
