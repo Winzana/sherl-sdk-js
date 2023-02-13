@@ -7,6 +7,7 @@ module.exports = {
       'authentication',
     ],
     Features: [
+      'config',
       'product',
       'person',
       'organization',
