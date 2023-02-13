@@ -10,7 +10,7 @@ title: Person
 Retrieve logged-in person informations.
 
 ```ts
-const me = await Sherl.person.getMe();
+const me = await person(client).getMe();
 ```
 
 Return a Person.
@@ -22,7 +22,7 @@ Return a Person.
 Retrieve person informations by ID.
 
 ```ts
-const person = await Sherl.person.getPersonById('id');
+const person = await person(client).getPersonById('id');
 ```
 
 Return a Person.
@@ -34,7 +34,7 @@ Return a Person.
 Retrieve a list of persons.
 
 ```ts
-const persons = await Sherl.person.getPersons(1, 10, {
+const persons = await person(client).getPersons(page, itemPerPage, {
   /* Filters */
 });
 ```
@@ -48,7 +48,7 @@ Return a paginated array of Person.
 Retrieve person address by position.
 
 ```ts
-const address = await Sherls.person.getCurrentAddress({
+const address = await person(client).getCurrentAddress({
   longitude: 'your_longitude',
   latitude: 'your_latitude',
 });
@@ -63,7 +63,106 @@ Return a Place.
 Retrieve person configuration vars.
 
 ```ts
-const config = await Sherl.person.getConfigs();
+const configs = await person(client).getConfigs();
 ```
 
-Return an array of Configuration.
+Return an array of Configuration for this person.
+
+## Register a user for your sherl
+this function create a user link to your sherl
+
+```ts
+await person(client).registerWithEmailAndPassword(user);
+```
+user correspond to this interface 
+```ts
+interface IPersonRegister {
+  id: string;
+  birthDate: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  confirmPassword: string;
+  email: string;
+  phoneNumber: string;
+  address: {
+    id: string;
+    uri: string;
+    createdAt: string;
+    country: string;
+    locality: string;
+    region: string;
+    department: string;
+    postalCode: string;
+    streetAddress: string;
+    complementaryStreetAddress: string;
+    name: string;
+    originId: string;
+    latitude: number;
+    longitude: number;
+  };
+}
+```
+## Register a user for your app
+this function create a user link to your project
+
+```ts
+await person(client).createPerson(user);
+```
+user use the same interface as previous
+
+## Update a user
+```ts
+await person(client).updatePersonById('id', user);
+```
+user is composed by anything from this interface
+
+```ts
+interface IPersonMeResponse {
+  id: string;
+  uri: string;
+  consumerId: string;
+  userId: string;
+  firstName: string;
+  lastName: string;
+  address: IPlace;
+  myAddresses: IPlace[];
+  subscriptionLocation: IGeoCoordinates;
+  phoneNumber: string;
+  mobilePhoneNumber: string;
+  faxNumber: string;
+  nationality: string;
+  affiliation: IOrganization;
+  birthDate: Date;
+  email: string;
+  gender: string;
+  latitude: number;
+  longitude: number;
+  jobTitle: string;
+  enabled: boolean;
+  legalNotice: ILegalNotice;
+  privacyPolicy: IPrivacyPolicy;
+  createdAt: Date;
+  updatedAt: Date;
+  picture: IImageObject;
+  settings: ISettings;
+  organizationFavorites: string[];
+  mangopayUserId: string;
+  mangopayWalletId: string;
+  mangopayCards: IMangopayCard[];
+  stripe: IStripe;
+  lemonway: ILemonway;
+  type: IPersonTypeEnum;
+  frequentedEstablishments: IFrequentedEstablishments[];
+  metadatas: { [key: string]: any };
+  statistics: {
+    lastVisit: Date;
+    firstVisit: Date;
+    totalVisit: number;
+    amountLastOrder: number;
+    amountTotalOrder: number;
+    frequentedEstablishments: IFrequentedEstablishments[];
+    loyalCustomer: boolean;
+  };
+}
+```
