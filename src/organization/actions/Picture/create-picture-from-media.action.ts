@@ -6,7 +6,7 @@ import {
   ICreatePictureFromMediaResponse,
 } from '../../types';
 
-export const createPicture = async (
+export const createPictureFromMedia = async (
   fetcher: Fetcher,
   request: IPictureFromMedia,
 ): Promise<ICreatePictureFromMediaResponse> => {

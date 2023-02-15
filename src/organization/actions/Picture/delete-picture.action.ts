@@ -3,7 +3,7 @@ import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import { IPicture, IDeletePictureResponse } from '../../types';
 
-export const deleteBackgroundImage = async (
+export const deletePicture = async (
   fetcher: Fetcher,
   request: IPicture,
 ): Promise<IDeletePictureResponse> => {
