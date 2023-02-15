@@ -22,4 +22,10 @@ export const endpoints = {
   CREATE_PICTURE_FROM_MEDIA:
     '/api/organizations/:organizationId/pictures/:pictureId/from-media',
   DELETE_PICTURE: '/api/organizations/:organizationId/pictures/:pictureId',
+  CREATE_OPENING_HOURS_SPECIFICATION:
+    '/api/organizations/:organizationId/opening-hours-specification',
+  UPDATE_OPENING_HOURS_SPECIFICATION:
+    '/api/organizations/:organizationId/opening-hours-specification/:openingHoursSpecificationId',
+  DELETE_OPENING_HOURS_SPECIFICATION:
+    '/api/organizations/:organizationId/opening-hours-specification/:openingHoursSpecificationId',
 };

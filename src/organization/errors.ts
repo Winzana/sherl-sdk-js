@@ -15,6 +15,9 @@ export enum OrganizationErr {
   CREATE_PICTURE_FAILED = 'organization/create-picture-failed',
   CREATE_PICTURE_FROM_MEDIA_FAILED = 'organization/create-picture-from-media-failed',
   DELETE_PICTURE_FAILED = 'organization/delete-picture-failed',
+  CREATE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/create-opening-hours-specification-failed',
+  UPDATE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/update-opening-hours-specification-failed',
+  DELETE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/delete-opening-hours-specification-failed',
 }
 
 export const errors = {
@@ -36,6 +39,12 @@ export const errors = {
   [OrganizationErr.CREATE_PICTURE_FROM_MEDIA_FAILED]:
     'Failed to create picture from media',
   [OrganizationErr.DELETE_PICTURE_FAILED]: 'Failed to delete picture',
+  [OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_FAILED]:
+    'Failed to create opening hours specification',
+  [OrganizationErr.UPDATE_OPENING_HOURS_SPECIFICATION_FAILED]:
+    'Failed to update opening hours specification',
+  [OrganizationErr.DELETE_OPENING_HOURS_SPECIFICATION_FAILED]:
+    'Failed to delete opening hours specification',
 };
 
 export const errorFactory = new ErrorFactory<OrganizationErr>(

@@ -7,7 +7,7 @@ export const deletePicture = async (
   fetcher: Fetcher,
   request: IPicture,
 ): Promise<IDeletePictureResponse> => {
-  const response = await fetcher.post<IDeletePictureResponse>(
+  const response = await fetcher.post<IPicture>(
     endpoints.DELETE_PICTURE,
     request,
   );

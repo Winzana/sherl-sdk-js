@@ -383,6 +383,17 @@ export interface ICreatePictureFromMediaResponse {}
 
 export interface IDeletePictureResponse {}
 
+export interface IOpeningHoursSpecificationRequest {
+  openingHoursSpecification: IOpeningHoursSpecification;
+  organizationId: string;
+}
+
+export interface ICreateOpeningHoursSpecificationResponse {}
+
+export interface IUpdateOpeningHoursSpecificationResponse {}
+
+export interface IDeleteOpeningHoursSpecificationResponse {}
+
 // //old
 // export interface IOrganizationResponse {
 //   isPaymentAllowed: boolean;

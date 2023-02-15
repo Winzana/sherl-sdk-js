@@ -22,3 +22,8 @@ export * from './BackgroundImage/delete-background-image.action';
 export * from './Picture/create-picture.action';
 export * from './Picture/create-picture-from-media.action';
 export * from './Picture/delete-picture.action';
+
+// OPENING HOURS SPECIFICATION
+export * from './OpeningHoursSpecification/create-opening-hours-specification.action';
+export * from './OpeningHoursSpecification/delete-opening-hours-specification.action';
+export * from './OpeningHoursSpecification/update-opening-hours-specification.action';
