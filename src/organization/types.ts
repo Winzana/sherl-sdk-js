@@ -304,6 +304,85 @@ export interface IDeleteLogo {
   logoId: string;
 }
 
+export interface IDeleteBackgroundImageResponse {}
+
+export interface ICreateBackgroundImageResponse {}
+
+export interface ICreateBackgroundImageFromMediaResponse {}
+
+export interface IBackgroundImage {
+  backgroundImage: File;
+}
+
+export interface IBackgroundImageFromMedia {
+  thumbnail: {
+    caption: {
+      id: string;
+      size: number;
+      contentUrl: string;
+      description: string;
+      name: string;
+      encodingFormat: string;
+    };
+    width: number;
+    height: number;
+  };
+  id: string;
+  width: number;
+  height: number;
+  caption: {
+    id: string;
+    size: number;
+    contentUrl: string;
+    description: string;
+    name: string;
+    encodingFormat: string;
+  };
+  uri: string;
+  domain: string;
+  consumerId: string;
+}
+
+export interface IPicture {
+  picture: File;
+}
+
+export interface IPictureFromMedia {
+  thumbnail: {
+    caption: {
+      id: string;
+      size: number;
+      contentUrl: string;
+      description: string;
+      name: string;
+      encodingFormat: string;
+    };
+    width: number;
+    height: number;
+  };
+  _id: string;
+  id: string;
+  width: number;
+  height: number;
+  caption: {
+    id: string;
+    size: number;
+    contentUrl: string;
+    description: string;
+    name: string;
+    encodingFormat: string;
+  };
+  uri: string;
+  domain: string;
+  consumerId: string;
+}
+
+export interface ICreatePictureResponse {}
+
+export interface ICreatePictureFromMediaResponse {}
+
+export interface IDeletePictureResponse {}
+
 // //old
 // export interface IOrganizationResponse {
 //   isPaymentAllowed: boolean;
