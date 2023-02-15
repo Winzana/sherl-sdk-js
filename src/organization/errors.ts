@@ -18,6 +18,9 @@ export enum OrganizationErr {
   CREATE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/create-opening-hours-specification-failed',
   UPDATE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/update-opening-hours-specification-failed',
   DELETE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/delete-opening-hours-specification-failed',
+  CREATE_EMPLOYEE_FAILED = 'organization/create-employee-failed',
+  UPDATE_EMPLOYEE_FAILED = 'organization/update-employee-failed',
+  DELETE_EMPLOYEE_FAILED = 'organization/delete-employee-failed',
 }
 
 export const errors = {
@@ -45,6 +48,9 @@ export const errors = {
     'Failed to update opening hours specification',
   [OrganizationErr.DELETE_OPENING_HOURS_SPECIFICATION_FAILED]:
     'Failed to delete opening hours specification',
+  [OrganizationErr.CREATE_EMPLOYEE_FAILED]: 'Failed to create employee',
+  [OrganizationErr.UPDATE_EMPLOYEE_FAILED]: 'Failed to update employee',
+  [OrganizationErr.DELETE_EMPLOYEE_FAILED]: 'Failed to delete employee',
 };
 
 export const errorFactory = new ErrorFactory<OrganizationErr>(

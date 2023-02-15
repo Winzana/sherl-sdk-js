@@ -394,6 +394,17 @@ export interface IUpdateOpeningHoursSpecificationResponse {}
 
 export interface IDeleteOpeningHoursSpecificationResponse {}
 
+export interface IEmployeeRequest {
+  employee: IEmployee;
+  organizationId: string;
+}
+
+export interface ICreateEmployeeResponse {}
+
+export interface IUpdateEmployeeResponse {}
+
+export interface IDeleteEmployeeResponse {}
+
 // //old
 // export interface IOrganizationResponse {
 //   isPaymentAllowed: boolean;
