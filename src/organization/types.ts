@@ -405,6 +405,17 @@ export interface IUpdateEmployeeResponse {}
 
 export interface IDeleteEmployeeResponse {}
 
+export interface IFounderRequest {
+  founder: IFounder;
+  organizationId: string;
+}
+
+export interface ICreateFounderResponse {}
+
+export interface IUpdateFounderResponse {}
+
+export interface IDeleteFounderResponse {}
+
 // //old
 // export interface IOrganizationResponse {
 //   isPaymentAllowed: boolean;

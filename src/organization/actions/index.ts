@@ -27,3 +27,13 @@ export * from './Picture/delete-picture.action';
 export * from './OpeningHoursSpecification/create-opening-hours-specification.action';
 export * from './OpeningHoursSpecification/delete-opening-hours-specification.action';
 export * from './OpeningHoursSpecification/update-opening-hours-specification.action';
+
+// EMPLOYEE
+export * from './Employee/create-employee.action';
+export * from './Employee/delete-employee.action';
+export * from './Employee/update-employee.action';
+
+// FOUNDER
+export * from './Founder/create-founder.action';
+export * from './Founder/delete-founder.action';
+export * from './Founder/update-founder.action';

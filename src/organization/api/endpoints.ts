@@ -31,4 +31,7 @@ export const endpoints = {
   CREATE_EMPLOYEE: '/api/organizations/:organizationId/employees',
   UPDATE_EMPLOYEE: '/api/organizations/:organizationId/employees/:employeeId',
   DELETE_EMPLOYEE: '/api/organizations/:organizationId/employees/:employeeId',
+  CREATE_FOUNDER: '/api/organizations/:organizationId/founders',
+  UPDATE_FOUNDER: '/api/organizations/:organizationId/founders/:founderId',
+  DELETE_FOUNDER: '/api/organizations/:organizationId/founders/:founderId',
 };
