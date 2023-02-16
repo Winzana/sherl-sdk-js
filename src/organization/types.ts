@@ -1,4 +1,4 @@
-import { IPlace, IGeoCoordinates } from '../common/types';
+import { IPlace, IGeoCoordinates, IAddress } from '../common/types';
 import {
   IPersonMeResponse,
   IOpeningHoursSpecification,
@@ -299,7 +299,7 @@ export interface IAddLogoResponse {}
 export interface IDeleteLogoResponse {}
 
 export interface IDeleteLogo {
-  logo: IDeleteLogoResponse;
+  logo: File;
   organizationId: string;
   logoId: string;
 }
@@ -383,8 +383,8 @@ export interface ICreatePictureFromMediaResponse {}
 
 export interface IDeletePictureResponse {}
 
-export interface IOpeningHoursSpecificationRequest {
-  openingHoursSpecification: IOpeningHoursSpecification;
+export interface IOpeningHoursSpecificationRequest
+  extends IOpeningHoursSpecification {
   organizationId: string;
 }
 
@@ -394,8 +394,7 @@ export interface IUpdateOpeningHoursSpecificationResponse {}
 
 export interface IDeleteOpeningHoursSpecificationResponse {}
 
-export interface IEmployeeRequest {
-  employee: IEmployee;
+export interface IEmployeeRequest extends IEmployee {
   organizationId: string;
 }
 
@@ -405,8 +404,7 @@ export interface IUpdateEmployeeResponse {}
 
 export interface IDeleteEmployeeResponse {}
 
-export interface IFounderRequest {
-  founder: IFounder;
+export interface IFounderRequest extends IFounder {
   organizationId: string;
 }
 
@@ -415,6 +413,19 @@ export interface ICreateFounderResponse {}
 export interface IUpdateFounderResponse {}
 
 export interface IDeleteFounderResponse {}
+
+export interface IAddressRequest extends IAddress {
+  originId: string;
+  latitude: number;
+  longitude: number;
+  organizationId: string;
+}
+
+export interface IAddAddressResponse {}
+
+export interface IUpdateAddressResponse {}
+
+export interface IDeleteAddressResponse {}
 
 // //old
 // export interface IOrganizationResponse {

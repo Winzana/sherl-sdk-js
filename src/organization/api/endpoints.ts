@@ -34,4 +34,7 @@ export const endpoints = {
   CREATE_FOUNDER: '/api/organizations/:organizationId/founders',
   UPDATE_FOUNDER: '/api/organizations/:organizationId/founders/:founderId',
   DELETE_FOUNDER: '/api/organizations/:organizationId/founders/:founderId',
+  ADD_ADDRESS: '/api/organizations/:organizationId/addresses',
+  UPDATE_ADDRESS: '/api/organizations/:organizationId/addresses/:addressId',
+  DELETE_ADDRESS: '/api/organizations/:organizationId/addresses/:addressId',
 };

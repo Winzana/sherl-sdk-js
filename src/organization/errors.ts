@@ -24,6 +24,9 @@ export enum OrganizationErr {
   CREATE_FOUNDER_FAILED = 'organization/create-founder-failed',
   UPDATE_FOUNDER_FAILED = 'organization/update-founder-failed',
   DELETE_FOUNDER_FAILED = 'organization/delete-founder-failed',
+  ADD_ADDRESS_FAILED = 'organization/add-address-failed',
+  UPDATE_ADDRESS_FAILED = 'organization/update-address-failed',
+  DELETE_ADDRESS_FAILED = 'organization/delete-address-failed',
 }
 
 export const errors = {
@@ -57,6 +60,9 @@ export const errors = {
   [OrganizationErr.CREATE_FOUNDER_FAILED]: 'Failed to create founder',
   [OrganizationErr.UPDATE_FOUNDER_FAILED]: 'Failed to update founder',
   [OrganizationErr.DELETE_FOUNDER_FAILED]: 'Failed to delete founder',
+  [OrganizationErr.ADD_ADDRESS_FAILED]: 'Failed to add address',
+  [OrganizationErr.UPDATE_ADDRESS_FAILED]: 'Failed to update address',
+  [OrganizationErr.DELETE_ADDRESS_FAILED]: 'Failed to delete address',
 };
 
 export const errorFactory = new ErrorFactory<OrganizationErr>(
