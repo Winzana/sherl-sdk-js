@@ -3,6 +3,9 @@ export * from './get-organization.action';
 export * from './get-public-organization-by-slug.action';
 export * from './get-public-organization.action';
 export * from './get-public-organizations.action';
+export * from './create-organization.action';
+export * from './register-organization.action';
+export * from './register-organization-to-person.action';
 
 // KYC
 export * from './KYC/add-document.action';

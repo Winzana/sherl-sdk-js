@@ -37,4 +37,12 @@ export const endpoints = {
   ADD_ADDRESS: '/api/organizations/:organizationId/addresses',
   UPDATE_ADDRESS: '/api/organizations/:organizationId/addresses/:addressId',
   DELETE_ADDRESS: '/api/organizations/:organizationId/addresses/:addressId',
+  CREATE_ORGANIZATION: '/api/organizations',
+  REGISTER_ORGANIZATION: '/api/organizations/register',
+  SUGGEST_ORGANIZATION: '/api/organizations/suggest',
+  UPDATE_ORGANIZATION: '/api/organizations/:organizationId',
+  UPDATE_IS_PUBLIC_ORGANIZATION: '/api/organizations/:organizationId',
+  ENABLE_ROAMING: '/api/organizations/:organizationId/enable-roaming',
+  DISABLE_ROAMING: '/api/organizations/:organizationId/disable-roaming',
+  UPDATE_THIRD_PARTY: '/api/organizations/:organizationId',
 };

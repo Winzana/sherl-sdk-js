@@ -427,6 +427,196 @@ export interface IUpdateAddressResponse {}
 
 export interface IDeleteAddressResponse {}
 
+export interface IOrganization {
+  id: string;
+  legalName: string;
+  createdAt: string;
+  location: IAddressRequest;
+  siret: number;
+}
+
+export interface IRegisterOrganizationRequest {
+  organization: {
+    id: string;
+    legalName: string;
+    siret: string;
+    location: {
+      id: string;
+      uri: string;
+      createdAt: string;
+      country: string;
+      locality: string;
+      region: string;
+      department: string;
+      postalCode: string;
+      streetAddress: string;
+      complementaryStreetAddress: string;
+      name: string;
+      originId: string;
+      latitude: number;
+      longitude: number;
+      type: string;
+      isDefault: boolean;
+    };
+  };
+  user: {
+    password: string;
+  };
+  person: {
+    id: string;
+    birthDate: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    mobilePhoneNumber: string;
+    address: {
+      id: string;
+      uri: string;
+      createdAt: string;
+      country: string;
+      locality: string;
+      region: string;
+      department: string;
+      postalCode: string;
+      streetAddress: string;
+      complementaryStreetAddress: string;
+      name: string;
+      originId: string;
+      latitude: number;
+      longitude: number;
+      type: string;
+      isDefault: boolean;
+    };
+  };
+}
+
+export interface IRegisterOrganizationToPersonRequest {
+  organization: {
+    id: string;
+    legalName: string;
+    location: {
+      id: string;
+      country: string;
+      locality: string;
+      region: string;
+      postalCode: string;
+      streetAddress: string;
+      latitude: number;
+      longitude: number;
+    };
+  };
+  person: {
+    firstName: string;
+    lastName: string;
+    address: {
+      id: string;
+      country: string;
+      locality: string;
+      region: string;
+      postalCode: string;
+      streetAddress: string;
+    };
+    mobilePhoneNumber: string;
+    nationality: string;
+    birthDate: string;
+    email: string;
+    gender: string;
+    settings: {
+      notifications: {
+        smsEnable: boolean;
+        emailEnable: boolean;
+        pushEnable: boolean;
+      };
+    };
+  };
+}
+
+export interface ISuggestOrganizationRequest {
+  id: string;
+  legalName: string;
+  location: {
+    id: string;
+    country: string;
+    locality: string;
+    region: string;
+    postalCode: string;
+    streetAddress: string;
+    latitude: number;
+    longitude: number;
+  };
+  serviceType: [
+    {
+      id: string;
+      uri: string;
+      code: string;
+      values: [
+        {
+          language: string;
+          value: string;
+          createdAt: string;
+        },
+      ];
+      createdAt: string;
+    },
+    {
+      id: string;
+      uri: string;
+      code: string;
+      values: [
+        {
+          language: string;
+          value: string;
+          createdAt: string;
+        },
+      ];
+      createdAt: string;
+    },
+  ];
+}
+
+export interface IUpdateOrganizationRequest {
+  organizationId: string;
+  location: {
+    country: string;
+    locality: string;
+    region: string;
+    postalCode: string;
+    streetAddress: string;
+    latitude: number;
+    longitude: number;
+  };
+}
+
+export interface IUpdateOrganizationResponse {}
+
+export interface IUpdateIsPublicOrganizationRequest {
+  id: string;
+  isPublic: boolean;
+}
+
+export interface IEnableRoamingResponse {}
+
+export interface IEnableRoamingRequest {}
+
+export interface IDisableRoamingResponse {}
+
+export interface IDisableRoamingRequest {}
+
+export interface IUpdateThirdPartyRequest {
+  id: string;
+  thirdParty: {
+    facebook: {
+      accessToken: string;
+      userID: string;
+    };
+  };
+  metadatas: {
+    isItinerant: string;
+  };
+}
+
+export interface IThirdPartyResponse {}
+
 // //old
 // export interface IOrganizationResponse {
 //   isPaymentAllowed: boolean;

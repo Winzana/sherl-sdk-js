@@ -1,0 +1,20 @@
+import { Fetcher } from '../../common/api';
+import { endpoints } from '../api/endpoints';
+import { OrganizationErr, errorFactory } from '../errors';
+import { IOrganizationResponse, ISuggestOrganizationRequest } from '../types';
+
+export const suggestOrganization = async (
+  fetcher: Fetcher,
+  request: ISuggestOrganizationRequest,
+): Promise<IOrganizationResponse> => {
+  const response = await fetcher.post<ISuggestOrganizationRequest>(
+    endpoints.SUGGEST_ORGANIZATION,
+    request,
+  );
+
+  if (response.status !== 200) {
+    throw errorFactory.create(OrganizationErr.SUGGEST_ORGANIZATION_FAILED);
+  }
+
+  return response.data;
+};

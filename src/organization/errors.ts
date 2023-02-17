@@ -27,6 +27,14 @@ export enum OrganizationErr {
   ADD_ADDRESS_FAILED = 'organization/add-address-failed',
   UPDATE_ADDRESS_FAILED = 'organization/update-address-failed',
   DELETE_ADDRESS_FAILED = 'organization/delete-address-failed',
+  CREATE_ORGANIZATION_FAILED = 'organization/create-organization-failed',
+  REGISTER_ORGANIZATION_FAILED = 'organization/register-organization-failed',
+  SUGGEST_ORGANIZATION_FAILED = 'organization/suggest-organization-failed',
+  UPDATE_ORGANIZATION_FAILED = 'organization/update-organization-failed',
+  UPDATE_IS_PUBLIC_ORGANIZATION_FAILED = 'organization/update-is-public-organization-failed',
+  ENABLE_ROAMING_FAILED = 'organization/enable-roaming-failed',
+  DISABLE_ROAMING_FAILED = 'organization/disable-roaming-failed',
+  UPDATE_THIRD_PARTY_FAILED = 'organization/update-third-party-failed',
 }
 
 export const errors = {
@@ -63,6 +71,17 @@ export const errors = {
   [OrganizationErr.ADD_ADDRESS_FAILED]: 'Failed to add address',
   [OrganizationErr.UPDATE_ADDRESS_FAILED]: 'Failed to update address',
   [OrganizationErr.DELETE_ADDRESS_FAILED]: 'Failed to delete address',
+  [OrganizationErr.CREATE_ORGANIZATION_FAILED]: 'Failed to create organization',
+  [OrganizationErr.REGISTER_ORGANIZATION_FAILED]:
+    'Failed to register organization',
+  [OrganizationErr.SUGGEST_ORGANIZATION_FAILED]:
+    'Failed to suggest organization',
+  [OrganizationErr.UPDATE_ORGANIZATION_FAILED]: 'Failed to update organization',
+  [OrganizationErr.UPDATE_IS_PUBLIC_ORGANIZATION_FAILED]:
+    'Failed to update isPublic organization',
+  [OrganizationErr.ENABLE_ROAMING_FAILED]: 'Failed to enable roaming',
+  [OrganizationErr.DISABLE_ROAMING_FAILED]: 'Failed to disable roaming',
+  [OrganizationErr.UPDATE_THIRD_PARTY_FAILED]: 'Failed to update third party',
 };
 
 export const errorFactory = new ErrorFactory<OrganizationErr>(
