@@ -10,7 +10,7 @@ export const deleteOpeningHoursSpecification = async (
   fetcher: Fetcher,
   request: IOpeningHoursSpecificationRequest,
 ): Promise<IDeleteOpeningHoursSpecificationResponse> => {
-  const response = await fetcher.post<IOpeningHoursSpecificationRequest>(
+  const response = await fetcher.post<IDeleteOpeningHoursSpecificationResponse>(
     endpoints.DELETE_OPENING_HOURS_SPECIFICATION,
     request,
   );

@@ -7,7 +7,7 @@ export const updateEmployee = async (
   fetcher: Fetcher,
   request: IEmployeeRequest,
 ): Promise<IUpdateEmployeeResponse> => {
-  const response = await fetcher.put<IEmployeeRequest>(
+  const response = await fetcher.put<IUpdateEmployeeResponse>(
     endpoints.UPDATE_EMPLOYEE,
     request,
   );

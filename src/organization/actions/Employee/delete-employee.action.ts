@@ -7,7 +7,7 @@ export const deleteEmployee = async (
   fetcher: Fetcher,
   request: IEmployeeRequest,
 ): Promise<IDeleteEmployeeResponse> => {
-  const response = await fetcher.post<IEmployeeRequest>(
+  const response = await fetcher.post<IDeleteEmployeeResponse>(
     endpoints.DELETE_EMPLOYEE,
     request,
   );

@@ -7,7 +7,7 @@ export const updateOrganization = async (
   fetcher: Fetcher,
   request: IUpdateOrganizationRequest,
 ): Promise<IOrganization> => {
-  const response = await fetcher.put<IUpdateOrganizationRequest>(
+  const response = await fetcher.put<IOrganization>(
     endpoints.UPDATE_ORGANIZATION,
     request,
   );

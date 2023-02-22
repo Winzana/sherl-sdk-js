@@ -7,7 +7,7 @@ export const createFounder = async (
   fetcher: Fetcher,
   request: IFounderRequest,
 ): Promise<ICreateFounderResponse> => {
-  const response = await fetcher.post<IFounderRequest>(
+  const response = await fetcher.post<ICreateFounderResponse>(
     endpoints.CREATE_FOUNDER,
     request,
   );

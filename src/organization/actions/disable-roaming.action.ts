@@ -7,7 +7,7 @@ export const disableRoaming = async (
   fetcher: Fetcher,
   request: IDisableRoamingRequest,
 ): Promise<IDisableRoamingResponse> => {
-  const response = await fetcher.post<IDisableRoamingRequest>(
+  const response = await fetcher.post<IDisableRoamingResponse>(
     endpoints.DISABLE_ROAMING,
     request,
   );

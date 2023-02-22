@@ -10,7 +10,7 @@ export const createPictureFromMedia = async (
   fetcher: Fetcher,
   request: IPictureFromMedia,
 ): Promise<ICreatePictureFromMediaResponse> => {
-  const response = await fetcher.post<IPictureFromMedia>(
+  const response = await fetcher.post<ICreatePictureFromMediaResponse>(
     endpoints.CREATE_PICTURE_FROM_MEDIA,
     request,
   );

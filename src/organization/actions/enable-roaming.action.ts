@@ -7,7 +7,7 @@ export const enableRoaming = async (
   fetcher: Fetcher,
   request: IEnableRoamingRequest,
 ): Promise<IEnableRoamingResponse> => {
-  const response = await fetcher.post<IEnableRoamingRequest>(
+  const response = await fetcher.post<IEnableRoamingResponse>(
     endpoints.ENABLE_ROAMING,
     request,
   );

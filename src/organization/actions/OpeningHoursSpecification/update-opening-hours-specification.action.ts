@@ -10,7 +10,7 @@ export const updateOpeningHoursSpecification = async (
   fetcher: Fetcher,
   request: IOpeningHoursSpecificationRequest,
 ): Promise<IUpdateOpeningHoursSpecificationResponse> => {
-  const response = await fetcher.put<IOpeningHoursSpecificationRequest>(
+  const response = await fetcher.put<IUpdateOpeningHoursSpecificationResponse>(
     endpoints.UPDATE_OPENING_HOURS_SPECIFICATION,
     request,
   );

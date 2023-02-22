@@ -7,7 +7,7 @@ export const suggestOrganization = async (
   fetcher: Fetcher,
   request: ISuggestOrganizationRequest,
 ): Promise<IOrganizationResponse> => {
-  const response = await fetcher.post<ISuggestOrganizationRequest>(
+  const response = await fetcher.post<IOrganizationResponse>(
     endpoints.SUGGEST_ORGANIZATION,
     request,
   );

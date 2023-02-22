@@ -7,7 +7,7 @@ export const createPicture = async (
   fetcher: Fetcher,
   request: IPicture,
 ): Promise<ICreatePictureResponse> => {
-  const response = await fetcher.post<IPicture>(
+  const response = await fetcher.post<ICreatePictureResponse>(
     endpoints.CREATE_PICTURE,
     request,
   );

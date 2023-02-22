@@ -7,7 +7,7 @@ export const deleteAddress = async (
   fetcher: Fetcher,
   request: IAddressRequest,
 ): Promise<IDeleteAddressResponse> => {
-  const response = await fetcher.post<IAddressRequest>(
+  const response = await fetcher.post<IDeleteAddressResponse>(
     endpoints.DELETE_ADDRESS,
     request,
   );

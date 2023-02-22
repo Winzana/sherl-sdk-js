@@ -10,7 +10,7 @@ export const createBackgroundImageFromMedia = async (
   fetcher: Fetcher,
   request: IBackgroundImageFromMedia,
 ): Promise<ICreateBackgroundImageFromMediaResponse> => {
-  const response = await fetcher.post<IBackgroundImageFromMedia>(
+  const response = await fetcher.post<ICreateBackgroundImageFromMediaResponse>(
     endpoints.CREATE_BACKGROUND_IMAGE_FROM_MEDIA,
     request,
   );

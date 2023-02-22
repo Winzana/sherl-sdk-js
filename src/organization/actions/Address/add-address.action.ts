@@ -7,7 +7,7 @@ export const addAddress = async (
   fetcher: Fetcher,
   request: IAddressRequest,
 ): Promise<IAddAddressResponse> => {
-  const response = await fetcher.post<IAddressRequest>(
+  const response = await fetcher.post<IAddAddressResponse>(
     endpoints.ADD_ADDRESS,
     request,
   );

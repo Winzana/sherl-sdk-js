@@ -7,7 +7,7 @@ export const createOrganization = async (
   fetcher: Fetcher,
   request: IOrganization,
 ): Promise<IOrganizationResponse> => {
-  const response = await fetcher.post<IOrganization>(
+  const response = await fetcher.post<IOrganizationResponse>(
     endpoints.CREATE_ORGANIZATION,
     request,
   );

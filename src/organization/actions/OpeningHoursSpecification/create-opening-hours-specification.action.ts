@@ -10,7 +10,7 @@ export const createOpeningHoursSpecification = async (
   fetcher: Fetcher,
   request: IOpeningHoursSpecificationRequest,
 ): Promise<ICreateOpeningHoursSpecificationResponse> => {
-  const response = await fetcher.post<IOpeningHoursSpecificationRequest>(
+  const response = await fetcher.post<ICreateOpeningHoursSpecificationResponse>(
     endpoints.CREATE_OPENING_HOURS_SPECIFICATION,
     request,
   );

@@ -7,7 +7,7 @@ export const createEmployee = async (
   fetcher: Fetcher,
   request: IEmployeeRequest,
 ): Promise<ICreateEmployeeResponse> => {
-  const response = await fetcher.post<IEmployeeRequest>(
+  const response = await fetcher.post<ICreateEmployeeResponse>(
     endpoints.CREATE_EMPLOYEE,
     request,
   );

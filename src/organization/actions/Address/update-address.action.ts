@@ -7,7 +7,7 @@ export const updateAddress = async (
   fetcher: Fetcher,
   request: IAddressRequest,
 ): Promise<IUpdateAddressResponse> => {
-  const response = await fetcher.put<IAddressRequest>(
+  const response = await fetcher.put<IUpdateAddressResponse>(
     endpoints.UPDATE_ADDRESS,
     request,
   );

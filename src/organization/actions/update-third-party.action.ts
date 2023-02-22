@@ -7,7 +7,7 @@ export const updateThirdParty = async (
   fetcher: Fetcher,
   request: IUpdateThirdPartyRequest,
 ): Promise<IThirdPartyResponse> => {
-  const response = await fetcher.put<IUpdateThirdPartyRequest>(
+  const response = await fetcher.put<IThirdPartyResponse>(
     endpoints.UPDATE_THIRD_PARTY,
     request,
   );

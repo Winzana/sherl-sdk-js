@@ -7,7 +7,7 @@ export const deleteBackgroundImage = async (
   fetcher: Fetcher,
   request: IBackgroundImage,
 ): Promise<IDeleteBackgroundImageResponse> => {
-  const response = await fetcher.post<IBackgroundImage>(
+  const response = await fetcher.post<IDeleteBackgroundImageResponse>(
     endpoints.DELETE_BACKGROUND_IMAGE,
     request,
   );

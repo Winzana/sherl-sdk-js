@@ -427,7 +427,7 @@ export interface IUpdateAddressResponse {}
 
 export interface IDeleteAddressResponse {}
 
-export interface IOrganization {
+export interface IOrganization extends IModel {
   id: string;
   legalName: string;
   createdAt: string;
@@ -574,22 +574,22 @@ export interface ISuggestOrganizationRequest {
   ];
 }
 
-export interface IUpdateOrganizationRequest {
-  organizationId: string;
-  location: {
-    country: string;
-    locality: string;
-    region: string;
-    postalCode: string;
-    streetAddress: string;
-    latitude: number;
-    longitude: number;
-  };
+export interface IUpdateOrganizationRequest extends IOrganization {
+  // organizationId: string;
+  // location: {
+  country: string;
+  locality: string;
+  region: string;
+  postalCode: string;
+  streetAddress: string;
+  latitude: number;
+  longitude: number;
+  // };
 }
 
 export interface IUpdateOrganizationResponse {}
 
-export interface IUpdateIsPublicOrganizationRequest {
+export interface IUpdateIsPublicOrganizationRequest extends IOrganization {
   id: string;
   isPublic: boolean;
 }

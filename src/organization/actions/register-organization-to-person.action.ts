@@ -10,7 +10,7 @@ export const registerOrganizationToPerson = async (
   fetcher: Fetcher,
   request: IRegisterOrganizationToPersonRequest,
 ): Promise<IOrganizationResponse> => {
-  const response = await fetcher.post<IRegisterOrganizationToPersonRequest>(
+  const response = await fetcher.post<IOrganizationResponse>(
     endpoints.REGISTER_ORGANIZATION,
     request,
   );

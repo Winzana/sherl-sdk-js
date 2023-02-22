@@ -7,7 +7,7 @@ export const deleteFounder = async (
   fetcher: Fetcher,
   request: IFounderRequest,
 ): Promise<IDeleteFounderResponse> => {
-  const response = await fetcher.post<IFounderRequest>(
+  const response = await fetcher.post<IDeleteFounderResponse>(
     endpoints.DELETE_FOUNDER,
     request,
   );

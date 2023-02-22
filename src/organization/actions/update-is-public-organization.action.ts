@@ -7,7 +7,7 @@ export const updateOrganization = async (
   fetcher: Fetcher,
   request: IUpdateIsPublicOrganizationRequest,
 ): Promise<IOrganization> => {
-  const response = await fetcher.put<IUpdateIsPublicOrganizationRequest>(
+  const response = await fetcher.put<IOrganization>(
     endpoints.UPDATE_IS_PUBLIC_ORGANIZATION,
     request,
   );

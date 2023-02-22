@@ -7,7 +7,7 @@ export const updateFounder = async (
   fetcher: Fetcher,
   request: IFounderRequest,
 ): Promise<IUpdateFounderResponse> => {
-  const response = await fetcher.put<IFounderRequest>(
+  const response = await fetcher.put<IUpdateFounderResponse>(
     endpoints.UPDATE_FOUNDER,
     request,
   );
