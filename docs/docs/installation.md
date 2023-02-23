@@ -13,6 +13,7 @@ defaultValue="npm"
 values={[
 {label: 'NPM', value: 'npm'},
 {label: 'Yarn', value: 'yarn'},
+{label: 'PNPM', value: 'pnpm'},
 ]}>
 <TabItem value="npm">
 
@@ -25,6 +26,13 @@ npm install @sherl/sdk
 
 ```sh
 yarn add @sherl/sdk
+```
+
+</TabItem>
+<TabItem value="pnpm">
+
+```sh
+pnpm add @sherl/sdk
 ```
 
 </TabItem>
