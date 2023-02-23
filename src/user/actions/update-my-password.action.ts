@@ -15,6 +15,6 @@ export const updateMyPassword = async (
       });
     return true;
   } catch (err) {
-    throw new Error('Cannot reach API');
+    throw err;
   }
 };

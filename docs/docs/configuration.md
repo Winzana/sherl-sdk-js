@@ -11,7 +11,7 @@ const Sherl = require('@sherl/sdk');
 // OR import
 import * as Sherl from '@sherl/sdk';
 
-Sherl.init({
+const client = Sherl.init({
   apiKey: 'YOUR_API_KEY',
   apiSecret: 'YOUR_API_SECRET',
 });
