@@ -6,87 +6,111 @@ title: Product
 ## Get product list
 
 Retrieve a list of products.
+There is two version for this integration, public and private endpoint according to the public attribute.
+
+Return a paginated array of Product.
+
+<span class="badge badge--warning">Require authentication</span>
 
 ```ts
-// Require authentication
-const products = await Sherl.product.getProducts(1, 10 {
-  /* Filters */
-});
-
-// Public
-const products = await Sherl.product.getPublicProducts(1, 10 {
+const products = await shop(client).getProducts(1, 10, {
   /* Filters */
 });
 ```
 
-Return a paginated array of Product.
+<span class="badge badge--success">Public</span>
+
+```ts
+const products = await shop(client).getPublicProducts(1, 10, {
+  /* Filters */
+});
+```
 
 ## Get one product
 
 Retrieve a product by ID.
-
-```ts
-// Require authentication
-const product = await Sherl.product.getProduct('product-id');
-
-// Public
-const product = await Sherl.product.getPublicProduct('product-id');
-```
+There is two version for this integration, public and private endpoint according to the public attribute.
 
 Return a Product.
+
+<span class="badge badge--warning">Require authentication</span>
+
+```ts
+const product = await shop(client).getProduct('product-id');
+```
+
+<span class="badge badge--success">Public</span>
+
+```ts
+// Public
+const product = await shop(client).getPublicProduct('product-id');
+```
 
 ## Get product by slug
 
 Retrieve Product by slug.
+Return a Product.
+
+<span class="badge badge--success">Public</span>
 
 ```ts
-const product = await Sherl.product.getPublicProductBySlug('product-slug');
+const product = await shop(client).getPublicProductBySlug('product-slug');
 ```
 
-Return a Product.
+## Get categories from parent
+
+Retrieve categories.
+Return all subcategories for a parent category.
+
+<span class="badge badge--warning">Require authentication</span>
+
+```ts
+const categories = await shop(client).getCategoriesById('organization-id');
+```
 
 ## Get categories
 
 Retrieve categories.
+Return a category (with subcategories).
+
+<span class="badge badge--success">Public</span>
 
 ```ts
-// Require authentication
-const categories = await Sherl.product.getCategoriesById('organization-id');
-
 // Public
-const categories = await Sherl.product.getPublicCategories();
+const categories = await shop(client).getPublicCategories();
 ```
-
-Return a category (with subcategories).
 
 ## Get sub-categories of a category
 
+Retrieve list of sub-categories of a category.
+Return an array of Category.
+
 <span class="badge badge--warning">Require authentication</span>
 
-Retrieve list of sub-categories of a category.
-
 ```ts
-const subCategories = await Sherl.product.getCategories('organization-id');
+const subCategories = await shop(client).getCategories('organization-id');
 ```
-
-Return an array of Category.
 
 ## Get category by slug
 
 Retrieve category by slug.
+Return a Category.
+
+<span class="badge badge--success">Public</span>
 
 ```ts
-const category = await Sherl.product.getPublicCategoriesSlug('slug');
+const category = await shop(client).getPublicCategoriesSlug('slug');
 ```
 
-Return a Category.
 
 ## Get categories and subcategories
 
 Retrieve categories with subcategories list
 
+<span class="badge badge--success">Public</span>
+
 ```ts
-const categories = await Sherl.product.getPublicCategoriesAndSub();
+const categories = await shop(client).getPublicCategoriesAndSub();
 ```
 
 Return an array of Category.

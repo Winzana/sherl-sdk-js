@@ -7,12 +7,19 @@ module.exports = {
       'authentication',
     ],
     Features: [
-      'product',
       'person',
       'organization',
-      'order',
-      'discount',
       'place',
+      {
+        type: 'category',
+        label: 'Shop',
+        items:
+          [
+            'discount',
+            'order',
+            'product',
+          ],
+      },
     ],
   },
 };
