@@ -40,6 +40,7 @@ class Fetcher {
       .post<T>(url, data)
       .catch((err: AxiosError<ApiResponseError>) => {
         if (err.response && err.response.status) {
+          console.log(err.toJSON());
           throw this.errorFactory.create(
             getErrorCodeByHttpStatus(err.response.status),
             { message: err.response?.data?.message },

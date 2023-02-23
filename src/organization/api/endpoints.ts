@@ -8,14 +8,14 @@ export const endpoints = {
   ADD_DOCUMENT: '/api/organizations/:organizationId/kycs',
   GET_DOCUMENTS: '/api/organizations/:organizationId/kycs',
   UPDATE_DOCUMENT: '/api/organizations/:organizationId/kycs/:documentId',
-  ADD_RIB: 'api/organizations/:organizationId/rib',
-  GET_RIB: 'api/organizations/:organizationId/rib',
+  ADD_RIB: '/api/organizations/:organizationId/rib',
+  GET_RIB: '/api/organizations/:organizationId/rib',
   POST_SET_COMMUNICATION: '/api/organizations/:organizationId/communication',
   ADD_LOGO: '/api/organizations/:organizationId/logo/create/:logoId',
   DELETE_LOGO: '/api/organizations/:organizationId/logo/delete/:logoId',
   CREATE_BACKGROUND_IMAGE: '/api/organizations/:organizationId',
   CREATE_BACKGROUND_IMAGE_FROM_MEDIA:
-    '/api/organizations/:organizationId/from-media',
+    '/api/organizations/:organizationId/background-image/create/3835d8aa-469a-4702-9721-2f80f0c192df/from-media',
   DELETE_BACKGROUND_IMAGE:
     '/api/organizations/:organizationId/background-image',
   CREATE_PICTURE: '/api/organizations/:organizationId/pictures/:pictureId',
@@ -45,4 +45,8 @@ export const endpoints = {
   ENABLE_ROAMING: '/api/organizations/:organizationId/enable-roaming',
   DISABLE_ROAMING: '/api/organizations/:organizationId/disable-roaming',
   UPDATE_THIRD_PARTY: '/api/organizations/:organizationId',
+  ACTIVATE_ORGANIZATION_SERVICE:
+    '/api/organizations/:organizationId/activate-the-service',
+  TEMPORARY_SUSPEND_ORGANIZATION_SERVICE:
+    '/api/organizations/:organizationId/temporarily-suspend-the-service',
 };

@@ -6,6 +6,17 @@ export * from './get-public-organizations.action';
 export * from './create-organization.action';
 export * from './register-organization.action';
 export * from './register-organization-to-person.action';
+export * from './update-organization.action';
+export * from './create-organization.action';
+export * from './disable-roaming.action';
+export * from './enable-roaming.action';
+export * from './register-organization-to-person.action';
+export * from './register-organization.action';
+export * from './suggest-organization.action';
+export * from './update-third-party.action';
+export * from './update-is-public-organization.action';
+export * from './activate-organization-service.action';
+export * from './temporary-suspend-organization-service.action';
 
 // KYC
 export * from './KYC/add-document.action';
@@ -15,6 +26,13 @@ export * from './KYC/update-document.action';
 // RIB
 export * from './RIB/add-rib.action';
 export * from './RIB/get-all-ribs.action';
+
+// COMMUNICATION
+export * from './Communication/set-communication.action';
+
+// LOGO
+export * from './Logo/add-logo.action';
+export * from './Logo/delete-logo.action';
 
 // BACKGROUND IMAGE
 export * from './BackgroundImage/create-background-image.action';
@@ -40,3 +58,8 @@ export * from './Employee/update-employee.action';
 export * from './Founder/create-founder.action';
 export * from './Founder/delete-founder.action';
 export * from './Founder/update-founder.action';
+
+// ADDRESS
+export * from './Address/add-address.action';
+export * from './Address/delete-address.action';
+export * from './Address/update-address.action';

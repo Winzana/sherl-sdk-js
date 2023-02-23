@@ -3,7 +3,7 @@ import { endpoints } from '../api/endpoints';
 import { OrganizationErr, errorFactory } from '../errors';
 import { IUpdateIsPublicOrganizationRequest, IOrganization } from '../types';
 
-export const updateOrganization = async (
+export const updateIsPublicOrganization = async (
   fetcher: Fetcher,
   request: IUpdateIsPublicOrganizationRequest,
 ): Promise<IOrganization> => {

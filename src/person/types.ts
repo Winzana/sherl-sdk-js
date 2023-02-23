@@ -227,10 +227,10 @@ export interface ILocation {
 export interface IOpeningHoursSpecification {
   id: string;
   dayOfWeek: string;
-  closes: Date;
-  opens: Date;
-  validFrom: Date;
-  validThrough: Date;
+  closes: string;
+  opens: string;
+  validFrom: string;
+  validThrough: string;
 }
 
 export interface ILemonwayCard {

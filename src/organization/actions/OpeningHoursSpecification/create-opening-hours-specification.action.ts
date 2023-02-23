@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import {
@@ -11,14 +12,14 @@ export const createOpeningHoursSpecification = async (
   request: IOpeningHoursSpecificationRequest,
 ): Promise<ICreateOpeningHoursSpecificationResponse> => {
   const response = await fetcher.post<ICreateOpeningHoursSpecificationResponse>(
-    endpoints.CREATE_OPENING_HOURS_SPECIFICATION,
+    StringUtils.bindContext(endpoints.CREATE_OPENING_HOURS_SPECIFICATION, {
+      organizationId: request.organizationId,
+    }),
     request,
   );
 
   if (response.status !== 200) {
-    throw errorFactory.create(
-      OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_FAILED,
-    );
+    throw new Error('error test');
   }
 
   return response.data;

@@ -238,10 +238,13 @@ export interface IEmployee extends IPersonMeResponse, IModel {
   email: string;
 }
 
-export interface IAddDocument {
-  id: string;
-  type: string;
-  media: IMedia;
+export interface IAddDocument extends IDocument {
+  organizationId: string;
+}
+
+export interface IUpdateDocument extends IDocument {
+  organizationId: string;
+  documentId: string;
 }
 
 export interface IDocument {
@@ -266,9 +269,8 @@ export interface ICaption {
   encodingFormat: string;
 }
 
-export interface IAddRib {
-  iban: string;
-  bic: string;
+export interface IAddRib extends IRib {
+  organizationId: string;
 }
 
 export interface IRib {
@@ -276,10 +278,8 @@ export interface IRib {
   bic: string;
 }
 
-export interface ISetCommunication {
-  title: string;
-  message: string;
-  icon: string;
+export interface ISetCommunication extends ICommunication {
+  organizationId: string;
 }
 
 export interface ICommunication {
@@ -288,21 +288,16 @@ export interface ICommunication {
   icon: string;
 }
 
-export interface IAddLogo {
+export interface ILogo {
   logo: File;
+}
+
+export interface ILogoRequest extends ILogo {
   organizationId: string;
   logoId: string;
 }
 
-export interface IAddLogoResponse {}
-
-export interface IDeleteLogoResponse {}
-
-export interface IDeleteLogo {
-  logo: File;
-  organizationId: string;
-  logoId: string;
-}
+export interface ILogoResponse {}
 
 export interface IDeleteBackgroundImageResponse {}
 
@@ -312,6 +307,11 @@ export interface ICreateBackgroundImageFromMediaResponse {}
 
 export interface IBackgroundImage {
   backgroundImage: File;
+}
+
+export interface IBackgroundImageFromMediaRequest
+  extends IBackgroundImageFromMedia {
+  organizationId: string;
 }
 
 export interface IBackgroundImageFromMedia {
@@ -616,6 +616,14 @@ export interface IUpdateThirdPartyRequest {
 }
 
 export interface IThirdPartyResponse {}
+
+export interface IActivateOrganizationServiceRequest {
+  organizationId: string;
+}
+
+export interface ITemporarySuspendOrganizationServiceRequest {
+  organizationId: string;
+}
 
 // //old
 // export interface IOrganizationResponse {
