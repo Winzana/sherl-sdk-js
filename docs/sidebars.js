@@ -4,9 +4,11 @@ module.exports = {
       'introduction',
       'installation',
       'configuration',
+      'import',
       'authentication',
     ],
     Features: [
+      'user',
       'config',
       'product',
       'person',
