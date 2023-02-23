@@ -69,7 +69,7 @@ const configs = await person(client).getConfigs();
 Return an array of Configuration for this person.
 
 ## Register a user for your sherl
-this function create a user link to your sherl
+this function create a user
 
 ```ts
 await person(client).registerWithEmailAndPassword(user);
@@ -103,8 +103,9 @@ interface IPersonRegister {
   };
 }
 ```
+
 ## Register a user for your app
-this function create a user link to your project
+this function create a person without creating user
 
 ```ts
 await person(client).createPerson(user);
