@@ -1,13 +1,17 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { OrganizationErr, errorFactory } from '../errors';
-import { IOrganizationResponse, IRegisterOrganizationRequest } from '../types';
+import {
+  IOrganization,
+  IOrganizationResponse,
+  IRegisterOrganizationRequest,
+} from '../types';
 
 export const createOrganization = async (
   fetcher: Fetcher,
   request: IRegisterOrganizationRequest,
-): Promise<IOrganizationResponse> => {
-  const response = await fetcher.post<IOrganizationResponse>(
+): Promise<IOrganization> => {
+  const response = await fetcher.post<IOrganization>(
     endpoints.CREATE_ORGANIZATION,
     request,
   );

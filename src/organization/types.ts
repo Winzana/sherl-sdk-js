@@ -491,58 +491,6 @@ export interface IRegisterOrganizationRequest {
     longitude: number;
   };
   siret: number;
-  // organization: {
-  //   id: string;
-  //   legalName: string;
-  //   siret: string;
-  //   location: {
-  //     id: string;
-  //     uri: string;
-  //     createdAt: string;
-  //     country: string;
-  //     locality: string;
-  //     region: string;
-  //     department: string;
-  //     postalCode: string;
-  //     streetAddress: string;
-  //     complementaryStreetAddress: string;
-  //     name: string;
-  //     originId: string;
-  //     latitude: number;
-  //     longitude: number;
-  //     type: string;
-  //     isDefault: boolean;
-  //   };
-  // };
-  // user: {
-  //   password: string;
-  // };
-  // person: {
-  //   id: string;
-  //   birthDate: string;
-  //   firstName: string;
-  //   lastName: string;
-  //   email: string;
-  //   mobilePhoneNumber: string;
-  //   address: {
-  //     id: string;
-  //     uri: string;
-  //     createdAt: string;
-  //     country: string;
-  //     locality: string;
-  //     region: string;
-  //     department: string;
-  //     postalCode: string;
-  //     streetAddress: string;
-  //     complementaryStreetAddress: string;
-  //     name: string;
-  //     originId: string;
-  //     latitude: number;
-  //     longitude: number;
-  //     type: string;
-  //     isDefault: boolean;
-  //   };
-  // };
 }
 
 export interface IRegisterOrganizationToPersonRequest {
@@ -629,17 +577,17 @@ export interface ISuggestOrganizationRequest {
   ];
 }
 
-export interface IUpdateOrganizationRequest extends IOrganization {
-  // organizationId: string;
-  // location: {
-  country: string;
-  locality: string;
-  region: string;
-  postalCode: string;
-  streetAddress: string;
-  latitude: number;
-  longitude: number;
-  // };
+export interface IUpdateOrganizationRequest {
+  id: string;
+  location: {
+    country: string;
+    locality: string;
+    region: string;
+    postalCode: string;
+    streetAddress: string;
+    latitude: number;
+    longitude: number;
+  };
 }
 
 export interface IUpdateOrganizationResponse {}

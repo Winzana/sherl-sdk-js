@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { OrganizationErr, errorFactory } from '../errors';
 import { IUpdateOrganizationRequest, IOrganization } from '../types';
@@ -8,7 +9,9 @@ export const updateOrganization = async (
   request: IUpdateOrganizationRequest,
 ): Promise<IOrganization> => {
   const response = await fetcher.put<IOrganization>(
-    endpoints.UPDATE_ORGANIZATION,
+    StringUtils.bindContext(endpoints.UPDATE_ORGANIZATION, {
+      organizationId: request.id,
+    }),
     request,
   );
 
