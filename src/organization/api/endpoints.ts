@@ -45,8 +45,7 @@ export const endpoints = {
   ENABLE_ROAMING: '/api/organizations/:organizationId/enable-roaming',
   DISABLE_ROAMING: '/api/organizations/:organizationId/disable-roaming',
   UPDATE_THIRD_PARTY: '/api/organizations/:organizationId',
-  ACTIVATE_ORGANIZATION_SERVICE:
-    '/api/organizations/:organizationId/activate-the-service',
+  ACTIVATE_ORGANIZATION_SERVICE: '/api/organizations/:id/activate-the-service',
   TEMPORARY_SUSPEND_ORGANIZATION_SERVICE:
-    '/api/organizations/:organizationId/temporarily-suspend-the-service',
+    '/api/organizations/:id/temporarily-suspend-the-service',
 };

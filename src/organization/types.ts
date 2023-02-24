@@ -600,13 +600,7 @@ export interface IUpdateThirdPartyRequest {
 
 export interface IThirdPartyResponse {}
 
-export interface IActivateOrganizationServiceRequest {
-  organizationId: string;
-}
-
-export interface ITemporarySuspendOrganizationServiceRequest {
-  organizationId: string;
-}
+export interface ITemporarySuspendOrganizationServiceRequest {}
 
 // //old
 // export interface IOrganizationResponse {
