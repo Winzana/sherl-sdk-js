@@ -1,4 +1,5 @@
 import { IPlace, IGeoCoordinates, IAddress } from '../common/types';
+import { IConfig } from '../config/types';
 import {
   IPersonMeResponse,
   IOpeningHoursSpecification,
@@ -8,6 +9,40 @@ import {
   ICategoryResponse,
   IProductResponse,
 } from '../shop/types/product/types';
+
+export interface ICreateOrganizationResponse {
+  isPaymentAllowed: boolean;
+  enabled: boolean;
+  metadatas: object;
+  quotas: object;
+  configs: Array<IConfig>;
+  id: string;
+  createdAt: string;
+  legalName: string;
+  location: {
+    id: string;
+    uri: string;
+    createdAt: string;
+    country: string;
+    locality: string;
+    region: string;
+    department: string;
+    postalCode: string;
+    streetAddress: string;
+    complementaryStreetAddress: string;
+    name: string;
+    originId: string;
+    latitude: number;
+    longitude: number;
+    isDefault: boolean;
+  };
+  siret: number;
+  geopoint: string;
+  consumerId: string;
+  uri: string;
+  slug: string;
+  myAddresses: Array<IAddress>;
+}
 
 export interface IOrganizationResponse extends IModel {
   id: string;
@@ -436,58 +471,78 @@ export interface IOrganization extends IModel {
 }
 
 export interface IRegisterOrganizationRequest {
-  organization: {
+  id: string;
+  legalName: string;
+  createdAt: string;
+  location: {
     id: string;
-    legalName: string;
-    siret: string;
-    location: {
-      id: string;
-      uri: string;
-      createdAt: string;
-      country: string;
-      locality: string;
-      region: string;
-      department: string;
-      postalCode: string;
-      streetAddress: string;
-      complementaryStreetAddress: string;
-      name: string;
-      originId: string;
-      latitude: number;
-      longitude: number;
-      type: string;
-      isDefault: boolean;
-    };
+    uri: string;
+    createdAt: string;
+    country: string;
+    locality: string;
+    region: string;
+    department: string;
+    postalCode: string;
+    streetAddress: string;
+    complementaryStreetAddress: string;
+    name: string;
+    originId: string;
+    latitude: number;
+    longitude: number;
   };
-  user: {
-    password: string;
-  };
-  person: {
-    id: string;
-    birthDate: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    mobilePhoneNumber: string;
-    address: {
-      id: string;
-      uri: string;
-      createdAt: string;
-      country: string;
-      locality: string;
-      region: string;
-      department: string;
-      postalCode: string;
-      streetAddress: string;
-      complementaryStreetAddress: string;
-      name: string;
-      originId: string;
-      latitude: number;
-      longitude: number;
-      type: string;
-      isDefault: boolean;
-    };
-  };
+  siret: number;
+  // organization: {
+  //   id: string;
+  //   legalName: string;
+  //   siret: string;
+  //   location: {
+  //     id: string;
+  //     uri: string;
+  //     createdAt: string;
+  //     country: string;
+  //     locality: string;
+  //     region: string;
+  //     department: string;
+  //     postalCode: string;
+  //     streetAddress: string;
+  //     complementaryStreetAddress: string;
+  //     name: string;
+  //     originId: string;
+  //     latitude: number;
+  //     longitude: number;
+  //     type: string;
+  //     isDefault: boolean;
+  //   };
+  // };
+  // user: {
+  //   password: string;
+  // };
+  // person: {
+  //   id: string;
+  //   birthDate: string;
+  //   firstName: string;
+  //   lastName: string;
+  //   email: string;
+  //   mobilePhoneNumber: string;
+  //   address: {
+  //     id: string;
+  //     uri: string;
+  //     createdAt: string;
+  //     country: string;
+  //     locality: string;
+  //     region: string;
+  //     department: string;
+  //     postalCode: string;
+  //     streetAddress: string;
+  //     complementaryStreetAddress: string;
+  //     name: string;
+  //     originId: string;
+  //     latitude: number;
+  //     longitude: number;
+  //     type: string;
+  //     isDefault: boolean;
+  //   };
+  // };
 }
 
 export interface IRegisterOrganizationToPersonRequest {
