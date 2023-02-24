@@ -3,12 +3,12 @@ export interface IPlace {
   uri: string;
   country: string;
   locality: string;
-  region: string;
+  region?: string;
   department: string;
   types: string[];
   postalCode: string;
   streetAddress: string;
-  complementaryStreetAddress: string;
+  complementaryStreetAddress?: string;
   name: string;
   originId: string;
   latitude: number;

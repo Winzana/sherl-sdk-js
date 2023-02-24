@@ -68,6 +68,25 @@ class Fetcher {
         throw err;
       });
   }
+
+  public async delete<T>(
+    url: string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    params?: { [key: string]: any },
+  ): Promise<ApiResponse<T>> {
+    return this.apiInstance
+      .delete<T>(url, { params })
+      .catch((err: AxiosError<ApiResponseError>) => {
+        if (err.response && err.response.status) {
+          throw this.errorFactory.create(
+            getErrorCodeByHttpStatus(err.response.status),
+            { message: err.response?.data?.message },
+          );
+        }
+
+        throw err;
+      });
+  }
 }
 
 export { Fetcher };

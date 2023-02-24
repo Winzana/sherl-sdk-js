@@ -271,3 +271,7 @@ export interface IPersonRegister {
     longitude: number;
   };
 }
+
+export interface IAddressRegister extends IPlace {
+  googleToken?: string;
+}
