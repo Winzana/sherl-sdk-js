@@ -7,6 +7,9 @@ title: Config
 the config domain will be used to store any data with a couple key/value
 
 ## Set your config couple
+
+<span class="badge badge--warning">Require authentication</span>
+
 ```ts
 config(client).setConfig({yourdata});
 ```
@@ -22,6 +25,9 @@ interface ISetConfig {
 appliedTo  = you can assigned your config to a specific user or organisation (if not set, your config will be a generic config)
 
 ## Get your public config
+
+<span class="badge badge--success">Public</span>
+
 ```ts
 config(client).getPublicConfig(KEY);
 ```
