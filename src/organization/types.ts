@@ -10,40 +10,6 @@ import {
   IProductResponse,
 } from '../shop/types/product/types';
 
-export interface ICreateOrganizationResponse {
-  isPaymentAllowed: boolean;
-  enabled: boolean;
-  metadatas: object;
-  quotas: object;
-  configs: Array<IConfig>;
-  id: string;
-  createdAt: string;
-  legalName: string;
-  location: {
-    id: string;
-    uri: string;
-    createdAt: string;
-    country: string;
-    locality: string;
-    region: string;
-    department: string;
-    postalCode: string;
-    streetAddress: string;
-    complementaryStreetAddress: string;
-    name: string;
-    originId: string;
-    latitude: number;
-    longitude: number;
-    isDefault: boolean;
-  };
-  siret: number;
-  geopoint: string;
-  consumerId: string;
-  uri: string;
-  slug: string;
-  myAddresses: Array<IAddress>;
-}
-
 export interface IOrganizationResponse extends IModel {
   id: string;
   uri: string;
@@ -590,9 +556,7 @@ export interface IUpdateOrganizationRequest {
   };
 }
 
-export interface IUpdateOrganizationResponse {}
-
-export interface IUpdateIsPublicOrganizationRequest extends IOrganization {
+export interface IUpdateIsPublicOrganizationRequest {
   id: string;
   isPublic: boolean;
 }

@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { OrganizationErr, errorFactory } from '../errors';
 import { IUpdateIsPublicOrganizationRequest, IOrganization } from '../types';
@@ -8,7 +9,9 @@ export const updateIsPublicOrganization = async (
   request: IUpdateIsPublicOrganizationRequest,
 ): Promise<IOrganization> => {
   const response = await fetcher.put<IOrganization>(
-    endpoints.UPDATE_IS_PUBLIC_ORGANIZATION,
+    StringUtils.bindContext(endpoints.UPDATE_IS_PUBLIC_ORGANIZATION, {
+      organizationId: request.id,
+    }),
     request,
   );
 
