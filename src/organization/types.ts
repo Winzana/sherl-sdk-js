@@ -439,24 +439,23 @@ export interface IOrganization extends IModel {
 export interface IRegisterOrganizationRequest {
   id: string;
   legalName: string;
-  createdAt: string;
+  siret: string;
   location: {
     id: string;
-    uri: string;
-    createdAt: string;
     country: string;
     locality: string;
     region: string;
-    department: string;
     postalCode: string;
     streetAddress: string;
+    uri: string;
+    createdAt: string;
+    department: string;
     complementaryStreetAddress: string;
     name: string;
     originId: string;
     latitude: number;
     longitude: number;
   };
-  siret: number;
 }
 
 export interface IRegisterOrganizationToPersonRequest {
@@ -544,16 +543,29 @@ export interface ISuggestOrganizationRequest {
 }
 
 export interface IUpdateOrganizationRequest {
-  id: string;
+  legalName: string;
   location: {
+    id: string;
     country: string;
     locality: string;
     region: string;
     postalCode: string;
     streetAddress: string;
-    latitude: number;
-    longitude: number;
+    uri: string;
+    createdAt: string;
+    department: string;
+    complementaryStreetAddress: string;
+    name: string;
+    originId: string;
+    latitude: 0;
+    longitude: 0;
   };
+  enabled: true;
+  isPublic: true;
+  isComingSoon: true;
+  metadatas: object;
+  openingHoursSpecification: Array<string>;
+  thirdParty: object;
 }
 
 export interface IUpdateIsPublicOrganizationRequest {
@@ -563,11 +575,15 @@ export interface IUpdateIsPublicOrganizationRequest {
 
 export interface IEnableRoamingResponse {}
 
-export interface IEnableRoamingRequest {}
+export interface IEnableRoamingRequest {
+  id: string;
+}
 
 export interface IDisableRoamingResponse {}
 
-export interface IDisableRoamingRequest {}
+export interface IDisableRoamingRequest {
+  id: string;
+}
 
 export interface IUpdateThirdPartyRequest {
   id: string;

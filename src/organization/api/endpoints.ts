@@ -40,7 +40,7 @@ export const endpoints = {
   CREATE_ORGANIZATION: '/api/organizations',
   REGISTER_ORGANIZATION: '/api/organizations/register',
   SUGGEST_ORGANIZATION: '/api/organizations/suggest',
-  UPDATE_ORGANIZATION: '/api/organizations/:organizationId',
+  UPDATE_ORGANIZATION: '/api/organizations/:id',
   UPDATE_IS_PUBLIC_ORGANIZATION: '/api/organizations/:organizationId',
   ENABLE_ROAMING: '/api/organizations/:organizationId/enable-roaming',
   DISABLE_ROAMING: '/api/organizations/:organizationId/disable-roaming',

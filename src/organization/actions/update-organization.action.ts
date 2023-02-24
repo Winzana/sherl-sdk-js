@@ -6,11 +6,12 @@ import { IUpdateOrganizationRequest, IOrganization } from '../types';
 
 export const updateOrganization = async (
   fetcher: Fetcher,
+  id: string,
   request: IUpdateOrganizationRequest,
 ): Promise<IOrganization> => {
   const response = await fetcher.put<IOrganization>(
     StringUtils.bindContext(endpoints.UPDATE_ORGANIZATION, {
-      organizationId: request.id,
+      id,
     }),
     request,
   );
