@@ -11,8 +11,8 @@ import {
   registerWithEmailAndPassword,
   createAddress,
   updateAddress,
-  deleteAddress
-} from "./actions";
+  deleteAddress,
+} from './actions';
 import { errorFactory } from './errors';
 
 class PersonProvider extends AbstractProvider {

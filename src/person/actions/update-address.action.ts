@@ -1,8 +1,8 @@
-import { ApiResponse, Fetcher } from "../../common/api";
+import { ApiResponse, Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { PersonErr, errorFactory } from '../errors';
-import { IAddressRegister } from "../types";
-import { StringUtils } from "../../common/utils/string";
+import { IAddressRegister } from '../types';
+import { StringUtils } from '../../common/utils/string';
 
 export const updateAddress = async (
   fetcher: Fetcher,
