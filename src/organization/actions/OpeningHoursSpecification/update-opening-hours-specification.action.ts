@@ -1,17 +1,23 @@
 import { Fetcher } from '../../../common/api';
+import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import {
-  IUpdateOpeningHoursSpecificationResponse,
+  IOpeningHoursSpecificationResponse,
   IOpeningHoursSpecificationRequest,
 } from '../../types';
 
 export const updateOpeningHoursSpecification = async (
   fetcher: Fetcher,
+  organizationId: string,
+  id: string,
   request: IOpeningHoursSpecificationRequest,
-): Promise<IUpdateOpeningHoursSpecificationResponse> => {
-  const response = await fetcher.put<IUpdateOpeningHoursSpecificationResponse>(
-    endpoints.UPDATE_OPENING_HOURS_SPECIFICATION,
+): Promise<IOpeningHoursSpecificationResponse> => {
+  const response = await fetcher.put<IOpeningHoursSpecificationResponse>(
+    StringUtils.bindContext(endpoints.UPDATE_OPENING_HOURS_SPECIFICATION, {
+      organizationId,
+      id,
+    }),
     request,
   );
 

@@ -3,23 +3,26 @@ import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import {
-  ICreateOpeningHoursSpecificationResponse,
+  IOpeningHoursSpecificationResponse,
   IOpeningHoursSpecificationRequest,
 } from '../../types';
 
 export const createOpeningHoursSpecification = async (
   fetcher: Fetcher,
+  organizationId: string,
   request: IOpeningHoursSpecificationRequest,
-): Promise<ICreateOpeningHoursSpecificationResponse> => {
-  const response = await fetcher.post<ICreateOpeningHoursSpecificationResponse>(
+): Promise<IOpeningHoursSpecificationResponse> => {
+  const response = await fetcher.post<IOpeningHoursSpecificationResponse>(
     StringUtils.bindContext(endpoints.CREATE_OPENING_HOURS_SPECIFICATION, {
-      organizationId: request.organizationId,
+      organizationId,
     }),
     request,
   );
 
-  if (response.status !== 200) {
-    throw new Error('error test');
+  if (response.status !== 201) {
+    throw errorFactory.create(
+      OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_FAILED,
+    );
   }
 
   return response.data;

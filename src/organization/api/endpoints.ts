@@ -25,9 +25,9 @@ export const endpoints = {
   CREATE_OPENING_HOURS_SPECIFICATION:
     '/api/organizations/:organizationId/opening-hours-specification',
   UPDATE_OPENING_HOURS_SPECIFICATION:
-    '/api/organizations/:organizationId/opening-hours-specification/:openingHoursSpecificationId',
+    '/api/organizations/:organizationId/opening-hours-specification/:id',
   DELETE_OPENING_HOURS_SPECIFICATION:
-    '/api/organizations/:organizationId/opening-hours-specification/:openingHoursSpecificationId',
+    '/api/organizations/:organizationId/opening-hours-specification/:id',
   CREATE_EMPLOYEE: '/api/organizations/:id/employees',
   UPDATE_EMPLOYEE: '/api/organizations/:id/employees/:employeeId',
   DELETE_EMPLOYEE: '/api/organizations/:id/employees/:employeeId',

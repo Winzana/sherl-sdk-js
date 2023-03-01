@@ -386,12 +386,179 @@ export interface ICreatePictureFromMediaResponse {}
 
 export interface IDeletePictureResponse {}
 
-export interface IOpeningHoursSpecificationRequest
-  extends IOpeningHoursSpecification {
-  organizationId: string;
+export interface IOpeningHoursSpecificationRequest {
+  id?: string;
+  dayOfWeek: string;
+  closes: string;
+  opens: string;
+  validFrom: string;
+  validThrough: string;
 }
 
-export interface ICreateOpeningHoursSpecificationResponse {}
+export interface IOpeningHoursSpecificationResponse {
+  id: string;
+  uri: string;
+  legalName: string;
+  location: {
+    id: string;
+    country: string;
+    locality: string;
+    region: string;
+    postalCode: string;
+    streetAddress: string;
+    uri: string;
+    createdAt: string;
+    department: string;
+    complementaryStreetAddress: string;
+    name: string;
+    originId: string;
+    latitude: 0;
+    longitude: 0;
+  };
+  aggregateRating: 0;
+  subOrganizations: [string];
+  email: string;
+  employees: [
+    {
+      id: string;
+      uri: string;
+      consumerId: string;
+      firstName: string;
+      lastName: string;
+      email: string;
+    },
+  ];
+  faxNumber: string;
+  phoneNumber: string;
+  website: string;
+  founders: [
+    {
+      uri: string;
+      consumerId: string;
+      firstName: string;
+      lastName: string;
+      email: string;
+    },
+  ];
+  foundingDate: string;
+  knowsLanguage: {
+    id: string;
+    uri: string;
+    code: string;
+    values: [
+      {
+        language: string;
+        value: string;
+        createdAt: string;
+        updatedAt: string;
+      },
+    ];
+    parent: string;
+    childrens: [string];
+    createdAt: string;
+    updatedAt: string;
+  };
+  logo: {
+    id: string;
+    uri: string;
+    width: 0;
+    height: 0;
+    caption: {
+      contentUrl: string;
+      description: string;
+      duration: string;
+      encodingFormat: string;
+      size: 0;
+      name: string;
+      id: string;
+    };
+    thumbnail: {
+      id: string;
+      uri: string;
+      width: 0;
+      height: 0;
+      caption: {
+        contentUrl: string;
+        description: string;
+        duration: string;
+        encodingFormat: string;
+        size: 0;
+        name: string;
+        id: string;
+      };
+    };
+  };
+  numberOfEmployees: 0;
+  parentOrganization: string;
+  slogan: string;
+  smokingAllowed: true;
+  openNow: true;
+  openingHoursSpecification: [
+    {
+      dayOfWeek: string;
+      closes: string;
+      opens: string;
+      validFrom: string;
+      validThrough: string;
+    },
+  ];
+  isAccessibleForFree: true;
+  photos: [
+    {
+      id: string;
+      uri: string;
+      width: 0;
+      height: 0;
+      caption: {
+        contentUrl: string;
+        description: string;
+        duration: string;
+        encodingFormat: string;
+        size: 0;
+        name: string;
+        id: string;
+      };
+      thumbnail: {
+        id: string;
+        uri: string;
+        width: 0;
+        height: 0;
+        caption: {
+          contentUrl: string;
+          description: string;
+          duration: string;
+          encodingFormat: string;
+          size: 0;
+          name: string;
+          id: string;
+        };
+      };
+    },
+  ];
+  serviceType: [
+    {
+      id: string;
+      uri: string;
+      code: string;
+      values: [
+        {
+          language: string;
+          value: string;
+          createdAt: string;
+          updatedAt: string;
+        },
+      ];
+      parent: string;
+      childrens: [string];
+      createdAt: string;
+      updatedAt: string;
+    },
+  ];
+  types: [string];
+  advertisingText: string;
+  createdAt: string;
+  updatedAt: string;
+}
 
 export interface IUpdateOpeningHoursSpecificationResponse {}
 
