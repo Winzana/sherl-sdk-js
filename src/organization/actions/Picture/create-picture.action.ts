@@ -1,14 +1,20 @@
 import { Fetcher } from '../../../common/api';
+import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import { IPicture, ICreatePictureResponse } from '../../types';
 
 export const createPicture = async (
   fetcher: Fetcher,
+  id: string,
+  mediaId: string,
   request: IPicture,
 ): Promise<ICreatePictureResponse> => {
   const response = await fetcher.post<ICreatePictureResponse>(
-    endpoints.CREATE_PICTURE,
+    StringUtils.bindContext(endpoints.CREATE_PICTURE, {
+      id,
+      mediaId,
+    }),
     request,
   );
 

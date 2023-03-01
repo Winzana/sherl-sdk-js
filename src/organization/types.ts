@@ -351,33 +351,34 @@ export interface IPicture {
 }
 
 export interface IPictureFromMedia {
-  thumbnail: {
-    caption: {
-      id: string;
-      size: number;
-      contentUrl: string;
-      description: string;
-      name: string;
-      encodingFormat: string;
-    };
-    width: number;
-    height: number;
-  };
-  _id: string;
   id: string;
+  uri: string;
   width: number;
   height: number;
   caption: {
-    id: string;
-    size: number;
     contentUrl: string;
     description: string;
-    name: string;
+    duration: string;
     encodingFormat: string;
+    size: number;
+    name: string;
+    id: string;
   };
-  uri: string;
-  domain: string;
-  consumerId: string;
+  thumbnail: {
+    id: string;
+    uri: string;
+    width: number;
+    height: number;
+    caption: {
+      contentUrl: string;
+      description: string;
+      duration: string;
+      encodingFormat: string;
+      size: number;
+      name: string;
+      id: string;
+    };
+  };
 }
 
 export interface ICreatePictureResponse {}

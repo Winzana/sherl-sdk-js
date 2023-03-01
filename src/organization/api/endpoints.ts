@@ -20,8 +20,8 @@ export const endpoints = {
     '/api/organizations/:organizationId/background-image',
   CREATE_PICTURE: '/api/organizations/:organizationId/pictures/:pictureId',
   CREATE_PICTURE_FROM_MEDIA:
-    '/api/organizations/:organizationId/pictures/:pictureId/from-media',
-  DELETE_PICTURE: '/api/organizations/:organizationId/pictures/:pictureId',
+    '/api/organizations/:id/pictures/:mediaId/from-media',
+  DELETE_PICTURE: '/api/organizations/:id/pictures/:mediaId',
   CREATE_OPENING_HOURS_SPECIFICATION:
     '/api/organizations/:organizationId/opening-hours-specification',
   UPDATE_OPENING_HOURS_SPECIFICATION:

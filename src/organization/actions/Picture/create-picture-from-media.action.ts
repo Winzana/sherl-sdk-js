@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import {
@@ -8,10 +9,15 @@ import {
 
 export const createPictureFromMedia = async (
   fetcher: Fetcher,
+  id: string,
+  mediaId: string,
   request: IPictureFromMedia,
 ): Promise<ICreatePictureFromMediaResponse> => {
   const response = await fetcher.post<ICreatePictureFromMediaResponse>(
-    endpoints.CREATE_PICTURE_FROM_MEDIA,
+    StringUtils.bindContext(endpoints.CREATE_PICTURE_FROM_MEDIA, {
+      id,
+      mediaId,
+    }),
     request,
   );
 

@@ -1,14 +1,20 @@
 import { Fetcher } from '../../../common/api';
+import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
-import { IPicture, IDeletePictureResponse } from '../../types';
+import { IDeletePictureResponse } from '../../types';
 
 export const deletePicture = async (
   fetcher: Fetcher,
-  request: IPicture,
+  id: string,
+  mediaId: string,
+  request: object,
 ): Promise<IDeletePictureResponse> => {
   const response = await fetcher.post<IDeletePictureResponse>(
-    endpoints.DELETE_PICTURE,
+    StringUtils.bindContext(endpoints.DELETE_PICTURE, {
+      id,
+      mediaId,
+    }),
     request,
   );
 
