@@ -1,14 +1,20 @@
 import { Fetcher } from '../../../common/api';
+import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
-import { IDeleteFounderResponse, IFounderRequest } from '../../types';
+import { IDeleteFounderResponse } from '../../types';
 
 export const deleteFounder = async (
   fetcher: Fetcher,
-  request: IFounderRequest,
+  id: string,
+  founderId: string,
+  request: object,
 ): Promise<IDeleteFounderResponse> => {
   const response = await fetcher.post<IDeleteFounderResponse>(
-    endpoints.DELETE_FOUNDER,
+    StringUtils.bindContext(endpoints.DELETE_FOUNDER, {
+      id,
+      founderId,
+    }),
     request,
   );
 

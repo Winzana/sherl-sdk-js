@@ -423,11 +423,27 @@ export interface IUpdateEmployeeResponse {}
 
 export interface IDeleteEmployeeResponse {}
 
-export interface IFounderRequest extends IFounder {
-  organizationId: string;
+export interface ICreateFounderRequest {
+  id: string;
+  firstName: string;
+  lastName: string;
+  birthDate: string;
+  email: string;
 }
 
-export interface ICreateFounderResponse {}
+export interface IUpdateFounderRequest {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
+export interface ICreateFounderResponse {
+  uri: string;
+  consumerId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+}
 
 export interface IUpdateFounderResponse {}
 

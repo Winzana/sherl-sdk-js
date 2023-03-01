@@ -1,14 +1,20 @@
 import { Fetcher } from '../../../common/api';
+import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
-import { IUpdateFounderResponse, IFounderRequest } from '../../types';
+import { IUpdateFounderResponse, IUpdateFounderRequest } from '../../types';
 
 export const updateFounder = async (
   fetcher: Fetcher,
-  request: IFounderRequest,
+  id: string,
+  founderId: string,
+  request: IUpdateFounderRequest,
 ): Promise<IUpdateFounderResponse> => {
   const response = await fetcher.put<IUpdateFounderResponse>(
-    endpoints.UPDATE_FOUNDER,
+    StringUtils.bindContext(endpoints.UPDATE_FOUNDER, {
+      id,
+      founderId,
+    }),
     request,
   );
 

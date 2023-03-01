@@ -1,18 +1,22 @@
 import { Fetcher } from '../../../common/api';
+import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
-import { ICreateFounderResponse, IFounderRequest } from '../../types';
+import { ICreateFounderResponse, ICreateFounderRequest } from '../../types';
 
 export const createFounder = async (
   fetcher: Fetcher,
-  request: IFounderRequest,
+  id: string,
+  request: ICreateFounderRequest,
 ): Promise<ICreateFounderResponse> => {
   const response = await fetcher.post<ICreateFounderResponse>(
-    endpoints.CREATE_FOUNDER,
+    StringUtils.bindContext(endpoints.CREATE_FOUNDER, {
+      id,
+    }),
     request,
   );
 
-  if (response.status !== 200) {
+  if (response.status !== 201) {
     throw errorFactory.create(OrganizationErr.CREATE_FOUNDER_FAILED);
   }
 
