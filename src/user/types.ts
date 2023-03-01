@@ -3,3 +3,9 @@ export interface IUpdatePasswordDto {
   password: string;
   passwordRepeat: string;
 }
+
+export interface IValidateForgotPasswordDto {
+  token: string;
+  password: string;
+  passwordRepeat: string;
+}
