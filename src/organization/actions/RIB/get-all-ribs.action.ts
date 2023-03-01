@@ -5,13 +5,13 @@ import { IRib } from '../../types';
 
 export const getAllRibs = async (
   fetcher: Fetcher,
-  organizationId: string,
+  id: string,
 ): Promise<IRib[]> => {
   let response: ApiResponse<IRib[]> | null = null;
 
   try {
     response = await fetcher.get<IRib[]>(
-      StringUtils.bindContext(endpoints.GET_RIB, { organizationId }),
+      StringUtils.bindContext(endpoints.GET_RIB, { id }),
     );
   } catch {
     throw new Error('Cannot reach API');

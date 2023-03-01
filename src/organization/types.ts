@@ -271,8 +271,9 @@ export interface ICaption {
   encodingFormat: string;
 }
 
-export interface IAddRib extends IRib {
-  organizationId: string;
+export interface IAddRib {
+  iban: string;
+  bic: string;
 }
 
 export interface IRib {
