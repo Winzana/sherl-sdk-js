@@ -1,22 +1,21 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { OrganizationErr, errorFactory } from '../errors';
-import {
-  IOrganizationResponse,
-  IRegisterOrganizationToPersonRequest,
-} from '../types';
+import { IRegisterOrganizationToPerson } from '../types';
 
 export const registerOrganizationToPerson = async (
   fetcher: Fetcher,
-  request: IRegisterOrganizationToPersonRequest,
-): Promise<IOrganizationResponse> => {
-  const response = await fetcher.post<IOrganizationResponse>(
-    endpoints.REGISTER_ORGANIZATION,
+  request: IRegisterOrganizationToPerson,
+): Promise<IRegisterOrganizationToPerson> => {
+  const response = await fetcher.post<IRegisterOrganizationToPerson>(
+    endpoints.REGISTER_ORGANIZATION_TO_PERSON,
     request,
   );
 
   if (response.status !== 200) {
-    throw errorFactory.create(OrganizationErr.REGISTER_ORGANIZATION_FAILED);
+    throw errorFactory.create(
+      OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_FAILED,
+    );
   }
 
   return response.data;

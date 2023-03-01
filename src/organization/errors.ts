@@ -29,6 +29,7 @@ export enum OrganizationErr {
   DELETE_ADDRESS_FAILED = 'organization/delete-address-failed',
   CREATE_ORGANIZATION_FAILED = 'organization/create-organization-failed',
   REGISTER_ORGANIZATION_FAILED = 'organization/register-organization-failed',
+  REGISTER_ORGANIZATION_TO_PERSON_FAILED = 'organization/register-organization-to-person-failed',
   SUGGEST_ORGANIZATION_FAILED = 'organization/suggest-organization-failed',
   UPDATE_ORGANIZATION_FAILED = 'organization/update-organization-failed',
   UPDATE_IS_PUBLIC_ORGANIZATION_FAILED = 'organization/update-is-public-organization-failed',
@@ -88,6 +89,8 @@ export const errors = {
     'Failed to activate organization service',
   [OrganizationErr.TEMPORARY_SUSPEND_ORGANIZATION_SERVICE_FAILED]:
     'Failed to temporary suspend organization service',
+  [OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_FAILED]:
+    'Failed to register organization to person',
 };
 
 export const errorFactory = new ErrorFactory<OrganizationErr>(

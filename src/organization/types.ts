@@ -458,10 +458,12 @@ export interface IRegisterOrganizationRequest {
   };
 }
 
-export interface IRegisterOrganizationToPersonRequest {
+export interface IRegisterOrganizationToPerson {
+  sponsoredByCode: string;
   organization: {
     id: string;
     legalName: string;
+    siret: string;
     location: {
       id: string;
       country: string;
@@ -469,11 +471,18 @@ export interface IRegisterOrganizationToPersonRequest {
       region: string;
       postalCode: string;
       streetAddress: string;
+      uri: string;
+      createdAt: string;
+      department: string;
+      complementaryStreetAddress: string;
+      name: string;
+      originId: string;
       latitude: number;
       longitude: number;
     };
   };
   person: {
+    id: string;
     firstName: string;
     lastName: string;
     address: {
@@ -483,25 +492,30 @@ export interface IRegisterOrganizationToPersonRequest {
       region: string;
       postalCode: string;
       streetAddress: string;
+      uri: string;
+      createdAt: string;
+      department: string;
+      complementaryStreetAddress: string;
+      name: string;
+      originId: string;
+      latitude: number;
+      longitude: number;
     };
     mobilePhoneNumber: string;
     nationality: string;
+    latitude: number;
+    longitude: number;
     birthDate: string;
     email: string;
     gender: string;
-    settings: {
-      notifications: {
-        smsEnable: boolean;
-        emailEnable: boolean;
-        pushEnable: boolean;
-      };
-    };
+    jobTitle: string;
   };
 }
 
 export interface ISuggestOrganizationRequest {
   id: string;
   legalName: string;
+  siret: string;
   location: {
     id: string;
     country: string;
@@ -509,37 +523,15 @@ export interface ISuggestOrganizationRequest {
     region: string;
     postalCode: string;
     streetAddress: string;
+    uri: string;
+    createdAt: string;
+    department: string;
+    complementaryStreetAddress: string;
+    name: string;
+    originId: string;
     latitude: number;
     longitude: number;
   };
-  serviceType: [
-    {
-      id: string;
-      uri: string;
-      code: string;
-      values: [
-        {
-          language: string;
-          value: string;
-          createdAt: string;
-        },
-      ];
-      createdAt: string;
-    },
-    {
-      id: string;
-      uri: string;
-      code: string;
-      values: [
-        {
-          language: string;
-          value: string;
-          createdAt: string;
-        },
-      ];
-      createdAt: string;
-    },
-  ];
 }
 
 export interface IUpdateOrganizationRequest {

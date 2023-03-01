@@ -39,6 +39,7 @@ export const endpoints = {
   DELETE_ADDRESS: '/api/organizations/:organizationId/addresses/:addressId',
   CREATE_ORGANIZATION: '/api/organizations',
   REGISTER_ORGANIZATION: '/api/organizations/register',
+  REGISTER_ORGANIZATION_TO_PERSON: '/api/organizations/register-to-person',
   SUGGEST_ORGANIZATION: '/api/organizations/suggest',
   UPDATE_ORGANIZATION: '/api/organizations/:id',
   UPDATE_IS_PUBLIC_ORGANIZATION: '/api/organizations/:organizationId',

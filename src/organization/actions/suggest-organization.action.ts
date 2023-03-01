@@ -6,13 +6,13 @@ import { IOrganizationResponse, ISuggestOrganizationRequest } from '../types';
 export const suggestOrganization = async (
   fetcher: Fetcher,
   request: ISuggestOrganizationRequest,
-): Promise<IOrganizationResponse> => {
-  const response = await fetcher.post<IOrganizationResponse>(
+): Promise<any> => {
+  const response = await fetcher.post<any>(
     endpoints.SUGGEST_ORGANIZATION,
     request,
   );
 
-  if (response.status !== 200) {
+  if (response.status !== 201) {
     throw errorFactory.create(OrganizationErr.SUGGEST_ORGANIZATION_FAILED);
   }
 
