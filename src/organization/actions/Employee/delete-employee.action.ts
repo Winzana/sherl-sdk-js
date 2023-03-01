@@ -1,14 +1,20 @@
 import { Fetcher } from '../../../common/api';
+import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
-import { IDeleteEmployeeResponse, IEmployeeRequest } from '../../types';
+import { IDeleteEmployeeResponse } from '../../types';
 
 export const deleteEmployee = async (
   fetcher: Fetcher,
-  request: IEmployeeRequest,
+  id: string,
+  employeeId: string,
+  request: object,
 ): Promise<IDeleteEmployeeResponse> => {
   const response = await fetcher.post<IDeleteEmployeeResponse>(
-    endpoints.DELETE_EMPLOYEE,
+    StringUtils.bindContext(endpoints.DELETE_EMPLOYEE, {
+      id,
+      employeeId,
+    }),
     request,
   );
 

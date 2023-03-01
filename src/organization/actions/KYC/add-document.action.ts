@@ -17,7 +17,7 @@ export const addDocument = async (
       request,
     );
 
-    if (response.status !== 200) {
+    if (response.status !== 201) {
       throw errorFactory.create(OrganizationErr.ADD_DOCUMENT_FAILED);
     }
 

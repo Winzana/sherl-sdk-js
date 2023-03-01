@@ -1,14 +1,20 @@
 import { Fetcher } from '../../../common/api';
+import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
-import { IUpdateEmployeeResponse, IEmployeeRequest } from '../../types';
+import { IUpdateEmployeeResponse, IUpdateEmployeeRequest } from '../../types';
 
 export const updateEmployee = async (
   fetcher: Fetcher,
-  request: IEmployeeRequest,
+  id: string,
+  employeeId: string,
+  request: IUpdateEmployeeRequest,
 ): Promise<IUpdateEmployeeResponse> => {
   const response = await fetcher.put<IUpdateEmployeeResponse>(
-    endpoints.UPDATE_EMPLOYEE,
+    StringUtils.bindContext(endpoints.UPDATE_EMPLOYEE, {
+      id,
+      employeeId,
+    }),
     request,
   );
 

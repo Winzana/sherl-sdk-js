@@ -397,11 +397,27 @@ export interface IUpdateOpeningHoursSpecificationResponse {}
 
 export interface IDeleteOpeningHoursSpecificationResponse {}
 
-export interface IEmployeeRequest extends IEmployee {
-  organizationId: string;
+export interface IEmployeeRequest {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
 }
 
-export interface ICreateEmployeeResponse {}
+export interface ICreateEmployeeResponse {
+  id: string;
+  uri: string;
+  consumerId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
+export interface IUpdateEmployeeRequest {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
 
 export interface IUpdateEmployeeResponse {}
 
