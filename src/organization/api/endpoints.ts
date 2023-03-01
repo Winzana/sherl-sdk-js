@@ -5,8 +5,8 @@ export const endpoints = {
   GET_PUBLIC_ORGANIZATION_SLUG:
     '/api/public/organizations/find-one-by-slug/:slug',
   GET_PUBLIC_ORGANIZATION_ID: '/api/public/organizations/:id',
-  ADD_DOCUMENT: '/api/organizations/:organizationId/kycs',
-  GET_DOCUMENTS: '/api/organizations/:organizationId/kycs',
+  ADD_DOCUMENT: '/api/organizations/:id/kycs',
+  GET_DOCUMENTS: '/api/organizations/:id/kycs',
   UPDATE_DOCUMENT: '/api/organizations/:organizationId/kycs/:documentId',
   ADD_RIB: '/api/organizations/:organizationId/rib',
   GET_RIB: '/api/organizations/:organizationId/rib',

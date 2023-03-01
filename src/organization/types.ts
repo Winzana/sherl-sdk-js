@@ -239,13 +239,14 @@ export interface IEmployee extends IPersonMeResponse, IModel {
   email: string;
 }
 
-export interface IAddDocument extends IDocument {
-  organizationId: string;
+export interface IAddDocument {
+  id: string;
+  type: object;
+  media: object;
 }
 
-export interface IUpdateDocument extends IDocument {
-  organizationId: string;
-  documentId: string;
+export interface IUpdateDocument {
+  media: object;
 }
 
 export interface IDocument {

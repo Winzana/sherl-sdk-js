@@ -5,13 +5,13 @@ import { IDocument } from '../../types';
 
 export const getAllDocuments = async (
   fetcher: Fetcher,
-  organizationId: string,
+  id: string,
 ): Promise<IDocument[]> => {
   let response: ApiResponse<IDocument[]> | null = null;
 
   try {
     response = await fetcher.get<IDocument[]>(
-      StringUtils.bindContext(endpoints.GET_DOCUMENTS, { organizationId }),
+      StringUtils.bindContext(endpoints.GET_DOCUMENTS, { id }),
     );
   } catch {
     throw new Error('Cannot reach API');

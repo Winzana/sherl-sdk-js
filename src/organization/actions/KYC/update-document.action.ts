@@ -1,15 +1,21 @@
 import { Fetcher } from '../../../common/api';
+import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
-import { IDocument, IUpdateDocument } from '../../types';
+import { IUpdateDocument } from '../../types';
 
 export const updateDocument = async (
   fetcher: Fetcher,
+  id: string,
+  kycId: string,
   request: IUpdateDocument,
-): Promise<IDocument> => {
+): Promise<IUpdateDocument> => {
   try {
-    const response = await fetcher.put<IDocument>(
-      endpoints.UPDATE_DOCUMENT,
+    const response = await fetcher.put<IUpdateDocument>(
+      StringUtils.bindContext(endpoints.UPDATE_DOCUMENT, {
+        id,
+        kycId,
+      }),
       request,
     );
 

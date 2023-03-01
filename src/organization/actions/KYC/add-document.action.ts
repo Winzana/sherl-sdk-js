@@ -6,12 +6,13 @@ import { IDocument, IAddDocument } from '../../types';
 
 export const addDocument = async (
   fetcher: Fetcher,
+  id: string,
   request: IAddDocument,
 ): Promise<IDocument> => {
   try {
     const response = await fetcher.post<IDocument>(
       StringUtils.bindContext(endpoints.ADD_DOCUMENT, {
-        organizationId: request.organizationId,
+        id,
       }),
       request,
     );
