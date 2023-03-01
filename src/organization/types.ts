@@ -308,11 +308,6 @@ export interface IBackgroundImage {
   backgroundImage: File;
 }
 
-export interface IBackgroundImageFromMediaRequest
-  extends IBackgroundImageFromMedia {
-  organizationId: string;
-}
-
 export interface IBackgroundImageFromMedia {
   thumbnail: {
     caption: {

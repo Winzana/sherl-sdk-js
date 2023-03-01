@@ -13,11 +13,11 @@ export const endpoints = {
   POST_SET_COMMUNICATION: '/api/organizations/:id/communication',
   ADD_LOGO: '/api/organizations/:id/logo/create/:mediaId',
   DELETE_LOGO: '/api/organizations/:id/logo/',
-  CREATE_BACKGROUND_IMAGE: '/api/organizations/:organizationId',
+  CREATE_BACKGROUND_IMAGE:
+    '/api/organizations/:id/background-image/create/:mediaId',
   CREATE_BACKGROUND_IMAGE_FROM_MEDIA:
-    '/api/organizations/:organizationId/background-image/create/3835d8aa-469a-4702-9721-2f80f0c192df/from-media',
-  DELETE_BACKGROUND_IMAGE:
-    '/api/organizations/:organizationId/background-image',
+    '/api/organizations/:id/background-image/create/:mediaId/from-media',
+  DELETE_BACKGROUND_IMAGE: '/api/organizations/:id/background-image',
   CREATE_PICTURE: '/api/organizations/:organizationId/pictures/:pictureId',
   CREATE_PICTURE_FROM_MEDIA:
     '/api/organizations/:id/pictures/:mediaId/from-media',

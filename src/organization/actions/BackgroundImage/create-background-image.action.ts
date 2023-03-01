@@ -1,14 +1,20 @@
 import { Fetcher } from '../../../common/api';
+import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import { IBackgroundImage, ICreateBackgroundImageResponse } from '../../types';
 
 export const createBackgroundImage = async (
   fetcher: Fetcher,
+  id: string,
+  mediaId: string,
   request: IBackgroundImage,
 ): Promise<ICreateBackgroundImageResponse> => {
   const response = await fetcher.post<ICreateBackgroundImageResponse>(
-    endpoints.CREATE_BACKGROUND_IMAGE,
+    StringUtils.bindContext(endpoints.CREATE_BACKGROUND_IMAGE, {
+      id,
+      mediaId,
+    }),
     request,
   );
 
