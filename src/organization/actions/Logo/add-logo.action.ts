@@ -1,15 +1,21 @@
 import { Fetcher } from '../../../common/api';
+import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
-import { ILogoResponse, ILogoRequest } from '../../types';
+import { ILogoResponse, ILogo } from '../../types';
 
 export const addLogo = async (
   fetcher: Fetcher,
-  request: ILogoRequest,
+  id: string,
+  mediaId: string,
+  request: ILogo,
 ): Promise<ILogoResponse> => {
   try {
     const response = await fetcher.post<ILogoResponse>(
-      endpoints.ADD_LOGO,
+      StringUtils.bindContext(endpoints.ADD_LOGO, {
+        id,
+        mediaId,
+      }),
       request,
     );
 

@@ -1,15 +1,19 @@
 import { Fetcher } from '../../../common/api';
+import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
-import { ILogoRequest, ILogoResponse } from '../../types';
+import { ILogoResponse } from '../../types';
 
 export const deleteLogo = async (
   fetcher: Fetcher,
-  request: ILogoRequest,
+  id: string,
+  request: object,
 ): Promise<ILogoResponse> => {
   try {
     const response = await fetcher.post<ILogoResponse>(
-      endpoints.DELETE_LOGO,
+      StringUtils.bindContext(endpoints.DELETE_LOGO, {
+        id,
+      }),
       request,
     );
 
