@@ -10,7 +10,7 @@ export const endpoints = {
   UPDATE_DOCUMENT: '/api/organizations/:organizationId/kycs/:documentId',
   ADD_RIB: '/api/organizations/:id/rib',
   GET_RIB: '/api/organizations/:id/rib',
-  POST_SET_COMMUNICATION: '/api/organizations/:organizationId/communication',
+  POST_SET_COMMUNICATION: '/api/organizations/:id/communication',
   ADD_LOGO: '/api/organizations/:id/logo/create/:mediaId',
   DELETE_LOGO: '/api/organizations/:id/logo/',
   CREATE_BACKGROUND_IMAGE: '/api/organizations/:organizationId',

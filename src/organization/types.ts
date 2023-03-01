@@ -281,10 +281,6 @@ export interface IRib {
   bic: string;
 }
 
-export interface ISetCommunication extends ICommunication {
-  organizationId: string;
-}
-
 export interface ICommunication {
   title: string;
   message: string;
