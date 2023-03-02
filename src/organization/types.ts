@@ -134,6 +134,17 @@ export enum CommunicationTypeEnum {
   TRANSACTIONAL = 'TRANSACTIONAL',
 }
 
+export enum CommunicationChannelEnum {
+  EMAIL = 'EMAIL',
+  SMS = 'SMS',
+  PUSH = 'PUSH',
+  WHATSAPP = 'WHATSAPP',
+  FACEBOOK = 'FACEBOOK',
+  TWITTER = 'TWITTER',
+  INSTAGRAM = 'INSTAGRAM',
+  TELEGRAM = 'TELEGRAM',
+}
+
 export interface IQuotaSource {
   id: string;
   uri?: string;
