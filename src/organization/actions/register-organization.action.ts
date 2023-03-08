@@ -12,7 +12,7 @@ export const registerOrganization = async (
     request,
   );
 
-  if (response.status !== 200) {
+  if (response.status !== 201) {
     throw errorFactory.create(OrganizationErr.REGISTER_ORGANIZATION_FAILED);
   }
 

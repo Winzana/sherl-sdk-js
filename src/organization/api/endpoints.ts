@@ -42,10 +42,10 @@ export const endpoints = {
   REGISTER_ORGANIZATION_TO_PERSON: '/api/organizations/register-to-person',
   SUGGEST_ORGANIZATION: '/api/organizations/suggest',
   UPDATE_ORGANIZATION: '/api/organizations/:id',
-  UPDATE_IS_PUBLIC_ORGANIZATION: '/api/organizations/:organizationId',
+  UPDATE_IS_PUBLIC_ORGANIZATION: '/api/organizations/:id',
   ENABLE_ROAMING: '/api/organizations/:organizationId/enable-roaming',
   DISABLE_ROAMING: '/api/organizations/:organizationId/disable-roaming',
-  UPDATE_THIRD_PARTY: '/api/organizations/:organizationId',
+  UPDATE_THIRD_PARTY: '/api/organizations/:id',
   ACTIVATE_ORGANIZATION_SERVICE: '/api/organizations/:id/activate-the-service',
   TEMPORARY_SUSPEND_ORGANIZATION_SERVICE:
     '/api/organizations/:id/temporarily-suspend-the-service',

@@ -7,13 +7,12 @@ import { IOrganizationResponse } from '../types';
 export const activateOrganizationService = async (
   fetcher: Fetcher,
   id: string,
-  request: any,
 ): Promise<IOrganizationResponse> => {
   const response = await fetcher.post<IOrganizationResponse>(
     StringUtils.bindContext(endpoints.ACTIVATE_ORGANIZATION_SERVICE, {
       id,
     }),
-    request,
+    {},
   );
 
   if (response.status !== 201) {

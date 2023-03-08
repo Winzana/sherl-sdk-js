@@ -36,6 +36,7 @@ export enum OrganizationErr {
   ENABLE_ROAMING_FAILED = 'organization/enable-roaming-failed',
   DISABLE_ROAMING_FAILED = 'organization/disable-roaming-failed',
   UPDATE_THIRD_PARTY_FAILED = 'organization/update-third-party-failed',
+  UPDATE_THIRD_PARTY_IMPOSSIBLE = 'organization/update-third-party-impossible',
   ACTIVATE_ORGANIZATION_SERVICE_FAILED = 'organization/activate-organization-service-failed',
   TEMPORARY_SUSPEND_ORGANIZATION_SERVICE_FAILED = 'organization/temporary-suspend-organization-service-failed',
 }
@@ -85,6 +86,8 @@ export const errors = {
   [OrganizationErr.ENABLE_ROAMING_FAILED]: 'Failed to enable roaming',
   [OrganizationErr.DISABLE_ROAMING_FAILED]: 'Failed to disable roaming',
   [OrganizationErr.UPDATE_THIRD_PARTY_FAILED]: 'Failed to update third party',
+  [OrganizationErr.UPDATE_THIRD_PARTY_IMPOSSIBLE]:
+    'Impossible to update third party',
   [OrganizationErr.ACTIVATE_ORGANIZATION_SERVICE_FAILED]:
     'Failed to activate organization service',
   [OrganizationErr.TEMPORARY_SUSPEND_ORGANIZATION_SERVICE_FAILED]:

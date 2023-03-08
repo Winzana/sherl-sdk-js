@@ -629,10 +629,11 @@ export interface IOrganization extends IModel {
   siret: number;
 }
 
-export interface IRegisterOrganizationRequest {
+export interface ICreateOrganizationRequest {
   id: string;
   legalName: string;
   siret: string;
+  createdAt: string;
   location: {
     id: string;
     country: string;
@@ -651,7 +652,7 @@ export interface IRegisterOrganizationRequest {
   };
 }
 
-export interface IRegisterOrganizationToPerson {
+export interface IRegisterOrganizationRequest {
   sponsoredByCode: string;
   organization: {
     id: string;
@@ -659,19 +660,24 @@ export interface IRegisterOrganizationToPerson {
     siret: string;
     location: {
       id: string;
+      uri: string;
       country: string;
       locality: string;
       region: string;
+      department: string;
+      types: [string];
       postalCode: string;
       streetAddress: string;
-      uri: string;
-      createdAt: string;
-      department: string;
       complementaryStreetAddress: string;
       name: string;
       originId: string;
       latitude: number;
       longitude: number;
+      consumerId: string;
+      createdAt: string;
+      updatedAt: string;
+      type: string;
+      isDefault: true;
     };
   };
   person: {
@@ -703,12 +709,56 @@ export interface IRegisterOrganizationToPerson {
     gender: string;
     jobTitle: string;
   };
+  user: {
+    password: string;
+  };
+}
+
+export interface IRegisterOrganizationToPerson {
+  organization: {
+    id: string;
+    legalName: string;
+    location: {
+      id: string;
+      country: string;
+      locality: string;
+      region: string;
+      postalCode: string;
+      streetAddress: string;
+      latitude: number;
+      longitude: number;
+    };
+  };
+  person: {
+    firstName: string;
+    lastName: string;
+    address: {
+      id: string;
+      country: string;
+      locality: string;
+      region: string;
+      postalCode: string;
+      streetAddress: string;
+    };
+    mobilePhoneNumber: string;
+    nationality: string;
+    birthDate: string;
+    email: string;
+    gender: string;
+    settings: {
+      notifications: {
+        smsEnable: boolean;
+        emailEnable: boolean;
+        pushEnable: boolean;
+      };
+    };
+  };
 }
 
 export interface ISuggestOrganizationRequest {
   id: string;
   legalName: string;
-  siret: string;
+  siret: number;
   location: {
     id: string;
     country: string;
@@ -716,41 +766,49 @@ export interface ISuggestOrganizationRequest {
     region: string;
     postalCode: string;
     streetAddress: string;
-    uri: string;
-    createdAt: string;
-    department: string;
-    complementaryStreetAddress: string;
-    name: string;
-    originId: string;
     latitude: number;
     longitude: number;
   };
+  serviceType: [
+    {
+      id: string;
+      uri: string;
+      code: string;
+      values: [
+        {
+          language: string;
+          value: string;
+          createdAt: string;
+        },
+      ];
+      createdAt: string;
+    },
+    {
+      id: string;
+      uri: string;
+      code: string;
+      values: [
+        {
+          language: string;
+          value: string;
+          createdAt: string;
+        },
+      ];
+      createdAt: string;
+    },
+  ];
 }
 
 export interface IUpdateOrganizationRequest {
-  legalName: string;
   location: {
-    id: string;
     country: string;
     locality: string;
     region: string;
     postalCode: string;
     streetAddress: string;
-    uri: string;
-    createdAt: string;
-    department: string;
-    complementaryStreetAddress: string;
-    name: string;
-    originId: string;
-    latitude: 0;
-    longitude: 0;
+    latitude: number;
+    longitude: number;
   };
-  enabled: true;
-  isPublic: true;
-  isComingSoon: true;
-  metadatas: object;
-  openingHoursSpecification: Array<string>;
-  thirdParty: object;
 }
 
 export interface IUpdateIsPublicOrganizationRequest {
