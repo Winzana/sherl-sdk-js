@@ -1,5 +1,5 @@
 import { Sort } from '../../common';
-import { IPerson } from './types';
+import { IPerson, PersonTypeEnum } from "./types";
 
 export interface PersonParams {
   id?: string;
@@ -24,5 +24,6 @@ export interface PersonParams {
   updatedAt?: string;
   analytics?: string;
   noFrequentedEstablishment?: string;
+  type?: PersonTypeEnum;
   sort?: Sort<IPerson>;
 }

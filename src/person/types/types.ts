@@ -34,7 +34,7 @@ export interface IPerson {
   mangopayCards: IMangopayCard[];
   stripe: IStripe;
   lemonway: ILemonway;
-  type: IPersonTypeEnum;
+  type: PersonTypeEnum;
   frequentedEstablishments: IFrequentedEstablishments[];
   metadatas: { [key: string]: any };
   statistics: {
@@ -80,11 +80,11 @@ export interface IMediaObject {
   id: string;
 }
 
-export interface IPersonTypeEnum {
-  frequentedEstablishment: {
-    organizationId: string;
-    isCustomer: boolean;
-  };
+export enum PersonTypeEnum {
+  DEFAULT = 'DEFAULT',
+  EMPLOYEE = 'EMPLOYEE',
+  FOUNDER = 'FOUNDER',
+  ADMIN = 'ADMIN',
 }
 
 export interface IMangopayCard {
