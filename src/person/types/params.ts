@@ -1,5 +1,5 @@
 import { Sort } from '../../common';
-import { IPerson, PersonTypeEnum } from "./types";
+import { IPerson, PersonTypeEnum } from './types';
 
 export interface PersonParams {
   id?: string;
