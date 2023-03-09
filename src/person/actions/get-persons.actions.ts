@@ -1,7 +1,7 @@
 import { Fetcher, Pagination } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { IPerson } from '../types';
-import { PersonParams } from "../types/params";
+import { PersonParams } from '../types/params';
 
 export const getPersons = async (
   fetcher: Fetcher,

@@ -1,5 +1,5 @@
 export interface Filters {
-  [key: string]: string
+  [key: string]: string;
 }
 
 export interface Sort<T> {
