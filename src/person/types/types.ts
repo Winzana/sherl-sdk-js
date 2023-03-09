@@ -1,6 +1,6 @@
-import { IGeoCoordinates, IPlace } from '../common/types';
+import { IGeoCoordinates, IPlace } from '../../common';
 
-export interface IPersonMeResponse {
+export interface IPerson {
   id: string;
   uri: string;
   consumerId: string;

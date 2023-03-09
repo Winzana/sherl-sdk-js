@@ -1,6 +1,6 @@
-import { IPlace, IGeoCoordinates } from '../common/types';
+import { IPlace, IGeoCoordinates } from '../common';
 import {
-  IPersonMeResponse,
+  IPerson,
   IOpeningHoursSpecification,
   IImageObject,
 } from '../person/types';
@@ -214,7 +214,7 @@ export interface IOrganizationCommunication {
   icon: string;
 }
 
-export interface IFounder extends IPersonMeResponse {
+export interface IFounder extends IPerson {
   id: string;
   uri: string;
   consumerId: string;
@@ -229,7 +229,7 @@ export interface IWallet {
   walletId: string;
 }
 
-export interface IEmployee extends IPersonMeResponse, IModel {
+export interface IEmployee extends IPerson, IModel {
   id: string;
   uri: string;
   consumerId: string;

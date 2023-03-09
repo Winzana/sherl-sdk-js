@@ -1,6 +1,6 @@
 import { IOrganizationResponse, IOffer } from '../../../organization/types';
-import { IPersonMeResponse } from '../../../person/types';
-import { IAddress } from '../../../common/types';
+import { IPerson } from '../../../person/types';
+import { IAddress } from '../../../common';
 import { IProductResponse, ICategoryResponse } from '../product/types';
 
 export interface IOrderResponse {
@@ -8,7 +8,7 @@ export interface IOrderResponse {
   uri: string;
   consumerId: string;
   organization: IOrganizationResponse;
-  customer: IPersonMeResponse;
+  customer: IPerson;
   orderNumber: number;
   orderNumberOfDay: number;
   orderStatus: OrderStatusEnum;
@@ -156,7 +156,7 @@ export interface IPayment {
   uri: string;
   consumerId: string;
   customerUri: string;
-  customer: IPersonMeResponse;
+  customer: IPerson;
   organizationUri: string;
   Id: string;
   CreationDate: number;
