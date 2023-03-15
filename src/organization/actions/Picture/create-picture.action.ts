@@ -6,14 +6,14 @@ import { IPicture, ICreatePictureResponse } from '../../types';
 
 export const createPicture = async (
   fetcher: Fetcher,
-  id: string,
-  mediaId: string,
+  organizationId: string,
+  pictureId: string,
   request: IPicture,
 ): Promise<ICreatePictureResponse> => {
   const response = await fetcher.post<ICreatePictureResponse>(
     StringUtils.bindContext(endpoints.CREATE_PICTURE, {
-      id,
-      mediaId,
+      organizationId,
+      pictureId,
     }),
     request,
   );

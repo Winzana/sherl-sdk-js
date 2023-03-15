@@ -6,14 +6,14 @@ import { IDeletePictureResponse } from '../../types';
 
 export const deletePicture = async (
   fetcher: Fetcher,
-  id: string,
-  mediaId: string,
+  organizationId: string,
+  pictureId: string,
   request: object,
 ): Promise<IDeletePictureResponse> => {
   const response = await fetcher.post<IDeletePictureResponse>(
     StringUtils.bindContext(endpoints.DELETE_PICTURE, {
-      id,
-      mediaId,
+      organizationId,
+      pictureId,
     }),
     request,
   );

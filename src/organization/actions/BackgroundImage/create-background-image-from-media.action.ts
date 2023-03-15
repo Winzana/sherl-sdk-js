@@ -9,7 +9,7 @@ import {
 
 export const createBackgroundImageFromMedia = async (
   fetcher: Fetcher,
-  id: string,
+  organizationId: string,
   mediaId: string,
   request: IBackgroundImageFromMedia,
 ): Promise<ICreateBackgroundImageFromMediaResponse> => {
@@ -17,7 +17,7 @@ export const createBackgroundImageFromMedia = async (
     const response =
       await fetcher.post<ICreateBackgroundImageFromMediaResponse>(
         StringUtils.bindContext(endpoints.CREATE_BACKGROUND_IMAGE_FROM_MEDIA, {
-          id,
+          organizationId,
           mediaId,
         }),
         request,

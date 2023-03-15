@@ -3,15 +3,15 @@ import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { IDocument } from '../../types';
 
-export const getAllDocuments = async (
+export const getAllKycDocuments = async (
   fetcher: Fetcher,
-  id: string,
+  organizationId: string,
 ): Promise<IDocument[]> => {
   let response: ApiResponse<IDocument[]> | null = null;
 
   try {
     response = await fetcher.get<IDocument[]>(
-      StringUtils.bindContext(endpoints.GET_DOCUMENTS, { id }),
+      StringUtils.bindContext(endpoints.GET_DOCUMENTS, { organizationId }),
     );
   } catch {
     throw new Error('Cannot reach API');

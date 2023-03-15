@@ -15,13 +15,11 @@ export * from './register-organization.action';
 export * from './suggest-organization.action';
 export * from './update-third-party.action';
 export * from './update-is-public-organization.action';
-export * from './activate-organization-service.action';
-export * from './temporary-suspend-organization-service.action';
 
 // KYC
-export * from './KYC/add-document.action';
-export * from './KYC/get-all-documents.action';
-export * from './KYC/update-document.action';
+export * from './KYC/add-kyc-document.action';
+export * from './KYC/get-all-kyc-documents.action';
+export * from './KYC/update-kyc-document.action';
 
 // RIB
 export * from './RIB/add-rib.action';

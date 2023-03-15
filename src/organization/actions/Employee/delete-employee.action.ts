@@ -6,13 +6,13 @@ import { IDeleteEmployeeResponse } from '../../types';
 
 export const deleteEmployee = async (
   fetcher: Fetcher,
-  id: string,
+  organizationId: string,
   employeeId: string,
   request: object,
 ): Promise<IDeleteEmployeeResponse> => {
   const response = await fetcher.post<IDeleteEmployeeResponse>(
     StringUtils.bindContext(endpoints.DELETE_EMPLOYEE, {
-      id,
+      organizationId,
       employeeId,
     }),
     request,

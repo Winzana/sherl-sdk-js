@@ -2,16 +2,16 @@ import { Fetcher } from '../../common/api';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { OrganizationErr, errorFactory } from '../errors';
-import { IUpdateIsPublicOrganizationRequest, IOrganization } from '../types';
+import { IIsPublicOrganization, IOrganization } from '../types';
 
 export const updateIsPublicOrganization = async (
   fetcher: Fetcher,
-  id: string,
-  request: IUpdateIsPublicOrganizationRequest,
+  organizationId: string,
+  request: IIsPublicOrganization,
 ): Promise<IOrganization> => {
   const response = await fetcher.put<IOrganization>(
     StringUtils.bindContext(endpoints.UPDATE_IS_PUBLIC_ORGANIZATION, {
-      id,
+      organizationId,
     }),
     request,
   );

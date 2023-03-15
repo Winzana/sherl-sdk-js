@@ -6,13 +6,13 @@ import { IBackgroundImage, ICreateBackgroundImageResponse } from '../../types';
 
 export const createBackgroundImage = async (
   fetcher: Fetcher,
-  id: string,
+  organizationId: string,
   mediaId: string,
   request: IBackgroundImage,
 ): Promise<ICreateBackgroundImageResponse> => {
   const response = await fetcher.post<ICreateBackgroundImageResponse>(
     StringUtils.bindContext(endpoints.CREATE_BACKGROUND_IMAGE, {
-      id,
+      organizationId,
       mediaId,
     }),
     request,

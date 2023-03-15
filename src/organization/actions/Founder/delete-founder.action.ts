@@ -6,13 +6,13 @@ import { IDeleteFounderResponse } from '../../types';
 
 export const deleteFounder = async (
   fetcher: Fetcher,
-  id: string,
+  organizationId: string,
   founderId: string,
   request: object,
 ): Promise<IDeleteFounderResponse> => {
   const response = await fetcher.post<IDeleteFounderResponse>(
     StringUtils.bindContext(endpoints.DELETE_FOUNDER, {
-      id,
+      organizationId,
       founderId,
     }),
     request,

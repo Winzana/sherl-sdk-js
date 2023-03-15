@@ -6,13 +6,13 @@ import { IAddRib } from '../../types';
 
 export const addRib = async (
   fetcher: Fetcher,
-  id: string,
+  organizationId: string,
   request: IAddRib,
 ): Promise<IAddRib> => {
   try {
     const response = await fetcher.post<IAddRib>(
       StringUtils.bindContext(endpoints.ADD_RIB, {
-        id,
+        organizationId,
       }),
       request,
     );

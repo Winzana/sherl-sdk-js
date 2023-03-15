@@ -6,12 +6,12 @@ import { ICreateEmployeeResponse, IEmployeeRequest } from '../../types';
 
 export const createEmployee = async (
   fetcher: Fetcher,
-  id: string,
+  organizationId: string,
   request: IEmployeeRequest,
 ): Promise<ICreateEmployeeResponse> => {
   const response = await fetcher.post<ICreateEmployeeResponse>(
     StringUtils.bindContext(endpoints.CREATE_EMPLOYEE, {
-      id,
+      organizationId,
     }),
     request,
   );

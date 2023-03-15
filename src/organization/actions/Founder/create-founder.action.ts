@@ -6,12 +6,12 @@ import { ICreateFounderResponse, ICreateFounderRequest } from '../../types';
 
 export const createFounder = async (
   fetcher: Fetcher,
-  id: string,
+  organizationId: string,
   request: ICreateFounderRequest,
 ): Promise<ICreateFounderResponse> => {
   const response = await fetcher.post<ICreateFounderResponse>(
     StringUtils.bindContext(endpoints.CREATE_FOUNDER, {
-      id,
+      organizationId,
     }),
     request,
   );

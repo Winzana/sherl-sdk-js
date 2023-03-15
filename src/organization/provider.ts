@@ -6,9 +6,9 @@ import {
   getPublicOrganization,
   getPublicOrganizationBySlug,
   getPublicOrganizations,
-  addDocument,
-  updateDocument,
-  getAllDocuments,
+  addKycDocument,
+  updateKycDocument,
+  getAllKycDocuments,
   addRib,
   getAllRibs,
   setCommunication,
@@ -41,8 +41,6 @@ import {
   suggestOrganization,
   updateThirdParty,
   updateIsPublicOrganization,
-  activateOrganizationService,
-  temporarySuspendOrganizationService,
 } from './actions';
 import { errorFactory } from './errors';
 
@@ -58,9 +56,9 @@ class OrganizationProvider extends AbstractProvider {
     getPublicOrganizationBySlug,
   );
   public getPublicOrganizations = this.withFetcher(getPublicOrganizations);
-  public addDocument = this.withFetcher(addDocument);
-  public updateDocument = this.withFetcher(updateDocument);
-  public getAllDocuments = this.withFetcher(getAllDocuments);
+  public addKycDocument = this.withFetcher(addKycDocument);
+  public updateKycDocument = this.withFetcher(updateKycDocument);
+  public getAllKycDocuments = this.withFetcher(getAllKycDocuments);
   public addRib = this.withFetcher(addRib);
   public getAllRibs = this.withFetcher(getAllRibs);
   public setCommunication = this.withFetcher(setCommunication);
@@ -104,12 +102,6 @@ class OrganizationProvider extends AbstractProvider {
   public updateThirdParty = this.withFetcher(updateThirdParty);
   public updateIsPublicOrganization = this.withFetcher(
     updateIsPublicOrganization,
-  );
-  public activateOrganizationService = this.withFetcher(
-    activateOrganizationService,
-  );
-  public temporarySuspendOrganizationService = this.withFetcher(
-    temporarySuspendOrganizationService,
   );
 }
 

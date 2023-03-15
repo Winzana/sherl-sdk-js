@@ -6,12 +6,12 @@ import { IDeleteBackgroundImageResponse } from '../../types';
 
 export const deleteBackgroundImage = async (
   fetcher: Fetcher,
-  id: string,
+  organizationId: string,
   request: object,
 ): Promise<IDeleteBackgroundImageResponse> => {
   const response = await fetcher.post<IDeleteBackgroundImageResponse>(
     StringUtils.bindContext(endpoints.DELETE_BACKGROUND_IMAGE, {
-      id,
+      organizationId,
     }),
     request,
   );

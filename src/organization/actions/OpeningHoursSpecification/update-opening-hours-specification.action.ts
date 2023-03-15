@@ -10,13 +10,13 @@ import {
 export const updateOpeningHoursSpecification = async (
   fetcher: Fetcher,
   organizationId: string,
-  id: string,
+  hoursSpecId: string,
   request: IOpeningHoursSpecificationRequest,
 ): Promise<IOpeningHoursSpecificationResponse> => {
   const response = await fetcher.put<IOpeningHoursSpecificationResponse>(
     StringUtils.bindContext(endpoints.UPDATE_OPENING_HOURS_SPECIFICATION, {
       organizationId,
-      id,
+      hoursSpecId,
     }),
     request,
   );

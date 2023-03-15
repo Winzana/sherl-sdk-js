@@ -811,22 +811,14 @@ export interface IUpdateOrganizationRequest {
   };
 }
 
-export interface IUpdateIsPublicOrganizationRequest {
+export interface IIsPublicOrganization {
   id: string;
   isPublic: boolean;
 }
 
 export interface IEnableRoamingResponse {}
 
-export interface IEnableRoamingRequest {
-  id: string;
-}
-
 export interface IDisableRoamingResponse {}
-
-export interface IDisableRoamingRequest {
-  id: string;
-}
 
 export interface IUpdateThirdPartyRequest {
   id: string;

@@ -7,13 +7,13 @@ import { IDeleteOpeningHoursSpecificationResponse } from '../../types';
 export const deleteOpeningHoursSpecification = async (
   fetcher: Fetcher,
   organizationId: string,
-  id: string,
+  hoursSpecId: string,
   request: object,
 ): Promise<IDeleteOpeningHoursSpecificationResponse> => {
   const response = await fetcher.post<IDeleteOpeningHoursSpecificationResponse>(
     StringUtils.bindContext(endpoints.DELETE_OPENING_HOURS_SPECIFICATION, {
       organizationId,
-      id,
+      hoursSpecId,
     }),
     request,
   );

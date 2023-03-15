@@ -9,14 +9,14 @@ import {
 
 export const createPictureFromMedia = async (
   fetcher: Fetcher,
-  id: string,
-  mediaId: string,
+  organizationId: string,
+  pictureId: string,
   request: IPictureFromMedia,
 ): Promise<ICreatePictureFromMediaResponse> => {
   const response = await fetcher.post<ICreatePictureFromMediaResponse>(
     StringUtils.bindContext(endpoints.CREATE_PICTURE_FROM_MEDIA, {
-      id,
-      mediaId,
+      organizationId,
+      pictureId,
     }),
     request,
   );

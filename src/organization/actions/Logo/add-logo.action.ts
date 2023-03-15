@@ -6,14 +6,14 @@ import { ILogoResponse, ILogo } from '../../types';
 
 export const addLogo = async (
   fetcher: Fetcher,
-  id: string,
+  organizationId: string,
   mediaId: string,
   request: ILogo,
 ): Promise<ILogoResponse> => {
   try {
     const response = await fetcher.post<ILogoResponse>(
       StringUtils.bindContext(endpoints.ADD_LOGO, {
-        id,
+        organizationId,
         mediaId,
       }),
       request,

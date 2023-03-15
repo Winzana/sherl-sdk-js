@@ -6,12 +6,12 @@ import { ICommunication } from '../../types';
 
 export const setCommunication = async (
   fetcher: Fetcher,
-  id: string,
+  organizationId: string,
   request: ICommunication,
 ): Promise<ICommunication> => {
   const response = await fetcher.post<ICommunication>(
     StringUtils.bindContext(endpoints.POST_SET_COMMUNICATION, {
-      id,
+      organizationId,
     }),
     request,
   );

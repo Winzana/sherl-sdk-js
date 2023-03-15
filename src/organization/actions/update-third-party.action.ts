@@ -6,12 +6,12 @@ import { IUpdateThirdPartyRequest, IThirdPartyResponse } from '../types';
 
 export const updateThirdParty = async (
   fetcher: Fetcher,
-  id: string,
+  organizationId: string,
   request: IUpdateThirdPartyRequest,
 ): Promise<IThirdPartyResponse> => {
   const response = await fetcher.put<IThirdPartyResponse>(
     StringUtils.bindContext(endpoints.UPDATE_THIRD_PARTY, {
-      id,
+      organizationId,
     }),
     request,
   );

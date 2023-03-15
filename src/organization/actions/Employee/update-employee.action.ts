@@ -6,13 +6,13 @@ import { IUpdateEmployeeResponse, IUpdateEmployeeRequest } from '../../types';
 
 export const updateEmployee = async (
   fetcher: Fetcher,
-  id: string,
+  organizationId: string,
   employeeId: string,
   request: IUpdateEmployeeRequest,
 ): Promise<IUpdateEmployeeResponse> => {
   const response = await fetcher.put<IUpdateEmployeeResponse>(
     StringUtils.bindContext(endpoints.UPDATE_EMPLOYEE, {
-      id,
+      organizationId,
       employeeId,
     }),
     request,

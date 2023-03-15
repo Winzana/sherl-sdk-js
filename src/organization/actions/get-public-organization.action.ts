@@ -5,13 +5,15 @@ import { IOrganizationResponse } from '../types';
 
 export const getPublicOrganization = async (
   fetcher: Fetcher,
-  id: string,
+  organizationId: string,
 ): Promise<IOrganizationResponse> => {
   let response: ApiResponse<IOrganizationResponse> | null = null;
 
   try {
     response = await fetcher.get<IOrganizationResponse>(
-      StringUtils.bindContext(endpoints.GET_PUBLIC_ORGANIZATION_ID, { id }),
+      StringUtils.bindContext(endpoints.GET_PUBLIC_ORGANIZATION_ID, {
+        organizationId,
+      }),
     );
   } catch ({ name, response: responseError, stack, isAxiosError, ...rest }) {
     throw new Error('Cannot reach API');
