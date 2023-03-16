@@ -1,4 +1,4 @@
 export * from './client';
 export { SherlError } from './errors';
-export * from './types/types';
-export * from './types/params';
+export * from './types/entities';
+export * from './types/filters';

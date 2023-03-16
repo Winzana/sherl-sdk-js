@@ -1,7 +1,7 @@
 import { Sort } from '../../common';
-import { IPerson, PersonTypeEnum } from './types';
+import { IPerson, PersonTypeEnum } from './entities';
 
-export interface PersonParams {
+export interface IPersonParams {
   id?: string;
   userId?: string;
   q?: string;
