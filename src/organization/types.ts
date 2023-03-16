@@ -1,13 +1,6 @@
 import { IPlace, IGeoCoordinates } from '../common';
-import {
-  IPerson,
-  IOpeningHoursSpecification,
-  IImageObject,
-} from '../person/types';
-import {
-  ICategoryResponse,
-  IProductResponse,
-} from '../shop/types/product/types';
+import { IPerson, IOpeningHoursSpecification, IImageObject } from '../person';
+import { ICategoryResponse, IProductResponse } from '../shop/types';
 
 export interface IOrganizationResponse extends IModel {
   id: string;

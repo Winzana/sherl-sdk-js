@@ -1,6 +1,7 @@
-import { Fetcher, Pagination } from '../../../common/api';
+import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
-import { IPublicCategoryResponse } from '../../types/product/types';
+import { IPublicCategoryResponse } from '../../types';
+import { Pagination } from '../../../common/types/response';
 
 export const getPublicCategoriesBySlug = async (
   fetcher: Fetcher,

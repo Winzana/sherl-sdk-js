@@ -1,13 +1,14 @@
-import { Fetcher, Pagination } from '../../common/api';
+import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { IPerson } from '../types';
-import { PersonParams } from '../types/params';
+import { IPersonFilters } from '../types';
+import { Pagination } from '../../common/types/response';
 
 export const getPersons = async (
   fetcher: Fetcher,
   page = 1,
   itemsPerPage = 10,
-  filters: PersonParams,
+  filters: IPersonFilters,
 ): Promise<Pagination<IPerson[]>> => {
   const response = await fetcher.get<Pagination<IPerson[]>>(
     endpoints.GET_PERSONS,

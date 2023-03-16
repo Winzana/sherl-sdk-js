@@ -1,6 +1,7 @@
-import { Fetcher, Pagination } from '../../../common/api';
+import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
-import { IDiscountResponse } from '../../types/discount/types';
+import { IDiscountResponse } from '../../types';
+import { Pagination } from '../../../common/types/response';
 
 export const getDiscountByParams = async (
   fetcher: Fetcher,

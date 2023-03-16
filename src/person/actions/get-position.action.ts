@@ -1,6 +1,7 @@
-import { Fetcher, Pagination } from '../../common/api';
+import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { ILocation } from '../types';
+import { Pagination } from "../../common";
 
 export const getCurrentAddress = async (
   fetcher: Fetcher,

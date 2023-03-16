@@ -1,6 +1,7 @@
-import { Fetcher, Pagination } from '../../../common/api';
+import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
-import { IOrderResponse } from '../../types/order/types';
+import { IOrderResponse } from '../../types';
+import { Pagination } from '../../../common/types/response';
 
 export const getOrders = async (
   fetcher: Fetcher,

@@ -1,7 +1,7 @@
 import { Sort } from '../../common';
 import { IPerson, PersonTypeEnum } from './entities';
 
-export interface IPersonParams {
+export interface IPersonFilters {
   id?: string;
   userId?: string;
   q?: string;
