@@ -2,7 +2,7 @@ import { Fetcher } from '../../common/api';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { IPerson } from '../types';
-import { ApiResponse } from "../../common";
+import { ApiResponse } from '../../common';
 
 export const getPersonById = async (
   fetcher: Fetcher,

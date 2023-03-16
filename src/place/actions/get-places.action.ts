@@ -1,7 +1,7 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { IPlaceResponse } from '../types';
-import { Pagination } from "../../common";
+import { Pagination } from '../../common';
 
 export const getPlaces = async (
   fetcher: Fetcher,

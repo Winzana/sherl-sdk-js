@@ -1,7 +1,7 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { IPerson } from '../types';
-import { ApiResponse } from "../../common";
+import { ApiResponse } from '../../common';
 
 export const getMe = async (fetcher: Fetcher): Promise<IPerson> => {
   let response: ApiResponse<IPerson> | null = null;

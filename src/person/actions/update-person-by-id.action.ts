@@ -3,7 +3,7 @@ import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { errorFactory, PersonErr } from '../errors';
 import { IPerson } from '../types';
-import { ApiResponse } from "../../common";
+import { ApiResponse } from '../../common';
 
 export const updatePersonById = async (
   fetcher: Fetcher,

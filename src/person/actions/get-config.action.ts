@@ -1,7 +1,7 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { IConfigResponse } from '../types';
-import { ApiResponse } from "../../common";
+import { ApiResponse } from '../../common';
 
 export const getConfigs = async (
   fetcher: Fetcher,
