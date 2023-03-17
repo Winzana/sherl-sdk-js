@@ -7,14 +7,13 @@ import { ILogoResponse } from '../../types';
 export const deleteLogo = async (
   fetcher: Fetcher,
   organizationId: string,
-  request: object,
 ): Promise<ILogoResponse> => {
   try {
     const response = await fetcher.post<ILogoResponse>(
       StringUtils.bindContext(endpoints.DELETE_LOGO, {
         organizationId,
       }),
-      request,
+      {},
     );
 
     if (response.status !== 200) {

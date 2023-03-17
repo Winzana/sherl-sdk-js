@@ -8,14 +8,13 @@ export const deleteFounder = async (
   fetcher: Fetcher,
   organizationId: string,
   founderId: string,
-  request: object,
 ): Promise<IDeleteFounderResponse> => {
   const response = await fetcher.post<IDeleteFounderResponse>(
     StringUtils.bindContext(endpoints.DELETE_FOUNDER, {
       organizationId,
       founderId,
     }),
-    request,
+    {},
   );
 
   if (response.status !== 200) {

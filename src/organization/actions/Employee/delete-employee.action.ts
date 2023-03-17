@@ -8,14 +8,13 @@ export const deleteEmployee = async (
   fetcher: Fetcher,
   organizationId: string,
   employeeId: string,
-  request: object,
 ): Promise<IDeleteEmployeeResponse> => {
   const response = await fetcher.post<IDeleteEmployeeResponse>(
     StringUtils.bindContext(endpoints.DELETE_EMPLOYEE, {
       organizationId,
       employeeId,
     }),
-    request,
+    {},
   );
 
   if (response.status !== 200) {

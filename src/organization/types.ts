@@ -241,12 +241,36 @@ export interface IEmployee extends IPersonMeResponse, IModel {
 
 export interface IAddDocument {
   id: string;
-  type: object;
-  media: object;
+  type: string;
+  media: {
+    id: string;
+    uri: string;
+    caption: {
+      id: string;
+      size: number;
+      contentUrl: string;
+      description: string;
+      name: string;
+      encodingFormat: string;
+    };
+    domain: string;
+  };
 }
 
 export interface IUpdateDocument {
-  media: object;
+  media: {
+    id: string;
+    uri: string;
+    caption: {
+      id: string;
+      size: number;
+      contentUrl: string;
+      description: string;
+      name: string;
+      encodingFormat: string;
+    };
+    domain: string;
+  };
 }
 
 export interface IDocument {

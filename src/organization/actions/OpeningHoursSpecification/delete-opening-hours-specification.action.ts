@@ -8,14 +8,13 @@ export const deleteOpeningHoursSpecification = async (
   fetcher: Fetcher,
   organizationId: string,
   hoursSpecId: string,
-  request: object,
 ): Promise<IDeleteOpeningHoursSpecificationResponse> => {
   const response = await fetcher.post<IDeleteOpeningHoursSpecificationResponse>(
     StringUtils.bindContext(endpoints.DELETE_OPENING_HOURS_SPECIFICATION, {
       organizationId,
       hoursSpecId,
     }),
-    request,
+    {},
   );
 
   if (response.status !== 200) {

@@ -8,14 +8,13 @@ export const deletePicture = async (
   fetcher: Fetcher,
   organizationId: string,
   pictureId: string,
-  request: object,
 ): Promise<IDeletePictureResponse> => {
   const response = await fetcher.post<IDeletePictureResponse>(
     StringUtils.bindContext(endpoints.DELETE_PICTURE, {
       organizationId,
       pictureId,
     }),
-    request,
+    {},
   );
 
   if (response.status !== 200) {
