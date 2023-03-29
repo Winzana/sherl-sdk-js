@@ -2,13 +2,13 @@ import { Fetcher } from '../../common/api';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { errorFactory, PersonErr } from '../errors';
-import { IPerson } from '../types';
+import { IPerson, IPersonUpdate } from "../types";
 import { ApiResponse } from '../../common';
 
 export const updatePersonById = async (
   fetcher: Fetcher,
   id: string,
-  params: Partial<IPerson>,
+  params: Partial<IPersonUpdate>,
 ): Promise<IPerson> => {
   let response: ApiResponse<IPerson> | null = null;
 
