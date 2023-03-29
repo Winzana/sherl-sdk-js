@@ -1,7 +1,7 @@
 import { Fetcher } from '../../../common/api';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
-import { ICategoryResponse } from '../../types/product/types';
+import { ICategoryResponse } from '../../types';
 
 export const getCategoriesById = async (
   fetcher: Fetcher,
