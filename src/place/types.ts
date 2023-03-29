@@ -1,3 +1,3 @@
-import { IPlace } from '../common/types';
+import { IPlace } from '../common';
 
 export type IPlaceResponse = IPlace;
