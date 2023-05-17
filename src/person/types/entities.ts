@@ -1,6 +1,6 @@
-import { IGeoCoordinates, IPlace } from '../common/types';
+import { IGeoCoordinates, IPlace } from '../../common';
 
-export interface IPersonMeResponse {
+export interface IPerson {
   id: string;
   uri: string;
   consumerId: string;
@@ -17,7 +17,7 @@ export interface IPersonMeResponse {
   affiliation: IOrganization;
   birthDate: Date;
   email: string;
-  gender: string;
+  gender: GendersEnum;
   latitude: number;
   longitude: number;
   jobTitle: string;
@@ -34,7 +34,7 @@ export interface IPersonMeResponse {
   mangopayCards: IMangopayCard[];
   stripe: IStripe;
   lemonway: ILemonway;
-  type: IPersonTypeEnum;
+  type: PersonTypeEnum;
   frequentedEstablishments: IFrequentedEstablishments[];
   metadatas: { [key: string]: any };
   statistics: {
@@ -46,6 +46,25 @@ export interface IPersonMeResponse {
     frequentedEstablishments: IFrequentedEstablishments[];
     loyalCustomer: boolean;
   };
+}
+
+export interface IPersonUpdate {
+  firstName: string;
+  lastName: string;
+  address: IPlace;
+  type: PersonTypeEnum;
+  phoneNumber: string;
+  mobilePhoneNumber: string;
+  faxNumber: string;
+  nationality: string;
+  affiliation: IOrganization;
+  latitude: number;
+  longitude: number;
+  birthDate: Date;
+  email: string;
+  gender: GendersEnum;
+  jobTitle: string;
+  metadatas: { [key: string]: any };
 }
 
 export interface IConfigResponse {
@@ -80,11 +99,11 @@ export interface IMediaObject {
   id: string;
 }
 
-export interface IPersonTypeEnum {
-  frequentedEstablishment: {
-    organizationId: string;
-    isCustomer: boolean;
-  };
+export enum PersonTypeEnum {
+  DEFAULT = 'DEFAULT',
+  EMPLOYEE = 'EMPLOYEE',
+  FOUNDER = 'FOUNDER',
+  ADMIN = 'ADMIN',
 }
 
 export interface IMangopayCard {
@@ -270,4 +289,11 @@ export interface IPersonRegister {
     latitude: number;
     longitude: number;
   };
+}
+
+export enum GendersEnum {
+  MAN = 'man',
+  WOMEN = 'women',
+  OTHER = 'other',
+  NSP = 'nsp',
 }

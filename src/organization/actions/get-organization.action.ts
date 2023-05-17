@@ -1,7 +1,8 @@
-import { ApiResponse, Fetcher } from '../../common/api';
+import { Fetcher } from '../../common/api';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { IOrganizationResponse } from '../types';
+import { ApiResponse } from '../../common';
 
 export const getOrganization = async (
   fetcher: Fetcher,

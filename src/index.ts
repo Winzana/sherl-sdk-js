@@ -1,6 +1,6 @@
-import { init, SherlError } from './common';
+import { init, SherlError, Pagination, SherlClient, Sort } from './common';
 
-export { init, SherlError };
+export { init, SherlError, Pagination, SherlClient, Sort };
 export * from './auth';
 export * from './person';
 export * from './place';

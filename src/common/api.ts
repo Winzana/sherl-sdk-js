@@ -1,10 +1,6 @@
-import axios, {
-  AxiosError,
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-} from 'axios';
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
 import { CommonErr, ErrorFactory, getErrorCodeByHttpStatus } from './errors';
+import { ApiResponse, ApiResponseError } from './types/response';
 
 class Fetcher {
   constructor(
@@ -121,18 +117,3 @@ export const registerBearerToken = (instance: AxiosInstance, token: string) => {
     (error) => Promise.reject(error),
   );
 };
-
-export type ApiResponse<T> = AxiosResponse<T>;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type ApiResponseError<T = any> = AxiosError<T>;
-
-export interface Pagination<Data> {
-  results: Data;
-  view: View;
-}
-
-export interface View {
-  total: number;
-  page: number;
-  itemsPerPage: number;
-}

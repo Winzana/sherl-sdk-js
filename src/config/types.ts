@@ -1,5 +1,3 @@
-import { setConfig } from './actions/set-config.action';
-
 export interface IGetPublicConfigResponse {
   code: string;
   value: any;
