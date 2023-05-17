@@ -1,14 +1,15 @@
 import { IOrganizationResponse, IOffer } from '../../../organization/types';
-import { IPersonMeResponse } from '../../../person/types';
-import { IAddress } from '../../../common/types';
-import { IProductResponse, ICategoryResponse } from '../product/types';
+import { IPerson } from '../../../person/types';
+import { IAddress } from '../../../common';
+import { IProductResponse, ShopProductTypeEnum } from '../product/entities';
+import { IDiscount } from '../discount/entities';
 
 export interface IOrderResponse {
   id: string;
   uri: string;
   consumerId: string;
   organization: IOrganizationResponse;
-  customer: IPersonMeResponse;
+  customer: IPerson;
   orderNumber: number;
   orderNumberOfDay: number;
   orderStatus: OrderStatusEnum;
@@ -45,52 +46,6 @@ export interface IShopOrderRefund {
   askedBy: string;
   createdAt: Date;
   metadatas: any;
-}
-
-export interface IDiscount {
-  id: string;
-  uri: string;
-  name: string;
-  ownerUri: string;
-  owner: IOrganizationResponse;
-  consumerId: string;
-  availableFrom: Date;
-  availableUntil: Date;
-  public: boolean;
-  visibleToPublic: boolean;
-  enabled: boolean;
-  highlight: boolean;
-  cumulative: boolean;
-  discountType: DiscountTypeEnum;
-  code: string;
-  percentage: number;
-  amount: number;
-  quantity: number;
-  quantityPerUser: number;
-  customers: string[];
-  productRestrictions: IProductRestriction[];
-  dateRestrictions: IDateRestriction[];
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-export interface IDateRestriction {
-  date: Date;
-  dayOfWeek: string;
-  fromHour: Date;
-  toHour: Date;
-}
-
-export interface IProductRestriction {
-  requiredQuantity: number;
-  product: IProductResponse;
-  categoryUri: string;
-  category: ICategoryResponse;
-}
-
-export enum DiscountTypeEnum {
-  PERCENT = 'percent',
-  AMOUNT = 'amount',
 }
 
 export interface IOrderStatusHistory {
@@ -156,7 +111,7 @@ export interface IPayment {
   uri: string;
   consumerId: string;
   customerUri: string;
-  customer: IPersonMeResponse;
+  customer: IPerson;
   organizationUri: string;
   Id: string;
   CreationDate: number;
@@ -268,17 +223,6 @@ interface IBillingdetails {
   email: any;
   name: string;
   phone: any;
-}
-
-export enum ShopProductTypeEnum {
-  CREDIT = 'CREDIT',
-  DEFAULT = 'DEFAULT',
-  ROOM = 'ROOM',
-  TIP = 'TIP',
-  SERVICE = 'SERVICE',
-  PLAN = 'PLAN',
-  QUOTA = 'QUOTA',
-  REFUND = 'REFUND', // Un avoir
 }
 
 export enum OrderStatusEnum {

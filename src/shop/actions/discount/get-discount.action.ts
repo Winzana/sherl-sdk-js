@@ -1,7 +1,8 @@
-import { ApiResponse, Fetcher } from '../../../common/api';
+import { Fetcher } from '../../../common/api';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
-import { IDiscountResponse } from '../../types/discount/types';
+import { IDiscountResponse } from '../../types';
+import { ApiResponse } from '../../../common';
 
 export const getDiscount = async (
   fetcher: Fetcher,

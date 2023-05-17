@@ -1,7 +1,8 @@
-import { ApiResponse, Fetcher } from '../../../common/api';
+import { Fetcher } from '../../../common/api';
 import { StringUtils } from '../../../common/utils/string';
-import { IProductResponse } from '../../types/product/types';
+import { IProductResponse } from '../../types';
 import { endpoints } from '../../api/endpoints';
+import { ApiResponse } from '../../../common/types/response';
 
 export const getProduct = async (
   fetcher: Fetcher,

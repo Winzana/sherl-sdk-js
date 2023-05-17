@@ -10,18 +10,21 @@ Some methods will require a valid authentication token. To create this token, yo
 This method will be subject to change soon and should provide a better way to authenticate.
 :::
 
+use the login function to get the token
 ```ts
-// With require
-const sherl = require('@sherl/sdk');
-// OR import
-import * as Sherl from '@sherl/sdk';
+const token = await auth(client).signInWithEmailAndPassword('youremail','yourpassword');
+```
 
-const promise = Sherl.auth.signInWithEmailAndPassword(
-  'mail@example.com',
-  'password',
-);
+the login function save your token, but you can also register your token with this function
+```ts
+auth(client).registerToken(token);
+```
 
-promise.then(() => {
-  console.log('Login successful');
-});
+You can refresh your token (token is automatically register with the previous function)
+```ts
+auth(client).refreshToken();
+```
+finally, you can logout and clear your token
+```ts
+auth(client).logout();
 ```

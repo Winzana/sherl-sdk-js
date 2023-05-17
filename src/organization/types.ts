@@ -1,13 +1,6 @@
-import { IPlace, IGeoCoordinates } from '../common/types';
-import {
-  IPersonMeResponse,
-  IOpeningHoursSpecification,
-  IImageObject,
-} from '../person/types';
-import {
-  ICategoryResponse,
-  IProductResponse,
-} from '../shop/types/product/types';
+import { IPlace, IGeoCoordinates } from '../common';
+import { IPerson, IOpeningHoursSpecification, IImageObject } from '../person';
+import { ICategoryResponse, IProductResponse } from '../shop/types';
 
 export interface IOrganizationResponse extends IModel {
   id: string;
@@ -214,7 +207,7 @@ export interface IOrganizationCommunication {
   icon: string;
 }
 
-export interface IFounder extends IPersonMeResponse {
+export interface IFounder extends IPerson {
   id: string;
   uri: string;
   consumerId: string;
@@ -229,7 +222,7 @@ export interface IWallet {
   walletId: string;
 }
 
-export interface IEmployee extends IPersonMeResponse, IModel {
+export interface IEmployee extends IPerson, IModel {
   id: string;
   uri: string;
   consumerId: string;

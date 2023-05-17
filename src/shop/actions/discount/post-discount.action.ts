@@ -1,10 +1,7 @@
 import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
 import { DiscountErr, errorFactory } from '../../errors/discount/errors';
-import {
-  IDiscountParameter,
-  IDiscountResponse,
-} from '../../types/discount/types';
+import { IDiscountParameter, IDiscountResponse } from '../../types';
 
 export const postDiscount = async (
   fetcher: Fetcher,
