@@ -2,7 +2,7 @@ import { Fetcher } from '../../common/api';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { errorFactory, PersonErr } from '../errors';
-import { IPerson, IPersonUpdate } from "../types";
+import { IPerson, IPersonUpdate } from '../types';
 import { ApiResponse } from '../../common';
 
 export const updatePersonById = async (

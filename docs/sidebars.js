@@ -9,6 +9,7 @@ module.exports = {
     ],
     Features: [
       'user',
+      'config',
       'product',
       'person',
       'organization',
