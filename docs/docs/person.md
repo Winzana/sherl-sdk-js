@@ -7,7 +7,7 @@ title: Person
 
 <span class="badge badge--warning">Require authentication</span>
 
-Retrieve logged-in person informations.
+Retrieve logged-in person information.
 
 ```ts
 const me = await person(client).getMe();
@@ -19,7 +19,7 @@ Return a Person.
 
 <span class="badge badge--warning">Require authentication</span>
 
-Retrieve person informations by ID.
+Retrieve person information by ID.
 
 ```ts
 const person = await person(client).getPersonById('id');
@@ -74,7 +74,9 @@ this function create a user
 ```ts
 await person(client).registerWithEmailAndPassword(user);
 ```
+
 user correspond to this interface 
+
 ```ts
 interface IPersonRegister {
   id: string;
@@ -104,18 +106,22 @@ interface IPersonRegister {
 }
 ```
 
-## Register a user for your app
-this function create a person without creating user
+## Register a user for your application
+
+This function creates a person without creating user
 
 ```ts
 await person(client).createPerson(user);
 ```
+
 user use the same interface as previous
 
 ## Update a user
+
 ```ts
 await person(client).updatePersonById('id', user);
 ```
+
 user is composed by anything from this interface
 
 ```ts
