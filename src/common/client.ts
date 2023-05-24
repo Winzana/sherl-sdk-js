@@ -5,7 +5,7 @@ import { AxiosInstance } from 'axios';
 export interface InitOptions {
   apiKey: string;
   apiSecret: string;
-  Referer?: string;
+  referer?: string;
   apiUrl?: string;
 }
 
@@ -19,7 +19,7 @@ export class SherlClient {
     this.apiInstance = initializeApi(
       options.apiKey,
       options.apiSecret,
-      options.Referer,
+      options.referer,
       options.apiUrl,
     );
   }

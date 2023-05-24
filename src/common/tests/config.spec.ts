@@ -10,13 +10,13 @@ describe('Config', () => {
   it('should init SDK', async () => {
     const apiKey = 'API_KEY';
     const apiSecret = 'API_SECRET';
-    const Referer = 'http://localhost:4200';
+    const referer = 'http://localhost:4200';
 
-    const client = init({ apiKey, apiSecret, Referer });
+    const client = init({ apiKey, apiSecret, referer });
 
     expect(client.getOptions().apiKey).toEqual(apiKey);
     expect(client.getOptions().apiSecret).toEqual(apiSecret);
-    expect(client.getOptions().Referer).toEqual(Referer);
+    expect(client.getOptions().referer).toEqual(referer);
     expect(initializeApi).toHaveBeenCalled();
   });
 

@@ -11,7 +11,7 @@ jest.mock('../../common/api', () => ({
 const testClient = new SherlClient({
   apiKey: '',
   apiSecret: '',
-  Referer: 'http://localhost:4200',
+  referer: 'http://localhost:4200',
 });
 
 describe('AuthProvider', () => {
