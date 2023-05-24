@@ -101,6 +101,7 @@ export const initializeApi = (
 
       config.headers.common['X-WZ-API-KEY'] = apiKey;
       config.headers.common['X-WZ-API-SECRET'] = apiSecret;
+      // Only effective on server environment. This setting will be overriden by client browser.
       config.headers.common['Referer'] = referer;
       return config;
     },
