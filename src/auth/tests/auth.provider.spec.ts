@@ -8,7 +8,11 @@ jest.mock('../../common/api', () => ({
   registerBearerToken: jest.fn(),
 }));
 
-const testClient = new SherlClient({ apiKey: '', apiSecret: '' });
+const testClient = new SherlClient({
+  apiKey: '',
+  apiSecret: '',
+  Referer: 'http://localhost:4200',
+});
 
 describe('AuthProvider', () => {
   let provider: AuthProvider;

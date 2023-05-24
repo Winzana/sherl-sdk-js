@@ -80,6 +80,7 @@ interface CustomAxiosRequestConfig extends Omit<AxiosRequestConfig, 'headers'> {
 export const initializeApi = (
   apiKey: string,
   apiSecret: string,
+  Referer?: string,
   apiUrl?: string,
 ) => {
   const axiosInstance = axios.create({
@@ -100,6 +101,7 @@ export const initializeApi = (
 
       config.headers.common['X-WZ-API-KEY'] = apiKey;
       config.headers.common['X-WZ-API-SECRET'] = apiSecret;
+      config.headers.common['Referer'] = Referer;
       return config;
     },
     (error) => Promise.reject(error),
