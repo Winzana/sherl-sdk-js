@@ -24,6 +24,5 @@ export const signInWithEmailAndPassword = async (
   if (!response.data || !response.data.access_token) {
     throw errorFactory.create(AuthErr.LOGIN_FAILED);
   }
-
   return response.data.access_token;
 };
