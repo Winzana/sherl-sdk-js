@@ -80,8 +80,8 @@ interface CustomAxiosRequestConfig extends Omit<AxiosRequestConfig, 'headers'> {
 export const initializeApi = (
   apiKey: string,
   apiSecret: string,
-  referer?: string,
   apiUrl?: string,
+  referer?: string,
 ) => {
   const axiosInstance = axios.create({
     baseURL: apiUrl || 'https://api.sherl.io',
@@ -92,6 +92,10 @@ export const initializeApi = (
   axiosInstance.defaults.headers.put['Content-Type'] = 'application/json';
   axiosInstance.defaults.headers.get.Authorization = 'Bearer';
   axiosInstance.defaults.headers.put.Authorization = 'Bearer';
+  if (referer) {
+    // Only effective on server environment. This setting will be overriden by client browser.
+    axiosInstance.defaults.headers.common['Referer'] = referer;
+  }
 
   axiosInstance.interceptors.request.use(
     (config: CustomAxiosRequestConfig) => {
@@ -101,8 +105,6 @@ export const initializeApi = (
 
       config.headers.common['X-WZ-API-KEY'] = apiKey;
       config.headers.common['X-WZ-API-SECRET'] = apiSecret;
-      // Only effective on server environment. This setting will be overriden by client browser.
-      config.headers.common['Referer'] = referer;
       return config;
     },
     (error) => Promise.reject(error),

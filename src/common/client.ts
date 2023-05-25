@@ -5,8 +5,8 @@ import { AxiosInstance } from 'axios';
 export interface InitOptions {
   apiKey: string;
   apiSecret: string;
-  referer?: string;
   apiUrl?: string;
+  referer?: string;
 }
 
 const errorFactory = new ErrorFactory('Client');
@@ -19,8 +19,8 @@ export class SherlClient {
     this.apiInstance = initializeApi(
       options.apiKey,
       options.apiSecret,
-      options.referer,
       options.apiUrl,
+      options.referer,
     );
   }
 
