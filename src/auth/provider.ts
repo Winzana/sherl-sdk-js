@@ -1,7 +1,13 @@
 import { SherlClient } from '../common';
 import { AbstractProvider } from '../common/provider';
-import { signInWithEmailAndPassword, logout, refreshToken } from './actions';
+import {
+  signInWithEmailAndPassword,
+  logout,
+  refreshToken,
+  signInWithGoogle,
+} from './actions';
 import { errorFactory } from './errors';
+import { SignInWithGoogleRequest } from './types';
 
 class AuthProvider extends AbstractProvider {
   constructor(client: SherlClient) {
@@ -16,6 +22,12 @@ class AuthProvider extends AbstractProvider {
       email,
       password,
     });
+    this.registerToken(token);
+    return token;
+  };
+
+  public signInWithGoogle = async (request: SignInWithGoogleRequest) => {
+    const token = await signInWithGoogle(this.fetcher, { ...request });
     this.registerToken(token);
     return token;
   };

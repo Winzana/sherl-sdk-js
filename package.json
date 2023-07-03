@@ -39,6 +39,7 @@
   },
   "homepage": "https://github.com/Winzana/sherl-sdk-js#readme",
   "dependencies": {
+    "@sherl/sdk": "^4.0.1",
     "axios": "^0.27.2"
   },
   "devDependencies": {
