@@ -7,15 +7,10 @@ export const updateMyPassword = async (
   fetcher: Fetcher,
   data: Partial<IUpdatePasswordDto>,
 ): Promise<boolean> => {
-  try {
-    await fetcher
-      .post<IUpdatePasswordDto>(endpoints.UPDATE_MY_PASSWORD, data)
-      .catch(() => {
-        throw errorFactory.create(UserErr.UPDATE_MY_PASSWORD_FAILED);
-      });
-    return true;
-  } catch (err) {
-    console.log(err);
-    return false;
-  }
+  await fetcher
+    .post<IUpdatePasswordDto>(endpoints.UPDATE_MY_PASSWORD, data)
+    .catch(() => {
+      throw errorFactory.create(UserErr.UPDATE_MY_PASSWORD_FAILED);
+    });
+  return true;
 };
