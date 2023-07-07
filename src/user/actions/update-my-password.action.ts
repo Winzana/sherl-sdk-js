@@ -15,6 +15,7 @@ export const updateMyPassword = async (
       });
     return true;
   } catch (err) {
-    throw err;
+    console.log(err);
+    return false;
   }
 };
