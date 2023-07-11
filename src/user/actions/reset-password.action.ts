@@ -8,9 +8,9 @@ export const resetPassword = async (
   data: IResetPasswordDto,
 ): Promise<boolean> => {
   await fetcher
-    .post<IResetPasswordDto>(endpoints.RESET_PASSWORD, data)
+    .post<IResetPasswordDto>(endpoints.RESET_PASSWORD_VALIDATE, data)
     .catch((err) => {
-      throw errorFactory.create(UserErr.RESET_PASSWORD_FAILED);
+      throw errorFactory.create(UserErr.RESET_PASSWORD_VALIDATE_FAILED);
     });
   return true;
 };
