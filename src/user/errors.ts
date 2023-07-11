@@ -14,6 +14,7 @@ export const errors = {
   [UserErr.NOT_FOUND]: 'User not found',
   [UserErr.PUT_FAILED]: 'Failed to update user',
   [UserErr.POST_FAILED]: 'Failed to post user',
+  [UserErr.UPDATE_MY_PASSWORD_FAILED]: 'Failed to update password',
   [UserErr.RESET_PASSWORD_VALIDATE_FAILED]: 'Failed to reset password',
 };
 
