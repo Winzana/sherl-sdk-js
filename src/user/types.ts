@@ -4,6 +4,9 @@ export interface IUpdatePasswordDto {
   passwordRepeat: string;
 }
 
+export interface IResetPasswordRequestDto {
+  email: string;
+}
 export interface IResetPasswordDto {
   token: string;
   password: string;
