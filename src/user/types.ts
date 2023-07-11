@@ -7,3 +7,8 @@ export interface IUpdatePasswordDto {
 export interface IResetPasswordRequestDto {
   email: string;
 }
+export interface IResetPasswordDto {
+  token: string;
+  password: string;
+  passwordRepeat: string;
+}
