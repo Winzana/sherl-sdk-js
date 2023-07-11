@@ -1,6 +1,10 @@
 import { SherlClient } from '../common';
 import { AbstractProvider } from '../common/provider';
-import { updateMyPassword, resetPassword } from './actions';
+import {
+  updateMyPassword,
+  resetPasswordRequest,
+  resetPasswordValidate,
+} from './actions';
 import { errorFactory } from './errors';
 
 class UserProvider extends AbstractProvider {
@@ -8,7 +12,8 @@ class UserProvider extends AbstractProvider {
     super(client, errorFactory);
   }
   public updateMyPassword = this.withFetcher(updateMyPassword);
-  public resetPassword = this.withFetcher(resetPassword);
+  public resetPasswordRequest = this.withFetcher(resetPasswordRequest);
+  public resetPasswordValidate = this.withFetcher(resetPasswordValidate);
 }
 
 export { UserProvider };

@@ -3,7 +3,7 @@ import { endpoints } from '../api/endpoints';
 import { errorFactory, UserErr } from '../errors';
 import { IResetPasswordDto } from '../types';
 
-export const resetPassword = async (
+export const resetPasswordValidate = async (
   fetcher: Fetcher,
   data: IResetPasswordDto,
 ): Promise<boolean> => {
