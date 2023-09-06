@@ -3,7 +3,7 @@ import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { NotificationErr, errorFactory } from '../errors';
 import { IUpdateNotification } from '../types';
-//todo : replace "any" by the api return
+//todo : replace "any" with the api return interface
 export const updateNotification = async (
   fetcher: Fetcher,
   updateContentOfNotification: IUpdateNotification,
