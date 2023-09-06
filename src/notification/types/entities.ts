@@ -13,7 +13,7 @@ export interface INotificationToOrganization {
   organizationUri: string;
   type: string;
 }
-
+//TODO COMPLETE WITH THE OTHER PROPS
 export interface IUpdateNotification {
   enabled: boolean;
 }
