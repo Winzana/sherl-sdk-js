@@ -231,6 +231,19 @@ export interface IEmployee extends IPerson, IModel {
   email: string;
 }
 
+export interface IAddRibBody {
+  iban: string;
+  bic: string;
+}
+
+export interface IGetAllOrganizationDocumentsResponse {
+  bic: string;
+  iban: string;
+  id: string;
+  ibanId: string;
+  status: string;
+}
+
 // //old
 // export interface IOrganizationResponse {
 //   isPaymentAllowed: boolean;

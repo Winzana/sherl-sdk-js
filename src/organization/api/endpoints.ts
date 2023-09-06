@@ -5,4 +5,6 @@ export const endpoints = {
   GET_PUBLIC_ORGANIZATION_SLUG:
     '/api/public/organizations/find-one-by-slug/:slug',
   GET_PUBLIC_ORGANIZATION_ID: '/api/public/organizations/:id',
+  ADD_ORGANIZATION_RIB: '/api/organizations/:id/rib',
+  GET_ALL_ORGANIZATION_DOCUMENTS: '/api/organizations/:id/rib',
 };
