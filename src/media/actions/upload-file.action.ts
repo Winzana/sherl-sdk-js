@@ -8,22 +8,18 @@ export const uploadFile = async (
   data: any,
   query: IMediaQuery,
 ): Promise<IMedia> => {
-  try {
-    const response = await fetcher
-      .post<IMedia>(endpoints.UPLOAD_FILE, data, query, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      .catch((_err) => {
-        throw errorFactory.create(MediaErr.UPLOAD_FILE_FAILED);
-      });
-
-    if (response.status !== 201) {
+  const response = await fetcher
+    .post<IMedia>(endpoints.UPLOAD_FILE, data, query, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+    .catch((_err) => {
       throw errorFactory.create(MediaErr.UPLOAD_FILE_FAILED);
-    }
-    return response.data;
-  } catch (error) {
+    });
+
+  if (response.status !== 201) {
     throw errorFactory.create(MediaErr.UPLOAD_FILE_FAILED);
   }
+  return response.data;
 };
