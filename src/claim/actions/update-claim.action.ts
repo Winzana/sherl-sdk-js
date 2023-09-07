@@ -7,7 +7,7 @@ import { IClaim, IClaimUpdate } from '../types';
 export const updateClaim = async (
   fetcher: Fetcher,
   id: string,
-  data: Partial<IClaimUpdate>,
+  data: IClaimUpdate,
 ): Promise<boolean> => {
   await fetcher
     .post<IClaim>(

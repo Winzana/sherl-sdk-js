@@ -9,21 +9,17 @@ export const createClaimTicket = async (
   id: string,
   params: Partial<IClaimCreate>,
 ) => {
-  try {
-    const response = await fetcher
-      .post<IClaim>(
-        StringUtils.bindContext(endpoints.CREATE_CLAIM_TICKET, { id }),
-        params,
-      )
-      .catch((_err) => {
-        throw errorFactory.create(ClaimErr.CREATE_CLAIM_ERROR);
-      });
-
-    if (response.status !== 201) {
+  const response = await fetcher
+    .post<IClaim>(
+      StringUtils.bindContext(endpoints.CREATE_CLAIM_TICKET, { id }),
+      params,
+    )
+    .catch((_err) => {
       throw errorFactory.create(ClaimErr.CREATE_CLAIM_ERROR);
-    }
-    return true;
-  } catch (error) {
+    });
+
+  if (response.status !== 201) {
     throw errorFactory.create(ClaimErr.CREATE_CLAIM_ERROR);
   }
+  return true;
 };
