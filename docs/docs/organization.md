@@ -50,3 +50,27 @@ const organization = await Sherl.organization.getPublicOrganizationBySlug(
 ```
 
 Return an Organization.
+
+## Add organization rib
+
+Allows you to add rib to an organization
+
+```ts
+const organization = await Sherl.organization.addOrganizationRib('id', {
+  iban: 'string',
+  bic: 'string',
+});
+```
+
+Return boolean.
+
+## Get all organization documents
+
+Retrieve all documents of an organization
+
+```ts
+const organization = await Sherl.organization.getAllOrganizationDocuments('id');
+```
+
+Return IGetAllOrganizationDocumentsResponse.
+
