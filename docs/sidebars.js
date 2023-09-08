@@ -16,6 +16,8 @@ module.exports = {
       'order',
       'discount',
       'place',
+      'opinion',
     ],
+    Types: ['pagination'],
   },
 };
