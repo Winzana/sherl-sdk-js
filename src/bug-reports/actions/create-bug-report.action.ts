@@ -8,7 +8,7 @@ export const createBugReport = async (
   bugReport: IBugReportBody,
 ) => {
   const response = await fetcher
-    .post<IBugReport>(endpoints.CREATE_BUG_REPORTS, bugReport)
+    .post<IBugReport>(endpoints.BUG_REPORTS, bugReport)
     .catch((_err) => {
       throw errorFactory.create(BugReportsErr.CREATE_BUG_REPORT_FAILED);
     });

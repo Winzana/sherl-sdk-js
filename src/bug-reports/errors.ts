@@ -3,7 +3,7 @@ import { ErrorFactory } from '../common/errors';
 export enum BugReportsErr {
   CREATE_BUG_REPORT_FAILED = 'bug-reports/create-bug-report-failed',
   GET_BUG_REPORTS_FAILED = 'bug-reports/get-bug-reports-failed',
-  GET_BUG_REPORT_BY_ID_FAILED = 'bug-reports/get-bug-reports-failed',
+  GET_BUG_REPORT_BY_ID_FAILED = 'bug-reports/get-bug-report-by-id-failed',
 }
 
 export const errors = {

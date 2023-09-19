@@ -7,7 +7,7 @@ export const getBugReports = async (
   fetcher: Fetcher,
 ): Promise<IBugReport[]> => {
   const response = await fetcher
-    .get<IBugReport[]>(endpoints.GET_BUG_REPORTS)
+    .get<IBugReport[]>(endpoints.BUG_REPORTS)
     .catch((_err) => {
       throw errorFactory.create(BugReportsErr.GET_BUG_REPORTS_FAILED);
     });

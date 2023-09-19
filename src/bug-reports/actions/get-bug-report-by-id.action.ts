@@ -10,7 +10,7 @@ export const getBugReportById = async (
 ): Promise<IBugReport> => {
   const response = await fetcher
     .get<IBugReport>(
-      StringUtils.bindContext(endpoints.GET_BUG_REPORT_BY_ID, { id }),
+      StringUtils.bindContext(endpoints.BUG_REPORT_BY_ID, { id }),
     )
     .catch((_err) => {
       throw errorFactory.create(BugReportsErr.GET_BUG_REPORT_BY_ID_FAILED);

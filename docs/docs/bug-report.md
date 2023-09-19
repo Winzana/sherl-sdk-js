@@ -10,7 +10,7 @@ title: Bug Report
 Create a bug report
 
 ```ts
-const bugReport = await Sherl.bugReport.createBugReport({
+const bugReport = await Sherl.bugReport(client).createBugReport({
   id: 'string',
   osName: 'string',
   browserName: 'string',
@@ -30,7 +30,7 @@ Return any.
 Allows you to get all bug reports
 
 ```ts
-const bugReports = await Sherl.bugReport.getBugReports();
+const bugReports = await Sherl.bugReport(client).getBugReports();
 ```
 
 Return a paginated array of IBugReport
@@ -42,7 +42,7 @@ Return a paginated array of IBugReport
 Allows you to get bug report by id
 
 ```ts
-const bugReports = await Sherl.bugReport.getBugReportById('id');
+const bugReports = await Sherl.bugReport(client).getBugReportById('id');
 ```
 
 Return a IBugReport
