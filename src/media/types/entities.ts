@@ -16,17 +16,22 @@ export interface ICaption {
   description: string;
   name: string;
   encodingFormat: string;
+  duration: string;
 }
 
 export interface IThumbnail {
+  id: string;
+  uri: string;
   width: number;
   height: number;
   caption: ICaption;
 }
 
-export interface IMediaGetReturn {
+export interface IFile {
   id: string;
   uri: string;
+  width: number;
+  height: number;
   consumerId: string;
   caption: ICaption;
 }

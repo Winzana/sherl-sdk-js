@@ -5,17 +5,9 @@ import {
   IMedia,
   IMediaQuery,
   IThumbnail,
-  IMediaGetReturn,
+  IFile,
   IUploadData,
 } from './types';
 
 const media = (client: SherlClient) => new MediaProvider(client);
-export {
-  media,
-  ICaption,
-  IMedia,
-  IMediaQuery,
-  IThumbnail,
-  IMediaGetReturn,
-  IUploadData,
-};
+export { media, ICaption, IMedia, IMediaQuery, IThumbnail, IFile, IUploadData };

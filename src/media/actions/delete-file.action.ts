@@ -10,7 +10,10 @@ export const deleteFile = async (
 ): Promise<IMedia> => {
   const id = query.id;
   const response = await fetcher
-    .delete<IMedia>(StringUtils.bindContext(endpoints.GET_FILE, { id }), query)
+    .delete<IMedia>(
+      StringUtils.bindContext(endpoints.MANAGE_FILE, { id }),
+      query,
+    )
     .catch((_err) => {
       throw errorFactory.create(MediaErr.DELETE_FILE_FAILED);
     });

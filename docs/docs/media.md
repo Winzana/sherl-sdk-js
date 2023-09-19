@@ -10,7 +10,7 @@ title: Media
 Retrieve file informations
 
 ```ts
-const file = await Sherl.media.getFile('id', {
+const file = await Sherl.media(client).getFile('id', {
   domain: 'string',
   id: 'string',
 });
@@ -29,7 +29,7 @@ const formData = new FormData();
 formData.append('upload', file.buffer, {
   filename: file.originalname,
 });
-const file = await Sherl.media.uploadFile({
+const file = await Sherl.media(client).uploadFile({
   id: 'uuidv4';
   domain: 'string';
   type?: 'string';
@@ -45,7 +45,7 @@ Return a IMedia.
 Delete a file
 
 ```ts
-const file = await Sherl.media.deleteFile({
+const file = await Sherl.media(client).deleteFile({
   id: 'string';
   domain: 'string';
   type?: 'string';
