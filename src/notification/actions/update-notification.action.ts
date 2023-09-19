@@ -11,7 +11,7 @@ export const updateNotification = async (
 ): Promise<any> => {
   const response = await fetcher
     .put<any>(
-      StringUtils.bindContext(endpoints.UPDATE_CONTENT_OF_NOTIFICATION, { id }),
+      StringUtils.bindContext(endpoints.UPDATE_NOTIFICATION, { id }),
       updateContentOfNotification,
     )
     .catch((_err) => {

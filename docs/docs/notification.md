@@ -10,7 +10,7 @@ title: Notification
 Allows you to registrate to notification
 
 ```ts
-const notifications = await Sherl.notification.notificationRegistration({
+const notifications = await Sherl.notification(client).notificationRegistration({
     token: 'string';
 });
 ```
@@ -33,21 +33,20 @@ export interface INotificationRegistrationResponse {
 Retrieve notifications with some tags
 
 ```ts
-const notifications = await Sherl.notification.getNotifications(1, 10, {
+const notifications = await Sherl.notification(client).getNotifications(1, 10, {
   /* Filters */
 });
 ```
 
-Return a paginated array of Notification.
+Return a paginated array of notifications.
 
 ## Enable Notifications on Organization
-
 <span class="badge badge--warning">Require authentication</span>
 
-Enables a type of notification to be activated for an organisation
+Enables a type of notification to be activated for an organization
 
 ```ts
-const notifications = await Sherl.notification.enableToOrganization('id', {
+const notifications = await Sherl.notification(client).enableToOrganization('id', {
   type: 'string',
   organizationUri: 'string',
 });
@@ -62,7 +61,7 @@ Return any
 Allows you to deactivate a type of notification for an organisation
 
 ```ts
-const notifications = await Sherl.notification.disableToOrganization('id', {
+const notifications = await Sherl.notification(client).disableToOrganization('id', {
   type: 'string',
   organizationUri: 'string',
 });
@@ -77,7 +76,7 @@ Return any
 Allows you to update a notification
 
 ```ts
-const notifications = await Sherl.notification.updateNotification('id', {
+const notifications = await Sherl.notification(client).updateNotification('id', {
   enabled: true,
 });
 ```

@@ -10,7 +10,7 @@ export const getNotifications = async (
   filters: INotificationFilters,
 ): Promise<Pagination<INotification[]>> => {
   const response = await fetcher
-    .get<Pagination<INotification[]>>(endpoints.GET_NOTIFICATION, {
+    .get<Pagination<INotification[]>>(endpoints.GET_NOTIFICATIONS, {
       ...filters,
     })
     .catch((_err) => {
