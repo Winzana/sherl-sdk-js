@@ -10,21 +10,16 @@ title: Notification
 Allows you to registrate to notification
 
 ```ts
-const notifications = await Sherl.notification(client).notificationRegistration({
-    token: 'string';
-});
+const notifications = await Sherl.notification(client).notificationRegistration(data: NotificationRegistrationTokenInputDto);
 ```
-
-The return data look like this interface :
 
 ```ts
-export interface INotificationRegistrationResponse {
-  personId: string;
-  consumerId: string;
-  registrationToken: string;
-  createdAt: string;
+interface NotificationRegistrationTokenInputDto {
+  token: string;
 }
 ```
+
+This call returns an object of [NotificationDevice](notification-types#notificationdevice)
 
 ## Get Notifications
 
@@ -33,12 +28,21 @@ export interface INotificationRegistrationResponse {
 Retrieve notifications with some tags
 
 ```ts
-const notifications = await Sherl.notification(client).getNotifications(1, 10, {
-  /* Filters */
-});
+const notifications = await Sherl.notification(client).getNotifications(filters: INotificationFilters);
 ```
 
-Return a paginated array of notifications.
+```ts
+interface INotificationFilters {
+  sms?: number;
+  email?: number;
+  page?: number;
+  itemsPerPage?: number;
+  uri?:string;
+  id?:string
+}
+```
+
+This call returns a [paginated](pagination) array of [notifications](notification-types#notificationdevice).
 
 ## Enable Notifications on Organization
 <span class="badge badge--warning">Require authentication</span>
@@ -46,13 +50,16 @@ Return a paginated array of notifications.
 Enables a type of notification to be activated for an organization
 
 ```ts
-const notifications = await Sherl.notification(client).enableToOrganization('id', {
-  type: 'string',
-  organizationUri: 'string',
-});
+const notifications = await Sherl.notification(client).enableToOrganization(data: NotificationEnableToOrganizationInputDto, id: string);
 ```
 
-Return any
+```ts
+interface NotificationEnableToOrganizationInputDto {
+  organizationUri: string
+} 
+```
+
+This call returns a [string](notification-types#notification-enabled-on-the-organization) according to successfully. 
 
 ## Disable Notifications on Organization
 
@@ -61,13 +68,16 @@ Return any
 Allows you to deactivate a type of notification for an organisation
 
 ```ts
-const notifications = await Sherl.notification(client).disableToOrganization('id', {
-  type: 'string',
-  organizationUri: 'string',
-});
+const notifications = await Sherl.notification(client).disableToOrganization(data: NotificationDisableToOrganizationInputDto, id: string);
 ```
 
-Return any
+```ts
+interface NotificationDisableToOrganizationInputDto {
+  organizationUri: string
+} 
+```
+
+This call returns a [string](notification-types#notification-disabled-on-the-organization) according to successfully. 
 
 ## Update Notification 
 
@@ -76,9 +86,15 @@ Return any
 Allows you to update a notification
 
 ```ts
-const notifications = await Sherl.notification(client).updateNotification('id', {
-  enabled: true,
-});
+const notifications = await Sherl.notification(client).updateNotification(data: NotificationUpdateInputDto, id: string);
 ```
 
-Return any
+```ts
+interface NotificationUpdateInputDto {
+  enabled: boolean;
+  contentEmail: string;
+  contentSMS: string;
+}
+```
+
+This call returns an [notification](notification-types) object

@@ -2,11 +2,11 @@ import { Fetcher } from '../../common/api';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { NotificationErr, errorFactory } from '../errors';
-import { IUpdateNotification } from '../types';
+import { NotificationUpdateInputDto } from '../types';
 //todo : replace "any" with the api return interface
 export const updateNotification = async (
   fetcher: Fetcher,
-  updateContentOfNotification: IUpdateNotification,
+  updateContentOfNotification: NotificationUpdateInputDto,
   id: string,
 ): Promise<any> => {
   const response = await fetcher

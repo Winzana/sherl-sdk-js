@@ -4,7 +4,7 @@ import {
   INotificationRegistration,
   INotificationRegistrationResponse,
   INotificationToOrganization,
-  IUpdateNotification,
+  NotificationUpdateInputDto,
   INotification,
   INotificationFilters,
 } from './types';
@@ -15,7 +15,7 @@ export {
   INotificationRegistration,
   INotificationRegistrationResponse,
   INotificationToOrganization,
-  IUpdateNotification,
+  NotificationUpdateInputDto,
   INotification,
   INotificationFilters,
 };

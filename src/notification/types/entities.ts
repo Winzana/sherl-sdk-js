@@ -13,9 +13,10 @@ export interface INotificationToOrganization {
   organizationUri: string;
   type: string;
 }
-//TODO COMPLETE WITH THE OTHER PROPS
-export interface IUpdateNotification {
+export interface NotificationUpdateInputDto {
   enabled: boolean;
+  contentEmail: string;
+  contentSMS: string;
 }
 //TODO : complete interface
 export interface INotification {

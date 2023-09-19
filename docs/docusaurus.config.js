@@ -41,6 +41,10 @@ module.exports = {
               label: 'Features',
               to: 'docs/product',
             },
+            {
+              label: 'Types',
+              to: 'docs/notification-types',
+            },
           ],
         },
         {

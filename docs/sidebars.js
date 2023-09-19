@@ -18,5 +18,6 @@ module.exports = {
       'place',
       'notification',
     ],
+    Types: ['notification-types'],
   },
 };
