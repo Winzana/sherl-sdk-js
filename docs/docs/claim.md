@@ -55,9 +55,7 @@ Return a boolean.
 Allows you to update a claim ticket using its id
 
 ```ts
-const claim = await Sherl.claim(client).createClaimTicket({
-  status: 'string';
-});
+const claim = await Sherl.claim(client).updateClaim(id:string, data:IClaimUpdate);
 ```
 
 Return a boolean.
