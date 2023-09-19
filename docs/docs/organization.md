@@ -9,12 +9,12 @@ Retrieve organizations list.
 
 ```ts
 // Require authentication
-const organizations = await Sherl.organization.getOrganizations(1, 10, {
+const organizations = await Sherl.organization(client).getOrganizations(1, 10, {
   /* Filters */
 });
 
 // Public
-const organizations = await Sherl.organization.getPublicOrganizations(1, 10, {
+const organizations = await Sherl.organization(client).getPublicOrganizations(1, 10, {
   /* Filters */
 });
 ```
@@ -27,12 +27,12 @@ Retrieve an organization by ID.
 
 ```ts
 // Require authentication
-const organization = await Sherl.organization.getOrganization(
+const organization = await Sherl.organization(client).getOrganization(
   'organization-id',
 );
 
 // Public
-const organization = await Sherl.organization.getPublicOrganization(
+const organization = await Sherl.organization(client).getPublicOrganization(
   'organization-id',
 );
 ```
@@ -44,7 +44,7 @@ Return an Organization.
 Retrieve one organization by slug.
 
 ```ts
-const organization = await Sherl.organization.getPublicOrganizationBySlug(
+const organization = await Sherl.organization(client).getPublicOrganizationBySlug(
   'slug',
 );
 ```
@@ -56,9 +56,10 @@ Return an Organization.
 Allows you to add rib to an organization
 
 ```ts
-const organization = await Sherl.organization.addOrganizationRib('id', {
-  iban: 'string',
-  bic: 'string',
+// Require authentication
+const organization = await Sherl.organization(client).addOrganizationRib('id', {
+  iban: 'myIban',
+  bic: 'myBic',
 });
 ```
 
@@ -69,7 +70,7 @@ Return boolean.
 Retrieve all documents of an organization
 
 ```ts
-const organization = await Sherl.organization.getAllOrganizationDocuments('id');
+const organization = await Sherl.organization(client).getAllOrganizationDocuments('id');
 ```
 
 Return IGetAllOrganizationDocumentsResponse.

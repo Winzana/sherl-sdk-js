@@ -8,11 +8,10 @@ export const addOrganizationRib = async (
   fetcher: Fetcher,
   body: IAddRibBody,
   id: string,
-) => {
-  //todo replace with true api return
+): Promise<boolean> => {
   const response = await fetcher
-    .post<any>(
-      StringUtils.bindContext(endpoints.ADD_ORGANIZATION_RIB, { id }),
+    .post<boolean>(
+      StringUtils.bindContext(endpoints.ORGANIZATION_DOCUMENTS, { id }),
       body,
     )
     .catch((_err) => {

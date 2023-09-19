@@ -10,7 +10,7 @@ export const getAllOrganizationDocuments = async (
 ): Promise<IGetAllOrganizationDocumentsResponse> => {
   const response = await fetcher
     .get<IGetAllOrganizationDocumentsResponse>(
-      StringUtils.bindContext(endpoints.GET_ALL_ORGANIZATION_DOCUMENTS, { id }),
+      StringUtils.bindContext(endpoints.ORGANIZATION_DOCUMENTS, { id }),
     )
     .catch((_err) => {
       throw errorFactory.create(OrganizationErr.FETCH_FAILED);
