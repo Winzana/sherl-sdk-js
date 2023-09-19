@@ -2,19 +2,19 @@ import { Fetcher } from '../../common/api';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { ContactErr, errorFactory } from '../errors';
-import { IContactBody } from '../types';
+import { ContactInputDto } from '../types';
 
 export const contactPerson = async (
   fetcher: Fetcher,
-  contact: IContactBody,
+  contact: ContactInputDto,
   id: string,
 ) => {
   const response = await fetcher
-    .post<IContactBody>(
+    .post<any>(
       StringUtils.bindContext(endpoints.CONTACT_PERSON, { id }),
       contact,
     )
-    .catch((_err) => {
+    .catch(() => {
       throw errorFactory.create(ContactErr.CONTACT_PERSON_FAILED);
     });
   if (response.status !== 201) {

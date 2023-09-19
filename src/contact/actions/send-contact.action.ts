@@ -1,12 +1,15 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { ContactErr, errorFactory } from '../errors';
-import { IContactBody } from '../types';
+import { ContactInputDto } from '../types';
 
-export const sendContact = async (fetcher: Fetcher, contact: IContactBody) => {
+export const sendContact = async (
+  fetcher: Fetcher,
+  contact: ContactInputDto,
+) => {
   const response = await fetcher
-    .post<IContactBody>(endpoints.CONTACT, contact)
-    .catch((_err) => {
+    .post<any>(endpoints.CONTACT, contact)
+    .catch(() => {
       throw errorFactory.create(ContactErr.CONTACT_FAILED);
     });
   if (response.status !== 201) {
