@@ -10,7 +10,7 @@ title: Claim
 Retrieve all claims.
 
 ```ts
-const claims = await Sherl.claim.getAllClaims();
+const claims = await Sherl.claim(client).getAllClaims();
 ```
 
 Return a paginated array of Claim.
@@ -22,7 +22,7 @@ Return a paginated array of Claim.
 Retrieve claim informations by ID.
 
 ```ts
-const claim = await Sherl.person.getClaimById('id');
+const claim = await Sherl.claim(client).getClaimById('id');
 ```
 
 Return a Claim.
@@ -34,7 +34,7 @@ Return a Claim.
 Allows you to create a claim ticket
 
 ```ts
-const claim = await Sherl.person.createClaimTicket({
+const claim = await Sherl.claim(client).createClaimTicket({
   id: 'string',
   personId: 'string',
   issueTitle: 'string',
@@ -55,7 +55,7 @@ Return a boolean.
 Allows you to update a claim ticket using its id
 
 ```ts
-const claim = await Sherl.person.createClaimTicket({
+const claim = await Sherl.claim(client).createClaimTicket({
   status: 'string';
 });
 ```

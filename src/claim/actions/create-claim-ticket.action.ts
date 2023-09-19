@@ -10,10 +10,7 @@ export const createClaimTicket = async (
   params: Partial<IClaimCreate>,
 ) => {
   const response = await fetcher
-    .post<IClaim>(
-      StringUtils.bindContext(endpoints.CREATE_CLAIM_TICKET, { id }),
-      params,
-    )
+    .post<IClaim>(StringUtils.bindContext(endpoints.CLAIM_ID, { id }), params)
     .catch((_err) => {
       throw errorFactory.create(ClaimErr.CREATE_CLAIM_ERROR);
     });

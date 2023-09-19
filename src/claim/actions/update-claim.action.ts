@@ -10,10 +10,7 @@ export const updateClaim = async (
   data: IClaimUpdate,
 ): Promise<boolean> => {
   await fetcher
-    .post<IClaim>(
-      StringUtils.bindContext(endpoints.UPDATE_CLAIM_TICKET, { id }),
-      data,
-    )
+    .post<IClaim>(StringUtils.bindContext(endpoints.CLAIM_ID, { id }), data)
     .catch(() => {
       throw errorFactory.create(ClaimErr.UPDATE_CLAIM_ERROR);
     });

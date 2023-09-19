@@ -10,7 +10,7 @@ export const getClaimById = async (
   id: string,
 ): Promise<IClaim> => {
   const response = await fetcher
-    .get<IClaim>(StringUtils.bindContext(endpoints.GET_CLAIM_BY_ID, { id }))
+    .get<IClaim>(StringUtils.bindContext(endpoints.CLAIM_ID, { id }))
     .catch((_err) => {
       throw errorFactory.create(ClaimErr.GET_CLAIM_BY_ID_FAILED);
     });
