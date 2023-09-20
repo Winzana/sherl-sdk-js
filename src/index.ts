@@ -9,3 +9,4 @@ export * from './shop';
 export * from './organization';
 export * from './user';
 export * from './opinion';
+export * from './claim';
