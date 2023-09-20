@@ -8,8 +8,8 @@ title: Claim types
 ## IClaim
 ```ts
 interface IClaim {
-  replies: any[];
-  schedules: Schedules;
+  replies: IClaimReply[];
+  schedules: ISchedules;
   id: string;
   issueMessage: string;
   issueTitle: string;
@@ -18,9 +18,36 @@ interface IClaim {
   createdAt: string;
   uri: string;
   consumerId: string;
-  status: string;
+  status: ClaimStatusEnum;
   person: IPerson;
   order: IOrderResponse;
+}
+```
+
+### ISchedules
+```ts
+interface ISchedules {
+  allowedFromDate: string;
+  allowedUntilDate: string;
+}
+```
+
+### IClaimReply
+```ts
+interface IClaimReply {
+  content: string;
+  personId: string;
+  createdAt: Date;
+}
+```
+
+### ClaimStatusEnum
+```ts
+enum ClaimStatusEnum {
+  NEW = 'NEW',
+  READ = 'READ',
+  REFUND = 'REFUND',
+  CLOSED = 'CLOSED',
 }
 ```
 

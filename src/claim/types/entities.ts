@@ -10,27 +10,41 @@ export interface IClaimCreate {
   personId: string;
   issueTitle: string;
   issueMessage: string;
-  schedules: Schedules;
+  schedules: ISchedules;
 }
-export interface Schedules {
+export interface ISchedules {
   allowedFromDate: string;
   allowedUntilDate: string;
 }
 export interface IClaim {
-  replies: any[];
-  schedules: Schedules;
+  replies?: IClaimReply[];
+  schedules: ISchedules;
   id: string;
   issueMessage: string;
   issueTitle: string;
   personId: string;
   orderId: string;
-  createdAt: string;
+  createdAt: Date;
+  updatedAt: Date;
   uri: string;
-  consumerId: string;
-  status: string;
+  consumerId?: string;
+  status: ClaimStatusEnum;
   person?: IPerson;
   order?: IOrderResponse;
 }
 export interface IClaimUpdate {
   status: string;
+}
+
+export interface IClaimReply {
+  content: string;
+  personId: string;
+  createdAt: Date;
+}
+
+export enum ClaimStatusEnum {
+  NEW = 'NEW',
+  READ = 'READ',
+  REFUND = 'REFUND',
+  CLOSED = 'CLOSED',
 }
