@@ -8,7 +8,7 @@ export const createClaimTicket = async (
   fetcher: Fetcher,
   id: string,
   params: Partial<IClaimCreate>,
-) => {
+): Promise<IClaim> => {
   const response = await fetcher
     .post<IClaim>(StringUtils.bindContext(endpoints.CLAIM_ID, { id }), params)
     .catch((_err) => {
@@ -18,5 +18,5 @@ export const createClaimTicket = async (
   if (response.status !== 201) {
     throw errorFactory.create(ClaimErr.CREATE_CLAIM_ERROR);
   }
-  return true;
+  return response.data;
 };

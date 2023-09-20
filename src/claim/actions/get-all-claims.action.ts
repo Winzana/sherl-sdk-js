@@ -11,9 +11,9 @@ export const getAllClaims = async (
   page = 1,
   itemsPerPage = 10,
   filters: IClaimTicketFilters,
-): Promise<Pagination<IClaim[]>> => {
+): Promise<Pagination<IClaim>> => {
   const response = await fetcher
-    .get<Pagination<IClaim[]>>(endpoints.CLAIMS, {
+    .get<Pagination<IClaim>>(endpoints.CLAIMS, {
       page,
       itemsPerPage,
       ...filters,

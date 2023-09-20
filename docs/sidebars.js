@@ -18,5 +18,6 @@ module.exports = {
       'place',
       'claim',
     ],
+    Types: ['claim-types'],
   },
 };

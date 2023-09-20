@@ -10,10 +10,16 @@ title: Claim
 Retrieve all claims.
 
 ```ts
-const claims = await Sherl.claim(client).getAllClaims();
+const claims = await Sherl.claim(client).getAllClaims(page?: number, itemsPerPage?: number, filters?: IClaimTicketFilters);
 ```
 
-Return a paginated array of Claim.
+```ts
+interface IClaimTicketFilters = {
+  [key: string]: any;
+} 
+```
+
+Return a [paginated](pagination) array of [IClaim](claim-types#iclaim).
 
 ## Get claim by id
 
@@ -22,10 +28,10 @@ Return a paginated array of Claim.
 Retrieve claim informations by ID.
 
 ```ts
-const claim = await Sherl.claim(client).getClaimById('id');
+const claim = await Sherl.claim(client).getClaimById(id: string);
 ```
 
-Return a Claim.
+This call returns an object of [IClaim](claim-types#iclaim)
 
 ## Create claim ticket
 
@@ -34,19 +40,25 @@ Return a Claim.
 Allows you to create a claim ticket
 
 ```ts
-const claim = await Sherl.claim(client).createClaimTicket({
-  id: 'string',
-  personId: 'string',
-  issueTitle: 'string',
-  issueMessage: 'string',
-  schedules: {
-    allowedFromDate: 'string',
-    allowedUntilDate: 'string',
-  },
-});
+const claim = await Sherl.claim(client).createClaimTicket(claim: <Partial<IClaimCreate>>);
 ```
 
-Return a boolean.
+```ts
+interface IClaimCreate {
+  id: string;
+  personId: string;
+  issueTitle: string;
+  issueMessage: string;
+  schedules: Schedules;
+}
+
+interface Schedules{
+  allowedFromDate: string;
+  allowedUntilDate: string;
+}
+```
+
+This call returns the new [IClaim](claim-types#iclaim) object created
 
 ## Update claim ticket
 
@@ -55,7 +67,7 @@ Return a boolean.
 Allows you to update a claim ticket using its id
 
 ```ts
-const claim = await Sherl.claim(client).updateClaim(id:string, data:IClaimUpdate);
+const claim = await Sherl.claim(client).updateClaim(id:string, data: IClaimUpdate);
 ```
 
-Return a boolean.
+This call returns the updated [IClaim](claim-types#iclaim) object
