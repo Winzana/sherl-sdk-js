@@ -8,8 +8,8 @@ export const getOrganizations = async (
   page = 1,
   itemsPerPage = 10,
   filters: { [key: string]: any },
-): Promise<Pagination<IOrganizationResponse[]>> => {
-  const response = await fetcher.get<Pagination<IOrganizationResponse[]>>(
+): Promise<Pagination<IOrganizationResponse>> => {
+  const response = await fetcher.get<Pagination<IOrganizationResponse>>(
     endpoints.GET_ORGANIZATIONS,
     {
       page,

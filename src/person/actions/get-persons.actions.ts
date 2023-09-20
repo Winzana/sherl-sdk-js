@@ -9,8 +9,8 @@ export const getPersons = async (
   page = 1,
   itemsPerPage = 10,
   filters: IPersonFilters,
-): Promise<Pagination<IPerson[]>> => {
-  const response = await fetcher.get<Pagination<IPerson[]>>(
+): Promise<Pagination<IPerson>> => {
+  const response = await fetcher.get<Pagination<IPerson>>(
     endpoints.GET_PERSONS,
     {
       page,
