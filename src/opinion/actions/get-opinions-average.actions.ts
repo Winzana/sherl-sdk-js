@@ -1,12 +1,13 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { OpinionErr, errorFactory } from '../errors';
+import { IAverage } from '../types';
 
 export const getOpinionsAverage = async (
   fetcher: Fetcher,
   opinionToUri: string,
-): Promise<number> => {
-  const response = await fetcher.get<number>(endpoints.GET_OPINIONS_AVERAGE, {
+): Promise<IAverage> => {
+  const response = await fetcher.get<IAverage>(endpoints.GET_OPINIONS_AVERAGE, {
     opinionToUri,
   });
 

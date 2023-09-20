@@ -8,8 +8,8 @@ This section contains all interfaces associated to pagination
 ## Pagination
 
 ```ts
-export interface Pagination<Data> {
-  results: Data;
+interface Pagination<Data> {
+  results: Data[];
   view: View;
 }
 ```
@@ -17,9 +17,18 @@ export interface Pagination<Data> {
 ## View
 
 ```ts
-export interface View {
+interface View {
   total: number;
   page: number;
   itemsPerPage: number;
+}
+```
+
+## Pagination filters
+
+```ts
+interface PaginationFilters {
+  page?: number;
+  itemsPerPage?: number;
 }
 ```

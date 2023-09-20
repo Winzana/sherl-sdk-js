@@ -1,3 +1,5 @@
+import { PaginationFilters } from '../common';
+
 export interface IOpinion<T, K> {
   id: string;
   opinionToUri: string;
@@ -24,4 +26,13 @@ export interface ICreateOpinionInput {
 
 export interface IClaimOpinionInput {
   claimComment: string;
+}
+
+export interface IOpinionFilters extends PaginationFilters {
+  opinionToUri: string;
+}
+
+export interface IAverage {
+  average: number;
+  count: number;
 }
