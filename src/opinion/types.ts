@@ -36,3 +36,14 @@ export interface IAverage {
   average: number;
   count: number;
 }
+
+export interface IOpinionUpdateStatusInputDto {
+  status: OpinionStatusEnum;
+  refusedComment?: string;
+}
+
+export enum OpinionStatusEnum {
+  PUBLISHED = 'published',
+  REFUSED = 'refused',
+  IS_CLAIMED = 'is_claimed',
+}

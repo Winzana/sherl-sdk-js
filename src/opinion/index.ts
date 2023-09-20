@@ -6,6 +6,8 @@ import {
   ICreateOpinionInput,
   IOpinion,
   IOpinionFilters,
+  IOpinionUpdateStatusInputDto,
+  OpinionStatusEnum,
 } from './types';
 
 export const opinion = (client: SherlClient) => new OpinionProvider(client);
@@ -15,4 +17,6 @@ export {
   ICreateOpinionInput,
   IOpinion,
   IOpinionFilters,
+  IOpinionUpdateStatusInputDto,
+  OpinionStatusEnum,
 };

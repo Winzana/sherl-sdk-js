@@ -46,7 +46,20 @@ This call returns an [IOpinion](opinion-types#iopinion) object.
 ## Update opinion status
 
 ```ts
-const opinionUpdated = await opinion(client).updateOpinion(opinionId: string, opinion: Partial<IOpinion<T, K>>);
+const opinionUpdated = await opinion(client).updateOpinion(opinionId: string, status: IOpinionUpdateStatusInputDto);
+```
+
+```ts
+interface IOpinionUpdateStatusInputDto {
+  status: OpinionStatusEnum;
+  refusedComment?: string;
+}
+
+enum OpinionStatusEnum {
+  PUBLISHED = 'published',
+  REFUSED = 'refused',
+  IS_CLAIMED = 'is_claimed',
+}
 ```
 
 This call returns an [IOpinion](opinion-types#iopinion) object.

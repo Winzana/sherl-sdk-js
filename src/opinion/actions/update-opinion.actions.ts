@@ -1,17 +1,17 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
-import { IOpinion } from '../types';
+import { IOpinion, IOpinionUpdateStatusInputDto } from '../types';
 import { StringUtils } from '../../common/utils/string';
 import { OpinionErr, errorFactory } from '../errors';
 
 export const updateOpinion = async <T, K>(
   fetcher: Fetcher,
   id: string,
-  opinion: Partial<IOpinion<T, K>>,
+  updatedOpinion: IOpinionUpdateStatusInputDto,
 ): Promise<IOpinion<T, K>> => {
   const response = await fetcher.put<IOpinion<T, K>>(
     StringUtils.bindContext(endpoints.UPDATE_OPINION_STATUS, { id }),
-    opinion,
+    updatedOpinion,
   );
 
   if (response.status !== 200) {
