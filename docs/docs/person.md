@@ -13,7 +13,7 @@ Retrieve logged-in person information.
 const me = await person(client).getMe();
 ```
 
-Return a Person.
+This call returns on object of [IPerson](person-types)
 
 ## Get person by id
 
@@ -22,10 +22,10 @@ Return a Person.
 Retrieve person information by ID.
 
 ```ts
-const person = await person(client).getPersonById('id');
+const person = await person(client).getPersonById(id: string);
 ```
 
-Return a Person.
+This call returns an object of [IPerson](person-types)
 
 ## Get list of persons
 
@@ -34,12 +34,12 @@ Return a Person.
 Retrieve a list of persons.
 
 ```ts
-const persons = await person(client).getPersons(page, itemPerPage, {
-  /* Filters */
-});
+const persons = await person(client).getPersons(page: number, itemPerPage: number, filters: IPersonFilters);
 ```
 
-Return a paginated array of Person.
+You can see **IPersonFilters** interface [here](person-types)
+
+This call returns a [paginated](pagination) of [IPerson](person-types)
 
 ## Get person address
 
@@ -48,13 +48,17 @@ Return a paginated array of Person.
 Retrieve person address by position.
 
 ```ts
-const address = await person(client).getCurrentAddress({
-  longitude: 'your_longitude',
-  latitude: 'your_latitude',
-});
+const address = await person(client).getCurrentAddress(position: IPositionInputDto);
 ```
 
-Return a Place.
+```ts
+interface IPositionInputDto {
+  latitude: number;
+  longitude: number;
+}
+```
+
+This call returns an object of [ILocation](place-types)
 
 ## Get person configuration
 
@@ -66,28 +70,27 @@ Retrieve person configuration vars.
 const configs = await person(client).getConfigs();
 ```
 
-Return an array of Configuration for this person.
+This call returns the [configuration (IConfig)](config-types) array for the connected person.
 
 ## Register a user for your sherl
 this function create a user
 
 ```ts
-await person(client).registerWithEmailAndPassword(user);
+await person(client).registerWithEmailAndPassword(user: IPersonRegister);
 ```
 
 user correspond to this interface 
 
 ```ts
 interface IPersonRegister {
-  id: string;
-  birthDate: string;
-  firstName: string;
-  lastName: string;
+  birthDate?: string;
+  firstName?: string;
+  lastName?: string;
   password: string;
   confirmPassword: string;
   email: string;
-  phoneNumber: string;
-  address: {
+  phoneNumber?: string;
+  address?: {
     id: string;
     uri: string;
     createdAt: string;
@@ -111,7 +114,7 @@ interface IPersonRegister {
 This function creates a person without creating user
 
 ```ts
-await person(client).createPerson(user);
+const newPerson = await person(client).createPerson(user: IPersonRegister);
 ```
 
 user use the same interface as previous
@@ -119,57 +122,28 @@ user use the same interface as previous
 ## Update a user
 
 ```ts
-await person(client).updatePersonById('id', user);
+const updatedPerson = await person(client).updatePersonById(id: string, user: Partial<IPersonUpdate>);
 ```
 
-user is composed by anything from this interface
-
 ```ts
-interface IPersonMeResponse {
-  id: string;
-  uri: string;
-  consumerId: string;
-  userId: string;
+interface IPersonUpdate {
   firstName: string;
   lastName: string;
   address: IPlace;
-  myAddresses: IPlace[];
-  subscriptionLocation: IGeoCoordinates;
+  type: PersonTypeEnum;
   phoneNumber: string;
   mobilePhoneNumber: string;
   faxNumber: string;
   nationality: string;
   affiliation: IOrganization;
-  birthDate: Date;
-  email: string;
-  gender: string;
   latitude: number;
   longitude: number;
+  birthDate: Date;
+  email: string;
+  gender: GendersEnum;
   jobTitle: string;
-  enabled: boolean;
-  legalNotice: ILegalNotice;
-  privacyPolicy: IPrivacyPolicy;
-  createdAt: Date;
-  updatedAt: Date;
-  picture: IImageObject;
-  settings: ISettings;
-  organizationFavorites: string[];
-  mangopayUserId: string;
-  mangopayWalletId: string;
-  mangopayCards: IMangopayCard[];
-  stripe: IStripe;
-  lemonway: ILemonway;
-  type: IPersonTypeEnum;
-  frequentedEstablishments: IFrequentedEstablishments[];
   metadatas: { [key: string]: any };
-  statistics: {
-    lastVisit: Date;
-    firstVisit: Date;
-    totalVisit: number;
-    amountLastOrder: number;
-    amountTotalOrder: number;
-    frequentedEstablishments: IFrequentedEstablishments[];
-    loyalCustomer: boolean;
-  };
 }
 ```
+
+This call returns the modified [user object](person-types)

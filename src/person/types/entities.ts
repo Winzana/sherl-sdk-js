@@ -67,16 +67,6 @@ export interface IPersonUpdate {
   metadatas: { [key: string]: any };
 }
 
-export interface IConfigResponse {
-  id: string;
-  code: string;
-  value: any;
-  consumer: string;
-  position: number;
-  appliedTo?: string;
-  isPublic?: boolean;
-}
-
 export interface IImageObject {
   id?: string;
   consumerId?: string;
@@ -265,15 +255,14 @@ export interface ILemonwayCard {
 }
 
 export interface IPersonRegister {
-  id: string;
-  birthDate: string;
-  firstName: string;
-  lastName: string;
+  birthDate?: string;
+  firstName?: string;
+  lastName?: string;
   password: string;
   confirmPassword: string;
   email: string;
-  phoneNumber: string;
-  address: {
+  phoneNumber?: string;
+  address?: {
     id: string;
     uri: string;
     createdAt: string;
@@ -293,7 +282,12 @@ export interface IPersonRegister {
 
 export enum GendersEnum {
   MAN = 'man',
-  WOMEN = 'women',
+  WOMAN = 'woman',
   OTHER = 'other',
   NSP = 'nsp',
+}
+
+export interface IPositionInputDto {
+  latitude: number;
+  longitude: number;
 }

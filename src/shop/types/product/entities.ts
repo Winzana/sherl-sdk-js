@@ -33,12 +33,6 @@ export interface IMetadatas {
   degreeOfAlcohol: string;
 }
 
-export interface IOffer {
-  price: number;
-  taxRate: number;
-  priceTaxIncluded: number;
-}
-
 export interface IItem {
   name: string;
   priceTaxIncluded: number;
@@ -143,7 +137,7 @@ export interface IPublicCategoryResponse {
   updatedAt: Date;
   aggCategory: string;
   is: false;
-  // seo: SEO; Besoin de SEO ? Je ne l'ai pas dans mes interfaces
+  // seo: SEO; TODO check if needed
 }
 
 export enum ShopProductTypeEnum {
