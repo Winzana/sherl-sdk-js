@@ -1,4 +1,6 @@
-import { IGeoCoordinates, IPlace } from '../../common';
+import { IGeoCoordinates } from '../../common';
+import { IOrganizationResponse } from '../../organization/types';
+import { IPlace } from '../../place/types';
 
 export interface IPerson {
   id: string;
@@ -14,7 +16,7 @@ export interface IPerson {
   mobilePhoneNumber: string;
   faxNumber: string;
   nationality: string;
-  affiliation: IOrganization;
+  affiliation: IOrganizationResponse;
   birthDate: Date;
   email: string;
   gender: GendersEnum;
@@ -57,7 +59,7 @@ export interface IPersonUpdate {
   mobilePhoneNumber: string;
   faxNumber: string;
   nationality: string;
-  affiliation: IOrganization;
+  affiliation: IOrganizationResponse;
   latitude: number;
   longitude: number;
   birthDate: Date;
@@ -189,23 +191,6 @@ interface ILegalNotice {
   dateOfAcceptance: Date;
 }
 
-interface IOrganization {
-  location: ILocation;
-  types: string[];
-  id: string;
-  employees: any[];
-  founders: any[];
-  knowsLanguage: any[];
-  openingHoursSpecification: IOpeningHoursSpecification[];
-  photos: any[];
-  serviceType: IServiceTypeResonse[];
-  isPaymentAllowed: boolean;
-  enabled: boolean;
-  uri: string;
-  consumerId: string;
-  legalName: string;
-}
-
 export interface IServiceTypeResonse {
   parent: null;
   childrens: any[];
@@ -231,15 +216,6 @@ export interface ILocation {
   streetAddress: string;
   latitude: string;
   longitude: string;
-}
-
-export interface IOpeningHoursSpecification {
-  id: string;
-  dayOfWeek: string;
-  closes: Date;
-  opens: Date;
-  validFrom: Date;
-  validThrough: Date;
 }
 
 export interface ILemonwayCard {
