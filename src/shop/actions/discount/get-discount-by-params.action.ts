@@ -1,6 +1,6 @@
 import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
-import { IDiscountResponse } from '../../types';
+import { IDiscount } from '../../types';
 import { Pagination } from '../../../common/types/response';
 
 export const getDiscountByParams = async (
@@ -8,8 +8,8 @@ export const getDiscountByParams = async (
   params: {
     [key: string]: any;
   },
-): Promise<Pagination<IDiscountResponse>> => {
-  const response = await fetcher.get<Pagination<IDiscountResponse>>(
+): Promise<Pagination<IDiscount>> => {
+  const response = await fetcher.get<Pagination<IDiscount>>(
     endpoints.GET_DISCOUNT_BY,
     {
       params,

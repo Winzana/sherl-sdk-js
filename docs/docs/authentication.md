@@ -12,7 +12,7 @@ This method will be subject to change soon and should provide a better way to au
 
 use the login function to get the token
 ```ts
-const token = await auth(client).signInWithEmailAndPassword('youremail','yourpassword');
+const token = await auth(client).signInWithEmailAndPassword(email: string, password: string);
 ```
 
 the login function save your token, but you can also register your token with this function

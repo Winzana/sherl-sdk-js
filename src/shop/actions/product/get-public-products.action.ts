@@ -9,8 +9,8 @@ export const getPublicProducts = async (
   page = 1,
   itemsPerPage = 10,
   filters: { [key: string]: any },
-) => {
-  const response = await fetcher.get<Pagination<IProductResponse[]>>(
+): Promise<Pagination<IProductResponse>> => {
+  const response = await fetcher.get<Pagination<IProductResponse>>(
     endpoints.GET_PUBLIC_PRODUCTS,
     {
       page,

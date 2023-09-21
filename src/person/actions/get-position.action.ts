@@ -1,19 +1,15 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
-import { ILocation } from '../types';
+import { ILocation, IPositionInputDto } from '../types';
 import { Pagination } from '../../common';
 
 export const getCurrentAddress = async (
   fetcher: Fetcher,
-  position: {
-    [key: string]: string;
-  },
-): Promise<Pagination<ILocation[]>> => {
-  const response = await fetcher.get<Pagination<ILocation[]>>(
+  position: IPositionInputDto,
+): Promise<Pagination<ILocation>> => {
+  const response = await fetcher.get<Pagination<ILocation>>(
     endpoints.GET_POSITION,
-    {
-      position,
-    },
+    position,
   );
 
   if (response.status !== 200) {

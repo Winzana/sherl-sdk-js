@@ -8,8 +8,8 @@ export const getPlaces = async (
   page = 1,
   itemsPerPage = 10,
   filters: { [key: string]: any },
-): Promise<Pagination<IPlaceResponse[]>> => {
-  const response = await fetcher.get<Pagination<IPlaceResponse[]>>(
+): Promise<Pagination<IPlaceResponse>> => {
+  const response = await fetcher.get<Pagination<IPlaceResponse>>(
     endpoints.GET_PLACES,
     {
       page,
