@@ -17,6 +17,7 @@ module.exports = {
       'discount',
       'place',
       'media',
+      'iam',
       'contact',
       'opinion',
       'claim',
