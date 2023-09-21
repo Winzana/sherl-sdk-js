@@ -8,5 +8,6 @@ export * from './config';
 export * from './shop';
 export * from './organization';
 export * from './user';
+export * from './contact';
 export * from './opinion';
 export * from './claim';
