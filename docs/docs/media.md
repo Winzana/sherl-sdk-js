@@ -10,13 +10,23 @@ title: Media
 Retrieve file informations
 
 ```ts
-const file = await Sherl.media(client).getFile('id', {
-  domain: 'string',
-  id: 'string',
-});
+const file = await media(client).getFile(query: IMediaQuery);
 ```
 
-Return a IMediaGetReturn.
+```ts
+interface IMediaQuery {
+  id: string;
+  domain: string;
+  type?: TypeEnum;
+}
+
+enum TypeEnum {
+  FILE = 'file',
+  MOVIE = 'movie',
+}
+```
+
+This call returns an [IMedia](media-types#imedia) object.
 
 ## Upload file
 
@@ -25,18 +35,10 @@ Return a IMediaGetReturn.
 Upload a file
 
 ```ts
-const formData = new FormData();
-formData.append('upload', file.buffer, {
-  filename: file.originalname,
-});
-const file = await Sherl.media(client).uploadFile({
-  id: 'uuidv4';
-  domain: 'string';
-  type?: 'string';
-}, formData);
+const file = await media(client).uploadFile(formData: FormData, query: IMediaQuery);
 ```
 
-Return a IMedia.
+This call returns an [IMedia](media-types#imedia) object.
 
 ## Delete file
 
@@ -45,11 +47,7 @@ Return a IMedia.
 Delete a file
 
 ```ts
-const file = await Sherl.media(client).deleteFile({
-  id: 'string';
-  domain: 'string';
-  type?: 'string';
-});
+const file = await media(client).deleteFile(mediaId: string);
 ```
-
-Return a IMedia.
+//TODO change
+Return a boolean
