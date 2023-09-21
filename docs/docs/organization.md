@@ -9,17 +9,15 @@ Retrieve organizations list.
 
 ```ts
 // Require authentication
-const organizations = await Sherl.organization(client).getOrganizations(1, 10, {
-  /* Filters */
-});
+const organizations = await organization(client).getOrganizations(filters: OrganizationFiltersDto);
 
 // Public
-const organizations = await Sherl.organization(client).getPublicOrganizations(1, 10, {
-  /* Filters */
-});
+const organizations = await organization(client).getPublicOrganizations(filters: OrganizationFiltersDto);
 ```
 
-Return a paginated array of Organization.
+See [**OrganizationFiltersDto**](organization-types#organizationfiltersdto)
+
+This call return a [paginated](pagination#pagination) array of [IOrganizationResponse](organization-types#iorganizationresponse).
 
 ## Get organization by id
 
@@ -27,51 +25,51 @@ Retrieve an organization by ID.
 
 ```ts
 // Require authentication
-const organization = await Sherl.organization(client).getOrganization(
-  'organization-id',
-);
+const organization = await organization(client).getOrganization(id: string);
 
 // Public
-const organization = await Sherl.organization(client).getPublicOrganization(
-  'organization-id',
-);
+const organization = await organization(client).getPublicOrganization(id: string);
 ```
 
-Return an Organization.
+This call returns an [IOrganizationResponse](organization-types#iorganizationresponse) object.
 
 ## Get organization by slug
 
 Retrieve one organization by slug.
 
 ```ts
-const organization = await Sherl.organization(client).getPublicOrganizationBySlug(
-  'slug',
-);
+const organization = await organization(client).getPublicOrganizationBySlug(slug: string);
 ```
 
-Return an Organization.
+This call returns an [IOrganizationResponse](organization-types#iorganizationresponse) object.
 
 ## Add organization rib
+
+<span class="badge badge--warning">Require authentication</span>
 
 Allows you to add rib to an organization
 
 ```ts
-// Require authentication
-const organization = await Sherl.organization(client).addOrganizationRib('id', {
-  iban: 'myIban',
-  bic: 'myBic',
-});
+const organization = await organization(client).addOrganizationRib(id: string, info: IAddRibBody);
 ```
 
-Return boolean.
+```ts
+interface IAddRibBody {
+  rib: string;
+  bic: string;
+}
+```
+
+This call returns an [IRib](wallet-type#irib) object.
 
 ## Get all organization documents
+
+<span class="badge badge--warning">Require authentication</span>
 
 Retrieve all documents of an organization
 
 ```ts
-const organization = await Sherl.organization(client).getAllOrganizationDocuments('id');
+const organization = await organization(client).getAllOrganizationDocuments(id: string);
 ```
 
-Return IGetAllOrganizationDocumentsResponse.
-
+This call returns an [IOrganizationDocumentsResponse](organization-types#iorganizationdocumentresponse) object.

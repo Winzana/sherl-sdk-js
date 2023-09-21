@@ -150,3 +150,21 @@ export enum ShopProductTypeEnum {
   QUOTA = 'QUOTA',
   REFUND = 'REFUND', // Un avoir
 }
+
+export interface ISubscription {
+  id: string;
+  uri: string;
+  name: string;
+  ownerUri: string;
+  consumerId: string;
+  activeFrom: Date;
+  activeUntil: Date;
+  frequency: OfferFrequencyEnum;
+  enabled: boolean;
+  disabledAt: Date;
+  sourceUri: string;
+  offer: IOffer;
+  contextUri: string;
+  metadatas: { [key: string]: any };
+  createdAt: Date;
+}

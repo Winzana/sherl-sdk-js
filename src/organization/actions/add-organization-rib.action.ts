@@ -6,8 +6,8 @@ import { IAddRibBody } from '../types';
 
 export const addOrganizationRib = async (
   fetcher: Fetcher,
-  body: IAddRibBody,
   id: string,
+  body: IAddRibBody,
 ): Promise<boolean> => {
   const response = await fetcher
     .post<boolean>(

@@ -1,15 +1,15 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
-import { IGetAllOrganizationDocumentsResponse } from '../types';
+import { IOrganizationDocumentsResponse } from '../types';
 import { StringUtils } from '../../common/utils/string';
 import { errorFactory, OrganizationErr } from '../errors';
 
 export const getAllOrganizationDocuments = async (
   fetcher: Fetcher,
   id: string,
-): Promise<IGetAllOrganizationDocumentsResponse> => {
+): Promise<IOrganizationDocumentsResponse> => {
   const response = await fetcher
-    .get<IGetAllOrganizationDocumentsResponse>(
+    .get<IOrganizationDocumentsResponse>(
       StringUtils.bindContext(endpoints.ORGANIZATION_DOCUMENTS, { id }),
     )
     .catch((_err) => {
