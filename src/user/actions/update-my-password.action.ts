@@ -5,12 +5,10 @@ import { IUpdatePasswordDto } from '../types';
 
 export const updateMyPassword = async (
   fetcher: Fetcher,
-  data: Partial<IUpdatePasswordDto>,
+  data: IUpdatePasswordDto,
 ): Promise<boolean> => {
-  await fetcher
-    .post<IUpdatePasswordDto>(endpoints.UPDATE_MY_PASSWORD, data)
-    .catch(() => {
-      throw errorFactory.create(UserErr.UPDATE_MY_PASSWORD_FAILED);
-    });
+  await fetcher.post<boolean>(endpoints.UPDATE_MY_PASSWORD, data).catch(() => {
+    throw errorFactory.create(UserErr.UPDATE_MY_PASSWORD_FAILED);
+  });
   return true;
 };

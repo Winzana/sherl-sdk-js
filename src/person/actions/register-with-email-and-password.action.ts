@@ -1,4 +1,3 @@
-// import { PersonApi } from '../api/person.api';
 import { IPerson, IPersonRegister } from '../types';
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
@@ -9,11 +8,8 @@ export const registerWithEmailAndPassword = async (
   data: IPersonRegister,
 ): Promise<IPerson> => {
   try {
-    console.log(data);
     const response = await fetcher
-      .post<IPerson>(endpoints.REGISTER_WITH_EMAIL_AND_PASSWORD, {
-        ...data,
-      })
+      .post<IPerson>(endpoints.REGISTER_WITH_EMAIL_AND_PASSWORD, data)
       .catch(() => {
         throw errorFactory.create(PersonErr.POST_FAILED);
       });

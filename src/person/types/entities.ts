@@ -1,4 +1,6 @@
-import { IGeoCoordinates, IPlace } from '../../common';
+import { IGeoCoordinates } from '../../common';
+import { IOrganizationResponse } from '../../organization/types';
+import { IPlace } from '../../place/types';
 
 export interface IPerson {
   id: string;
@@ -14,7 +16,7 @@ export interface IPerson {
   mobilePhoneNumber: string;
   faxNumber: string;
   nationality: string;
-  affiliation: IOrganization;
+  affiliation: IOrganizationResponse;
   birthDate: Date;
   email: string;
   gender: GendersEnum;
@@ -57,7 +59,7 @@ export interface IPersonUpdate {
   mobilePhoneNumber: string;
   faxNumber: string;
   nationality: string;
-  affiliation: IOrganization;
+  affiliation: IOrganizationResponse;
   latitude: number;
   longitude: number;
   birthDate: Date;
@@ -65,16 +67,6 @@ export interface IPersonUpdate {
   gender: GendersEnum;
   jobTitle: string;
   metadatas: { [key: string]: any };
-}
-
-export interface IConfigResponse {
-  id: string;
-  code: string;
-  value: any;
-  consumer: string;
-  position: number;
-  appliedTo?: string;
-  isPublic?: boolean;
 }
 
 export interface IImageObject {
@@ -199,23 +191,6 @@ interface ILegalNotice {
   dateOfAcceptance: Date;
 }
 
-interface IOrganization {
-  location: ILocation;
-  types: string[];
-  id: string;
-  employees: any[];
-  founders: any[];
-  knowsLanguage: any[];
-  openingHoursSpecification: IOpeningHoursSpecification[];
-  photos: any[];
-  serviceType: IServiceTypeResonse[];
-  isPaymentAllowed: boolean;
-  enabled: boolean;
-  uri: string;
-  consumerId: string;
-  legalName: string;
-}
-
 export interface IServiceTypeResonse {
   parent: null;
   childrens: any[];
@@ -243,15 +218,6 @@ export interface ILocation {
   longitude: string;
 }
 
-export interface IOpeningHoursSpecification {
-  id: string;
-  dayOfWeek: string;
-  closes: Date;
-  opens: Date;
-  validFrom: Date;
-  validThrough: Date;
-}
-
 export interface ILemonwayCard {
   id: number;
   transactionId: number;
@@ -265,15 +231,14 @@ export interface ILemonwayCard {
 }
 
 export interface IPersonRegister {
-  id: string;
-  birthDate: string;
-  firstName: string;
-  lastName: string;
+  birthDate?: string;
+  firstName?: string;
+  lastName?: string;
   password: string;
   confirmPassword: string;
   email: string;
-  phoneNumber: string;
-  address: {
+  phoneNumber?: string;
+  address?: {
     id: string;
     uri: string;
     createdAt: string;
@@ -293,7 +258,12 @@ export interface IPersonRegister {
 
 export enum GendersEnum {
   MAN = 'man',
-  WOMEN = 'women',
+  WOMAN = 'woman',
   OTHER = 'other',
   NSP = 'nsp',
+}
+
+export interface IPositionInputDto {
+  latitude: number;
+  longitude: number;
 }

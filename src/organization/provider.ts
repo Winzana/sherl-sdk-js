@@ -1,6 +1,8 @@
 import { SherlClient } from '../common';
 import { AbstractProvider } from '../common/provider';
 import {
+  addOrganizationRib,
+  getAllOrganizationDocuments,
   getOrganization,
   getOrganizations,
   getPublicOrganization,
@@ -21,6 +23,10 @@ class OrganizationProvider extends AbstractProvider {
     getPublicOrganizationBySlug,
   );
   public getPublicOrganizations = this.withFetcher(getPublicOrganizations);
+  public addOrganizationRib = this.withFetcher(addOrganizationRib);
+  public getAllOrganizationDocuments = this.withFetcher(
+    getAllOrganizationDocuments,
+  );
 }
 
 export { OrganizationProvider };

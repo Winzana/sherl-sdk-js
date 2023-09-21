@@ -12,10 +12,8 @@ the config domain will be used to store any data with a couple key/value
 <span class="badge badge--warning">Require authentication</span>
 
 ```ts
-config(client).setConfig({yourdata});
+config(client).setConfig(data: ISetConfig);
 ```
-
-'yourdata' is an object with those interface
 
 ```ts
 interface ISetConfig {
@@ -28,20 +26,16 @@ interface ISetConfig {
 
 appliedTo  = you can assign your config to a specific user or organisation (if not set, your config will be a generic config)
 
+This call returns an object of [IConfig](config-types)
+
 ## Get your public config
 
 <span class="badge badge--success">Public</span>
 
 ```ts
-config(client).getPublicConfig(KEY);
+config(client).getPublicConfig(key: string);
 ```
 
 This function retrieve the config value for the given key, but only if you set your config as <b>public</b>.
-The returned data looks like this interface :
 
-```ts
-interface IGetPublicConfigResponse {
-  code: string;
-  value: any;
-}
-```
+This call returns [IPublicConfig](config-types)
