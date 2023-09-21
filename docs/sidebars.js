@@ -17,6 +17,10 @@ module.exports = {
       'discount',
       'place',
       'iam',
+      'contact',
+      'opinion',
+      'claim',
     ],
+    Types: ['pagination', 'claim-types', 'opinion-types', 'organization-types'],
   },
 };

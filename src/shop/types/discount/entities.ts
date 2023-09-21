@@ -1,33 +1,6 @@
 import { IOrganizationResponse } from '../../../organization/types';
 import { IProductResponse, ICategoryResponse } from '../product/entities';
 
-export interface IDiscountResponse {
-  id: string;
-  uri: string;
-  name: string;
-  ownerUri: string;
-  owner: IOrganizationResponse;
-  consumerId: string;
-  availableFrom: Date;
-  availableUntil: Date;
-  public: boolean;
-  visibleToPublic: boolean;
-  enabled: boolean;
-  highlight: boolean;
-  cumulative: boolean;
-  discountType: DiscountTypeEnum;
-  code: string;
-  percentage: number;
-  amount: number;
-  quantity: number;
-  quantityPerUser: number;
-  customers: string[];
-  productRestrictions: IProductRestriction[];
-  dateRestrictions: IDateRestriction[];
-  createdAt: Date;
-  updatedAt: Date;
-}
-
 export interface IDateRestriction {
   date: Date;
   dayOfWeek: string;
