@@ -1,15 +1,15 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { MediaErr, errorFactory } from '../errors';
-import { IMedia, IMediaQuery } from '../types';
+import { IImageObject, IMediaQuery } from '../types';
 
 export const uploadFile = async (
   fetcher: Fetcher,
-  data: any,
+  data: FormData,
   query: IMediaQuery,
-): Promise<IMedia> => {
+): Promise<IImageObject> => {
   const response = await fetcher
-    .post<IMedia>(endpoints.UPLOAD_FILE, data, query, {
+    .post<IImageObject>(endpoints.UPLOAD_FILE, data, query, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },

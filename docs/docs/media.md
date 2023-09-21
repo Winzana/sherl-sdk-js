@@ -26,7 +26,7 @@ enum TypeEnum {
 }
 ```
 
-This call returns an [IMedia](media-types#imedia) object.
+This call returns an [IImageObject](media-types#iimageobject) object.
 
 ## Upload file
 
@@ -38,7 +38,7 @@ Upload a file
 const file = await media(client).uploadFile(formData: FormData, query: IMediaQuery);
 ```
 
-This call returns an [IMedia](media-types#imedia) object.
+This call returns an [IImageObject](media-types#iimageobject) object.
 
 ## Delete file
 
@@ -49,5 +49,8 @@ Delete a file
 ```ts
 const file = await media(client).deleteFile(mediaId: string);
 ```
-//TODO change
-Return a boolean
+
+This call returns a string.
+```
+Media successfully deleted : ${id}
+```

@@ -3,7 +3,8 @@ import {
   PaginationFilters,
   IOpeningHoursSpecification,
 } from '../common';
-import { IPerson, IImageObject } from '../person';
+import { IImageObject } from '../media';
+import { IPerson } from '../person';
 import { IPlace } from '../place/types';
 import {
   ICategoryResponse,

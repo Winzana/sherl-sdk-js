@@ -3,53 +3,30 @@ id: media-types
 title: Media types
 ---
 
-## IMedia
+## IImageObject 
 ```ts
-interface IMedia {
-  id: string;
-  uri: string;
-  width: number;
-  height: number;
-  caption: ICaption;
-  thumbnail: IThumbnail;
-  domain: string;
-  consumerId: string;
+interface IImageObject {
+  id?: string;
+  consumerId?: string;
+  domain?: string;
+  uri?: string;
+  width?: number;
+  height?: number;
+  caption: IMediaObject;
+  thumbnail?: IImageObject;
+  createdAt?: Date;
 }
 ```
 
-## IFile
+## IMediaObject
 ```ts
-interface IFile {
-  id: string;
-  uri: string;
-  width: number;
-  height: number;
-  consumerId: string;
-  caption: ICaption;
-  thumbnail: IThumbnail;
-}
-```
-
-## ICaption
-```ts
-interface ICaption {
-  id: string;
-  size: number;
+interface IMediaObject {
   contentUrl: string;
-  description: string;
-  name: string;
+  description?: string;
+  duration?: string;
   encodingFormat: string;
-  duration: string;
-}
-```
-
-## IThumbnail
-```ts
-interface IThumbnail {
+  size?: number;
+  name: string;
   id: string;
-  uri: string;
-  width: number;
-  height: number;
-  caption: ICaption;
 }
 ```

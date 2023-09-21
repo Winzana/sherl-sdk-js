@@ -1,38 +1,21 @@
-export interface IMedia {
-  id: string;
-  uri: string;
-  width: number;
-  height: number;
-  caption: ICaption;
-  thumbnail: IThumbnail;
-  domain: string;
-  consumerId: string;
+export interface IImageObject {
+  id?: string;
+  consumerId?: string;
+  domain?: string;
+  uri?: string;
+  width?: number;
+  height?: number;
+  caption: IMediaObject;
+  thumbnail?: IImageObject;
+  createdAt?: Date;
 }
 
-export interface ICaption {
-  id: string;
-  size: number;
+export interface IMediaObject {
   contentUrl: string;
-  description: string;
-  name: string;
+  description?: string;
+  duration?: string;
   encodingFormat: string;
-  duration: string;
-}
-
-export interface IThumbnail {
+  size?: number;
+  name: string;
   id: string;
-  uri: string;
-  width: number;
-  height: number;
-  caption: ICaption;
-}
-
-export interface IFile {
-  id: string;
-  uri: string;
-  width: number;
-  height: number;
-  consumerId: string;
-  caption: ICaption;
-  thumbnail: IThumbnail;
 }
