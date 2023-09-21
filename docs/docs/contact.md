@@ -8,7 +8,7 @@ title: Contact
 Send contact
 
 ```ts
-const contact = await Sherl.contact(client).sendContact(body: ContactInputDto);
+const contact = await contact(client).sendContact(body: ContactInputDto);
 ```
 
 ```ts
@@ -19,7 +19,7 @@ interface ContactInputDto {
 }
 ```
 
-Return boolean
+This call returns string with 'Ok'.
 
 ## Contact person
 
@@ -28,7 +28,7 @@ Return boolean
 Send contact to person
 
 ```ts
-const contact = await Sherl.contact(client).contactPerson(body: ContactInputDto, id: string);
+const contact = await contact(client).contactPerson(body: ContactInputDto, id: string);
 ```
 
-Return boolean
+This call returns string with 'Ok'.
