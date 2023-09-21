@@ -10,10 +10,10 @@ title: Iam
 Retrieve all iam profiles informations.
 
 ```ts
-const iamProfiles = await Sherl.iam.getAllIamProfiles();
+const iamProfiles = await iam(client).getAllIamProfiles();
 ```
 
-Return a paginated array of IGetAllIamProfiles
+This call returns an array of [IProfile](iam-types#iprofile).
 
 ## Get iam profile by id
 
@@ -22,10 +22,10 @@ Return a paginated array of IGetAllIamProfiles
 Retrieve iam profile informations.
 
 ```ts
-const iamProfile = await Sherl.iam.getIamProfileById('id');
+const iamProfile = await iam(client).getIamProfileById(id: string);
 ```
 
-Return IGetOneIamProfile
+This call returns an [IProfile](iam-types#iprofile).
 
 ## Get iam role by id
 
@@ -34,7 +34,7 @@ Return IGetOneIamProfile
 Retrieve iam role informations.
 
 ```ts
-const iamRole = await Sherl.iam.getIamRoleById('id');
+const iamRole = await iam(client).getIamRoleById(id: string);
 ```
 
-Return IIamRole
+This call returns an [IRole](iam-types#irole)

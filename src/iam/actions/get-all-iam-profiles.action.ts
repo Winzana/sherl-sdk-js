@@ -1,18 +1,14 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
-import { IIamProfilesFilters, IGetAllIamProfiles } from '../types';
-import { Pagination } from '../../common/types/response';
+import { IIamProfilesFilters, IProfile } from '../types';
 import { errorFactory, IamErr } from '../errors';
 
 export const getAllIamProfiles = async (
   fetcher: Fetcher,
   filters: IIamProfilesFilters,
-): Promise<Pagination<IGetAllIamProfiles[]>> => {
+): Promise<IProfile[]> => {
   const response = await fetcher
-    .get<Pagination<IGetAllIamProfiles[]>>(
-      endpoints.GET_ALL_IAM_PROFILES,
-      filters,
-    )
+    .get<IProfile[]>(endpoints.GET_ALL_IAM_PROFILES, filters)
     .catch((_err) => {
       throw errorFactory.create(IamErr.FETCH_FAILED);
     });

@@ -1,17 +1,15 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
-import { IIamRole } from '../types';
+import { IRole } from '../types';
 import { errorFactory, IamErr } from '../errors';
 import { StringUtils } from '../../common/utils/string';
 
 export const getIamRoleById = async (
   fetcher: Fetcher,
   id: string,
-): Promise<IIamRole> => {
+): Promise<IRole> => {
   const response = await fetcher
-    .get<IIamRole>(
-      StringUtils.bindContext(endpoints.GET_IAM_ROLE_BY_ID, { id }),
-    )
+    .get<IRole>(StringUtils.bindContext(endpoints.GET_IAM_ROLE_BY_ID, { id }))
     .catch((_err) => {
       throw errorFactory.create(IamErr.FETCH_FAILED);
     });

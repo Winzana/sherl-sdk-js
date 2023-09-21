@@ -1,4 +1,11 @@
-export interface IProfile {
+---
+id: iam-types
+title: Iam types
+---
+
+## IProfile 
+```ts
+interface IProfile {
   id: string;
   uri: string;
   name: string;
@@ -8,8 +15,11 @@ export interface IProfile {
   createdAt?: Date;
   updatedAt?: Date;
 }
+```
 
-export interface IRole {
+## IRole
+```ts
+interface IRole {
   id: string;
   uri: string;
   name: string;
@@ -24,3 +34,4 @@ interface IStatement {
   effect: string;
   ressources: string;
 }
+```
