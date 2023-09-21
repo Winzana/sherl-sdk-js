@@ -1,3 +1,5 @@
+import { IImageObject } from '../../../media';
+
 export interface ICategoryResponse {
   id: string;
   uri: string;
@@ -95,28 +97,6 @@ export enum OfferFrequencyEnum {
   ONCE = 'once',
   MONTHLY = 'monthly',
   YEARLY = 'yearly',
-}
-
-export interface IImageObject {
-  id: string;
-  consumerId: string;
-  domain: string;
-  uri: string;
-  width: number;
-  height: number;
-  caption: IMediaObject;
-  thumbnail: IImageObject;
-  createdAt: Date;
-}
-
-export interface IMediaObject {
-  contentUrl: string;
-  description: string;
-  duration: string;
-  encodingFormat: string;
-  size: number;
-  name: string;
-  id: string;
 }
 
 export interface IPublicCategoryResponse {
