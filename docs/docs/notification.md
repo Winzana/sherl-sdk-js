@@ -10,7 +10,7 @@ title: Notification
 Allows you to registrate to notification
 
 ```ts
-const notifications = await Sherl.notification(client).notificationRegistration(data: NotificationRegistrationTokenInputDto);
+const notifications = await notification(client).notificationRegistration(data: NotificationRegistrationTokenInputDto);
 ```
 
 ```ts
@@ -19,16 +19,16 @@ interface NotificationRegistrationTokenInputDto {
 }
 ```
 
-This call returns an object of [NotificationDevice](notification-types#notificationdevice)
+This call returns an object of [INotificationRegistrationResponse](notification-types#inotificationregistrationresponse)
 
-## Get Notifications
+## Get notifications
 
 <span class="badge badge--warning">Require authentication</span>
 
 Retrieve notifications with some tags
 
 ```ts
-const notifications = await Sherl.notification(client).getNotifications(filters: INotificationFilters);
+const notifications = await notification(client).getNotifications(filters: INotificationFilters);
 ```
 
 ```ts
@@ -42,52 +42,49 @@ interface INotificationFilters {
 }
 ```
 
-This call returns a [paginated](pagination) array of [notifications](notification-types#notificationdevice).
+This call returns a [paginated](pagination) array of [INotification](notification-types#inotification).
 
-## Enable Notifications on Organization
+## Enable notifications on organization
 <span class="badge badge--warning">Require authentication</span>
 
 Enables a type of notification to be activated for an organization
 
 ```ts
-const notifications = await Sherl.notification(client).enableToOrganization(data: NotificationEnableToOrganizationInputDto, id: string);
+const notifications = await notification(client).enableToOrganization(data: INotificationUpdateAvailabilityInput, id: string);
 ```
 
 ```ts
-interface NotificationEnableToOrganizationInputDto {
-  organizationUri: string
+interface INotificationUpdateAvailabilityInput {
+  organizationUri: string;
+  type: string;
 } 
 ```
 
-This call returns a [string](notification-types#notification-enabled-on-the-organization) according to successfully. 
+This call returns an [INotification](notification-types#inotification) object.
 
 ## Disable Notifications on Organization
 
 <span class="badge badge--warning">Require authentication</span>
 
-Allows you to deactivate a type of notification for an organisation
+Allows you to deactivate a type of notification for an organization
 
 ```ts
-const notifications = await Sherl.notification(client).disableToOrganization(data: NotificationDisableToOrganizationInputDto, id: string);
+const notifications = await notification(client).disableToOrganization(data: INotificationUpdateAvailabilityInput, id: string);
 ```
 
-```ts
-interface NotificationDisableToOrganizationInputDto {
-  organizationUri: string
-} 
-```
+This call returns an [INotification](notification-types#inotification) object.
 
-This call returns a [string](notification-types#notification-disabled-on-the-organization) according to successfully. 
-
-## Update Notification 
+## Update notification 
 
 <span class="badge badge--warning">Require authentication</span>
 
 Allows you to update a notification
 
 ```ts
-const notifications = await Sherl.notification(client).updateNotification(data: NotificationUpdateInputDto, id: string);
+const notifications = await notification(client).updateNotification(id: string, data: Partial<INotification>);
 ```
+
+`Partial<INotification>` corresponding to have an new interface with all properties of [INotification](notification-types#inotification) optionnal 
 
 ```ts
 interface NotificationUpdateInputDto {
@@ -97,4 +94,4 @@ interface NotificationUpdateInputDto {
 }
 ```
 
-This call returns an [notification](notification-types) object
+This call returns an [INotication](notification-types#inotification) object.

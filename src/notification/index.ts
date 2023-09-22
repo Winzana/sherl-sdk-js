@@ -3,8 +3,7 @@ import { NotificationProvider } from './provider';
 import {
   INotificationRegistration,
   INotificationRegistrationResponse,
-  INotificationToOrganization,
-  NotificationUpdateInputDto,
+  INotificationUpdateAvailabilityInput,
   INotification,
   INotificationFilters,
 } from './types';
@@ -14,8 +13,7 @@ export {
   notification,
   INotificationRegistration,
   INotificationRegistrationResponse,
-  INotificationToOrganization,
-  NotificationUpdateInputDto,
+  INotificationUpdateAvailabilityInput,
   INotification,
   INotificationFilters,
 };

@@ -2,15 +2,15 @@ import { Fetcher } from '../../common/api';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { NotificationErr, errorFactory } from '../errors';
-import { INotificationToOrganization } from '../types';
-//todo : replace "any" by the api return
+import { INotification, INotificationUpdateAvailabilityInput } from '../types';
+
 export const disableToOrganization = async (
   fetcher: Fetcher,
-  disableToOrganization: INotificationToOrganization,
+  disableToOrganization: INotificationUpdateAvailabilityInput,
   id: string,
-): Promise<any> => {
+): Promise<INotification> => {
   const response = await fetcher
-    .post<any>(
+    .post<INotification>(
       StringUtils.bindContext(endpoints.ENABLE_TO_ORGANIZATION, { id }),
       disableToOrganization,
     )

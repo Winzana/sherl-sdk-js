@@ -2,17 +2,17 @@ import { Fetcher } from '../../common/api';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { NotificationErr, errorFactory } from '../errors';
-import { NotificationUpdateInputDto } from '../types';
-//todo : replace "any" with the api return interface
+import { INotification } from '../types';
+
 export const updateNotification = async (
   fetcher: Fetcher,
-  updateContentOfNotification: NotificationUpdateInputDto,
   id: string,
-): Promise<any> => {
+  body: Partial<INotification>,
+): Promise<INotification> => {
   const response = await fetcher
-    .put<any>(
+    .put<INotification>(
       StringUtils.bindContext(endpoints.UPDATE_NOTIFICATION, { id }),
-      updateContentOfNotification,
+      body,
     )
     .catch((_err) => {
       throw errorFactory.create(NotificationErr.UPDATE_FAILED);
