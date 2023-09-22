@@ -1,4 +1,12 @@
-export interface IBugReport {
+---
+id: bug-report-types
+title: Bug report types
+---
+
+## IBugReport
+
+```ts
+interface IBugReport {
   id: string;
   osName: string;
   browserName: string;
@@ -10,12 +18,4 @@ export interface IBugReport {
   consumerId: string;
   createdAt: string;
 }
-
-export interface IBugReportInputDto {
-  osName: string;
-  browserName: string;
-  windowHeight: number;
-  windowWidth: number;
-  contactEmail: string;
-  message: string;
-}
+```

@@ -1,11 +1,11 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { BugReportsErr, errorFactory } from '../errors';
-import { IBugReportBody, IBugReport } from '../types';
+import { IBugReportInputDto, IBugReport } from '../types';
 
 export const createBugReport = async (
   fetcher: Fetcher,
-  bugReport: IBugReportBody,
+  bugReport: IBugReportInputDto,
 ) => {
   const response = await fetcher
     .post<IBugReport>(endpoints.BUG_REPORTS, bugReport)

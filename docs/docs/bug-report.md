@@ -10,18 +10,20 @@ title: Bug Report
 Create a bug report
 
 ```ts
-const bugReport = await Sherl.bugReport(client).createBugReport({
-  id: 'string',
-  osName: 'string',
-  browserName: 'string',
-  windowHeight: number,
-  windowWidth: number,
-  contactEmail: 'string',
-  message: 'string',
-});
+const bugReport = await bugReport(client).createBugReport(data: BugReportInputDto);
 ```
 
-Return any.
+```ts
+interface BugReportInputDto {
+  osName: string,
+  browserName: string,
+  windowHeight: number,
+  windowWidth: number,
+  contactEmail: string,
+  message: string,
+}
+```
+This call returns an [IBugReport](bug-report-types#ibugreport) object.
 
 ## Get all bug reports
 
@@ -30,10 +32,10 @@ Return any.
 Allows you to get all bug reports
 
 ```ts
-const bugReports = await Sherl.bugReport(client).getBugReports();
+const bugReports = await bugReport(client).getBugReports();
 ```
 
-Return a paginated array of IBugReport
+Return a [paginated](pagination#pagination) array of [IBugReport](bug-report-types#ibugreport) object.
 
 ## Get bug report by id
 
@@ -42,7 +44,7 @@ Return a paginated array of IBugReport
 Allows you to get bug report by id
 
 ```ts
-const bugReports = await Sherl.bugReport(client).getBugReportById('id');
+const bugReports = await bugReport(client).getBugReportById(id: string);
 ```
 
-Return a IBugReport
+This call returns an [IBugReport](bug-report-types#ibugreport) object.

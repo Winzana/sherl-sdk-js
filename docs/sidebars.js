@@ -23,6 +23,12 @@ module.exports = {
       'opinion',
       'claim',
     ],
-    Types: ['pagination', 'claim-types', 'opinion-types', 'organization-types'],
+    Types: [
+      'pagination',
+      'claim-types',
+      'opinion-types',
+      'organization-types',
+      'bug-report-types',
+    ],
   },
 };
