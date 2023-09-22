@@ -43,7 +43,7 @@ module.exports = {
             },
             {
               label: 'Types',
-              to: 'docs/notification-types',
+              to: 'docs/pagination',
             },
           ],
         },
