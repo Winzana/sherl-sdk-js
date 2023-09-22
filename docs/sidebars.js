@@ -16,6 +16,7 @@ module.exports = {
       'order',
       'discount',
       'place',
+      'bug-report',
       'media',
       'iam',
       'contact',
@@ -29,6 +30,7 @@ module.exports = {
       'opinion-types',
       'organization-types',
       'notification-types',
+      'bug-report-types',
     ],
   },
 };
