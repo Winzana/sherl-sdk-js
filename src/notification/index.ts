@@ -6,6 +6,12 @@ import {
   INotificationUpdateAvailabilityInput,
   INotification,
   INotificationFilters,
+  IEmail,
+  IEmailContent,
+  IPush,
+  IPushContent,
+  ISMS,
+  ISMSContent,
 } from './types';
 
 const notification = (client: SherlClient) => new NotificationProvider(client);
@@ -16,4 +22,10 @@ export {
   INotificationUpdateAvailabilityInput,
   INotification,
   INotificationFilters,
+  IEmail,
+  IEmailContent,
+  IPush,
+  IPushContent,
+  ISMS,
+  ISMSContent,
 };

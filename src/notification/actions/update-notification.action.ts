@@ -2,12 +2,12 @@ import { Fetcher } from '../../common/api';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { NotificationErr, errorFactory } from '../errors';
-import { INotification } from '../types';
+import { INotification, INotificationUpdateDto } from '../types';
 
 export const updateNotification = async (
   fetcher: Fetcher,
   id: string,
-  body: Partial<INotification>,
+  body: INotificationUpdateDto,
 ): Promise<INotification> => {
   const response = await fetcher
     .put<INotification>(

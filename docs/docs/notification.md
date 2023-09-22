@@ -42,7 +42,7 @@ interface INotificationFilters {
 }
 ```
 
-This call returns a [paginated](pagination) array of [INotification](notification-types#inotification).
+This call returns an [ISearchResult](pagination#isearchresult) of [INotification](notification-types#inotification) object.
 
 ## Enable notifications on organization
 <span class="badge badge--warning">Require authentication</span>
@@ -62,11 +62,11 @@ interface INotificationUpdateAvailabilityInput {
 
 This call returns an [INotification](notification-types#inotification) object.
 
-## Disable Notifications on Organization
+## Disable notifications on organization
 
 <span class="badge badge--warning">Require authentication</span>
 
-Allows you to deactivate a type of notification for an organization
+Allows you to deactivate notifications for an organization
 
 ```ts
 const notifications = await notification(client).disableToOrganization(data: INotificationUpdateAvailabilityInput, id: string);
@@ -81,13 +81,11 @@ This call returns an [INotification](notification-types#inotification) object.
 Allows you to update a notification
 
 ```ts
-const notifications = await notification(client).updateNotification(id: string, data: Partial<INotification>);
+const notifications = await notification(client).updateNotification(id: string, data: INotificationUpdateDto);
 ```
 
-`Partial<INotification>` corresponding to have an new interface with all properties of [INotification](notification-types#inotification) optionnal 
-
 ```ts
-interface NotificationUpdateInputDto {
+interface INotificationUpdateDto {
   enabled: boolean;
   contentEmail: string;
   contentSMS: string;

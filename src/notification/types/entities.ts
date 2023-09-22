@@ -14,34 +14,57 @@ export interface INotificationUpdateAvailabilityInput {
   type: string;
 }
 
+export interface INotificationUpdateDto {
+  contentEmail: string;
+  contentSMS: string;
+  enabled: boolean;
+}
+
 export interface INotification {
-  contentEmail?: string;
-  contentSMS?: string;
-  enabled?: boolean;
   id: string;
-  uri?: string;
-  consumerId?: string;
-  name?: string;
-  code?: NotificationEnum;
-  tokens?: string[];
-  email?: {
-    fr?: {
-      subject: string;
-      text?: string;
-      html: string;
-    };
-    en?: {
-      subject: string;
-      text: string;
-      html: string;
-    };
-  };
-  sms?: {
-    fr: {
-      text: string;
-    };
-    en: { text: string };
-  };
+  uri: string;
+  consumerId: string;
+  name: string;
+  code: NotificationEnum;
+  email: IEmail;
+  sms: ISMS;
+  push: IPush;
+  isActivatable: boolean;
+  enabled: boolean;
+  conditions?: { [key: string]: any };
+  createdAt: any;
+  updatedAt: any;
+}
+
+export interface IEmail {
+  fr: IEmailContent;
+  en: IEmailContent;
+}
+
+export interface IEmailContent {
+  subject: string;
+  text: string;
+  html: string;
+}
+
+export interface ISMS {
+  fr: ISMSContent;
+  en: ISMSContent;
+}
+
+export interface ISMSContent {
+  text: string;
+}
+
+export interface IPush {
+  fr: IPushContent;
+  en: IPushContent;
+  data?: { [key: string]: any };
+}
+
+export interface IPushContent {
+  title: string;
+  text: string;
 }
 
 export enum NotificationEnum {

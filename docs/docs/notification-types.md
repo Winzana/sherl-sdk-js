@@ -16,33 +16,19 @@ interface INotificationRegistrationResponse {
 ## INotification
 ```ts
 interface INotification {
-  contentEmail?: string;
-  contentSMS?: string;
-  enabled?: boolean;
   id: string;
-  uri?: string;
-  consumerId?: string;
-  name?: string;
-  code?: NotificationEnum;
-  tokens?: string[];
-  email?: {
-    fr?: {
-      subject: string;
-      text?: string;
-      html: string;
-    };
-    en?: {
-      subject: string;
-      text: string;
-      html: string;
-    };
-  };
-  sms?: {
-    fr: {
-      text: string;
-    };
-    en: { text: string };
-  };
+  uri: string;
+  consumerId: string;
+  name: string;
+  code: NotificationEnum;
+  email: IEmail;
+  sms: ISMS;
+  push: IPush;
+  isActivatable: boolean;
+  enabled: boolean;
+  conditions?: { [key: string]: any };
+  createdAt: any;
+  updatedAt: any;
 }
 
 enum NotificationEnum {
@@ -70,18 +56,35 @@ enum NotificationEnum {
   SHOP_ORDER_STATUS_CHANGED_TO_PAYMENT_REFUSED = 'shop:order:status:basket-validated-to-payment-refused',
   SHOP_ORDER_STATUS_CHANGED_TO_ORGANIZATION_CANCELLED = 'shop:order:order-in-progress-to-organization-cancelled',
 }
-```
 
-## Notification disabled on the organization
+interface IEmail {
+  fr: IEmailContent;
+  en: IEmailContent;
+}
 
-```ts
-HTTP.OK (200) : "Successful disable notification to organization"
-HTTP.NOT_FOUND (404) : "Notification not exist"
-```
+interface IEmailContent {
+  subject: string;
+  text: string;
+  html: string;
+}
 
-## Notification enabled on the organization
+interface ISMS {
+  fr: ISMSContent;
+  en: ISMSContent;
+}
 
-```ts
-HTTP.OK (200) : "Successful enable notification to organization"
-HTTP.NOT_FOUND (404) : "Notification not exist"
+interface ISMSContent {
+  text: string;
+}
+
+interface IPush {
+  fr: IPushContent;
+  en: IPushContent;
+  data?: { [key: string]: any };
+}
+
+interface IPushContent {
+  title: string;
+  text: string;
+}
 ```

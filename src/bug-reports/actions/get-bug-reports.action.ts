@@ -1,4 +1,4 @@
-import { Pagination } from '../../common';
+import { ISearchResult } from '../../common';
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { BugReportsErr, errorFactory } from '../errors';
@@ -6,9 +6,9 @@ import { IBugReport } from '../types';
 
 export const getBugReports = async (
   fetcher: Fetcher,
-): Promise<Pagination<IBugReport>> => {
+): Promise<ISearchResult<IBugReport>> => {
   const response = await fetcher
-    .get<Pagination<IBugReport>>(endpoints.BUG_REPORTS)
+    .get<ISearchResult<IBugReport>>(endpoints.BUG_REPORTS)
     .catch((_err) => {
       throw errorFactory.create(BugReportsErr.GET_BUG_REPORTS_FAILED);
     });
