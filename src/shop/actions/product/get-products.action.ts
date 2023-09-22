@@ -8,8 +8,8 @@ export const getProducts = async (
   page = 1,
   itemsPerPage = 10,
   filters: { [key: string]: any },
-): Promise<Pagination<IProductResponse[]>> => {
-  const response = await fetcher.get<Pagination<IProductResponse[]>>(
+): Promise<Pagination<IProductResponse>> => {
+  const response = await fetcher.get<Pagination<IProductResponse>>(
     endpoints.GET_PRODUCTS,
     {
       page,

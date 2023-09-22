@@ -5,7 +5,7 @@ export type ApiResponse<T> = AxiosResponse<T>;
 export type ApiResponseError<T = any> = AxiosError<T>;
 
 export interface Pagination<Data> {
-  results: Data;
+  results: Data[];
   view: View;
 }
 

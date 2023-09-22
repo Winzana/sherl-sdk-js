@@ -9,3 +9,8 @@ export * from './shop';
 export * from './organization';
 export * from './user';
 export * from './bug-reports';
+export * from './media';
+export * from './iam';
+export * from './contact';
+export * from './opinion';
+export * from './claim';

@@ -17,6 +17,12 @@ module.exports = {
       'discount',
       'place',
       'bug-report',
+      'media',
+      'iam',
+      'contact',
+      'opinion',
+      'claim',
     ],
+    Types: ['pagination', 'claim-types', 'opinion-types', 'organization-types'],
   },
 };
