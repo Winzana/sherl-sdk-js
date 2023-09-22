@@ -14,3 +14,20 @@ export interface View {
   page: number;
   itemsPerPage: number;
 }
+
+export interface ISearchResult<T> extends Pagination<T> {
+  aggregations?: {
+    [key: string]: {
+      count: number;
+      id: string;
+      key: string;
+      sub?: {
+        [key: string]: {
+          count: number;
+          id: string;
+          key: string;
+        };
+      };
+    };
+  };
+}
