@@ -31,11 +31,11 @@ module.exports = {
       'organization-types',
       'notification-types',
       'bug-report-types',
-      'wallet-types',
       'config-types',
       'place-types',
       'quotas-types',
       'calendar-types',
+      'shop-types',
     ],
   },
 };
