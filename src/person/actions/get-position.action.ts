@@ -1,7 +1,7 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
-import { ILocation, IPositionInputDto } from '../types';
-import { Pagination } from '../../common';
+import { IPositionInputDto } from '../types';
+import { ILocation, Pagination } from '../../common';
 
 export const getCurrentAddress = async (
   fetcher: Fetcher,
