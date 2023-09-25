@@ -1,6 +1,7 @@
-import { ApiResponse, Fetcher } from '../../../common/api';
+import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
-import { IPublicCategoryResponse } from '../../types/product/types';
+import { IPublicCategoryResponse } from '../../types';
+import { ApiResponse } from '../../../common/types/response';
 
 export const getPublicCategories = async (
   fetcher: Fetcher,

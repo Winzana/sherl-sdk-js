@@ -8,12 +8,18 @@ sidebar_label: User
 <span class="badge badge--warning">Require authentication</span>
 
 Update my user password :
-Update current user password based on bearer token
+Update current user password based on Bearer token
 
 ```ts
-await user(client).updateMyPassword({
-  oldPassword: 'notsosecret',
-  password: 'reallysecret',
-  passwordRepeat: 'reallysecret',
-});
+await user(client).updateMyPassword(data: IUpdatePasswordDto);
 ```
+
+```ts
+interface IUpdatePasswordDto {
+  oldPassword: string;
+  password: string;
+  passwordRepeat: string;
+}
+```
+
+This call returns a boolean according to successfully

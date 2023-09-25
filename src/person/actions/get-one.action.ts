@@ -1,16 +1,17 @@
-import { ApiResponse, Fetcher } from '../../common/api';
+import { Fetcher } from '../../common/api';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
-import { IPersonMeResponse } from '../types';
+import { IPerson } from '../types';
+import { ApiResponse } from '../../common';
 
 export const getPersonById = async (
   fetcher: Fetcher,
   id: string,
-): Promise<IPersonMeResponse> => {
-  let response: ApiResponse<IPersonMeResponse> | null = null;
+): Promise<IPerson> => {
+  let response: ApiResponse<IPerson> | null = null;
 
   try {
-    response = await fetcher.get<IPersonMeResponse>(
+    response = await fetcher.get<IPerson>(
       StringUtils.bindContext(endpoints.GET_ONE_BY_USERID, { id }),
     );
   } catch ({ name, response: responseError, stack, isAxiosError, ...rest }) {

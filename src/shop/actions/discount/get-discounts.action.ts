@@ -1,14 +1,15 @@
-import { Fetcher, Pagination } from '../../../common/api';
+import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
-import { IDiscountResponse } from '../../types/discount/types';
+import { IDiscount } from '../../types';
+import { Pagination } from '../../../common/types/response';
 
 export const getDiscounts = async (
   fetcher: Fetcher,
   page = 1,
   itemsPerPage = 10,
   filters: { [key: string]: any },
-): Promise<Pagination<IDiscountResponse[]>> => {
-  const response = await fetcher.get<Pagination<IDiscountResponse[]>>(
+): Promise<Pagination<IDiscount>> => {
+  const response = await fetcher.get<Pagination<IDiscount>>(
     endpoints.GET_DISCOUNTS,
     {
       page,

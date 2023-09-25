@@ -1,32 +1,5 @@
 import { IOrganizationResponse } from '../../../organization/types';
-import { IProductResponse, ICategoryResponse } from '../product/types';
-
-export interface IDiscountResponse {
-  id: string;
-  uri: string;
-  name: string;
-  ownerUri: string;
-  owner: IOrganizationResponse;
-  consumerId: string;
-  availableFrom: Date;
-  availableUntil: Date;
-  public: boolean;
-  visibleToPublic: boolean;
-  enabled: boolean;
-  highlight: boolean;
-  cumulative: boolean;
-  discountType: DiscountTypeEnum;
-  code: string;
-  percentage: number;
-  amount: number;
-  quantity: number;
-  quantityPerUser: number;
-  customers: string[];
-  productRestrictions: IProductRestriction[];
-  dateRestrictions: IDateRestriction[];
-  createdAt: Date;
-  updatedAt: Date;
-}
+import { IProductResponse, ICategoryResponse } from '../product/entities';
 
 export interface IDateRestriction {
   date: Date;
@@ -78,4 +51,31 @@ export interface IDiscountParameter {
       toHour: 'Date';
     },
   ];
+}
+
+export interface IDiscount {
+  id: string;
+  uri: string;
+  name: string;
+  ownerUri: string;
+  owner: IOrganizationResponse;
+  consumerId: string;
+  availableFrom: Date;
+  availableUntil: Date;
+  public: boolean;
+  visibleToPublic: boolean;
+  enabled: boolean;
+  highlight: boolean;
+  cumulative: boolean;
+  discountType: DiscountTypeEnum;
+  code: string;
+  percentage: number;
+  amount: number;
+  quantity: number;
+  quantityPerUser: number;
+  customers: string[];
+  productRestrictions: IProductRestriction[];
+  dateRestrictions: IDateRestriction[];
+  createdAt: Date;
+  updatedAt: Date;
 }
