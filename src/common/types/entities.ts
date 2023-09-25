@@ -7,24 +7,13 @@ export interface IOpeningHoursSpecification {
   validThrough: Date;
 }
 
-export interface IAddress {
+export interface ILocation {
   id: string;
   country: string;
   locality: string;
   region: string;
-  department: string;
-  types: string[];
   postalCode: string;
   streetAddress: string;
-  complementaryStreetAddress: string;
-  name: string;
-  type: string;
-  isDefault: boolean;
-  googleToken: string;
-  uri: string;
-}
-
-export interface IGeoCoordinates extends IAddress {
-  latitude: number;
-  longitude: number;
+  latitude: string;
+  longitude: string;
 }

@@ -1,7 +1,6 @@
-import { IGeoCoordinates } from '../../common';
 import { IImageObject } from '../../media';
 import { IOrganizationResponse } from '../../organization/types';
-import { IPlace } from '../../place/types';
+import { IGeoCoordinates, IPlace } from '../../place/types';
 
 export interface IPerson {
   id: string;
@@ -184,17 +183,6 @@ export interface IValue {
   language: string;
   value: string;
   createdAt: string;
-}
-
-export interface ILocation {
-  id: string;
-  country: string;
-  locality: string;
-  region: string;
-  postalCode: string;
-  streetAddress: string;
-  latitude: string;
-  longitude: string;
 }
 
 export interface ILemonwayCard {
