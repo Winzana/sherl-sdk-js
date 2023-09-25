@@ -34,6 +34,7 @@ module.exports = {
       'wallet-types',
       'config-types',
       'place-types',
+      'quotas-types',
     ],
   },
 };
