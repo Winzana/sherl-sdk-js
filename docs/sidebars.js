@@ -32,6 +32,7 @@ module.exports = {
       'notification-types',
       'bug-report-types',
       'wallet-types',
+      'config-types',
     ],
   },
 };
