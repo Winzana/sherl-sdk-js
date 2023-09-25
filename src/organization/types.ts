@@ -1,4 +1,5 @@
-import { PaginationFilters, IOpeningHoursSpecification } from '../common';
+import { ICalendarEvent, IDays, IOpeningHoursSpecification } from '../calendar';
+import { PaginationFilters } from '../common';
 import { IImageObject } from '../media';
 import { IPerson } from '../person';
 import { IPlace, IGeoCoordinates } from '../place/types';
@@ -100,18 +101,6 @@ export interface IOrganizationResponse {
   };
 }
 
-export interface ICalendarEvent {
-  id?: string;
-  uri?: string;
-  aboutUri?: string;
-  calendarUri?: string;
-  startDate?: Date;
-  endDate?: Date;
-  location?: IGeoCoordinates;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-
 export interface IPersonConfigValue {
   code: string;
   value: any;
@@ -138,14 +127,6 @@ export interface ITaxonomyValue {
   value: string;
   createdAt: Date;
   updatedAt?: Date;
-}
-
-// TODO move to calendar types
-export interface IDays {
-  closed: boolean;
-  day: string;
-  morningTime: string;
-  nightTime: string;
 }
 
 export interface IOrganizationCommunication {

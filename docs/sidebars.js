@@ -35,6 +35,7 @@ module.exports = {
       'config-types',
       'place-types',
       'quotas-types',
+      'calendar-types',
     ],
   },
 };
