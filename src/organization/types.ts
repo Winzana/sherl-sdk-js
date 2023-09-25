@@ -2,6 +2,7 @@ import { PaginationFilters, IOpeningHoursSpecification } from '../common';
 import { IImageObject } from '../media';
 import { IPerson } from '../person';
 import { IPlace, IGeoCoordinates } from '../place/types';
+import { IQuotas } from '../quotas/types';
 import {
   ICategoryResponse,
   IProductResponse,
@@ -116,37 +117,9 @@ export interface IPersonConfigValue {
   value: any;
 }
 
-// TODO Move into quotas product
-export interface IQuotas {
-  id: string;
-  uri: string;
-  consumerId: string;
-  type: CommunicationTypeEnum;
-  amount: number;
-  allowNegative: boolean;
-  ownerUri: string; // Person or organization associated to Quota wallet
-  sources: IQuotaSource[]; // Sources for recurrent provisioning
-  createdAt: Date;
-  updatedAt: Date;
-}
-
 export enum CommunicationTypeEnum {
   MESSAGING = 'MESSAGING',
   TRANSACTIONAL = 'TRANSACTIONAL',
-}
-
-// TODO Move into quotas product
-export interface IQuotaSource {
-  id: string;
-  uri?: string;
-  lastApply: Date;
-  nextApply: Date;
-  amount: number;
-  remaining: number;
-  createdFrom?: string;
-  createdBy?: string;
-  createdAt?: Date;
-  quotaId: string;
 }
 
 export interface ITaxonomy {
