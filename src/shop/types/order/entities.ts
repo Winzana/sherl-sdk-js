@@ -1,7 +1,11 @@
-import { IOrganizationResponse, IOffer } from '../../../organization/types';
+import { IOrganizationResponse } from '../../../organization/types';
 import { IPerson } from '../../../person/types';
 import { IAddress } from '../../../common';
-import { IProductResponse, ShopProductTypeEnum } from '../product/entities';
+import {
+  IOffer,
+  IProductResponse,
+  ShopProductTypeEnum,
+} from '../product/entities';
 import { IDiscount } from '../discount/entities';
 
 export interface IOrderResponse {

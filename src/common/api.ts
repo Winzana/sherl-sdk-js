@@ -31,9 +31,17 @@ class Fetcher {
     url: string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: { [key: string]: any },
+    params?: { [key: string]: any },
+    config?: AxiosRequestConfig,
   ): Promise<ApiResponse<T>> {
+    if (params) {
+      const queryParamsString = Object.keys(params)
+        .map((key) => `${key}=${params[key]}`)
+        .join('&');
+      url += `?${queryParamsString}`;
+    }
     return this.apiInstance
-      .post<T>(url, data)
+      .post<T>(url, data, config)
       .catch((err: AxiosError<ApiResponseError>) => {
         if (err.response && err.response.status) {
           throw this.errorFactory.create(
@@ -53,6 +61,25 @@ class Fetcher {
   ): Promise<ApiResponse<T>> {
     return this.apiInstance
       .put<T>(url, data)
+      .catch((err: AxiosError<ApiResponseError>) => {
+        if (err.response && err.response.status) {
+          throw this.errorFactory.create(
+            getErrorCodeByHttpStatus(err.response.status),
+            { message: err.response?.data?.message },
+          );
+        }
+
+        throw err;
+      });
+  }
+
+  public async delete<T>(
+    url: string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    params?: { [key: string]: any },
+  ): Promise<ApiResponse<T>> {
+    return this.apiInstance
+      .delete<T>(url, { params })
       .catch((err: AxiosError<ApiResponseError>) => {
         if (err.response && err.response.status) {
           throw this.errorFactory.create(

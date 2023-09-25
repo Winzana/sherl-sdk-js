@@ -1,3 +1,5 @@
+import { IImageObject } from '../../../media';
+
 export interface ICategoryResponse {
   id: string;
   uri: string;
@@ -31,12 +33,6 @@ export interface IProductResponse {
 
 export interface IMetadatas {
   degreeOfAlcohol: string;
-}
-
-export interface IOffer {
-  price: number;
-  taxRate: number;
-  priceTaxIncluded: number;
 }
 
 export interface IItem {
@@ -103,28 +99,6 @@ export enum OfferFrequencyEnum {
   YEARLY = 'yearly',
 }
 
-export interface IImageObject {
-  id: string;
-  consumerId: string;
-  domain: string;
-  uri: string;
-  width: number;
-  height: number;
-  caption: IMediaObject;
-  thumbnail: IImageObject;
-  createdAt: Date;
-}
-
-export interface IMediaObject {
-  contentUrl: string;
-  description: string;
-  duration: string;
-  encodingFormat: string;
-  size: number;
-  name: string;
-  id: string;
-}
-
 export interface IPublicCategoryResponse {
   id: string;
   uri: string;
@@ -143,7 +117,7 @@ export interface IPublicCategoryResponse {
   updatedAt: Date;
   aggCategory: string;
   is: false;
-  // seo: SEO; Besoin de SEO ? Je ne l'ai pas dans mes interfaces
+  // seo: SEO; TODO check if needed
 }
 
 export enum ShopProductTypeEnum {
@@ -155,4 +129,22 @@ export enum ShopProductTypeEnum {
   PLAN = 'PLAN',
   QUOTA = 'QUOTA',
   REFUND = 'REFUND', // Un avoir
+}
+
+export interface ISubscription {
+  id: string;
+  uri: string;
+  name: string;
+  ownerUri: string;
+  consumerId: string;
+  activeFrom: Date;
+  activeUntil: Date;
+  frequency: OfferFrequencyEnum;
+  enabled: boolean;
+  disabledAt: Date;
+  sourceUri: string;
+  offer: IOffer;
+  contextUri: string;
+  metadatas: { [key: string]: any };
+  createdAt: Date;
 }

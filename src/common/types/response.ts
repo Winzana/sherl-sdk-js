@@ -5,7 +5,7 @@ export type ApiResponse<T> = AxiosResponse<T>;
 export type ApiResponseError<T = any> = AxiosError<T>;
 
 export interface Pagination<Data> {
-  results: Data;
+  results: Data[];
   view: View;
 }
 
@@ -13,4 +13,21 @@ export interface View {
   total: number;
   page: number;
   itemsPerPage: number;
+}
+
+export interface ISearchResult<T> extends Pagination<T> {
+  aggregations?: {
+    [key: string]: {
+      count: number;
+      id: string;
+      key: string;
+      sub?: {
+        [key: string]: {
+          count: number;
+          id: string;
+          key: string;
+        };
+      };
+    };
+  };
 }

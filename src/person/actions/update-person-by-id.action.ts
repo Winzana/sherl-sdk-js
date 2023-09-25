@@ -8,7 +8,7 @@ import { ApiResponse } from '../../common';
 export const updatePersonById = async (
   fetcher: Fetcher,
   id: string,
-  params: Partial<IPersonUpdate>,
+  body: Partial<IPersonUpdate>,
 ): Promise<IPerson> => {
   let response: ApiResponse<IPerson> | null = null;
 
@@ -16,7 +16,7 @@ export const updatePersonById = async (
     response = await fetcher
       .put<IPerson>(
         StringUtils.bindContext(endpoints.UPDATE_PERSON_BY_ID, { id }),
-        params,
+        body,
       )
       .catch(() => {
         throw errorFactory.create(PersonErr.PUT_FAILED);

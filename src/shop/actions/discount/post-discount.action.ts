@@ -1,14 +1,14 @@
 import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
 import { DiscountErr, errorFactory } from '../../errors/discount/errors';
-import { IDiscountParameter, IDiscountResponse } from '../../types';
+import { IDiscountParameter, IDiscount } from '../../types';
 
 export const postDiscount = async (
   fetcher: Fetcher,
   parameter: IDiscountParameter,
-): Promise<IDiscountResponse> => {
+): Promise<IDiscount> => {
   const response = await fetcher
-    .post<IDiscountResponse>(endpoints.POST_DISCOUNT, {
+    .post<IDiscount>(endpoints.POST_DISCOUNT, {
       ...parameter,
     })
     .catch((_err) => {
