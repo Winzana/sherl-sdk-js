@@ -204,11 +204,6 @@ export interface IEmployee extends IPerson {
   email: string;
 }
 
-export interface IAddRibBody {
-  iban: string;
-  bic: string;
-}
-
 export interface IOrganizationDocumentsResponse {
   bic: string;
   iban: string;

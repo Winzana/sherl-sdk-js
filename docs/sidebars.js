@@ -31,6 +31,7 @@ module.exports = {
       'organization-types',
       'notification-types',
       'bug-report-types',
+      'wallet-types',
     ],
   },
 };

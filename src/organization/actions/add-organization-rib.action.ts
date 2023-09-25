@@ -1,16 +1,16 @@
 import { Fetcher } from '../../common/api';
 import { StringUtils } from '../../common/utils/string';
+import { IAddRibBody, IRib } from '../../shop/types';
 import { endpoints } from '../api/endpoints';
 import { OrganizationErr, errorFactory } from '../errors';
-import { IAddRibBody } from '../types';
 
 export const addOrganizationRib = async (
   fetcher: Fetcher,
   id: string,
   body: IAddRibBody,
-): Promise<boolean> => {
+): Promise<IRib> => {
   const response = await fetcher
-    .post<boolean>(
+    .post<IRib>(
       StringUtils.bindContext(endpoints.ORGANIZATION_DOCUMENTS, { id }),
       body,
     )
@@ -22,5 +22,5 @@ export const addOrganizationRib = async (
     throw errorFactory.create(OrganizationErr.FAILED_ADD_ORGANIZATION_RIB);
   }
 
-  return true;
+  return response.data;
 };
