@@ -33,6 +33,7 @@ module.exports = {
       'bug-report-types',
       'wallet-types',
       'config-types',
+      'place-types',
     ],
   },
 };

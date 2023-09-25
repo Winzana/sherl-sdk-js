@@ -1,11 +1,7 @@
-import {
-  IGeoCoordinates,
-  PaginationFilters,
-  IOpeningHoursSpecification,
-} from '../common';
+import { PaginationFilters, IOpeningHoursSpecification } from '../common';
 import { IImageObject } from '../media';
 import { IPerson } from '../person';
-import { IPlace } from '../place/types';
+import { IPlace, IGeoCoordinates } from '../place/types';
 import {
   ICategoryResponse,
   IProductResponse,
