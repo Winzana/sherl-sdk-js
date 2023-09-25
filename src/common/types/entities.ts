@@ -1,12 +1,3 @@
-export interface IOpeningHoursSpecification {
-  id: string;
-  dayOfWeek: string;
-  closes: Date;
-  opens: Date;
-  validFrom: Date;
-  validThrough: Date;
-}
-
 export interface ILocation {
   id: string;
   country: string;
