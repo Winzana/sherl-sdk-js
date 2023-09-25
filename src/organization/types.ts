@@ -3,6 +3,7 @@ import {
   PaginationFilters,
   IOpeningHoursSpecification,
 } from '../common';
+import { CommunicationTypeEnum } from '../communication/types';
 import { IImageObject } from '../media';
 import { IPerson } from '../person';
 import { IPlace } from '../place/types';
@@ -132,22 +133,6 @@ export interface IQuotas {
   sources: IQuotaSource[]; // Sources for recurrent provisioning
   createdAt: Date;
   updatedAt: Date;
-}
-
-export enum CommunicationTypeEnum {
-  MESSAGING = 'MESSAGING',
-  TRANSACTIONAL = 'TRANSACTIONAL',
-}
-
-export enum CommunicationChannelEnum {
-  EMAIL = 'EMAIL',
-  SMS = 'SMS',
-  PUSH = 'PUSH',
-  WHATSAPP = 'WHATSAPP',
-  FACEBOOK = 'FACEBOOK',
-  TWITTER = 'TWITTER',
-  INSTAGRAM = 'INSTAGRAM',
-  TELEGRAM = 'TELEGRAM',
 }
 
 // TODO Move into quotas product

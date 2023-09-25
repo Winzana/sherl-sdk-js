@@ -1,8 +1,3 @@
-import {
-  CommunicationTypeEnum,
-  CommunicationChannelEnum,
-} from '../organization/types';
-
 export interface ICommunicationFindByInputDto {
   id?: string;
   uri?: string;
@@ -12,4 +7,20 @@ export interface ICommunicationFindByInputDto {
   aboutUri?: string;
   channel?: CommunicationChannelEnum;
   type?: CommunicationTypeEnum;
+}
+
+export enum CommunicationTypeEnum {
+  MESSAGING = 'MESSAGING',
+  TRANSACTIONAL = 'TRANSACTIONAL',
+}
+
+export enum CommunicationChannelEnum {
+  EMAIL = 'EMAIL',
+  SMS = 'SMS',
+  PUSH = 'PUSH',
+  WHATSAPP = 'WHATSAPP',
+  FACEBOOK = 'FACEBOOK',
+  TWITTER = 'TWITTER',
+  INSTAGRAM = 'INSTAGRAM',
+  TELEGRAM = 'TELEGRAM',
 }
