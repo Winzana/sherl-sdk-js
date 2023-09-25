@@ -5,14 +5,14 @@ title: Config
 
 ## Usage
 
-the config domain will be used to store any data with a couple key/value
+The config domain will be used to store any data with a couple key/value
 
 ## Set your config couple
 
 <span class="badge badge--warning">Require authentication</span>
 
 ```ts
-config(client).setConfig(data: ISetConfig);
+await config(client).setConfig(data: ISetConfig);
 ```
 
 ```ts
@@ -26,16 +26,16 @@ interface ISetConfig {
 
 appliedTo  = you can assign your config to a specific user or organisation (if not set, your config will be a generic config)
 
-This call returns an object of [IConfig](config-types)
+This call returns an object of [IConfig](config-types#iconfig)
 
 ## Get your public config
 
 <span class="badge badge--success">Public</span>
 
 ```ts
-config(client).getPublicConfig(key: string);
+await config(client).getPublicConfig(key: string);
 ```
 
-This function retrieve the config value for the given key, but only if you set your config as <b>public</b>.
+This function retrieve the config value for the given key, but only if you set your config as <b>public (isPublic: true)</b>.
 
-This call returns [IPublicConfig](config-types)
+This corresponds to a type: **any**
