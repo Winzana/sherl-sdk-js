@@ -223,5 +223,3 @@ interface IOrganizationDocumentsResponse {
   status: string;
 }
 ```
-
-
