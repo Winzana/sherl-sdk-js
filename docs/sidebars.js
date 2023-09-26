@@ -36,6 +36,7 @@ module.exports = {
       'quotas-types',
       'calendar-types',
       'shop-types',
+      'person-types',
     ],
   },
 };

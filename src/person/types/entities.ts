@@ -24,8 +24,8 @@ export interface IPerson {
   longitude: number;
   jobTitle: string;
   enabled: boolean;
-  legalNotice: ILegalNotice;
-  privacyPolicy: IPrivacyPolicy;
+  legalNotice: ILegalNoticeAcceptance;
+  privacyPolicy: ILegalNoticeAcceptance;
   createdAt: Date;
   updatedAt: Date;
   picture: IImageObject;
@@ -143,15 +143,7 @@ export interface IStripeCard {
   default: boolean;
 }
 
-export interface IFrequentedEstablishments {
-  organizationId: string;
-  organizationName: string;
-  firstVisit: Date;
-  lastVisit: Date;
-  isCustomer: boolean;
-}
-
-export interface IPrivacyPolicy {
+export interface ILegalNoticeAcceptance {
   version: string;
   dateOfAcceptance: Date;
 }
@@ -162,11 +154,6 @@ export interface ISettings {
     smsEnable: boolean;
     pushEnable: boolean;
   };
-}
-
-interface ILegalNotice {
-  version: string;
-  dateOfAcceptance: Date;
 }
 
 export interface IServiceTypeResonse {
@@ -233,4 +220,12 @@ export enum GendersEnum {
 export interface IPositionInputDto {
   latitude: number;
   longitude: number;
+}
+
+export interface IFrequentedEstablishments {
+  organizationId: string;
+  organizationName: string;
+  firstVisit: Date;
+  lastVisit: Date;
+  isCustomer: boolean;
 }
