@@ -60,7 +60,7 @@ interface IAddRibBody {
 }
 ```
 
-This call returns an [IRib](wallet-types#irib) object.
+This call returns an [IRib](shop-types#irib) object.
 
 ## Get all organization documents
 
