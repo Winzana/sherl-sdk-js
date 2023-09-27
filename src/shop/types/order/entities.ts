@@ -1,12 +1,12 @@
 import { IOrganizationResponse } from '../../../organization/types';
 import { IPerson } from '../../../person/types';
-import { IAddress } from '../../../common';
 import {
   IOffer,
   IProductResponse,
   ShopProductTypeEnum,
 } from '../product/entities';
 import { IDiscount } from '../discount/entities';
+import { IAddress } from '../../../place/types';
 
 export interface IOrderResponse {
   id: string;

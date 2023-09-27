@@ -31,6 +31,12 @@ module.exports = {
       'organization-types',
       'notification-types',
       'bug-report-types',
+      'config-types',
+      'place-types',
+      'quotas-types',
+      'calendar-types',
+      'shop-types',
+      'person-types',
     ],
   },
 };

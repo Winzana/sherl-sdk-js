@@ -1,12 +1,10 @@
-import {
-  IGeoCoordinates,
-  PaginationFilters,
-  IOpeningHoursSpecification,
-} from '../common';
-import { CommunicationTypeEnum } from '../communication/types';
+import { ICalendarEvent, IDays, IOpeningHoursSpecification } from '../calendar';
+import { PaginationFilters } from '../common';
 import { IImageObject } from '../media';
 import { IPerson } from '../person';
-import { IPlace } from '../place/types';
+import { IPlace, IGeoCoordinates } from '../place/types';
+
+import { IQuotas } from '../quotas/types';
 import {
   ICategoryResponse,
   IProductResponse,
@@ -104,49 +102,9 @@ export interface IOrganizationResponse {
   };
 }
 
-export interface ICalendarEvent {
-  id?: string;
-  uri?: string;
-  aboutUri?: string;
-  calendarUri?: string;
-  startDate?: Date;
-  endDate?: Date;
-  location?: IGeoCoordinates;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-
 export interface IPersonConfigValue {
   code: string;
   value: any;
-}
-
-// TODO Move into quotas product
-export interface IQuotas {
-  id: string;
-  uri: string;
-  consumerId: string;
-  type: CommunicationTypeEnum;
-  amount: number;
-  allowNegative: boolean;
-  ownerUri: string; // Person or organization associated to Quota wallet
-  sources: IQuotaSource[]; // Sources for recurrent provisioning
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-// TODO Move into quotas product
-export interface IQuotaSource {
-  id: string;
-  uri?: string;
-  lastApply: Date;
-  nextApply: Date;
-  amount: number;
-  remaining: number;
-  createdFrom?: string;
-  createdBy?: string;
-  createdAt?: Date;
-  quotaId: string;
 }
 
 export interface ITaxonomy {
@@ -165,14 +123,6 @@ export interface ITaxonomyValue {
   value: string;
   createdAt: Date;
   updatedAt?: Date;
-}
-
-// TODO move to calendar types
-export interface IDays {
-  closed: boolean;
-  day: string;
-  morningTime: string;
-  nightTime: string;
 }
 
 export interface IOrganizationCommunication {
@@ -198,11 +148,6 @@ export interface IEmployee extends IPerson {
   firstName: string;
   lastName: string;
   email: string;
-}
-
-export interface IAddRibBody {
-  iban: string;
-  bic: string;
 }
 
 export interface IOrganizationDocumentsResponse {

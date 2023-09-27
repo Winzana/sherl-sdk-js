@@ -1,4 +1,11 @@
-export interface IPlace {
+---
+id: place-types
+title: Place types
+---
+
+## IPlace
+```ts
+interface IPlace {
   id: string;
   uri: string;
   country: string;
@@ -19,8 +26,16 @@ export interface IPlace {
   type: string;
   isDefault: boolean;
 }
+```
 
-export interface IAddress {
+## IGeoCoordinates
+```ts
+interface IGeoCoordinates extends IAddress {
+  latitude: number;
+  longitude: number;
+}
+
+interface IAddress {
   id: string;
   country: string;
   locality: string;
@@ -36,8 +51,18 @@ export interface IAddress {
   googleToken: string;
   uri: string;
 }
+```
 
-export interface IGeoCoordinates extends IAddress {
-  latitude: number;
-  longitude: number;
+## ILocation
+```ts
+interface ILocation {
+  id: string;
+  country: string;
+  locality: string;
+  region: string;
+  postalCode: string;
+  streetAddress: string;
+  latitude: string;
+  longitude: string;
 }
+```
