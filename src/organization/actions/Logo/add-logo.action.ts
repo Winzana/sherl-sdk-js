@@ -20,6 +20,7 @@ export const addLogo = async (
         mediaId,
       }),
       formData,
+      undefined,
       {
         headers: {
           'Content-Type': 'multipart/form-data',

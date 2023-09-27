@@ -12,7 +12,7 @@ class Fetcher {
     url: string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     params?: { [key: string]: any },
-    config?: Omit<AxiosRequestConfig, 'params'>,
+    config?: AxiosRequestConfig,
   ): Promise<ApiResponse<T>> {
     return this.apiInstance
       .get<T>(url, { ...config, params })
@@ -32,8 +32,15 @@ class Fetcher {
     url: string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: { [key: string]: any },
+    params?: { [key: string]: any },
     config?: AxiosRequestConfig,
   ): Promise<ApiResponse<T>> {
+    if (params) {
+      const queryParamsString = Object.keys(params)
+        .map((key) => `${key}=${params[key]}`)
+        .join('&');
+      url += `?${queryParamsString}`;
+    }
     return this.apiInstance
       .post<T>(url, data, config)
       .catch((err: AxiosError<ApiResponseError>) => {
@@ -43,6 +50,7 @@ class Fetcher {
             { message: err.response?.data?.message },
           );
         }
+
         throw err;
       });
   }

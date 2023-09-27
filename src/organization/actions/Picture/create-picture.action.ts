@@ -20,6 +20,7 @@ export const createPicture = async (
         pictureId,
       }),
       formData,
+      undefined,
       {
         headers: {
           'Content-Type': 'mutlipart/form-data',

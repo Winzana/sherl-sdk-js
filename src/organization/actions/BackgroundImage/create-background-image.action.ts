@@ -19,6 +19,7 @@ export const createBackgroundImage = async (
         mediaId,
       }),
       request,
+      undefined,
       {
         onUploadProgress,
       },

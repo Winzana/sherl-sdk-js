@@ -16,6 +16,7 @@ export const addKycDocument = async (
         organizationId,
       }),
       request,
+      undefined,
       {
         onUploadProgress,
       },
