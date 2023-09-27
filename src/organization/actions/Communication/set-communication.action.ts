@@ -2,14 +2,14 @@ import { Fetcher } from '../../../common/api';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
-import { ICommunication } from '../../types';
+import { ICommunicationInputDto, IOrganizationResponse } from '../../types';
 
 export const setCommunication = async (
   fetcher: Fetcher,
   organizationId: string,
-  request: ICommunication,
-): Promise<ICommunication> => {
-  const response = await fetcher.post<ICommunication>(
+  request: ICommunicationInputDto,
+): Promise<IOrganizationResponse> => {
+  const response = await fetcher.post<IOrganizationResponse>(
     StringUtils.bindContext(endpoints.POST_SET_COMMUNICATION, {
       organizationId,
     }),

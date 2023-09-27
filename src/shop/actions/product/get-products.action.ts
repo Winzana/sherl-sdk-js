@@ -1,14 +1,15 @@
-import { Fetcher, Pagination } from '../../../common/api';
+import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
-import { IProductResponse } from '../../types/product/types';
+import { IProductResponse } from '../../types';
+import { Pagination } from '../../../common/types/response';
 
 export const getProducts = async (
   fetcher: Fetcher,
   page = 1,
   itemsPerPage = 10,
   filters: { [key: string]: any },
-): Promise<Pagination<IProductResponse[]>> => {
-  const response = await fetcher.get<Pagination<IProductResponse[]>>(
+): Promise<Pagination<IProductResponse>> => {
+  const response = await fetcher.get<Pagination<IProductResponse>>(
     endpoints.GET_PRODUCTS,
     {
       page,

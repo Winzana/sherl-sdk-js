@@ -2,21 +2,21 @@ import { Fetcher } from '../../../common/api';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
-import { IAddAddressResponse, IAddressRequest } from '../../types';
+import { IAddressRequest, IOrganizationResponse } from '../../types';
 
 export const addAddress = async (
   fetcher: Fetcher,
   organizationId: string,
   request: IAddressRequest,
-): Promise<IAddAddressResponse> => {
-  const response = await fetcher.post<IAddAddressResponse>(
+): Promise<IOrganizationResponse> => {
+  const response = await fetcher.post<IOrganizationResponse>(
     StringUtils.bindContext(endpoints.ADD_ADDRESS, {
       organizationId,
     }),
     request,
   );
 
-  if (response.status !== 200) {
+  if (response.status !== 201) {
     throw errorFactory.create(OrganizationErr.ADD_ADDRESS_FAILED);
   }
 

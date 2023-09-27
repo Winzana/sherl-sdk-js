@@ -1,10 +1,6 @@
-import axios, {
-  AxiosError,
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-} from 'axios';
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
 import { CommonErr, ErrorFactory, getErrorCodeByHttpStatus } from './errors';
+import { ApiResponse, ApiResponseError } from './types/response';
 
 class Fetcher {
   constructor(
@@ -16,9 +12,10 @@ class Fetcher {
     url: string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     params?: { [key: string]: any },
+    config?: Omit<AxiosRequestConfig, 'params'>,
   ): Promise<ApiResponse<T>> {
     return this.apiInstance
-      .get<T>(url, { params })
+      .get<T>(url, { ...config, params })
       .catch((err: AxiosError<ApiResponseError>) => {
         if (err.response && err.response.status) {
           throw this.errorFactory.create(
@@ -35,12 +32,31 @@ class Fetcher {
     url: string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: { [key: string]: any },
+    config?: AxiosRequestConfig,
   ): Promise<ApiResponse<T>> {
     return this.apiInstance
-      .post<T>(url, data)
+      .post<T>(url, data, config)
       .catch((err: AxiosError<ApiResponseError>) => {
         if (err.response && err.response.status) {
-          console.log(err.toJSON());
+          throw this.errorFactory.create(
+            getErrorCodeByHttpStatus(err.response.status),
+            { message: err.response?.data?.message },
+          );
+        }
+        throw err;
+      });
+  }
+
+  public async put<T>(
+    url: string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    data: { [key: string]: any },
+    config?: AxiosRequestConfig,
+  ): Promise<ApiResponse<T>> {
+    return this.apiInstance
+      .put<T>(url, data, config)
+      .catch((err: AxiosError<ApiResponseError>) => {
+        if (err.response && err.response.status) {
           throw this.errorFactory.create(
             getErrorCodeByHttpStatus(err.response.status),
             { message: err.response?.data?.message },
@@ -51,13 +67,13 @@ class Fetcher {
       });
   }
 
-  public async put<T>(
+  public async delete<T>(
     url: string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    data: { [key: string]: any },
+    params?: { [key: string]: any },
   ): Promise<ApiResponse<T>> {
     return this.apiInstance
-      .put<T>(url, data)
+      .delete<T>(url, { params })
       .catch((err: AxiosError<ApiResponseError>) => {
         if (err.response && err.response.status) {
           throw this.errorFactory.create(
@@ -86,6 +102,7 @@ export const initializeApi = (
   apiKey: string,
   apiSecret: string,
   apiUrl?: string,
+  referer?: string,
 ) => {
   const axiosInstance = axios.create({
     baseURL: apiUrl || 'https://api.sherl.io',
@@ -96,6 +113,10 @@ export const initializeApi = (
   axiosInstance.defaults.headers.put['Content-Type'] = 'application/json';
   axiosInstance.defaults.headers.get.Authorization = 'Bearer';
   axiosInstance.defaults.headers.put.Authorization = 'Bearer';
+  if (referer) {
+    // Only effective on server environment. This setting will be overriden by client browser.
+    axiosInstance.defaults.headers.common['Referer'] = referer;
+  }
 
   axiosInstance.interceptors.request.use(
     (config: CustomAxiosRequestConfig) => {
@@ -122,18 +143,3 @@ export const registerBearerToken = (instance: AxiosInstance, token: string) => {
     (error) => Promise.reject(error),
   );
 };
-
-export type ApiResponse<T> = AxiosResponse<T>;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type ApiResponseError<T = any> = AxiosError<T>;
-
-export interface Pagination<Data> {
-  results: Data;
-  view: View;
-}
-
-export interface View {
-  total: number;
-  page: number;
-  itemsPerPage: number;
-}

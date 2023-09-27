@@ -6,3 +6,4 @@ _bundles
 *.code-workspace
 coverage
 .DS_Store
+.idea

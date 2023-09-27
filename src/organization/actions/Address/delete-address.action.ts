@@ -2,15 +2,17 @@ import { Fetcher } from '../../../common/api';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
-import { IDeleteAddressResponse, IAddressRequest } from '../../types';
+import { IAddressRequest, IOrganizationResponse } from '../../types';
 
 export const deleteAddress = async (
   fetcher: Fetcher,
+  organizationId: string,
   addressId: string,
   request: IAddressRequest,
-): Promise<IDeleteAddressResponse> => {
-  const response = await fetcher.post<IDeleteAddressResponse>(
-    StringUtils.bindContext(endpoints.DELETE_ADDRESS, {
+): Promise<IOrganizationResponse> => {
+  const response = await fetcher.delete<IOrganizationResponse>(
+    StringUtils.bindContext(endpoints.MANAGE_ADDRESS, {
+      organizationId,
       addressId,
     }),
     request,

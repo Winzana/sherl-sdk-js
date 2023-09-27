@@ -1,6 +1,8 @@
-import { IGeoCoordinates, IPlace } from '../common/types';
+import { IImageObject } from '../../media';
+import { IOrganizationResponse } from '../../organization/types';
+import { IGeoCoordinates, IPlace } from '../../place/types';
 
-export interface IPersonMeResponse {
+export interface IPerson {
   id: string;
   uri: string;
   consumerId: string;
@@ -14,16 +16,16 @@ export interface IPersonMeResponse {
   mobilePhoneNumber: string;
   faxNumber: string;
   nationality: string;
-  affiliation: IOrganization;
+  affiliation: IOrganizationResponse;
   birthDate: Date;
   email: string;
-  gender: string;
+  gender: GendersEnum;
   latitude: number;
   longitude: number;
   jobTitle: string;
   enabled: boolean;
-  legalNotice: ILegalNotice;
-  privacyPolicy: IPrivacyPolicy;
+  legalNotice: ILegalNoticeAcceptance;
+  privacyPolicy: ILegalNoticeAcceptance;
   createdAt: Date;
   updatedAt: Date;
   picture: IImageObject;
@@ -34,7 +36,7 @@ export interface IPersonMeResponse {
   mangopayCards: IMangopayCard[];
   stripe: IStripe;
   lemonway: ILemonway;
-  type: IPersonTypeEnum;
+  type: PersonTypeEnum;
   frequentedEstablishments: IFrequentedEstablishments[];
   metadatas: { [key: string]: any };
   statistics: {
@@ -48,43 +50,30 @@ export interface IPersonMeResponse {
   };
 }
 
-export interface IConfigResponse {
-  id: string;
-  code: string;
-  value: any;
-  consumer: string;
-  position: number;
-  appliedTo?: string;
-  isPublic?: boolean;
+export interface IPersonUpdate {
+  firstName: string;
+  lastName: string;
+  address: IPlace;
+  type: PersonTypeEnum;
+  phoneNumber: string;
+  mobilePhoneNumber: string;
+  faxNumber: string;
+  nationality: string;
+  affiliation: IOrganizationResponse;
+  latitude: number;
+  longitude: number;
+  birthDate: Date;
+  email: string;
+  gender: GendersEnum;
+  jobTitle: string;
+  metadatas: { [key: string]: any };
 }
 
-export interface IImageObject {
-  id?: string;
-  consumerId?: string;
-  domain?: string;
-  uri?: string;
-  width?: number;
-  height?: number;
-  caption: IMediaObject;
-  thumbnail?: IImageObject;
-  createdAt?: Date;
-}
-
-export interface IMediaObject {
-  contentUrl: string;
-  description?: string;
-  duration?: string;
-  encodingFormat: string;
-  size?: number;
-  name: string;
-  id: string;
-}
-
-export interface IPersonTypeEnum {
-  frequentedEstablishment: {
-    organizationId: string;
-    isCustomer: boolean;
-  };
+export enum PersonTypeEnum {
+  DEFAULT = 'DEFAULT',
+  EMPLOYEE = 'EMPLOYEE',
+  FOUNDER = 'FOUNDER',
+  ADMIN = 'ADMIN',
 }
 
 export interface IMangopayCard {
@@ -154,15 +143,7 @@ export interface IStripeCard {
   default: boolean;
 }
 
-export interface IFrequentedEstablishments {
-  organizationId: string;
-  organizationName: string;
-  firstVisit: Date;
-  lastVisit: Date;
-  isCustomer: boolean;
-}
-
-export interface IPrivacyPolicy {
+export interface ILegalNoticeAcceptance {
   version: string;
   dateOfAcceptance: Date;
 }
@@ -173,28 +154,6 @@ export interface ISettings {
     smsEnable: boolean;
     pushEnable: boolean;
   };
-}
-
-interface ILegalNotice {
-  version: string;
-  dateOfAcceptance: Date;
-}
-
-interface IOrganization {
-  location: ILocation;
-  types: string[];
-  id: string;
-  employees: any[];
-  founders: any[];
-  knowsLanguage: any[];
-  openingHoursSpecification: IOpeningHoursSpecification[];
-  photos: any[];
-  serviceType: IServiceTypeResonse[];
-  isPaymentAllowed: boolean;
-  enabled: boolean;
-  uri: string;
-  consumerId: string;
-  legalName: string;
 }
 
 export interface IServiceTypeResonse {
@@ -213,26 +172,6 @@ export interface IValue {
   createdAt: string;
 }
 
-export interface ILocation {
-  id: string;
-  country: string;
-  locality: string;
-  region: string;
-  postalCode: string;
-  streetAddress: string;
-  latitude: string;
-  longitude: string;
-}
-
-export interface IOpeningHoursSpecification {
-  id: string;
-  dayOfWeek: string;
-  closes: string;
-  opens: string;
-  validFrom: string;
-  validThrough: string;
-}
-
 export interface ILemonwayCard {
   id: number;
   transactionId: number;
@@ -246,15 +185,14 @@ export interface ILemonwayCard {
 }
 
 export interface IPersonRegister {
-  id: string;
-  birthDate: string;
-  firstName: string;
-  lastName: string;
+  birthDate?: string;
+  firstName?: string;
+  lastName?: string;
   password: string;
   confirmPassword: string;
   email: string;
-  phoneNumber: string;
-  address: {
+  phoneNumber?: string;
+  address?: {
     id: string;
     uri: string;
     createdAt: string;
@@ -270,4 +208,24 @@ export interface IPersonRegister {
     latitude: number;
     longitude: number;
   };
+}
+
+export enum GendersEnum {
+  MAN = 'man',
+  WOMAN = 'woman',
+  OTHER = 'other',
+  NSP = 'nsp',
+}
+
+export interface IPositionInputDto {
+  latitude: number;
+  longitude: number;
+}
+
+export interface IFrequentedEstablishments {
+  organizationId: string;
+  organizationName: string;
+  firstVisit: Date;
+  lastVisit: Date;
+  isCustomer: boolean;
 }

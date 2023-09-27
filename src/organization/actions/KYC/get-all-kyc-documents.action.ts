@@ -1,25 +1,22 @@
-import { ApiResponse, Fetcher } from '../../../common/api';
+import { Fetcher } from '../../../common/api';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
-import { IDocument } from '../../types';
+import { OrganizationErr, errorFactory } from '../../errors';
+import { IKYCDocument } from '../../types';
 
 export const getAllKycDocuments = async (
   fetcher: Fetcher,
   organizationId: string,
-): Promise<IDocument[]> => {
-  let response: ApiResponse<IDocument[]> | null = null;
-
+): Promise<IKYCDocument[]> => {
   try {
-    response = await fetcher.get<IDocument[]>(
+    const response = await fetcher.get<IKYCDocument[]>(
       StringUtils.bindContext(endpoints.GET_DOCUMENTS, { organizationId }),
     );
-  } catch {
-    throw new Error('Cannot reach API');
-  }
-
-  if (response) {
+    if (response.status !== 200) {
+      throw errorFactory.create(OrganizationErr.GET_KYCS_FAILED);
+    }
     return response.data;
+  } catch {
+    throw errorFactory.create(OrganizationErr.GET_KYCS_FAILED);
   }
-
-  throw new Error('Empty response from API');
 };

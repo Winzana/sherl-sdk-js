@@ -6,6 +6,7 @@ export enum OrganizationErr {
   ADD_DOCUMENT_FAILED = 'organization/add-failed',
   UPDATE_DOCUMENT_FAILED = 'organization/update-failed',
   ADD_RIB_FAILED = 'organization/add-rib-failed',
+  GET_RIBS_FAILED = 'organization/fetch-documents-failed',
   SET_COMMUNICATION_FAILED = 'organization/set-communication-failed',
   ADD_LOGO_FAILED = 'organization/add-logo-failed',
   DELETE_LOGO_FAILED = 'organization/delete-logo-failed',
@@ -37,6 +38,8 @@ export enum OrganizationErr {
   DISABLE_ROAMING_FAILED = 'organization/disable-roaming-failed',
   UPDATE_THIRD_PARTY_FAILED = 'organization/update-third-party-failed',
   UPDATE_THIRD_PARTY_IMPOSSIBLE = 'organization/update-third-party-impossible',
+  ADD_KYC_FAILED = 'organization/add-kyc-failed',
+  GET_KYCS_FAILED = 'organization/get-kycs-failed',
 }
 
 export const errors = {
@@ -88,6 +91,9 @@ export const errors = {
     'Impossible to update third party',
   [OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_FAILED]:
     'Failed to register organization to person',
+  [OrganizationErr.GET_RIBS_FAILED]: 'Failed to fetch all organization ribs',
+  [OrganizationErr.ADD_KYC_FAILED]: 'Failed to add KYC',
+  [OrganizationErr.GET_KYCS_FAILED]: 'Failed to get KYCs',
 };
 
 export const errorFactory = new ErrorFactory<OrganizationErr>(

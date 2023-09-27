@@ -25,19 +25,15 @@ export const endpoints = {
   DELETE_PICTURE: '/api/organizations/:organizationId/pictures/:pictureId',
   CREATE_OPENING_HOURS_SPECIFICATION:
     '/api/organizations/:organizationId/opening-hours-specification',
-  UPDATE_OPENING_HOURS_SPECIFICATION:
-    '/api/organizations/:organizationId/opening-hours-specification/:hoursSpecId',
-  DELETE_OPENING_HOURS_SPECIFICATION:
+  MANAGE_OPENING_HOURS_SPECIFICATION:
     '/api/organizations/:organizationId/opening-hours-specification/:hoursSpecId',
   CREATE_EMPLOYEE: '/api/organizations/:organizationId/employees',
-  UPDATE_EMPLOYEE: '/api/organizations/:organizationId/employees/:employeeId',
-  DELETE_EMPLOYEE: '/api/organizations/:organizationId/employees/:employeeId',
+  MANAGE_EMPLOYEE: '/api/organizations/:organizationId/employees/:employeeId',
   CREATE_FOUNDER: '/api/organizations/:organizationId/founders',
   UPDATE_FOUNDER: '/api/organizations/:organizationId/founders/:founderId',
   DELETE_FOUNDER: '/api/organizations/:organizationId/founders/:founderId',
   ADD_ADDRESS: '/api/organizations/:organizationId/addresses',
-  UPDATE_ADDRESS: '/api/organizations/:organizationId/addresses/:addressId',
-  DELETE_ADDRESS: '/api/organizations/addresses/:addressId',
+  MANAGE_ADDRESS: '/api/organizations/:organizationId/addresses/:addressId',
   CREATE_ORGANIZATION: '/api/organizations',
   REGISTER_ORGANIZATION: '/api/organizations/register',
   REGISTER_ORGANIZATION_TO_PERSON: '/api/organizations/register-to-person',

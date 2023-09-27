@@ -2,19 +2,23 @@ import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import { StringUtils } from '../../../common/utils/string';
-import { IDocument, IAddDocument } from '../../types';
+import { IAddKYCDocument, IKYCDocument } from '../../types';
 
 export const addKycDocument = async (
   fetcher: Fetcher,
   organizationId: string,
-  request: IAddDocument,
-): Promise<IDocument> => {
+  request: IAddKYCDocument,
+  onUploadProgress?: (progressEvent: any) => void,
+): Promise<IKYCDocument> => {
   try {
-    const response = await fetcher.post<IDocument>(
+    const response = await fetcher.post<IKYCDocument>(
       StringUtils.bindContext(endpoints.ADD_DOCUMENT, {
         organizationId,
       }),
       request,
+      {
+        onUploadProgress,
+      },
     );
 
     if (response.status !== 201) {

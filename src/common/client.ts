@@ -6,6 +6,7 @@ export interface InitOptions {
   apiKey: string;
   apiSecret: string;
   apiUrl?: string;
+  referer?: string;
 }
 
 const errorFactory = new ErrorFactory('Client');
@@ -19,6 +20,7 @@ export class SherlClient {
       options.apiKey,
       options.apiSecret,
       options.apiUrl,
+      options.referer,
     );
   }
 

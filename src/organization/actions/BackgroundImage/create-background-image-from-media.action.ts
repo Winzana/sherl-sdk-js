@@ -2,26 +2,23 @@ import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
 import { StringUtils } from '../../../common/utils/string';
 import { OrganizationErr, errorFactory } from '../../errors';
-import {
-  IBackgroundImageFromMedia,
-  ICreateBackgroundImageFromMediaResponse,
-} from '../../types';
+import { IOrganizationResponse } from '../../types';
+import { IImageObject } from '../../../media';
 
 export const createBackgroundImageFromMedia = async (
   fetcher: Fetcher,
   organizationId: string,
   mediaId: string,
-  request: IBackgroundImageFromMedia,
-): Promise<ICreateBackgroundImageFromMediaResponse> => {
+  request: IImageObject,
+): Promise<IOrganizationResponse> => {
   try {
-    const response =
-      await fetcher.post<ICreateBackgroundImageFromMediaResponse>(
-        StringUtils.bindContext(endpoints.CREATE_BACKGROUND_IMAGE_FROM_MEDIA, {
-          organizationId,
-          mediaId,
-        }),
-        request,
-      );
+    const response = await fetcher.post<IOrganizationResponse>(
+      StringUtils.bindContext(endpoints.CREATE_BACKGROUND_IMAGE_FROM_MEDIA, {
+        organizationId,
+        mediaId,
+      }),
+      request,
+    );
 
     if (response.status !== 200) {
       throw errorFactory.create(

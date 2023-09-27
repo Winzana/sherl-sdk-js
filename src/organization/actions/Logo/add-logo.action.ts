@@ -2,21 +2,30 @@ import { Fetcher } from '../../../common/api';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
-import { ILogoResponse, ILogo } from '../../types';
+import { IOrganizationResponse } from '../../types';
 
 export const addLogo = async (
   fetcher: Fetcher,
   organizationId: string,
   mediaId: string,
-  request: ILogo,
-): Promise<ILogoResponse> => {
+  logo: File,
+  onUploadProgress?: (progressEvent: any) => void,
+): Promise<IOrganizationResponse> => {
   try {
-    const response = await fetcher.post<ILogoResponse>(
+    const formData = new FormData();
+    formData.append('upload', logo);
+    const response = await fetcher.post<IOrganizationResponse>(
       StringUtils.bindContext(endpoints.ADD_LOGO, {
         organizationId,
         mediaId,
       }),
-      request,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        onUploadProgress,
+      },
     );
 
     if (response.status !== 200) {

@@ -2,14 +2,14 @@ import { Fetcher } from '../../common/api';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { OrganizationErr, errorFactory } from '../errors';
-import { IUpdateOrganizationRequest, IOrganization } from '../types';
+import { IUpdateOrganizationRequest, IOrganizationResponse } from '../types';
 
 export const updateOrganization = async (
   fetcher: Fetcher,
   organizationId: string,
   request: IUpdateOrganizationRequest,
-): Promise<IOrganization> => {
-  const response = await fetcher.put<IOrganization>(
+): Promise<IOrganizationResponse> => {
+  const response = await fetcher.put<IOrganizationResponse>(
     StringUtils.bindContext(endpoints.UPDATE_ORGANIZATION, {
       organizationId,
     }),

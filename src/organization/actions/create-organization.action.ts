@@ -1,20 +1,24 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { OrganizationErr, errorFactory } from '../errors';
-import { IOrganization, ICreateOrganizationRequest } from '../types';
+import { IOrganizationResponse, ICreateOrganizationInputDto } from '../types';
 
 export const createOrganization = async (
   fetcher: Fetcher,
-  request: ICreateOrganizationRequest,
-): Promise<IOrganization> => {
-  const response = await fetcher.post<IOrganization>(
-    endpoints.CREATE_ORGANIZATION,
-    request,
-  );
+  organization: ICreateOrganizationInputDto,
+): Promise<IOrganizationResponse> => {
+  try {
+    const response = await fetcher.post<IOrganizationResponse>(
+      endpoints.CREATE_ORGANIZATION,
+      organization,
+    );
 
-  if (response.status !== 201) {
+    if (response.status !== 201) {
+      throw errorFactory.create(OrganizationErr.CREATE_ORGANIZATION_FAILED);
+    }
+
+    return response.data;
+  } catch (error) {
     throw errorFactory.create(OrganizationErr.CREATE_ORGANIZATION_FAILED);
   }
-
-  return response.data;
 };

@@ -1,16 +1,18 @@
-import { IPlace, IGeoCoordinates, IAddress } from '../common/types';
-import { IConfig } from '../config/types';
-import {
-  IPersonMeResponse,
-  IOpeningHoursSpecification,
-  IImageObject,
-} from '../person/types';
+import { ICalendarEvent, IDays, IOpeningHoursSpecification } from '../calendar';
+import { PaginationFilters } from '../common';
+import { IImageObject } from '../media';
+import { IPerson } from '../person';
+import { IPlace, IGeoCoordinates, IAddress } from '../place/types';
+
+import { IQuotas } from '../quotas/types';
 import {
   ICategoryResponse,
   IProductResponse,
-} from '../shop/types/product/types';
+  ISubscription,
+  IWallet,
+} from '../shop/types';
 
-export interface IOrganizationResponse extends IModel {
+export interface IOrganizationResponse {
   id: string;
   uri: string;
   sponsorshipCode: string;
@@ -100,52 +102,9 @@ export interface IOrganizationResponse extends IModel {
   };
 }
 
-export interface ICalendarEvent {
-  id?: string;
-  uri?: string;
-  aboutUri?: string;
-  calendarUri?: string;
-  startDate?: Date;
-  endDate?: Date;
-  location?: IGeoCoordinates;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-
 export interface IPersonConfigValue {
   code: string;
   value: any;
-}
-
-export interface IQuotas {
-  id: string;
-  uri: string;
-  consumerId: string;
-  type: CommunicationTypeEnum;
-  amount: number;
-  allowNegative: boolean;
-  ownerUri: string; // Person or organization associated to Quota wallet
-  sources: IQuotaSource[]; // Sources for recurrent provisioning
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-export enum CommunicationTypeEnum {
-  MESSAGING = 'MESSAGING',
-  TRANSACTIONAL = 'TRANSACTIONAL',
-}
-
-export interface IQuotaSource {
-  id: string;
-  uri?: string;
-  lastApply: Date;
-  nextApply: Date;
-  amount: number;
-  remaining: number;
-  createdFrom?: string;
-  createdBy?: string;
-  createdAt?: Date;
-  quotaId: string;
 }
 
 export interface ITaxonomy {
@@ -166,56 +125,13 @@ export interface ITaxonomyValue {
   updatedAt?: Date;
 }
 
-export interface IModel {
-  toJson(): any;
-}
-
-export interface IDays {
-  closed: boolean;
-  day: string;
-  morningTime: string;
-  nightTime: string;
-}
-
-export interface ISubscription {
-  id: string;
-  uri: string;
-  name: string;
-  ownerUri: string;
-  consumerId: string;
-  activeFrom: Date;
-  activeUntil: Date;
-  frequency: OfferFrequencyEnum;
-  enabled: boolean;
-  disabledAt: Date;
-  sourceUri: string;
-  offer: IOffer;
-  contextUri: string;
-  metadatas: { [key: string]: any };
-  createdAt: Date;
-}
-
-export interface IOffer {
-  priceDiscount: number;
-  price: number;
-  priceTaxIncluded: number;
-  taxRate: number;
-  frequency: OfferFrequencyEnum;
-}
-
-export enum OfferFrequencyEnum {
-  ONCE = 'once',
-  MONTHLY = 'monthly',
-  YEARLY = 'yearly',
-}
-
 export interface IOrganizationCommunication {
   title: string;
   message: string;
   icon: string;
 }
 
-export interface IFounder extends IPersonMeResponse {
+export interface IFounder extends IPerson {
   id: string;
   uri: string;
   consumerId: string;
@@ -225,12 +141,7 @@ export interface IFounder extends IPersonMeResponse {
   email: string;
 }
 
-export interface IWallet {
-  userId: string;
-  walletId: string;
-}
-
-export interface IEmployee extends IPersonMeResponse, IModel {
+export interface IEmployee extends IPerson {
   id: string;
   uri: string;
   consumerId: string;
@@ -239,22 +150,59 @@ export interface IEmployee extends IPersonMeResponse, IModel {
   email: string;
 }
 
-export interface IAddDocument {
+// #region - KYC
+
+export interface IKYCDocument {
   id: string;
-  type: string;
-  media: {
-    id: string;
-    uri: string;
-    caption: {
-      id: string;
-      size: number;
-      contentUrl: string;
-      description: string;
-      name: string;
-      encodingFormat: string;
-    };
-    domain: string;
-  };
+  uri?: string;
+  organizationId: string;
+  consumerId?: string;
+  type: KYCDocumentTypeEnum;
+  tag?: string;
+  originId?: string;
+  creationDate?: string;
+  processedDate?: string;
+  status: KYCDocumentStatusEnum;
+  refusedReasonType?: KYCDocumentRefusedReasonTypEnum;
+  refusedReasonMessage?: string;
+  media?: IImageObject;
+  createdAt: Date;
+  updatedAt?: Date;
+}
+
+export enum KYCDocumentStatusEnum {
+  CREATED = 'CREATED',
+  VALIDATION_ASKED = 'VALIDATION_ASKED',
+  VALIDATED = 'VALIDATED',
+  REFUSED = 'REFUSED',
+}
+
+export enum KYCDocumentRefusedReasonTypEnum {
+  DOCUMENT_UNREADABLE,
+  DOCUMENT_NOT_ACCEPTED,
+  DOCUMENT_HAS_EXPIRED,
+  DOCUMENT_INCOMPLETE,
+  DOCUMENT_MISSING,
+  DOCUMENT_DO_NOT_MATCH_USER_DATA,
+  DOCUMENT_DO_NOT_MATCH_ACCOUNT_DATA,
+  SPECIFIC_CASE,
+  DOCUMENT_FALSIFIED,
+  UNDERAGE_PERSON,
+}
+
+export interface IAddKYCDocument {
+  id: string;
+  type: KYCDocumentTypeEnum;
+  media: IImageObject;
+}
+
+export enum KYCDocumentTypeEnum {
+  IDENTITY_PROOF = 'IDENTITY_PROOF',
+  REGISTRATION_PROOF = 'REGISTRATION_PROOF',
+  ARTICLES_OF_ASSOCIATION = 'ARTICLES_OF_ASSOCIATION',
+  ADDRESS_PROOF = 'ADDRESS_PROOF',
+  IDENTITY_PROOF_PASSPORT = 'IDENTITY_PROOF_PASSPORT',
+  IDENTITY_PROOF_OTHER_DOCUMENT = 'IDENTITY_PROOF_OTHER_DOCUMENT',
 }
 
 export interface IUpdateDocument {
@@ -273,11 +221,7 @@ export interface IUpdateDocument {
   };
 }
 
-export interface IDocument {
-  id: string;
-  type: string;
-  media: IMedia;
-}
+// #endregion
 
 export interface IMedia {
   id: string;
@@ -305,7 +249,7 @@ export interface IRib {
   bic: string;
 }
 
-export interface ICommunication {
+export interface ICommunicationInputDto {
   title: string;
   message: string;
   icon: string;
@@ -320,88 +264,14 @@ export interface ILogoRequest extends ILogo {
   logoId: string;
 }
 
-export interface ILogoResponse {}
-
-export interface IDeleteBackgroundImageResponse {}
-
-export interface ICreateBackgroundImageResponse {}
-
-export interface ICreateBackgroundImageFromMediaResponse {}
-
 export interface IBackgroundImage {
   backgroundImage: File;
 }
 
-export interface IBackgroundImageFromMedia {
-  thumbnail: {
-    caption: {
-      id: string;
-      size: number;
-      contentUrl: string;
-      description: string;
-      name: string;
-      encodingFormat: string;
-    };
-    width: number;
-    height: number;
-  };
-  id: string;
-  width: number;
-  height: number;
-  caption: {
-    id: string;
-    size: number;
-    contentUrl: string;
-    description: string;
-    name: string;
-    encodingFormat: string;
-  };
-  uri: string;
-  domain: string;
-  consumerId: string;
-}
-
-export interface IPicture {
-  picture: File;
-}
-
-export interface IPictureFromMedia {
-  id: string;
-  uri: string;
-  width: number;
-  height: number;
-  caption: {
-    contentUrl: string;
-    description: string;
-    duration: string;
-    encodingFormat: string;
-    size: number;
-    name: string;
-    id: string;
-  };
-  thumbnail: {
-    id: string;
-    uri: string;
-    width: number;
-    height: number;
-    caption: {
-      contentUrl: string;
-      description: string;
-      duration: string;
-      encodingFormat: string;
-      size: number;
-      name: string;
-      id: string;
-    };
-  };
-}
-
-export interface ICreatePictureResponse {}
-
-export interface ICreatePictureFromMediaResponse {}
-
-export interface IDeletePictureResponse {}
-
+export type IMediaCreateInputDto = Pick<
+  IImageObject,
+  'id' | 'uri' | 'width' | 'height' | 'caption' | 'thumbnail'
+>;
 export interface IOpeningHoursSpecificationRequest {
   id?: string;
   dayOfWeek: string;
@@ -411,200 +281,11 @@ export interface IOpeningHoursSpecificationRequest {
   validThrough: string;
 }
 
-export interface IOpeningHoursSpecificationResponse {
-  id: string;
-  uri: string;
-  legalName: string;
-  location: {
-    id: string;
-    country: string;
-    locality: string;
-    region: string;
-    postalCode: string;
-    streetAddress: string;
-    uri: string;
-    createdAt: string;
-    department: string;
-    complementaryStreetAddress: string;
-    name: string;
-    originId: string;
-    latitude: 0;
-    longitude: 0;
-  };
-  aggregateRating: 0;
-  subOrganizations: [string];
-  email: string;
-  employees: [
-    {
-      id: string;
-      uri: string;
-      consumerId: string;
-      firstName: string;
-      lastName: string;
-      email: string;
-    },
-  ];
-  faxNumber: string;
-  phoneNumber: string;
-  website: string;
-  founders: [
-    {
-      uri: string;
-      consumerId: string;
-      firstName: string;
-      lastName: string;
-      email: string;
-    },
-  ];
-  foundingDate: string;
-  knowsLanguage: {
-    id: string;
-    uri: string;
-    code: string;
-    values: [
-      {
-        language: string;
-        value: string;
-        createdAt: string;
-        updatedAt: string;
-      },
-    ];
-    parent: string;
-    childrens: [string];
-    createdAt: string;
-    updatedAt: string;
-  };
-  logo: {
-    id: string;
-    uri: string;
-    width: 0;
-    height: 0;
-    caption: {
-      contentUrl: string;
-      description: string;
-      duration: string;
-      encodingFormat: string;
-      size: 0;
-      name: string;
-      id: string;
-    };
-    thumbnail: {
-      id: string;
-      uri: string;
-      width: 0;
-      height: 0;
-      caption: {
-        contentUrl: string;
-        description: string;
-        duration: string;
-        encodingFormat: string;
-        size: 0;
-        name: string;
-        id: string;
-      };
-    };
-  };
-  numberOfEmployees: 0;
-  parentOrganization: string;
-  slogan: string;
-  smokingAllowed: true;
-  openNow: true;
-  openingHoursSpecification: [
-    {
-      dayOfWeek: string;
-      closes: string;
-      opens: string;
-      validFrom: string;
-      validThrough: string;
-    },
-  ];
-  isAccessibleForFree: true;
-  photos: [
-    {
-      id: string;
-      uri: string;
-      width: 0;
-      height: 0;
-      caption: {
-        contentUrl: string;
-        description: string;
-        duration: string;
-        encodingFormat: string;
-        size: 0;
-        name: string;
-        id: string;
-      };
-      thumbnail: {
-        id: string;
-        uri: string;
-        width: 0;
-        height: 0;
-        caption: {
-          contentUrl: string;
-          description: string;
-          duration: string;
-          encodingFormat: string;
-          size: 0;
-          name: string;
-          id: string;
-        };
-      };
-    },
-  ];
-  serviceType: [
-    {
-      id: string;
-      uri: string;
-      code: string;
-      values: [
-        {
-          language: string;
-          value: string;
-          createdAt: string;
-          updatedAt: string;
-        },
-      ];
-      parent: string;
-      childrens: [string];
-      createdAt: string;
-      updatedAt: string;
-    },
-  ];
-  types: [string];
-  advertisingText: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface IUpdateOpeningHoursSpecificationResponse {}
-
-export interface IDeleteOpeningHoursSpecificationResponse {}
-
-export interface IEmployeeRequest {
-  id: string;
+export interface IEmployeeInputDto {
   firstName: string;
   lastName: string;
   email: string;
 }
-
-export interface ICreateEmployeeResponse {
-  id: string;
-  uri: string;
-  consumerId: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-}
-
-export interface IUpdateEmployeeRequest {
-  firstName: string;
-  lastName: string;
-  email: string;
-}
-
-export interface IUpdateEmployeeResponse {}
-
-export interface IDeleteEmployeeResponse {}
 
 export interface ICreateFounderRequest {
   id: string;
@@ -620,18 +301,6 @@ export interface IUpdateFounderRequest {
   email: string;
 }
 
-export interface ICreateFounderResponse {
-  uri: string;
-  consumerId: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-}
-
-export interface IUpdateFounderResponse {}
-
-export interface IDeleteFounderResponse {}
-
 export interface IAddressRequest extends IAddress {
   originId: string;
   latitude: number;
@@ -639,21 +308,7 @@ export interface IAddressRequest extends IAddress {
   organizationId: string;
 }
 
-export interface IAddAddressResponse {}
-
-export interface IUpdateAddressResponse {}
-
-export interface IDeleteAddressResponse {}
-
-export interface IOrganization extends IModel {
-  id: string;
-  legalName: string;
-  createdAt: string;
-  location: IAddressRequest;
-  siret: number;
-}
-
-export interface ICreateOrganizationRequest {
+export interface ICreateOrganizationInputDto {
   id: string;
   legalName: string;
   siret: string;
@@ -840,10 +495,6 @@ export interface IIsPublicOrganization {
   isPublic: boolean;
 }
 
-export interface IEnableRoamingResponse {}
-
-export interface IDisableRoamingResponse {}
-
 export interface IUpdateThirdPartyRequest {
   id: string;
   thirdParty: {
@@ -861,378 +512,46 @@ export interface IThirdPartyResponse {}
 
 export interface ITemporarySuspendOrganizationServiceRequest {}
 
-// //old
-// export interface IOrganizationResponse {
-//   isPaymentAllowed: boolean;
-//   enabled: boolean;
-//   metadatas : IMetadatasResponse
-//   quotas: IQuotasResponse
-//   configs: [];
-//   id: string;
-//   uri: string;
-//   sponsorshipCode: string;
-//   consumerId: string;
-//   createdAt: string;
-//   updatedAt: string;
-//   slug: string;
-//   is boolean;
-//   legalName: string;
-//   location: ILocationResponse;
-//   myAddresses: IMyAddressResponse;
-//   employees: [];
-//   wallet: IWalletResponse;
-//   founders: IFoundersResponse;
-//   knowsLanguage: []
-//   logo: ILogoResponse;
-//   backgroundImage: IThumbnailResponse;
-//   slogan: string;
-//   siret: number;
-//   openingHoursSpecification: [];
-//   photos: [];
-//   serviceType: [];
-//   types: []; ////////// test
-//   blackListPersons: [];
-//   isRoaming: boolean;
-//   thirdParty: IThirdPartyResponse;
-//   geopoint: string;
-//   displayed: IDisplayedResponse;
-//   statistics: IStatisticsResponse;
-// }
+export interface IOrganizationDocumentsResponse {
+  bic: string;
+  iban: string;
+  id: string;
+  ibanId: string;
+  status: string;
+}
 
-// export interface ILogoResponse {
-//   thumbnail: IThumbnailResponse;
-//   _id: string;
-//   id: string;
-//   uri: string;
-//   width: number;
-//   height: number;
-//   caption: ICaptionResponse;
-//   domain: string;
-//   consumerId: string;
-// }
-
-// export interface ICaptionResponse {
-//   id: string;
-//   size: number;
-//   contentUrl: string;
-//   description: string;
-//   name: string;
-//   encodingFormat: string;
-// }
-
-// export interface IThumbnailResponse {
-//   caption: ICaptionResponse;
-//   width: number;
-//   height: number;
-// }
-
-// export interface IStatisticsResponse {
-//   firstVisit: string;
-//   totalOrder: number;
-//   amountTotalOrder: number;
-//   subscription: ISubscriptionResponse
-//   opinion: undefined; /////////////
-//   opinionCount: number;
-// }
-
-// export interface ISubscriptionResponse {
-//   id: string;
-//   uri: string;
-//   consumerId: string;
-//   createdAt: string;
-//   name: string;
-//   ownerUri: string;
-//   activeFrom: string;
-//   activeUntil: string;
-//   enabled: boolean;
-//   frequency: string;
-//   sourceUri: string;
-//   contextUri: string;
-//   metadatas: IMetadatasSubscriptionResponse
-//   offer: IOfferResponse
-// }
-
-// export interface IOfferResponse {
-//   price: number;
-//   taxRate: number;
-//   priceTaxIncluded: number;
-//   frequency: string;
-// }
-
-// export interface IMetadatasSubscriptionResponse {
-//   package: string;
-//   title: string;
-//   content: []; /////////////
-//   isExactPrice: boolean;
-//   trialPeriod: boolean;
-//   id: string;
-//   monthAmount: number;
-//   yearAmount: number;
-//   actions: IActionsResponse[]
-//   profileUri: string;
-// }
-
-// export interface IActionsResponse {
-//   type: string;
-//   frequency: string;
-//   quotaType: string;
-//   amount: number;
-// }
-
-// export interface IDisplayedResponse {
-//   backgroundImg: string;
-//   highlightImg: string;
-//   logoImg: string;
-//   actualityContent: undefined; ///////
-//   actualityTitle: undefined;  ///////
-//   city: string;
-//   id: string;
-//   isBarService: boolean;
-//   isOpen: boolean;
-//   latitude: number;
-//   longitude: number;
-//   name: string;
-//   position: string;
-//   type: string;
-//   weekTime: [];
-//   metadatas: IMetadatasResponse
-// }
-
-// export interface IThirdPartyResponse {
-//   facebook: IFacebookResponse;
-// }
-
-// export interface IFacebookResponse {
-//   accessToken: string;
-//   userID: string;
-//   longLivedUserAccessToken: string;
-//   expirationDate: string;
-// }
-
-// export interface IFoundersResponse {
-//   _id: string;
-//   id: string;
-//   uri: string;
-//   consumerId: string;
-//   firstName: string;
-//   lastName: string;
-//   birthDate: string;
-//   email: string;
-// }
-
-// export interface IWalletResponse {
-//   userId: string;
-//   walletId: string;
-// }
-
-// export interface ILocationResponse {
-//   types: [];
-//   _id: string;
-//   id: string;
-//   uri: string;
-//   createdAt: string;
-//   country: string;
-//   locality: string;
-//   region: string;
-//   department: string;
-//   postalCode: string;
-//   streetAddress: string;
-//   complementaryStreetAddress: string;
-//   name: string;
-//   originId: string;
-//   latitude: number;
-//   longitude: number;
-// }
-
-// export interface IMyAddressResponse {
-//   types: [];
-//   _id: string;
-//   id: string;
-//   uri: string;
-//   createdAt: string;
-//   country: string;
-//   locality: string;
-//   region: string;
-//   department: string;
-//   postalCode: string;
-//   streetAddress: string;
-//   complementaryStreetAddress: string;
-//   name: string;
-//     originId: string;
-//     latitude: number;
-//   longitude: number;
-// }
-
-// export interface IMetadatasResponse {
-//   quotas: IQuotasResponse[];
-//   restriction: [];
-//   phoneNumber: string;
-//   socials: ISocialResponse
-// }
-
-// export interface ISocialResponse {
-//   linkedin: string;
-//   instagram: string;
-//   facebook: string;
-//   snapchat: string;
-// }
-
-// export interface IQuotasResponse {
-//   type: string;
-//   amount: number;
-//   'notification:sms': INotificationSMSResponse
-//   "notification:email": INotificationSMSResponse
-//   "shop:product:service": undefined ///
-// }
-
-// export interface INotificationSMSResponse {
-//   id: string;
-//   ownerUri: string;
-//   type: string;
-//   amount: number;
-//   consumerId: string;
-//   createdAt: string;
-//   uri: string;
-//   sources: ISourcesResponse[];
-//   updatedAt: string;
-// }
-
-// export interface ISourcesResponse {
-//   amount: number;
-//   createdFrom: string;
-//   id: string;
-//   lastApply: string;
-//   nextApply: string;
-//   remaining: number;
-//   uri: string;
-//   createdAt: string;
-// }
-
-// /////trash
-// export interface ICategoryResponse {
-//   id: string;
-//   uri: string;
-//   taxeValue: number;
-//   consumerId: string;
-//   parentUri: string;
-//   name: string;
-//   organizationUri: string;
-//   createdAt: string;
-//   updatedAt: string;
-//   subCategories: ICategoryResponse[];
-// }
-
-// export interface IProductResponse {
-//   isEnable: boolean;
-//   id: string;
-//   uri: string;
-//   consumerId: string;
-//   name: string;
-//   slogan: string;
-//   description: string;
-//   categoryUri: string;
-//   offers: IOfferResponse[];
-//   metadatas: IMetadatasResponse;
-//   options: IOptionResponse[];
-//   organizationUri: string;
-//   createdAt: string;
-//   updatedAt: string;
-//   category: null;
-// }
-
-// export interface IMetadatasResponse {
-
-// }
-
-// export interface IOptionResponse {
-//   id: string;
-//   items: IItemResponse[];
-//   name: string;
-//   required: boolean;
-//   rangeMin: number;
-// }
-
-// export interface IItemResponse {
-//   name: string;
-//   priceTaxIncluded: number;
-// }
-
-// //******************************************************************************** ************************************************************************************ */
-
-// export interface IategoryWithSubResponse {
-//   id: string;
-//   uri: string;
-//   consumerId: string;
-//   createdAt: string;
-//   name: string;
-//   slug: string;
-//   organizationUri: string;
-//   subCategories: IubCategoryResponse[];
-// }
-
-// export interface IubCategoryResponse {
-//   id: string;
-//   uri: string;
-//   consumerId: string;
-//   createdAt: string;
-//   parentUri: string;
-//   name: string;
-//   slug: string;
-//   organizationUri: string;
-// }
-
-// export interface IategoryResponse {
-//   id: string;
-//   uri: string;
-//   consumerId: string;
-//   createdAt: string;
-//   name: string;
-//   slug: string;
-//   organizationUri: string;
-// }
-
-// export interface IroductResponse {
-//   isEnable: boolean;
-//   id: string;
-//   uri: string;
-//   consumerId: string;
-//   createdAt: string;
-//   updatedAt: string;
-//   type: string;
-//   name: string;
-//   slug: string;
-//   slogan: string;
-//   description:string;
-//   categoryUri: string;
-//   categoryUris: [];
-//   offers: [IOfferResponse];
-//   metadatas: IMetadataResponse;
-//   options: [];
-//   photos: [];
-//   category: ICategoryInProductResponse;
-
-// }
-
-// export interface IOfferResponse {
-//     _id: string;
-//     price: number;
-//     taxRate: number;
-//     priceTaxIncluded: number;
-// }
-
-// export interface IMetadataResponse {
-//   quotaType: string;
-//   quotaValue: number;
-// }
-
-// export interface ICategoryInProductResponse {
-//   id: string;
-//   uri: string;
-//   consumerId: string;
-//   createdAt: string;
-//   updatedAt: string;
-//   name: string;
-//   slug: string;
-//   organizationUri: string;
-//   is boolean;
-// }
+export interface OrganizationFiltersDto extends PaginationFilters {
+  id?: string;
+  slug?: string;
+  sponsorshipCode?: string;
+  ids?: string[];
+  q?: string;
+  legalName?: string;
+  location?: IPlace;
+  latitude?: number;
+  longitude?: number;
+  uri?: string;
+  distance?: string;
+  types?: string[];
+  serviceTypes?: string[];
+  enabled?: string;
+  isPublic?: boolean;
+  categoryUri?: string;
+  productUri?: string;
+  productName?: string;
+  deliveryQuery?: string;
+  day?: string;
+  hour?: string;
+  isRoaming?: string;
+  facetted?: string;
+  analytics?: string;
+  opinion?: string[];
+  price?: string[];
+  category?: string[];
+  subCategory?: string[];
+  noBind?: boolean;
+  sort?: {
+    field: string;
+    order: string;
+  };
+}
