@@ -8,6 +8,7 @@ export * from './config';
 export * from './shop';
 export * from './organization';
 export * from './user';
+export * from './communication';
 export * from './bug-reports';
 export * from './media';
 export * from './iam';

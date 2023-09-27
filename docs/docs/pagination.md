@@ -35,7 +35,7 @@ interface PaginationFilters {
 
 ## ISearchResult
 ```ts
-export interface ISearchResult<T> extends Pagination<T> {
+interface ISearchResult<T> extends Pagination<T> {
   aggregations?: {
     [key: string]: {
       count: number;
