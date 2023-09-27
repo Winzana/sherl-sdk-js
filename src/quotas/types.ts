@@ -1,4 +1,4 @@
-import { CommunicationTypeEnum } from '../organization/types';
+import { CommunicationTypeEnum } from '../communication';
 
 export interface IQuotas {
   id: string;

@@ -3,6 +3,7 @@ import { PaginationFilters } from '../common';
 import { IImageObject } from '../media';
 import { IPerson } from '../person';
 import { IPlace, IGeoCoordinates } from '../place/types';
+
 import { IQuotas } from '../quotas/types';
 import {
   ICategoryResponse,
@@ -104,11 +105,6 @@ export interface IOrganizationResponse {
 export interface IPersonConfigValue {
   code: string;
   value: any;
-}
-
-export enum CommunicationTypeEnum {
-  MESSAGING = 'MESSAGING',
-  TRANSACTIONAL = 'TRANSACTIONAL',
 }
 
 export interface ITaxonomy {
