@@ -23,6 +23,7 @@ module.exports = {
       'opinion',
       'claim',
       'notification',
+      'communication',
     ],
     Types: [
       'pagination',
@@ -37,6 +38,7 @@ module.exports = {
       'calendar-types',
       'shop-types',
       'person-types',
+      'communication-types',
     ],
   },
 };

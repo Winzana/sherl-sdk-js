@@ -1,6 +1,6 @@
 import { SherlClient } from '../common';
 import { AbstractProvider } from '../common/provider';
-import { getCommunicationByOrganizationId } from './actions';
+import { getCommunication } from './actions';
 import { errorFactory } from './errors';
 
 class CommunicationProvider extends AbstractProvider {
@@ -8,9 +8,7 @@ class CommunicationProvider extends AbstractProvider {
     super(client, errorFactory);
   }
 
-  public getCommunicationByOrganizationId = this.withFetcher(
-    getCommunicationByOrganizationId,
-  );
+  public getCommunication = this.withFetcher(getCommunication);
 }
 
 export { CommunicationProvider };

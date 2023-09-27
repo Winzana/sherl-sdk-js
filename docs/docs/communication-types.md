@@ -1,15 +1,12 @@
-export interface ICommunicationFindByInputDto {
-  id?: string;
-  uri?: string;
-  consumerId?: string;
-  senderUri?: string;
-  receiverUri?: string;
-  aboutUri?: string;
-  channel?: CommunicationChannelEnum;
-  type?: CommunicationTypeEnum;
-}
+---
+id: communication-types
+title: Communication types
+---
 
-export interface ICommunication {
+## ICommunication
+
+```ts
+interface ICommunication {
   id: string;
   uri: string;
   consumerId: string;
@@ -22,13 +19,17 @@ export interface ICommunication {
   code?: string;
   createdAt: Date;
 }
+```
 
-export enum CommunicationTypeEnum {
+## Communication enumerations
+
+```ts
+enum CommunicationTypeEnum {
   MESSAGING = 'MESSAGING',
   TRANSACTIONAL = 'TRANSACTIONAL',
 }
 
-export enum CommunicationChannelEnum {
+enum CommunicationChannelEnum {
   EMAIL = 'EMAIL',
   SMS = 'SMS',
   PUSH = 'PUSH',
@@ -38,3 +39,4 @@ export enum CommunicationChannelEnum {
   INSTAGRAM = 'INSTAGRAM',
   TELEGRAM = 'TELEGRAM',
 }
+```

@@ -1,1 +1,1 @@
-export * from './get-communication-by-id.action';
+export * from './get-communication.action';
