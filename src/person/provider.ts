@@ -9,6 +9,9 @@ import {
   updatePersonById,
   createPerson,
   registerWithEmailAndPassword,
+  createAddress,
+  updateAddress,
+  deleteAddress,
 } from './actions';
 import { errorFactory } from './errors';
 
@@ -27,6 +30,10 @@ class PersonProvider extends AbstractProvider {
   public registerWithEmailAndPassword = this.withFetcher(
     registerWithEmailAndPassword,
   );
+  // Address
+  public createAddress = this.withFetcher(createAddress);
+  public updateAddress = this.withFetcher(updateAddress);
+  public deleteAddress = this.withFetcher(deleteAddress);
 }
 
 export { PersonProvider };

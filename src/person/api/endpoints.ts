@@ -8,4 +8,7 @@ export const endpoints = {
   CREATE_PERSON: '/api/persons',
   REGISTER_WITH_EMAIL_AND_PASSWORD:
     '/api/persons/register-with-email-and-password',
+  CREATE_ADDRESS: '/api/persons/addresses',
+  UPDATE_ADDRESS: '/api/persons/addresses/:id',
+  DELETE_ADDRESS: '/api/persons/addresses/:id',
 };

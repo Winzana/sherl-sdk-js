@@ -142,7 +142,6 @@ export interface IStripeCard {
   tokenization_method: string;
   default: boolean;
 }
-
 export interface ILegalNoticeAcceptance {
   version: string;
   dateOfAcceptance: Date;

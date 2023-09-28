@@ -1,6 +1,6 @@
 ---
-id: person
-title: Person
+id: person-index
+title: CRUD
 ---
 
 ## Get current person
@@ -13,7 +13,7 @@ Retrieve logged-in person information.
 const me = await person(client).getMe();
 ```
 
-This call returns on object of [IPerson](person-types)
+This call returns on object of [IPerson](../person-types#iperson) object.
 
 ## Get person by id
 
@@ -25,7 +25,7 @@ Retrieve person information by ID.
 const person = await person(client).getPersonById(id: string);
 ```
 
-This call returns an object of [IPerson](person-types)
+This call returns on object of [IPerson](../person-types#iperson) object.
 
 ## Get list of persons
 
@@ -37,9 +37,9 @@ Retrieve a list of persons.
 const persons = await person(client).getPersons(page: number, itemPerPage: number, filters: IPersonFilters);
 ```
 
-You can see **IPersonFilters** interface [here](person-types)
+You can see **IPersonFilters** interface [here](../person-types#ipersonfilters)
 
-This call returns a [paginated](pagination) of [IPerson](person-types)
+This call returns a [paginated](../pagination#pagination) of [IPerson](../person-types#iperson)
 
 ## Get person address
 
@@ -58,19 +58,7 @@ interface IPositionInputDto {
 }
 ```
 
-This call returns an object of [ILocation](place-types)
-
-## Get person configuration
-
-<span class="badge badge--warning">Require authentication</span>
-
-Retrieve person configuration vars.
-
-```ts
-const configs = await person(client).getConfigs();
-```
-
-This call returns the [configuration (IConfig)](config-types) array for the connected person.
+This call returns an object of [ILocation](../place-types#ilocation)
 
 ## Register a user for your sherl
 this function create a user
@@ -146,4 +134,4 @@ interface IPersonUpdate {
 }
 ```
 
-This call returns the modified [user object](person-types)
+This call returns the modified [IPerson](../person-types#iperson)
