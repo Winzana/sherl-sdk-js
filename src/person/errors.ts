@@ -6,6 +6,9 @@ export enum PersonErr {
   POST_FAILED = 'person/post-person-failed',
   FETCH_FAILED = 'person/fetch-failed',
   NOT_FOUND = 'person/not-found',
+  CREATE_ADDRESS_FAILED = 'person/create-address-failed',
+  PUT_ADDRESS_FAILED = 'person/put-address-failed',
+  DELETE_ADDRESS_FAILED = 'person/delete-address-failed',
 }
 
 export const errors = {
@@ -14,6 +17,9 @@ export const errors = {
   [PersonErr.PUT_FAILED]: 'Failed to update person',
   [PersonErr.CREATE_PERSON_FAILED]: 'Failed to create new person',
   [PersonErr.POST_FAILED]: 'Failed to create person',
+  [PersonErr.CREATE_ADDRESS_FAILED]: 'Failed to create new address',
+  [PersonErr.PUT_ADDRESS_FAILED]: 'Failed to update address',
+  [PersonErr.DELETE_ADDRESS_FAILED]: 'Failed to delete address',
 };
 
 export const errorFactory = new ErrorFactory<PersonErr>('Person', errors);
