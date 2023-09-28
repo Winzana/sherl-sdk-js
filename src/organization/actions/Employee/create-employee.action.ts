@@ -7,14 +7,14 @@ import { IEmployee, IEmployeeInputDto } from '../../types';
 export const createEmployee = async (
   fetcher: Fetcher,
   organizationId: string,
-  request: IEmployeeInputDto,
+  employee: IEmployeeInputDto,
 ): Promise<IEmployee> => {
   try {
     const response = await fetcher.post<IEmployee>(
       StringUtils.bindContext(endpoints.CREATE_EMPLOYEE, {
         organizationId,
       }),
-      request,
+      employee,
     );
 
     if (response.status !== 201) {

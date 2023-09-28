@@ -9,7 +9,7 @@ export const updateKycDocument = async (
   fetcher: Fetcher,
   organizationId: string,
   kycId: string,
-  request: IImageObject,
+  document: IImageObject,
   onUploadProgress?: (progressEvent: any) => void,
 ): Promise<IKYCDocument> => {
   try {
@@ -18,7 +18,7 @@ export const updateKycDocument = async (
         organizationId,
         kycId,
       }),
-      request,
+      document,
       {
         onUploadProgress,
       },

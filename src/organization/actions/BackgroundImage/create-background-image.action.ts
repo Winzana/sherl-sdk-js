@@ -9,18 +9,23 @@ export const createBackgroundImage = async (
   fetcher: Fetcher,
   organizationId: string,
   mediaId: string,
-  request: IUploadData,
+  file: File,
   onUploadProgress?: (progressEvent: any) => void,
 ): Promise<IOrganizationResponse> => {
   try {
+    const formData = new FormData();
+    formData.append('upload', file);
     const response = await fetcher.post<IOrganizationResponse>(
       StringUtils.bindContext(endpoints.CREATE_BACKGROUND_IMAGE, {
         organizationId,
         mediaId,
       }),
-      request,
+      formData,
       undefined,
       {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
         onUploadProgress,
       },
     );

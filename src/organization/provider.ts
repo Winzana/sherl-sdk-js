@@ -39,8 +39,6 @@ import {
   registerOrganizationToPerson,
   registerOrganization,
   suggestOrganization,
-  updateThirdParty,
-  updateIsPublicOrganization,
 } from './actions';
 import { errorFactory } from './errors';
 
@@ -99,10 +97,6 @@ class OrganizationProvider extends AbstractProvider {
   );
   public registerOrganization = this.withFetcher(registerOrganization);
   public suggestOrganization = this.withFetcher(suggestOrganization);
-  public updateThirdParty = this.withFetcher(updateThirdParty);
-  public updateIsPublicOrganization = this.withFetcher(
-    updateIsPublicOrganization,
-  );
 }
 
 export { OrganizationProvider };

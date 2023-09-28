@@ -163,7 +163,7 @@ export interface IKYCDocument {
   creationDate?: string;
   processedDate?: string;
   status: KYCDocumentStatusEnum;
-  refusedReasonType?: KYCDocumentRefusedReasonTypEnum;
+  refusedReasonType?: KYCDocumentRefusedReasonTypeEnum;
   refusedReasonMessage?: string;
   media?: IImageObject;
   createdAt: Date;
@@ -177,7 +177,7 @@ export enum KYCDocumentStatusEnum {
   REFUSED = 'REFUSED',
 }
 
-export enum KYCDocumentRefusedReasonTypEnum {
+export enum KYCDocumentRefusedReasonTypeEnum {
   DOCUMENT_UNREADABLE,
   DOCUMENT_NOT_ACCEPTED,
   DOCUMENT_HAS_EXPIRED,
@@ -337,48 +337,13 @@ export interface IRegisterOrganizationRequest {
     id: string;
     legalName: string;
     siret: string;
-    location: {
-      id: string;
-      uri: string;
-      country: string;
-      locality: string;
-      region: string;
-      department: string;
-      types: [string];
-      postalCode: string;
-      streetAddress: string;
-      complementaryStreetAddress: string;
-      name: string;
-      originId: string;
-      latitude: number;
-      longitude: number;
-      consumerId: string;
-      createdAt: string;
-      updatedAt: string;
-      type: string;
-      isDefault: true;
-    };
+    location: IPlace;
   };
   person: {
     id: string;
     firstName: string;
     lastName: string;
-    address: {
-      id: string;
-      country: string;
-      locality: string;
-      region: string;
-      postalCode: string;
-      streetAddress: string;
-      uri: string;
-      createdAt: string;
-      department: string;
-      complementaryStreetAddress: string;
-      name: string;
-      originId: string;
-      latitude: number;
-      longitude: number;
-    };
+    address: IGeoCoordinates;
     mobilePhoneNumber: string;
     nationality: string;
     latitude: number;
@@ -489,28 +454,6 @@ export interface IUpdateOrganizationRequest {
     longitude: number;
   };
 }
-
-export interface IIsPublicOrganization {
-  id: string;
-  isPublic: boolean;
-}
-
-export interface IUpdateThirdPartyRequest {
-  id: string;
-  thirdParty: {
-    facebook: {
-      accessToken: string;
-      userID: string;
-    };
-  };
-  metadatas: {
-    isItinerant: string;
-  };
-}
-
-export interface IThirdPartyResponse {}
-
-export interface ITemporarySuspendOrganizationServiceRequest {}
 
 export interface IOrganizationDocumentsResponse {
   bic: string;

@@ -34,7 +34,10 @@ interface IGeoCoordinates extends IAddress {
   latitude: number;
   longitude: number;
 }
+```
 
+## IAddress
+```ts
 interface IAddress {
   id: string;
   country: string;
@@ -52,7 +55,6 @@ interface IAddress {
   uri: string;
 }
 ```
-
 ## ILocation
 ```ts
 interface ILocation {

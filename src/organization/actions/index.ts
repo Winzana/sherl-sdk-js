@@ -13,8 +13,6 @@ export * from './enable-roaming.action';
 export * from './register-organization-to-person.action';
 export * from './register-organization.action';
 export * from './suggest-organization.action';
-export * from './update-third-party.action';
-export * from './update-is-public-organization.action';
 
 // KYC
 export * from './KYC/add-kyc-document.action';

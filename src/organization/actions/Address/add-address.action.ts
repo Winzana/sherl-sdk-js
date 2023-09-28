@@ -7,13 +7,13 @@ import { IAddressRequest, IOrganizationResponse } from '../../types';
 export const addAddress = async (
   fetcher: Fetcher,
   organizationId: string,
-  request: IAddressRequest,
+  address: IAddressRequest,
 ): Promise<IOrganizationResponse> => {
   const response = await fetcher.post<IOrganizationResponse>(
     StringUtils.bindContext(endpoints.ADD_ADDRESS, {
       organizationId,
     }),
-    request,
+    address,
   );
 
   if (response.status !== 201) {

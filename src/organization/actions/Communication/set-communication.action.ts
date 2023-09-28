@@ -7,13 +7,13 @@ import { ICommunicationInputDto, IOrganizationResponse } from '../../types';
 export const setCommunication = async (
   fetcher: Fetcher,
   organizationId: string,
-  request: ICommunicationInputDto,
+  communicationInfo: ICommunicationInputDto,
 ): Promise<IOrganizationResponse> => {
   const response = await fetcher.post<IOrganizationResponse>(
     StringUtils.bindContext(endpoints.POST_SET_COMMUNICATION, {
       organizationId,
     }),
-    request,
+    communicationInfo,
   );
 
   if (response.status !== 201) {

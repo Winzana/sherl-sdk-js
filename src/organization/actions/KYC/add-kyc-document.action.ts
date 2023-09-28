@@ -7,7 +7,7 @@ import { IAddKYCDocument, IKYCDocument } from '../../types';
 export const addKycDocument = async (
   fetcher: Fetcher,
   organizationId: string,
-  request: IAddKYCDocument,
+  document: IAddKYCDocument,
   onUploadProgress?: (progressEvent: any) => void,
 ): Promise<IKYCDocument> => {
   try {
@@ -15,7 +15,7 @@ export const addKycDocument = async (
       StringUtils.bindContext(endpoints.ADD_DOCUMENT, {
         organizationId,
       }),
-      request,
+      document,
       undefined,
       {
         onUploadProgress,

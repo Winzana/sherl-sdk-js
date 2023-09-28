@@ -9,7 +9,7 @@ export const createBackgroundImageFromMedia = async (
   fetcher: Fetcher,
   organizationId: string,
   mediaId: string,
-  request: IImageObject,
+  image: IImageObject,
 ): Promise<IOrganizationResponse> => {
   try {
     const response = await fetcher.post<IOrganizationResponse>(
@@ -17,7 +17,7 @@ export const createBackgroundImageFromMedia = async (
         organizationId,
         mediaId,
       }),
-      request,
+      image,
     );
 
     if (response.status !== 200) {
