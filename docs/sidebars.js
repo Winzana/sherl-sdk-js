@@ -39,7 +39,7 @@ module.exports = {
       {
         type: 'category',
         label: 'Shop',
-        items: ['discount', 'order', 'product'],
+        items: ['shop/discount', 'shop/order', 'shop/product'],
       },
       'place',
       'bug-report',
