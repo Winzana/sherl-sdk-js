@@ -3,14 +3,14 @@ import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import {
-  IOpeningHoursSpecificationRequest,
+  IOpeningHoursSpecificationInputDto,
   IOrganizationResponse,
 } from '../../types';
 
 export const createOpeningHoursSpecification = async (
   fetcher: Fetcher,
   organizationId: string,
-  data: IOpeningHoursSpecificationRequest,
+  data: IOpeningHoursSpecificationInputDto,
 ): Promise<IOrganizationResponse> => {
   try {
     const response = await fetcher.post<IOrganizationResponse>(

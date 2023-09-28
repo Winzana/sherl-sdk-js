@@ -2,12 +2,12 @@ import { Fetcher } from '../../../common/api';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
-import { IEmployee, IEmployeeInputDto } from '../../types';
+import { IEmployee, IOrganizationMemberInputDto } from '../../types';
 
 export const createEmployee = async (
   fetcher: Fetcher,
   organizationId: string,
-  employee: IEmployeeInputDto,
+  employee: IOrganizationMemberInputDto,
 ): Promise<IEmployee> => {
   try {
     const response = await fetcher.post<IEmployee>(

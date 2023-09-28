@@ -2,13 +2,13 @@ import { Fetcher } from '../../../common/api';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
-import { IEmployeeInputDto, IFounder } from '../../types';
+import { IOrganizationMemberInputDto, IFounder } from '../../types';
 
 export const updateFounder = async (
   fetcher: Fetcher,
   organizationId: string,
   founderId: string,
-  request: Partial<IEmployeeInputDto>,
+  updatedFounder: Partial<IOrganizationMemberInputDto>,
 ): Promise<IFounder> => {
   try {
     const response = await fetcher.put<IFounder>(
@@ -16,7 +16,7 @@ export const updateFounder = async (
         organizationId,
         founderId,
       }),
-      request,
+      updatedFounder,
     );
 
     if (response.status !== 200) {

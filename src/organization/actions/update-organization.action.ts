@@ -2,18 +2,18 @@ import { Fetcher } from '../../common/api';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { OrganizationErr, errorFactory } from '../errors';
-import { IUpdateOrganizationRequest, IOrganizationResponse } from '../types';
+import { IUpdateOrganizationDto, IOrganizationResponse } from '../types';
 
 export const updateOrganization = async (
   fetcher: Fetcher,
   organizationId: string,
-  request: IUpdateOrganizationRequest,
+  updatedOrganization: IUpdateOrganizationDto,
 ): Promise<IOrganizationResponse> => {
   const response = await fetcher.put<IOrganizationResponse>(
     StringUtils.bindContext(endpoints.UPDATE_ORGANIZATION, {
       organizationId,
     }),
-    request,
+    updatedOrganization,
   );
 
   if (response.status !== 200) {

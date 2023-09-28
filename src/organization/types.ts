@@ -255,24 +255,11 @@ export interface ICommunicationInputDto {
   icon: string;
 }
 
-export interface ILogo {
-  logo: File;
-}
-
-export interface ILogoRequest extends ILogo {
-  organizationId: string;
-  logoId: string;
-}
-
-export interface IBackgroundImage {
-  backgroundImage: File;
-}
-
 export type IMediaCreateInputDto = Pick<
   IImageObject,
   'id' | 'uri' | 'width' | 'height' | 'caption' | 'thumbnail'
 >;
-export interface IOpeningHoursSpecificationRequest {
+export interface IOpeningHoursSpecificationInputDto {
   id?: string;
   dayOfWeek: string;
   closes: string;
@@ -281,23 +268,17 @@ export interface IOpeningHoursSpecificationRequest {
   validThrough: string;
 }
 
-export interface IEmployeeInputDto {
+export interface IOrganizationMemberInputDto {
   firstName: string;
   lastName: string;
   email: string;
 }
 
-export interface ICreateFounderRequest {
+export interface ICreateFounderDto {
   id: string;
   firstName: string;
   lastName: string;
   birthDate: string;
-  email: string;
-}
-
-export interface IUpdateFounderRequest {
-  firstName: string;
-  lastName: string;
   email: string;
 }
 
@@ -443,15 +424,19 @@ export interface ISuggestOrganizationRequest {
   ];
 }
 
-export interface IUpdateOrganizationRequest {
-  location: {
-    country: string;
-    locality: string;
-    region: string;
-    postalCode: string;
-    streetAddress: string;
-    latitude: number;
-    longitude: number;
+export interface IUpdateOrganizationDto {
+  legalName?: string;
+  location: IAddress;
+  enabled?: boolean;
+  isPublic?: boolean;
+  isComingSoon?: boolean;
+  metadatas: any;
+  openingHoursSpecification?: IOpeningHoursSpecification[];
+  thirdParty?: {
+    facebook?: {
+      accessToken: string;
+      userID: string;
+    };
   };
 }
 

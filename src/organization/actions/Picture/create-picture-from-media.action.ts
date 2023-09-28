@@ -8,7 +8,7 @@ export const createPictureFromMedia = async (
   fetcher: Fetcher,
   organizationId: string,
   pictureId: string,
-  request: IMediaCreateInputDto,
+  picture: IMediaCreateInputDto,
 ): Promise<IOrganizationResponse> => {
   try {
     const response = await fetcher.post<IOrganizationResponse>(
@@ -16,7 +16,7 @@ export const createPictureFromMedia = async (
         organizationId,
         pictureId,
       }),
-      request,
+      picture,
     );
 
     if (response.status !== 200) {

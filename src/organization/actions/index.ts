@@ -8,8 +8,6 @@ export * from './register-organization.action';
 export * from './register-organization-to-person.action';
 export * from './update-organization.action';
 export * from './create-organization.action';
-export * from './disable-roaming.action';
-export * from './enable-roaming.action';
 export * from './register-organization-to-person.action';
 export * from './register-organization.action';
 export * from './suggest-organization.action';
@@ -59,3 +57,7 @@ export * from './Founder/update-founder.action';
 export * from './Address/add-address.action';
 export * from './Address/delete-address.action';
 export * from './Address/update-address.action';
+
+// ROAMING
+export * from './Roaming/disable-roaming.action';
+export * from './Roaming/enable-roaming.action';

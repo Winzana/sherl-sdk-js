@@ -1,8 +1,8 @@
-import { Fetcher } from '../../common/api';
-import { StringUtils } from '../../common/utils/string';
-import { endpoints } from '../api/endpoints';
-import { OrganizationErr, errorFactory } from '../errors';
-import { IOrganizationResponse } from '../types';
+import { Fetcher } from '../../../common/api';
+import { StringUtils } from '../../../common/utils/string';
+import { endpoints } from '../../api/endpoints';
+import { OrganizationErr, errorFactory } from '../../errors';
+import { IOrganizationResponse } from '../../types';
 
 export const enableRoaming = async (
   fetcher: Fetcher,

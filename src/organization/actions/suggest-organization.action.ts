@@ -5,11 +5,11 @@ import { IOrganizationResponse, ISuggestOrganizationRequest } from '../types';
 
 export const suggestOrganization = async (
   fetcher: Fetcher,
-  request: ISuggestOrganizationRequest,
-): Promise<any> => {
-  const response = await fetcher.post<any>(
+  suggestion: ISuggestOrganizationRequest,
+): Promise<IOrganizationResponse> => {
+  const response = await fetcher.post<IOrganizationResponse>(
     endpoints.SUGGEST_ORGANIZATION,
-    request,
+    suggestion,
   );
 
   if (response.status !== 201) {

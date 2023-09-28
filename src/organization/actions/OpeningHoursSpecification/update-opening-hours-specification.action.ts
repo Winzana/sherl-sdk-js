@@ -4,14 +4,14 @@ import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import {
   IOrganizationResponse,
-  IOpeningHoursSpecificationRequest,
+  IOpeningHoursSpecificationInputDto,
 } from '../../types';
 
 export const updateOpeningHoursSpecification = async (
   fetcher: Fetcher,
   organizationId: string,
   hoursSpecId: string,
-  data: IOpeningHoursSpecificationRequest,
+  data: IOpeningHoursSpecificationInputDto,
 ): Promise<IOrganizationResponse> => {
   try {
     const response = await fetcher.put<IOrganizationResponse>(
