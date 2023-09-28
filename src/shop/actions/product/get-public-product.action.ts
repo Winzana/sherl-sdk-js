@@ -1,7 +1,8 @@
-import { ApiResponse, Fetcher } from '../../../common/api';
+import { Fetcher } from '../../../common/api';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
-import { IPublicProductResponse } from '../../types/product/types';
+import { IPublicProductResponse } from '../../types';
+import { ApiResponse } from '../../../common/types/response';
 
 export const getPublicProduct = async (
   fetcher: Fetcher,

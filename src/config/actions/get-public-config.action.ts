@@ -2,13 +2,13 @@ import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { ConfigErr, errorFactory } from '../errors';
 import { StringUtils } from '../../common/utils/string';
-import { IGetPublicConfigResponse } from '../types';
+import { IPublicConfig } from '../types';
 
 export const getPublicConfig = async (
   fetcher: Fetcher,
   code: string,
-): Promise<IGetPublicConfigResponse> => {
-  const response = await fetcher.get<any>(
+): Promise<IPublicConfig> => {
+  const response = await fetcher.get<IPublicConfig>(
     StringUtils.bindContext(endpoints.GET_PUBLIC_CONFIG, { code }),
   );
 

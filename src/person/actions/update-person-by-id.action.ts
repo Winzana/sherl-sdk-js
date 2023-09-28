@@ -1,21 +1,22 @@
-import { ApiResponse, Fetcher } from '../../common/api';
+import { Fetcher } from '../../common/api';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { errorFactory, PersonErr } from '../errors';
-import { IPersonMeResponse } from '../types';
+import { IPerson, IPersonUpdate } from '../types';
+import { ApiResponse } from '../../common';
 
 export const updatePersonById = async (
   fetcher: Fetcher,
   id: string,
-  params: Partial<IPersonMeResponse>,
-): Promise<IPersonMeResponse> => {
-  let response: ApiResponse<IPersonMeResponse> | null = null;
+  body: Partial<IPersonUpdate>,
+): Promise<IPerson> => {
+  let response: ApiResponse<IPerson> | null = null;
 
   try {
     response = await fetcher
-      .put<IPersonMeResponse>(
+      .put<IPerson>(
         StringUtils.bindContext(endpoints.UPDATE_PERSON_BY_ID, { id }),
-        params,
+        body,
       )
       .catch(() => {
         throw errorFactory.create(PersonErr.PUT_FAILED);
