@@ -12,9 +12,10 @@ class Fetcher {
     url: string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     params?: { [key: string]: any },
+    config?: AxiosRequestConfig,
   ): Promise<ApiResponse<T>> {
     return this.apiInstance
-      .get<T>(url, { params })
+      .get<T>(url, { ...config, params })
       .catch((err: AxiosError<ApiResponseError>) => {
         if (err.response && err.response.status) {
           throw this.errorFactory.create(
@@ -58,9 +59,10 @@ class Fetcher {
     url: string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: { [key: string]: any },
+    config?: AxiosRequestConfig,
   ): Promise<ApiResponse<T>> {
     return this.apiInstance
-      .put<T>(url, data)
+      .put<T>(url, data, config)
       .catch((err: AxiosError<ApiResponseError>) => {
         if (err.response && err.response.status) {
           throw this.errorFactory.create(

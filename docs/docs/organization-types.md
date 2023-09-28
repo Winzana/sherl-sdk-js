@@ -223,3 +223,65 @@ interface IOrganizationDocumentsResponse {
   status: string;
 }
 ```
+
+## KYC
+### IKYCDocument 
+
+```ts
+interface IKYCDocument {
+  id: string;
+  uri?: string;
+  organizationId: string;
+  consumerId?: string;
+  type: KYCDocumentTypeEnum;
+  tag?: string;
+  originId?: string;
+  creationDate?: string;
+  processedDate?: string;
+  status: KYCDocumentStatusEnum;
+  refusedReasonType?: KYCDocumentRefusedReasonTypeEnum;
+  refusedReasonMessage?: string;
+  media?: IImageObject;
+  createdAt: Date;
+  updatedAt?: Date;
+}
+```
+
+ - *media* : [IImageObject](media-types#iimageobject)(`media`)
+
+### KYCDocumentTypeEnum
+```ts
+enum KYCDocumentTypeEnum {
+  IDENTITY_PROOF = 'IDENTITY_PROOF',
+  REGISTRATION_PROOF = 'REGISTRATION_PROOF',
+  ARTICLES_OF_ASSOCIATION = 'ARTICLES_OF_ASSOCIATION',
+  ADDRESS_PROOF = 'ADDRESS_PROOF',
+  IDENTITY_PROOF_PASSPORT = 'IDENTITY_PROOF_PASSPORT',
+  IDENTITY_PROOF_OTHER_DOCUMENT = 'IDENTITY_PROOF_OTHER_DOCUMENT',
+}
+```
+
+### KYCDocumentStatusEnum
+```ts
+enum KYCDocumentStatusEnum {
+  CREATED = 'CREATED',
+  VALIDATION_ASKED = 'VALIDATION_ASKED',
+  VALIDATED = 'VALIDATED',
+  REFUSED = 'REFUSED',
+}
+```
+### KYCDocumentRefusedReasonTypeEnum
+```ts
+enum KYCDocumentRefusedReasonTypeEnum {
+  DOCUMENT_UNREADABLE,
+  DOCUMENT_NOT_ACCEPTED,
+  DOCUMENT_HAS_EXPIRED,
+  DOCUMENT_INCOMPLETE,
+  DOCUMENT_MISSING,
+  DOCUMENT_DO_NOT_MATCH_USER_DATA,
+  DOCUMENT_DO_NOT_MATCH_ACCOUNT_DATA,
+  SPECIFIC_CASE,
+  DOCUMENT_FALSIFIED,
+  UNDERAGE_PERSON,
+}
+```

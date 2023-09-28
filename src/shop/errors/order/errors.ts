@@ -7,7 +7,7 @@ export enum OrderErr {
 
 export const errors = {
   [OrderErr.FETCH_FAILED]: 'Failed to fetch order API',
-  [OrderErr.FETCH_FAILED]: 'Order not found',
+  [OrderErr.NOT_FOUND]: 'Order not found',
 };
 
 export const errorFactory = new ErrorFactory<OrderErr>('Order', errors);
