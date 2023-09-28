@@ -1,32 +1,27 @@
-import { ApiResponse, Fetcher } from '../../common/api';
+import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { PersonErr, errorFactory } from '../errors';
-import { IAddressRegister } from '../types';
 import { StringUtils } from '../../common/utils/string';
+import { IPerson } from '../types';
+import { IPlace } from '../../place';
 
 export const updateAddress = async (
   fetcher: Fetcher,
-  id: string,
-  params: Partial<IAddressRegister>,
-) => {
-  let response: ApiResponse<IAddressRegister> | null = null;
-
+  addressId: string,
+  updatedAddress: IPlace,
+): Promise<IPerson> => {
   try {
-    response = await fetcher
-      .put<IAddressRegister>(
-        StringUtils.bindContext(endpoints.UPDATE_ADDRESS, { id }),
-        params,
+    const response = await fetcher
+      .put<IPerson>(
+        StringUtils.bindContext(endpoints.UPDATE_ADDRESS, { id: addressId }),
+        updatedAddress,
       )
       .catch(() => {
         throw errorFactory.create(PersonErr.PUT_ADDRESS_FAILED);
       });
-  } catch ({ name, response: responseError, stack, isAxiosError, ...rest }) {
+
+    return response.data;
+  } catch (error) {
     throw errorFactory.create(PersonErr.PUT_ADDRESS_FAILED);
   }
-
-  if (!response.data) {
-    throw errorFactory.create(PersonErr.PUT_ADDRESS_FAILED);
-  }
-
-  return response.data;
 };

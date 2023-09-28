@@ -1,16 +1,17 @@
 import { Fetcher } from '../../common/api';
+import { IPlace } from '../../place';
 import { endpoints } from '../api/endpoints';
 import { PersonErr, errorFactory } from '../errors';
-import { IAddressRegister } from '../types';
+import { IPerson } from '../types';
 
 export const createAddress = async (
   fetcher: Fetcher,
-  address: IAddressRegister,
-) => {
+  address: IPlace,
+): Promise<IPerson> => {
   try {
     const response = await fetcher
-      .post<IAddressRegister>(endpoints.CREATE_ADDRESS, { ...address })
-      .catch((_err) => {
+      .post<IPerson>(endpoints.CREATE_ADDRESS, { ...address })
+      .catch(() => {
         throw errorFactory.create(PersonErr.CREATE_ADDRESS_FAILED);
       });
 
@@ -18,7 +19,7 @@ export const createAddress = async (
       throw errorFactory.create(PersonErr.CREATE_ADDRESS_FAILED);
     }
 
-    return true;
+    return response.data;
   } catch (error) {
     throw errorFactory.create(PersonErr.CREATE_ADDRESS_FAILED);
   }

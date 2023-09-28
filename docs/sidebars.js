@@ -11,7 +11,15 @@ module.exports = {
       'user',
       'config',
       'product',
-      'person',
+      {
+        type: 'category',
+        label: 'Person',
+        items: [
+          'person/person-address',
+          'person/person-config',
+          'person/person-index',
+        ],
+      },
       {
         type: 'category',
         label: 'Organization',

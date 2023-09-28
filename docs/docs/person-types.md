@@ -90,7 +90,35 @@ enum PersonTypeEnum {
  - *organization* [**IOrganizationResponse**](organization-types#iorganizationresponse)(`affiliation`)
  - *media* [**IImageObject**](media-types#iimageobject)(`picture`)
 
-
+## IPersonFilters 
+```ts
+interface IPersonFilters {
+  id?: string;
+  userId?: string;
+  q?: string;
+  firstName?: string;
+  lastName?: string;
+  phoneNumber?: string;
+  mobilePhoneNumber?: string;
+  faxNumber?: string;
+  nationality?: string;
+  uri?: string;
+  legalName?: string;
+  location?: any;
+  subOrganizations?: any;
+  birthdate?: string;
+  email?: string;
+  gender?: string;
+  jobTitle?: string;
+  enabled?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+  analytics?: string;
+  noFrequentedEstablishment?: string;
+  type?: PersonTypeEnum;
+  sort?: Sort<IPerson>;
+}
+```
 ## Interconnection with establishment
 ### IFrequentedEstablishments
 ```ts
