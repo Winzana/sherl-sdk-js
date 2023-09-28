@@ -2,7 +2,7 @@ import { ICalendarEvent, IDays, IOpeningHoursSpecification } from '../calendar';
 import { PaginationFilters } from '../common';
 import { IImageObject } from '../media';
 import { IPerson } from '../person';
-import { IPlace, IGeoCoordinates } from '../place/types';
+import { IPlace, IGeoCoordinates, IAddress } from '../place/types';
 
 import { IQuotas } from '../quotas/types';
 import {
@@ -148,6 +148,296 @@ export interface IEmployee extends IPerson {
   firstName: string;
   lastName: string;
   email: string;
+}
+
+// #region - KYC
+
+export interface IKYCDocument {
+  id: string;
+  uri?: string;
+  organizationId: string;
+  consumerId?: string;
+  type: KYCDocumentTypeEnum;
+  tag?: string;
+  originId?: string;
+  creationDate?: string;
+  processedDate?: string;
+  status: KYCDocumentStatusEnum;
+  refusedReasonType?: KYCDocumentRefusedReasonTypeEnum;
+  refusedReasonMessage?: string;
+  media?: IImageObject;
+  createdAt: Date;
+  updatedAt?: Date;
+}
+
+export enum KYCDocumentStatusEnum {
+  CREATED = 'CREATED',
+  VALIDATION_ASKED = 'VALIDATION_ASKED',
+  VALIDATED = 'VALIDATED',
+  REFUSED = 'REFUSED',
+}
+
+export enum KYCDocumentRefusedReasonTypeEnum {
+  DOCUMENT_UNREADABLE,
+  DOCUMENT_NOT_ACCEPTED,
+  DOCUMENT_HAS_EXPIRED,
+  DOCUMENT_INCOMPLETE,
+  DOCUMENT_MISSING,
+  DOCUMENT_DO_NOT_MATCH_USER_DATA,
+  DOCUMENT_DO_NOT_MATCH_ACCOUNT_DATA,
+  SPECIFIC_CASE,
+  DOCUMENT_FALSIFIED,
+  UNDERAGE_PERSON,
+}
+
+export interface IAddKYCDocument {
+  id: string;
+  type: KYCDocumentTypeEnum;
+  media: IImageObject;
+}
+
+export enum KYCDocumentTypeEnum {
+  IDENTITY_PROOF = 'IDENTITY_PROOF',
+  REGISTRATION_PROOF = 'REGISTRATION_PROOF',
+  ARTICLES_OF_ASSOCIATION = 'ARTICLES_OF_ASSOCIATION',
+  ADDRESS_PROOF = 'ADDRESS_PROOF',
+  IDENTITY_PROOF_PASSPORT = 'IDENTITY_PROOF_PASSPORT',
+  IDENTITY_PROOF_OTHER_DOCUMENT = 'IDENTITY_PROOF_OTHER_DOCUMENT',
+}
+
+export interface IUpdateDocument {
+  media: {
+    id: string;
+    uri: string;
+    caption: {
+      id: string;
+      size: number;
+      contentUrl: string;
+      description: string;
+      name: string;
+      encodingFormat: string;
+    };
+    domain: string;
+  };
+}
+
+// #endregion
+
+export interface IMedia {
+  id: string;
+  uri: string;
+  caption: ICaption;
+  domain: string;
+}
+
+export interface ICaption {
+  id: string;
+  size: number;
+  contentUrl: string;
+  description: string;
+  name: string;
+  encodingFormat: string;
+}
+
+export interface IAddRib {
+  iban: string;
+  bic: string;
+}
+
+export interface IRib {
+  iban: string;
+  bic: string;
+}
+
+export interface ICommunicationInputDto {
+  title: string;
+  message: string;
+  icon: string;
+}
+
+export type IMediaCreateInputDto = Pick<
+  IImageObject,
+  'id' | 'uri' | 'width' | 'height' | 'caption' | 'thumbnail'
+>;
+export interface IOpeningHoursSpecificationInputDto {
+  id?: string;
+  dayOfWeek: string;
+  closes: string;
+  opens: string;
+  validFrom: string;
+  validThrough: string;
+}
+
+export interface IOrganizationMemberInputDto {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
+export interface ICreateFounderDto {
+  id: string;
+  firstName: string;
+  lastName: string;
+  birthDate: string;
+  email: string;
+}
+
+export interface IAddressRequest extends IAddress {
+  originId: string;
+  latitude: number;
+  longitude: number;
+  organizationId: string;
+}
+
+export interface ICreateOrganizationInputDto {
+  id: string;
+  legalName: string;
+  siret: string;
+  createdAt: string;
+  location: {
+    id: string;
+    country: string;
+    locality: string;
+    region: string;
+    postalCode: string;
+    streetAddress: string;
+    uri: string;
+    createdAt: string;
+    department: string;
+    complementaryStreetAddress: string;
+    name: string;
+    originId: string;
+    latitude: number;
+    longitude: number;
+  };
+}
+
+export interface IRegisterOrganizationRequest {
+  sponsoredByCode: string;
+  organization: {
+    id: string;
+    legalName: string;
+    siret: string;
+    location: IPlace;
+  };
+  person: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    address: IGeoCoordinates;
+    mobilePhoneNumber: string;
+    nationality: string;
+    latitude: number;
+    longitude: number;
+    birthDate: string;
+    email: string;
+    gender: string;
+    jobTitle: string;
+  };
+  user: {
+    password: string;
+  };
+}
+
+export interface IRegisterOrganizationToPerson {
+  organization: {
+    id: string;
+    legalName: string;
+    location: {
+      id: string;
+      country: string;
+      locality: string;
+      region: string;
+      postalCode: string;
+      streetAddress: string;
+      latitude: number;
+      longitude: number;
+    };
+  };
+  person: {
+    firstName: string;
+    lastName: string;
+    address: {
+      id: string;
+      country: string;
+      locality: string;
+      region: string;
+      postalCode: string;
+      streetAddress: string;
+    };
+    mobilePhoneNumber: string;
+    nationality: string;
+    birthDate: string;
+    email: string;
+    gender: string;
+    settings: {
+      notifications: {
+        smsEnable: boolean;
+        emailEnable: boolean;
+        pushEnable: boolean;
+      };
+    };
+  };
+}
+
+export interface ISuggestOrganizationRequest {
+  id: string;
+  legalName: string;
+  siret: number;
+  location: {
+    id: string;
+    country: string;
+    locality: string;
+    region: string;
+    postalCode: string;
+    streetAddress: string;
+    latitude: number;
+    longitude: number;
+  };
+  serviceType: [
+    {
+      id: string;
+      uri: string;
+      code: string;
+      values: [
+        {
+          language: string;
+          value: string;
+          createdAt: string;
+        },
+      ];
+      createdAt: string;
+    },
+    {
+      id: string;
+      uri: string;
+      code: string;
+      values: [
+        {
+          language: string;
+          value: string;
+          createdAt: string;
+        },
+      ];
+      createdAt: string;
+    },
+  ];
+}
+
+export interface IUpdateOrganizationDto {
+  legalName?: string;
+  location: IAddress;
+  enabled?: boolean;
+  isPublic?: boolean;
+  isComingSoon?: boolean;
+  metadatas: any;
+  openingHoursSpecification?: IOpeningHoursSpecification[];
+  thirdParty?: {
+    facebook?: {
+      accessToken: string;
+      userID: string;
+    };
+  };
 }
 
 export interface IOrganizationDocumentsResponse {

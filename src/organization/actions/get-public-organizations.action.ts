@@ -2,6 +2,7 @@ import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { IOrganizationResponse, OrganizationFiltersDto } from '../types';
 import { Pagination } from '../../common/types/response';
+import { OrganizationErr, errorFactory } from '../errors';
 
 export const getPublicOrganizations = async (
   fetcher: Fetcher,
@@ -13,9 +14,7 @@ export const getPublicOrganizations = async (
   );
 
   if (response.status !== 200) {
-    throw new Error(
-      `Failed to fetch products API (status: ${response.status})`,
-    );
+    throw errorFactory.create(OrganizationErr.FETCH_FAILED);
   }
 
   return response.data;

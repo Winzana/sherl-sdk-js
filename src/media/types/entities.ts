@@ -3,8 +3,8 @@ export interface IImageObject {
   consumerId?: string;
   domain?: string;
   uri?: string;
-  width?: number;
-  height?: number;
+  width: number;
+  height: number;
   caption: IMediaObject;
   thumbnail?: IImageObject;
   createdAt?: Date;

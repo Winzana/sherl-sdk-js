@@ -2,25 +2,23 @@ import { Fetcher } from '../../common/api';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { IOrganizationResponse } from '../types';
-import { ApiResponse } from '../../common';
+import { OrganizationErr, errorFactory } from '../errors';
 
 export const getPublicOrganizationBySlug = async (
   fetcher: Fetcher,
   slug: string,
 ): Promise<IOrganizationResponse> => {
-  let response: ApiResponse<IOrganizationResponse> | null = null;
-
   try {
-    response = await fetcher.get<IOrganizationResponse>(
+    const response = await fetcher.get<IOrganizationResponse>(
       StringUtils.bindContext(endpoints.GET_PUBLIC_ORGANIZATION_SLUG, { slug }),
     );
-  } catch ({ name, response: responseError, stack, isAxiosError, ...rest }) {
-    throw new Error('Cannot reach API');
-  }
 
-  if (response) {
+    if (response.status !== 200) {
+      throw errorFactory.create(OrganizationErr.FETCH_FAILED);
+    }
+
     return response.data;
+  } catch (error) {
+    throw errorFactory.create(OrganizationErr.FETCH_FAILED);
   }
-
-  throw new Error('Empty response from API');
 };
