@@ -1,3 +1,4 @@
+import { PaginationFilters } from '../../../common';
 import { IOrganizationResponse } from '../../../organization/types';
 import { IProductResponse, ICategoryResponse } from '../product/entities';
 
@@ -21,34 +22,34 @@ export enum DiscountTypeEnum {
 }
 
 export interface IDiscountParameter {
-  id: 'string';
-  name: 'string';
-  availableFrom: 'Date';
-  availableUntil: 'Date';
+  id: string;
+  name: string;
+  availableFrom: Date;
+  availableUntil: Date;
   enabled: boolean;
   highlight: boolean;
   cumulative: boolean;
-  discountType: 'percent';
-  code: 'string';
+  discountType: string;
+  code: string;
   percentage: number;
   amount: number;
   quantity: number;
   quantityPerUser: number;
-  customers: ['string'];
+  customers: string[];
   visibleToPublic: boolean;
   productRestrictions: [
     {
       requiredQuantity: number;
-      productUri: 'string';
-      categoryUri: 'string';
+      productUri: string;
+      categoryUri: string;
     },
   ];
   dateRestrictions: [
     {
-      date: 'Date';
-      dayOfWeek: 'string';
-      fromHour: 'Date';
-      toHour: 'Date';
+      date: Date;
+      dayOfWeek: string;
+      fromHour: Date;
+      toHour: Date;
     },
   ];
 }
@@ -78,4 +79,50 @@ export interface IDiscount {
   dateRestrictions: IDateRestriction[];
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface IDiscountPublicFilter extends PaginationFilters {
+  ownerUri?: string;
+  availableFrom?: Date;
+  availableUntil?: Date;
+}
+
+export interface IDiscountFilter extends IDiscountPublicFilter {
+  id?: string;
+  uri?: string;
+  name?: string;
+  ownerUris?: string[];
+  consumerId: string;
+  validFor?: Date;
+  enabled?: boolean;
+  isSubscription?: boolean;
+  public?: boolean;
+  visibleToPublic?: boolean;
+  highlight?: boolean;
+  cumulative?: boolean;
+  discountType?: DiscountTypeEnum;
+  code?: string;
+  toCode?: string;
+  noCode?: boolean;
+  percentage?: number;
+  amount?: number;
+  quantity?: number;
+  quantityPerUser?: number;
+  customerUri?: string;
+  productUris?: string[];
+  noProduct?: boolean;
+  productRestrictions?: IProductRestriction;
+  dateRestrictions?: IDateRestriction;
+  toDate?: Date;
+  toMe?: string;
+  createdAt?: {
+    from?: Date;
+    to?: Date;
+  };
+  updatedAt?: {
+    from?: Date;
+    to?: Date;
+  };
+  offPeakHours?: boolean;
+  toValidate?: boolean;
 }

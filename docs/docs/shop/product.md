@@ -3,20 +3,15 @@ id: product
 title: Product
 ---
 
-## Get product list
-
-Retrieve a list of products.
-There is two version for this integration, public and private endpoint according to the public attribute.
-
-Return a paginated array of Product.
+## Get products list
 
 <span class="badge badge--warning">Require authentication</span>
 
 ```ts
-const products = await shop(client).getProducts(1, 10, {
-  /* Filters */
-});
+const products = await shop(client).getProducts(filters: {});
 ```
+
+This call returns a [paginated](../pagination#pagination) array of [IProductResponse](../shop-types#iproductresponse) objects.
 
 <span class="badge badge--success">Public</span>
 

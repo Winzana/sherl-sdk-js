@@ -1,3 +1,5 @@
+import { transfer } from 'mangopay2-nodejs-sdk';
+
 import { IOrganizationResponse } from '../../../organization/types';
 import { IPerson } from '../../../person/types';
 import {
@@ -7,6 +9,7 @@ import {
 } from '../product/entities';
 import { IDiscount } from '../discount/entities';
 import { IAddress } from '../../../place/types';
+import { PaginationFilters } from '../../../common';
 
 export interface IOrderResponse {
   id: string;
@@ -58,13 +61,11 @@ export interface IOrderStatusHistory {
   status: number;
   userUri: string;
   createdAt: Date;
-  // user: User;
   latitude: number;
   longitude: number;
 }
 
-export interface IOrderCommission {
-  //extends mangopay.transfer.TransferData
+export interface IOrderCommission extends transfer.TransferData {
   createdAt: Date;
 }
 
@@ -154,7 +155,7 @@ export interface IPayment {
   application_fee: any;
   application_fee_amount: any;
   balance_transaction: string;
-  billing_details: IBillingdetails;
+  billing_details: IBillingDetails;
   captured: boolean;
   created: number;
   currency: string;
@@ -172,7 +173,7 @@ export interface IPayment {
   paid: boolean;
   payment_intent: any;
   payment_method: string;
-  payment_method_details: IPaymentmethoddetails;
+  payment_method_details: IPaymentMethodDetails;
   receipt_email: any;
   receipt_number: any;
   receipt_url: string;
@@ -196,12 +197,12 @@ interface IRefunds {
   url: string;
 }
 
-interface IPaymentmethoddetails {
+export interface IPaymentMethodDetails {
   card: ICard;
   type: string;
 }
 
-interface ICard {
+export interface ICard {
   brand: string;
   checks: IChecks;
   country: string;
@@ -216,17 +217,17 @@ interface ICard {
   wallet: any;
 }
 
-interface IChecks {
+export interface IChecks {
   address_line1_check: any;
   address_postal_code_check: any;
   cvc_check: any;
 }
 
-interface IBillingdetails {
+export interface IBillingDetails {
   address: IAddress;
-  email: any;
+  email: string;
   name: string;
-  phone: any;
+  phone: string;
 }
 
 export enum OrderStatusEnum {
@@ -244,4 +245,40 @@ export enum OrderStatusEnum {
   REFUND = 1100,
   CONSUMER_CANCELLED = 9000,
   ORGANIZATION_CANCELLED = 9100,
+}
+
+export interface IOrderFindByDto extends PaginationFilters {
+  id?: string;
+  type?: ShopProductTypeEnum;
+  q?: string;
+  date?: string;
+  dateRangeMin?: string;
+  dateRangeMax?: string;
+  scheduleDateRangeMin?: string;
+  scheduleDateRangeMax?: string;
+  orderNumber?: number;
+  orderStatus?: OrderStatusEnum;
+  orderStatusTab?: OrderStatusEnum[];
+  customerId?: string;
+  customerName?: string;
+  meansOfPayment?: string;
+  serviceType?: OrganizationServiceTypeEnum;
+  amout?: number;
+  filterByUsage?: OrganizationFilterByUsageEnum;
+  sort?: ISort;
+}
+
+export enum OrganizationServiceTypeEnum {
+  SERVICE_TYPE_TABLE = 'SERVICE_TYPE_TABLE',
+  SERVICE_TYPE_BAR = 'SERVICE_TYPE_BAR',
+}
+
+export enum OrganizationFilterByUsageEnum {
+  BUY = 'BUY',
+  USED = 'USED',
+}
+
+export interface ISort {
+  order: -1 | 1 | 'asc' | 'desc';
+  field: string;
 }

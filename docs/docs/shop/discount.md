@@ -8,90 +8,144 @@ title: Discount
 Retrieve a list of all discounts, that you can filter with parameters
 There is two version for this integration, public and private endpoint according to the public attribute.
 
-Return a paginated array of Discount.
-
-<span class="badge badge--warning">Require authentication</span>
-
-```ts
-const discounts = await shop(client).getDiscounts(1, 10, {
-  /* Filters */
-});
-```
-
 <span class="badge badge--success">Public</span>
 
 ```ts
-const discounts = await shop(client).getPublicDiscounts(1, 10, {
-  /* Filters */
-});
+const discounts = await shop(client).getPublicDiscounts(filters: IDiscountPublicFilter);
 ```
 
-## Get one discount by id
+```ts
+interface IDiscountPublicFilter extends PaginationFilters {
+  ownerUri?: string;
+  availableFrom?: Date;
+  availableUntil?: Date;
+}
+```
 
-Retrieve a discount by ID.
+See [**PaginationFilters**](../pagination#pagination-filters).
+
+This call returns a [paginated](../pagination#pagination) of [IDiscount](../shop-types#idiscount) objects.
+
 
 <span class="badge badge--warning">Require authentication</span>
 
 ```ts
-const discount = await shop(client).getDiscount('discount-id');
+const discounts = await shop(client).getDiscounts(filters: IDiscountFilter);
 ```
 
-Return a Discount.
+<a name="discountFilter"></a>
 
-## Get one discount by params
+```ts
+interface IDiscountFilter extends IDiscountPublicFilter {
+  id?: string;
+  uri?: string;
+  name?: string;
+  ownerUris?: string[];
+  consumerId: string;
+  validFor?: Date;
+  enabled?: boolean;
+  isSubscription?: boolean;
+  public?: boolean;
+  visibleToPublic?: boolean;
+  highlight?: boolean;
+  cumulative?: boolean;
+  discountType?: DiscountTypeEnum;
+  code?: string;
+  toCode?: string;
+  noCode?: boolean;
+  percentage?: number;
+  amount?: number;
+  quantity?: number;
+  quantityPerUser?: number;
+  customerUri?: string;
+  productUris?: string[];
+  noProduct?: boolean;
+  productRestrictions?: IProductRestriction;
+  dateRestrictions?: IDateRestriction;
+  toDate?: Date;
+  toMe?: string;
+  createdAt?: {
+    from?: Date;
+    to?: Date;
+  };
+  updatedAt?: {
+    from?: Date;
+    to?: Date;
+  };
+  offPeakHours?: boolean;
+  toValidate?: boolean;
+}
+```
 
-Retrieve a discount by parameters.
+- *discount* : [DiscountTypeEnum](../shop-types#discounttypeenum)(`discountType`), [IProductRestriction](../shop-types#iproductrestriction)(`productRestrictions`), [IDateRestriction](../shop-types#idaterestriction)(`dateRestrictions`)
+
+
+This call returns a [paginated](../pagination#pagination) of [IDiscount](../shop-types#idiscount) objects.
+
+## Get discount by id
+
 
 <span class="badge badge--warning">Require authentication</span>
 
 ```ts
-const discount = await shop(client).getDiscountByParams({
-  your_key: 'Your_value',
-  your_key: 'Your_value',
-});
+const discount = await shop(client).getDiscount(discountId: string);
 ```
 
-Return a Discount.
+This call returns an [IDiscount](../shop-types#idiscount) object.
 
-## Post Discount
-
-Create a discount.
+## Get discount by params
 
 <span class="badge badge--warning">Require authentication</span>
 
 ```ts
-const discount = await shop(client).postDiscount({
-  id: 'string',
-  name: 'string',
-  availableFrom: 'Date',
-  availableUntil: 'Date',
-  enabled: boolean,
-  highlight: boolean,
-  cumulative: boolean,
-  discountType: 'percent',
-  code: 'string',
-  percentage: number,
-  amount: number,
-  quantity: number,
-  quantityPerUser: number,
-  customers: ['string'],
-  visibleToPublic: boolean,
+const discount = await shop(client).getDiscountByParams(filters: IDiscountFilter);
+```
+
+[**IDiscountFilter**](#discountFilter)
+
+This call returns an [IDiscount](../shop-types#idiscount) object.
+
+## Create a discount
+
+<span class="badge badge--warning">Require authentication</span>
+
+```ts
+const discount = await shop(client).postDiscount(discount: IDiscountParameter)
+```
+
+```ts
+interface IDiscountParameter {
+  id: string;
+  name: string;
+  availableFrom: Date;
+  availableUntil: Date;
+  enabled: boolean;
+  highlight: boolean;
+  cumulative: boolean;
+  discountType: string;
+  code: string;
+  percentage: number;
+  amount: number;
+  quantity: number;
+  quantityPerUser: number;
+  customers: string[];
+  visibleToPublic: boolean;
   productRestrictions: [
     {
-      requiredQuantity: number,
-      productUri: 'string',
-      categoryUri: 'string',
+      requiredQuantity: number;
+      productUri: string;
+      categoryUri: string;
     },
-  ],
+  ];
   dateRestrictions: [
     {
-      date: 'Date',
-      dayOfWeek: 'string',
-      fromHour: 'Date',
-      toHour: 'Date',
+      date: Date;
+      dayOfWeek: string;
+      fromHour: Date;
+      toHour: Date;
     },
-  ],
-})
+  ];
+}
 ```
 
-Create a Discount.
+This call returns an [IDiscount](../shop-types#idiscount) object.

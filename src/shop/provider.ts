@@ -8,13 +8,7 @@ import {
   getPublicDiscounts,
   postDiscount,
 } from './actions/discount';
-import {
-  getAutomationPrimary,
-  getAutomationSecondary,
-  getOrder,
-  getOrders,
-  getOrganizationOrders,
-} from './actions/order';
+import { getOrder, getOrders } from './actions/order';
 import {
   getCategoriesById,
   getCategories,
@@ -57,9 +51,6 @@ class ShopProvider extends AbstractProvider {
   // Orders
   getOrder = this.withFetcher(getOrder);
   getOrders = this.withFetcher(getOrders);
-  getOrganizationOrders = this.withFetcher(getOrganizationOrders);
-  getAutomationPrimary = this.withFetcher(getAutomationPrimary);
-  getAutomationSecondary = this.withFetcher(getAutomationSecondary);
 }
 
 export { ShopProvider };

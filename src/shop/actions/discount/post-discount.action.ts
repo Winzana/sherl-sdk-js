@@ -11,11 +11,11 @@ export const postDiscount = async (
     .post<IDiscount>(endpoints.POST_DISCOUNT, {
       ...parameter,
     })
-    .catch((_err) => {
+    .catch(() => {
       throw errorFactory.create(DiscountErr.POST_FAILED);
     });
 
-  if (!response.data) {
+  if (response.status !== 201) {
     throw errorFactory.create(DiscountErr.POST_FAILED);
   }
 
