@@ -8,7 +8,72 @@ title: Product
 <span class="badge badge--warning">Require authentication</span>
 
 ```ts
-const products = await shop(client).getProducts(filters: {});
+await shop(client).getProducts(filters: IProductFindByDto);
+```
+
+**IProductFindByDto** extends [PaginationFilters](../pagination#pagination-filters)
+
+```ts
+interface IProductFindByDto extends PaginationFilters {
+  ids?: string[];
+  externalIds?: string[];
+  excludedExternalIds?: string[];
+  externalIdentifier?: string;
+  uri?: string;
+  versionNumber?: number;
+  slug?: string;
+  parentUri?: string;
+  organizationUri?: string;
+  organizationSlug?: string;
+  id?: string;
+  name?: string;
+  categoryUri?: string;
+  categoryUris?: string[];
+  consumerId?: string;
+  q?: string;
+  isEnable?: boolean;
+  languages?: string[];
+  placeForward?: boolean;
+  strictPlaceForward?: boolean;
+  geopoint?: string;
+  distance?: number;
+  withinHours?: boolean;
+  startDate?: string;
+  endDate?: string;
+  displayAllVersion?: boolean;
+  includeDeleted?: boolean;
+  isUpdatedByHuman?: boolean;
+  tag?: ProductTags;
+  tags?: number;
+  displayMode?: ProductDisplayMode;
+  type?: ProductTypeEnum;
+  noBind?: boolean;
+  uriOfPanels?: string[];
+  panel?: string;
+}
+
+enum ProductTags {
+  BACK_OFFICE = 'BACK_OFFICE',
+  BACK_OFFICE_RESYNC = 'BACK_OFFICE_RESYNC',
+}
+
+enum ProductDisplayMode {
+  DEFAULT = 'default',
+  LIST = 'list',
+  MAP = 'map',
+}
+
+enum ProductTypeEnum {
+  CREDIT = 'CREDIT',
+  DEFAULT = 'DEFAULT',
+  ROOM = 'ROOM',
+  TIP = 'TIP',
+  SERVICE = 'SERVICE',
+  PLAN = 'PLAN',
+  QUOTA = 'QUOTA',
+  REFUND = 'REFUND',
+  EVENT = 'EVENT',
+}
 ```
 
 This call returns a [paginated](../pagination#pagination) array of [IProductResponse](../shop-types#iproductresponse) objects.
@@ -16,96 +81,88 @@ This call returns a [paginated](../pagination#pagination) array of [IProductResp
 <span class="badge badge--success">Public</span>
 
 ```ts
-const products = await shop(client).getPublicProducts(1, 10, {
-  /* Filters */
-});
+await shop(client).getPublicProducts(filters: IProductFindByDto);
 ```
 
-## Get one product
+This call returns a [paginated](../pagination#pagination) array of [IPublicProductResponse](../shop-types#ipublicproductresponse) objects.
 
-Retrieve a product by ID.
-There is two version for this integration, public and private endpoint according to the public attribute.
 
-Return a Product.
+## Get product by id
 
 <span class="badge badge--warning">Require authentication</span>
 
 ```ts
-const product = await shop(client).getProduct('product-id');
+const product = await shop(client).getProduct(id: string);
 ```
+
+This call returns an [IProductResponse](../shop-types#iproductresponse) object.
 
 <span class="badge badge--success">Public</span>
 
 ```ts
-// Public
-const product = await shop(client).getPublicProduct('product-id');
+await shop(client).getPublicProduct(id: string);
 ```
+
+This call returns an [IPublicProductResponse](../shop-types#ipublicproductresponse) object.
 
 ## Get product by slug
 
-Retrieve Product by slug.
-Return a Product.
-
 <span class="badge badge--success">Public</span>
 
 ```ts
-const product = await shop(client).getPublicProductBySlug('product-slug');
+await shop(client).getPublicProductBySlug(id: string);
 ```
 
-## Get categories from parent
+This call returns an [IPublicProductResponse](../shop-types#ipublicproductresponse) object.
 
-Retrieve categories.
-Return all subcategories for a parent category.
+## Get category by id
 
 <span class="badge badge--warning">Require authentication</span>
 
 ```ts
-const categories = await shop(client).getCategoriesById('organization-id');
+await shop(client).getCategoriesById(id: string);
 ```
 
-## Get categories
+This call returns an [ICategoryResponse](../shop-types#icategoryresponse) object.
 
-Retrieve categories.
-Return a category (with subcategories).
+
+## Get public categories
 
 <span class="badge badge--success">Public</span>
 
 ```ts
-// Public
-const categories = await shop(client).getPublicCategories();
+await shop(client).getPublicCategories();
 ```
 
-## Get sub-categories of a category
+This call returns an array of [IPublicCategoryResponse](../shop-types#ipubliccategoryresponse) objects.
 
-Retrieve list of sub-categories of a category.
-Return an array of Category.
+## Get categories by organizationId
 
 <span class="badge badge--warning">Require authentication</span>
 
 ```ts
-const subCategories = await shop(client).getCategories('organization-id');
+await shop(client).getCategories(organizationId: string, filters: any);
 ```
 
-## Get category by slug
+This call returns an array of [ICategoryResponse](../shop-types#icategoryresponse) objects.
 
-Retrieve category by slug.
-Return a Category.
+## Get public category by slug
 
 <span class="badge badge--success">Public</span>
 
 ```ts
-const category = await shop(client).getPublicCategoriesSlug('slug');
+await shop(client).getPublicCategoryBySlug(slug: string);
 ```
+
+This call returns [IPublicCategoryResponse](../shop-types#ipubliccategoryresponse) object.
 
 
 ## Get categories and subcategories
 
-Retrieve categories with subcategories list
-
 <span class="badge badge--success">Public</span>
 
 ```ts
-const categories = await shop(client).getPublicCategoriesAndSub();
+await shop(client).getPublicCategoriesAndSub();
 ```
 
-Return an array of Category.
+Return an array of [IPublicCategoryResponse](../shop-types#ipubliccategoryresponse) objects.

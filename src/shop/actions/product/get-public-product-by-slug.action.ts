@@ -2,25 +2,23 @@ import { Fetcher } from '../../../common/api';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { IPublicProductResponse } from '../../types';
-import { ApiResponse } from '../../../common/types/response';
+import { ProductErr, errorFactory } from '../../errors/product/errors';
 
 export const getPublicProductBySlug = async (
   fetcher: Fetcher,
   slug: string,
 ): Promise<IPublicProductResponse> => {
-  let response: ApiResponse<IPublicProductResponse> | null = null;
-
   try {
-    response = await fetcher.get<IPublicProductResponse>(
+    const response = await fetcher.get<IPublicProductResponse>(
       StringUtils.bindContext(endpoints.GET_PUBLIC_PRODUCT_SLUG, { slug }),
     );
-  } catch ({ name, response: responseError, stack, isAxiosError, ...rest }) {
-    throw new Error('Cannot reach API');
-  }
 
-  if (response) {
+    if (response.status !== 200) {
+      throw errorFactory.create(ProductErr.PRODUCT_NOT_FOUND);
+    }
+
     return response.data;
+  } catch (error) {
+    throw errorFactory.create(ProductErr.PRODUCT_NOT_FOUND);
   }
-
-  throw new Error('Empty response from API');
 };

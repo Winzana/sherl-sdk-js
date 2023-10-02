@@ -1,3 +1,4 @@
+import { PaginationFilters } from '../../../common';
 import { IImageObject } from '../../../media';
 
 export interface ICategoryResponse {
@@ -39,8 +40,6 @@ export interface IItem {
   name: string;
   priceTaxIncluded: number;
 }
-
-//******************************************************************************** ************************************************************************************ */
 
 export interface IPublicProductResponse {
   id: string;
@@ -116,8 +115,7 @@ export interface IPublicCategoryResponse {
   createdAt: Date;
   updatedAt: Date;
   aggCategory: string;
-  is: false;
-  // seo: SEO; TODO check if needed
+  is: boolean;
 }
 
 export enum ShopProductTypeEnum {
@@ -147,4 +145,73 @@ export interface ISubscription {
   contextUri: string;
   metadatas: { [key: string]: any };
   createdAt: Date;
+}
+
+export interface IProductFindByDto extends PaginationFilters {
+  ids?: string[];
+  externalIds?: string[];
+  excludedExternalIds?: string[];
+  externalIdentifier?: string;
+  uri?: string;
+  versionNumber?: number;
+  slug?: string;
+  parentUri?: string;
+  organizationUri?: string;
+  organizationSlug?: string;
+  id?: string;
+  name?: string;
+  categoryUri?: string;
+  categoryUris?: string[];
+  consumerId?: string;
+  q?: string;
+  isEnable?: boolean;
+  languages?: string[];
+  placeForward?: boolean;
+  strictPlaceForward?: boolean;
+  geopoint?: string;
+  distance?: number;
+  withinHours?: boolean;
+  startDate?: string;
+  endDate?: string;
+  displayAllVersion?: boolean;
+  includeDeleted?: boolean;
+  isUpdatedByHuman?: boolean;
+  tag?: ProductTags;
+  tags?: number;
+  displayMode?: ProductDisplayMode;
+  type?: ProductTypeEnum;
+  noBind?: boolean;
+  uriOfPanels?: string[];
+  panel?: string;
+}
+
+export enum ProductTags {
+  BACK_OFFICE = 'BACK_OFFICE',
+  BACK_OFFICE_RESYNC = 'BACK_OFFICE_RESYNC',
+}
+
+export enum ProductDisplayMode {
+  DEFAULT = 'default',
+  LIST = 'list',
+  MAP = 'map',
+}
+
+export enum ProductTypeEnum {
+  CREDIT = 'CREDIT',
+  DEFAULT = 'DEFAULT',
+  ROOM = 'ROOM',
+  TIP = 'TIP',
+  SERVICE = 'SERVICE',
+  PLAN = 'PLAN',
+  QUOTA = 'QUOTA',
+  REFUND = 'REFUND',
+  EVENT = 'EVENT',
+}
+
+export interface IPublicCategoryAndSubCategoryFindByDto {
+  q?: string;
+  organizationSlug?: string;
+  organizationId?: string;
+  organizationUri?: string;
+  depth?: number;
 }

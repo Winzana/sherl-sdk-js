@@ -65,6 +65,7 @@ module.exports = {
       'shop-types',
       'person-types',
       'communication-types',
+      'media-types',
     ],
   },
 };

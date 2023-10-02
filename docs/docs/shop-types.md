@@ -99,6 +99,66 @@ enum ShopProductTypeEnum {
   REFUND = 'REFUND', // Un avoir
 }
 ```
+
+
+### IPublicProductResponse
+
+```ts
+export interface IPublicProductResponse {
+  id: string;
+  uri: string;
+  consumerId: string;
+  type: ShopProductTypeEnum;
+  parentUri: string;
+  parent: IPublicProductResponse;
+  name: string;
+  slug: string;
+  slogan: string;
+  description: string;
+  categoryUri: string;
+  categoryUris: string[];
+  category: IPublicCategoryResponse;
+  categories: IPublicCategoryResponse[];
+  isEnable: boolean;
+  offers: IOffer[];
+  metadatas: any;
+  options: IOption[];
+  organizationUri: string;
+  isCustom: boolean;
+  photos: IImageObject[];
+  restrictions: { [key: string]: string[] };
+  createdAt: Date;
+  updatedAt: Date;
+}
+```
+
+- *product* : [ShopProductTypeEnum](#shopproducttypeenum)(`type`), [IPublicCategoryResponse](#ipubliccategoryresponse)(`category`, `categories`), [IOffer](#ioffer)(`offers`), [IOption](#ioption)(`options`)
+- *media* : [IImageObject](media-types#iimageobject)(`photos`)
+
+### IPublicCategoryResponse
+
+```ts
+interface IPublicCategoryResponse {
+  id: string;
+  uri: string;
+  consumerId: string;
+  parentUri: string;
+  globalUri: string;
+  parent: IPublicCategoryResponse;
+  color: string;
+  name: string;
+  slug: string;
+  taxeValue: number;
+  position: number;
+  organizationUri: string;
+  subCategories: IPublicCategoryResponse[];
+  createdAt: Date;
+  updatedAt: Date;
+  aggCategory: string;
+  is: boolean;
+}
+```
+
 # Wallet
 
 ### IRib
@@ -419,7 +479,9 @@ interface IChecks {
 }
 ```
 
-*IOrderCommission* interface extends another interface which it provides by mango
+*IOrderCommission* interface extends another interface which it provides by mangopay
+[transfer](https://github.com/Mangopay/mangopay2-nodejs-sdk/blob/40cbafc3d70dc7464a90fae5778bd8ea2c52315a/typings/models/transfer.d.ts#L8)
+
 
 - *organization* : [IOrganizationResponse](organization-types#iorganizationresponse)(`IOrderResponse->organization`)
 - *person* : [IPerson](person-types#iperson)(`IPayment->customer`, `IOrderResponse->customer`)

@@ -1,29 +1,22 @@
 import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
 import { IPublicCategoryResponse } from '../../types';
-import { ApiResponse } from '../../../common/types/response';
+import { ProductErr, errorFactory } from '../../errors/product/errors';
 
 export const getPublicCategories = async (
   fetcher: Fetcher,
-  params?: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    [key: string]: any;
-  },
 ): Promise<IPublicCategoryResponse[]> => {
-  let response: ApiResponse<IPublicCategoryResponse[]> | null = null;
-
   try {
-    response = await fetcher.get<IPublicCategoryResponse[]>(
+    const response = await fetcher.get<IPublicCategoryResponse[]>(
       endpoints.GET_PUBLIC_CATEGORIES,
-      params,
     );
-  } catch ({ name, response: responseError, stack, isAxiosError, ...rest }) {
-    throw new Error('Cannot reach API');
-  }
 
-  if (response) {
+    if (response.status !== 200) {
+      throw errorFactory.create(ProductErr.CATEGORIES_FETCH_FAILED);
+    }
+
     return response.data;
+  } catch (error) {
+    throw errorFactory.create(ProductErr.CATEGORIES_FETCH_FAILED);
   }
-
-  throw new Error('Empty response from API');
 };
