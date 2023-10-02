@@ -215,3 +215,8 @@ export interface IPublicCategoryAndSubCategoryFindByDto {
   organizationUri?: string;
   depth?: number;
 }
+
+export interface IShopProductCategoryFindByQuery {
+  organizationId?: string;
+  depth?: number;
+}

@@ -39,7 +39,15 @@ module.exports = {
       {
         type: 'category',
         label: 'Shop',
-        items: ['shop/discount', 'shop/order', 'shop/product'],
+        items: [
+          'shop/basket',
+          'shop/discount',
+          'shop/invoice',
+          'shop/loyalty',
+          'shop/order',
+          'shop/payout',
+          'shop/product',
+        ],
       },
       'place',
       'bug-report',

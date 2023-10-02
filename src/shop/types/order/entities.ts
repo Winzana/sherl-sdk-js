@@ -282,3 +282,48 @@ export interface ISort {
   order: -1 | 1 | 'asc' | 'desc';
   field: string;
 }
+
+export interface IShopBasketAddProductInputDto {
+  organizationUri: string;
+  orderId?: string;
+  latitude?: number;
+  longitude?: number;
+  productId: string;
+  orderQuantity: number;
+  options?: IShopBasketAddProductOptionInputDto[];
+  schedules?: IShopBasketAddProductScheduleInputDto[];
+  offerId?: number;
+  metadatas?: { [key: string]: any };
+  customerUri?: string;
+  isFreeTrial?: boolean;
+}
+
+export interface IShopBasketAddProductScheduleInputDto {
+  allowedFromDate: Date;
+  allowedUntilDate: Date;
+}
+
+export interface IShopBasketAddProductOptionInputDto {
+  id: string;
+  items?: IShopBasketAddProductOptionItemInputDto[];
+}
+
+export interface IShopBasketAddProductOptionItemInputDto {
+  name: string;
+  quantity: number;
+}
+
+export interface IShopBasketValidatePaymentInputDto {
+  orderId: string;
+  customerUri: string;
+}
+
+export interface IShopBasketValidateAndPayDto
+  extends IShopBasketValidatePaymentInputDto {
+  meansOfPayment: ShopMeansOfPaymentEnum;
+}
+
+export interface IShopSubmitPayoutDto {
+  organizationUri: string;
+  amount: number;
+}

@@ -2,13 +2,31 @@ import { SherlClient } from '../common';
 import { ErrorFactory } from '../common/errors';
 import { AbstractProvider } from '../common/provider';
 import {
+  addDiscountCodeToBasket,
+  addProductToBasket,
+  addSponsorCodeToBasket,
+  clearBasket,
+  commentBasket,
+  getCurrentBasket,
+  removeItemToBasket,
+  validateAndPayBasket,
+  validatePaymentBasket,
+} from './actions/basket';
+import {
   getDiscount,
   getDiscountByParams,
   getDiscounts,
   getPublicDiscounts,
   postDiscount,
 } from './actions/discount';
+import { sendLinkToPaidOnline } from './actions/invoice';
+import {
+  getLoyaltiesCardToMe,
+  getLoyaltiesCardToOrganization,
+  updateLoyaltyCard,
+} from './actions/loyalty';
 import { getOrder, getOrders } from './actions/order';
+import { generatePayout, submitPayout } from './actions/payout';
 import {
   getCategoriesById,
   getCategories,
@@ -51,6 +69,31 @@ class ShopProvider extends AbstractProvider {
   // Orders
   getOrder = this.withFetcher(getOrder);
   getOrders = this.withFetcher(getOrders);
+
+  // Basket
+  getCurrentBasket = this.withFetcher(getCurrentBasket);
+  addProductToBasket = this.withFetcher(addProductToBasket);
+  removeItemToBasket = this.withFetcher(removeItemToBasket);
+  clearBasket = this.withFetcher(clearBasket);
+  addDiscountCodeToBasket = this.withFetcher(addDiscountCodeToBasket);
+  addSponsorCodeToBasket = this.withFetcher(addSponsorCodeToBasket);
+  commentBasket = this.withFetcher(commentBasket);
+  validateAndPayBasket = this.withFetcher(validateAndPayBasket);
+  validatePaymentBasket = this.withFetcher(validatePaymentBasket);
+
+  // Payout
+  submitPayout = this.withFetcher(submitPayout);
+  generatePayout = this.withFetcher(generatePayout);
+
+  // Loyalty
+  getLoyaltiesCardToMe = this.withFetcher(getLoyaltiesCardToMe);
+  updateLoyaltyCard = this.withFetcher(updateLoyaltyCard);
+  getLoyaltiesCardToOrganization = this.withFetcher(
+    getLoyaltiesCardToOrganization,
+  );
+
+  // Invoice
+  sendLinkToPaidOnline = this.withFetcher(sendLinkToPaidOnline);
 }
 
 export { ShopProvider };

@@ -141,7 +141,14 @@ This call returns an array of [IPublicCategoryResponse](../shop-types#ipubliccat
 <span class="badge badge--warning">Require authentication</span>
 
 ```ts
-await shop(client).getCategories(organizationId: string, filters: any);
+await shop(client).getCategories(filters?: IShopProductCategoryFindByQuery);
+```
+
+```ts
+interface IShopProductCategoryFindByQuery {
+  organizationId?: string;
+  depth?: number;
+}
 ```
 
 This call returns an array of [ICategoryResponse](../shop-types#icategoryresponse) objects.
