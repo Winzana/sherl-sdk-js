@@ -5,7 +5,7 @@ title: Account
 
 ## Create account
 
-<span class="badge badge--warning">Do not require authentication</span>
+<span class="badge badge--success">Public</span>
 
 Create an account
 

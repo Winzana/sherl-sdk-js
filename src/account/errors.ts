@@ -1,7 +1,7 @@
 import { ErrorFactory } from '../common/errors';
 
 export enum AccountErr {
-  CREATE_ACCOUNT_FAILED = 'bug-reports/create-bug-report-failed',
+  CREATE_ACCOUNT_FAILED = 'account/create-account-failed',
 }
 
 export const errors = {

@@ -1,19 +1,4 @@
-export interface IAddressDto {
-  id: string;
-  country: string;
-  locality: string;
-  region: string;
-  postalCode: string;
-  streetAddress: string;
-  uri?: string;
-  createdAt?: Date;
-  department?: string;
-  complementaryStreetAddress?: string;
-  name?: string;
-  originId?: string;
-  latitude?: number;
-  longitude?: number;
-}
+import { IAddress } from '../../place';
 
 export interface IAccountCreateInputDto {
   hosts: string[];
@@ -30,6 +15,12 @@ export interface IAccountCreateInputDto {
   passwordRepeat: number;
 }
 
+export interface IAddressDto extends IAddress {
+  originId?: string;
+  latitude?: number;
+  longitude?: number;
+}
+
 export interface IAccount {
   id: string;
   uri: string;
@@ -41,7 +32,7 @@ export interface IAccount {
   birthDate: Date;
   gender: string;
   legalName: string;
-  location: IAddressDto;
+  location: IAddress;
   createdAt: Date;
   updatedAt: Date;
 }

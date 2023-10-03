@@ -23,25 +23,6 @@ interface IAccount {
 }
 ```
 
-## IAccountCreateInputDto
-
-```ts
-interface IAccountCreateInputDto {
-  hosts: string[];
-  ips?: string[];
-  firstName: string;
-  lastName: string;
-  email: string;
-  mobilePhoneNumber: string;
-  birthDate: Date;
-  gender: string;
-  legalName: string;
-  location: IAddressDto;
-  password: number;
-  passwordRepeat: number;
-}
-```
-
 ## IAddressDto
 
 ```ts
