@@ -10,17 +10,10 @@ export interface IAccountCreateInputDto {
   birthDate: Date;
   gender: string;
   legalName: string;
-  location: IAddressDto;
+  location: Omit<IAddress, 'id' | 'createdAt'>;
   password: number;
   passwordRepeat: number;
 }
-
-export interface IAddressDto extends IAddress {
-  originId?: string;
-  latitude?: number;
-  longitude?: number;
-}
-
 export interface IAccount {
   id: string;
   uri: string;
@@ -32,7 +25,7 @@ export interface IAccount {
   birthDate: Date;
   gender: string;
   legalName: string;
-  location: IAddress;
+  location: Omit<IAddress, 'id' | 'createdAt'>;
   createdAt: Date;
   updatedAt: Date;
 }

@@ -22,24 +22,3 @@ interface IAccount {
   updatedAt: Date;
 }
 ```
-
-## IAddressDto
-
-```ts
-interface IAddressDto {
-  id: string;
-  country: string;
-  locality: string;
-  region: string;
-  postalCode: string;
-  streetAddress: string;
-  uri?: string;
-  createdAt?: Date;
-  department?: string;
-  complementaryStreetAddress?: string;
-  name?: string;
-  originId?: string;
-  latitude?: number;
-  longitude?: number;
-}
-```
