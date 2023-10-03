@@ -3,21 +3,16 @@ import { endpoints } from '../../api/endpoints';
 import { DiscountErr, errorFactory } from '../../errors/discount/errors';
 import { IDiscountParameter, IDiscount } from '../../types';
 
-export const postDiscount = async (
+export const createDiscount = async (
   fetcher: Fetcher,
   parameter: IDiscountParameter,
 ): Promise<IDiscount> => {
-  const response = await fetcher
-    .post<IDiscount>(endpoints.POST_DISCOUNT, {
+  try {
+    const response = await fetcher.post<IDiscount>(endpoints.DISCOUNTS, {
       ...parameter,
-    })
-    .catch(() => {
-      throw errorFactory.create(DiscountErr.POST_FAILED);
     });
-
-  if (response.status !== 201) {
+    return response.data;
+  } catch (error) {
     throw errorFactory.create(DiscountErr.POST_FAILED);
   }
-
-  return response.data;
 };

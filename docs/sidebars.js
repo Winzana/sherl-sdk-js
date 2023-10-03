@@ -40,6 +40,7 @@ module.exports = {
         type: 'category',
         label: 'Shop',
         items: [
+          'shop/advertisement',
           'shop/basket',
           'shop/discount',
           'shop/invoice',

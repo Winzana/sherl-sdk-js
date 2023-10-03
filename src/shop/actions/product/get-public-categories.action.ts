@@ -5,15 +5,13 @@ import { ProductErr, errorFactory } from '../../errors/product/errors';
 
 export const getPublicCategories = async (
   fetcher: Fetcher,
+  organizationId?: string,
 ): Promise<IPublicCategoryResponse[]> => {
   try {
     const response = await fetcher.get<IPublicCategoryResponse[]>(
       endpoints.GET_PUBLIC_CATEGORIES,
+      { organizationId },
     );
-
-    if (response.status !== 200) {
-      throw errorFactory.create(ProductErr.CATEGORIES_FETCH_FAILED);
-    }
 
     return response.data;
   } catch (error) {

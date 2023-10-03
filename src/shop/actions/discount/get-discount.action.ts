@@ -10,7 +10,7 @@ export const getDiscount = async (
 ): Promise<IDiscount> => {
   try {
     const response = await fetcher.get<IDiscount>(
-      StringUtils.bindContext(endpoints.GET_DISCOUNT_ID, { id }),
+      StringUtils.bindContext(endpoints.MANAGE_DISCOUNT, { id }),
     );
 
     if (response.status !== 200) {

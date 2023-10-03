@@ -327,3 +327,8 @@ export interface IShopSubmitPayoutDto {
   organizationUri: string;
   amount: number;
 }
+
+export interface ICancelOrderInputDto {
+  allowedFromDate: string;
+  allowedUntilDate: string;
+}

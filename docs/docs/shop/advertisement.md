@@ -1,0 +1,4 @@
+---
+id: advertisement
+title: Advertisement
+---

@@ -4,3 +4,6 @@ export * from './discount/entities';
 export * from './wallet/entities';
 export * from './payout/entities';
 export * from './loyalty/entities';
+export * from './payment/entities';
+export * from './subscription/entities';
+export * from './advertisement/entities';

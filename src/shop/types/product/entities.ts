@@ -71,17 +71,26 @@ export interface IPublicProductResponse {
 export interface IOption {
   id: string;
   name: string;
-  items: IOptionItem[];
+  items?: IOptionItem[];
   required: boolean;
   multiple: boolean;
   rangeMin: number;
-  rangeMax: number;
+  rangeMax?: number;
+  enalbed?: boolean;
+  translations?: IProductOptionItemTranslationDto[];
 }
 
 export interface IOptionItem {
   name: string;
   priceTaxIncluded: number;
   available: boolean;
+  enabled: boolean;
+  translations?: IProductOptionItemTranslationDto[];
+}
+
+export interface IProductOptionItemTranslationDto {
+  lang: string;
+  name?: string;
 }
 
 export interface IOffer {
@@ -127,24 +136,6 @@ export enum ShopProductTypeEnum {
   PLAN = 'PLAN',
   QUOTA = 'QUOTA',
   REFUND = 'REFUND', // Un avoir
-}
-
-export interface ISubscription {
-  id: string;
-  uri: string;
-  name: string;
-  ownerUri: string;
-  consumerId: string;
-  activeFrom: Date;
-  activeUntil: Date;
-  frequency: OfferFrequencyEnum;
-  enabled: boolean;
-  disabledAt: Date;
-  sourceUri: string;
-  offer: IOffer;
-  contextUri: string;
-  metadatas: { [key: string]: any };
-  createdAt: Date;
 }
 
 export interface IProductFindByDto extends PaginationFilters {
@@ -219,4 +210,55 @@ export interface IPublicCategoryAndSubCategoryFindByDto {
 export interface IShopProductCategoryFindByQuery {
   organizationId?: string;
   depth?: number;
+}
+
+export interface IAddCommentOnProductDto {
+  productId: string;
+  content: string;
+}
+
+export interface IFindProductCommentsInputDto extends PaginationFilters {
+  productId?: string;
+  personId?: string;
+  organizationUri?: string;
+  sort?: string;
+}
+
+export interface IComment {
+  id: string;
+  uri: string;
+  consumerId: string;
+  productId?: string;
+  personId?: string;
+  personName?: string;
+  organizationUri?: string;
+  content: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface IShopProductCategoryCreateInputDto {
+  id: string;
+  globalUri?: string;
+  name?: string;
+  color?: string;
+  taxeValue: number;
+  position?: number;
+  seo?: ISEO;
+}
+
+export interface ISEO {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  others?: { [key: string]: string };
+}
+
+export interface IShopProductSubCategoryCreateInputDto {
+  id: string;
+  globalUri?: string;
+  color?: string;
+  name?: string;
+  seo?: ISEO;
+  position: number;
 }

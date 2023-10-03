@@ -1,24 +1,26 @@
 export const endpoints = {
   // Discounts
-  GET_DISCOUNT_ID: '/api/shop/discounts/:id',
+  MANAGE_DISCOUNT: '/api/shop/discounts/:id',
   GET_DISCOUNT_BY: '/api/shop/discounts/find-one-by',
-  GET_DISCOUNTS: '/api/shop/discounts',
+  DISCOUNTS: '/api/shop/discounts',
   GET_PUBLIC_DISCOUNTS: '/api/public/shop/discounts',
-  POST_DISCOUNT: '/api/shop/discounts',
+  VALIDATE_DISCOUNT_CODE: '/api/shop/discounts/validate-code',
 
   // Orders
   GET_ORDER: '/api/shop/orders/:id',
   GET_CUSTOMER_ORDERS: '/api/shop/orders',
-  GET_ORDERS: '/api/shop/orders/list-to/:id',
-  GET_ORDER_AUTOMATION_PRIMARY: '/api/shop/order/:id/door/open/primary',
-  GET_ORDER_AUTOMATION_SECONDARY: '/api/shop/order/:id/door/open/secondary',
+  GET_ORGANIZATION_ORDERS: '/api/shop/orders/list-to/:id',
+  UPDATE_ORDER_STATUS: '/api/shop/orders/:id/status/:status',
+  CANCEL_ORDER: '/api/shop/orders/:id/cancel',
 
   // Products
   GET_PRODUCT: '/api/shop/products/:id',
   GET_PRODUCTS: '/api/shop/products',
   GET_PUBLIC_PRODUCTS: '/api/public/shop/products',
+  GET_PUBLIC_PRODUCTS_DEFAULT_FILTERS: '/api/shop/products/public',
   CATEGORIES_ALL: '/api/shop/products/categories/all',
-  GET_CATEGORY: '/api/shop/products/categories/:id',
+  ORGANIZATION_CATEGORIES: '/api/shop/products/categories',
+  CATEGORY: '/api/shop/products/categories/:id',
   GET_PUBLIC_PRODUCT: '/api/public/shop/products/:id',
   GET_PUBLIC_PRODUCT_SLUG: '/api/public/shop/products/find-one-by-slug/:slug',
   GET_PUBLIC_CATEGORIES: '/api/public/shop/products/categories',
@@ -26,6 +28,14 @@ export const endpoints = {
     '/api/public/shop/products/categories/find-one-by-slug',
   GET_PUBLIC_CATEGORIES_AND_SUB:
     '/api/public/shop/products/categories-and-subcategories',
+  PRODUCT_VIEWS: '/api/shop/products/:id/views',
+  PRODUCT_LIKE: '/api/shop/products/:id/like',
+  COMMENT_PRODUCT: '/api/shop/products/comments',
+  GET_PRODUCT_COMMENTS: '/api/shop/products/:id/comments',
+  ADD_OPTION_TO_PRODUCT: '/api/shop/products/:id/options',
+  REMOVE_OPTION_FROM_PRODUCT: '/api/shop/products/:productId/options/:optionId',
+  ADD_PICTURE_TO_PRODUCT: '/api/shop/products/:productId/pictures/:idMedia',
+  GET_UNRESTRICTED_CATEGORIES: '/api/shop/products/categories/public',
 
   // Basket
   GET_BASKET: '/api/shop/baskets',
@@ -58,4 +68,14 @@ export const endpoints = {
   SET_DEFAULT_CARD: '/api/shop/payments/card/:id/default',
   DELETE_CARD: '/api/shop/payments/card/:id',
   SECURE_3D_CARD: '/api/shop/payments/secure/:id',
+
+  // Subscriptions
+  FIND_BY_SUBSCRIPTION: '/api/shop/subscriptions/find-one-by',
+  CANCEL_SUBSCRIPTION: '/api/shop/subscriptions/:id/cancel',
+
+  // Advertisement
+  CREATE_ADVERTISEMENT: '/api/shop/advertisements',
+  ADVERTISEMENT: '/api/shop/advertisements/:id',
+  GET_ADVERTISEMENTS: '/api/shop/advertisements',
+  GET_PUBLIC_ADVERTISEMENTS: '/api/public/shop/advertisements',
 };

@@ -9,7 +9,7 @@ export const getDiscounts = async (
   filters?: IDiscountFilter,
 ): Promise<Pagination<IDiscount>> => {
   const response = await fetcher.get<Pagination<IDiscount>>(
-    endpoints.GET_DISCOUNTS,
+    endpoints.DISCOUNTS,
     filters,
   );
 
