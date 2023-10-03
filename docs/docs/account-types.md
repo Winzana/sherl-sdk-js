@@ -23,10 +23,10 @@ interface IAccount {
 }
 ```
 
-## AccountCreateInputDto
+## IAccountCreateInputDto
 
 ```ts
-interface AccountCreateInputDto {
+interface IAccountCreateInputDto {
   hosts: string[];
   ips?: string[];
   firstName: string;
@@ -42,7 +42,7 @@ interface AccountCreateInputDto {
 }
 ```
 
-## AccountCreateInputDto
+## IAddressDto
 
 ```ts
 interface IAddressDto {

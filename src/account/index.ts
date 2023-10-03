@@ -1,6 +1,6 @@
 import { SherlClient } from '../common';
 import { AccountProvider } from './provider';
-import { IAccount, AccountCreateInputDto, IAddressDto } from './types';
+import { IAccount, IAccountCreateInputDto, IAddressDto } from './types';
 
 const account = (client: SherlClient) => new AccountProvider(client);
-export { account, IAccount, AccountCreateInputDto, IAddressDto };
+export { account, IAccount, IAccountCreateInputDto, IAddressDto };

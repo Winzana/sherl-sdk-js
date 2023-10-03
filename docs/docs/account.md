@@ -10,11 +10,11 @@ title: Account
 Create an account
 
 ```ts
-const account = await account(client).createAccount(data: AccountCreateInputDto);
+const account = await account(client).createAccount(data: IAccountCreateInputDto);
 ```
 
 ```ts
-interface AccountCreateInputDto {
+interface IAccountCreateInputDto {
   hosts: string[];
   ips?: string[];
   firstName: string;

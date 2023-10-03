@@ -1,11 +1,11 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { AccountErr, errorFactory } from '../errors';
-import { IAccount, AccountCreateInputDto } from '../types/entities';
+import { IAccount, IAccountCreateInputDto } from '../types/entities';
 
 export const createAccount = async (
   fetcher: Fetcher,
-  data: AccountCreateInputDto,
+  data: IAccountCreateInputDto,
 ) => {
   const response = await fetcher
     .post<IAccount>(endpoints.CREATE_ACCOUNT, data)

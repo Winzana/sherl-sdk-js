@@ -15,7 +15,7 @@ export interface IAddressDto {
   longitude?: number;
 }
 
-export interface AccountCreateInputDto {
+export interface IAccountCreateInputDto {
   hosts: string[];
   ips?: string[];
   firstName: string;
