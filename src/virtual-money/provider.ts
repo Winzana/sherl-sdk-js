@@ -1,6 +1,6 @@
 import { SherlClient } from '../common';
 import { AbstractProvider } from '../common/provider';
-import { findOneWallet } from './actions';
+import { findOneWallet, creditWallet } from './actions';
 import { errorFactory } from './errors';
 
 class VirtualMoneyProvider extends AbstractProvider {
@@ -8,6 +8,7 @@ class VirtualMoneyProvider extends AbstractProvider {
     super(client, errorFactory);
   }
   public findOneWallet = this.withFetcher(findOneWallet);
+  public creditWallet = this.withFetcher(creditWallet);
 }
 
 export { VirtualMoneyProvider };
