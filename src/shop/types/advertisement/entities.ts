@@ -47,8 +47,8 @@ export interface IAvertisement {
   numberOfDisplay: number;
   deleted: boolean;
   redirectUrl: string;
-  backgroundImage: IImageObject;
-  translations: IAdvertisementTranslation[];
+  backgroundImage?: IImageObject;
+  translations?: IAdvertisementTranslation[];
   version: number;
   parentUri?: string;
   updatedAt?: Date;

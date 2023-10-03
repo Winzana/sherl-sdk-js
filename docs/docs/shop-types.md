@@ -488,3 +488,56 @@ interface IChecks {
 - *product* : [ShopProductTypeEnum](#shopproducttypeenum)(`IOrderResponse->type`), [IOffer](#ioffer)(`IOrderResponse->acceptedOffer`), [IProductResponse](#iproductresponse)(`IOrderItem->product`)
 - *place* : [IPlace](place-types#iaddress)(`IOrderResponse->billingAddress`), [IAddress](place-types#iaddress)(`IBillingDetails->address`)
 - *discount* : [IDiscount](#idiscount)(`IOrderResponse->discountToUsefull`)
+
+# Advertisement
+
+### IAdvertisement
+
+```ts
+interface IAvertisement {
+  id: string;
+  uri: string;
+  name: string;
+  description: string;
+  displayZones: DisplayZoneEnum[];
+  numberOfDisplay: number;
+  deleted: boolean;
+  redirectUrl: string;
+  backgroundImage?: IImageObject;
+  translations: IAdvertisementTranslation[];
+  version: number;
+  parentUri?: string;
+  updatedAt?: Date;
+  createdAt?: Date;
+  versionCreatedAt?: Date;
+  updatedBy?: string;
+  createdBy?: string;
+  versionCreatedBy?: string;
+  metadatas?: any;
+}
+```
+
+- *media* : [IIMageObject](media-types#iimageobject)(`backgroundImage`)
+
+### IAdvertisementTranslation
+
+```ts
+interface IAdvertisementTranslation {
+  lang: string;
+  name?: string;
+  description?: string;
+}
+```
+
+### DisplayZoneEnum 
+
+```ts
+enum DisplayZoneEnum {
+  HOME_PAGE = 'HOME_PAGE',
+  MENU = 'MENU',
+  EVENTS_LIST = 'EVENTS_LIST',
+  MAP_LIST = 'MAP_LIST',
+  LAUNCHSCREEN = 'LAUNCHSCREEN',
+  ACTIVITY_FORM = 'ACTIVITY_FORM',
+}
+```
