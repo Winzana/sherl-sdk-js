@@ -24,7 +24,7 @@ interface IAccountCreateInputDto {
   birthDate: Date;
   gender: string;
   legalName: string;
-  location: IAddressDto;
+  location: IAddress;
   password: number;
   passwordRepeat: number;
 }

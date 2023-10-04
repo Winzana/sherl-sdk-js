@@ -17,7 +17,7 @@ interface IAccount {
   birthDate: Date;
   gender: string;
   legalName: string;
-  location: IAddressDto;
+  location: IAddress;
   createdAt: Date;
   updatedAt: Date;
 }
