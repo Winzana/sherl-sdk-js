@@ -1,25 +1,25 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { VirtualMoneyErr, errorFactory } from '../errors';
-import { ICreditWalletInputDto, IWallet } from '../types';
+import { IDebitWalletInputDto, IWallet } from '../types';
 
-export const creditWallet = async (
+export const debitWallet = async (
   fetcher: Fetcher,
   walletId: string,
-  data: ICreditWalletInputDto,
+  data: IDebitWalletInputDto,
 ) => {
   try {
     const response = await fetcher.post<IWallet>(
-      endpoints.CREDIT_WALLET,
+      endpoints.DEBIT_WALLET,
       { walletId },
       data,
     );
     if (response.status !== 201) {
-      throw errorFactory.create(VirtualMoneyErr.CREDIT_WALLET_FAILED);
+      throw errorFactory.create(VirtualMoneyErr.DEBIT_WALLET_FAILED);
     }
 
     return response.data;
   } catch (error) {
-    throw errorFactory.create(VirtualMoneyErr.CREDIT_WALLET_FAILED);
+    throw errorFactory.create(VirtualMoneyErr.DEBIT_WALLET_FAILED);
   }
 };
