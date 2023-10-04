@@ -8,9 +8,10 @@ export interface IWallet {
   updatedAt: Date;
 }
 
-export interface ICreditWalletInputDto {
+export interface ITransferWalletInputDto {
   amount: number;
   description: string;
+  organizationId: string;
 }
 
 export interface ICreateWalletInputDto {}
@@ -31,10 +32,4 @@ export interface IWalletHistorical {
   personId: string;
   walletId: string;
   createdAt: Date;
-}
-
-export interface IDebitWalletInputDto {
-  amount: number;
-  description: string;
-  organizationId: string;
 }

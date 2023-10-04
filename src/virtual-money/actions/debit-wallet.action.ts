@@ -1,12 +1,12 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { VirtualMoneyErr, errorFactory } from '../errors';
-import { IDebitWalletInputDto, IWallet } from '../types';
+import { ITransferWalletInputDto, IWallet } from '../types';
 
 export const debitWallet = async (
   fetcher: Fetcher,
   walletId: string,
-  data: IDebitWalletInputDto,
+  data: ITransferWalletInputDto,
 ) => {
   try {
     const response = await fetcher.post<IWallet>(

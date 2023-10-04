@@ -30,9 +30,10 @@ const wallet = await virtualMoney(client).creditWallet(data: ICreditWalletInputD
 ```
 
 ```ts
-interface ICreditWalletInputDto {
+interface ITransferWalletInputDto {
   amount: number;
   description: string;
+  organizationId: string;
 }
 ```
 
@@ -77,7 +78,7 @@ const wallet = await virtualMoney(client).debitWallet(walletId: string, data: IC
 ```
 
 ```ts
-interface IDebitWalletInputDto {
+interface ITransferWalletInputDto {
   amount: number;
   description: string;
   organizationId: string;
