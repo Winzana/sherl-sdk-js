@@ -86,3 +86,35 @@ interface ITransferWalletInputDto {
 ```
 
 This call returns an [IWallet](virtual-money-types#iwallet) object.
+
+## Create Wallet Historical
+
+<span class="badge badge--warning">Require authentication</span>
+
+Create a wallet historical
+
+```ts
+const wallet = await virtualMoney(client).createWalletHistorical(walletId: string, data: ITransferWalletInputDto);
+```
+
+```ts
+interface ITransferWalletInputDto {
+  amount: number;
+  description: string;
+  organizationId: string;
+}
+```
+
+This call returns an [IWalletHistorical](virtual-money-types#iwallethistorical) object.
+
+## Get Wallet Historical
+
+<span class="badge badge--warning">Require authentication</span>
+
+Get a wallet historical
+
+```ts
+const wallet = await virtualMoney(client).getWalletHistorical(walletId: string, historicalId: string);
+```
+
+This call returns an [IWalletHistorical](virtual-money-types#iwallethistorical) object.
