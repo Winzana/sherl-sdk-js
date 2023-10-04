@@ -3,10 +3,7 @@ id: discount
 title: Discount
 ---
 
-## Get discount list
-
-Retrieve a list of all discounts, that you can filter with parameters
-There is two version for this integration, public and private endpoint according to the public attribute.
+## Get discounts list
 
 <span class="badge badge--success">Public</span>
 
@@ -146,6 +143,36 @@ interface IDiscountParameter {
     },
   ];
 }
+```
+
+This call returns an [IDiscount](../shop-types#idiscount) object.
+
+## Update discount
+
+<span class="badge badge--warning">Require authentication</span>
+
+```ts
+await shop(client).updateDiscount(discountId: string, updatedDiscount: Partial<IDiscountParameter>);
+```
+
+This call returns an [IDiscount](../shop-types#idiscount) object.
+
+## Delete discount
+
+<span class="badge badge--warning">Require authentication</span>
+
+```ts
+await shop(client).deleteDiscount(discountId: string);
+```
+
+This call returns an [IDiscount](../shop-types#idiscount) object.
+
+## Validate discount code
+
+<span class="badge badge--warning">Require authentication</span>
+
+```ts
+await shop(client).validateDiscountCode(code: string, productUri: string);
 ```
 
 This call returns an [IDiscount](../shop-types#idiscount) object.

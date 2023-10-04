@@ -51,7 +51,11 @@ interface IOffer {
   taxRate: number;
   frequency: OfferFrequencyEnum;
 }
+```
 
+### OfferFrequencyEnum
+
+```ts
 enum OfferFrequencyEnum {
   ONCE = 'once',
   MONTHLY = 'monthly',
@@ -71,18 +75,33 @@ interface IMetadatas {
 interface IOption {
   id: string;
   name: string;
-  items: IOptionItem[];
+  items?: IOptionItem[];
   required: boolean;
   multiple: boolean;
   rangeMin: number;
-  rangeMax: number;
+  rangeMax?: number;
+  enalbed?: boolean;
+  translations?: IProductOptionItemTranslationDto[];
 }
+```
 
+### IOptionItem
+```ts
 interface IOptionItem {
   name: string;
   priceTaxIncluded: number;
   available: boolean;
-} 
+  enabled: boolean;
+  translations?: IProductOptionItemTranslationDto[];
+}
+```
+
+### IProductOptionItemTranslationDto
+```ts
+interface IProductOptionItemTranslationDto {
+  lang: string;
+  name?: string;
+}
 ```
 
 ### ShopProductTypeEnum
@@ -96,7 +115,8 @@ enum ShopProductTypeEnum {
   SERVICE = 'SERVICE',
   PLAN = 'PLAN',
   QUOTA = 'QUOTA',
-  REFUND = 'REFUND', // Un avoir
+  REFUND = 'REFUND',
+  EVENT = 'EVENT',
 }
 ```
 
@@ -159,6 +179,42 @@ interface IPublicCategoryResponse {
 }
 ```
 
+### IComment
+
+```ts
+interface IComment {
+  id: string;
+  uri: string;
+  consumerId: string;
+  productId?: string;
+  personId?: string;
+  personName?: string;
+  organizationUri?: string;
+  content: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+```
+
+### ProductTags
+```ts
+enum ProductTags {
+  BACK_OFFICE = 'BACK_OFFICE',
+  BACK_OFFICE_RESYNC = 'BACK_OFFICE_RESYNC',
+}
+```
+
+### ProductDisplayMode
+
+```ts
+enum ProductDisplayMode {
+  DEFAULT = 'default',
+  LIST = 'list',
+  MAP = 'map',
+}
+```
+
+### 
 # Wallet
 
 ### IRib
@@ -282,23 +338,6 @@ interface IOrderResponse {
   isFreeTrial: boolean;
   createdAt: Date;
   updatedAt: Date;
-}
-
-enum OrderStatusEnum {
-  BASKET = 0,
-  BASKET_VALIDATED = 100,
-  WAITING_PAYMENT = 200,
-  PAYMENT_REFUSED = 300,
-  PAYED = 400,
-  WAITING_VALIDATION = 500,
-  ORDER_REFUSED = 600,
-  ORDER_ACCEPTED = 700,
-  ORDER_IN_PROGRESS = 800,
-  ORDER_READY = 900,
-  FINISHED = 1000,
-  REFUND = 1100,
-  CONSUMER_CANCELLED = 9000,
-  ORGANIZATION_CANCELLED = 9100,
 }
 
 enum ShopMeansOfPaymentEnum {
@@ -489,6 +528,26 @@ interface IChecks {
 - *place* : [IPlace](place-types#iaddress)(`IOrderResponse->billingAddress`), [IAddress](place-types#iaddress)(`IBillingDetails->address`)
 - *discount* : [IDiscount](#idiscount)(`IOrderResponse->discountToUsefull`)
 
+### OrderStatusEnum
+
+```ts
+enum OrderStatusEnum {
+  BASKET = 0,
+  BASKET_VALIDATED = 100,
+  WAITING_PAYMENT = 200,
+  PAYMENT_REFUSED = 300,
+  PAYED = 400,
+  WAITING_VALIDATION = 500,
+  ORDER_REFUSED = 600,
+  ORDER_ACCEPTED = 700,
+  ORDER_IN_PROGRESS = 800,
+  ORDER_READY = 900,
+  FINISHED = 1000,
+  REFUND = 1100,
+  CONSUMER_CANCELLED = 9000,
+  ORGANIZATION_CANCELLED = 9100,
+}
+```
 # Advertisement
 
 ### IAdvertisement
@@ -539,5 +598,143 @@ enum DisplayZoneEnum {
   MAP_LIST = 'MAP_LIST',
   LAUNCHSCREEN = 'LAUNCHSCREEN',
   ACTIVITY_FORM = 'ACTIVITY_FORM',
+}
+```
+
+# Loyalty
+
+### ILoyaltyCard
+
+```ts
+interface ILoyaltyCard {
+  id: string;
+  uri: string;
+  ownerUri: string;
+  owner?: IOrganizationResponse;
+  discountType: DiscountTypeEnum;
+  percentage?: number;
+  amount?: number;
+  amountUsed?: number;
+  rewards: ILoyaltyCardReward[];
+  enabled: boolean;
+  consumerId: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+```
+- [IOrganizationResponse](organization-types#iorganizationresponse)(`owner`)
+- [DiscountTypeEnum](#discounttypeenum)(`discountType`)
+
+### ILoyaltyCardReward
+
+```ts
+interface ILoyaltyCardReward {
+  requiredValue: number;
+  discountType: DiscountTypeEnum;
+  amount?: number;
+  percentage?: number;
+  discountUri: string;
+}
+```
+- [DiscountTypeEnum](#discounttypeenum)(`discountType`)
+
+# Payment
+
+## ICreditCard
+
+```ts
+interface ICreditCard {
+  Id: string;
+  Tag: string;
+  CreationDate: number;
+  UserId: string;
+  AccessKey: string;
+  PreregistrationData: string;
+  RegistrationData: string;
+  CardId: string;
+  CardType: string;
+  CardRegistrationURL: string;
+  ResultCode: string;
+  ResultMessage: string;
+  Currency: string;
+  Status: string;
+}
+```
+
+# Payout
+
+## IPayout
+```ts
+interface IPayout {
+  id: string;
+  uri: string;
+  consumerId: string;
+  organizationUri: string;
+  orderUris: string[];
+  amount: number;
+  payoutId: string;
+  AuthorId: string;
+  UserId: string;
+  BankAccountId: string;
+  DebitedWalletId: string;
+  BankWireRef: string;
+  Status?: string;
+  Type?: string;
+  Nature?: string;
+  PaymentType?: string;
+  ResultMessage?: string;
+  DebitedFunds: {
+    Currency: string;
+    Amount: number;
+  };
+  Fees: {
+    Currency: string;
+    Amount: number;
+  };
+  CreditedFunds: {
+    Currency: string;
+    Amount: number;
+  };
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+```
+
+# Subscription
+
+### ISubscription
+
+```ts
+interface ISubscription {
+  id: string;
+  uri: string;
+  name: string;
+  ownerUri: string;
+  consumerId: string;
+  activeFrom?: Date;
+  activeUntil?: Date;
+  frequency?: OfferFrequencyEnum;
+  status?: SubscriptionStatusEnum;
+  enabled: boolean;
+  disabledAt: Date;
+  sourceUri: string;
+  offer?: IOffer;
+  contextUri: string;
+  metadatas: { [key: string]: any };
+  createdAt: Date;
+}
+```
+
+- [OfferFrequencyEnum](#offerfrequencyenum)(`frequency`)
+- [IOffer](#ioffer)(`offer`)
+
+### SubscriptionStatusEnum
+
+```ts
+enum SubscriptionStatusEnum {
+  NEW = 0,
+  ACTIVE = 100,
+  FINISHED = 200,
+  ERROR = 300,
 }
 ```

@@ -11,7 +11,7 @@ export const removePictureToProduct = async (
 ): Promise<IProductResponse> => {
   try {
     const response = await fetcher.delete<IProductResponse>(
-      StringUtils.bindContext(endpoints.COMMENT_PRODUCT, {
+      StringUtils.bindContext(endpoints.PICTURE_TO_PRODUCT, {
         productId,
         mediaId,
       }),

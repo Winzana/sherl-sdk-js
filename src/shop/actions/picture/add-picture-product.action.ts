@@ -11,7 +11,7 @@ export const addPictureToProduct = async (
 ): Promise<IProductResponse> => {
   try {
     const response = await fetcher.post<IProductResponse>(
-      StringUtils.bindContext(endpoints.ADD_PICTURE_TO_PRODUCT, {
+      StringUtils.bindContext(endpoints.PICTURE_TO_PRODUCT, {
         productId,
         mediaId,
       }),

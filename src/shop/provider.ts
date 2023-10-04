@@ -33,7 +33,7 @@ import {
 import { sendLinkToPaidOnline } from './actions/invoice';
 import {
   getLoyaltiesCardToMe,
-  getLoyaltiesCardToOrganization,
+  getOrganizationLoyaltyCard,
   updateLoyaltyCard,
 } from './actions/loyalty';
 import {
@@ -53,7 +53,7 @@ import {
 import { generatePayout, submitPayout } from './actions/payout';
 import { addPictureToProduct, removePictureToProduct } from './actions/picture';
 import {
-  getCategoriesById,
+  getCategoryById,
   getCategories,
   getProduct,
   getProducts,
@@ -68,7 +68,7 @@ import {
   getProductLikes,
   addLikeToProduct,
   addOptionToProduit,
-  removeOptionToProduit,
+  removeProductOption,
   getProductComments,
   addCategoryToOrganization,
   addSubCategoryToCategory,
@@ -91,7 +91,7 @@ class ShopProvider extends AbstractProvider {
   }
 
   // Products
-  getCategoriesById = this.withFetcher(getCategoriesById);
+  getCategoryById = this.withFetcher(getCategoryById);
   getCategories = this.withFetcher(getCategories);
   getProduct = this.withFetcher(getProduct);
   getProducts = this.withFetcher(getProducts);
@@ -106,7 +106,7 @@ class ShopProvider extends AbstractProvider {
   getProductLikes = this.withFetcher(getProductLikes);
   addLikeToProduct = this.withFetcher(addLikeToProduct);
   addOptionToProduct = this.withFetcher(addOptionToProduit);
-  removeOptionToProduct = this.withFetcher(removeOptionToProduit);
+  removeProductOption = this.withFetcher(removeProductOption);
   getProductComments = this.withFetcher(getProductComments);
   addCategoryToOrganization = this.withFetcher(addCategoryToOrganization);
   addSubCategoryToCategory = this.withFetcher(addSubCategoryToCategory);
@@ -151,9 +151,7 @@ class ShopProvider extends AbstractProvider {
   // Loyalty
   getLoyaltiesCardToMe = this.withFetcher(getLoyaltiesCardToMe);
   updateLoyaltyCard = this.withFetcher(updateLoyaltyCard);
-  getLoyaltiesCardToOrganization = this.withFetcher(
-    getLoyaltiesCardToOrganization,
-  );
+  getOrganizationLoyaltyCard = this.withFetcher(getOrganizationLoyaltyCard);
 
   // Invoice
   sendLinkToPaidOnline = this.withFetcher(sendLinkToPaidOnline);

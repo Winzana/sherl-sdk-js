@@ -8,7 +8,7 @@ import { StringUtils } from '../../../common/utils/string';
 export const getOrganizationOrders = async (
   fetcher: Fetcher,
   organizationId: string,
-  filters: IOrderFindByDto,
+  filters?: IOrderFindByDto,
 ): Promise<Pagination<IOrderResponse>> => {
   try {
     const response = await fetcher.get<Pagination<IOrderResponse>>(

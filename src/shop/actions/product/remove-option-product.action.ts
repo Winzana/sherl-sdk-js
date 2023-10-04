@@ -4,7 +4,7 @@ import { endpoints } from '../../api/endpoints';
 import { ProductErr, errorFactory } from '../../errors/product/errors';
 import { IProductResponse } from '../../types';
 
-export const removeOptionToProduit = async (
+export const removeProductOption = async (
   fetcher: Fetcher,
   productId: string,
   optionId: string,

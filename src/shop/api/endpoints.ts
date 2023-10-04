@@ -34,7 +34,7 @@ export const endpoints = {
   GET_PRODUCT_COMMENTS: '/api/shop/products/:id/comments',
   ADD_OPTION_TO_PRODUCT: '/api/shop/products/:id/options',
   REMOVE_OPTION_FROM_PRODUCT: '/api/shop/products/:productId/options/:optionId',
-  ADD_PICTURE_TO_PRODUCT: '/api/shop/products/:productId/pictures/:idMedia',
+  PICTURE_TO_PRODUCT: '/api/shop/products/:productId/pictures/:idMedia',
   GET_UNRESTRICTED_CATEGORIES: '/api/shop/products/categories/public',
 
   // Basket

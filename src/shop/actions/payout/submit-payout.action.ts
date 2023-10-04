@@ -8,6 +8,6 @@ export const submitPayout = async (fetcher: Fetcher): Promise<IPayout> => {
     const response = await fetcher.post<IPayout>(endpoints.SUBMIT_PAYOUT, {});
     return response.data;
   } catch (error) {
-    throw errorFactory.create(OrderErr.BASKET_ADD_FAILED);
+    throw errorFactory.create(OrderErr.PAYOUT_FAILED);
   }
 };

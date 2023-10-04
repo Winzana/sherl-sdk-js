@@ -4,7 +4,7 @@ import { endpoints } from '../../api/endpoints';
 import { LoyalityErr, errorFactory } from '../../errors/loyalty/errors';
 import { ILoyaltyCard } from '../../types';
 
-export const getLoyaltiesCardToOrganization = async (
+export const getOrganizationLoyaltyCard = async (
   fetcher: Fetcher,
   organizationId: string,
 ): Promise<ILoyaltyCard> => {

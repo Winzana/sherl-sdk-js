@@ -8,7 +8,7 @@ title: Order
 <span class="badge badge--warning">Require authentication</span>
 
 ```ts
-const orders = await shop(client).getOrders(filters: IOrderFindByDto);
+await shop(client).getOrders(filters: IOrderFindByDto);
 ```
 
 ```ts
@@ -60,7 +60,48 @@ This call returns a [paginated](../pagination#pagination) array of [IOrderRespon
 <span class="badge badge--warning">Require authentication</span>
 
 ```ts
-const order = await shop(client).getOrder(orderId: string);
+await shop(client).getOrder(orderId: string);
 ```
 
 This call returns an [IOrderResponse](../shop-types#iorderresponse) object.
+
+## Cancel order
+
+<span class="badge badge--warning">Require authentication</span>
+
+```ts
+await shop(client).cancelOrder(orderId: string, cancelOrderDates: ICancelOrderInputDto);
+```
+
+```ts
+interface ICancelOrderInputDto {
+  allowedFromDate: string;
+  allowedUntilDate: string;
+}
+```
+
+This call returns an [IOrderResponse](../shop-types#iorderresponse) object.
+
+## Update order
+
+<span class="badge badge--warning">Require authentication</span>
+
+```ts
+await shop(client).updateOrderStatus(orderId: string, status: OrderStatusEnum);
+```
+
+- [OrderStatusEnum](../shop-types#orderstatusenum)(`status`)
+
+This call returns an [IOrderResponse](../shop-types#iorderresponse) object.
+
+## Get organization orders
+
+<span class="badge badge--warning">Require authentication</span>
+
+```ts
+await shop(client).getOrganizationOrders(organizationId: string, filters?: IOrderFindByDto);
+```
+
+- [IOrderFindByDto](#get-orders-list)
+
+This call returns a [paginated](../pagination#pagination) array of [IOrderResponse](../shop-types#iorderresponse)

@@ -68,6 +68,23 @@ export interface IPublicProductResponse {
   updatedAt: Date;
 }
 
+export interface IShopProductOptionCreateInputDto {
+  id: string;
+  name: string;
+  items?: IShopProductOptionItemCreateInputDto[];
+  required?: boolean;
+  rangeMin: number;
+  enabled?: boolean;
+  translations?: IProductOptionItemTranslationDto[];
+  multiple?: boolean;
+}
+
+export interface IShopProductOptionItemCreateInputDto {
+  name: string;
+  priceTaxIncluded: number;
+  enabled: boolean;
+}
+
 export interface IOption {
   id: string;
   name: string;
@@ -245,6 +262,7 @@ export interface IShopProductCategoryCreateInputDto {
   taxeValue: number;
   position?: number;
   seo?: ISEO;
+  isPublic?: boolean;
 }
 
 export interface ISEO {

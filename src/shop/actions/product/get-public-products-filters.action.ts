@@ -6,7 +6,7 @@ import { Pagination } from '../../../common/types/response';
 
 export const getPublicProductsWithFilters = async (
   fetcher: Fetcher,
-  filters: IProductFindByDto,
+  filters?: IProductFindByDto,
 ): Promise<Pagination<IProductResponse>> => {
   try {
     const response = await fetcher.get<Pagination<IProductResponse>>(

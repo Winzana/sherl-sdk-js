@@ -16,10 +16,6 @@ export const getPublicCategoriesAndSub = async (
       filters,
     );
 
-    if (response.status !== 200) {
-      throw errorFactory.create(ProductErr.CATEGORIES_FETCH_FAILED);
-    }
-
     return response.data;
   } catch (error) {
     throw errorFactory.create(ProductErr.CATEGORIES_FETCH_FAILED);

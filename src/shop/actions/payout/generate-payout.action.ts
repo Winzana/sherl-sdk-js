@@ -11,6 +11,6 @@ export const generatePayout = async (fetcher: Fetcher): Promise<IPayout[]> => {
     );
     return response.data;
   } catch (error) {
-    throw errorFactory.create(OrderErr.BASKET_ADD_FAILED);
+    throw errorFactory.create(OrderErr.GENERATE_PAYOUT_FAILED);
   }
 };
