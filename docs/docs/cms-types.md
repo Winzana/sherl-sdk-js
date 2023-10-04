@@ -1,5 +1,5 @@
 ---
-id: cms-types
+id: Cms-types
 title: Cms types
 ---
 
@@ -26,18 +26,5 @@ interface ICreateThumbnailOutputDto {
   width: number;
   height: number;
   caption: ICreateCaptionOutputDto;
-}
-```
-
-## ICreateOutputDto
-
-```ts
-interface ICreateOutputDto {
-  id: string;
-  uri: string;
-  width: number;
-  height: number;
-  caption: ICreateCaptionOutputDto;
-  thumbnail: ICreateThumbnailOutputDto;
 }
 ```

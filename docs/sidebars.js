@@ -48,6 +48,7 @@ module.exports = {
       'claim',
       'notification',
       'communication',
+      'Cms',
     ],
     Types: [
       'pagination',
@@ -63,6 +64,7 @@ module.exports = {
       'shop-types',
       'person-types',
       'communication-types',
+      'Cms-types',
     ],
   },
 };
