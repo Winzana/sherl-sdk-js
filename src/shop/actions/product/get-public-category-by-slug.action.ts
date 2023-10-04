@@ -1,13 +1,12 @@
 import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
 import { IPublicCategoryResponse } from '../../types';
-import { Pagination } from '../../../common/types/response';
 
-export const getPublicCategoriesBySlug = async (
+export const getPublicCategoryBySlug = async (
   fetcher: Fetcher,
   slug: string,
-): Promise<Pagination<IPublicCategoryResponse>> => {
-  const response = await fetcher.get<Pagination<IPublicCategoryResponse>>(
+): Promise<IPublicCategoryResponse> => {
+  const response = await fetcher.get<IPublicCategoryResponse>(
     endpoints.GET_PUBLIC_CATEGORIES_SLUG,
     { slug },
   );

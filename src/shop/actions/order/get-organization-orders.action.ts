@@ -1,26 +1,24 @@
 import { Fetcher } from '../../../common/api';
-import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
-import { IOrderResponse } from '../../types';
-import { ApiResponse } from '../../../common/types/response';
+import { IOrderFindByDto, IOrderResponse } from '../../types';
+import { Pagination } from '../../../common/types/response';
+import { OrderErr, errorFactory } from '../../errors/order/errors';
+import { StringUtils } from '../../../common/utils/string';
 
 export const getOrganizationOrders = async (
   fetcher: Fetcher,
-  id: string,
-): Promise<IOrderResponse[]> => {
-  let response: ApiResponse<IOrderResponse[]> | null = null;
-
+  organizationId: string,
+  filters?: IOrderFindByDto,
+): Promise<Pagination<IOrderResponse>> => {
   try {
-    response = await fetcher.get<IOrderResponse[]>(
-      StringUtils.bindContext(endpoints.GET_ORDER, { id }),
+    const response = await fetcher.get<Pagination<IOrderResponse>>(
+      StringUtils.bindContext(endpoints.GET_ORGANIZATION_ORDERS, {
+        id: organizationId,
+      }),
+      filters,
     );
-  } catch ({ name, response: responseError, stack, isAxiosError, ...rest }) {
-    throw new Error('Cannot reach API');
-  }
-
-  if (response) {
     return response.data;
+  } catch (error) {
+    throw errorFactory.create(OrderErr.FETCH_FAILED);
   }
-
-  throw new Error('Empty response from API');
 };

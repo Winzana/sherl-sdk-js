@@ -10,7 +10,6 @@ module.exports = {
     Features: [
       'user',
       'config',
-      'product',
       {
         type: 'category',
         label: 'Person',
@@ -37,8 +36,27 @@ module.exports = {
           'organization/organization-roaming',
         ],
       },
-      'order',
-      'discount',
+      {
+        type: 'category',
+        label: 'Shop',
+        items: [
+          'shop/advertisement',
+          'shop/basket',
+          'shop/discount',
+          'shop/invoice',
+          'shop/loyalty',
+          'shop/order',
+          'shop/payment',
+          'shop/payout',
+          'shop/product-picture',
+          {
+            type: 'category',
+            label: 'Product',
+            items: ['shop/product-category', 'shop/product'],
+          },
+          'shop/subscription',
+        ],
+      },
       'place',
       'bug-report',
       'media',
@@ -63,6 +81,7 @@ module.exports = {
       'shop-types',
       'person-types',
       'communication-types',
+      'media-types',
     ],
   },
 };

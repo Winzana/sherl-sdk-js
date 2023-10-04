@@ -75,6 +75,26 @@ class Fetcher {
       });
   }
 
+  public async patch<T>(
+    url: string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    data: { [key: string]: any },
+    config?: AxiosRequestConfig,
+  ): Promise<ApiResponse<T>> {
+    return this.apiInstance
+      .patch<T>(url, data, config)
+      .catch((err: AxiosError<ApiResponseError>) => {
+        if (err.response && err.response.status) {
+          throw this.errorFactory.create(
+            getErrorCodeByHttpStatus(err.response.status),
+            { message: err.response?.data?.message },
+          );
+        }
+
+        throw err;
+      });
+  }
+
   public async delete<T>(
     url: string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
