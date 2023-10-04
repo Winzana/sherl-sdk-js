@@ -8,17 +8,17 @@ export const getWalletById = async (
   fetcher: Fetcher,
   walletId: string,
 ): Promise<IWallet> => {
-  const response = await fetcher
-    .get<IWallet>(
+  try {
+    const response = await fetcher.get<IWallet>(
       StringUtils.bindContext(endpoints.GET_ONE_WALLET_BY_ID, {
         walletId,
       }),
-    )
-    .catch((_err) => {
+    );
+    if (response.status !== 200) {
       throw errorFactory.create(VirtualMoneyErr.GET_ONE_WALLET_BY_ID_FAILED);
-    });
-  if (response.status !== 200) {
+    }
+    return response.data;
+  } catch (error) {
     throw errorFactory.create(VirtualMoneyErr.GET_ONE_WALLET_BY_ID_FAILED);
   }
-  return response.data;
 };

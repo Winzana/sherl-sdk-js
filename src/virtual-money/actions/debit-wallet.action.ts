@@ -7,7 +7,7 @@ export const debitWallet = async (
   fetcher: Fetcher,
   walletId: string,
   data: ITransferWalletInputDto,
-) => {
+): Promise<IWallet> => {
   try {
     const response = await fetcher.post<IWallet>(
       endpoints.DEBIT_WALLET,

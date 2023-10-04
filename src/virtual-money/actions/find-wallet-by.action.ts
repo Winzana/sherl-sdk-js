@@ -10,19 +10,19 @@ export const findOneWallet = async (
   personId: string,
   consumerId: string,
 ): Promise<IWallet> => {
-  const response = await fetcher
-    .get<IWallet>(
+  try {
+    const response = await fetcher.get<IWallet>(
       StringUtils.bindContext(endpoints.FIND_ONE_WALLET_BY, {
         id,
         personId,
         consumerId,
       }),
-    )
-    .catch((_err) => {
+    );
+    if (response.status !== 200) {
       throw errorFactory.create(VirtualMoneyErr.FIND_ONE_WALLET_FAILED);
-    });
-  if (response.status !== 200) {
+    }
+    return response.data;
+  } catch (error) {
     throw errorFactory.create(VirtualMoneyErr.FIND_ONE_WALLET_FAILED);
   }
-  return response.data;
 };

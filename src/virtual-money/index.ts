@@ -3,8 +3,7 @@ import { VirtualMoneyProvider } from './provider';
 import {
   ICreateWalletHistoricalInputDto,
   ICreateWalletInputDto,
-  ICreditWalletInputDto,
-  IDebitWalletInputDto,
+  ITransferWalletInputDto,
   IWallet,
   IWalletHistorical,
 } from './types';
@@ -14,8 +13,7 @@ export {
   virtualMoney,
   ICreateWalletHistoricalInputDto,
   ICreateWalletInputDto,
-  ICreditWalletInputDto,
-  IDebitWalletInputDto,
+  ITransferWalletInputDto,
   IWallet,
   IWalletHistorical,
 };

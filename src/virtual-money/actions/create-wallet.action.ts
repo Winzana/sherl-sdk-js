@@ -6,7 +6,7 @@ import { ICreateWalletInputDto, IWallet } from '../types';
 export const createWallet = async (
   fetcher: Fetcher,
   data: ICreateWalletInputDto,
-) => {
+): Promise<IWallet> => {
   try {
     const response = await fetcher.post<IWallet>(endpoints.CREATE_WALLET, data);
     if (response.status !== 201) {

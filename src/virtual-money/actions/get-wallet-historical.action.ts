@@ -9,18 +9,18 @@ export const getWalletHistorical = async (
   walletId: string,
   historicalId: string,
 ): Promise<IWalletHistorical> => {
-  const response = await fetcher
-    .get<IWalletHistorical>(
+  try {
+    const response = await fetcher.get<IWalletHistorical>(
       StringUtils.bindContext(endpoints.GET_WALLET_HISTORICAL, {
         walletId,
         historicalId,
       }),
-    )
-    .catch((_err) => {
+    );
+    if (response.status !== 200) {
       throw errorFactory.create(VirtualMoneyErr.GET_WALLET_HISTORICAL_FAILED);
-    });
-  if (response.status !== 200) {
+    }
+    return response.data;
+  } catch (error) {
     throw errorFactory.create(VirtualMoneyErr.GET_WALLET_HISTORICAL_FAILED);
   }
-  return response.data;
 };

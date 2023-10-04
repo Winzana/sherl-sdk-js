@@ -1,15 +1,15 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { VirtualMoneyErr, errorFactory } from '../errors';
-import { IWalletHistorical, IWallet } from '../types';
+import { IWalletHistorical } from '../types';
 
 export const createWalletHistorical = async (
   fetcher: Fetcher,
   walletId: string,
   data: IWalletHistorical,
-) => {
+): Promise<IWalletHistorical> => {
   try {
-    const response = await fetcher.post<IWallet>(
+    const response = await fetcher.post<IWalletHistorical>(
       endpoints.CREATE_WALLET_HISTORICAL,
       { walletId },
       data,
