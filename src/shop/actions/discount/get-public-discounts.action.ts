@@ -1,27 +1,20 @@
 import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
-import { IDiscount } from '../../types';
+import { IDiscount, IDiscountPublicFilter } from '../../types';
 import { Pagination } from '../../../common/types/response';
+import { DiscountErr, errorFactory } from '../../errors/discount/errors';
 
 export const getPublicDiscounts = async (
   fetcher: Fetcher,
-  page = 1,
-  itemsPerPage = 10,
-  filters: { [key: string]: any },
+  filters?: IDiscountPublicFilter,
 ): Promise<Pagination<IDiscount>> => {
   const response = await fetcher.get<Pagination<IDiscount>>(
     endpoints.GET_PUBLIC_DISCOUNTS,
-    {
-      page,
-      itemsPerPage,
-      ...filters,
-    },
+    filters,
   );
 
   if (response.status !== 200) {
-    throw new Error(
-      `Failed to fetch products API (status: ${response.status})`,
-    );
+    throw errorFactory.create(DiscountErr.FETCH_FAILED);
   }
 
   return response.data;
