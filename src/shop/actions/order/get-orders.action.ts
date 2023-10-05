@@ -1,26 +1,20 @@
-import { Fetcher, Pagination } from '../../../common/api';
+import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
-import { IOrderResponse } from '../../types/order/types';
+import { IOrderFindByDto, IOrderResponse } from '../../types';
+import { Pagination } from '../../../common/types/response';
+import { OrderErr, errorFactory } from '../../errors/order/errors';
 
 export const getOrders = async (
   fetcher: Fetcher,
-  page = 1,
-  itemsPerPage = 10,
-  filters: { [key: string]: any },
-): Promise<Pagination<IOrderResponse[]>> => {
-  const response = await fetcher.get<Pagination<IOrderResponse[]>>(
+  filters: IOrderFindByDto,
+): Promise<Pagination<IOrderResponse>> => {
+  const response = await fetcher.get<Pagination<IOrderResponse>>(
     endpoints.GET_CUSTOMER_ORDERS,
-    {
-      page,
-      itemsPerPage,
-      ...filters,
-    },
+    filters,
   );
 
   if (response.status !== 200) {
-    throw new Error(
-      `Failed to fetch products API (status: ${response.status})`,
-    );
+    throw errorFactory.create(OrderErr.FETCH_FAILED);
   }
 
   return response.data;

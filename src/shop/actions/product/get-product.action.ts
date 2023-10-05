@@ -1,25 +1,24 @@
-import { ApiResponse, Fetcher } from '../../../common/api';
+import { Fetcher } from '../../../common/api';
 import { StringUtils } from '../../../common/utils/string';
-import { IProductResponse } from '../../types/product/types';
+import { IProductResponse } from '../../types';
 import { endpoints } from '../../api/endpoints';
+import { ProductErr, errorFactory } from '../../errors/product/errors';
 
 export const getProduct = async (
   fetcher: Fetcher,
   id: string,
 ): Promise<IProductResponse> => {
-  let response: ApiResponse<IProductResponse> | null = null;
-
   try {
-    response = await fetcher.get<IProductResponse>(
+    const response = await fetcher.get<IProductResponse>(
       StringUtils.bindContext(endpoints.GET_PRODUCT, { id }),
     );
-  } catch ({ name, response: responseError, stack, isAxiosError, ...rest }) {
-    throw new Error('Cannot reach API');
-  }
 
-  if (response) {
+    if (response.status !== 200) {
+      throw errorFactory.create(ProductErr.PRODUCT_NOT_FOUND);
+    }
+
     return response.data;
+  } catch (error) {
+    throw errorFactory.create(ProductErr.PRODUCT_NOT_FOUND);
   }
-
-  throw new Error('Empty response from API');
 };

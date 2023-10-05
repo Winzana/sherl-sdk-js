@@ -39,7 +39,11 @@ module.exports = {
             },
             {
               label: 'Features',
-              to: 'docs/product',
+              to: 'docs/user',
+            },
+            {
+              label: 'Types',
+              to: 'docs/pagination',
             },
           ],
         },

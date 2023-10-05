@@ -5,16 +5,10 @@ import { IUpdatePasswordDto } from '../types';
 
 export const updateMyPassword = async (
   fetcher: Fetcher,
-  data: Partial<IUpdatePasswordDto>,
+  data: IUpdatePasswordDto,
 ): Promise<boolean> => {
-  try {
-    await fetcher
-      .post<IUpdatePasswordDto>(endpoints.UPDATE_MY_PASSWORD, data)
-      .catch(() => {
-        throw errorFactory.create(UserErr.UPDATE_MY_PASSWORD_FAILED);
-      });
-    return true;
-  } catch (err) {
-    throw new Error('Cannot reach API');
-  }
+  await fetcher.post<boolean>(endpoints.UPDATE_MY_PASSWORD, data).catch(() => {
+    throw errorFactory.create(UserErr.UPDATE_MY_PASSWORD_FAILED);
+  });
+  return true;
 };

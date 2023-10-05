@@ -1,25 +1,24 @@
-import { ApiResponse, Fetcher } from '../../../common/api';
+import { Fetcher } from '../../../common/api';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
-import { IDiscountResponse } from '../../types/discount/types';
+import { IDiscount } from '../../types';
+import { DiscountErr, errorFactory } from '../../errors/discount/errors';
 
 export const getDiscount = async (
   fetcher: Fetcher,
   id: string,
-): Promise<IDiscountResponse> => {
-  let response: ApiResponse<IDiscountResponse> | null = null;
-
+): Promise<IDiscount> => {
   try {
-    response = await fetcher.get<IDiscountResponse>(
-      StringUtils.bindContext(endpoints.GET_DISCOUNT_ID, { id }),
+    const response = await fetcher.get<IDiscount>(
+      StringUtils.bindContext(endpoints.MANAGE_DISCOUNT, { id }),
     );
-  } catch ({ name, response: responseError, stack, isAxiosError, ...rest }) {
-    throw new Error('Cannot reach API');
-  }
 
-  if (response) {
+    if (response.status !== 200) {
+      throw errorFactory.create(DiscountErr.FETCH_FAILED);
+    }
+
     return response.data;
+  } catch (error) {
+    throw errorFactory.create(DiscountErr.FETCH_FAILED);
   }
-
-  throw new Error('Empty response from API');
 };

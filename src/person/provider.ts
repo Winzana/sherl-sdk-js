@@ -9,9 +9,12 @@ import {
   updatePersonById,
   createPerson,
   registerWithEmailAndPassword,
+  createAddress,
+  updateAddress,
+  deleteAddress,
+  addPersonPicture,
 } from './actions';
 import { errorFactory } from './errors';
-import { addPersonPicture } from "./actions/add-person-picture.action";
 
 class PersonProvider extends AbstractProvider {
   constructor(client: SherlClient) {
@@ -29,6 +32,10 @@ class PersonProvider extends AbstractProvider {
     registerWithEmailAndPassword,
   );
   public addPersonPicture = this.withFetcher(addPersonPicture);
+  // Address
+  public createAddress = this.withFetcher(createAddress);
+  public updateAddress = this.withFetcher(updateAddress);
+  public deleteAddress = this.withFetcher(deleteAddress);
 }
 
 export { PersonProvider };

@@ -1,12 +1,13 @@
-import { ApiResponse, Fetcher } from '../../common/api';
+import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
-import { IPersonMeResponse } from '../types';
+import { IPerson } from '../types';
+import { ApiResponse } from '../../common';
 
-export const getMe = async (fetcher: Fetcher): Promise<IPersonMeResponse> => {
-  let response: ApiResponse<IPersonMeResponse> | null = null;
+export const getMe = async (fetcher: Fetcher): Promise<IPerson> => {
+  let response: ApiResponse<IPerson> | null = null;
 
   try {
-    response = await fetcher.get<IPersonMeResponse>(endpoints.GET_ME);
+    response = await fetcher.get<IPerson>(endpoints.GET_ME);
   } catch ({ name, response: responseError, stack, isAxiosError, ...rest }) {
     throw new Error('Cannot reach API');
   }
