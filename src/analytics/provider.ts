@@ -7,6 +7,7 @@ import {
   getCAAnalytics,
   getNotificationsAnalytics,
   getProductsAnalytics,
+  getTrackingAnalytics,
 } from './actions';
 import { errorFactory } from './errors';
 
@@ -21,6 +22,7 @@ class AnalyticsProvider extends AbstractProvider {
   getAudiencesAnalytics = this.withFetcher(getAudienceAnalytics);
   getProductsAnalytics = this.withFetcher(getProductsAnalytics);
   getBIAnalytics = this.withFetcher(getBIAnalytics);
+  getTrackingAnalytics = this.withFetcher(getTrackingAnalytics);
 }
 
 export { AnalyticsProvider };

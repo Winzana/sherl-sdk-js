@@ -86,6 +86,7 @@ module.exports = {
       'media-types',
       'analytics-types',
       'etl-types',
+      'user-types',
     ],
   },
 };

@@ -103,3 +103,30 @@ interface IAnalyticsFindBIInputDto {
 ```
 
 This call returns an array [IAnalyticResponse](analytics-types#ianalyticresponse) objects.
+
+## Get tracking analytics
+
+<span class="badge badge--warning">Require authentication</span>
+
+```ts
+await analytics(client).getTrackingAnalytics(filters?: IAnalyticsFindByInputDto);
+```
+
+```ts
+interface IAnalyticsFindByInputDto extends PaginationFilters {
+  id?: string;
+  action?: TraceEnum;
+  objectUri?: string;
+  value?: any;
+  sortBy?: string;
+  sortOrder?: string;
+  aggregateGroupBy?: string;
+  aggregateSum?: string;
+}
+```
+
+This interface extends [PaginationFilters](pagination#pagination-filters)
+
+- [TraceEnum](analytics-types#traceenum)(`action`)
+
+This call returns an [ISearchResult](pagination#isearchresult) of [ITrace](analytics-types#itrace) objects.
