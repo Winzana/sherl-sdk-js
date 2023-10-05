@@ -3,10 +3,10 @@ id: etl
 title: ETL
 ---
 
-The ETL domain allows you to extract, transform and load data from pre-saved configurations or a one-shot model.
+Extract, Transform and Load from pre-saved configuration or by using customized model.
 A model is represented by a json file containing all the configurations linked to the 3 actions (extract, transform, load).
 
-Here you will find 3 functions that will allow you to interact with the ETL.
+ETL domain provides 3 functions to interact with the ETL.
 
 ## Save config
 
@@ -34,8 +34,9 @@ This call returns an [IConfigModel](etl-types#iconfigmodel) object.
 
 ## Extract transform load
 
-This action launch an asynchrone task on ETL with config.
-The configuration will not be saved.
+This action launch an asynchronous ETL task using a specific configuration.
+
+**:warning:  The configuration will not be saved.**
 
 <span class="badge badge--warning">Require authentication</span>
 
@@ -55,8 +56,9 @@ This call returns an [IEtlResponse](etl-types#ietlresponse) object.
 
 ## Extract transform load by config id
 
-This action launch an asynchrone task on ETL with config given by id
-This config should be saved before.
+This action launch an asynchronous ETL task with a particular id.
+
+**:warning: This config should be saved before.**
 
 <span class="badge badge--warning">Require authentication</span>
 
