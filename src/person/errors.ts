@@ -9,7 +9,7 @@ export enum PersonErr {
   CREATE_ADDRESS_FAILED = 'person/create-address-failed',
   PUT_ADDRESS_FAILED = 'person/put-address-failed',
   DELETE_ADDRESS_FAILED = 'person/delete-address-failed',
-  ADD_PICTURE_FAILED = 'post-picture-failed',
+  ADD_PICTURE_FAILED = 'person/post-picture-failed',
 }
 
 export const errors = {
