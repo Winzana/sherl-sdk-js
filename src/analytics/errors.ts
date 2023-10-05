@@ -11,7 +11,7 @@ export enum AnalyticsErr {
 }
 
 export const errors = {
-  [AnalyticsErr.ANALYTICS_CA_FAILED]: 'Failed to get ca analytics',
+  [AnalyticsErr.ANALYTICS_CA_FAILED]: 'Failed to get sales figures analytics',
   [AnalyticsErr.ANALYTICS_AUDIENCES_FAILED]:
     'Failed to get audiences analytics',
   [AnalyticsErr.ANALYTICS_PRODUCTS_FAILED]: 'Failed to get products analytics',
