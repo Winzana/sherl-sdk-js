@@ -76,19 +76,22 @@ interface ISettings {
     pushEnable: boolean;
   };
 }
+```
 
+ - *place* : [**IPlace**](place-types#iplace)(`address`,`myAddresses`), [**IGeoCoordinates**](place-types#igeocoordinates)(`subscriptionLocation`)
+ - *organization* [**IOrganizationResponse**](organization-types#iorganizationresponse)(`affiliation`)
+ - *media* [**IImageObject**](media-types#iimageobject)(`picture`)
+
+## PersonTypeEnum
+
+```ts
 enum PersonTypeEnum {
   DEFAULT = 'DEFAULT',
   EMPLOYEE = 'EMPLOYEE',
   FOUNDER = 'FOUNDER',
   ADMIN = 'ADMIN',
 }
-
 ```
-
- - *place* : [**IPlace**](place-types#iplace)(`address`,`myAddresses`), [**IGeoCoordinates**](place-types#igeocoordinates)(`subscriptionLocation`)
- - *organization* [**IOrganizationResponse**](organization-types#iorganizationresponse)(`affiliation`)
- - *media* [**IImageObject**](media-types#iimageobject)(`picture`)
 
 ## IPersonFilters 
 ```ts
