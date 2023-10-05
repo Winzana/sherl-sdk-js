@@ -46,7 +46,10 @@ const wallet = await virtualMoney(client).createWallet(data: ICreditWalletInputD
 ```
 
 ```ts
-interface ICreateWalletInputDto {} // TODO: wait for correction and complete
+interface ICreateWalletInputDto {
+  id: string;
+  personId: string;
+} 
 ```
 
 This call returns an [IWallet](virtual-money-types#iwallet) object.

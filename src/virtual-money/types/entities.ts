@@ -14,7 +14,10 @@ export interface ITransferWalletInputDto {
   organizationId: string;
 }
 
-export interface ICreateWalletInputDto {}
+export interface ICreateWalletInputDto {
+  id: string;
+  personId: string;
+}
 
 export interface ICreateWalletHistoricalInputDto {
   idOrganization: string;
