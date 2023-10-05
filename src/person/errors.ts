@@ -9,6 +9,7 @@ export enum PersonErr {
   CREATE_ADDRESS_FAILED = 'person/create-address-failed',
   PUT_ADDRESS_FAILED = 'person/put-address-failed',
   DELETE_ADDRESS_FAILED = 'person/delete-address-failed',
+  ADD_PICTURE_FAILED = 'person/post-picture-failed',
 }
 
 export const errors = {
@@ -17,6 +18,7 @@ export const errors = {
   [PersonErr.PUT_FAILED]: 'Failed to update person',
   [PersonErr.CREATE_PERSON_FAILED]: 'Failed to create new person',
   [PersonErr.POST_FAILED]: 'Failed to create person',
+  [PersonErr.ADD_PICTURE_FAILED]: 'Failed to add picture to person profile',
   [PersonErr.CREATE_ADDRESS_FAILED]: 'Failed to create new address',
   [PersonErr.PUT_ADDRESS_FAILED]: 'Failed to update address',
   [PersonErr.DELETE_ADDRESS_FAILED]: 'Failed to delete address',
