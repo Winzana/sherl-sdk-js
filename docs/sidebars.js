@@ -67,6 +67,7 @@ module.exports = {
       'claim',
       'notification',
       'communication',
+      'etl',
     ],
     Types: [
       'pagination',
@@ -84,6 +85,7 @@ module.exports = {
       'communication-types',
       'media-types',
       'analytics-types',
+      'etl-types',
     ],
   },
 };
