@@ -68,6 +68,7 @@ module.exports = {
       'notification',
       'communication',
       'etl',
+      'search',
     ],
     Types: [
       'pagination',
@@ -87,6 +88,7 @@ module.exports = {
       'analytics-types',
       'etl-types',
       'user-types',
+      'search-types',
     ],
   },
 };
