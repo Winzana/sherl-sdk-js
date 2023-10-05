@@ -12,6 +12,7 @@ import {
   createAddress,
   updateAddress,
   deleteAddress,
+  addPersonPicture,
 } from './actions';
 import { errorFactory } from './errors';
 
@@ -30,6 +31,7 @@ class PersonProvider extends AbstractProvider {
   public registerWithEmailAndPassword = this.withFetcher(
     registerWithEmailAndPassword,
   );
+  public addPersonPicture = this.withFetcher(addPersonPicture);
   // Address
   public createAddress = this.withFetcher(createAddress);
   public updateAddress = this.withFetcher(updateAddress);
