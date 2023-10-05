@@ -1,22 +1,12 @@
-import { IProfile, IRole } from '../iam';
-import { IPerson, PersonTypeEnum } from '../person';
+---
+id: user-types
+title: User types
+---
 
-export interface IUpdatePasswordDto {
-  oldPassword: string;
-  password: string;
-  passwordRepeat: string;
-}
+## IUser
 
-export interface IResetPasswordRequestDto {
-  email: string;
-}
-export interface IResetPasswordDto {
-  token: string;
-  password: string;
-  passwordRepeat: string;
-}
-
-export interface IUser {
+```ts
+interface IUser {
   id: string;
   uri?: string;
   consumerId?: string;
@@ -49,3 +39,8 @@ export interface IUser {
   // calculated properties (not persisted)
   person?: IPerson;
 }
+```
+
+- [IProfile](iam-types#iprofile)(`profile`, `profiles`)
+- [PersonTypeEnum](person-types#persontypeenum)(`type`)
+- [IRole](iam-types#irole)(`frozenRoles`, `roles`)
