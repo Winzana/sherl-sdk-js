@@ -8,6 +8,7 @@ module.exports = {
       'authentication',
     ],
     Features: [
+      'analytics',
       'user',
       'config',
       {
@@ -82,6 +83,7 @@ module.exports = {
       'person-types',
       'communication-types',
       'media-types',
+      'analytics-types',
     ],
   },
 };
