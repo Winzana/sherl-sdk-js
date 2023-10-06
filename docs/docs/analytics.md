@@ -114,6 +114,8 @@ interface IAnalyticsFindBIInputDto {
 }
 ```
 
+`filters` property refers to [ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html) request according to `index` value.
+
 This call returns an array [IAnalyticResponse](analytics-types#ianalyticresponse) objects.
 
 ## Get tracking analytics
