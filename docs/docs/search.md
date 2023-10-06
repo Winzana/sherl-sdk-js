@@ -5,6 +5,8 @@ title: Search
 
 ## Public search
 
+Enables a fulltext(`q`) search based on `indexes`.
+
 <span class="badge badge--success">Public</span>
 
 ```ts
