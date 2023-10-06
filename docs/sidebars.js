@@ -68,6 +68,7 @@ module.exports = {
       'notification',
       'communication',
       'etl',
+      'search',
       'virtual-money',
     ],
     Types: [
@@ -88,6 +89,7 @@ module.exports = {
       'analytics-types',
       'etl-types',
       'user-types',
+      'search-types',
       'virtual-money-types',
     ],
   },
