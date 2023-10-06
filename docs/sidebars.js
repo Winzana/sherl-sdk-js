@@ -68,6 +68,7 @@ module.exports = {
       'notification',
       'communication',
       'etl',
+      'virtual-money',
     ],
     Types: [
       'pagination',
@@ -87,6 +88,7 @@ module.exports = {
       'analytics-types',
       'etl-types',
       'user-types',
+      'virtual-money-types',
     ],
   },
 };
