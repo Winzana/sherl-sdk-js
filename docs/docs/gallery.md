@@ -24,6 +24,8 @@ This call returns an [IGallery](gallery-types#igallery) object.
 
 ## Delete gallery
 
+Delete gallery using it's id.
+
 <span class="badge badge--warning">Require authentication</span>
 
 ```ts
@@ -77,6 +79,8 @@ This call returns an [IDynamicBackground](gallery-types#idynamicbackground) obje
 
 ## Update dynamic background
 
+Update dynamic background using it's id.
+
 <span class="badge badge--warning">Require authentication</span>
 
 ```ts
@@ -86,6 +90,8 @@ await gallery(client).updateDynamicBackground(dynamicBackgroundId: string, dynam
 This call returns an [IDynamicBackground](gallery-types#idynamicbackground) object.
 
 ## Delete dynamic background
+
+Delete dynamic background using it's id.
 
 <span class="badge badge--warning">Require authentication</span>
 

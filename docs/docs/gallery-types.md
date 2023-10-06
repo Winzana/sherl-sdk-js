@@ -43,8 +43,10 @@ interface IDynamicBackground {
   versionCreatedBy?: string;
 }
 ```
-
+- [IImageObject](media-types#iimageobject)(`medias`)
 - [DisplayZoneEnum](shop-types#displayzoneenum)(`displayZones`)
+- [IPoiZone](#ipoizone)(`locations`)
+- [IGeoShape](#igeoshape)(`geoshapes`)
 
 ## IPoiZone
 
