@@ -1,6 +1,7 @@
+import { PaginationFilters } from '../common';
 import { CommunicationTypeEnum } from '../communication';
 
-export interface IQuotas {
+export interface IQuota {
   id: string;
   uri: string;
   consumerId: string;
@@ -24,4 +25,13 @@ export interface IQuotaSource {
   createdBy?: string;
   createdAt?: Date;
   quotaId: string;
+}
+
+export interface IQuotaFilter extends PaginationFilters {
+  page?: number;
+  itemsPerPage?: number;
+  id: number;
+  uri: string;
+  consumerId: string;
+  ownerUri: string;
 }

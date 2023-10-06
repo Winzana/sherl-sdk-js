@@ -3,9 +3,10 @@ id: quotas-types
 title: Quota types
 ---
 
-## IQuotas
+
+## IQuota
 ```ts
-interface IQuotas {
+interface IQuota {
   id: string;
   uri: string;
   consumerId: string;
@@ -17,7 +18,10 @@ interface IQuotas {
   createdAt: Date;
   updatedAt: Date;
 }
+```
+`type` refers to [CommunicationTypeEnum](communication-types)
 
+```ts
 interface IQuotaSource {
   id: string;
   uri?: string;
@@ -31,6 +35,3 @@ interface IQuotaSource {
   quotaId: string;
 }
 ```
-
-[//]: # (TODO: Change organization-types to communication-types)
-`type` refers to [CommunicationTypeEnum](organization-types)
