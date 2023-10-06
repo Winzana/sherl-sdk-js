@@ -69,6 +69,7 @@ module.exports = {
       'communication',
       'etl',
       'search',
+      'virtual-money',
     ],
     Types: [
       'pagination',
@@ -89,6 +90,7 @@ module.exports = {
       'etl-types',
       'user-types',
       'search-types',
+      'virtual-money-types',
     ],
   },
 };
