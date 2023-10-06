@@ -8,6 +8,7 @@ module.exports = {
       'authentication',
     ],
     Features: [
+      'account',
       'analytics',
       'bug-report',
       'claim',
@@ -73,6 +74,7 @@ module.exports = {
       'virtual-money',
     ],
     Types: [
+      'account-types',
       'pagination',
       'claim-types',
       'opinion-types',
