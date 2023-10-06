@@ -4,7 +4,7 @@ import { IImageObject } from '../media';
 import { IPerson } from '../person';
 import { IPlace, IGeoCoordinates, IAddress } from '../place/types';
 
-import { IQuotas } from '../quotas/types';
+import { IQuota } from '../quotas/types';
 import {
   ICategoryResponse,
   IProductResponse,
@@ -80,7 +80,7 @@ export interface IOrganizationResponse {
     subscription: ISubscription;
     opinion: number;
   };
-  quotas: { [key: string]: IQuotas };
+  quotas: { [key: string]: IQuota };
   configs: IPersonConfigValue[];
   displayed: {
     actualityContent: string;
