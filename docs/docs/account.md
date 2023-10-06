@@ -24,10 +24,12 @@ interface IAccountCreateInputDto {
   birthDate: Date;
   gender: string;
   legalName: string;
-  location: IAddress;
+  location: IAccountLocation;
   password: number;
   passwordRepeat: number;
 }
 ```
+
+- [IAccountLocation](account-types#iaccountlocation)(`location`)
 
 This call returns an [IAccount](account-types#iaccount) object.

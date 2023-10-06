@@ -10,7 +10,7 @@ export interface IAccountCreateInputDto {
   birthDate: Date;
   gender: string;
   legalName: string;
-  location: Omit<IAddress, 'id' | 'createdAt'>;
+  location: IAccountLocation;
   password: number;
   passwordRepeat: number;
 }
@@ -25,7 +25,9 @@ export interface IAccount {
   birthDate: Date;
   gender: string;
   legalName: string;
-  location: Omit<IAddress, 'id' | 'createdAt'>;
+  location: IAccountLocation;
   createdAt: Date;
   updatedAt: Date;
 }
+
+type IAccountLocation = Omit<IAddress, 'id' | 'createdAt'>;

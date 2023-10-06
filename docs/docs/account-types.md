@@ -17,8 +17,15 @@ interface IAccount {
   birthDate: Date;
   gender: string;
   legalName: string;
-  location: IAddress;
+  location: IAccountLocation;
   createdAt: Date;
   updatedAt: Date;
 }
 ```
+
+## IAccountLocation
+
+```ts
+type IAccountLocation = Omit<IAddress, 'id' | 'createdAt'>;
+```
+- [IAddress](place-types#iaddress)(`IAccountLocation`)
