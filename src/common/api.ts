@@ -162,6 +162,49 @@ export const initializeApi = (
   return axiosInstance;
 };
 
+// RESET ACTUEL AXIOS INSTANCE
+export const resetAxiosInstance = (
+  axiosInstance: AxiosInstance,
+  apiKey: string,
+  apiSecret: string,
+  apiUrl?: string,
+  referer?: string,
+): AxiosInstance => {
+  axiosInstance.defaults.baseURL = apiUrl || 'https://api.sherl.io';
+
+  axiosInstance.defaults.headers.common = {
+    'Access-Control-Allow-Origin': '*',
+    'Content-Type': 'application/json',
+    Authorization: 'Bearer',
+  };
+
+  axiosInstance.interceptors.request.eject(0);
+
+  axiosInstance.interceptors.request.use(
+    (config: CustomAxiosRequestConfig) => {
+      if (typeof apiKey === 'undefined' || typeof apiSecret === 'undefined') {
+        throw errorFactory.create(CommonErr.MISSING_CREDENTIALS);
+      }
+
+      config.headers.common['X-WZ-API-KEY'] = apiKey;
+      config.headers.common['X-WZ-API-SECRET'] = apiSecret;
+
+      if (referer) {
+        config.headers.common['Referer'] = referer;
+      }
+
+      if (config.headers.Authorization) {
+        config.headers.Authorization = null;
+      }
+
+      return config;
+    },
+    (error) => Promise.reject(error),
+  );
+
+  return axiosInstance;
+};
+
 export const registerBearerToken = (instance: AxiosInstance, token: string) => {
   return instance.interceptors.request.use(
     (config: CustomAxiosRequestConfig) => {
