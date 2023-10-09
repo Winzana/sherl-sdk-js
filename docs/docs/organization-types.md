@@ -119,7 +119,7 @@ interface IOrganizationResponse {
     subscription: ISubscription;
     opinion: number;
   };
-  quotas: { [key: string]: IQuotas };
+  quotas: { [key: string]: IQuota };
   configs: IPersonConfigValue[];
   displayed: {
     actualityContent: string;
@@ -146,7 +146,7 @@ interface IOrganizationResponse {
  - *shop* : [**IWallet**](shop-types#iwallet)(`wallet`), [**ICategoryResponse**](shop-types#icategoryresponse)(`categories`), [**IProductResponse**](shop-types#iproductresponse)(`products`)
  - *media* : [**IImageObject**](media-types#iimageobject)(`logo`, `backgroundImage`, `photo`)
  - *calendar* : [**IOpeningHoursSpecification**](calendar-types#iopeninghoursspecification)(`openingHoursSpecification`) , [**ICalendarEvent**](calendar-types#icalendarevent)(`events`), [**IDays**](calendar-types#idays)(`weekTime`)
- - *quota* : [**IQuotas**](quotas-types#iquotas)(`quotas`)
+ - *quota* : [**IQuota**](quotas-types#IQuota)(`quotas`)
 
 ## IEmployee 
 ```ts

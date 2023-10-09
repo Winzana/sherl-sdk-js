@@ -9,3 +9,4 @@ export * from './register-with-email-and-password.action';
 export * from './create-address.action';
 export * from './update-address.action';
 export * from './delete-address.action';
+export * from './add-person-picture.action';

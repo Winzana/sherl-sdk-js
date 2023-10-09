@@ -1,18 +1,22 @@
 import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
-import { ICategoryResponse } from '../../types';
+import { ProductErr, errorFactory } from '../../errors/product/errors';
+import {
+  ICategoryResponse,
+  IShopProductCategoryFindByQuery,
+} from '../../types';
 
 export const getCategories = async (
   fetcher: Fetcher,
-  organizationId: string,
-  params?: { [key: string]: any },
+  filters?: IShopProductCategoryFindByQuery,
 ): Promise<ICategoryResponse[]> => {
-  const response = await fetcher.get<ICategoryResponse[]>(
-    endpoints.CATEGORIES_ALL,
-    {
-      ...params,
-      organizationId,
-    },
-  );
-  return response.data;
+  try {
+    const response = await fetcher.get<ICategoryResponse[]>(
+      endpoints.CATEGORIES_ALL,
+      filters,
+    );
+    return response.data;
+  } catch (err) {
+    throw errorFactory.create(ProductErr.CATEGORIES_FETCH_FAILED);
+  }
 };

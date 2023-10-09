@@ -35,6 +35,9 @@ export interface IAddress {
   isDefault: boolean;
   googleToken: string;
   uri: string;
+  originId?: string;
+  latitude?: number;
+  longitude?: number;
 }
 
 export interface IGeoCoordinates extends IAddress {

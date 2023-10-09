@@ -19,7 +19,7 @@ const publicOpinions = await opinion(client).getPublicOpinions(filters: IOpinion
 **IOpinionFilters** extends [PaginationFilters](pagination#pagination-filters)
 
 ```ts
-interface IOpinionFilters {
+interface IOpinionFilters extends PaginationFilters {
   opnionToUri: string;
 }
 ```
