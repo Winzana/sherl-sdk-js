@@ -45,3 +45,60 @@ interface ICMSArticleAddMediaDto {
 ```
 
 This call returns a string
+
+## Delete Media
+
+<span class="badge badge--warning">Require authentication</span>
+
+Delete media
+
+```ts
+const deleteMedia = await deleteMedia(client).deleteMediaPage(data: ICMSArticleAddMediaDto);
+```
+
+```ts
+interface ICMSArticleAddMediaDto {
+  id: string;
+  uri: string;
+  width: number;
+  height: number;
+  caption: ICreateCaptionOutputDto;
+  thumbnail: ICreateThumbnailOutputDto;
+}
+```
+
+This call returns a string
+
+Get article by media
+
+```ts
+const getArticleBySlug = await getArticleBySlug(client).getArticleBySlug(data: IArticle);
+```
+
+```ts
+interface IArticle {
+  id: string;
+  uri: string;
+  title: string;
+  slug: string;
+  resume: string;
+  content: string;
+  consumerId?: string;
+  organizationUri?: string;
+  type: ArticleTypeEnum;
+  authorUri: string;
+  author?: IPerson;
+  beginDate: Date;
+  endDate?: Date;
+  tokens: {
+    facebook: string;
+  };
+  status: ArticleStatusEnum;
+  media?: IImageObject;
+  metadatas?: { [key: string]: any };
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+```
+
+This call returns a string
