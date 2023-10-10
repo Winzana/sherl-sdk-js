@@ -5,7 +5,7 @@ title: Analytics
 
 ## Get CA analytics
 
-Get sales figures analytics by using optionnal filters.
+Get sales figures analytics by using optional filters.
 
 <span class="badge badge--warning">Require authentication</span>
 
@@ -26,7 +26,7 @@ This call returns an array [IAnalyticResponse](analytics-types#ianalyticresponse
 
 ## Get notifications analytics
 
-Get notifications analytics using optionnal filters.
+Get notifications analytics using optional filters.
 
 <span class="badge badge--warning">Require authentication</span>
 
@@ -46,7 +46,7 @@ This call returns an array [IAnalyticResponse](analytics-types#ianalyticresponse
 
 ## Get audiences analytics
 
-Get audience analytics by using optionnal filters.
+Get audience analytics by using optional filters.
 
 <span class="badge badge--warning">Require authentication</span>
 
@@ -59,7 +59,7 @@ This call returns an array [IAnalyticResponse](analytics-types#ianalyticresponse
 
 ## Get products analytics
 
-Get products analytics using optionnal filters.
+Get products analytics using optional filters.
 
 <span class="badge badge--warning">Require authentication</span>
 
@@ -79,7 +79,7 @@ This call returns an array [IAnalyticResponse](analytics-types#ianalyticresponse
 
 ## Get analytics
 
-Get analytics using optionnal filters.
+Get analytics using optional filters.
 
 <span class="badge badge--warning">Require authentication</span>
 
@@ -99,7 +99,7 @@ This call returns an array [IAnalyticResponse](analytics-types#ianalyticresponse
 
 ## Get BI analytics
 
-Get business intelligence analytics by optionnal filters.
+Get business intelligence analytics by optional filters.
 
 <span class="badge badge--warning">Require authentication</span>
 
