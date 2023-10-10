@@ -7,8 +7,6 @@ This page list all actions about organization's ribs management.
 
 ## Add organization rib
 
-Allows you to add rib to an organization
-
 <span class="badge badge--warning">Require authentication</span>
 
 ```ts
@@ -25,8 +23,6 @@ interface IAddRibBody {
 This call returns an [IRib](../shop-types#irib) object.
 
 ## Get all organization ribs
-
-Retrieve all documents of an organization
 
 <span class="badge badge--warning">Require authentication</span>
 

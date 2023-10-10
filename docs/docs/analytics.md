@@ -5,9 +5,9 @@ title: Analytics
 
 ## Get CA analytics
 
-Get sales figures analytics by using optional filters.
-
 <span class="badge badge--warning">Require authentication</span>
+
+Get sales figures analytics by using optional filters.
 
 ```ts
 await analytics(client).getCAAnalytics(filters?: ICAAnalyticsInputDto);
@@ -26,9 +26,9 @@ This call returns an array [IAnalyticResponse](analytics-types#ianalyticresponse
 
 ## Get notifications analytics
 
-Get notifications analytics using optional filters.
-
 <span class="badge badge--warning">Require authentication</span>
+
+Get notifications analytics using optional filters.
 
 ```ts
 await analytics(client).getNotificationsAnalytics(filters?: INotificationsAnalyticsInputDto);
@@ -46,9 +46,9 @@ This call returns an array [IAnalyticResponse](analytics-types#ianalyticresponse
 
 ## Get audiences analytics
 
-Get audience analytics by using optional filters.
-
 <span class="badge badge--warning">Require authentication</span>
+
+Get audience analytics by using optional filters.
 
 ```ts
 await analytics(client).getAudiencesAnalytics(filters?: IAnalyticsInputBaseDto);
@@ -59,9 +59,9 @@ This call returns an array [IAnalyticResponse](analytics-types#ianalyticresponse
 
 ## Get products analytics
 
-Get products analytics using optional filters.
-
 <span class="badge badge--warning">Require authentication</span>
+
+Get products analytics using optional filters.
 
 ```ts
 await analytics(client).getProductsAnalytics(filters?: IProductAnalyticsInputDto);
@@ -79,9 +79,9 @@ This call returns an array [IAnalyticResponse](analytics-types#ianalyticresponse
 
 ## Get analytics
 
-Get analytics using optional filters.
-
 <span class="badge badge--warning">Require authentication</span>
+
+Get analytics using optional filters.
 
 ```ts
 await analytics(client).getAnalytics(filters?: IAnalyticsInputDto);
@@ -99,9 +99,9 @@ This call returns an array [IAnalyticResponse](analytics-types#ianalyticresponse
 
 ## Get BI analytics
 
-Get business intelligence analytics by optional filters.
-
 <span class="badge badge--warning">Require authentication</span>
+
+Get business intelligence analytics by optional filters.
 
 ```ts
 await analytics(client).getBIAnalytics(filters?: IAnalyticsFindBIInputDto);
