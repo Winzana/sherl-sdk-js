@@ -1,6 +1,9 @@
 import { SherlClient } from '../common';
-import { ICMSArticleStaticPageCreateInputDto } from './types';
+import {
+  ICMSArticleStaticPageCreateInputDto,
+  ICMSArticleAddMediaDto,
+} from './types';
 import { CmsProvider } from './provider';
 
-const cms = (client: SherlClient) => new CmsProvider(client);
-export { cms, ICMSArticleStaticPageCreateInputDto };
+export const cms = (client: SherlClient) => new CmsProvider(client);
+export { ICMSArticleStaticPageCreateInputDto, ICMSArticleAddMediaDto };

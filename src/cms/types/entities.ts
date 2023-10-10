@@ -1,3 +1,6 @@
+import { IImageObject } from '../../media';
+import { IPerson } from '../../person';
+
 export interface ICMSArticleStaticPageCreateInputDto {
   id: string;
   title: string;
@@ -19,7 +22,7 @@ export interface ICreateThumbnailOutputDto {
   height: number;
   caption: ICreateCaptionOutputDto;
 }
-export interface ICreateOutputDto {
+export interface ICMSArticleAddMediaDto {
   id: string;
   uri: string;
   width: number;
@@ -54,4 +57,42 @@ export interface ICMSArticleCreateInputDto {
   content: string;
   beginDate: Date;
   endDate: Date;
+}
+
+export interface IArticle {
+  id: string;
+  uri: string;
+  title: string;
+  slug: string;
+  resume: string;
+  content: string;
+  consumerId?: string;
+  organizationUri?: string;
+  type: ArticleTypeEnum;
+  authorUri: string;
+  author?: IPerson;
+  beginDate: Date;
+  endDate?: Date;
+  tokens: {
+    facebook: string;
+  };
+  status: ArticleStatusEnum;
+  media?: IImageObject;
+  metadatas?: { [key: string]: any };
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export enum ArticleTypeEnum {
+  BLOG = 'blog',
+  STORY = 'story',
+  TRAINING = 'training',
+  PAGE = 'page',
+  FAQ = 'faq',
+}
+
+export enum ArticleStatusEnum {
+  DRAFT = 'draft',
+  PUBLISHED = 'published',
+  ARCHIVED = 'archived',
 }
