@@ -5,9 +5,9 @@ title: Search
 
 ## Public search
 
-Enables a fulltext(`q`) search based on `indexes`.
-
 <span class="badge badge--success">Public</span>
+
+Enables a fulltext(`q`) search based on `indexes`.
 
 ```ts
 await search(client).getPublicSearchAutocomplete(filters?: ISearchFilters);

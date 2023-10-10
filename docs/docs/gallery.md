@@ -24,9 +24,9 @@ This call returns an [IGallery](gallery-types#igallery) object.
 
 ## Delete gallery
 
-Delete gallery using it's id.
-
 <span class="badge badge--warning">Require authentication</span>
+
+Delete gallery using it's id.
 
 ```ts
 await gallery(client).deleteGalerry(galleryId: string);
@@ -79,9 +79,9 @@ This call returns an [IDynamicBackground](gallery-types#idynamicbackground) obje
 
 ## Update dynamic background
 
-Update dynamic background using it's id.
-
 <span class="badge badge--warning">Require authentication</span>
+
+Update dynamic background using it's id.
 
 ```ts
 await gallery(client).updateDynamicBackground(dynamicBackgroundId: string, dynamicBackground: Partial<ICreateDynamicBackgroundInputDto>);
@@ -91,9 +91,9 @@ This call returns an [IDynamicBackground](gallery-types#idynamicbackground) obje
 
 ## Delete dynamic background
 
-Delete dynamic background using it's id.
-
 <span class="badge badge--warning">Require authentication</span>
+
+Delete dynamic background using it's id.
 
 ```ts
 await gallery(client).deleteDynamicBackground(dynamicBackgroundId: string);

@@ -61,7 +61,8 @@ interface IPositionInputDto {
 This call returns an object of [ILocation](../place-types#ilocation)
 
 ## Register a user for your sherl
-this function create a user
+
+<span class="badge badge--success">Public</span>
 
 ```ts
 await person(client).registerWithEmailAndPassword(user: IPersonRegister);
@@ -99,15 +100,19 @@ interface IPersonRegister {
 
 ## Register a user for your application
 
+<span class="badge badge--warning">Require authentication</span>
+
 This function creates a person without creating user
 
 ```ts
 const newPerson = await person(client).createPerson(user: IPersonRegister);
 ```
 
-user use the same interface as previous
+This call returns an [IPerson](../person-types#iperson) object.
 
 ## Update a user
+
+<span class="badge badge--warning">Require authentication</span>
 
 ```ts
 const updatedPerson = await person(client).updatePersonById(id: string, user: Partial<IPersonUpdate>);

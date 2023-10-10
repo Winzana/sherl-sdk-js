@@ -6,15 +6,18 @@ title: Opinion
 
 ## Get opinions list
 
-Retrieve a list of all public opinions, which you can filter with parameters (page, itemsPerPage, ...)
+<span class="badge badge--warning">Required authentication</span>
 
 ```ts
-// Require authentication
 const opinions = await opinion(client).getOpinions(filter: IOpinionFilters);
+```
 
-// Public
+<span class="badge badge--success">Public</span>
+
+```ts
 const publicOpinions = await opinion(client).getPublicOpinions(filters: IOpinionFilters);
 ```
+
 
 **IOpinionFilters** extends [PaginationFilters](pagination#pagination-filters)
 
@@ -27,6 +30,8 @@ interface IOpinionFilters extends PaginationFilters {
 This call returns [paginated](pagination#pagination) array of [IOpinion](opinion-types#iopinion) objects
 
 ## Create opinion
+
+<span class="badge badge--warning">Required authentication</span>
 
 ```ts
 const newOpinion = await opinion(client).createOpinion(data: ICreateOpinionInput);
@@ -44,6 +49,8 @@ interface ICreateOpinionInput {
 This call returns an [IOpinion](opinion-types#iopinion) object.
 
 ## Update opinion status
+
+<span class="badge badge--warning">Required authentication</span>
 
 ```ts
 const opinionUpdated = await opinion(client).updateOpinion(opinionId: string, status: IOpinionUpdateStatusInputDto);
@@ -66,6 +73,8 @@ This call returns an [IOpinion](opinion-types#iopinion) object.
 
 ## Create opinion claim
 
+<span class="badge badge--warning">Required authentication</span>
+
 ```ts
 const claim = await opinion(client).createOpinionClaim(opinionId: string, data: IClaimOpinionInput);
 ```
@@ -80,6 +89,8 @@ This call returns an [IOpinion](opinion-types#iopinion) object.
 
 ## Get opinion average score
 
+<span class="badge badge--warning">Required authentication</span>
+
 ```ts
 const averageScore = await opinion(client).getOpinionsAverage(opinionToUri: string);
 ```
@@ -87,6 +98,8 @@ const averageScore = await opinion(client).getOpinionsAverage(opinionToUri: stri
 This call returns an [IAverage](opinion-types#iaverage) object
 
 ## Get the opinions given by connected user
+
+<span class="badge badge--warning">Required authentication</span>
 
 ```ts
 const givenOpinions = await opinion(client).getOpinionsIGive(filters: IOpinionFilters);

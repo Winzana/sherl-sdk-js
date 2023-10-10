@@ -5,9 +5,9 @@ title: Quotas
 
 ## Find Quota with filter
 
-Get Quota information by using a filter or not.
-
 <span class="badge badge--warning">Required authentication</span>
+
+Get Quota information by using a filter or not.
 
 ```ts
 await quota(client).getQuotaFindByOne(filters?: IQuotaFilter);

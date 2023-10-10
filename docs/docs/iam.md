@@ -1,16 +1,16 @@
 ---
 id: iam
-title: Iam
+title: IAM
 ---
 
-## Get all iam profiles
+## Get all IAM profiles
 
 <span class="badge badge--warning">Require authentication</span>
 
-Retrieve all iam profiles informations.
+Retrieve all IAM profiles informations.
 
 ```ts
-const iamProfiles = await iam(client).getAllIamProfiles();
+await iam(client).getAllIAMProfiles();
 ```
 
 This call returns an array of [IProfile](iam-types#iprofile).
@@ -19,10 +19,10 @@ This call returns an array of [IProfile](iam-types#iprofile).
 
 <span class="badge badge--warning">Require authentication</span>
 
-Retrieve iam profile informations.
+Retrieve IAM profile informations.
 
 ```ts
-const iamProfile = await iam(client).getIamProfileById(id: string);
+await iam(client).getIAMProfileById(id: string);
 ```
 
 This call returns an [IProfile](iam-types#iprofile).
@@ -31,10 +31,10 @@ This call returns an [IProfile](iam-types#iprofile).
 
 <span class="badge badge--warning">Require authentication</span>
 
-Retrieve iam role informations.
+Retrieve IAM role informations.
 
 ```ts
-const iamRole = await iam(client).getIamRoleById(id: string);
+await iam(client).getIAMRoleById(id: string);
 ```
 
 This call returns an [IRole](iam-types#irole)

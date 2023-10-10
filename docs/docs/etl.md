@@ -34,11 +34,11 @@ This call returns an [IConfigModel](etl-types#iconfigmodel) object.
 
 ## Extract transform load
 
+<span class="badge badge--warning">Require authentication</span>
+
 This action launch an asynchronous ETL task using a specific configuration.
 
 **:warning:  The configuration will not be saved.**
-
-<span class="badge badge--warning">Require authentication</span>
 
 ```ts
 await etl(client).extractTransformLoad(config: IExtractTransformLoadInputDto);
@@ -56,11 +56,11 @@ This call returns an [IEtlResponse](etl-types#ietlresponse) object.
 
 ## Extract transform load by config id
 
+<span class="badge badge--warning">Require authentication</span>
+
 This action launch an asynchronous ETL task with a particular id.
 
 **:warning: This config should be saved before.**
-
-<span class="badge badge--warning">Require authentication</span>
 
 ```ts
 await etl(client).extractTransformLoadById(id: string);

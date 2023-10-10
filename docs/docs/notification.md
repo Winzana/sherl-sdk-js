@@ -45,6 +45,7 @@ interface INotificationFilters {
 This call returns an [ISearchResult](pagination#isearchresult) of [INotification](notification-types#inotification) object.
 
 ## Enable notifications on organization
+
 <span class="badge badge--warning">Require authentication</span>
 
 Enables a type of notification to be activated for an organization
