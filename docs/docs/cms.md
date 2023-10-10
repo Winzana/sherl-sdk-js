@@ -204,3 +204,62 @@ interface ICMSArticleUpdateInputDto {
 ```
 
 This call returns a string
+
+## Create Trainings Pages
+
+<span class="badge badge--warning">Require authentication</span>
+
+Create trainings pages
+
+```ts
+const createTrainings = await createTrainingsPage(client).createTrainingsPage(data: ICMSArticleTrainingCreateInputDto);
+```
+
+```ts
+interface ICMSArticleTrainingCreateInputDto {
+  id: string;
+  title: string;
+  tags: [string];
+}
+```
+
+This call returns a string
+
+## Create Stories Pages
+
+<span class="badge badge--warning">Require authentication</span>
+
+Create stories pages
+
+```ts
+const createStories = await createStoriesPage(client).createStoriesPage(data: ICMSArticleStoryCreateInputDto);
+```
+
+```ts
+interface ICMSArticleStoryCreateInputDto {
+  id: string;
+  title: string;
+}
+```
+
+This call returns a string
+
+## Create FAQS Pages
+
+<span class="badge badge--warning">Require authentication</span>
+
+Create faqs pages
+
+```ts
+const createFaqs = await createFaqsPage(client).createFaqsPage(data: ICMSArticleFaqCreateInputDto);
+```
+
+```ts
+interface ICMSArticleFaqCreateInputDto {
+  id: string;
+  title: string;
+  content: string;
+}
+```
+
+This call returns a string
