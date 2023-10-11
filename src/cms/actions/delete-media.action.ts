@@ -8,15 +8,15 @@ export const deleteMediaPage = async (
   fetcher: Fetcher,
   id: string,
 ): Promise<ICMSArticleAddMediaDto> => {
-  const response = await fetcher.delete<ICMSArticleAddMediaDto>(
-    StringUtils.bindContext(endpoints.DELETE_MEDIA, {
-      id,
-    }),
-  );
+  try {
+    const response = await fetcher.delete<ICMSArticleAddMediaDto>(
+      StringUtils.bindContext(endpoints.DELETE_MEDIA, {
+        id,
+      }),
+    );
 
-  if (response.status !== 200) {
+    return response.data;
+  } catch (err) {
     throw errorFactory.create(CmsErr.CMS_DELETE_MEDIA_FAILED);
   }
-
-  return response.data;
 };

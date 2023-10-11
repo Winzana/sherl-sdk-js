@@ -8,15 +8,15 @@ export const deleteArticleById = async (
   fetcher: Fetcher,
   id: string,
 ): Promise<IArticle> => {
-  const response = await fetcher.delete<IArticle>(
-    StringUtils.bindContext(endpoints.DELETE_FIND_ID, {
-      id,
-    }),
-  );
+  try {
+    const response = await fetcher.delete<IArticle>(
+      StringUtils.bindContext(endpoints.DELETE_FIND_ID, {
+        id,
+      }),
+    );
 
-  if (response.status !== 200) {
+    return response.data;
+  } catch (err) {
     throw errorFactory.create(CmsErr.CMS_DELETE_MEDIA_FAILED);
   }
-
-  return response.data;
 };

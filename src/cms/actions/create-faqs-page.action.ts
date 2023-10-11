@@ -7,13 +7,17 @@ export const createFaqsPage = async (
   fetcher: Fetcher,
   data: ICMSArticleFaqCreateInputDto,
 ) => {
-  const response = await fetcher
-    .post<ICMSArticleFaqCreateInputDto>(endpoints.CREATE_FAQS, data)
-    .catch(() => {
+  try {
+    const response = await fetcher.post<ICMSArticleFaqCreateInputDto>(
+      endpoints.CREATE_FAQS,
+      data,
+    );
+
+    if (response.status !== 201) {
       throw errorFactory.create(CmsErr.CMS_CREATE_FAQS_FAILED);
-    });
-  if (response.status !== 201) {
+    }
+    return response.data;
+  } catch (err) {
     throw errorFactory.create(CmsErr.CMS_CREATE_FAQS_FAILED);
   }
-  return response.data;
 };

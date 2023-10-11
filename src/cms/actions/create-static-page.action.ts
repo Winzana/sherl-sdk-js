@@ -7,13 +7,17 @@ export const createStaticPage = async (
   fetcher: Fetcher,
   data: ICMSArticleStaticPageCreateInputDto,
 ) => {
-  const response = await fetcher
-    .post<string>(endpoints.CMS_CREATE_STATIC, data)
-    .catch(() => {
+  try {
+    const response = await fetcher.post<string>(
+      endpoints.CMS_CREATE_STATIC,
+      data,
+    );
+
+    if (response.status !== 201) {
       throw errorFactory.create(CmsErr.CMS_CREATE_FAILED);
-    });
-  if (response.status !== 201) {
+    }
+    return response.data;
+  } catch (err) {
     throw errorFactory.create(CmsErr.CMS_CREATE_FAILED);
   }
-  return response.data;
 };

@@ -56,7 +56,7 @@ module.exports = {
       'claim',
       'notification',
       'communication',
-      'Cms',
+      'cms',
       'quotas',
       'search',
       {
@@ -105,7 +105,7 @@ module.exports = {
       'shop-types',
       'person-types',
       'communication-types',
-      'Cms-types',
+      'cms-types',
       'user-types',
       'virtual-money-types',
     ],

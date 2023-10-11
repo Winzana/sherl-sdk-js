@@ -9,16 +9,16 @@ export const putCreateArticle = async (
   id: string,
   updatedOrganization: ICMSArticleUpdateInputDto,
 ): Promise<IArticle> => {
-  const response = await fetcher.put<IArticle>(
-    StringUtils.bindContext(endpoints.PUT_FIND_ID, {
-      id,
-    }),
-    updatedOrganization,
-  );
+  try {
+    const response = await fetcher.put<IArticle>(
+      StringUtils.bindContext(endpoints.PUT_FIND_ID, {
+        id,
+      }),
+      updatedOrganization,
+    );
 
-  if (response.status !== 200) {
+    return response.data;
+  } catch (err) {
     throw errorFactory.create(CmsErr.CMS_PUT_FIND_ID_FAILED);
   }
-
-  return response.data;
 };

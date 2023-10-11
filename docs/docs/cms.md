@@ -1,5 +1,5 @@
 ---
-id: Cms
+id: cms
 title: Cms
 ---
 
@@ -10,7 +10,7 @@ title: Cms
 Create static page
 
 ```ts
-const staticPage = await staticPage(client).createStaticPage(data: ICMSArticleStaticPageCreateInputDto);
+const staticPage = await cms(client).createStaticPage(data: ICMSArticleStaticPageCreateInputDto);
 ```
 
 ```ts
@@ -30,7 +30,7 @@ This call returns a string
 Add media
 
 ```ts
-const addMedia = await addMedia(client).addMediaPage(data: ICMSArticleAddMediaDto);
+const addMedia = await cms(client).addMediaPage(data: ICMSArticleAddMediaDto);
 ```
 
 ```ts
@@ -53,7 +53,7 @@ This call returns a string
 Delete media
 
 ```ts
-const deleteMedia = await deleteMedia(client).deleteMediaPage(data: ICMSArticleAddMediaDto);
+const deleteMedia = await cms(client).deleteMediaPage(data: ICMSArticleAddMediaDto);
 ```
 
 ```ts
@@ -76,7 +76,7 @@ This call returns a string
 Get article by slug
 
 ```ts
-const getArticleBySlug = await getArticleBySlug(client).getArticleBySlug(data: IArticle);
+const getArticleBySlug = await cms(client).getArticleBySlug(data: IArticle);
 ```
 
 ```ts
@@ -114,7 +114,7 @@ This call returns a string
 Find one article by id
 
 ```ts
-const getArticleById = await getArticleById(client).getArticleById(data: IArticle);
+const getArticleById = await cms(client).getArticleById(data: IArticle);
 ```
 
 ```ts
@@ -152,7 +152,7 @@ This call returns a string
 Delete article
 
 ```ts
-const deleteArticle = await deleteArticle(client).deleteArticleById(data: ICMSArticleAddMediaDto);
+const deleteArticle = await cms(client).deleteArticleById(data: ICMSArticleAddMediaDto);
 ```
 
 ```ts
@@ -190,7 +190,7 @@ This call returns a string
 Create article
 
 ```ts
-const createArticle = await createArticle(client).putCreateArticle(data: ICMSArticleUpdateInputDto);
+const createArticle = await cms(client).putCreateArticle(data: ICMSArticleUpdateInputDto);
 ```
 
 ```ts
@@ -212,7 +212,7 @@ This call returns a string
 Create trainings pages
 
 ```ts
-const createTrainings = await createTrainingsPage(client).createTrainingsPage(data: ICMSArticleTrainingCreateInputDto);
+const createTrainings = await cms(client).createTrainingsPage(data: ICMSArticleTrainingCreateInputDto);
 ```
 
 ```ts
@@ -232,7 +232,7 @@ This call returns a string
 Create stories pages
 
 ```ts
-const createStories = await createStoriesPage(client).createStoriesPage(data: ICMSArticleStoryCreateInputDto);
+const createStories = await cms(client).createStoriesPage(data: ICMSArticleStoryCreateInputDto);
 ```
 
 ```ts
@@ -251,7 +251,7 @@ This call returns a string
 Create faqs pages
 
 ```ts
-const createFaqs = await createFaqsPage(client).createFaqsPage(data: ICMSArticleFaqCreateInputDto);
+const createFaqs = await cms(client).createFaqsPage(data: ICMSArticleFaqCreateInputDto);
 ```
 
 ```ts
@@ -271,7 +271,7 @@ This call returns a string
 Create posts pages
 
 ```ts
-const createPosts = await createPostsPage(client).createPostsPage(data: ICMSArticleCreateInputDto);
+const createPosts = await cms(client).createPostsPage(data: ICMSArticleCreateInputDto);
 ```
 
 ```ts
@@ -293,7 +293,7 @@ This call returns a string
 Find posts
 
 ```ts
-const findPosts = await getFindPosts(client).getFindPosts(
+const findPosts = await cms(client).getFindPosts(
   page: number,
   itemsPerPage: number,
   authorUri: string,
@@ -341,7 +341,7 @@ Find article by slug
 <span class="badge badge--success">Public</span>
 
 ```ts
-const getFindArticleBySlug = await getPublicFindArticleBySlug(client).getPublicFindArticleBySlug(data: IArticle);
+const getFindArticleBySlug = await cms(client).getPublicFindArticleBySlug(data: IArticle);
 ```
 
 ```ts
@@ -379,7 +379,7 @@ Find article by id
 <span class="badge badge--success">Public</span>
 
 ```ts
-const getFindArticleById = await getPublicArticleById(client).getPublicArticleById(data: IArticle);
+const getFindArticleById = await cms(client).getPublicArticleById(data: IArticle);
 ```
 
 ```ts
@@ -417,7 +417,7 @@ Find article
 <span class="badge badge--success">Public</span>
 
 ```ts
-const getFindArticle = await getPublicArticle(client).getPublicArticle(data: IArticle);
+const getFindArticle = await cms(client).getPublicArticle(data: IArticle);
 ```
 
 ```ts
