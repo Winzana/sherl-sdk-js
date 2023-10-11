@@ -10,13 +10,13 @@ export const deleteArticleById = async (
 ): Promise<IArticle> => {
   try {
     const response = await fetcher.delete<IArticle>(
-      StringUtils.bindContext(endpoints.DELETE_FIND_ID, {
+      StringUtils.bindContext(endpoints.DELETE_ARTICLE_BY_ID, {
         id,
       }),
     );
 
     return response.data;
   } catch (err) {
-    throw errorFactory.create(CmsErr.CMS_DELETE_MEDIA_FAILED);
+    throw errorFactory.create(CmsErr.CMS_DELETE_FIND_ID_FAILED);
   }
 };

@@ -7,7 +7,7 @@ export enum CmsErr {
   CMS_GET_SLUG_FAILED = 'bug-reports/cms-get-slug-failed',
   CMS_GET_FIND_ID_FAILED = 'bug-reports/cms-get-find-id-failed',
   CMS_DELETE_FIND_ID_FAILED = 'bug-reports/cms-delete-find-id-failed',
-  CMS_PUT_FIND_ID_FAILED = 'bug-reports/cms-put-find-id-failed',
+  CMS_UPDATE_ARTICLE_BY_ID_FAILED = 'bug-reports/cms-update-article-by-id-failed',
   CMS_CREATE_TRAININGS_FAILED = 'bug-reports/cms-create-trainings-failed',
   CMS_CREATE_STORIES_FAILED = 'bug-reports/cms-create-stories-failed',
   CMS_CREATE_FAQS_FAILED = 'bug-reports/cms-create-faqs-failed',
@@ -25,7 +25,8 @@ export const errors = {
   [CmsErr.CMS_GET_SLUG_FAILED]: 'Failed to get slug cms report',
   [CmsErr.CMS_GET_FIND_ID_FAILED]: 'Failed to get find id cms report',
   [CmsErr.CMS_DELETE_FIND_ID_FAILED]: 'Failed to delete find id cms report',
-  [CmsErr.CMS_PUT_FIND_ID_FAILED]: 'Failed to put find id cms report',
+  [CmsErr.CMS_UPDATE_ARTICLE_BY_ID_FAILED]:
+    'Failed to update article by id cms report',
   [CmsErr.CMS_CREATE_TRAININGS_FAILED]: 'Failed create trainings cms report',
   [CmsErr.CMS_CREATE_STORIES_FAILED]: 'Failed create stories cms report',
   [CmsErr.CMS_CREATE_FAQS_FAILED]: 'Failed create faqs cms report',

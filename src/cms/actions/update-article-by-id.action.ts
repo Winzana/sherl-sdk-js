@@ -4,21 +4,21 @@ import { CmsErr, errorFactory } from '../errors';
 import { ICMSArticleUpdateInputDto, IArticle } from '../types';
 import { StringUtils } from '../../common/utils/string';
 
-export const putCreateArticle = async (
+export const updateArticleById = async (
   fetcher: Fetcher,
   id: string,
-  updatedOrganization: ICMSArticleUpdateInputDto,
+  updatedArticle: ICMSArticleUpdateInputDto,
 ): Promise<IArticle> => {
   try {
     const response = await fetcher.put<IArticle>(
-      StringUtils.bindContext(endpoints.PUT_FIND_ID, {
+      StringUtils.bindContext(endpoints.UPDATE_ARTICLE_BY_ID, {
         id,
       }),
-      updatedOrganization,
+      updatedArticle,
     );
 
     return response.data;
   } catch (err) {
-    throw errorFactory.create(CmsErr.CMS_PUT_FIND_ID_FAILED);
+    throw errorFactory.create(CmsErr.CMS_UPDATE_ARTICLE_BY_ID_FAILED);
   }
 };

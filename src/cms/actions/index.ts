@@ -4,7 +4,7 @@ export * from './delete-media.action';
 export * from './get-article-by-slug.action';
 export * from './get-find-article.actions';
 export * from './delete-find-article.actions';
-export * from './put-find-article.action';
+export * from './update-article-by-id.action';
 export * from './create-trainings-page.action';
 export * from './create-stories-page.action';
 export * from './create-faqs-page.action';

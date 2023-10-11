@@ -10,7 +10,7 @@ export const getPublicArticleById = async (
 ): Promise<IArticle> => {
   try {
     const response = await fetcher.get<IArticle>(
-      StringUtils.bindContext(endpoints.GET_PUBLIC_FIND_ID, { id }),
+      StringUtils.bindContext(endpoints.GET_PUBLIC_ARTICLE_BY_ID, { id }),
     );
 
     if (response.status !== 200) {

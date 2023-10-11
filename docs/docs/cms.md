@@ -190,7 +190,7 @@ This call returns a string
 Create article
 
 ```ts
-const createArticle = await cms(client).putCreateArticle(data: ICMSArticleUpdateInputDto);
+const createArticle = await cms(client).updateArticleById(data: ICMSArticleUpdateInputDto);
 ```
 
 ```ts

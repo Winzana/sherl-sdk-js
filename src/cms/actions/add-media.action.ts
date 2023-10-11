@@ -17,10 +17,10 @@ export const addMediaPage = async (
       data,
     );
     if (response.status !== 201) {
-      throw errorFactory.create(CmsErr.CMS_CREATE_FAILED);
+      throw errorFactory.create(CmsErr.CMS_ADD_MEDIA_FAILED);
     }
     return response.data;
   } catch (error) {
-    throw errorFactory.create(CmsErr.CMS_CREATE_FAILED);
+    throw errorFactory.create(CmsErr.CMS_ADD_MEDIA_FAILED);
   }
 };
