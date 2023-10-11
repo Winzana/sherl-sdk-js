@@ -263,3 +263,189 @@ interface ICMSArticleFaqCreateInputDto {
 ```
 
 This call returns a string
+
+## Create Posts Pages
+
+<span class="badge badge--warning">Require authentication</span>
+
+Create posts pages
+
+```ts
+const createPosts = await createPostsPage(client).createPostsPage(data: ICMSArticleCreateInputDto);
+```
+
+```ts
+interface ICMSArticleCreateInputDto {
+  id: string;
+  title: string;
+  content: string;
+  beginDate: Date;
+  endDate: Date;
+}
+```
+
+This call returns a string
+
+## Find Posts
+
+<span class="badge badge--warning">Require authentication</span>
+
+Find posts
+
+```ts
+const findPosts = await getFindPosts(client).getFindPosts(
+  page: number,
+  itemsPerPage: number,
+  authorUri: string,
+  slug: string,
+  organizationUri: string,
+  type: string,
+  beginDate: string,
+  endDate: string,
+  status: string,
+  id: string);
+```
+
+```ts
+interface IArticle {
+  id: string;
+  uri: string;
+  title: string;
+  slug: string;
+  resume: string;
+  content: string;
+  consumerId?: string;
+  organizationUri?: string;
+  type: ArticleTypeEnum;
+  authorUri: string;
+  author?: IPerson;
+  beginDate: Date;
+  endDate?: Date;
+  tokens: {
+    facebook: string;
+  };
+  status: ArticleStatusEnum;
+  media?: IImageObject;
+  metadatas?: { [key: string]: any };
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+```
+
+This call returns a string
+
+## Find Article By Slug
+
+Find article by slug
+
+<span class="badge badge--success">Public</span>
+
+```ts
+const getFindArticleBySlug = await getPublicFindArticleBySlug(client).getPublicFindArticleBySlug(data: IArticle);
+```
+
+```ts
+interface IArticle {
+  id: string;
+  uri: string;
+  title: string;
+  slug: string;
+  resume: string;
+  content: string;
+  consumerId?: string;
+  organizationUri?: string;
+  type: ArticleTypeEnum;
+  authorUri: string;
+  author?: IPerson;
+  beginDate: Date;
+  endDate?: Date;
+  tokens: {
+    facebook: string;
+  };
+  status: ArticleStatusEnum;
+  media?: IImageObject;
+  metadatas?: { [key: string]: any };
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+```
+
+This call returns a string
+
+## Find Article By Id
+
+Find article by id
+
+<span class="badge badge--success">Public</span>
+
+```ts
+const getFindArticleById = await getPublicArticleById(client).getPublicArticleById(data: IArticle);
+```
+
+```ts
+interface IArticle {
+  id: string;
+  uri: string;
+  title: string;
+  slug: string;
+  resume: string;
+  content: string;
+  consumerId?: string;
+  organizationUri?: string;
+  type: ArticleTypeEnum;
+  authorUri: string;
+  author?: IPerson;
+  beginDate: Date;
+  endDate?: Date;
+  tokens: {
+    facebook: string;
+  };
+  status: ArticleStatusEnum;
+  media?: IImageObject;
+  metadatas?: { [key: string]: any };
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+```
+
+This call returns a string
+
+## Find Article
+
+Find article
+
+<span class="badge badge--success">Public</span>
+
+```ts
+const getFindArticle = await getPublicArticle(client).getPublicArticle(data: IArticle);
+```
+
+```ts
+interface IArticle {
+  id: string;
+  uri: string;
+  title: string;
+  slug: string;
+  resume: string;
+  content: string;
+  consumerId?: string;
+  organizationUri?: string;
+  type: ArticleTypeEnum;
+  authorUri: string;
+  author?: IPerson;
+  beginDate: Date;
+  endDate?: Date;
+  tokens: {
+    facebook: string;
+  };
+  status: ArticleStatusEnum;
+  media?: IImageObject;
+  metadatas?: { [key: string]: any };
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+```
+
+This call returns an [ISearchResult](pagination#isearchresult) of [IArticle] objects.
+
+This call returns a string

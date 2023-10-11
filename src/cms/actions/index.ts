@@ -8,3 +8,8 @@ export * from './put-find-article.action';
 export * from './create-trainings-page.action';
 export * from './create-stories-page.action';
 export * from './create-faqs-page.action';
+export * from './create-posts-page.action';
+export * from './get-find-posts.action';
+export * from './get-public-find-article-by-slug.action';
+export * from './get-public-find-article-by-id.action';
+export * from './get-public-find-article.action';

@@ -11,6 +11,11 @@ import {
   createTrainingsPage,
   createStoriesPage,
   createFaqsPage,
+  createPostsPage,
+  getFindPosts,
+  getPublicFindArticleBySlug,
+  getPublicArticleById,
+  getPublicFindArticle,
 } from './actions';
 import { errorFactory } from './errors';
 
@@ -28,6 +33,13 @@ class CmsProvider extends AbstractProvider {
   public createTrainingsPage = this.withFetcher(createTrainingsPage);
   public createStoriesPage = this.withFetcher(createStoriesPage);
   public createFaqsPage = this.withFetcher(createFaqsPage);
+  public createPostsPage = this.withFetcher(createPostsPage);
+  public getFindPosts = this.withFetcher(getFindPosts);
+  public getPublicFindArticleBySlug = this.withFetcher(
+    getPublicFindArticleBySlug,
+  );
+  public getPublicArticleById = this.withFetcher(getPublicArticleById);
+  public getPublicFindArticle = this.withFetcher(getPublicFindArticle);
 }
 
 export { CmsProvider };
