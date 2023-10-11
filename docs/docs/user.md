@@ -5,6 +5,7 @@ sidebar_label: User
 ---
 
 ## Update current user password
+
 <span class="badge badge--warning">Require authentication</span>
 
 Update current user password based on Bearer token

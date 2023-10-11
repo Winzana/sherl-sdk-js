@@ -5,6 +5,8 @@ title: Contact
 
 ## Contact
 
+<span class="badge badge--success">Public</span>
+
 Send contact
 
 ```ts
