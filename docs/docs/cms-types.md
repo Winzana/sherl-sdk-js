@@ -1,6 +1,6 @@
 ---
 id: cms-types
-title: cms types
+title: Cms types
 ---
 
 ## ICreateCaptionOutputDto
