@@ -1,36 +1,18 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { CmsErr, errorFactory } from '../errors';
-import { IArticle } from '../types';
+import { FindPostsFilters, IArticle } from '../types';
 import { StringUtils } from '../../common/utils/string';
 import { ISearchResult } from '../../common';
 
 export const getPublicFindArticle = async (
   fetcher: Fetcher,
-  page: number,
-  itemsPerPage: number,
-  authorUri: string,
-  id: string,
-  slug: string,
-  organizationUri: string,
-  type: string,
-  beginDate: string,
-  endDate: string,
-  status: string,
+  filters: FindPostsFilters,
 ): Promise<ISearchResult<IArticle>> => {
   try {
     const response = await fetcher.get<ISearchResult<IArticle>>(
       StringUtils.bindContext(endpoints.GET_PUBLIC_ARTICLE, {
-        slug,
-        id,
-        page,
-        itemsPerPage,
-        authorUri,
-        organizationUri,
-        type,
-        beginDate,
-        endDate,
-        status,
+        filters,
       }),
     );
 

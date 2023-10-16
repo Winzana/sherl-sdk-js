@@ -10,7 +10,7 @@ export const deleteArticleById = async (
 ): Promise<IArticle> => {
   try {
     const response = await fetcher.delete<IArticle>(
-      StringUtils.bindContext(endpoints.DELETE_ARTICLE_BY_ID, {
+      StringUtils.bindContext(endpoints.MANAGE_POSTS, {
         id,
       }),
     );

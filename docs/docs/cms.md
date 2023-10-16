@@ -3,7 +3,7 @@ id: cms
 title: Cms
 ---
 
-## Create Static Page
+## Create static page
 
 <span class="badge badge--warning">Require authentication</span>
 
@@ -23,7 +23,7 @@ interface ICMSArticleStaticPageCreateInputDto {
 
 This call returns a string
 
-## Add Media
+## Add media
 
 <span class="badge badge--warning">Require authentication</span>
 
@@ -44,9 +44,9 @@ interface ICMSArticleAddMediaDto {
 }
 ```
 
-This call returns a string
+This call returns an [ICreateCaptionOutputDto](cms-types#icreatecaptionoutputdto) and returns [ICreateThumbnailOutputDto](cms-types#icreatethumbnailoutputdto).
 
-## Delete Media
+## Delete media
 
 <span class="badge badge--warning">Require authentication</span>
 
@@ -67,130 +67,53 @@ interface ICMSArticleAddMediaDto {
 }
 ```
 
+This call returns an [ICreateCaptionOutputDto](cms-types#icreatecaptionoutputdto) and returns [ICreateThumbnailOutputDto](cms-types#icreatethumbnailoutputdto).
 This call returns a string
 
-## Get Article By Slug
+## Get article by slug
 
 <span class="badge badge--warning">Require authentication</span>
 
 Get article by slug
 
 ```ts
-const getArticleBySlug = await cms(client).getArticleBySlug(data: IArticle);
+const getArticleBySlug = await cms(client).getArticleBySlug(slug: string);
 ```
 
-```ts
-interface IArticle {
-  id: string;
-  uri: string;
-  title: string;
-  slug: string;
-  resume: string;
-  content: string;
-  consumerId?: string;
-  organizationUri?: string;
-  type: ArticleTypeEnum;
-  authorUri: string;
-  author?: IPerson;
-  beginDate: Date;
-  endDate?: Date;
-  tokens: {
-    facebook: string;
-  };
-  status: ArticleStatusEnum;
-  media?: IImageObject;
-  metadatas?: { [key: string]: any };
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-```
+This call returns an [IArticle](cms-types#iarticle) object
 
-This call returns a string
-
-## Find One Article By Id
+## Get article by id
 
 <span class="badge badge--warning">Require authentication</span>
 
 Find one article by id
 
 ```ts
-const getArticleById = await cms(client).getArticleById(data: IArticle);
+const getArticleById = await cms(client).getArticleById(id: string);
 ```
 
-```ts
-interface IArticle {
-  id: string;
-  uri: string;
-  title: string;
-  slug: string;
-  resume: string;
-  content: string;
-  consumerId?: string;
-  organizationUri?: string;
-  type: ArticleTypeEnum;
-  authorUri: string;
-  author?: IPerson;
-  beginDate: Date;
-  endDate?: Date;
-  tokens: {
-    facebook: string;
-  };
-  status: ArticleStatusEnum;
-  media?: IImageObject;
-  metadatas?: { [key: string]: any };
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-```
+This call returns an [IArticle](cms-types#iarticle) object
 
-This call returns a string
-
-## Delete Article
+## Delete article
 
 <span class="badge badge--warning">Require authentication</span>
 
 Delete article
 
 ```ts
-const deleteArticle = await cms(client).deleteArticleById(data: ICMSArticleAddMediaDto);
+const deleteArticle = await cms(client).deleteArticleById(id:string);
 ```
 
-```ts
-interface IArticle {
-  id: string;
-  uri: string;
-  title: string;
-  slug: string;
-  resume: string;
-  content: string;
-  consumerId?: string;
-  organizationUri?: string;
-  type: ArticleTypeEnum;
-  authorUri: string;
-  author?: IPerson;
-  beginDate: Date;
-  endDate?: Date;
-  tokens: {
-    facebook: string;
-  };
-  status: ArticleStatusEnum;
-  media?: IImageObject;
-  metadatas?: { [key: string]: any };
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-```
+This call returns an [IArticle](cms-types#iarticle) object
 
-This call returns a string
-
-## Create Article
+## Create article
 
 <span class="badge badge--warning">Require authentication</span>
 
 Create article
 
 ```ts
-const createArticle = await cms(client).updateArticleById(data: ICMSArticleUpdateInputDto);
+const createArticle = await cms(client).createArticleById(data: ICMSArticleUpdateInputDto);
 ```
 
 ```ts
@@ -203,9 +126,9 @@ interface ICMSArticleUpdateInputDto {
 }
 ```
 
-This call returns a string
+This call returns an [IArticle](cms-types#iarticle) object
 
-## Create Trainings Pages
+## Create trainings pages
 
 <span class="badge badge--warning">Require authentication</span>
 
@@ -225,7 +148,7 @@ interface ICMSArticleTrainingCreateInputDto {
 
 This call returns a string
 
-## Create Stories Pages
+## Create stories pages
 
 <span class="badge badge--warning">Require authentication</span>
 
@@ -244,7 +167,7 @@ interface ICMSArticleStoryCreateInputDto {
 
 This call returns a string
 
-## Create FAQS Pages
+## Create FAQS pages
 
 <span class="badge badge--warning">Require authentication</span>
 
@@ -264,7 +187,7 @@ interface ICMSArticleFaqCreateInputDto {
 
 This call returns a string
 
-## Create Posts Pages
+## Create posts pages
 
 <span class="badge badge--warning">Require authentication</span>
 
@@ -286,7 +209,7 @@ interface ICMSArticleCreateInputDto {
 
 This call returns a string
 
-## Find Posts
+## Find posts
 
 <span class="badge badge--warning">Require authentication</span>
 
@@ -334,7 +257,7 @@ interface IArticle {
 
 This call returns a string
 
-## Find Article By Slug
+## Find article by slug
 
 Find article by slug
 
@@ -372,7 +295,7 @@ interface IArticle {
 
 This call returns a string
 
-## Find Article By Id
+## Find article by id
 
 Find article by id
 
@@ -410,7 +333,7 @@ interface IArticle {
 
 This call returns a string
 
-## Find Article
+## Find article
 
 Find article
 

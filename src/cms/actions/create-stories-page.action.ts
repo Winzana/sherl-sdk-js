@@ -6,7 +6,7 @@ import { ICMSArticleStoryCreateInputDto } from '../types';
 export const createStoriesPage = async (
   fetcher: Fetcher,
   data: ICMSArticleStoryCreateInputDto,
-) => {
+): Promise<ICMSArticleStoryCreateInputDto> => {
   try {
     const response = await fetcher.post<ICMSArticleStoryCreateInputDto>(
       endpoints.CREATE_STORIES,

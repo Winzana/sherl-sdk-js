@@ -1,3 +1,4 @@
+import { PaginationFilters } from '../../common';
 import { IImageObject } from '../../media';
 import { IPerson } from '../../person';
 
@@ -95,4 +96,15 @@ export enum ArticleStatusEnum {
   DRAFT = 'draft',
   PUBLISHED = 'published',
   ARCHIVED = 'archived',
+}
+
+export interface FindPostsFilters extends PaginationFilters {
+  authorUri?: string;
+  slug?: string;
+  organizationUri?: string;
+  type?: string;
+  beginDate?: string;
+  endDate?: string;
+  status?: string;
+  id?: string;
 }

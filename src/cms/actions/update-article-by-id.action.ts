@@ -4,14 +4,14 @@ import { CmsErr, errorFactory } from '../errors';
 import { ICMSArticleUpdateInputDto, IArticle } from '../types';
 import { StringUtils } from '../../common/utils/string';
 
-export const updateArticleById = async (
+export const createArticleById = async (
   fetcher: Fetcher,
   id: string,
   updatedArticle: ICMSArticleUpdateInputDto,
 ): Promise<IArticle> => {
   try {
     const response = await fetcher.put<IArticle>(
-      StringUtils.bindContext(endpoints.UPDATE_ARTICLE_BY_ID, {
+      StringUtils.bindContext(endpoints.MANAGE_POSTS, {
         id,
       }),
       updatedArticle,

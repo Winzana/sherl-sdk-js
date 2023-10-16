@@ -6,7 +6,7 @@ import { ICMSArticleStaticPageCreateInputDto } from '../types';
 export const createStaticPage = async (
   fetcher: Fetcher,
   data: ICMSArticleStaticPageCreateInputDto,
-) => {
+): Promise<string> => {
   try {
     const response = await fetcher.post<string>(
       endpoints.CMS_CREATE_STATIC,
