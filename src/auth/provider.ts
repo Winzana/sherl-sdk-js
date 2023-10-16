@@ -1,6 +1,17 @@
 import { SherlClient } from '../common';
 import { AbstractProvider } from '../common/provider';
-import { signInWithEmailAndPassword, logout, refreshToken } from './actions';
+import {
+  signInWithEmailAndPassword,
+  logout,
+  refreshToken,
+  validateCode,
+  sendSMSCode,
+  resendSMSCode,
+  loginWithGoogle,
+  loginWithApple,
+  loginWithFacebook,
+  loginWithCode,
+} from './actions';
 import { errorFactory } from './errors';
 
 class AuthProvider extends AbstractProvider {
@@ -34,6 +45,14 @@ class AuthProvider extends AbstractProvider {
     await logout(this.fetcher);
     this.client.revokeAuthToken();
   };
+
+  public validateCode = this.withFetcher(validateCode);
+  public sendSMSCode = this.withFetcher(sendSMSCode);
+  public resendSMSCode = this.withFetcher(resendSMSCode);
+  public loginWithGoogle = this.withFetcher(loginWithGoogle);
+  public loginWithApple = this.withFetcher(loginWithApple);
+  public loginWithFacebook = this.withFetcher(loginWithFacebook);
+  public loginWithCode = this.withFetcher(loginWithCode);
 }
 
 export { AuthProvider };

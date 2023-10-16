@@ -6,6 +6,8 @@ sidebar_label: Authentication
 
 Some methods will require a valid authentication token. To create this token, you have to sign in with a valid email/password combination.
 
+For more information on authentication, please refer to [Auth domain](auth)
+
 :::caution
 This method will be subject to change soon and should provide a better way to authenticate.
 :::

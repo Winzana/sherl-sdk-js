@@ -1,19 +1,14 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { AuthErr, errorFactory } from '../errors';
-import { ApiLoginResponse } from '../types';
-
-export interface SignInWithEmailAndPasswordRequest {
-  email: string;
-  password: string;
-}
+import { ILoginResponse, ISignInWithEmailAndPasswordRequest } from '../types';
 
 export const signInWithEmailAndPassword = async (
   fetcher: Fetcher,
-  request: SignInWithEmailAndPasswordRequest,
+  request: ISignInWithEmailAndPasswordRequest,
 ): Promise<string> => {
   const response = await fetcher
-    .post<ApiLoginResponse>(endpoints.LOGIN_WITH_CREDENTIALS, {
+    .post<ILoginResponse>(endpoints.LOGIN_WITH_CREDENTIALS, {
       username: request.email,
       password: request.password,
     })

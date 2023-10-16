@@ -3,15 +3,18 @@ import { endpoints } from '../api/endpoints';
 import { AuthErr, errorFactory } from '../errors';
 import { ILoginResponse } from '../types';
 
-export const refreshToken = async (fetcher: Fetcher): Promise<string> => {
+export const loginWithCode = async (
+  fetcher: Fetcher,
+  code: string,
+): Promise<ILoginResponse> => {
   const response = await fetcher.post<ILoginResponse>(
-    endpoints.REFRESH_TOKEN,
-    {},
+    endpoints.LOGIN_WITH_CODE,
+    { code },
   );
 
   if (!response.data.access_token) {
-    throw errorFactory.create(AuthErr.AUTH_FAILED);
+    throw errorFactory.create(AuthErr.LOGIN_WITH_CODE_FAILED);
   }
 
-  return response.data.access_token;
+  return response.data;
 };
