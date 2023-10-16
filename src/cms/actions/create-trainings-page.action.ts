@@ -1,14 +1,14 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { CmsErr, errorFactory } from '../errors';
-import { ICMSArticleTrainingCreateInputDto } from '../types';
+import { IArticle, ICMSArticleTrainingCreateInputDto } from '../types';
 
 export const createTrainingsPage = async (
   fetcher: Fetcher,
   data: ICMSArticleTrainingCreateInputDto,
-): Promise<ICMSArticleTrainingCreateInputDto> => {
+): Promise<IArticle> => {
   try {
-    const response = await fetcher.post<ICMSArticleTrainingCreateInputDto>(
+    const response = await fetcher.post<IArticle>(
       endpoints.CREATE_TRAINING,
       data,
     );

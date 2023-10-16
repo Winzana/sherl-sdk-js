@@ -21,7 +21,7 @@ interface ICMSArticleStaticPageCreateInputDto {
 }
 ```
 
-This call returns a string
+This call returns an [IArticle](cms-types#iarticle) object
 
 ## Add media
 
@@ -44,7 +44,10 @@ interface ICMSArticleAddMediaDto {
 }
 ```
 
-This call returns an [ICreateCaptionOutputDto](cms-types#icreatecaptionoutputdto) and returns [ICreateThumbnailOutputDto](cms-types#icreatethumbnailoutputdto).
+- [ICreateCaptionOutputDto](cms-types#icreatecaptionoutputdto)(`caption`)
+- [ICreateThumbnailOutputDto](cms-types#icreatethumbnailoutputdto) (`thumbnail`)
+
+This call returns an [IArticle](cms-types#iarticle) object
 
 ## Delete media
 
@@ -67,8 +70,9 @@ interface ICMSArticleAddMediaDto {
 }
 ```
 
-This call returns an [ICreateCaptionOutputDto](cms-types#icreatecaptionoutputdto) and returns [ICreateThumbnailOutputDto](cms-types#icreatethumbnailoutputdto).
-This call returns a string
+- [ICreateCaptionOutputDto](cms-types#icreatecaptionoutputdto)(`caption`)
+- [ICreateThumbnailOutputDto](cms-types#icreatethumbnailoutputdto) (`thumbnail`)
+  This call returns an [IArticle](cms-types#iarticle) object
 
 ## Get article by slug
 
@@ -146,7 +150,7 @@ interface ICMSArticleTrainingCreateInputDto {
 }
 ```
 
-This call returns a string
+This call returns an [IArticle](cms-types#iarticle) object
 
 ## Create stories pages
 
@@ -165,7 +169,7 @@ interface ICMSArticleStoryCreateInputDto {
 }
 ```
 
-This call returns a string
+This call returns an [IArticle](cms-types#iarticle) object
 
 ## Create FAQS pages
 
@@ -229,33 +233,7 @@ const findPosts = await cms(client).getFindPosts(
   id: string);
 ```
 
-```ts
-interface IArticle {
-  id: string;
-  uri: string;
-  title: string;
-  slug: string;
-  resume: string;
-  content: string;
-  consumerId?: string;
-  organizationUri?: string;
-  type: ArticleTypeEnum;
-  authorUri: string;
-  author?: IPerson;
-  beginDate: Date;
-  endDate?: Date;
-  tokens: {
-    facebook: string;
-  };
-  status: ArticleStatusEnum;
-  media?: IImageObject;
-  metadatas?: { [key: string]: any };
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-```
-
-This call returns a string
+This call returns an [IArticle](cms-types#iarticle) object
 
 ## Find article by slug
 

@@ -1,14 +1,14 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { CmsErr, errorFactory } from '../errors';
-import { ICMSArticleStaticPageCreateInputDto } from '../types';
+import { IArticle, ICMSArticleStaticPageCreateInputDto } from '../types';
 
 export const createStaticPage = async (
   fetcher: Fetcher,
   data: ICMSArticleStaticPageCreateInputDto,
-): Promise<string> => {
+): Promise<IArticle> => {
   try {
-    const response = await fetcher.post<string>(
+    const response = await fetcher.post<IArticle>(
       endpoints.CMS_CREATE_STATIC,
       data,
     );
