@@ -3,8 +3,7 @@
  */
 export const endpoints = {
   CMS_CREATE_STATIC: '/api/cms/articles/static-page',
-  ADD_MEDIA: '/api/cms/articles/posts/:id/media',
-  DELETE_MEDIA: '/api/cms/articles/posts/:id/media',
+  MANAGE_MEDIA: '/api/cms/articles/posts/:id/media',
   GET_SLUG: '/api/cms/articles/posts/find-one-by-slug/:slug',
   MANAGE_POSTS: '/api/cms/articles/posts/:id',
   CREATE_TRAINING: '/api/cms/articles/trainings',

@@ -189,7 +189,7 @@ interface ICMSArticleFaqCreateInputDto {
 }
 ```
 
-This call returns a string
+This call returns an [IArticle](cms-types#iarticle) object
 
 ## Create posts pages
 
@@ -211,7 +211,7 @@ interface ICMSArticleCreateInputDto {
 }
 ```
 
-This call returns a string
+This call returns an [IArticle](cms-types#iarticle) object
 
 ## Find posts
 
@@ -245,33 +245,7 @@ Find article by slug
 const getFindArticleBySlug = await cms(client).getPublicFindArticleBySlug(data: IArticle);
 ```
 
-```ts
-interface IArticle {
-  id: string;
-  uri: string;
-  title: string;
-  slug: string;
-  resume: string;
-  content: string;
-  consumerId?: string;
-  organizationUri?: string;
-  type: ArticleTypeEnum;
-  authorUri: string;
-  author?: IPerson;
-  beginDate: Date;
-  endDate?: Date;
-  tokens: {
-    facebook: string;
-  };
-  status: ArticleStatusEnum;
-  media?: IImageObject;
-  metadatas?: { [key: string]: any };
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-```
-
-This call returns a string
+This call returns an [IArticle](cms-types#iarticle) object
 
 ## Find article by id
 
@@ -283,33 +257,7 @@ Find article by id
 const getFindArticleById = await cms(client).getPublicArticleById(data: IArticle);
 ```
 
-```ts
-interface IArticle {
-  id: string;
-  uri: string;
-  title: string;
-  slug: string;
-  resume: string;
-  content: string;
-  consumerId?: string;
-  organizationUri?: string;
-  type: ArticleTypeEnum;
-  authorUri: string;
-  author?: IPerson;
-  beginDate: Date;
-  endDate?: Date;
-  tokens: {
-    facebook: string;
-  };
-  status: ArticleStatusEnum;
-  media?: IImageObject;
-  metadatas?: { [key: string]: any };
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-```
-
-This call returns a string
+This call returns an [IArticle](cms-types#iarticle) object
 
 ## Find article
 
@@ -321,32 +269,4 @@ Find article
 const getFindArticle = await cms(client).getPublicArticle(data: IArticle);
 ```
 
-```ts
-interface IArticle {
-  id: string;
-  uri: string;
-  title: string;
-  slug: string;
-  resume: string;
-  content: string;
-  consumerId?: string;
-  organizationUri?: string;
-  type: ArticleTypeEnum;
-  authorUri: string;
-  author?: IPerson;
-  beginDate: Date;
-  endDate?: Date;
-  tokens: {
-    facebook: string;
-  };
-  status: ArticleStatusEnum;
-  media?: IImageObject;
-  metadatas?: { [key: string]: any };
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-```
-
 This call returns an [ISearchResult](pagination#isearchresult) of [IArticle] objects.
-
-This call returns a string
