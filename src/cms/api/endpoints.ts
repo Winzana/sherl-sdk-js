@@ -11,5 +11,5 @@ export const endpoints = {
   CREATE_FAQS: '/api/cms/articles/faqs',
   MANAGE_ARTICLES: '/api/cms/articles/posts',
   GET_ARTICLE_BY_SLUG: '/api/public/cms/articles/posts/find-one-by-slug/:slug',
-  GET_PUBLIC_ARTICLE: '/api/public/cms/articles/posts',
+  GET_PUBLIC_ARTICLES: '/api/public/cms/articles/posts',
 };

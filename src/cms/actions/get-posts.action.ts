@@ -12,7 +12,7 @@ export const getPosts = async (
     const response = await fetcher.get<ISearchResult<IArticle>>(
       endpoints.MANAGE_ARTICLES,
       {
-        filters,
+        ...filters,
       },
     );
 

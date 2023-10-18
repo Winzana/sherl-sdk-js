@@ -11,9 +11,9 @@ export const getPublicArticles = async (
 ): Promise<ISearchResult<IArticle>> => {
   try {
     const response = await fetcher.get<ISearchResult<IArticle>>(
-      endpoints.GET_PUBLIC_ARTICLE,
+      endpoints.GET_PUBLIC_ARTICLES,
       {
-        filters,
+        ...filters,
       },
     );
 
