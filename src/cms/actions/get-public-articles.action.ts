@@ -2,7 +2,6 @@ import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { CmsErr, errorFactory } from '../errors';
 import { FindPostsFilters, IArticle } from '../types';
-import { StringUtils } from '../../common/utils/string';
 import { ISearchResult } from '../../common';
 
 export const getPublicArticles = async (
