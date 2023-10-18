@@ -271,7 +271,7 @@ Find article
 <span class="badge badge--success">Public</span>
 
 ```ts
-const getFindArticle = await cms(client).getPublicArticle(data: FindPostsFilters);
+const getFindArticle = await cms(client).getPublicArticles(data: FindPostsFilters);
 ```
 
 ```ts
