@@ -18,11 +18,11 @@ export const getPublicArticles = async (
     );
 
     if (response.status !== 200) {
-      throw errorFactory.create(CmsErr.CMS_GET_PUBLIC_ARTICLE_FAILED);
+      throw errorFactory.create(CmsErr.CMS_GET_PUBLIC_ARTICLES_FAILED);
     }
 
     return response.data;
   } catch (error) {
-    throw errorFactory.create(CmsErr.CMS_GET_PUBLIC_ARTICLE_FAILED);
+    throw errorFactory.create(CmsErr.CMS_GET_PUBLIC_ARTICLES_FAILED);
   }
 };

@@ -15,7 +15,7 @@ export enum CmsErr {
   CMS_GET_POSTS_FAILED = 'cms/cms-get-posts-failed',
   CMS_GET_ARTICLE_BY_SLUG_FAILED = 'cms/cms-get-article-by-slug-failed',
   CMS_GET_PUBLIC_FIND_ID_FAILED = 'cms/cms-get-public-by-id-failed',
-  CMS_GET_PUBLIC_ARTICLE_FAILED = 'cms/cms-get-public-article-failed',
+  CMS_GET_PUBLIC_ARTICLES_FAILED = 'cms/cms-get-public-articles-failed',
 }
 
 export const errors = {
@@ -36,8 +36,8 @@ export const errors = {
     'Failed get  article by slug cms report',
   [CmsErr.CMS_GET_PUBLIC_FIND_ID_FAILED]:
     'Failed to get public find id cms report',
-  [CmsErr.CMS_GET_PUBLIC_ARTICLE_FAILED]:
-    'Failed to get public find article cms report',
+  [CmsErr.CMS_GET_PUBLIC_ARTICLES_FAILED]:
+    'Failed to get public find articles cms report',
 };
 
 export const errorFactory = new ErrorFactory<CmsErr>('CMS', errors);
