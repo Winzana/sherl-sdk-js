@@ -17,6 +17,6 @@ export const deleteArticleById = async (
 
     return response.data;
   } catch (err) {
-    throw errorFactory.create(CmsErr.CMS_DELETE_FIND_ID_FAILED);
+    throw errorFactory.create(CmsErr.CMS_DELETE_BY_ID_FAILED);
   }
 };

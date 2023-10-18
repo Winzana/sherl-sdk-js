@@ -220,20 +220,25 @@ This call returns an [IArticle](cms-types#iarticle) object
 Find posts
 
 ```ts
-const findPosts = await cms(client).getFindPosts(
-  page: number,
-  itemsPerPage: number,
-  authorUri: string,
-  slug: string,
-  organizationUri: string,
-  type: string,
-  beginDate: string,
-  endDate: string,
-  status: string,
-  id: string);
+const getPosts = await cms(client).getPosts(filter: FindPostsFilters);
 ```
 
-This call returns an [IArticle](cms-types#iarticle) object
+```ts
+interface FindPostsFilters extends PaginationFilters {
+  authorUri?: string;
+  slug?: string;
+  organizationUri?: string;
+  type?: string;
+  beginDate?: string;
+  endDate?: string;
+  status?: string;
+  id?: string;
+}
+```
+
+This interface extends [PaginationFilters](pagination#pagination-filters).
+
+This call returns an [ISearchResult](pagination#isearchresult) of [IArticle] (cms-types#iarticle) objects.
 
 ## Find article by slug
 
@@ -242,7 +247,7 @@ Find article by slug
 <span class="badge badge--success">Public</span>
 
 ```ts
-const getFindArticleBySlug = await cms(client).getPublicFindArticleBySlug(data: IArticle);
+const getFindArticleBySlug = await cms(client).getPublicArticleBySlug(slug: string);
 ```
 
 This call returns an [IArticle](cms-types#iarticle) object
@@ -254,7 +259,7 @@ Find article by id
 <span class="badge badge--success">Public</span>
 
 ```ts
-const getFindArticleById = await cms(client).getPublicArticleById(data: IArticle);
+const getFindArticleById = await cms(client).getPublicArticleById(id: string);
 ```
 
 This call returns an [IArticle](cms-types#iarticle) object
@@ -266,7 +271,22 @@ Find article
 <span class="badge badge--success">Public</span>
 
 ```ts
-const getFindArticle = await cms(client).getPublicArticle(data: IArticle);
+const getFindArticle = await cms(client).getPublicArticle(data: FindPostsFilters);
 ```
 
-This call returns an [ISearchResult](pagination#isearchresult) of [IArticle] objects.
+```ts
+interface FindPostsFilters extends PaginationFilters {
+  authorUri?: string;
+  slug?: string;
+  organizationUri?: string;
+  type?: string;
+  beginDate?: string;
+  endDate?: string;
+  status?: string;
+  id?: string;
+}
+```
+
+This interface extends [PaginationFilters](pagination#pagination-filters).
+
+This call returns an [ISearchResult](pagination#isearchresult) of [IArticle] (cms-types#iarticle) objects.

@@ -8,7 +8,10 @@ export const createPostsPage = async (
   data: ICMSArticleCreateInputDto,
 ): Promise<IArticle> => {
   try {
-    const response = await fetcher.post<IArticle>(endpoints.CREATE_POSTS, data);
+    const response = await fetcher.post<IArticle>(
+      endpoints.MANAGE_ARTICLES,
+      data,
+    );
 
     if (response.status !== 201) {
       throw errorFactory.create(CmsErr.CMS_CREATE_POSTS_FAILED);

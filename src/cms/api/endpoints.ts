@@ -9,9 +9,7 @@ export const endpoints = {
   CREATE_TRAINING: '/api/cms/articles/trainings',
   CREATE_STORIES: '/api/cms/articles/stories',
   CREATE_FAQS: '/api/cms/articles/faqs',
-  CREATE_POSTS: '/api/cms/articles/posts',
-  GET_FIND_ARTICLE: '/api/cms/articles/posts',
-  GET_FIND_ARTICLE_BY_SLUG:
-    '/api/public/cms/articles/posts/find-one-by-slug/:slug',
+  MANAGE_ARTICLES: '/api/cms/articles/posts',
+  GET_ARTICLE_BY_SLUG: '/api/public/cms/articles/posts/find-one-by-slug/:slug',
   GET_PUBLIC_ARTICLE: '/api/public/cms/articles/posts',
 };

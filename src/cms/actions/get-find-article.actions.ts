@@ -14,11 +14,11 @@ export const getArticleById = async (
     );
 
     if (response.status !== 200) {
-      throw errorFactory.create(CmsErr.CMS_GET_FIND_ID_FAILED);
+      throw errorFactory.create(CmsErr.CMS_GET_BY_ID_FAILED);
     }
 
     return response.data;
   } catch (error) {
-    throw errorFactory.create(CmsErr.CMS_GET_FIND_ID_FAILED);
+    throw errorFactory.create(CmsErr.CMS_GET_BY_ID_FAILED);
   }
 };
