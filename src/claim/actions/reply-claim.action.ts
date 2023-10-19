@@ -1,28 +1,27 @@
 import { Fetcher } from '../../common/api';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
-import { errorFactory, ClaimErr } from '../errors';
-import { ClaimStatusEnum, IClaim } from '../types';
+import { ClaimErr, errorFactory } from '../errors';
+import { IClaim } from '../types';
 
-export const updateClaim = async (
+export const replyClaim = async (
   fetcher: Fetcher,
   id: string,
-  status: ClaimStatusEnum,
+  replyContent: string,
 ): Promise<IClaim> => {
   try {
     const response = await fetcher.post<IClaim>(
-      StringUtils.bindContext(endpoints.CLAIM_ID, { id }),
+      StringUtils.bindContext(endpoints.REPLY_CLAIM, { id }),
       {
-        status,
+        replyContent,
       },
     );
 
     if (response.status !== 200) {
-      throw errorFactory.create(ClaimErr.UPDATE_CLAIM_ERROR);
+      throw errorFactory.create(ClaimErr.REPLY_CLAIM_FAILED);
     }
-
     return response.data;
   } catch (err) {
-    throw errorFactory.create(ClaimErr.UPDATE_CLAIM_ERROR);
+    throw errorFactory.create(ClaimErr.REPLY_CLAIM_FAILED);
   }
 };

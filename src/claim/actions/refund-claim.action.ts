@@ -4,21 +4,21 @@ import { endpoints } from '../api/endpoints';
 import { ClaimErr, errorFactory } from '../errors';
 import { IClaim } from '../types';
 
-export const getClaimById = async (
+export const refundClaim = async (
   fetcher: Fetcher,
   id: string,
 ): Promise<IClaim> => {
   try {
-    const response = await fetcher.get<IClaim>(
-      StringUtils.bindContext(endpoints.CLAIM_ID, { id }),
+    const response = await fetcher.post<IClaim>(
+      StringUtils.bindContext(endpoints.REFUND_CLAIM, { id }),
+      {},
     );
 
     if (response.status !== 200) {
-      throw errorFactory.create(ClaimErr.GET_CLAIM_BY_ID_FAILED);
+      throw errorFactory.create(ClaimErr.REFUND_CLAIM_FAILED);
     }
-
     return response.data;
   } catch (err) {
-    throw errorFactory.create(ClaimErr.GET_CLAIM_BY_ID_FAILED);
+    throw errorFactory.create(ClaimErr.REFUND_CLAIM_FAILED);
   }
 };
