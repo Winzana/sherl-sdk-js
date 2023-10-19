@@ -3,13 +3,47 @@ id: auth
 title: Auth
 ---
 
-## Login with Google
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## Login with differents providers
 
 <span class="badge badge--success">Public</span>
+
+<Tabs
+defaultValue="google"
+values={[
+{label: 'Google', value: 'google'},
+{label: 'Apple', value: 'apple'},
+{label: 'Facebook', value: 'facebook'},
+]}>
+
+<TabItem value="google">
 
 ```ts
 await auth(client).loginWithGoogle(googleInfos: IAuthExternalServiceUserInfo);
 ```
+
+</TabItem>
+<TabItem value="apple">
+
+```ts
+await auth(client).loginWithApple(appleInfos: IAuthExternalServiceUserInfo);
+```
+
+</TabItem>
+<TabItem value="facebook">
+
+```ts
+await auth(client).loginWithFacebook(facebookInfos: IAuthExternalServiceUserInfo);
+```
+
+</TabItem>
+
+</Tabs>
+
+<details>
+<summary><b>IAuthExternalServiceUserInfo</b></summary>
 
 ```ts
 interface IAuthExternalServiceUserInfo {
@@ -26,27 +60,11 @@ interface IAuthExternalServiceUserInfo {
 }
 ```
 
-This call returns an [ILoginResponse](auth-types#iloginresponse) object.
+</details>
 
-## Login with Apple
 
-<span class="badge badge--success">Public</span>
 
-```ts
-await auth(client).loginWithApple(appleInfos: IAuthExternalServiceUserInfo);
-```
-
-This call returns an [ILoginResponse](auth-types#iloginresponse) object.
-
-## Login with Facebook
-
-<span class="badge badge--success">Public</span>
-
-```ts
-await auth(client).loginWithFacebook(facebookInfos: IAuthExternalServiceUserInfo);
-```
-
-This call returns an [ILoginResponse](auth-types#iloginresponse) object.
+These calls return an [ILoginResponse](auth-types#iloginresponse) object.
 
 ## Login with code
 

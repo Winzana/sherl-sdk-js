@@ -7,14 +7,18 @@ export const loginWithCode = async (
   fetcher: Fetcher,
   code: string,
 ): Promise<ILoginResponse> => {
-  const response = await fetcher.post<ILoginResponse>(
-    endpoints.LOGIN_WITH_CODE,
-    { code },
-  );
+  try {
+    const response = await fetcher.post<ILoginResponse>(
+      endpoints.LOGIN_WITH_CODE,
+      { code },
+    );
 
-  if (!response.data.access_token) {
+    if (!response.data.access_token) {
+      throw errorFactory.create(AuthErr.LOGIN_WITH_CODE_FAILED);
+    }
+
+    return response.data;
+  } catch (err) {
     throw errorFactory.create(AuthErr.LOGIN_WITH_CODE_FAILED);
   }
-
-  return response.data;
 };

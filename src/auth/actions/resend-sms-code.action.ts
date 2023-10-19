@@ -6,13 +6,20 @@ export const resendSMSCode = async (
   fetcher: Fetcher,
   mobilePhoneNumber: string,
 ): Promise<boolean> => {
-  const response = await fetcher.post<boolean>(endpoints.RE_REQUEST_SMS_CODE, {
-    mobilePhoneNumber,
-  });
+  try {
+    const response = await fetcher.post<boolean>(
+      endpoints.RE_REQUEST_SMS_CODE,
+      {
+        mobilePhoneNumber,
+      },
+    );
 
-  if (!response.data) {
+    if (!response.data) {
+      throw errorFactory.create(AuthErr.RE_REQUEST_SMS_CODE_FAILED);
+    }
+
+    return response.data;
+  } catch (err) {
     throw errorFactory.create(AuthErr.RE_REQUEST_SMS_CODE_FAILED);
   }
-
-  return response.data;
 };

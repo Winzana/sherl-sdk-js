@@ -7,14 +7,18 @@ export const loginWithGoogle = async (
   fetcher: Fetcher,
   googleInfos: IAuthExternalServiceUserInfo,
 ): Promise<ILoginResponse> => {
-  const response = await fetcher.post<ILoginResponse>(
-    endpoints.LOGIN_GOOGLE,
-    googleInfos,
-  );
+  try {
+    const response = await fetcher.post<ILoginResponse>(
+      endpoints.LOGIN_GOOGLE,
+      googleInfos,
+    );
 
-  if (!response.data.access_token) {
+    if (!response.data.access_token) {
+      throw errorFactory.create(AuthErr.LOGIN_GOOGLE_FAILED);
+    }
+
+    return response.data;
+  } catch (err) {
     throw errorFactory.create(AuthErr.LOGIN_GOOGLE_FAILED);
   }
-
-  return response.data;
 };

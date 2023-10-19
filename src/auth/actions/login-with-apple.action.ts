@@ -7,14 +7,18 @@ export const loginWithApple = async (
   fetcher: Fetcher,
   appleInfos: IAuthExternalServiceUserInfo,
 ): Promise<ILoginResponse> => {
-  const response = await fetcher.post<ILoginResponse>(
-    endpoints.LOGIN_APPLE,
-    appleInfos,
-  );
+  try {
+    const response = await fetcher.post<ILoginResponse>(
+      endpoints.LOGIN_APPLE,
+      appleInfos,
+    );
 
-  if (!response.data.access_token) {
+    if (!response.data.access_token) {
+      throw errorFactory.create(AuthErr.LOGIN_APPLE_FAILED);
+    }
+
+    return response.data;
+  } catch (err) {
     throw errorFactory.create(AuthErr.LOGIN_APPLE_FAILED);
   }
-
-  return response.data;
 };

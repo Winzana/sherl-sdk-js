@@ -10,6 +10,7 @@ export enum AuthErr {
   REQUEST_SMS_CODE_FAILED = 'auth/request-sms-code-failed',
   RE_REQUEST_SMS_CODE_FAILED = 'auth/re-request-sms-code-failed',
   VALIDATE_SMS_CODE_FAILED = 'auth/validate-sms-code-failed',
+  LOGOUT_FAILED = 'auth/logout-failed',
 }
 export const errors = {
   [AuthErr.LOGIN_FAILED]: 'Could not login',
@@ -21,6 +22,7 @@ export const errors = {
   [AuthErr.REQUEST_SMS_CODE_FAILED]: 'Failed to request sms code',
   [AuthErr.RE_REQUEST_SMS_CODE_FAILED]: 'Failed to re-request sms code',
   [AuthErr.VALIDATE_SMS_CODE_FAILED]: 'Failed to connect validate sms code',
+  [AuthErr.LOGOUT_FAILED]: 'Failed to logout',
 };
 
 export const errorFactory = new ErrorFactory<AuthErr>('Auth', errors);

@@ -4,14 +4,18 @@ import { AuthErr, errorFactory } from '../errors';
 import { ILoginResponse } from '../types';
 
 export const refreshToken = async (fetcher: Fetcher): Promise<string> => {
-  const response = await fetcher.post<ILoginResponse>(
-    endpoints.REFRESH_TOKEN,
-    {},
-  );
+  try {
+    const response = await fetcher.post<ILoginResponse>(
+      endpoints.REFRESH_TOKEN,
+      {},
+    );
 
-  if (!response.data.access_token) {
+    if (!response.data.access_token) {
+      throw errorFactory.create(AuthErr.AUTH_FAILED);
+    }
+
+    return response.data.access_token;
+  } catch (err) {
     throw errorFactory.create(AuthErr.AUTH_FAILED);
   }
-
-  return response.data.access_token;
 };

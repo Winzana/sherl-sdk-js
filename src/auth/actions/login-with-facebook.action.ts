@@ -7,14 +7,18 @@ export const loginWithFacebook = async (
   fetcher: Fetcher,
   facebookInfos: IAuthExternalServiceUserInfo,
 ): Promise<ILoginResponse> => {
-  const response = await fetcher.post<ILoginResponse>(
-    endpoints.LOGIN_FACEBOOK,
-    facebookInfos,
-  );
+  try {
+    const response = await fetcher.post<ILoginResponse>(
+      endpoints.LOGIN_FACEBOOK,
+      facebookInfos,
+    );
 
-  if (!response.data.access_token) {
+    if (!response.data.access_token) {
+      throw errorFactory.create(AuthErr.LOGIN_FACEBOOK_FAILED);
+    }
+
+    return response.data;
+  } catch (err) {
     throw errorFactory.create(AuthErr.LOGIN_FACEBOOK_FAILED);
   }
-
-  return response.data;
 };

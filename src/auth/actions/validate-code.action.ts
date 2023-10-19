@@ -8,17 +8,21 @@ export const validateCode = async (
   mobilePhoneNumber: string,
   code: string,
 ): Promise<ILoginResponse> => {
-  const response = await fetcher.post<ILoginResponse>(
-    endpoints.VALIDATE_SMS_CODE,
-    {
-      mobilePhoneNumber,
-      code,
-    },
-  );
+  try {
+    const response = await fetcher.post<ILoginResponse>(
+      endpoints.VALIDATE_SMS_CODE,
+      {
+        mobilePhoneNumber,
+        code,
+      },
+    );
 
-  if (!response.data) {
+    if (!response.data) {
+      throw errorFactory.create(AuthErr.VALIDATE_SMS_CODE_FAILED);
+    }
+
+    return response.data;
+  } catch (err) {
     throw errorFactory.create(AuthErr.VALIDATE_SMS_CODE_FAILED);
   }
-
-  return response.data;
 };
