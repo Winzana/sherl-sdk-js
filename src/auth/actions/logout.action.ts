@@ -1,7 +1,13 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
-import { ApiLoginResponse } from '../types';
+import { AuthErr, errorFactory } from '../errors';
 
-export const logout = async (fetcher: Fetcher): Promise<void> => {
-  await fetcher.get<ApiLoginResponse>(endpoints.LOGOUT);
+export const logout = async (fetcher: Fetcher): Promise<string> => {
+  try {
+    const response = await fetcher.get<string>(endpoints.LOGOUT);
+
+    return response.data;
+  } catch (err) {
+    throw errorFactory.create(AuthErr.LOGOUT_FAILED);
+  }
 };

@@ -10,6 +10,7 @@ module.exports = {
     Features: [
       'account',
       'analytics',
+      'auth',
       'bug-report',
       'claim',
       'communication',
@@ -79,6 +80,7 @@ module.exports = {
       'account-types',
       'pagination',
       'analytics-types',
+      'auth-types',
       'bug-report-types',
       'calendar-types',
       'claim-types',
