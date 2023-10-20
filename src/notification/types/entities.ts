@@ -92,3 +92,14 @@ export enum NotificationEnum {
   SHOP_ORDER_STATUS_CHANGED_TO_PAYMENT_REFUSED = 'shop:order:status:basket-validated-to-payment-refused',
   SHOP_ORDER_STATUS_CHANGED_TO_ORGANIZATION_CANCELLED = 'shop:order:order-in-progress-to-organization-cancelled',
 }
+
+export enum NotificationTypeEnum {
+  SMS = 'SMS',
+  EMAIL = 'EMAIL',
+}
+
+export interface SendNotificationInput {
+  html: string;
+  text: string;
+  subject: string;
+}

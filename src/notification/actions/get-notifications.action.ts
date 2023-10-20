@@ -2,15 +2,15 @@ import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { INotification } from '../types';
 import { INotificationFilters } from '../types';
-import { Pagination } from '../../common/types/response';
 import { errorFactory, NotificationErr } from '../errors';
+import { ISearchResult } from '../../common';
 
 export const getNotifications = async (
   fetcher: Fetcher,
   filters: INotificationFilters,
-): Promise<Pagination<INotification[]>> => {
+): Promise<ISearchResult<INotification>> => {
   const response = await fetcher
-    .get<Pagination<INotification[]>>(endpoints.GET_NOTIFICATIONS, {
+    .get<ISearchResult<INotification>>(endpoints.GET_NOTIFICATIONS, {
       ...filters,
     })
     .catch((_err) => {

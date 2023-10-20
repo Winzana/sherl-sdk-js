@@ -5,6 +5,7 @@ import {
   enableToOrganization,
   getNotifications,
   notificationRegistration,
+  sendNotificationByType,
   updateNotification,
 } from './actions';
 import { errorFactory } from './errors';
@@ -19,6 +20,7 @@ class NotificationProvider extends AbstractProvider {
   public disableToOrganization = this.withFetcher(disableToOrganization);
   public updateNotification = this.withFetcher(updateNotification);
   public getNotifications = this.withFetcher(getNotifications);
+  public sendNotificationByType = this.withFetcher(sendNotificationByType);
 }
 
 export { NotificationProvider };
