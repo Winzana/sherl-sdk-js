@@ -54,7 +54,7 @@ export enum ClaimStatusEnum {
   CLOSED = 'CLOSED',
 }
 
-export interface FindClaimBy {
+export interface FindClaimFilter {
   id?: string;
   personId?: string;
   orderId?: string;

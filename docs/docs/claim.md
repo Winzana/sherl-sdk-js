@@ -41,17 +41,17 @@ await Sherl.claim(client).getClaimById(id: string);
 
 This call returns an object of [IClaim](claim-types#iclaim)
 
-## Find claim by
+## Find claim with filters
 
 <span class="badge badge--warning">Require authentication</span>
 
 
 ```ts
-await Sherl.claim(client).findClaimBy(filters?: FindClaimBy);
+await Sherl.claim(client).findClaimBy(filters?: FindClaimFilter);
 ```
 
 ```ts
-interface FindClaimBy {
+interface FindClaimFilter {
   id?: string;
   personId?: string;
   orderId?: string;
