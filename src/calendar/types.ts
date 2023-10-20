@@ -1,4 +1,18 @@
+import { DateFilter, PaginationFilters } from '../common';
 import { IGeoCoordinates } from '../place';
+
+export interface ICalendarEventFilterDto extends PaginationFilters {
+  id?: string;
+  calendarAboutUri?: string;
+  calendarOwnerUri?: string;
+  calendarMetadatas?: string;
+  ownerUri?: string;
+  aboutUri?: string;
+  startDate: DateFilter;
+  endDate: DateFilter;
+  calendarUri?: string | string[];
+  consumerId?: string;
+}
 
 export interface IOpeningHoursSpecification {
   id: string;
