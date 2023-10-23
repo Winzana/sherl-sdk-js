@@ -17,7 +17,7 @@ export const enableToOrganization = async (
     .catch((_err) => {
       throw errorFactory.create(NotificationErr.ENABLED_FAILED);
     });
-  if (response.status !== 201) {
+  if (response.status >= 300) {
     throw errorFactory.create(NotificationErr.ENABLED_FAILED);
   }
 
