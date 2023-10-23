@@ -10,16 +10,24 @@ title: Claim
 Retrieve all claims.
 
 ```ts
-const claims = await Sherl.claim(client).getAllClaims(page?: number, itemsPerPage?: number, filters?: IClaimTicketFilters);
+await Sherl.claim(client).getAllClaims(filters?: IClaimTicketFilters);
 ```
 
 ```ts
-interface IClaimTicketFilters = {
-  [key: string]: any;
+interface IClaimTicketFilters extends PaginationFilters {
+    id?: string;
+  personId?: string;
+  orderId?: string;
+  consumerId?: string;
+  status?: ClaimStatusEnum;
 } 
 ```
 
-Return a [paginated](pagination) array of [IClaim](claim-types#iclaim).
+This interface extends [PaginationFilters](pagination#pagination-filters).
+
+- *status* [ClaimStatusEnum](claim-types#claimstatusenum).
+
+Return a [paginated](pagination#pagination) array of [IClaim](claim-types#iclaim).
 
 ## Get claim by id
 
@@ -28,7 +36,27 @@ Return a [paginated](pagination) array of [IClaim](claim-types#iclaim).
 Retrieve claim informations by ID.
 
 ```ts
-const claim = await Sherl.claim(client).getClaimById(id: string);
+await Sherl.claim(client).getClaimById(id: string);
+```
+
+This call returns an object of [IClaim](claim-types#iclaim)
+
+## Find claim with filters
+
+<span class="badge badge--warning">Require authentication</span>
+
+
+```ts
+await Sherl.claim(client).findClaimBy(filters?: FindClaimFilter);
+```
+
+```ts
+interface FindClaimFilter {
+  id?: string;
+  personId?: string;
+  orderId?: string;
+  consumerId?: string;
+}
 ```
 
 This call returns an object of [IClaim](claim-types#iclaim)
@@ -40,7 +68,7 @@ This call returns an object of [IClaim](claim-types#iclaim)
 Allows you to create a claim ticket
 
 ```ts
-const claim = await Sherl.claim(client).createClaimTicket(claim: <Partial<IClaimCreate>>);
+await Sherl.claim(client).createClaimTicket(claim: IClaimCreate);
 ```
 
 ```ts
@@ -49,16 +77,13 @@ interface IClaimCreate {
   personId: string;
   issueTitle: string;
   issueMessage: string;
-  schedules: Schedules;
-}
-
-interface Schedules{
-  allowedFromDate: string;
-  allowedUntilDate: string;
+  schedules: ISchedules;
 }
 ```
 
-This call returns the new [IClaim](claim-types#iclaim) object created
+See [ISchedules](claim-types#ischedules).
+
+This call returns the new [IClaim](claim-types#iclaim) object created.
 
 ## Update claim ticket
 
@@ -67,7 +92,29 @@ This call returns the new [IClaim](claim-types#iclaim) object created
 Allows you to update a claim ticket using its id
 
 ```ts
-const claim = await Sherl.claim(client).updateClaim(id:string, data: IClaimUpdate);
+await Sherl.claim(client).updateClaim(id:string, status: ClaimStatusEnum);
 ```
 
-This call returns the updated [IClaim](claim-types#iclaim) object
+See [ClaimStatusEnum](claim-types#claimstatusenum).
+
+This call returns the updated [IClaim](claim-types#iclaim) object.
+
+## Reply to claim
+
+<span class="badge badge--warning">Require authentication</span>
+
+```ts
+await Sherl.claim(client).replyClaim(claimId: string, replyContent: string);
+```
+
+This call returns an [IClaim](claim-types#iclaim) object.
+
+## Refund claim
+
+<span class="badge badge--warning">Require authentication</span>
+
+```ts
+await Sherl.claim(client).refundClaim(claimId: string);
+```
+
+This call returns an [IClaim](claim-types#iclaim) object.
