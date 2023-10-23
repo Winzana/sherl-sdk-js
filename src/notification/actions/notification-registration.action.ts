@@ -18,7 +18,7 @@ export const notificationRegistration = async (
     .catch((_err) => {
       throw errorFactory.create(NotificationErr.POST_FAILED);
     });
-  if (response.status !== 201) {
+  if (response.status >= 300) {
     throw errorFactory.create(NotificationErr.POST_FAILED);
   }
 

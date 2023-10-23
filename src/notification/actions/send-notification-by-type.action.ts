@@ -17,7 +17,7 @@ export const sendNotificationByType = async (
       notificationInfo,
     );
 
-    if (response.status !== 201) {
+    if (response.status >= 300) {
       throw errorFactory.create(
         NotificationErr.SEND_NOTIFICATION_BY_TYPE_FAILED,
       );

@@ -17,7 +17,7 @@ export const disableToOrganization = async (
     .catch((_err) => {
       throw errorFactory.create(NotificationErr.DISABLED_FAILED);
     });
-  if (response.status !== 201) {
+  if (response.status >= 300) {
     throw errorFactory.create(NotificationErr.DISABLED_FAILED);
   }
 
