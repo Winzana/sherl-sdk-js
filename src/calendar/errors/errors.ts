@@ -20,15 +20,20 @@ export enum CalendarErr {
   FIND_CALENDAR_AVAILABILITIES_FAILED = 'calendar/fetch-availabilities-failed',
   FETCH_AVAILABILITIES_FOR_DATES_CALENDAR_FAILED = 'calendar/fetch-availabilities-for-dates-failed',
   FETCH_AVAILABILITIES_FOR_LOCATION_CALENDAR_FAILED = 'calendar/fetch-availabilities-for-location-failed',
+
   CREATE_CALENDAR_FAILED = 'calendar/creation-failed',
-  UPDATE_CALENDAR_CALENDAR_FAILED = 'calendar/update-failed',
-  DELETE_CALENDAR_CALENDAR_FAILED = 'calendar/delete-failed',
+
+  UPDATE_CALENDAR_FAILED = 'calendar/update-failed',
+  UPDATE_CALENDAR_FAILED_FORBIDDEN = 'calendar/update-failed-forbidden',
+  UPDATE_CALENDAR_FAILED_NOT_EXIST = 'calendar/update-failed-not-exist',
+
+  DELETE_CALENDAR_FAILED = 'calendar/delete-failed',
   FETCH_ONE_CALENDAR_FAILED = 'calendar/fetch-one-failed',
   FIND_ONE_CALENDAR_FAILED = 'calendar/find-one-failed',
 }
 
 export const errors = {
-  [CalendarErr.FETCH_CALENDAR_EVENT_FAILED]:
+  [CalendarErr.GET_CALENDAR_EVENT_FOR_CURRENT_PERSON_FAILED]:
     'Failed to fetch current person calendar events',
   [CalendarErr.CREATE_CALENDAR_EVENT_FAILED]: 'Failed to create calendar event',
   [CalendarErr.CREATE_CALENDAR_EVENT_FAILED_FORBIDDEN]:
@@ -47,7 +52,7 @@ export const errors = {
     'Failed to fetch calendar event with calendar id',
   [CalendarErr.FETCH_CALENDAR_EVENT_BY_ID_FAILED]:
     'Failed to fetch calendar event by id',
-  [CalendarErr.FETCH_CALENDAR_EVENT_BY_OWNER_ID_FAILED]:
+  [CalendarErr.FETCH_CALENDAR_EVENT_FOR_OWNER_FAILED]:
     'Failed to fetch calendar event by owner id',
   [CalendarErr.FIND_CALENDAR_AVAILABILITIES_FAILED]:
     'Failed to find calendar availabilities',
@@ -56,8 +61,12 @@ export const errors = {
   [CalendarErr.FETCH_AVAILABILITIES_FOR_LOCATION_CALENDAR_FAILED]:
     'Failed to fetch availabilities for location',
   [CalendarErr.CREATE_CALENDAR_FAILED]: 'Failed to create calendar',
-  [CalendarErr.UPDATE_CALENDAR_CALENDAR_FAILED]: 'Failed to update calendar',
-  [CalendarErr.DELETE_CALENDAR_CALENDAR_FAILED]: 'Failed to delete calendar',
+  [CalendarErr.UPDATE_CALENDAR_FAILED]: 'Failed to update calendar',
+  [CalendarErr.UPDATE_CALENDAR_FAILED_FORBIDDEN]:
+    'Failed to update calendar, access denied',
+  [CalendarErr.UPDATE_CALENDAR_FAILED_NOT_EXIST]:
+    'Failed to update calendar, not exist',
+  [CalendarErr.DELETE_CALENDAR_FAILED]: 'Failed to delete calendar',
   [CalendarErr.FETCH_ONE_CALENDAR_FAILED]: 'Failed to fetch calendar',
   [CalendarErr.FIND_ONE_CALENDAR_FAILED]: 'Failed to find calendar',
 };

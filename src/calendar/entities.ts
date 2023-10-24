@@ -1,4 +1,6 @@
-export interface Calendar {
+import { IPlace } from '../place';
+
+export interface ICalendar {
   id: string;
   uri: string;
   availabilities: string[];
@@ -14,7 +16,7 @@ export interface Calendar {
   };
 }
 
-export interface CalendarEvent {
+export interface ICalendarEvent {
   id: string;
   uri: string;
   aboutUri: string;
@@ -30,10 +32,10 @@ export interface CalendarEvent {
   };
 }
 
-export interface Availabality {
+export interface Availability {
   from: string;
   to: string;
   available: boolean;
   isRoaming?: boolean;
-  place?: Place;
+  place?: IPlace;
 }

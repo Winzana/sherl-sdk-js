@@ -1,21 +1,21 @@
 import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/calendar-event/endpoints';
-import { CalendarEvent } from '../../entities';
+import { ICalendarEvent } from '../../entities';
 import { ISearchResult } from '../../../common';
-import { ICalendarEventFilterDto } from '../../types';
+import { IGetCalendarEventForCurrentPersonInputDto } from '../../types';
 import { errorFactory, CalendarErr } from '../../errors/errors';
 
 export const getCalendarEventForCurrentPerson = async (
   fetcher: Fetcher,
-  filter: ICalendarEventFilterDto,
-): Promise<ISearchResult<CalendarEvent>> => {
+  filter: IGetCalendarEventForCurrentPersonInputDto,
+): Promise<ISearchResult<ICalendarEvent>> => {
   try {
-    const response = await fetcher.get<ISearchResult<CalendarEvent>>(
+    const response = await fetcher.get<ISearchResult<ICalendarEvent>>(
       endpoints.GET_CALENDAR_EVENT_FOR_CURRENT_PERSON,
       filter,
     );
 
-    if (response.status !== 200) {
+    if (response.status >= 300) {
       throw errorFactory.create(
         CalendarErr.GET_CALENDAR_EVENT_FOR_CURRENT_PERSON_FAILED,
       );

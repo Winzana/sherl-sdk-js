@@ -1,23 +1,21 @@
 import { Fetcher } from '../../../common/api';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/calendar-event/endpoints';
-import { CalendarEvent } from '../../entities';
+import { ICalendarEvent } from '../../entities';
 import { errorFactory, CalendarErr } from '../../errors/errors';
 
-export const deleteCalendarEvents = async (
+export const deleteCalendarEvent = async (
   fetcher: Fetcher,
   calendarId: string,
   eventId: string,
-
-  calendarEventData: CalendarEvent,
-): Promise<CalendarEvent> => {
+): Promise<ICalendarEvent> => {
   try {
-    const response = await fetcher.put<CalendarEvent>(
-      StringUtils.bindContext(endpoints.CREATE_CALENDAR_EVENT, {
+    const response = await fetcher.put<ICalendarEvent>(
+      StringUtils.bindContext(endpoints.DELETE_CALENDAR_EVENT, {
         calendarId,
         eventId,
       }),
-      calendarEventData,
+      {},
     );
 
     switch (response.status) {

@@ -1,28 +1,28 @@
 import { Fetcher } from '../../../common/api';
-import { endpoints } from '../../api/calendar-event/endpoints';
+import { endpoints } from '../../api/calendar/endpoints';
 import { ICalendarEvent } from '../../entities';
-import { ICalendarEventFilterDto } from '../../types';
+import { ICalendarFilterDto } from '../../types';
 import { errorFactory, CalendarErr } from '../../errors/errors';
 import { StringUtils } from '../../../common/utils/string';
 
-export const getCalendarEventsWithId = async (
+export const getCalendarWithId = async (
   fetcher: Fetcher,
-  eventId: ICalendarEventFilterDto,
+  eventId: ICalendarFilterDto,
 ): Promise<ICalendarEvent> => {
   try {
     const response = await fetcher.get<ICalendarEvent>(
-      StringUtils.bindContext(endpoints.GET_ONE_CALENDAR_EVENTS, {
+      StringUtils.bindContext(endpoints.GET_CALENDAR_WITH_ID, {
         eventId,
       }),
       {},
     );
 
     if (response.status >= 300) {
-      throw errorFactory.create(CalendarErr.FETCH_CALENDAR_EVENT_BY_ID_FAILED);
+      throw errorFactory.create(CalendarErr.FETCH_ONE_CALENDAR_FAILED);
     }
 
     return response.data;
   } catch (error) {
-    throw errorFactory.create(CalendarErr.FETCH_CALENDAR_EVENT_BY_ID_FAILED);
+    throw errorFactory.create(CalendarErr.FETCH_ONE_CALENDAR_FAILED);
   }
 };
