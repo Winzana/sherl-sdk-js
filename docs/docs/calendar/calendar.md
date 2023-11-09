@@ -113,7 +113,7 @@ export interface IFindAvailabilitiesInputDto {
 ```
 
 
-This call returns an array of corresponding [ICalendar](calendar-types#icalendar).
+This call returns an array of corresponding [Availability](calendar-types#availability).
 
 ## Check availabilities for dates
 

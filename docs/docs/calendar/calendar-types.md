@@ -80,7 +80,7 @@ interface Availability {
 ## ICheckLocationResult
 
 ```ts
-export interface ICheckLocationResult {
+ interface ICheckLocationResult {
   id: string;
   uri: string;
   aboutUri: string;
@@ -94,3 +94,13 @@ export interface ICheckLocationResult {
   metadatas: { [key: string]: any };
 }
 ```
+
+### DateFilter
+```ts
+ class DateFilter {
+  after?: string;
+  strictlyAfter?: string;
+  before?: string;
+  strictlyBefore?: string;
+}
+``````

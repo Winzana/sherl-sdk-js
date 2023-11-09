@@ -5,7 +5,7 @@ import { ICalendarEvent } from '../../entities';
 import { errorFactory, CalendarErr } from '../../errors/errors';
 import { ICreateCalendarEventInputDto } from '../../types';
 
-export const createCalendarEvents = async (
+export const createCalendarEvent = async (
   fetcher: Fetcher,
   calendarId: string,
   calendarEvent: ICreateCalendarEventInputDto,

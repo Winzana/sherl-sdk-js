@@ -154,5 +154,6 @@ interface ICalendarEventFilterDto extends PaginationFilters {
 ```
 
 This interface extends [PaginationFilters](pagination#pagination-filters).
+[DateFilter](calendar-types#DateFilter)
 
 Return a [paginated](pagination#pagination) array of [ICalendarEvent](calendar-types#icalendarevent) objects.

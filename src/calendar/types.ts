@@ -68,19 +68,6 @@ export interface ICheckLocationInputDto {
   postalCode?: string;
   streetAddress?: string;
 }
-export interface ICheckLocationResult {
-  id: string;
-  uri: string;
-  aboutUri: string;
-  ownerUri: string;
-  calendarUri: string;
-  startDate: string;
-  endDate: string;
-  location: IGeoCoordinates;
-  createdAt: string;
-  updatedAt: string;
-  metadatas: { [key: string]: any };
-}
 // CalendarEvent
 export interface IGetCalendarEventForCurrentPersonInputDto
   extends PaginationFilters {
@@ -100,8 +87,6 @@ export interface ICalendarEventFilterDto extends PaginationFilters {
   aboutUri?: string;
   startDate: DateFilter;
   endDate: DateFilter;
-  calendarUri?: string | string[];
-  consumerId?: string;
 }
 
 export interface ICreateCalendarEventInputDto {

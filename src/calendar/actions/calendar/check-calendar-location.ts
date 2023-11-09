@@ -6,9 +6,9 @@ import { errorFactory, CalendarErr } from '../../errors/errors';
 export const checkCalendarLocation = async (
   fetcher: Fetcher,
   filter: ICheckLocationInputDto,
-): Promise<ICheckLocationResult[]> => {
+): Promise<boolean> => {
   try {
-    const response = await fetcher.get<ICheckLocationResult[]>(
+    const response = await fetcher.get<boolean>(
       endpoints.GET_CHECK_LOCATION_AVAILABILITIES,
       filter,
     );
