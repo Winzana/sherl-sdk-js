@@ -77,23 +77,6 @@ interface Availability {
 ```
 `place`refers to [IPlace](place-types#iplace)
 
-## ICheckLocationResult
-
-```ts
- interface ICheckLocationResult {
-  id: string;
-  uri: string;
-  aboutUri: string;
-  ownerUri: string;
-  calendarUri: string;
-  startDate: string;
-  endDate: string;
-  location: IGeoCoordinates;
-  createdAt: string;
-  updatedAt: string;
-  metadatas: { [key: string]: any };
-}
-```
 
 ### DateFilter
 ```ts

@@ -144,10 +144,13 @@ const avaibalities = await Sherl.calendar(client).checkCalendarLocation(filter: 
 ```
 
 ```ts
-interface ICheckDatesDto {
-  ownerUri: string;
-  metadatas?: { [key: string]: any };
-  dates: Availability[];
-} 
+interface ICheckLocationInputDto {
+  calendarOwnerUri: string;
+  country?: string;
+  locality?: string;
+  region?: string;
+  postalCode?: string;
+  streetAddress?: string;
+}
 ```
-This call return an [CheckLocationResult](calendar-types#ICheckLocationResult) array
+This call return an boolean

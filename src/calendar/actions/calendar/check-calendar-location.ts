@@ -1,6 +1,6 @@
 import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/calendar/endpoints';
-import { ICheckLocationInputDto, ICheckLocationResult } from '../../types';
+import { ICheckLocationInputDto } from '../../types';
 import { errorFactory, CalendarErr } from '../../errors/errors';
 
 export const checkCalendarLocation = async (
