@@ -68,7 +68,7 @@ await shop(client).getPublicAdvertisements(filters?: IFindAdvertisementInputDto)
 ```ts
 interface IFindAdvertisementInputDto extends PaginationFilters {
   displayDeleted?: boolean;
-  displayZones?: string[];
+  displayZones?: DisplayZoneEnum[];
   shuffle?: boolean;
   q?: string;
   displayAllVersion?: boolean;
@@ -81,6 +81,9 @@ interface IFindAdvertisementInputDto extends PaginationFilters {
 
 This interface extends [PaginationFilters](../pagination#pagination-filters)
 
+This interface using other interfaces :
+ - [DisplayZoneEnum](../shop-types#displayzoneenum)(`displayZones`)
+ - 
 This call returns a [paginated](../pagination#pagination) array of [IAdvertisement](../shop-types#iadvertisement) objects.
 
 ## Get advertisement by id
