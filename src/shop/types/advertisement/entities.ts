@@ -3,7 +3,7 @@ import { IImageObject } from '../../../media';
 
 export interface IFindAdvertisementInputDto extends PaginationFilters {
   displayDeleted?: boolean;
-  displayZones?: string[];
+  displayZones?: DisplayZoneEnum[];
   shuffle?: boolean;
   q?: string;
   displayAllVersion?: boolean;
