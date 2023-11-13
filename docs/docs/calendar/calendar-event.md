@@ -10,8 +10,9 @@ title: Calendar Events
 Create a calendar event for a specific calendar
 
 ```ts
-const calendarEvent = await Sherl.calendar(client).createCalendarEvent(  calendarId: string,
-   calendarEvent: ICreateCalendarEventInputDto,);
+const calendarEvent = await Sherl.calendar(client).createCalendarEvent(
+  calendarId: string,
+  calendarEvent: ICreateCalendarEventInputDto);
 ```
 
 ```ts 
@@ -26,7 +27,6 @@ interface ICreateCalendarEventInputDto {
 }
 ```
 
-
 Return an [ICalendarEvent](calendar-types#icalendarevent).
 
 ## Update a calendar event
@@ -36,10 +36,10 @@ Return an [ICalendarEvent](calendar-types#icalendarevent).
 Update a calendar event with new values
 
 ```ts
-const calendarEvent = await Sherl.clacalendarim(client).updateCalendarEvent(  
+const calendarEvent = await Sherl.calendar(client).updateCalendarEvent(  
   calendarId: string,
   eventId: string,
-  calendarEventData: IUpdateCalendarEventInputDto,);
+  calendarEventData: IUpdateCalendarEventInputDto);
 ```
 
 ```ts
@@ -61,7 +61,9 @@ Return the updated [ICalendarEvent](calendar-types#icalendarevent).
 Delete an event with the associated id.
 
 ```ts
- await Sherl.calendar(client).deleteCalendarEvent(calendarId: string, eventId: string,);
+ await Sherl.calendar(client).deleteCalendarEvent(c
+  alendarId: string,
+  eventId: string);
 ```
 
 ## Get a calendar event
@@ -71,7 +73,7 @@ Delete an event with the associated id.
 Get a calendar event with its id
 
 ```ts
-const calendarEvent = await Sherl.calendar(client).getCalendarEventsWithId(  eventId: string);
+const calendarEvent = await Sherl.calendar(client).getCalendarEventsById(  eventId: string);
 ```
 
 Return an [ICalendarEvent](calendar-types#icalendarevent).
@@ -83,8 +85,9 @@ Return an [ICalendarEvent](calendar-types#icalendarevent).
 Get all calendar events for a calendar id
 
 ```ts
-const calendarEvents = await Sherl.calendar(client).getCalendarEventsEventsWithCalendarId(  
-  calendarId: string, filter: ICalendarEventFilterDto);
+const calendarEvents = await Sherl.calendar(client).getCalendarEventsByCalendarId(  
+  calendarId: string, 
+  filter: ICalendarEventFilterDto);
 ```
 
 ```ts

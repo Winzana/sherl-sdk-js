@@ -1,23 +1,23 @@
 import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/calendar/endpoints';
-import { ICalendarEvent } from '../../entities';
-import { ICalendarFilterDto } from '../../types';
+
 import { errorFactory, CalendarErr } from '../../errors/errors';
 import { StringUtils } from '../../../common/utils/string';
+import { ICalendar } from '../../entities';
 
-export const getCalendarWithId = async (
+export const getCalendarById = async (
   fetcher: Fetcher,
-  eventId: ICalendarFilterDto,
-): Promise<ICalendarEvent> => {
+  calendarId: string,
+): Promise<ICalendar> => {
   try {
-    const response = await fetcher.get<ICalendarEvent>(
+    const response = await fetcher.get<ICalendar>(
       StringUtils.bindContext(endpoints.GET_CALENDAR_WITH_ID, {
-        eventId,
+        calendarId,
       }),
       {},
     );
 
-    if (response.status >= 300) {
+    if (response.status >= 400) {
       throw errorFactory.create(CalendarErr.FETCH_ONE_CALENDAR_FAILED);
     }
 

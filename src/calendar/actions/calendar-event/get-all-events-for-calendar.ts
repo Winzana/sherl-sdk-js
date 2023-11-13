@@ -6,7 +6,7 @@ import { ICalendarEventFilterDto } from '../../types';
 import { errorFactory, CalendarErr } from '../../errors/errors';
 import { StringUtils } from '../../../common/utils/string';
 
-export const getCalendarEventsEventsWithCalendarId = async (
+export const getCalendarEventsByCalendarId = async (
   fetcher: Fetcher,
   calendarId: string,
   filter: ICalendarEventFilterDto,
@@ -19,7 +19,7 @@ export const getCalendarEventsEventsWithCalendarId = async (
       filter,
     );
 
-    if (response.status >= 300) {
+    if (response.status >= 400) {
       throw errorFactory.create(
         CalendarErr.FETCH_CALENDAR_EVENT_WITH_CALENDAR_ID_FAILED,
       );

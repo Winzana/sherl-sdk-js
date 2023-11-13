@@ -5,19 +5,19 @@ import { ICalendarEventFilterDto } from '../../types';
 import { errorFactory, CalendarErr } from '../../errors/errors';
 import { StringUtils } from '../../../common/utils/string';
 
-export const getCalendarEventsWithId = async (
+export const getCalendarEventsById = async (
   fetcher: Fetcher,
   eventId: ICalendarEventFilterDto,
 ): Promise<ICalendarEvent> => {
   try {
     const response = await fetcher.get<ICalendarEvent>(
-      StringUtils.bindContext(endpoints.GET_ONE_CALENDAR_EVENTS, {
+      StringUtils.bindContext(endpoints.GET_ONE_CALENDAR_EVENT, {
         eventId,
       }),
       {},
     );
 
-    if (response.status >= 300) {
+    if (response.status >= 400) {
       throw errorFactory.create(CalendarErr.FETCH_CALENDAR_EVENT_BY_ID_FAILED);
     }
 

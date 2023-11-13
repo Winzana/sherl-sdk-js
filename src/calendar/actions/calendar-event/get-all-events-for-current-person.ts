@@ -11,20 +11,20 @@ export const getCalendarEventForCurrentPerson = async (
 ): Promise<ISearchResult<ICalendarEvent>> => {
   try {
     const response = await fetcher.get<ISearchResult<ICalendarEvent>>(
-      endpoints.GET_CALENDAR_EVENT_FOR_CURRENT_PERSON,
+      endpoints.GET_CALENDAR_EVENTS_FOR_CURRENT_PERSON,
       filter,
     );
 
-    if (response.status >= 300) {
+    if (response.status >= 400) {
       throw errorFactory.create(
-        CalendarErr.GET_CALENDAR_EVENT_FOR_CURRENT_PERSON_FAILED,
+        CalendarErr.GET_CALENDAR_EVENTS_FOR_CURRENT_PERSON_FAILED,
       );
     }
 
     return response.data;
   } catch (error) {
     throw errorFactory.create(
-      CalendarErr.GET_CALENDAR_EVENT_FOR_CURRENT_PERSON_FAILED,
+      CalendarErr.GET_CALENDAR_EVENTS_FOR_CURRENT_PERSON_FAILED,
     );
   }
 };

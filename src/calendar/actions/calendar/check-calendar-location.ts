@@ -3,7 +3,7 @@ import { endpoints } from '../../api/calendar/endpoints';
 import { ICheckLocationInputDto } from '../../types';
 import { errorFactory, CalendarErr } from '../../errors/errors';
 
-export const checkCalendarLocation = async (
+export const checkLocationForCalendar = async (
   fetcher: Fetcher,
   filter: ICheckLocationInputDto,
 ): Promise<boolean> => {
@@ -13,7 +13,7 @@ export const checkCalendarLocation = async (
       filter,
     );
 
-    if (response.status >= 300) {
+    if (response.status >= 400) {
       throw errorFactory.create(
         CalendarErr.FETCH_AVAILABILITIES_FOR_LOCATION_CALENDAR_FAILED,
       );

@@ -1,7 +1,7 @@
 import { ErrorFactory } from '../../common/errors';
 
 export enum CalendarErr {
-  GET_CALENDAR_EVENT_FOR_CURRENT_PERSON_FAILED = 'calendar-event/fetch-failed-for-current-person',
+  GET_CALENDAR_EVENTS_FOR_CURRENT_PERSON_FAILED = 'calendar-event/fetch-failed-for-current-person',
   CREATE_CALENDAR_EVENT_FAILED = 'calendar-event/creation-failed',
   CREATE_CALENDAR_EVENT_FAILED_FORBIDDEN = 'calendar-event/creation-failed-forbidden',
   CREATE_CALENDAR_EVENT_FAILED_CALENDAR_NOT_EXIST = 'calendar-event/creation-failed-calendar-not-exist',
@@ -33,7 +33,7 @@ export enum CalendarErr {
 }
 
 export const errors = {
-  [CalendarErr.GET_CALENDAR_EVENT_FOR_CURRENT_PERSON_FAILED]:
+  [CalendarErr.GET_CALENDAR_EVENTS_FOR_CURRENT_PERSON_FAILED]:
     'Failed to fetch current person calendar events',
   [CalendarErr.CREATE_CALENDAR_EVENT_FAILED]: 'Failed to create calendar event',
   [CalendarErr.CREATE_CALENDAR_EVENT_FAILED_FORBIDDEN]:

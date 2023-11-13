@@ -25,22 +25,17 @@ export const createCalendarEvent = async (
         throw errorFactory.create(
           CalendarErr.CREATE_CALENDAR_EVENT_FAILED_FORBIDDEN,
         );
-        break;
       case 404:
         throw errorFactory.create(
           CalendarErr.CREATE_CALENDAR_EVENT_FAILED_CALENDAR_NOT_EXIST,
         );
-        break;
       case 409:
         throw errorFactory.create(
           CalendarErr.CREATE_CALENDAR_EVENT_FAILED_EVENT_ALREADY_EXIST,
         );
-        break;
       default:
         throw errorFactory.create(CalendarErr.CREATE_CALENDAR_EVENT_FAILED);
     }
-
-    return response.data;
   } catch (error) {
     throw errorFactory.create(CalendarErr.CREATE_CALENDAR_EVENT_FAILED);
   }

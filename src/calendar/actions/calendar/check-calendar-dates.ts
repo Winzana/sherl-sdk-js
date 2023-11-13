@@ -14,7 +14,7 @@ export const checkCalendarDates = async (
       filter,
     );
 
-    if (response.status >= 300) {
+    if (response.status >= 400) {
       throw errorFactory.create(
         CalendarErr.FETCH_AVAILABILITIES_FOR_DATES_CALENDAR_FAILED,
       );

@@ -1,13 +1,13 @@
 import { SherlClient } from '../common';
 import { AbstractProvider } from '../common/provider';
 import { checkCalendarDates } from './actions/calendar/check-calendar-dates';
-import { checkCalendarLocation } from './actions/calendar/check-calendar-location';
+import { checkLocationForCalendar } from './actions/calendar/check-calendar-location';
 
 import { createCalendar } from './actions/calendar/create-calendar';
 import { deleteCalendar } from './actions/calendar/delete-calendar';
-import { findCalendarWithFilter } from './actions/calendar/find-calendar';
+import { findOneCalendarWithFilter } from './actions/calendar/find-calendar';
 import { findCalendarAvailabilitiesWithFilter } from './actions/calendar/find-calendar-availabilities';
-import { getCalendarWithId } from './actions/calendar/get-calendar';
+import { getCalendarById } from './actions/calendar/get-calendar';
 import { updateCalendar } from './actions/calendar/update-calendar';
 
 import { createCalendarEvent } from './actions/calendar-event/create-calendar-event';
@@ -16,7 +16,7 @@ import { updateCalendarEvent } from './actions/calendar-event/update-calendar-ev
 import { deleteCalendarEvent } from './actions/calendar-event/delete-calendar-event';
 import { getCalendarEventForCurrentPerson } from './actions/calendar-event/get-all-events-for-current-person';
 import { getCalendarEventForOwner } from './actions/calendar-event/get-all-events-for-calendar-by-owner';
-
+import { getCalendarEventsByCalendarId } from './actions/calendar-event/get-all-events-for-calendar';
 import { errorFactory } from './errors/errors';
 
 class CalendarProvider extends AbstractProvider {
@@ -26,13 +26,15 @@ class CalendarProvider extends AbstractProvider {
   public createCalendar = this.withFetcher(createCalendar);
   public updateCalendar = this.withFetcher(updateCalendar);
   public deleteCalendar = this.withFetcher(deleteCalendar);
-  public getCalendarWithId = this.withFetcher(getCalendarWithId);
+  public getCalendarById = this.withFetcher(getCalendarById);
   public checkCalendarDates = this.withFetcher(checkCalendarDates);
-  public checkCalendarLocation = this.withFetcher(checkCalendarLocation);
+  public checkLocationForCalendar = this.withFetcher(checkLocationForCalendar);
   public findCalendarAvailabilitiesWithFilter = this.withFetcher(
     findCalendarAvailabilitiesWithFilter,
   );
-  public findCalendarWithFilter = this.withFetcher(findCalendarWithFilter);
+  public findOneCalendarWithFilter = this.withFetcher(
+    findOneCalendarWithFilter,
+  );
 
   public createCalendarEvent = this.withFetcher(createCalendarEvent);
   public updateCalenderEvent = this.withFetcher(updateCalendarEvent);
@@ -40,8 +42,10 @@ class CalendarProvider extends AbstractProvider {
   public getCalendarEventForCurrentPerson = this.withFetcher(
     getCalendarEventForCurrentPerson,
   );
-  public getAllCalenderEvents = this.withFetcher(findCalendarWithFilter);
-  public getCalenderEventWithId = this.withFetcher(getCalendarWithId);
+  public getCalendarEventsByCalendarId = this.withFetcher(
+    getCalendarEventsByCalendarId,
+  );
+  public getCalenderEventById = this.withFetcher(getCalendarById);
   public getCalendarEventForOwner = this.withFetcher(getCalendarEventForOwner);
 }
 

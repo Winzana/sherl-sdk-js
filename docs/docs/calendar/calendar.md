@@ -10,7 +10,7 @@ title: Calendar
 Create a calendar with basic informations
 
 ```ts
-const calendar = await Sherl.claim(client).createCalendar(calendar: ICreateCalendarInputDto);
+const calendar = await Sherl.calendar(client).createCalendar(calendar: ICreateCalendarInputDto);
 ```
 
 ```ts
@@ -31,7 +31,9 @@ Return an [ICalendar](calendar-types#icalendar).
 Update a specific calendar with new informations
 
 ```ts
-const calendar = await Sherl.claim(client).updateCalendar(calendarId: string, calendarData:IUpdateCalendarInputDto );
+const calendar = await Sherl.calendar(client).updateCalendar(
+  calendarId: string,
+  calendarData:IUpdateCalendarInputDto);
 ```
 
 ```ts
@@ -58,10 +60,10 @@ await Sherl.calendar(client).deleteCalendar(calendarId: string);
 
 <span class="badge badge--warning">Require authentication</span>
 
-Get a calendar with a specidic id
+Get a calendar by a specidic id.
 
 ```ts
-const calendar = await Sherl.calendar(client).getCalendarWithId(calendarId: string);
+const calendar = await Sherl.calendar(client).getCalendarById(calendarId: string);
 ```
 Return a [ICalendar](calendar-types#icalendar) if found.
 
@@ -69,7 +71,7 @@ Return a [ICalendar](calendar-types#icalendar) if found.
 ## Find one calendar with filters
 <span class="badge badge--warning">Require authentication</span>
 
-Find a calendar by using a ICalendarFilterDto
+Find a calendar by using a ICalendarFilterDto.
 
 ```ts
 const calendar = await Sherl.calendar(client).fintCalendarWithFilter(filter: ICalendarFilterDto);
@@ -85,14 +87,14 @@ export class ICalendarFilterDto {
   consumerId?: string;
 }
 ```
-Return a [ICalendar](calendar-types#icalendar) if found.
+Return an [ICalendar](calendar-types#icalendar) if found.
 
 
 ## Find availabitilies
 
 <span class="badge badge--warning">Require authentication</span>
 
-Find a calendar by using a ICalendarFilterDto
+Find a calendar by using a ICalendarFilterDto.
 
 ```ts
 const availabilities = await Sherl.calendar(client).findCalendarAvailabilitiesWithFilter(filter: IFindAvailabilitiesInputDto);
@@ -119,7 +121,7 @@ This call returns an array of corresponding [Availability](calendar-types#availa
 
 <span class="badge badge--warning">Require authentication</span>
 
-Check avaibalities for given date and return availabilities.
+Check avaibalities for given dates and return availabilities.
 
 ```ts
 const avaibalities = await Sherl.calendar(client).checkCalendarDates(filter: ICheckDatesDto);
@@ -140,7 +142,7 @@ This calls return an [availabilities](calendar-types#availability) array
 Check availabalities for given location and return calendar.
 
 ```ts
-const avaibalities = await Sherl.calendar(client).checkCalendarLocation(filter: ICheckLocationInputDto);
+const avaibalities = await Sherl.calendar(client).checkLocationForCalendar(filter: ICheckLocationInputDto);
 ```
 
 ```ts
@@ -153,4 +155,4 @@ interface ICheckLocationInputDto {
   streetAddress?: string;
 }
 ```
-This call return an boolean
+This call return a boolean.

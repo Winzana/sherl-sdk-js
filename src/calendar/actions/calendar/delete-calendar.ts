@@ -16,7 +16,7 @@ export const deleteCalendar = async (
       {},
     );
 
-    if (response.status >= 300) {
+    if (response.status >= 400) {
       throw errorFactory.create(CalendarErr.DELETE_CALENDAR_FAILED);
     }
 

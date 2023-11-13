@@ -14,7 +14,7 @@ export const createCalendar = async (
       calendar,
     );
 
-    if (response.status >= 300) {
+    if (response.status >= 400) {
       throw errorFactory.create(CalendarErr.CREATE_CALENDAR_FAILED);
     }
 
