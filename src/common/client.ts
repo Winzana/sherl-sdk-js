@@ -1,16 +1,8 @@
-import { initializeApi, registerBearerToken, resetOptions } from './api';
+import { initializeApi, registerBearerToken } from './api';
 import { ErrorFactory, CommonErr } from './errors';
 import { AxiosInstance } from 'axios';
 
 export interface InitOptions {
-  apiKey: string;
-  apiSecret: string;
-  apiUrl?: string;
-  referer?: string;
-}
-
-export interface resetOptions {
-  axiosInstance: AxiosInstance;
   apiKey: string;
   apiSecret: string;
   apiUrl?: string;
@@ -32,9 +24,8 @@ export class SherlClient {
     );
   }
 
-  public resetOptions(options: resetOptions) {
-    this.apiInstance = resetOptions(
-      options.axiosInstance,
+  public resetOptions(options: InitOptions) {
+    this.apiInstance = initializeApi(
       options.apiKey,
       options.apiSecret,
       options.apiUrl,
