@@ -25,6 +25,7 @@ export class SherlClient {
   }
 
   public resetOptions(options: InitOptions) {
+    this.revokeAuthToken();
     this.apiInstance = initializeApi(
       options.apiKey,
       options.apiSecret,
