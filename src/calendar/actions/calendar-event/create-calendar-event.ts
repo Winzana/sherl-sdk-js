@@ -5,6 +5,14 @@ import { ICalendarEvent } from '../../entities';
 import { errorFactory, CalendarErr } from '../../errors/errors';
 import { ICreateCalendarEventInputDto } from '../../types';
 
+/**
+ * Creates a calendar event using the provided fetcher, calendar ID, and calendar event data.
+ *
+ * @param {Fetcher} fetcher - the fetcher used to make the API call
+ * @param {string} calendarId - the ID of the calendar
+ * @param {ICreateCalendarEventInputDto} calendarEvent - the data for the calendar event
+ * @return {Promise<ICalendarEvent>} a promise that resolves to the created calendar event
+ */
 export const createCalendarEvent = async (
   fetcher: Fetcher,
   calendarId: string,

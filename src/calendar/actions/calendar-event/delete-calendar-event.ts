@@ -4,6 +4,14 @@ import { endpoints } from '../../api/calendar-event/endpoints';
 import { ICalendarEvent } from '../../entities';
 import { errorFactory, CalendarErr } from '../../errors/errors';
 
+/**
+ * Deletes a calendar event.
+ *
+ * @param {Fetcher} fetcher - The fetcher used to make API requests.
+ * @param {string} calendarId - The ID of the calendar.
+ * @param {string} eventId - The ID of the event to be deleted.
+ * @return {Promise<ICalendarEvent>} A Promise that resolves to the deleted calendar event.
+ */
 export const deleteCalendarEvent = async (
   fetcher: Fetcher,
   calendarId: string,

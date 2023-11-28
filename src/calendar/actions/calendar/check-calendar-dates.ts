@@ -4,6 +4,13 @@ import { ICheckDatesDto } from '../../types';
 import { errorFactory, CalendarErr } from '../../errors/errors';
 import { Availability } from '../../entities';
 
+/**
+ * Retrieves availabilities from the calendar for a given set of dates.
+ *
+ * @param {Fetcher} fetcher - The fetcher object used to make API requests.
+ * @param {ICheckDatesDto} filter - The filter object containing the dates to check.
+ * @return {Promise<Availability[]>} A promise that resolves to an array of availabilities.
+ */
 export const checkCalendarDates = async (
   fetcher: Fetcher,
   filter: ICheckDatesDto,
@@ -16,14 +23,14 @@ export const checkCalendarDates = async (
 
     if (response.status >= 400) {
       throw errorFactory.create(
-        CalendarErr.FETCH_AVAILABILITIES_FOR_DATES_CALENDAR_FAILED,
+        CalendarErr.GET_AVAILABILITIES_FOR_DATES_CALENDAR_FAILED,
       );
     }
 
     return response.data;
   } catch (error) {
     throw errorFactory.create(
-      CalendarErr.FETCH_AVAILABILITIES_FOR_DATES_CALENDAR_FAILED,
+      CalendarErr.GET_AVAILABILITIES_FOR_DATES_CALENDAR_FAILED,
     );
   }
 };

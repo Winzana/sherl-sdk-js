@@ -5,7 +5,14 @@ import { ISearchResult } from '../../../common';
 import { ICalendarEventFilterDto } from '../../types';
 import { errorFactory, CalendarErr } from '../../errors/errors';
 
-export const getCalendarEventForOwner = async (
+/**
+ * Retrieves calendar events for a specific owner.
+ *
+ * @param {Fetcher} fetcher - The fetcher object used to make API requests.
+ * @param {ICalendarEventFilterDto} filter - The filter object containing criteria for retrieving calendar events.
+ * @return {Promise<ISearchResult<ICalendarEvent>>} A promise that resolves to the search result containing calendar events.
+ */
+export const getCalendarEventsForOwner = async (
   fetcher: Fetcher,
   filter: ICalendarEventFilterDto,
 ): Promise<ISearchResult<ICalendarEvent>> => {
@@ -17,14 +24,12 @@ export const getCalendarEventForOwner = async (
 
     if (response.status >= 400) {
       throw errorFactory.create(
-        CalendarErr.FETCH_CALENDAR_EVENT_FOR_OWNER_FAILED,
+        CalendarErr.GET_CALENDAR_EVENTS_FOR_OWNER_FAILED,
       );
     }
 
     return response.data;
   } catch (error) {
-    throw errorFactory.create(
-      CalendarErr.FETCH_CALENDAR_EVENT_FOR_OWNER_FAILED,
-    );
+    throw errorFactory.create(CalendarErr.GET_CALENDAR_EVENTS_FOR_OWNER_FAILED);
   }
 };

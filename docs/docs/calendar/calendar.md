@@ -22,6 +22,7 @@ export interface ICreateCalendarInputDto {
   metadatas?: { [key: string]: any };
 }
 ```
+
 Return an [ICalendar](calendar-types#icalendar).
 
 ## Update a calendar
@@ -44,6 +45,7 @@ export interface IUpdateCalendarInputDto {
   enabled?: boolean;
 }
 ```
+
 Return a [ICalendar](calendar-types#icalendar).
 
 ## Delete a calendar
@@ -65,16 +67,17 @@ Get a calendar by a specidic id.
 ```ts
 const calendar = await Sherl.calendar(client).getCalendarById(calendarId: string);
 ```
+
 Return a [ICalendar](calendar-types#icalendar) if found.
 
-
 ## Find one calendar with filters
+
 <span class="badge badge--warning">Require authentication</span>
 
 Find a calendar by using a ICalendarFilterDto.
 
 ```ts
-const calendar = await Sherl.calendar(client).fintCalendarWithFilter(filter: ICalendarFilterDto);
+const calendar = await Sherl.calendar(client).findCalendarWithFilter(filter: ICalendarFilterDto);
 ```
 
 ```ts
@@ -87,8 +90,8 @@ export class ICalendarFilterDto {
   consumerId?: string;
 }
 ```
-Return an [ICalendar](calendar-types#icalendar) if found.
 
+Return an [ICalendar](calendar-types#icalendar) if found.
 
 ## Find availabitilies
 
@@ -114,7 +117,6 @@ export interface IFindAvailabilitiesInputDto {
 }
 ```
 
-
 This call returns an array of corresponding [Availability](calendar-types#availability).
 
 ## Check availabilities for dates
@@ -126,23 +128,25 @@ Check avaibalities for given dates and return availabilities.
 ```ts
 const avaibalities = await Sherl.calendar(client).checkCalendarDates(filter: ICheckDatesDto);
 ```
+
 ```ts
 interface ICheckDatesDto {
   ownerUri: string;
   metadatas?: { [key: string]: any };
   dates: Availability[];
-} 
+}
 ```
+
 This calls return an [availabilities](calendar-types#availability) array
 
 ## Check calendar available for user location
 
 <span class="badge badge--warning">Require authentication</span>
 
-Check availabalities for given location and return calendar.
+Check availabilities for given location and return calendar.
 
 ```ts
-const avaibalities = await Sherl.calendar(client).checkLocationForCalendar(filter: ICheckLocationInputDto);
+const availability = await Sherl.calendar(client).checkLocationForCalendar(filter: ICheckLocationInputDto);
 ```
 
 ```ts
@@ -155,4 +159,5 @@ interface ICheckLocationInputDto {
   streetAddress?: string;
 }
 ```
-This call return a boolean.
+
+This call return a boolean, true if the location is available.

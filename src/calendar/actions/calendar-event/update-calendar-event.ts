@@ -5,6 +5,15 @@ import { ICalendarEvent } from '../../entities';
 import { errorFactory, CalendarErr } from '../../errors/errors';
 import { IUpdateCalendarEventInputDto } from '../../types';
 
+/**
+ * Updates a calendar event.
+ *
+ * @param {Fetcher} fetcher - The fetcher used to make HTTP requests.
+ * @param {string} calendarId - The ID of the calendar.
+ * @param {string} eventId - The ID of the event.
+ * @param {IUpdateCalendarEventInputDto} calendarEventData - The data to update the calendar event.
+ * @return {Promise<ICalendarEvent>} The updated calendar event.
+ */
 export const updateCalendarEvent = async (
   fetcher: Fetcher,
   calendarId: string,

@@ -6,6 +6,13 @@ import {
 } from '../../types';
 import { errorFactory, CalendarErr } from '../../errors/errors';
 
+/**
+ * Finds calendar availabilities with a filter.
+ *
+ * @param {Fetcher} fetcher - The fetcher used for making API requests.
+ * @param {IFindAvailabilitiesInputDto} filter - The filter to apply when finding availabilities.
+ * @return {Promise<IFindAvailabilitiesResult>} A promise that resolves to the result of finding availabilities.
+ */
 export const findCalendarAvailabilitiesWithFilter = async (
   fetcher: Fetcher,
   filter: IFindAvailabilitiesInputDto,

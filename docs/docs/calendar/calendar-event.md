@@ -15,7 +15,7 @@ const calendarEvent = await Sherl.calendar(client).createCalendarEvent(
   calendarEvent: ICreateCalendarEventInputDto);
 ```
 
-```ts 
+```ts
 interface ICreateCalendarEventInputDto {
   id?: string;
   uri?: string;
@@ -36,7 +36,7 @@ Return an [ICalendarEvent](calendar-types#icalendarevent).
 Update a calendar event with new values
 
 ```ts
-const calendarEvent = await Sherl.calendar(client).updateCalendarEvent(  
+const calendarEvent = await Sherl.calendar(client).updateCalendarEvent(
   calendarId: string,
   eventId: string,
   calendarEventData: IUpdateCalendarEventInputDto);
@@ -73,7 +73,7 @@ Delete an event with the associated id.
 Get a calendar event with its id
 
 ```ts
-const calendarEvent = await Sherl.calendar(client).getCalendarEventsById(  eventId: string);
+const calendarEvent = await Sherl.calendar(client).getCalendarEventById(eventId: string);
 ```
 
 Return an [ICalendarEvent](calendar-types#icalendarevent).
@@ -85,9 +85,10 @@ Return an [ICalendarEvent](calendar-types#icalendarevent).
 Get all calendar events for a calendar id
 
 ```ts
-const calendarEvents = await Sherl.calendar(client).getCalendarEventsByCalendarId(  
-  calendarId: string, 
-  filter: ICalendarEventFilterDto);
+const calendarEvents = await Sherl.calendar(client).getCalendarEventsByCalendarId(
+  calendarId: string,
+  filter: ICalendarEventFilterDto
+  );
 ```
 
 ```ts
@@ -114,12 +115,13 @@ Return an array of [ICalendarEvent](calendar-types#icalendarevent).
 Retrieve all calendar events for the current person.
 
 ```ts
-const calendarEvents = await Sherl.calendar(client).getCalendarEventForCurrentPerson(filter: IGetCalendarEventForCurrentPersonInputDto);
+const calendarEvents = await Sherl.calendar(client).getCalendarEventsForCurrentPerson(
+  filter: IGetCalendarEventsForCurrentPersonInputDto
+);
 ```
 
 ```ts
-interface IGetCalendarEventForCurrentPersonInputDto
-  extends PaginationFilters {
+interface IGetCalendarEventsForCurrentPersonInputDto extends PaginationFilters {
   id: string;
   uri?: string;
   aboutUri: string;
@@ -138,7 +140,7 @@ Return an array of [ICalendarEvent](calendar-types#icalendarevent).
 Retrieve all calendar events for the calendar owner uri.
 
 ```ts
-const calendarEvents = await Sherl.calendar(client).getCalendarEventForCurrentPerson(filter: ICalendarEventFilterDto);
+const calendarEvents = await Sherl.calendar(client).getCalendarEventsForOwner(filter: ICalendarEventFilterDto);
 ```
 
 ```ts
@@ -159,4 +161,4 @@ interface ICalendarEventFilterDto extends PaginationFilters {
 This interface extends [PaginationFilters](pagination#pagination-filters).
 [DateFilter](calendar-types#DateFilter)
 
-Return a [paginated](pagination#pagination) array of [ICalendarEvent](calendar-types#icalendarevent) objects.
+Returns a [paginated](pagination#pagination) array of [ICalendarEvent](calendar-types#icalendarevent) objects.

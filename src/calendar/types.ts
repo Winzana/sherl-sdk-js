@@ -69,7 +69,7 @@ export interface ICheckLocationInputDto {
   streetAddress?: string;
 }
 // CalendarEvent
-export interface IGetCalendarEventForCurrentPersonInputDto
+export interface IGetCalendarEventsForCurrentPersonInputDto
   extends PaginationFilters {
   id: string;
   uri?: string;

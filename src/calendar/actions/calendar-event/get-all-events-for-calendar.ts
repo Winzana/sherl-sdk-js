@@ -6,6 +6,14 @@ import { ICalendarEventFilterDto } from '../../types';
 import { errorFactory, CalendarErr } from '../../errors/errors';
 import { StringUtils } from '../../../common/utils/string';
 
+/**
+ * Retrieves calendar events by calendar ID.
+ *
+ * @param {Fetcher} fetcher - The fetcher object used to make HTTP requests.
+ * @param {string} calendarId - The ID of the calendar to retrieve events from.
+ * @param {ICalendarEventFilterDto} filter - The filter to apply when retrieving events.
+ * @return {Promise<ISearchResult<ICalendarEvent>>} A promise that resolves to the search result of calendar events.
+ */
 export const getCalendarEventsByCalendarId = async (
   fetcher: Fetcher,
   calendarId: string,
@@ -21,14 +29,14 @@ export const getCalendarEventsByCalendarId = async (
 
     if (response.status >= 400) {
       throw errorFactory.create(
-        CalendarErr.FETCH_CALENDAR_EVENT_WITH_CALENDAR_ID_FAILED,
+        CalendarErr.GET_CALENDAR_EVENTS_WITH_CALENDAR_ID_FAILED,
       );
     }
 
     return response.data;
   } catch (error) {
     throw errorFactory.create(
-      CalendarErr.FETCH_CALENDAR_EVENT_WITH_CALENDAR_ID_FAILED,
+      CalendarErr.GET_CALENDAR_EVENTS_WITH_CALENDAR_ID_FAILED,
     );
   }
 };

@@ -4,6 +4,13 @@ import { ICalendar } from '../../entities';
 import { ICalendarFilterDto } from '../../types';
 import { errorFactory, CalendarErr } from '../../errors/errors';
 
+/**
+ * Retrieves a calendar that matches the specified filter criteria.
+ *
+ * @param {Fetcher} fetcher - The fetcher object used to make API requests.
+ * @param {ICalendarFilterDto} filter - The filter criteria used to search for a calendar.
+ * @returns {Promise<ICalendar>} A promise that resolves to the found calendar.
+ */
 export const findOneCalendarWithFilter = async (
   fetcher: Fetcher,
   filter: ICalendarFilterDto,
