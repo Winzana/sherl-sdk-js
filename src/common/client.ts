@@ -42,8 +42,8 @@ export class SherlClient {
   public revokeAuthToken() {
     if (this.mwKey) {
       this.apiInstance.interceptors.request.eject(this.mwKey);
+      this.mwKey = null;
     }
-    this.mwKey = null;
   }
 
   public getApiInstance() {
