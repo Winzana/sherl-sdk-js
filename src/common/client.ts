@@ -43,6 +43,7 @@ export class SherlClient {
     if (this.mwKey) {
       this.apiInstance.interceptors.request.eject(this.mwKey);
     }
+    this.mwKey = null;
   }
 
   public getApiInstance() {
