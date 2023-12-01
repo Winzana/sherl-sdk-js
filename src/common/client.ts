@@ -24,6 +24,20 @@ export class SherlClient {
     );
   }
 
+  /**
+   * Reset SherlClient instance with new options.
+   * @param {InitOptions} options
+   */
+  public resetInstance(options: InitOptions) {
+    this.revokeAuthToken();
+    this.apiInstance = initializeApi(
+      options.apiKey,
+      options.apiSecret,
+      options.apiUrl,
+      options.referer,
+    );
+  }
+
   public registerAuthToken(token: string) {
     this.revokeAuthToken();
     this.mwKey = registerBearerToken(this.apiInstance, token);
@@ -32,6 +46,7 @@ export class SherlClient {
   public revokeAuthToken() {
     if (this.mwKey) {
       this.apiInstance.interceptors.request.eject(this.mwKey);
+      this.mwKey = null;
     }
   }
 
