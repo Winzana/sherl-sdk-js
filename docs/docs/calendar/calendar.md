@@ -132,10 +132,10 @@ This call returns an array of corresponding [Availability](calendar-types#availa
 
 <span class="badge badge--warning">Require authentication</span>
 
-Check avaibalities for given dates and return availabilities.
+Check availabilities for given dates and return availabilities.
 
 ```ts
-const avaibalities = await Sherl.calendar(client).checkCalendarDates(filter: ICheckDatesDto);
+const availabilities = await Sherl.calendar(client).checkCalendarDates(filter: ICheckDatesDto);
 ```
 
 ```ts
