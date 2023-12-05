@@ -160,7 +160,9 @@ class CalendarProvider extends AbstractProvider {
    * @param {ICalendarEventFilterDto} filter - The filter object containing criteria for retrieving calendar events.
    * @return {Promise<ISearchResult<ICalendarEvent>>} A promise that resolves to the search result containing calendar events.
    */
-  public getCalendarEventForOwner = this.withFetcher(getCalendarEventsForOwner);
+  public getCalendarEventsForOwner = this.withFetcher(
+    getCalendarEventsForOwner,
+  );
 }
 
 export { CalendarProvider };
