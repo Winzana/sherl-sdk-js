@@ -23,6 +23,10 @@ export interface ICreateCalendarInputDto {
 }
 ```
 
+Additional interfaces:
+
+- [IOpeningHoursSpecification](calendar-types#IOpeningHoursSpecification)
+
 Return an [ICalendar](calendar-types#icalendar).
 
 ## Update a calendar
@@ -34,7 +38,8 @@ Update a specific calendar with new informations
 ```ts
 const calendar = await Sherl.calendar(client).updateCalendar(
   calendarId: string,
-  calendarData:IUpdateCalendarInputDto);
+  calendarData:IUpdateCalendarInputDto
+  );
 ```
 
 ```ts
@@ -45,6 +50,10 @@ export interface IUpdateCalendarInputDto {
   enabled?: boolean;
 }
 ```
+
+Additional interfaces:
+
+- [IOpeningHoursSpecification](calendar-types#IOpeningHoursSpecification)
 
 Return a [ICalendar](calendar-types#icalendar).
 
@@ -137,7 +146,7 @@ interface ICheckDatesDto {
 }
 ```
 
-This calls return an [availabilities](calendar-types#availability) array
+This calls return an [Availability](calendar-types#availability) array
 
 ## Check calendar available for user location
 

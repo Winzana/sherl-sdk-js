@@ -12,7 +12,8 @@ Create a calendar event for a specific calendar
 ```ts
 const calendarEvent = await Sherl.calendar(client).createCalendarEvent(
   calendarId: string,
-  calendarEvent: ICreateCalendarEventInputDto);
+  calendarEvent: ICreateCalendarEventInputDto
+);
 ```
 
 ```ts
@@ -39,7 +40,8 @@ Update a calendar event with new values
 const calendarEvent = await Sherl.calendar(client).updateCalendarEvent(
   calendarId: string,
   eventId: string,
-  calendarEventData: IUpdateCalendarEventInputDto);
+  calendarEventData: IUpdateCalendarEventInputDto
+);
 ```
 
 ```ts
@@ -63,7 +65,8 @@ Delete an event with the associated id.
 ```ts
  await Sherl.calendar(client).deleteCalendarEvent(c
   alendarId: string,
-  eventId: string);
+  eventId: string
+);
 ```
 
 ## Get a calendar event
@@ -88,7 +91,7 @@ Get all calendar events for a calendar id
 const calendarEvents = await Sherl.calendar(client).getCalendarEventsByCalendarId(
   calendarId: string,
   filter: ICalendarEventFilterDto
-  );
+);
 ```
 
 ```ts
@@ -105,6 +108,10 @@ interface ICalendarEventFilterDto extends PaginationFilters {
   consumerId?: string;
 }
 ```
+
+Additional interfaces:
+
+- [DateFilter](calendar-types#DateFilter)
 
 Return an array of [ICalendarEvent](calendar-types#icalendarevent).
 
@@ -158,7 +165,10 @@ interface ICalendarEventFilterDto extends PaginationFilters {
 }
 ```
 
-This interface extends [PaginationFilters](pagination#pagination-filters).
-[DateFilter](calendar-types#DateFilter)
+This interface extends [PaginationFilters](../pagination#pagination-filters).
 
-Returns a [paginated](pagination#pagination) array of [ICalendarEvent](calendar-types#icalendarevent) objects.
+Additional interfaces:
+
+- [DateFilter](calendar-types#DateFilter)
+
+Returns a [paginated](../pagination#pagination) array of [ICalendarEvent](calendar-types#icalendarevent) objects.
