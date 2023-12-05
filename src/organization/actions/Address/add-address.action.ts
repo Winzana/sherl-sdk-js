@@ -4,6 +4,22 @@ import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import { IAddressRequest, IOrganizationResponse } from '../../types';
 
+/**
+ * Adds an address to an organization specified by its ID.
+ *
+ * This function sends a POST request to add an address to a specified organization. The organization's unique ID and
+ * the address details are provided in the IAddressRequest object. On successful addition, it returns the updated
+ * organization's information encapsulated in an IOrganizationResponse object. If the addition process encounters any
+ * errors, such as a non-201 status response or connectivity issues, a specific error indicating the failure of the
+ * address addition is thrown.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} organizationId - The unique identifier of the organization to which the address is being added.
+ * @param {IAddressRequest} address - The details of the address to be added.
+ * @returns {Promise<IOrganizationResponse>} A promise that resolves to the updated organization's information post address addition.
+ * @throws {OrganizationErr.ADD_ADDRESS_FAILED} Throws an error if the address addition fails.
+ */
+
 export const addAddress = async (
   fetcher: Fetcher,
   organizationId: string,
