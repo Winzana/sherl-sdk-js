@@ -4,6 +4,7 @@ import { ICalendarEvent } from '../../entities';
 import { ICalendarEventFilterDto } from '../../types';
 import { errorFactory, CalendarErr } from '../../errors/errors';
 import { StringUtils } from '../../../common/utils/string';
+import { filterSherlError } from '../../../common/utils';
 
 /**
  * Retrieves a calendar event by its ID.
@@ -30,6 +31,10 @@ export const getCalendarEventById = async (
 
     return response.data;
   } catch (error) {
-    throw errorFactory.create(CalendarErr.GET_CALENDAR_EVENT_BY_ID_FAILED);
+    const filteredError = filterSherlError(
+      error,
+      errorFactory.create(CalendarErr.GET_CALENDAR_EVENT_BY_ID_FAILED),
+    );
+    throw filteredError;
   }
 };

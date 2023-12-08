@@ -4,6 +4,7 @@ import { endpoints } from '../../api/calendar/endpoints';
 import { errorFactory, CalendarErr } from '../../errors/errors';
 import { StringUtils } from '../../../common/utils/string';
 import { ICalendar } from '../../entities';
+import { filterSherlError } from '../../../common/utils';
 
 /**
  * Retrieves a calendar by its ID.
@@ -30,6 +31,10 @@ export const getCalendarById = async (
 
     return response.data;
   } catch (error) {
-    throw errorFactory.create(CalendarErr.GET_ONE_CALENDAR_FAILED);
+    const filteredError = filterSherlError(
+      error,
+      errorFactory.create(CalendarErr.GET_ONE_CALENDAR_FAILED),
+    );
+    throw filteredError;
   }
 };

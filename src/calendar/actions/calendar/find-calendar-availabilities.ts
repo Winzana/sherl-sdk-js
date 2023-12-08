@@ -5,6 +5,7 @@ import {
   IFindAvailabilitiesResult,
 } from '../../types';
 import { errorFactory, CalendarErr } from '../../errors/errors';
+import { filterSherlError } from '../../../common/utils';
 
 /**
  * Finds calendar availabilities with a filter.
@@ -31,6 +32,10 @@ export const findCalendarAvailabilitiesWithFilter = async (
 
     return response.data;
   } catch (error) {
-    throw errorFactory.create(CalendarErr.FIND_CALENDAR_AVAILABILITIES_FAILED);
+    const filteredError = filterSherlError(
+      error,
+      errorFactory.create(CalendarErr.FIND_CALENDAR_AVAILABILITIES_FAILED),
+    );
+    throw filteredError;
   }
 };

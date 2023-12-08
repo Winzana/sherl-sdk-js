@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { filterSherlError } from '../../../common/utils';
 import { endpoints } from '../../api/calendar/endpoints';
 import { ICalendar } from '../../entities';
 import { errorFactory, CalendarErr } from '../../errors/errors';
@@ -27,6 +28,10 @@ export const createCalendar = async (
 
     return response.data;
   } catch (error) {
-    throw errorFactory.create(CalendarErr.CREATE_CALENDAR_FAILED);
+    const filteredError = filterSherlError(
+      error,
+      errorFactory.create(CalendarErr.CREATE_CALENDAR_FAILED),
+    );
+    throw filteredError;
   }
 };

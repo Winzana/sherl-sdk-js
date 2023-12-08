@@ -3,6 +3,7 @@ import { endpoints } from '../../api/calendar/endpoints';
 import { ICalendar } from '../../entities';
 import { ICalendarFilterDto } from '../../types';
 import { errorFactory, CalendarErr } from '../../errors/errors';
+import { filterSherlError } from '../../../common/utils';
 
 /**
  * Retrieves a calendar that matches the specified filter criteria.
@@ -27,6 +28,10 @@ export const findOneCalendarWithFilter = async (
 
     return response.data;
   } catch (error) {
-    throw errorFactory.create(CalendarErr.FIND_ONE_CALENDAR_FAILED);
+    const filteredError = filterSherlError(
+      error,
+      errorFactory.create(CalendarErr.FIND_ONE_CALENDAR_FAILED),
+    );
+    throw filteredError;
   }
 };
