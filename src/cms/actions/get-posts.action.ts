@@ -16,11 +16,14 @@ export const getPosts = async (
       },
     );
 
-    if (response.status !== 200) {
-      throw errorFactory.create(CmsErr.CMS_GET_POSTS_FAILED);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 404:
+        throw errorFactory.create(CmsErr.CMS_GET_POSTS_FAILED_POSTS_NOT_FOUND);
+      default:
+        throw errorFactory.create(CmsErr.CMS_GET_POSTS_FAILED);
     }
-
-    return response.data;
   } catch (error) {
     throw errorFactory.create(CmsErr.CMS_GET_POSTS_FAILED);
   }

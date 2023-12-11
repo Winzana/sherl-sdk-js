@@ -15,7 +15,16 @@ export const deleteMediaPage = async (
       }),
     );
 
-    return response.data;
+    switch (response.status) {
+      case 204:
+        return response.data;
+      case 404:
+        throw errorFactory.create(
+          CmsErr.CMS_DELETE_MEDIA_FAILED_MEDIA_NOT_EXIST,
+        );
+      default:
+        throw errorFactory.create(CmsErr.CMS_DELETE_MEDIA_FAILED);
+    }
   } catch (err) {
     throw errorFactory.create(CmsErr.CMS_DELETE_MEDIA_FAILED);
   }

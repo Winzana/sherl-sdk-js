@@ -13,10 +13,20 @@ export const createStoriesPage = async (
       data,
     );
 
-    if (response.status !== 201) {
-      throw errorFactory.create(CmsErr.CMS_CREATE_STORIES_FAILED);
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 404:
+        throw errorFactory.create(
+          CmsErr.CMS_CREATE_STORIES_FAILED_CMS_NOT_EXIST,
+        );
+      case 409:
+        throw errorFactory.create(
+          CmsErr.CMS_CREATE_STORIES_FAILED_STORY_ALREADY_EXIST,
+        );
+      default:
+        throw errorFactory.create(CmsErr.CMS_CREATE_STORIES_FAILED);
     }
-    return response.data;
   } catch (err) {
     throw errorFactory.create(CmsErr.CMS_CREATE_STORIES_FAILED);
   }

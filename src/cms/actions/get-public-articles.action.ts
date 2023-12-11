@@ -16,11 +16,16 @@ export const getPublicArticles = async (
       },
     );
 
-    if (response.status !== 200) {
-      throw errorFactory.create(CmsErr.CMS_GET_PUBLIC_ARTICLES_FAILED);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 404:
+        throw errorFactory.create(
+          CmsErr.CMS_GET_PUBLIC_ARTICLES_FAILED_POSTS_NOT_FOUND,
+        );
+      default:
+        throw errorFactory.create(CmsErr.CMS_GET_PUBLIC_ARTICLES_FAILED);
     }
-
-    return response.data;
   } catch (error) {
     throw errorFactory.create(CmsErr.CMS_GET_PUBLIC_ARTICLES_FAILED);
   }

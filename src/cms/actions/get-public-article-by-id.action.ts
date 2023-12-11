@@ -13,11 +13,16 @@ export const getPublicArticleById = async (
       StringUtils.bindContext(endpoints.MANAGE_POSTS, { id }),
     );
 
-    if (response.status !== 200) {
-      throw errorFactory.create(CmsErr.CMS_GET_PUBLIC_FIND_ID_FAILED);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 404:
+        throw errorFactory.create(
+          CmsErr.CMS_GET_PUBLIC_FIND_ID_FAILED_POST_NOT_FOUND,
+        );
+      default:
+        throw errorFactory.create(CmsErr.CMS_GET_PUBLIC_FIND_ID_FAILED);
     }
-
-    return response.data;
   } catch (error) {
     throw errorFactory.create(CmsErr.CMS_GET_PUBLIC_FIND_ID_FAILED);
   }

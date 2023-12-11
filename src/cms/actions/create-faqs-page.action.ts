@@ -10,10 +10,18 @@ export const createFaqsPage = async (
   try {
     const response = await fetcher.post<IArticle>(endpoints.CREATE_FAQS, data);
 
-    if (response.status !== 201) {
-      throw errorFactory.create(CmsErr.CMS_CREATE_FAQS_FAILED);
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 404:
+        throw errorFactory.create(CmsErr.CREATE_CMS_FAQS_FAILED_CMS_NOT_EXIST);
+      case 409:
+        throw errorFactory.create(
+          CmsErr.CREATE_CMS_FAQS_FAILED_FAQS_ALREADY_EXIST,
+        );
+      default:
+        throw errorFactory.create(CmsErr.CMS_CREATE_FAQS_FAILED);
     }
-    return response.data;
   } catch (err) {
     throw errorFactory.create(CmsErr.CMS_CREATE_FAQS_FAILED);
   }

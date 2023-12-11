@@ -1,8 +1,9 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { CmsErr, errorFactory } from '../errors';
-import { ICMSArticleUpdateInputDto, IArticle } from '../types';
+import { IArticle, ICMSArticleUpdateInputDto } from '../types';
 import { StringUtils } from '../../common/utils/string';
+import { filterSherlError } from '../../common/utils';
 
 export const createArticleById = async (
   fetcher: Fetcher,
@@ -17,8 +18,23 @@ export const createArticleById = async (
       updatedArticle,
     );
 
-    return response.data;
-  } catch (err) {
-    throw errorFactory.create(CmsErr.CMS_UPDATE_ARTICLE_BY_ID_FAILED);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 404:
+        throw errorFactory.create(CmsErr.CREATE_CMS_EVENT_FAILED_CMS_NOT_EXIST);
+      case 409:
+        throw errorFactory.create(
+          CmsErr.CREATE_CMS_EVENT_FAILED_EVENT_ALREADY_EXIST,
+        );
+      default:
+        throw errorFactory.create(CmsErr.CMS_UPDATE_ARTICLE_BY_ID_FAILED);
+    }
+  } catch (error) {
+    const filteredError = filterSherlError(
+      error,
+      errorFactory.create(CmsErr.CMS_UPDATE_ARTICLE_BY_ID_FAILED),
+    );
+    throw filteredError;
   }
 };

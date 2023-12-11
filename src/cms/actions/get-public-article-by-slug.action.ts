@@ -13,11 +13,14 @@ export const getPublicArticleBySlug = async (
       StringUtils.bindContext(endpoints.GET_ARTICLE_BY_SLUG, { slug }),
     );
 
-    if (response.status !== 200) {
-      throw errorFactory.create(CmsErr.CMS_GET_SLUG_FAILED);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 404:
+        throw errorFactory.create(CmsErr.CMS_GET_SLUG_FAILED_ARTICLE_NOT_FOUND);
+      default:
+        throw errorFactory.create(CmsErr.CMS_GET_SLUG_FAILED);
     }
-
-    return response.data;
   } catch (error) {
     throw errorFactory.create(CmsErr.CMS_GET_SLUG_FAILED);
   }

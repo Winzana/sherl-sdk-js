@@ -15,7 +15,14 @@ export const deleteArticleById = async (
       }),
     );
 
-    return response.data;
+    switch (response.status) {
+      case 204:
+        return response.data;
+      case 404:
+        throw errorFactory.create(CmsErr.CMS_DELETE_BY_ID_FAILED_CMS_NOT_EXIST);
+      default:
+        throw errorFactory.create(CmsErr.CMS_DELETE_BY_ID_FAILED);
+    }
   } catch (err) {
     throw errorFactory.create(CmsErr.CMS_DELETE_BY_ID_FAILED);
   }
