@@ -14,10 +14,17 @@ export const getWalletById = async (
         walletId,
       }),
     );
-    if (response.status !== 200) {
-      throw errorFactory.create(VirtualMoneyErr.GET_ONE_WALLET_BY_ID_FAILED);
+
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 404:
+        throw errorFactory.create(
+          VirtualMoneyErr.GET_ONE_WALLET_BY_ID_FAILED_CMS_NOT_EXIST,
+        );
+      default:
+        throw errorFactory.create(VirtualMoneyErr.GET_ONE_WALLET_BY_ID_FAILED);
     }
-    return response.data;
   } catch (error) {
     throw errorFactory.create(VirtualMoneyErr.GET_ONE_WALLET_BY_ID_FAILED);
   }

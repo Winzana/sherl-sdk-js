@@ -16,10 +16,17 @@ export const getWalletHistorical = async (
         historicalId,
       }),
     );
-    if (response.status !== 200) {
-      throw errorFactory.create(VirtualMoneyErr.GET_WALLET_HISTORICAL_FAILED);
+
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 404:
+        throw errorFactory.create(
+          VirtualMoneyErr.GET_WALLET_HISTORICAL_FAILED_CMS_NOT_EXIST,
+        );
+      default:
+        throw errorFactory.create(VirtualMoneyErr.GET_WALLET_HISTORICAL_FAILED);
     }
-    return response.data;
   } catch (error) {
     throw errorFactory.create(VirtualMoneyErr.GET_WALLET_HISTORICAL_FAILED);
   }

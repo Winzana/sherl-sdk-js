@@ -9,11 +9,17 @@ export const createWallet = async (
 ): Promise<IWallet> => {
   try {
     const response = await fetcher.post<IWallet>(endpoints.CREATE_WALLET, data);
-    if (response.status !== 201) {
-      throw errorFactory.create(VirtualMoneyErr.CREATE_WALLET_FAILED);
-    }
 
-    return response.data;
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 404:
+        throw errorFactory.create(
+          VirtualMoneyErr.CREATE_WALLET_FAILED_CMS_NOT_EXIST,
+        );
+      default:
+        throw errorFactory.create(VirtualMoneyErr.CREATE_WALLET_FAILED);
+    }
   } catch (error) {
     throw errorFactory.create(VirtualMoneyErr.CREATE_WALLET_FAILED);
   }

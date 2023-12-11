@@ -14,11 +14,16 @@ export const creditWallet = async (
       { walletId },
       data,
     );
-    if (response.status !== 201) {
-      throw errorFactory.create(VirtualMoneyErr.CREDIT_WALLET_FAILED);
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 404:
+        throw errorFactory.create(
+          VirtualMoneyErr.CREDIT_WALLET_FAILED_CMS_NOT_EXIST,
+        );
+      default:
+        throw errorFactory.create(VirtualMoneyErr.CREDIT_WALLET_FAILED);
     }
-
-    return response.data;
   } catch (error) {
     throw errorFactory.create(VirtualMoneyErr.CREDIT_WALLET_FAILED);
   }

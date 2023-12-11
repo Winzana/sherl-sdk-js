@@ -1,6 +1,6 @@
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
-import { VirtualMoneyErr, errorFactory } from '../errors';
+import { errorFactory, VirtualMoneyErr } from '../errors';
 import { IWalletHistorical } from '../types';
 
 export const createWalletHistorical = async (
@@ -14,13 +14,22 @@ export const createWalletHistorical = async (
       { walletId },
       data,
     );
-    if (response.status !== 201) {
-      throw errorFactory.create(
-        VirtualMoneyErr.CREATE_WALLET_HISTORICAL_FAILED,
-      );
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 404:
+        throw errorFactory.create(
+          VirtualMoneyErr.CREATE_WALLET_HISTORICAL_FAILED,
+        );
+      case 409:
+        throw errorFactory.create(
+          VirtualMoneyErr.CREATE_WALLET_HISTORICAL_FAILED,
+        );
+      default:
+        throw errorFactory.create(
+          VirtualMoneyErr.CREATE_WALLET_HISTORICAL_FAILED,
+        );
     }
-
-    return response.data;
   } catch (error) {
     throw errorFactory.create(VirtualMoneyErr.CREATE_WALLET_HISTORICAL_FAILED);
   }

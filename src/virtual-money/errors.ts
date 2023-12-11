@@ -8,6 +8,12 @@ export enum VirtualMoneyErr {
   CREATE_WALLET_HISTORICAL_FAILED = 'virtual-money/create-wallet-historical-failed',
   GET_ONE_WALLET_BY_ID_FAILED = 'virtual-money/get-wallet-failed',
   GET_WALLET_HISTORICAL_FAILED = 'virtual-money/get-wallet-historical-failed',
+  CREATE_WALLET_FAILED_CMS_NOT_EXIST = 'virtual-money/create-wallet-failed-cms-not-exist',
+  CREDIT_WALLET_FAILED_CMS_NOT_EXIST = 'virtual-money/create-wallet-failed-cms-not-exist',
+  DEBIT_WALLET_FAILED_CMS_NOT_EXIST = 'virtual-money/debit-wallet-failed-cms-not-exist',
+  FIND_ONE_WALLET_FAILED_CMS_NOT_EXIST = 'virtual-money/find-one-wallet-cms-not-exist',
+  GET_ONE_WALLET_BY_ID_FAILED_CMS_NOT_EXIST = 'virtual-money/one-wallet-by-id-cms-not-exist',
+  GET_WALLET_HISTORICAL_FAILED_CMS_NOT_EXIST = 'virtual-money/get-wallet-historical-cms-not-exist',
 }
 
 export const errors = {
@@ -20,6 +26,18 @@ export const errors = {
   [VirtualMoneyErr.GET_ONE_WALLET_BY_ID_FAILED]: 'Failed to get wallet by id',
   [VirtualMoneyErr.GET_WALLET_HISTORICAL_FAILED]:
     'Failed to get wallet historical',
+  [VirtualMoneyErr.CREATE_WALLET_FAILED_CMS_NOT_EXIST]:
+    'Failed to create wallet, CMS does not exist',
+  [VirtualMoneyErr.CREDIT_WALLET_FAILED_CMS_NOT_EXIST]:
+    'Failed to credit wallet, CMS does not exist',
+  [VirtualMoneyErr.DEBIT_WALLET_FAILED_CMS_NOT_EXIST]:
+    'Failed to debit wallet, CMS does not exist',
+  [VirtualMoneyErr.FIND_ONE_WALLET_FAILED_CMS_NOT_EXIST]:
+    'Failed to debit one wallet, CMS does not exist',
+  [VirtualMoneyErr.GET_ONE_WALLET_BY_ID_FAILED_CMS_NOT_EXIST]:
+    'Failed to debit one wallet by id, CMS does not exist',
+  [VirtualMoneyErr.GET_WALLET_HISTORICAL_FAILED_CMS_NOT_EXIST]:
+    'Failed to debit get wallet hisotrical, CMS does not exist',
 };
 
 export const errorFactory = new ErrorFactory<VirtualMoneyErr>(
