@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { filterSherlError } from '../../common/utils/error';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { errorFactory, PersonErr } from '../errors';
@@ -35,8 +36,23 @@ export const updatePersonById = async (
         throw errorFactory.create(PersonErr.PUT_FAILED);
       });
 
-    return response.data;
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(PersonErr.PUT_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(PersonErr.PUT_NOT_FOUND);
+      case 409:
+        throw errorFactory.create(PersonErr.PUT_ALREADY_EXISTS);
+      default:
+        throw errorFactory.create(PersonErr.PUT_FAILED);
+    }
   } catch (error) {
-    throw errorFactory.create(PersonErr.PUT_FAILED);
+    const filteredError = filterSherlError(
+      error,
+      errorFactory.create(PersonErr.PUT_FAILED),
+    );
+    throw filteredError;
   }
 };

@@ -3,6 +3,7 @@ import { endpoints } from '../api/endpoints';
 import { PersonErr, errorFactory } from '../errors';
 import { StringUtils } from '../../common/utils/string';
 import { IPerson } from '../types';
+import { filterSherlError } from '../../common/utils/error';
 
 /**
  * Deletes an address record associated with a given ID.
@@ -31,8 +32,21 @@ export const deleteAddress = async (
         throw errorFactory.create(PersonErr.DELETE_ADDRESS_FAILED);
       });
 
-    return response.data;
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(PersonErr.DELETE_ADDRESS_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(PersonErr.DELETE_ADDRESS_NOT_FOUND);
+      default:
+        throw errorFactory.create(PersonErr.DELETE_ADDRESS_FAILED);
+    }
   } catch (error) {
-    throw errorFactory.create(PersonErr.DELETE_ADDRESS_FAILED);
+    const filteredError = filterSherlError(
+      error,
+      errorFactory.create(PersonErr.DELETE_ADDRESS_FAILED),
+    );
+    throw filteredError;
   }
 };

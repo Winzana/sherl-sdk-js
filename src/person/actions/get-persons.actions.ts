@@ -3,6 +3,7 @@ import { endpoints } from '../api/endpoints';
 import { IPerson } from '../types';
 import { IPersonFilters } from '../types';
 import { Pagination } from '../../common/types/response';
+import { filterSherlError } from '../../common/utils/error';
 
 /**
  * Retrieves a paginated list of persons based on provided filters.
@@ -26,20 +27,32 @@ export const getPersons = async (
   itemsPerPage = 10,
   filters: IPersonFilters,
 ): Promise<Pagination<IPerson>> => {
-  const response = await fetcher.get<Pagination<IPerson>>(
-    endpoints.GET_PERSONS,
-    {
-      page,
-      itemsPerPage,
-      ...filters,
-    },
-  );
-
-  if (response.status !== 200) {
-    throw new Error(
-      `Failed to fetch products API (status: ${response.status})`,
+  try {
+    const response = await fetcher.get<Pagination<IPerson>>(
+      endpoints.GET_PERSONS,
+      {
+        page,
+        itemsPerPage,
+        ...filters,
+      },
     );
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw new Error(`Access denied to API (status: ${response.status})`);
+      case 404:
+        throw new Error(`Page not found (status: ${response.status})`);
+      default:
+        throw new Error(
+          `Failed to fetch products API (status: ${response.status})`,
+        );
+    }
+  } catch (error) {
+    const filteredError = filterSherlError(
+      error,
+      Error(`Failed to fetch API (error: ${error})`),
+    );
+    throw filteredError;
   }
-
-  return response.data;
 };

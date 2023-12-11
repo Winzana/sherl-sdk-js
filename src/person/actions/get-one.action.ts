@@ -3,6 +3,7 @@ import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { IPerson } from '../types';
 import { ApiResponse } from '../../common';
+import { filterSherlError } from '../../common/utils/error';
 
 /**
  * Retrieves the information of a person by its unique identifier.
@@ -29,13 +30,22 @@ export const getPersonById = async (
     response = await fetcher.get<IPerson>(
       StringUtils.bindContext(endpoints.GET_ONE_BY_USERID, { id }),
     );
-  } catch ({ name, response: responseError, stack, isAxiosError, ...rest }) {
-    throw new Error('Cannot reach API');
-  }
 
-  if (response) {
-    return response.data;
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw new Error(`Access denied to API (status: ${response.status})`);
+      case 404:
+        throw new Error(`Page not found (status: ${response.status})`);
+      default:
+        throw new Error('Empty response from API');
+    }
+  } catch (error) {
+    const filteredError = filterSherlError(
+      error,
+      Error(`Failed to fetch API (error: ${error})`),
+    );
+    throw filteredError;
   }
-
-  throw new Error('Empty response from API');
 };

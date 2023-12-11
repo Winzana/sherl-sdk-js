@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { filterSherlError } from '../../common/utils/error';
 import { IPlace } from '../../place';
 import { endpoints } from '../api/endpoints';
 import { PersonErr, errorFactory } from '../errors';
@@ -29,12 +30,23 @@ export const createAddress = async (
         throw errorFactory.create(PersonErr.CREATE_ADDRESS_FAILED);
       });
 
-    if (response.status !== 201) {
-      throw errorFactory.create(PersonErr.CREATE_ADDRESS_FAILED);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(PersonErr.CREATE_ADDRESS_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(PersonErr.CREATE_ADDRESS_NOT_FOUND);
+      case 409:
+        throw errorFactory.create(PersonErr.CREATE_ADDRESS_ALREADY_EXISTS);
+      default:
+        throw errorFactory.create(PersonErr.CREATE_ADDRESS_FAILED);
     }
-
-    return response.data;
   } catch (error) {
-    throw errorFactory.create(PersonErr.CREATE_ADDRESS_FAILED);
+    const filteredError = filterSherlError(
+      error,
+      errorFactory.create(PersonErr.CREATE_ADDRESS_FAILED),
+    );
+    throw filteredError;
   }
 };

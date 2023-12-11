@@ -2,6 +2,7 @@ import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { IPerson } from '../types';
 import { ApiResponse } from '../../common';
+import { filterSherlError } from '../../common/utils/error';
 
 /**
  * Retrieves the information of the currently authenticated user.
@@ -22,13 +23,22 @@ export const getMe = async (fetcher: Fetcher): Promise<IPerson> => {
 
   try {
     response = await fetcher.get<IPerson>(endpoints.GET_ME);
-  } catch ({ name, response: responseError, stack, isAxiosError, ...rest }) {
-    throw new Error('Cannot reach API');
-  }
 
-  if (response) {
-    return response.data;
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw new Error(`Access denied to API (status: ${response.status})`);
+      case 404:
+        throw new Error(`Page not found (status: ${response.status})`);
+      default:
+        throw new Error(`Failed to fetch API (status: ${response.status})`);
+    }
+  } catch (error) {
+    const filteredError = filterSherlError(
+      error,
+      Error(`Failed to fetch API (error: ${error})`),
+    );
+    throw filteredError;
   }
-
-  throw new Error('Empty response from API');
 };
