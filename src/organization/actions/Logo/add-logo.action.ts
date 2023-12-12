@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { filterSherlError } from '../../../common/utils/error';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
@@ -29,12 +30,23 @@ export const addLogo = async (
       },
     );
 
-    if (response.status !== 200) {
-      throw errorFactory.create(OrganizationErr.ADD_LOGO_FAILED);
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(OrganizationErr.ADD_LOGO_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(OrganizationErr.ADD_LOGO_NOT_FOUND);
+      case 409:
+        throw errorFactory.create(OrganizationErr.ADD_LOGO_ALREADY_EXISTS);
+      default:
+        throw errorFactory.create(OrganizationErr.ADD_LOGO_FAILED);
     }
-
-    return response.data;
   } catch (error) {
-    throw errorFactory.create(OrganizationErr.ADD_LOGO_FAILED);
+    const filteredError = filterSherlError(
+      error,
+      errorFactory.create(OrganizationErr.ADD_LOGO_FAILED),
+    );
+    throw filteredError;
   }
 };

@@ -7,8 +7,6 @@ export enum OrganizationErr {
   FECTH_FORBIDDEN = 'organization/forbidden',
   ADD_RIB_FAILED = 'organization/add-rib-failed',
   GET_RIBS_FAILED = 'organization/fetch-documents-failed',
-  ADD_LOGO_FAILED = 'organization/add-logo-failed',
-  DELETE_LOGO_FAILED = 'organization/delete-logo-failed',
   CREATE_PICTURE_FAILED = 'organization/create-picture-failed',
   CREATE_PICTURE_FROM_MEDIA_FAILED = 'organization/create-picture-from-media-failed',
   DELETE_PICTURE_FAILED = 'organization/delete-picture-failed',
@@ -50,6 +48,12 @@ export enum OrganizationErr {
   CREATE_FOUNDER_FORBIDDEN = 'organization/create-founder-forbidden',
   CREATE_FOUNDER_NOT_FOUND = 'organization/create-founder-not-found',
   CREATE_FOUNDER_ALREADY_EXISTS = 'organization/create-founder-already-exists',
+
+  // ADD LOGO
+  ADD_LOGO_FAILED = 'organization/add-logo-failed',
+  ADD_LOGO_FORBIDDEN = 'organization/add-logo-forbidden',
+  ADD_LOGO_NOT_FOUND = 'organization/add-logo-not-found',
+  ADD_LOGO_ALREADY_EXISTS = 'organization/add-logo-already-exists',
 
   // ADD ADDRESS
   ADD_ADDRESS_FAILED = 'organization/add-address-failed',
@@ -128,6 +132,11 @@ export enum OrganizationErr {
   DELETE_FOUNDER_FORBIDDEN = 'organization/delete-founder-forbidden',
   DELETE_FOUNDER_NOT_FOUND = 'organization/delete-founder-not-found',
 
+  // DELETE LOGO
+  DELETE_LOGO_FAILED = 'organization/delete-logo-failed',
+  DELETE_LOGO_FORBIDDEN = 'organization/delete-logo-forbidden',
+  DELETE_LOGO_NOT_FOUND = 'organization/delete-logo-not-found',
+
   UPDATE_IS_PUBLIC_ORGANIZATION_FAILED = 'organization/update-is-public-organization-failed',
   ENABLE_ROAMING_FAILED = 'organization/enable-roaming-failed',
   DISABLE_ROAMING_FAILED = 'organization/disable-roaming-failed',
@@ -149,8 +158,6 @@ export const errors = {
   [OrganizationErr.GET_KYCS_NOT_FOUND]: 'Failed to get KYCs. KYCs not found',
 
   [OrganizationErr.ADD_RIB_FAILED]: 'Failed to add RIB',
-  [OrganizationErr.ADD_LOGO_FAILED]: 'Failed to add logo',
-  [OrganizationErr.DELETE_LOGO_FAILED]: 'Failed to delete logo',
 
   [OrganizationErr.CREATE_PICTURE_FAILED]: 'Failed to create picture',
   [OrganizationErr.CREATE_PICTURE_FROM_MEDIA_FAILED]:
@@ -231,6 +238,13 @@ export const errors = {
   [OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_ALREADY_EXISTS]:
     'Failed to register organization to person. Person already exists in organization',
 
+  // ADD LOGO
+  [OrganizationErr.ADD_LOGO_FAILED]: 'Failed to add logo',
+  [OrganizationErr.ADD_LOGO_FORBIDDEN]: 'Failed to add logo. Forbidden access',
+  [OrganizationErr.ADD_LOGO_NOT_FOUND]: 'Failed to add logo. Logo not found',
+  [OrganizationErr.ADD_LOGO_ALREADY_EXISTS]:
+    'Failed to add logo. Logo already exists',
+
   // ADD KYC
   [OrganizationErr.ADD_DOCUMENT_FAILED]: 'Failed to add document',
   [OrganizationErr.ADD_DOCUMENT_FORBIDDEN]:
@@ -296,6 +310,13 @@ export const errors = {
     'Failed to delete address. Address not found',
   [OrganizationErr.DELETE_ADDRESS_ALREADY_EXISTS]:
     "Failed to delete address. Address doesn't exists",
+
+  // DELETE LOGO
+  [OrganizationErr.DELETE_LOGO_FAILED]: 'Failed to delete logo',
+  [OrganizationErr.DELETE_LOGO_FORBIDDEN]:
+    'Failed to delete logo. Forbidden access',
+  [OrganizationErr.DELETE_LOGO_NOT_FOUND]:
+    'Failed to delete logo. Logo not found',
 
   // DELETE BACKGROUND IMAGE
   [OrganizationErr.DELETE_BACKGROUND_IMAGE_FAILED]:
