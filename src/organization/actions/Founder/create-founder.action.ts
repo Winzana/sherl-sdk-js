@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { filterSherlError } from '../../../common/utils/error';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
@@ -16,11 +17,26 @@ export const createFounder = async (
       }),
       founder,
     );
-    if (response.status !== 201) {
-      throw errorFactory.create(OrganizationErr.CREATE_FOUNDER_FAILED);
+
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(OrganizationErr.CREATE_FOUNDER_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(OrganizationErr.CREATE_FOUNDER_NOT_FOUND);
+      case 409:
+        throw errorFactory.create(
+          OrganizationErr.CREATE_FOUNDER_ALREADY_EXISTS,
+        );
+      default:
+        throw errorFactory.create(OrganizationErr.CREATE_FOUNDER_FAILED);
     }
-    return response.data;
   } catch (error) {
-    throw errorFactory.create(OrganizationErr.CREATE_FOUNDER_FAILED);
+    const filteredError = filterSherlError(
+      error,
+      errorFactory.create(OrganizationErr.CREATE_FOUNDER_FAILED),
+    );
+    throw filteredError;
   }
 };

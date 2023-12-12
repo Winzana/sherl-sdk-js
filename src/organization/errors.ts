@@ -18,9 +18,6 @@ export enum OrganizationErr {
   CREATE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/create-opening-hours-specification-failed',
   UPDATE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/update-opening-hours-specification-failed',
   DELETE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/delete-opening-hours-specification-failed',
-  CREATE_FOUNDER_FAILED = 'organization/create-founder-failed',
-  UPDATE_FOUNDER_FAILED = 'organization/update-founder-failed',
-  DELETE_FOUNDER_FAILED = 'organization/delete-founder-failed',
 
   // CREATE ORGANIZATION
   CREATE_ORGANIZATION_FAILED = 'organization/create-organization-failed',
@@ -45,6 +42,12 @@ export enum OrganizationErr {
   CREATE_EMPLOYEE_FORBIDDEN = 'organization/create-employee-forbidden',
   CREATE_EMPLOYEE_NOT_FOUND = 'organization/create-employee-not-found',
   CREATE_EMPLOYEE_ALREADY_EXISTS = 'organization/create-employee-already-exists',
+
+  // CREATE FOUNDER
+  CREATE_FOUNDER_FAILED = 'organization/create-founder-failed',
+  CREATE_FOUNDER_FORBIDDEN = 'organization/create-founder-forbidden',
+  CREATE_FOUNDER_NOT_FOUND = 'organization/create-founder-not-found',
+  CREATE_FOUNDER_ALREADY_EXISTS = 'organization/create-founder-already-exists',
 
   // ADD ADDRESS
   ADD_ADDRESS_FAILED = 'organization/add-address-failed',
@@ -86,6 +89,11 @@ export enum OrganizationErr {
   UPDATE_EMPLOYEE_FORBIDDEN = 'organization/update-employee-forbidden',
   UPDATE_EMPLOYEE_NOT_FOUND = 'organization/update-employee-not-found',
 
+  // UPDATE FOUNDER
+  UPDATE_FOUNDER_FAILED = 'organization/update-founder-failed',
+  UPDATE_FOUNDER_FORBIDDEN = 'organization/update-founder-forbidden',
+  UPDATE_FOUNDER_NOT_FOUND = 'organization/update-founder-not-found',
+
   // DELETE ADDRESS
   DELETE_ADDRESS_FAILED = 'organization/delete-address-failed',
   DELETE_ADDRESS_FORBIDDEN = 'organization/delete-address-forbidden',
@@ -97,10 +105,15 @@ export enum OrganizationErr {
   DELETE_BACKGROUND_IMAGE_FORBIDDEN = 'organization/delete-background-image-forbidden',
   DELETE_BACKGROUND_IMAGE_NOT_FOUND = 'organization/delete-background-image-not-found',
 
-  // DELETE EMPLOYEE FAILED
+  // DELETE EMPLOYEE
   DELETE_EMPLOYEE_FAILED = 'organization/delete-employee-failed',
   DELETE_EMPLOYEE_FORBIDDEN = 'organization/delete-employee-forbidden',
   DELETE_EMPLOYEE_NOT_FOUND = 'organization/delete-employee-not-found',
+
+  // DELETE FOUNDER
+  DELETE_FOUNDER_FAILED = 'organization/delete-founder-failed',
+  DELETE_FOUNDER_FORBIDDEN = 'organization/delete-founder-forbidden',
+  DELETE_FOUNDER_NOT_FOUND = 'organization/delete-founder-not-found',
 
   UPDATE_IS_PUBLIC_ORGANIZATION_FAILED = 'organization/update-is-public-organization-failed',
   ENABLE_ROAMING_FAILED = 'organization/enable-roaming-failed',
@@ -134,10 +147,6 @@ export const errors = {
     'Failed to update opening hours specification',
   [OrganizationErr.DELETE_OPENING_HOURS_SPECIFICATION_FAILED]:
     'Failed to delete opening hours specification',
-  [OrganizationErr.DELETE_EMPLOYEE_FAILED]: 'Failed to delete employee',
-  [OrganizationErr.CREATE_FOUNDER_FAILED]: 'Failed to create founder',
-  [OrganizationErr.UPDATE_FOUNDER_FAILED]: 'Failed to update founder',
-  [OrganizationErr.DELETE_FOUNDER_FAILED]: 'Failed to delete founder',
   [OrganizationErr.ADD_ADDRESS_FAILED]: 'Failed to add address',
 
   // CREATE ORGANIZATION
@@ -178,6 +187,15 @@ export const errors = {
   [OrganizationErr.CREATE_EMPLOYEE_ALREADY_EXISTS]:
     'Failed to create employee. Employee already exists',
 
+  // CREATE FOUNDER
+  [OrganizationErr.CREATE_FOUNDER_FAILED]: 'Failed to create founder',
+  [OrganizationErr.CREATE_FOUNDER_FORBIDDEN]:
+    'Failed to create founder. Forbidden access',
+  [OrganizationErr.CREATE_FOUNDER_NOT_FOUND]:
+    'Failed to create founder. Page not found',
+  [OrganizationErr.CREATE_FOUNDER_ALREADY_EXISTS]:
+    'Failed to create founder. Founder already exists',
+
   [OrganizationErr.REGISTER_ORGANIZATION_FAILED]:
     'Failed to register organization',
   [OrganizationErr.UPDATE_IS_PUBLIC_ORGANIZATION_FAILED]:
@@ -217,6 +235,13 @@ export const errors = {
   [OrganizationErr.UPDATE_EMPLOYEE_NOT_FOUND]:
     'Failed to update employee. Employee not found',
 
+  // UPDATE FOUNDER
+  [OrganizationErr.UPDATE_FOUNDER_FAILED]: 'Failed to update founder',
+  [OrganizationErr.UPDATE_FOUNDER_FORBIDDEN]:
+    'Failed to update founder. Forbidden access',
+  [OrganizationErr.UPDATE_FOUNDER_NOT_FOUND]:
+    'Failed to update founder. Founder not found',
+
   // UPDATE ADDRESS
   [OrganizationErr.UPDATE_ADDRESS_FAILED]: 'Failed to update address',
   [OrganizationErr.UPDATE_ADDRESS_FORBIDDEN]:
@@ -248,6 +273,20 @@ export const errors = {
     'Failed to delete background image. Forbidden access',
   [OrganizationErr.DELETE_BACKGROUND_IMAGE_NOT_FOUND]:
     'Failed to delete background image. Background image not found',
+
+  // DELETE EMPLOYEE
+  [OrganizationErr.DELETE_EMPLOYEE_FAILED]: 'Failed to delete employee',
+  [OrganizationErr.DELETE_EMPLOYEE_FORBIDDEN]:
+    'Failed to delete employee. Forbidden access',
+  [OrganizationErr.DELETE_EMPLOYEE_NOT_FOUND]:
+    'Failed to delete employee. Employee not found',
+
+  // DELETE FOUNDER
+  [OrganizationErr.DELETE_FOUNDER_FAILED]: 'Failed to delete founder',
+  [OrganizationErr.DELETE_FOUNDER_FORBIDDEN]:
+    'Failed to delete founder. Forbidden access',
+  [OrganizationErr.DELETE_FOUNDER_NOT_FOUND]:
+    'Failed to delete founder. Founder not found',
 
   [OrganizationErr.GET_RIBS_FAILED]: 'Failed to fetch all organization ribs',
   [OrganizationErr.ADD_KYC_FAILED]: 'Failed to add KYC',
