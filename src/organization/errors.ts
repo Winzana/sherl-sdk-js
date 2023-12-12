@@ -28,15 +28,18 @@ export enum OrganizationErr {
   CREATE_FOUNDER_FAILED = 'organization/create-founder-failed',
   UPDATE_FOUNDER_FAILED = 'organization/update-founder-failed',
   DELETE_FOUNDER_FAILED = 'organization/delete-founder-failed',
-  ADD_ADDRESS_FAILED = 'organization/add-address-failed',
-  UPDATE_ADDRESS_FAILED = 'organization/update-address-failed',
-  DELETE_ADDRESS_FAILED = 'organization/delete-address-failed',
 
   // CREATE ORGANIZATION
   CREATE_ORGANIZATION_FAILED = 'organization/create-organization-failed',
   CREATE_ORGANIZATION_FORBIDDEN = 'organization/create-organization-forbidden',
   CREATE_ORGANIZATION_NOT_FOUND = 'organization/create-organization-not-found',
   CREATE_ORGANIZATION_ALREADY_EXISTS = 'organization/create-organization-already-exists',
+
+  // ADD ADDRESS
+  ADD_ADDRESS_FAILED = 'organization/add-address-failed',
+  ADD_ADDRESS_FORBIDDEN = 'organization/add-address-forbidden',
+  ADD_ADDRESS_NOT_FOUND = 'organization/add-address-not-found',
+  ADD_ADDRESS_ALREADY_EXISTS = 'organization/add-address-already-exists',
 
   // REGISTER ORGANIZATION
   REGISTER_ORGANIZATION_FAILED = 'organization/register-organization-failed',
@@ -56,6 +59,17 @@ export enum OrganizationErr {
   UPDATE_ORGANIZATION_FAILED = 'organization/update-organization-failed',
   UPDATE_ORGANIZATION_FORBIDDEN = 'organization/update-organization-forbidden',
   UPDATE_ORGANIZATION_NOT_FOUND = 'organization/update-organization-not-found',
+
+  // UPDATE ADDRESS
+  UPDATE_ADDRESS_FAILED = 'organization/update-address-failed',
+  UPDATE_ADDRESS_FORBIDDEN = 'organization/update-address-forbidden',
+  UPDATE_ADDRESS_NOT_FOUND = 'organization/update-address-not-found',
+
+  // DELETE ADDRESS
+  DELETE_ADDRESS_FAILED = 'organization/delete-address-failed',
+  DELETE_ADDRESS_FORBIDDEN = 'organization/delete-address-forbidden',
+  DELETE_ADDRESS_NOT_FOUND = 'organization/delete-address-not-found',
+  DELETE_ADDRESS_ALREADY_EXISTS = 'organization/delete-address-already-exists',
 
   UPDATE_IS_PUBLIC_ORGANIZATION_FAILED = 'organization/update-is-public-organization-failed',
   ENABLE_ROAMING_FAILED = 'organization/enable-roaming-failed',
@@ -102,8 +116,6 @@ export const errors = {
   [OrganizationErr.UPDATE_FOUNDER_FAILED]: 'Failed to update founder',
   [OrganizationErr.DELETE_FOUNDER_FAILED]: 'Failed to delete founder',
   [OrganizationErr.ADD_ADDRESS_FAILED]: 'Failed to add address',
-  [OrganizationErr.UPDATE_ADDRESS_FAILED]: 'Failed to update address',
-  [OrganizationErr.DELETE_ADDRESS_FAILED]: 'Failed to delete address',
 
   // CREATE ORGANIZATION
   [OrganizationErr.CREATE_ORGANIZATION_FAILED]: 'Failed to create organization',
@@ -141,6 +153,13 @@ export const errors = {
   [OrganizationErr.UPDATE_ORGANIZATION_NOT_FOUND]:
     'Failed to update organization',
 
+  // UPDATE ADDRESS
+  [OrganizationErr.UPDATE_ADDRESS_FAILED]: 'Failed to update address',
+  [OrganizationErr.UPDATE_ADDRESS_FORBIDDEN]:
+    'Failed to update address. Forbidden access',
+  [OrganizationErr.UPDATE_ADDRESS_NOT_FOUND]:
+    'Failed to update address. Address not found',
+
   // SUGGEST ORGANIZATION
   [OrganizationErr.SUGGEST_ORGANIZATION_FAILED]:
     'Failed to suggest organization',
@@ -148,6 +167,15 @@ export const errors = {
     'Failed to suggest organization. Forbidden access',
   [OrganizationErr.SUGGEST_ORGANIZATION_NOT_FOUND]:
     'Failed to suggest organization. Organization not found',
+
+  // DELETE ADDRESS
+  [OrganizationErr.DELETE_ADDRESS_FAILED]: 'Failed to delete address',
+  [OrganizationErr.DELETE_ADDRESS_FORBIDDEN]:
+    'Failed to delete address. Forbidden access',
+  [OrganizationErr.DELETE_ADDRESS_NOT_FOUND]:
+    'Failed to delete address. Address not found',
+  [OrganizationErr.DELETE_ADDRESS_ALREADY_EXISTS]:
+    "Failed to delete address. Address doesn't exists",
 
   [OrganizationErr.GET_RIBS_FAILED]: 'Failed to fetch all organization ribs',
   [OrganizationErr.ADD_KYC_FAILED]: 'Failed to add KYC',
