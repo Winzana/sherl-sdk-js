@@ -12,7 +12,19 @@ export const getProductsAnalytics = async (
       endpoints.ANALYTICS_PRODUCTS,
       filters,
     );
-    return response.data;
+
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          AnalyticsErr.ANALYTICS_PRODUCTS_FAILED_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(AnalyticsErr.ANALYTICS_PRODUCTS_NOT_FOUND);
+      default:
+        throw errorFactory.create(AnalyticsErr.ANALYTICS_PRODUCTS_FAILED);
+    }
   } catch (err) {
     throw errorFactory.create(AnalyticsErr.ANALYTICS_PRODUCTS_FAILED);
   }

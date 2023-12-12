@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoint';
 import { AnalyticsErr, errorFactory } from '../errors';
 import { IAnalyticResponse, IAnalyticsInputBaseDto } from '../types';
@@ -12,8 +13,23 @@ export const getAudienceAnalytics = async (
       endpoints.ANALYTICS_AUDIENCES,
       filters,
     );
-    return response.data;
+
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          AnalyticsErr.ANALYTICS_AUDIENCES_FAILED_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(AnalyticsErr.ANALYTICS_AUDIENCES_NOT_FOUND);
+      default:
+        throw errorFactory.create(AnalyticsErr.ANALYTICS_AUDIENCES_FAILED);
+    }
   } catch (err) {
-    throw errorFactory.create(AnalyticsErr.ANALYTICS_AUDIENCES_FAILED);
+    throw getSherlError(
+      err,
+      errorFactory.create(AnalyticsErr.ANALYTICS_AUDIENCES_FAILED),
+    );
   }
 };

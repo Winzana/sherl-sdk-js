@@ -13,6 +13,20 @@ export const getTrackingAnalytics = async (
       endpoints.ANALYTICS_TRACKING,
       filters,
     );
+
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          AnalyticsErr.ANALYTICS_TRACKING_FAILED_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(AnalyticsErr.ANALYTICS_TRACKING_NOT_FOUND);
+      default:
+        throw errorFactory.create(AnalyticsErr.ANALYTICS_TRACKING_FAILED);
+    }
+
     return response.data;
   } catch (err) {
     throw errorFactory.create(AnalyticsErr.ANALYTICS_TRACKING_FAILED);
