@@ -2,6 +2,7 @@ import { IPerson, IPersonRegister } from '../types';
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { errorFactory, PersonErr } from '../errors';
+import { filterSherlError } from '../../common/utils/error';
 
 export const registerWithEmailAndPassword = async (
   fetcher: Fetcher,
@@ -14,12 +15,23 @@ export const registerWithEmailAndPassword = async (
         throw errorFactory.create(PersonErr.POST_FAILED);
       });
 
-    if (response.status !== 201) {
-      throw errorFactory.create(PersonErr.POST_FAILED);
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(PersonErr.POST_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(PersonErr.POST_NOT_FOUND);
+      case 409:
+        throw errorFactory.create(PersonErr.POST_ALREADY_EXISTS);
+      default:
+        throw errorFactory.create(PersonErr.POST_FAILED);
     }
-
-    return response.data;
-  } catch {
-    throw new Error('Cannot reach API');
+  } catch (error) {
+    const filteredError = filterSherlError(
+      error,
+      errorFactory.create(PersonErr.POST_FAILED),
+    );
+    throw filteredError;
   }
 };
