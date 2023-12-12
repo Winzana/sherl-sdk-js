@@ -9,14 +9,29 @@ export const createOpinionClaim = async (
   opinionId: string,
   claim: IClaimOpinionInput,
 ): Promise<any> => {
-  const response = await fetcher.post<any>(
-    StringUtils.bindContext(endpoints.CREATE_OPINION_CLAIM, { id: opinionId }),
-    claim,
-  );
+  try {
+    const response = await fetcher.post<any>(
+      StringUtils.bindContext(endpoints.CREATE_OPINION_CLAIM, {
+        id: opinionId,
+      }),
+      claim,
+    );
 
-  if (response.status !== 200) {
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(OpinionErr.CREATE_OPINION_CLAIM_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(OpinionErr.CREATE_OPINION_CLAIM_NOT_FOUND);
+      case 409:
+        throw errorFactory.create(
+          OpinionErr.CREATE_OPINION_CLAIM_ALREADY_EXIST,
+        );
+      default:
+        throw errorFactory.create(OpinionErr.CREATE_OPINION_CLAIM_FAILED);
+    }
+  } catch (error) {
     throw errorFactory.create(OpinionErr.CREATE_OPINION_CLAIM_FAILED);
   }
-
-  return response.data;
 };

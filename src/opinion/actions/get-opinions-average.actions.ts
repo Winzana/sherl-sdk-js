@@ -7,12 +7,23 @@ export const getOpinionsAverage = async (
   fetcher: Fetcher,
   opinionToUri: string,
 ): Promise<IAverage> => {
-  const response = await fetcher.get<IAverage>(endpoints.GET_OPINIONS_AVERAGE, {
-    opinionToUri,
-  });
+  try {
+    const response = await fetcher.get<IAverage>(
+      endpoints.GET_OPINIONS_AVERAGE,
+      { opinionToUri },
+    );
 
-  if (response.status !== 200) {
-    errorFactory.create(OpinionErr.FETCH_OPINION_AVERAGE_FAILED);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(OpinionErr.FETCH_OPINION_AVERAGE_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(OpinionErr.FETCH_OPINION_AVERAGE_NOT_FOUND);
+      default:
+        throw errorFactory.create(OpinionErr.FETCH_OPINION_AVERAGE_FAILED);
+    }
+  } catch (error) {
+    throw errorFactory.create(OpinionErr.FETCH_OPINION_AVERAGE_FAILED);
   }
-  return response.data;
 };

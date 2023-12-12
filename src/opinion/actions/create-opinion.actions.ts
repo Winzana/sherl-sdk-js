@@ -8,15 +8,24 @@ export const createOpinion = async <T, K>(
   fetcher: Fetcher,
   opinion: ICreateOpinionInput,
 ): Promise<IOpinion<T, K>> => {
-  const { id, ...rest } = opinion;
-  const response = await fetcher.post<IOpinion<T, K>>(
-    StringUtils.bindContext(endpoints.CREATE_OPINION, { id }),
-    rest,
-  );
+  try {
+    const { id, ...rest } = opinion;
+    const response = await fetcher.post<IOpinion<T, K>>(
+      StringUtils.bindContext(endpoints.CREATE_OPINION, { id }),
+      rest,
+    );
 
-  if (response.status !== 200) {
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(OpinionErr.CREATE_OPINION_FORBIDDEN);
+      case 409:
+        throw errorFactory.create(OpinionErr.CREATE_OPINION_ALREADY_EXIST);
+      default:
+        throw errorFactory.create(OpinionErr.CREATE_OPINION_FAILED);
+    }
+  } catch (error) {
     throw errorFactory.create(OpinionErr.CREATE_OPINION_FAILED);
   }
-
-  return response.data;
 };
