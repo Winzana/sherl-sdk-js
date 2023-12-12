@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword } from './signin-credentials.action';
+import { signInWithEmailAndPassword } from '../actions/signin-credentials.action';
 import { AuthErr, errorFactory } from '../errors';
 import { Fetcher } from '../../common/api';
 import { ErrorFactory } from '../../common/errors';

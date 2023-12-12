@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { AuthErr, errorFactory } from '../errors';
 import { IAuthExternalServiceUserInfo, ILoginResponse } from '../types';
@@ -19,6 +20,6 @@ export const loginWithApple = async (
 
     return response.data;
   } catch (err) {
-    throw errorFactory.create(AuthErr.LOGIN_APPLE_FAILED);
+    throw getSherlError(err, errorFactory.create(AuthErr.LOGIN_APPLE_FAILED));
   }
 };

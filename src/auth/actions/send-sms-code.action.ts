@@ -11,6 +11,10 @@ export const sendSMSCode = async (
       mobilePhoneNumber,
     });
 
+    if (response.status == 404) {
+      throw errorFactory.create(AuthErr.REQUEST_SMS_CODE_NOT_FOUND);
+    }
+
     if (!response.data) {
       throw errorFactory.create(AuthErr.REQUEST_SMS_CODE_FAILED);
     }
