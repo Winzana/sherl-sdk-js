@@ -10,7 +10,6 @@ export enum OrganizationErr {
   UPDATE_DOCUMENT_FAILED = 'organization/update-failed',
   ADD_RIB_FAILED = 'organization/add-rib-failed',
   GET_RIBS_FAILED = 'organization/fetch-documents-failed',
-  SET_COMMUNICATION_FAILED = 'organization/set-communication-failed',
   ADD_LOGO_FAILED = 'organization/add-logo-failed',
   DELETE_LOGO_FAILED = 'organization/delete-logo-failed',
   CREATE_PICTURE_FAILED = 'organization/create-picture-failed',
@@ -59,6 +58,11 @@ export enum OrganizationErr {
   REGISTER_ORGANIZATION_TO_PERSON_NOT_FOUND = 'organization/register-organization-to-person-not-found',
   REGISTER_ORGANIZATION_TO_PERSON_ALREADY_EXISTS = 'organization/register-organization-to-person-already-exists',
 
+  // SET COMMUNICATION
+  SET_COMMUNICATION_FAILED = 'organization/set-communication-failed',
+  SET_COMMUNICATION_FORBIDDEN = 'organization/set-communication-forbidden',
+  SET_COMMUNICATION_NOT_FOUND = 'organization/set-communication-not-found',
+
   // SUGGEST ORGANIZATION
   SUGGEST_ORGANIZATION_FAILED = 'organization/suggest-organization-failed',
   SUGGEST_ORGANIZATION_FORBIDDEN = 'organization/suggest-organization-forbidden',
@@ -104,7 +108,6 @@ export const errors = {
   [OrganizationErr.ADD_DOCUMENT_FAILED]: 'Failed to add document',
   [OrganizationErr.UPDATE_DOCUMENT_FAILED]: 'Failed to update document',
   [OrganizationErr.ADD_RIB_FAILED]: 'Failed to add RIB',
-  [OrganizationErr.SET_COMMUNICATION_FAILED]: 'Failed to set communication',
   [OrganizationErr.ADD_LOGO_FAILED]: 'Failed to add logo',
   [OrganizationErr.DELETE_LOGO_FAILED]: 'Failed to delete logo',
 
@@ -174,6 +177,11 @@ export const errors = {
     'Failed to register organization to person. Organization not found',
   [OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_ALREADY_EXISTS]:
     'Failed to register organization to person. Person already exists in organization',
+
+  // SET COMMUNICATION
+  [OrganizationErr.SET_COMMUNICATION_FAILED]: 'Failed to set communication',
+  [OrganizationErr.SET_COMMUNICATION_FORBIDDEN]: 'Failed to set communication',
+  [OrganizationErr.SET_COMMUNICATION_NOT_FOUND]: 'Failed to set communication',
 
   // UPDATE ORGANIZATION
   [OrganizationErr.UPDATE_ORGANIZATION_FAILED]: 'Failed to update organization',
