@@ -18,9 +18,6 @@ export enum OrganizationErr {
   CREATE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/create-opening-hours-specification-failed',
   UPDATE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/update-opening-hours-specification-failed',
   DELETE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/delete-opening-hours-specification-failed',
-  CREATE_EMPLOYEE_FAILED = 'organization/create-employee-failed',
-  UPDATE_EMPLOYEE_FAILED = 'organization/update-employee-failed',
-  DELETE_EMPLOYEE_FAILED = 'organization/delete-employee-failed',
   CREATE_FOUNDER_FAILED = 'organization/create-founder-failed',
   UPDATE_FOUNDER_FAILED = 'organization/update-founder-failed',
   DELETE_FOUNDER_FAILED = 'organization/delete-founder-failed',
@@ -42,6 +39,12 @@ export enum OrganizationErr {
   CREATE_BACKGROUND_IMAGE_FORBIDDEN = 'organization/create-background-image-forbidden',
   CREATE_BACKGROUND_IMAGE_NOT_FOUND = 'organization/create-background-image-not-found',
   CREATE_BACKGROUND_IMAGE_ALREADY_EXISTS = 'organization/create-background-image-already-exists',
+
+  // CREATE EMPLOYEE
+  CREATE_EMPLOYEE_FAILED = 'organization/create-employee-failed',
+  CREATE_EMPLOYEE_FORBIDDEN = 'organization/create-employee-forbidden',
+  CREATE_EMPLOYEE_NOT_FOUND = 'organization/create-employee-not-found',
+  CREATE_EMPLOYEE_ALREADY_EXISTS = 'organization/create-employee-already-exists',
 
   // ADD ADDRESS
   ADD_ADDRESS_FAILED = 'organization/add-address-failed',
@@ -78,6 +81,11 @@ export enum OrganizationErr {
   UPDATE_ADDRESS_FORBIDDEN = 'organization/update-address-forbidden',
   UPDATE_ADDRESS_NOT_FOUND = 'organization/update-address-not-found',
 
+  // UPDATE EMPLOYEE
+  UPDATE_EMPLOYEE_FAILED = 'organization/update-employee-failed',
+  UPDATE_EMPLOYEE_FORBIDDEN = 'organization/update-employee-forbidden',
+  UPDATE_EMPLOYEE_NOT_FOUND = 'organization/update-employee-not-found',
+
   // DELETE ADDRESS
   DELETE_ADDRESS_FAILED = 'organization/delete-address-failed',
   DELETE_ADDRESS_FORBIDDEN = 'organization/delete-address-forbidden',
@@ -88,6 +96,11 @@ export enum OrganizationErr {
   DELETE_BACKGROUND_IMAGE_FAILED = 'organization/delete-background-image-failed',
   DELETE_BACKGROUND_IMAGE_FORBIDDEN = 'organization/delete-background-image-forbidden',
   DELETE_BACKGROUND_IMAGE_NOT_FOUND = 'organization/delete-background-image-not-found',
+
+  // DELETE EMPLOYEE FAILED
+  DELETE_EMPLOYEE_FAILED = 'organization/delete-employee-failed',
+  DELETE_EMPLOYEE_FORBIDDEN = 'organization/delete-employee-forbidden',
+  DELETE_EMPLOYEE_NOT_FOUND = 'organization/delete-employee-not-found',
 
   UPDATE_IS_PUBLIC_ORGANIZATION_FAILED = 'organization/update-is-public-organization-failed',
   ENABLE_ROAMING_FAILED = 'organization/enable-roaming-failed',
@@ -121,8 +134,6 @@ export const errors = {
     'Failed to update opening hours specification',
   [OrganizationErr.DELETE_OPENING_HOURS_SPECIFICATION_FAILED]:
     'Failed to delete opening hours specification',
-  [OrganizationErr.CREATE_EMPLOYEE_FAILED]: 'Failed to create employee',
-  [OrganizationErr.UPDATE_EMPLOYEE_FAILED]: 'Failed to update employee',
   [OrganizationErr.DELETE_EMPLOYEE_FAILED]: 'Failed to delete employee',
   [OrganizationErr.CREATE_FOUNDER_FAILED]: 'Failed to create founder',
   [OrganizationErr.UPDATE_FOUNDER_FAILED]: 'Failed to update founder',
@@ -158,6 +169,15 @@ export const errors = {
   [OrganizationErr.CREATE_BACKGROUND_IMAGE_ALREADY_EXISTS]:
     'Failed to create background image. Background image already exists',
 
+  // CREATE EMPLOYEE
+  [OrganizationErr.CREATE_EMPLOYEE_FAILED]: 'Failed to create employee',
+  [OrganizationErr.CREATE_EMPLOYEE_FORBIDDEN]:
+    'Failed to create employee. Forbidden access',
+  [OrganizationErr.CREATE_EMPLOYEE_NOT_FOUND]:
+    'Failed to create employee. Page not found',
+  [OrganizationErr.CREATE_EMPLOYEE_ALREADY_EXISTS]:
+    'Failed to create employee. Employee already exists',
+
   [OrganizationErr.REGISTER_ORGANIZATION_FAILED]:
     'Failed to register organization',
   [OrganizationErr.UPDATE_IS_PUBLIC_ORGANIZATION_FAILED]:
@@ -189,6 +209,13 @@ export const errors = {
     'Failed to update organization',
   [OrganizationErr.UPDATE_ORGANIZATION_NOT_FOUND]:
     'Failed to update organization',
+
+  // UPDATE EMPLOYEE
+  [OrganizationErr.UPDATE_EMPLOYEE_FAILED]: 'Failed to update employee',
+  [OrganizationErr.UPDATE_EMPLOYEE_FORBIDDEN]:
+    'Failed to update employee. Forbidden access',
+  [OrganizationErr.UPDATE_EMPLOYEE_NOT_FOUND]:
+    'Failed to update employee. Employee not found',
 
   // UPDATE ADDRESS
   [OrganizationErr.UPDATE_ADDRESS_FAILED]: 'Failed to update address',
