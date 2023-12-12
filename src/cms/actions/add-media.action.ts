@@ -18,12 +18,12 @@ export const addMediaPage = async (
       data,
     );
     switch (response.status) {
-      case 200:
-        return response.data;
       case 201:
-        throw errorFactory.create(CmsErr.CMS_ADD_MEDIA_FAILED);
+        return response.data;
+      case 403:
+        throw errorFactory.create(CmsErr.CREATE_CMS_EVENT_FAILED_CMS_FORBIDDEN);
       case 404:
-        throw errorFactory.create(CmsErr.CREATE_CMS_EVENT_FAILED_CMS_NOT_EXIST);
+        throw errorFactory.create(CmsErr.CREATE_CMS_EVENT_FAILED_CMS_NOT_FOUND);
       case 409:
         throw errorFactory.create(
           CmsErr.CREATE_CMS_EVENT_FAILED_EVENT_ALREADY_EXIST,

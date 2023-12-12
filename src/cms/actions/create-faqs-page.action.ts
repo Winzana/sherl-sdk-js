@@ -13,6 +13,8 @@ export const createFaqsPage = async (
     switch (response.status) {
       case 201:
         return response.data;
+      case 403:
+        throw errorFactory.create(CmsErr.CREATE_CMS_FAQS_FAILED_CMS_FORBIDDEN);
       case 404:
         throw errorFactory.create(CmsErr.CREATE_CMS_FAQS_FAILED_CMS_NOT_EXIST);
       case 409:

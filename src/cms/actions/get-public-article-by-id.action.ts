@@ -16,6 +16,10 @@ export const getPublicArticleById = async (
     switch (response.status) {
       case 200:
         return response.data;
+      case 403:
+        throw errorFactory.create(
+          CmsErr.CMS_GET_PUBLIC_FIND_ID_FAILED_POST_FORBIDDEN,
+        );
       case 404:
         throw errorFactory.create(
           CmsErr.CMS_GET_PUBLIC_FIND_ID_FAILED_POST_NOT_FOUND,

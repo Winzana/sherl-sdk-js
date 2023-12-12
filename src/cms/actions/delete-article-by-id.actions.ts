@@ -16,10 +16,12 @@ export const deleteArticleById = async (
     );
 
     switch (response.status) {
-      case 204:
+      case 200:
         return response.data;
+      case 403:
+        throw errorFactory.create(CmsErr.CMS_DELETE_BY_ID_FAILED_CMS_FORBIDDEN);
       case 404:
-        throw errorFactory.create(CmsErr.CMS_DELETE_BY_ID_FAILED_CMS_NOT_EXIST);
+        throw errorFactory.create(CmsErr.CMS_DELETE_BY_ID_FAILED_CMS_NOT_FOUND);
       default:
         throw errorFactory.create(CmsErr.CMS_DELETE_BY_ID_FAILED);
     }

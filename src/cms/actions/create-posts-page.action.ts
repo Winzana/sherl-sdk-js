@@ -16,8 +16,10 @@ export const createPostsPage = async (
     switch (response.status) {
       case 201:
         return response.data;
+      case 403:
+        throw errorFactory.create(CmsErr.CREATE_CMS_POSTS_FAILED_CMS_FORBIDDEN);
       case 404:
-        throw errorFactory.create(CmsErr.CMS_CREATE_POSTS_FAILED_CMS_NOT_EXIST);
+        throw errorFactory.create(CmsErr.CREATE_CMS_POSTS_FAILED_CMS_NOT_FOUND);
       case 409:
         throw errorFactory.create(
           CmsErr.CMS_CREATE_POSTS_FAILED_POST_ALREADY_EXIST,

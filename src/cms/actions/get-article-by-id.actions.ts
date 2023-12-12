@@ -16,8 +16,10 @@ export const getArticleById = async (
     switch (response.status) {
       case 200:
         return response.data;
+      case 403:
+        throw errorFactory.create(CmsErr.CMS_GET_BY_ID_FAILED_POST_FORBIDDEN);
       case 404:
-        throw errorFactory.create(CmsErr.CMS_GET_BY_ID_FAILED_POST_NOT_EXIST);
+        throw errorFactory.create(CmsErr.CMS_GET_BY_ID_FAILED_POST_NOT_FOUND);
       default:
         throw errorFactory.create(CmsErr.CMS_GET_BY_ID_FAILED);
     }

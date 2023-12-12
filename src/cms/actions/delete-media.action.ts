@@ -16,12 +16,12 @@ export const deleteMediaPage = async (
     );
 
     switch (response.status) {
-      case 204:
+      case 200:
         return response.data;
+      case 403:
+        throw errorFactory.create(CmsErr.CREATE_CMS_MEDIA_FAILED_CMS_FORBIDDEN);
       case 404:
-        throw errorFactory.create(
-          CmsErr.CMS_DELETE_MEDIA_FAILED_MEDIA_NOT_EXIST,
-        );
+        throw errorFactory.create(CmsErr.CREATE_CMS_MEDIA_FAILED_CMS_NOT_FOUND);
       default:
         throw errorFactory.create(CmsErr.CMS_DELETE_MEDIA_FAILED);
     }

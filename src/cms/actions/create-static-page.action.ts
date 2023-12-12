@@ -16,8 +16,14 @@ export const createStaticPage = async (
     switch (response.status) {
       case 201:
         return response.data;
+      case 403:
+        throw errorFactory.create(
+          CmsErr.CREATE_CMS_STATIC_FAILED_CMS_FORBIDDEN,
+        );
       case 404:
-        throw errorFactory.create(CmsErr.CMS_CREATE_FAILED_CMS_NOT_EXIST);
+        throw errorFactory.create(
+          CmsErr.CREATE_CMS_STATIC_FAILED_CMS_NOT_FOUND,
+        );
       case 409:
         throw errorFactory.create(
           CmsErr.CMS_CREATE_FAILED_STATIC_PAGE_ALREADY_EXIST,

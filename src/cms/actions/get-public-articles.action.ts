@@ -19,6 +19,10 @@ export const getPublicArticles = async (
     switch (response.status) {
       case 200:
         return response.data;
+      case 403:
+        throw errorFactory.create(
+          CmsErr.CMS_GET_PUBLIC_ARTICLES_FAILED_POSTS_FORBIDDEN,
+        );
       case 404:
         throw errorFactory.create(
           CmsErr.CMS_GET_PUBLIC_ARTICLES_FAILED_POSTS_NOT_FOUND,

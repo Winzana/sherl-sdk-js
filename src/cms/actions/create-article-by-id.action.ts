@@ -21,12 +21,10 @@ export const createArticleById = async (
     switch (response.status) {
       case 200:
         return response.data;
+      case 403:
+        throw errorFactory.create(CmsErr.CREATE_CMS_EVENT_FAILED_CMS_FORBIDDEN);
       case 404:
-        throw errorFactory.create(CmsErr.CREATE_CMS_EVENT_FAILED_CMS_NOT_EXIST);
-      case 409:
-        throw errorFactory.create(
-          CmsErr.CREATE_CMS_EVENT_FAILED_EVENT_ALREADY_EXIST,
-        );
+        throw errorFactory.create(CmsErr.CREATE_CMS_EVENT_FAILED_CMS_NOT_FOUND);
       default:
         throw errorFactory.create(CmsErr.CMS_UPDATE_ARTICLE_BY_ID_FAILED);
     }

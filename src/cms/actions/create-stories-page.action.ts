@@ -16,9 +16,13 @@ export const createStoriesPage = async (
     switch (response.status) {
       case 201:
         return response.data;
+      case 403:
+        throw errorFactory.create(
+          CmsErr.CREATE_CMS_STORIES_FAILED_CMS_FORBIDDEN,
+        );
       case 404:
         throw errorFactory.create(
-          CmsErr.CMS_CREATE_STORIES_FAILED_CMS_NOT_EXIST,
+          CmsErr.CREATE_CMS_STORIES_FAILED_CMS_NOT_FOUND,
         );
       case 409:
         throw errorFactory.create(
