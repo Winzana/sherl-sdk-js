@@ -7,9 +7,6 @@ export enum OrganizationErr {
   FECTH_FORBIDDEN = 'organization/forbidden',
   ADD_RIB_FAILED = 'organization/add-rib-failed',
   GET_RIBS_FAILED = 'organization/fetch-documents-failed',
-  CREATE_PICTURE_FAILED = 'organization/create-picture-failed',
-  CREATE_PICTURE_FROM_MEDIA_FAILED = 'organization/create-picture-from-media-failed',
-  DELETE_PICTURE_FAILED = 'organization/delete-picture-failed',
 
   // GET KYCS
   GET_KYCS_FAILED = 'organization/get-kycs-failed',
@@ -21,6 +18,18 @@ export enum OrganizationErr {
   CREATE_ORGANIZATION_FORBIDDEN = 'organization/create-organization-forbidden',
   CREATE_ORGANIZATION_NOT_FOUND = 'organization/create-organization-not-found',
   CREATE_ORGANIZATION_ALREADY_EXISTS = 'organization/create-organization-already-exists',
+
+  // CREATE PICTURE FROM MEDIA
+  CREATE_PICTURE_FROM_MEDIA_FAILED = 'organization/create-picture-from-media-failed',
+  CREATE_PICTURE_FROM_MEDIA_FORBIDDEN = 'organization/create-picture-from-media-forbidden',
+  CREATE_PICTURE_FROM_MEDIA_NOT_FOUND = 'organization/create-picture-from-media-not-found',
+  CREATE_PICTURE_FROM_MEDIA_ALREADY_EXISTS = 'organization/create-picture-from-media-already-exists',
+
+  // CREATE PICTURE
+  CREATE_PICTURE_FAILED = 'organization/create-picture-failed',
+  CREATE_PICTURE_FORBIDDEN = 'organization/create-picture-forbidden',
+  CREATE_PICTURE_NOT_FOUND = 'organization/create-picture-not-found',
+  CREATE_PICTURE_ALREADY_EXISTS = 'organization/create-picture-already-exists',
 
   // CREATE BACKGROUND IMAGE FROM MEDIA
   CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FAILED = 'organization/create-background-image-from-media-failed',
@@ -150,6 +159,11 @@ export enum OrganizationErr {
   DELETE_OPENING_HOURS_SPECIFICATION_FORBIDDEN = 'organization/delete-opening-hours-specification-forbidden',
   DELETE_OPENING_HOURS_SPECIFICATION_NOT_FOUND = 'organization/delete-opening-hours-specification-not-found',
 
+  // DELETE PICTURE
+  DELETE_PICTURE_FAILED = 'organization/delete-picture-failed',
+  DELETE_PICTURE_FORBIDDEN = 'organization/delete-picture-forbidden',
+  DELETE_PICTURE_NOT_FOUND = 'organization/delete-picture-not-found',
+
   UPDATE_IS_PUBLIC_ORGANIZATION_FAILED = 'organization/update-is-public-organization-failed',
   ENABLE_ROAMING_FAILED = 'organization/enable-roaming-failed',
   DISABLE_ROAMING_FAILED = 'organization/disable-roaming-failed',
@@ -172,10 +186,6 @@ export const errors = {
 
   [OrganizationErr.ADD_RIB_FAILED]: 'Failed to add RIB',
 
-  [OrganizationErr.CREATE_PICTURE_FAILED]: 'Failed to create picture',
-  [OrganizationErr.CREATE_PICTURE_FROM_MEDIA_FAILED]:
-    'Failed to create picture from media',
-  [OrganizationErr.DELETE_PICTURE_FAILED]: 'Failed to delete picture',
   [OrganizationErr.ADD_ADDRESS_FAILED]: 'Failed to add address',
 
   // CREATE ORGANIZATION
@@ -206,6 +216,25 @@ export const errors = {
     'Failed to create background image. Image not found',
   [OrganizationErr.CREATE_BACKGROUND_IMAGE_ALREADY_EXISTS]:
     'Failed to create background image. Background image already exists',
+
+  // CREATE PICTURE FROM MEDIA
+  [OrganizationErr.CREATE_PICTURE_FROM_MEDIA_FAILED]:
+    'Failed to create picture from media',
+  [OrganizationErr.CREATE_PICTURE_FROM_MEDIA_FORBIDDEN]:
+    'Failed to create picture from media. Forbidden access',
+  [OrganizationErr.CREATE_PICTURE_FROM_MEDIA_NOT_FOUND]:
+    'Failed to create picture from media. Media not found',
+  [OrganizationErr.CREATE_PICTURE_FROM_MEDIA_ALREADY_EXISTS]:
+    'Failed to create picture from media. Picture already exists',
+
+  // CREATE PICTURE
+  [OrganizationErr.CREATE_PICTURE_FAILED]: 'Failed to create picture',
+  [OrganizationErr.CREATE_PICTURE_FORBIDDEN]:
+    'Failed to create picture. Forbidden access',
+  [OrganizationErr.CREATE_PICTURE_NOT_FOUND]:
+    'Failed to create picture. Picture not found',
+  [OrganizationErr.CREATE_PICTURE_ALREADY_EXISTS]:
+    'Failed to create picture. Picture already exists',
 
   // CREATE EMPLOYEE
   [OrganizationErr.CREATE_EMPLOYEE_FAILED]: 'Failed to create employee',
@@ -375,6 +404,13 @@ export const errors = {
     'Failed to delete opening hours specification. Forbidden access',
   [OrganizationErr.DELETE_OPENING_HOURS_SPECIFICATION_NOT_FOUND]:
     'Failed to delete opening hours specification. Opening hours specification not found',
+
+  // DELETE PICTURE
+  [OrganizationErr.DELETE_PICTURE_FAILED]: 'Failed to delete picture',
+  [OrganizationErr.DELETE_PICTURE_FORBIDDEN]:
+    'Failed to delete picture. Forbidden access',
+  [OrganizationErr.DELETE_PICTURE_NOT_FOUND]:
+    'Failed to delete picture. Picture not found',
 };
 
 export const errorFactory = new ErrorFactory<OrganizationErr>(
