@@ -10,9 +10,6 @@ export enum OrganizationErr {
   CREATE_PICTURE_FAILED = 'organization/create-picture-failed',
   CREATE_PICTURE_FROM_MEDIA_FAILED = 'organization/create-picture-from-media-failed',
   DELETE_PICTURE_FAILED = 'organization/delete-picture-failed',
-  CREATE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/create-opening-hours-specification-failed',
-  UPDATE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/update-opening-hours-specification-failed',
-  DELETE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/delete-opening-hours-specification-failed',
 
   // GET KYCS
   GET_KYCS_FAILED = 'organization/get-kycs-failed',
@@ -36,6 +33,12 @@ export enum OrganizationErr {
   CREATE_BACKGROUND_IMAGE_FORBIDDEN = 'organization/create-background-image-forbidden',
   CREATE_BACKGROUND_IMAGE_NOT_FOUND = 'organization/create-background-image-not-found',
   CREATE_BACKGROUND_IMAGE_ALREADY_EXISTS = 'organization/create-background-image-already-exists',
+
+  // CREATE OPENING HOURS SPECIFICATION
+  CREATE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/create-opening-hours-specification-failed',
+  CREATE_OPENING_HOURS_SPECIFICATION_FORBIDDEN = 'organization/create-opening-hours-specification-forbidden',
+  CREATE_OPENING_HOURS_SPECIFICATION_NOT_FOUND = 'organization/create-opening-hours-specification-not-found',
+  CREATE_OPENING_HOURS_SPECIFICATION_ALREADY_EXISTS = 'organization/create-opening-hours-specification-already-exists',
 
   // CREATE EMPLOYEE
   CREATE_EMPLOYEE_FAILED = 'organization/create-employee-failed',
@@ -106,6 +109,11 @@ export enum OrganizationErr {
   UPDATE_FOUNDER_FORBIDDEN = 'organization/update-founder-forbidden',
   UPDATE_FOUNDER_NOT_FOUND = 'organization/update-founder-not-found',
 
+  // UPDATE OPENING HOURS SPECIFICATIONS
+  UPDATE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/update-opening-hours-specification-failed',
+  UPDATE_OPENING_HOURS_SPECIFICATION_FORBIDDEN = 'organization/update-opening-hours-specification-forbidden',
+  UPDATE_OPENING_HOURS_SPECIFICATION_NOT_FOUND = 'organization/update-opening-hours-specification-not-found',
+
   // UPDATE DOCUMENT
   UPDATE_DOCUMENT_FAILED = 'organization/update-failed',
   UPDATE_DOCUMENT_FORBIDDEN = 'organization/update-forbidden',
@@ -137,6 +145,11 @@ export enum OrganizationErr {
   DELETE_LOGO_FORBIDDEN = 'organization/delete-logo-forbidden',
   DELETE_LOGO_NOT_FOUND = 'organization/delete-logo-not-found',
 
+  // DELETE OPENING HOURS SPECIFICATION
+  DELETE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/delete-opening-hours-specification-failed',
+  DELETE_OPENING_HOURS_SPECIFICATION_FORBIDDEN = 'organization/delete-opening-hours-specification-forbidden',
+  DELETE_OPENING_HOURS_SPECIFICATION_NOT_FOUND = 'organization/delete-opening-hours-specification-not-found',
+
   UPDATE_IS_PUBLIC_ORGANIZATION_FAILED = 'organization/update-is-public-organization-failed',
   ENABLE_ROAMING_FAILED = 'organization/enable-roaming-failed',
   DISABLE_ROAMING_FAILED = 'organization/disable-roaming-failed',
@@ -163,12 +176,6 @@ export const errors = {
   [OrganizationErr.CREATE_PICTURE_FROM_MEDIA_FAILED]:
     'Failed to create picture from media',
   [OrganizationErr.DELETE_PICTURE_FAILED]: 'Failed to delete picture',
-  [OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_FAILED]:
-    'Failed to create opening hours specification',
-  [OrganizationErr.UPDATE_OPENING_HOURS_SPECIFICATION_FAILED]:
-    'Failed to update opening hours specification',
-  [OrganizationErr.DELETE_OPENING_HOURS_SPECIFICATION_FAILED]:
-    'Failed to delete opening hours specification',
   [OrganizationErr.ADD_ADDRESS_FAILED]: 'Failed to add address',
 
   // CREATE ORGANIZATION
@@ -238,6 +245,16 @@ export const errors = {
   [OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_ALREADY_EXISTS]:
     'Failed to register organization to person. Person already exists in organization',
 
+  // CREATE OPENING HOURS SPECIFICATION
+  [OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_FAILED]:
+    'Failed to create opening hours specification',
+  [OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_FORBIDDEN]:
+    'Failed to create opening hours specification. Forbidden access',
+  [OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_NOT_FOUND]:
+    'Failed to create opening hours specification. Opening hours specification not found',
+  [OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_ALREADY_EXISTS]:
+    'Failed to create opening hours specification. Opening hours specification already exists',
+
   // ADD LOGO
   [OrganizationErr.ADD_LOGO_FAILED]: 'Failed to add logo',
   [OrganizationErr.ADD_LOGO_FORBIDDEN]: 'Failed to add logo. Forbidden access',
@@ -286,6 +303,14 @@ export const errors = {
     'Failed to update document. Forbidden access',
   [OrganizationErr.UPDATE_DOCUMENT_NOT_FOUND]:
     'Failed to update document. Document not found',
+
+  // UPDATE OPENING HOURS SPECIFICATION
+  [OrganizationErr.UPDATE_OPENING_HOURS_SPECIFICATION_FAILED]:
+    'Failed to update opening hours specification',
+  [OrganizationErr.UPDATE_OPENING_HOURS_SPECIFICATION_FORBIDDEN]:
+    'Failed to update opening hours specification. Forbidden access',
+  [OrganizationErr.UPDATE_OPENING_HOURS_SPECIFICATION_NOT_FOUND]:
+    'Failed to update opening hours specification. Opening hours specification not found',
 
   // UPDATE ADDRESS
   [OrganizationErr.UPDATE_ADDRESS_FAILED]: 'Failed to update address',
@@ -342,6 +367,14 @@ export const errors = {
 
   [OrganizationErr.GET_RIBS_FAILED]: 'Failed to fetch all organization ribs',
   [OrganizationErr.ADD_KYC_FAILED]: 'Failed to add KYC',
+
+  // DELETE OPENING HOURS SPECIFICATION
+  [OrganizationErr.DELETE_OPENING_HOURS_SPECIFICATION_FAILED]:
+    'Failed to delete opening hours specification',
+  [OrganizationErr.DELETE_OPENING_HOURS_SPECIFICATION_FORBIDDEN]:
+    'Failed to delete opening hours specification. Forbidden access',
+  [OrganizationErr.DELETE_OPENING_HOURS_SPECIFICATION_NOT_FOUND]:
+    'Failed to delete opening hours specification. Opening hours specification not found',
 };
 
 export const errorFactory = new ErrorFactory<OrganizationErr>(

@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { filterSherlError } from '../../../common/utils/error';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
@@ -19,15 +20,33 @@ export const createOpeningHoursSpecification = async (
       }),
       data,
     );
-    if (response.status !== 201) {
-      throw errorFactory.create(
-        OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_FAILED,
-      );
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(
+          OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_NOT_FOUND,
+        );
+      case 409:
+        throw errorFactory.create(
+          OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_ALREADY_EXISTS,
+        );
+      default:
+        throw errorFactory.create(
+          OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_FAILED,
+        );
     }
-    return response.data;
   } catch (error) {
-    throw errorFactory.create(
-      OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_FAILED,
+    const filteredError = filterSherlError(
+      error,
+      errorFactory.create(
+        OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_FAILED,
+      ),
     );
+    throw filteredError;
   }
 };
