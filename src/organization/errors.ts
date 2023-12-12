@@ -1,8 +1,11 @@
 import { ErrorFactory } from '../common/errors';
 
 export enum OrganizationErr {
+  // FETCH
   FETCH_FAILED = 'organization/fetch-failed',
   NOT_FOUND = 'organization/not-found',
+  FECTH_FORBIDDEN = 'organization/forbidden',
+
   ADD_DOCUMENT_FAILED = 'organization/add-failed',
   UPDATE_DOCUMENT_FAILED = 'organization/update-failed',
   ADD_RIB_FAILED = 'organization/add-rib-failed',
@@ -28,11 +31,32 @@ export enum OrganizationErr {
   ADD_ADDRESS_FAILED = 'organization/add-address-failed',
   UPDATE_ADDRESS_FAILED = 'organization/update-address-failed',
   DELETE_ADDRESS_FAILED = 'organization/delete-address-failed',
+
+  // CREATE ORGANIZATION
   CREATE_ORGANIZATION_FAILED = 'organization/create-organization-failed',
+  CREATE_ORGANIZATION_FORBIDDEN = 'organization/create-organization-forbidden',
+  CREATE_ORGANIZATION_NOT_FOUND = 'organization/create-organization-not-found',
+  CREATE_ORGANIZATION_ALREADY_EXISTS = 'organization/create-organization-already-exists',
+
+  // REGISTER ORGANIZATION
   REGISTER_ORGANIZATION_FAILED = 'organization/register-organization-failed',
+
+  // REGISTER ORGANIZATION TO PERSON
   REGISTER_ORGANIZATION_TO_PERSON_FAILED = 'organization/register-organization-to-person-failed',
+  REGISTER_ORGANIZATION_TO_PERSON_FORBIDDEN = 'organization/register-organization-to-person-forbidden',
+  REGISTER_ORGANIZATION_TO_PERSON_NOT_FOUND = 'organization/register-organization-to-person-not-found',
+  REGISTER_ORGANIZATION_TO_PERSON_ALREADY_EXISTS = 'organization/register-organization-to-person-already-exists',
+
+  // SUGGEST ORGANIZATION
   SUGGEST_ORGANIZATION_FAILED = 'organization/suggest-organization-failed',
+  SUGGEST_ORGANIZATION_FORBIDDEN = 'organization/suggest-organization-forbidden',
+  SUGGEST_ORGANIZATION_NOT_FOUND = 'organization/suggest-organization-not-found',
+
+  // UPDATE ORGANIZATION
   UPDATE_ORGANIZATION_FAILED = 'organization/update-organization-failed',
+  UPDATE_ORGANIZATION_FORBIDDEN = 'organization/update-organization-forbidden',
+  UPDATE_ORGANIZATION_NOT_FOUND = 'organization/update-organization-not-found',
+
   UPDATE_IS_PUBLIC_ORGANIZATION_FAILED = 'organization/update-is-public-organization-failed',
   ENABLE_ROAMING_FAILED = 'organization/enable-roaming-failed',
   DISABLE_ROAMING_FAILED = 'organization/disable-roaming-failed',
@@ -43,8 +67,12 @@ export enum OrganizationErr {
 }
 
 export const errors = {
+  // FETCH
   [OrganizationErr.FETCH_FAILED]: 'Failed to fetch organization API',
-  [OrganizationErr.NOT_FOUND]: 'Organization not found',
+  [OrganizationErr.FECTH_FORBIDDEN]:
+    'Failed to fetch organization API. Forbidden access',
+  [OrganizationErr.NOT_FOUND]: 'Failed to fetch organization. Page not found',
+
   [OrganizationErr.ADD_DOCUMENT_FAILED]: 'Failed to add document',
   [OrganizationErr.UPDATE_DOCUMENT_FAILED]: 'Failed to update document',
   [OrganizationErr.ADD_RIB_FAILED]: 'Failed to add RIB',
@@ -76,12 +104,18 @@ export const errors = {
   [OrganizationErr.ADD_ADDRESS_FAILED]: 'Failed to add address',
   [OrganizationErr.UPDATE_ADDRESS_FAILED]: 'Failed to update address',
   [OrganizationErr.DELETE_ADDRESS_FAILED]: 'Failed to delete address',
+
+  // CREATE ORGANIZATION
   [OrganizationErr.CREATE_ORGANIZATION_FAILED]: 'Failed to create organization',
+  [OrganizationErr.CREATE_ORGANIZATION_NOT_FOUND]:
+    'Failed to create organization. Organization not found',
+  [OrganizationErr.CREATE_ORGANIZATION_ALREADY_EXISTS]:
+    'Failed to create organization. Organization already exists',
+  [OrganizationErr.CREATE_ORGANIZATION_FORBIDDEN]:
+    'Failed to create organization. Forbidden access',
+
   [OrganizationErr.REGISTER_ORGANIZATION_FAILED]:
     'Failed to register organization',
-  [OrganizationErr.SUGGEST_ORGANIZATION_FAILED]:
-    'Failed to suggest organization',
-  [OrganizationErr.UPDATE_ORGANIZATION_FAILED]: 'Failed to update organization',
   [OrganizationErr.UPDATE_IS_PUBLIC_ORGANIZATION_FAILED]:
     'Failed to update isPublic organization',
   [OrganizationErr.ENABLE_ROAMING_FAILED]: 'Failed to enable roaming',
@@ -89,8 +123,32 @@ export const errors = {
   [OrganizationErr.UPDATE_THIRD_PARTY_FAILED]: 'Failed to update third party',
   [OrganizationErr.UPDATE_THIRD_PARTY_IMPOSSIBLE]:
     'Impossible to update third party',
+
+  // REGISTER ORGANIZATION TO PERSON
   [OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_FAILED]:
     'Failed to register organization to person',
+  [OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_FORBIDDEN]:
+    'Failed to register organization to person. Forbidden access',
+  [OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_NOT_FOUND]:
+    'Failed to register organization to person. Organization not found',
+  [OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_ALREADY_EXISTS]:
+    'Failed to register organization to person. Person already exists in organization',
+
+  // UPDATE ORGANIZATION
+  [OrganizationErr.UPDATE_ORGANIZATION_FAILED]: 'Failed to update organization',
+  [OrganizationErr.UPDATE_ORGANIZATION_FORBIDDEN]:
+    'Failed to update organization',
+  [OrganizationErr.UPDATE_ORGANIZATION_NOT_FOUND]:
+    'Failed to update organization',
+
+  // SUGGEST ORGANIZATION
+  [OrganizationErr.SUGGEST_ORGANIZATION_FAILED]:
+    'Failed to suggest organization',
+  [OrganizationErr.SUGGEST_ORGANIZATION_FORBIDDEN]:
+    'Failed to suggest organization. Forbidden access',
+  [OrganizationErr.SUGGEST_ORGANIZATION_NOT_FOUND]:
+    'Failed to suggest organization. Organization not found',
+
   [OrganizationErr.GET_RIBS_FAILED]: 'Failed to fetch all organization ribs',
   [OrganizationErr.ADD_KYC_FAILED]: 'Failed to add KYC',
   [OrganizationErr.GET_KYCS_FAILED]: 'Failed to get KYCs',

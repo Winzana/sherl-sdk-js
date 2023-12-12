@@ -3,6 +3,7 @@ import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { IOrganizationResponse } from '../types';
 import { OrganizationErr, errorFactory } from '../errors';
+import { filterSherlError } from '../../common/utils/error';
 
 export const getPublicOrganization = async (
   fetcher: Fetcher,
@@ -15,12 +16,21 @@ export const getPublicOrganization = async (
       }),
     );
 
-    if (response.status !== 200) {
-      throw errorFactory.create(OrganizationErr.FETCH_FAILED);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(OrganizationErr.FECTH_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(OrganizationErr.NOT_FOUND);
+      default:
+        throw errorFactory.create(OrganizationErr.FETCH_FAILED);
     }
-
-    return response.data;
   } catch (error) {
-    throw errorFactory.create(OrganizationErr.FETCH_FAILED);
+    const filteredError = filterSherlError(
+      error,
+      errorFactory.create(OrganizationErr.FETCH_FAILED),
+    );
+    throw filteredError;
   }
 };

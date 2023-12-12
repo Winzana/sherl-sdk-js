@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { filterSherlError } from '../../common/utils/error';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { OrganizationErr, errorFactory } from '../errors';
@@ -13,12 +14,21 @@ export const getOrganization = async (
       StringUtils.bindContext(endpoints.GET_ORGANIZATION, { organizationId }),
     );
 
-    if (response.status !== 200) {
-      throw errorFactory.create(OrganizationErr.FETCH_FAILED);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(OrganizationErr.FECTH_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(OrganizationErr.NOT_FOUND);
+      default:
+        throw errorFactory.create(OrganizationErr.FETCH_FAILED);
     }
-
-    return response.data;
   } catch (error) {
-    throw errorFactory.create(OrganizationErr.FETCH_FAILED);
+    const filteredError = filterSherlError(
+      error,
+      errorFactory.create(OrganizationErr.FETCH_FAILED),
+    );
+    throw filteredError;
   }
 };

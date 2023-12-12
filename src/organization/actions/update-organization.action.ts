@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { filterSherlError } from '../../common/utils/error';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { OrganizationErr, errorFactory } from '../errors';
@@ -9,16 +10,33 @@ export const updateOrganization = async (
   organizationId: string,
   updatedOrganization: IUpdateOrganizationDto,
 ): Promise<IOrganizationResponse> => {
-  const response = await fetcher.put<IOrganizationResponse>(
-    StringUtils.bindContext(endpoints.UPDATE_ORGANIZATION, {
-      organizationId,
-    }),
-    updatedOrganization,
-  );
+  try {
+    const response = await fetcher.put<IOrganizationResponse>(
+      StringUtils.bindContext(endpoints.UPDATE_ORGANIZATION, {
+        organizationId,
+      }),
+      updatedOrganization,
+    );
 
-  if (response.status !== 200) {
-    throw errorFactory.create(OrganizationErr.UPDATE_ORGANIZATION_FAILED);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          OrganizationErr.UPDATE_ORGANIZATION_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(
+          OrganizationErr.UPDATE_ORGANIZATION_NOT_FOUND,
+        );
+      default:
+        throw errorFactory.create(OrganizationErr.UPDATE_ORGANIZATION_FAILED);
+    }
+  } catch (error) {
+    const filteredError = filterSherlError(
+      error,
+      errorFactory.create(OrganizationErr.FETCH_FAILED),
+    );
+    throw filteredError;
   }
-
-  return response.data;
 };

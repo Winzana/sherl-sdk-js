@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { filterSherlError } from '../../common/utils/error';
 import { endpoints } from '../api/endpoints';
 import { OrganizationErr, errorFactory } from '../errors';
 import { IOrganizationResponse, ISuggestOrganizationRequest } from '../types';
@@ -7,14 +8,30 @@ export const suggestOrganization = async (
   fetcher: Fetcher,
   suggestion: ISuggestOrganizationRequest,
 ): Promise<IOrganizationResponse> => {
-  const response = await fetcher.post<IOrganizationResponse>(
-    endpoints.SUGGEST_ORGANIZATION,
-    suggestion,
-  );
-
-  if (response.status !== 201) {
-    throw errorFactory.create(OrganizationErr.SUGGEST_ORGANIZATION_FAILED);
+  try {
+    const response = await fetcher.post<IOrganizationResponse>(
+      endpoints.SUGGEST_ORGANIZATION,
+      suggestion,
+    );
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          OrganizationErr.SUGGEST_ORGANIZATION_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(
+          OrganizationErr.SUGGEST_ORGANIZATION_NOT_FOUND,
+        );
+      default:
+        throw errorFactory.create(OrganizationErr.SUGGEST_ORGANIZATION_FAILED);
+    }
+  } catch (error) {
+    const filteredError = filterSherlError(
+      error,
+      errorFactory.create(OrganizationErr.FETCH_FAILED),
+    );
+    throw filteredError;
   }
-
-  return response.data;
 };
