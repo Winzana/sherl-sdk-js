@@ -5,8 +5,11 @@ export enum OrganizationErr {
   FETCH_FAILED = 'organization/fetch-failed',
   NOT_FOUND = 'organization/not-found',
   FECTH_FORBIDDEN = 'organization/forbidden',
-  ADD_RIB_FAILED = 'organization/add-rib-failed',
+
+  // GET RIBS
   GET_RIBS_FAILED = 'organization/fetch-documents-failed',
+  GET_RIBS_FORBIDDEN = 'organization/fetch-documents-forbidden',
+  GET_RIBS_NOT_FOUND = 'organization/fetch-documents-not-found',
 
   // GET KYCS
   GET_KYCS_FAILED = 'organization/get-kycs-failed',
@@ -66,6 +69,12 @@ export enum OrganizationErr {
   ADD_LOGO_FORBIDDEN = 'organization/add-logo-forbidden',
   ADD_LOGO_NOT_FOUND = 'organization/add-logo-not-found',
   ADD_LOGO_ALREADY_EXISTS = 'organization/add-logo-already-exists',
+
+  // ADD RIB
+  ADD_RIB_FAILED = 'organization/add-rib-failed',
+  ADD_RIB_FORBIDDEN = 'organization/add-rib-forbidden',
+  ADD_RIB_NOT_FOUND = 'organization/add-rib-not-found',
+  ADD_RIB_ALREADY_EXISTS = 'organization/add-rib-already-exists',
 
   // ADD ADDRESS
   ADD_ADDRESS_FAILED = 'organization/add-address-failed',
@@ -179,12 +188,17 @@ export const errors = {
     'Failed to fetch organization API. Forbidden access',
   [OrganizationErr.NOT_FOUND]: 'Failed to fetch organization. Page not found',
 
+  // GET RIBs
+  [OrganizationErr.GET_RIBS_FAILED]: 'Failed to fetch all organization RIBs',
+  [OrganizationErr.GET_RIBS_FORBIDDEN]:
+    'Failed to fetch all organization RIBs. Forbidden access',
+  [OrganizationErr.GET_RIBS_NOT_FOUND]:
+    'Failed to fetch all organization RIBs. RIBs not found',
+
   // GET KYCS
   [OrganizationErr.GET_KYCS_FAILED]: 'Failed to get KYCs',
   [OrganizationErr.GET_KYCS_FORBIDDEN]: 'Failed to get KYCs. Forbidden access',
   [OrganizationErr.GET_KYCS_NOT_FOUND]: 'Failed to get KYCs. KYCs not found',
-
-  [OrganizationErr.ADD_RIB_FAILED]: 'Failed to add RIB',
 
   [OrganizationErr.ADD_ADDRESS_FAILED]: 'Failed to add address',
 
@@ -300,6 +314,13 @@ export const errors = {
   [OrganizationErr.ADD_DOCUMENT_ALREADY_EXISTS]:
     'Failed to add document. Document already exists',
 
+  // ADD RIB
+  [OrganizationErr.ADD_RIB_FAILED]: 'Failed to add RIB',
+  [OrganizationErr.ADD_RIB_FORBIDDEN]: 'Failed to add RIB. Forbidden access',
+  [OrganizationErr.ADD_RIB_NOT_FOUND]: 'Failed to add RIB. RIB not found',
+  [OrganizationErr.ADD_RIB_ALREADY_EXISTS]:
+    'Failed to add RIB. RIB already exists',
+
   // SET COMMUNICATION
   [OrganizationErr.SET_COMMUNICATION_FAILED]: 'Failed to set communication',
   [OrganizationErr.SET_COMMUNICATION_FORBIDDEN]: 'Failed to set communication',
@@ -394,7 +415,6 @@ export const errors = {
   [OrganizationErr.DELETE_FOUNDER_NOT_FOUND]:
     'Failed to delete founder. Founder not found',
 
-  [OrganizationErr.GET_RIBS_FAILED]: 'Failed to fetch all organization ribs',
   [OrganizationErr.ADD_KYC_FAILED]: 'Failed to add KYC',
 
   // DELETE OPENING HOURS SPECIFICATION
