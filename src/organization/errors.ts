@@ -13,9 +13,6 @@ export enum OrganizationErr {
   SET_COMMUNICATION_FAILED = 'organization/set-communication-failed',
   ADD_LOGO_FAILED = 'organization/add-logo-failed',
   DELETE_LOGO_FAILED = 'organization/delete-logo-failed',
-  CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FAILED = 'organization/create-background-image-from-media-failed',
-  CREATE_BACKGROUND_IMAGE_FAILED = 'organization/create-background-image-failed',
-  DELETE_BACKGROUND_IMAGE_FAILED = 'organization/delete-background-image-failed',
   CREATE_PICTURE_FAILED = 'organization/create-picture-failed',
   CREATE_PICTURE_FROM_MEDIA_FAILED = 'organization/create-picture-from-media-failed',
   DELETE_PICTURE_FAILED = 'organization/delete-picture-failed',
@@ -34,6 +31,18 @@ export enum OrganizationErr {
   CREATE_ORGANIZATION_FORBIDDEN = 'organization/create-organization-forbidden',
   CREATE_ORGANIZATION_NOT_FOUND = 'organization/create-organization-not-found',
   CREATE_ORGANIZATION_ALREADY_EXISTS = 'organization/create-organization-already-exists',
+
+  // CREATE BACKGROUND IMAGE FROM MEDIA
+  CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FAILED = 'organization/create-background-image-from-media-failed',
+  CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FORBIDDEN = 'organization/create-background-image-from-media-forbidden',
+  CREATE_BACKGROUND_IMAGE_FROM_MEDIA_NOT_FOUND = 'organization/create-background-image-from-media-not-found',
+  CREATE_BACKGROUND_IMAGE_FROM_MEDIA_ALREADY_EXISTS = 'organization/create-background-image-from-media-already-exists',
+
+  // CREATE BACKGROUND IMAGE
+  CREATE_BACKGROUND_IMAGE_FAILED = 'organization/create-background-image-failed',
+  CREATE_BACKGROUND_IMAGE_FORBIDDEN = 'organization/create-background-image-forbidden',
+  CREATE_BACKGROUND_IMAGE_NOT_FOUND = 'organization/create-background-image-not-found',
+  CREATE_BACKGROUND_IMAGE_ALREADY_EXISTS = 'organization/create-background-image-already-exists',
 
   // ADD ADDRESS
   ADD_ADDRESS_FAILED = 'organization/add-address-failed',
@@ -71,6 +80,11 @@ export enum OrganizationErr {
   DELETE_ADDRESS_NOT_FOUND = 'organization/delete-address-not-found',
   DELETE_ADDRESS_ALREADY_EXISTS = 'organization/delete-address-already-exists',
 
+  // DELETE BACKGROUND IMAGE
+  DELETE_BACKGROUND_IMAGE_FAILED = 'organization/delete-background-image-failed',
+  DELETE_BACKGROUND_IMAGE_FORBIDDEN = 'organization/delete-background-image-forbidden',
+  DELETE_BACKGROUND_IMAGE_NOT_FOUND = 'organization/delete-background-image-not-found',
+
   UPDATE_IS_PUBLIC_ORGANIZATION_FAILED = 'organization/update-is-public-organization-failed',
   ENABLE_ROAMING_FAILED = 'organization/enable-roaming-failed',
   DISABLE_ROAMING_FAILED = 'organization/disable-roaming-failed',
@@ -93,12 +107,7 @@ export const errors = {
   [OrganizationErr.SET_COMMUNICATION_FAILED]: 'Failed to set communication',
   [OrganizationErr.ADD_LOGO_FAILED]: 'Failed to add logo',
   [OrganizationErr.DELETE_LOGO_FAILED]: 'Failed to delete logo',
-  [OrganizationErr.CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FAILED]:
-    'Failed to create background image from media',
-  [OrganizationErr.CREATE_BACKGROUND_IMAGE_FAILED]:
-    'Failed to create background image',
-  [OrganizationErr.DELETE_BACKGROUND_IMAGE_FAILED]:
-    'Failed to delete background image',
+
   [OrganizationErr.CREATE_PICTURE_FAILED]: 'Failed to create picture',
   [OrganizationErr.CREATE_PICTURE_FROM_MEDIA_FAILED]:
     'Failed to create picture from media',
@@ -125,6 +134,26 @@ export const errors = {
     'Failed to create organization. Organization already exists',
   [OrganizationErr.CREATE_ORGANIZATION_FORBIDDEN]:
     'Failed to create organization. Forbidden access',
+
+  // CREATE BACKGROUND IMAGE FROM MEDIA
+  [OrganizationErr.CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FAILED]:
+    'Failed to create background image from media',
+  [OrganizationErr.CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FORBIDDEN]:
+    'Failed to create background image from media. Forbidden access',
+  [OrganizationErr.CREATE_BACKGROUND_IMAGE_FROM_MEDIA_NOT_FOUND]:
+    'Failed to create background image from media. Media not found',
+  [OrganizationErr.CREATE_BACKGROUND_IMAGE_FROM_MEDIA_ALREADY_EXISTS]:
+    'Failed to create background image from media. Background image already exists',
+
+  // CREATE BACKGROUND IMAGE
+  [OrganizationErr.CREATE_BACKGROUND_IMAGE_FAILED]:
+    'Failed to create background image',
+  [OrganizationErr.CREATE_BACKGROUND_IMAGE_FORBIDDEN]:
+    'Failed to create background image. Forbidden access',
+  [OrganizationErr.CREATE_BACKGROUND_IMAGE_NOT_FOUND]:
+    'Failed to create background image. Image not found',
+  [OrganizationErr.CREATE_BACKGROUND_IMAGE_ALREADY_EXISTS]:
+    'Failed to create background image. Background image already exists',
 
   [OrganizationErr.REGISTER_ORGANIZATION_FAILED]:
     'Failed to register organization',
@@ -176,6 +205,14 @@ export const errors = {
     'Failed to delete address. Address not found',
   [OrganizationErr.DELETE_ADDRESS_ALREADY_EXISTS]:
     "Failed to delete address. Address doesn't exists",
+
+  // DELETE BACKGROUND IMAGE
+  [OrganizationErr.DELETE_BACKGROUND_IMAGE_FAILED]:
+    'Failed to delete background image',
+  [OrganizationErr.DELETE_BACKGROUND_IMAGE_FORBIDDEN]:
+    'Failed to delete background image. Forbidden access',
+  [OrganizationErr.DELETE_BACKGROUND_IMAGE_NOT_FOUND]:
+    'Failed to delete background image. Background image not found',
 
   [OrganizationErr.GET_RIBS_FAILED]: 'Failed to fetch all organization ribs',
   [OrganizationErr.ADD_KYC_FAILED]: 'Failed to add KYC',

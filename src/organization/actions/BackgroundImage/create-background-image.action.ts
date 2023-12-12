@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { filterSherlError } from '../../../common/utils/error';
 import { StringUtils } from '../../../common/utils/string';
 import { IUploadData } from '../../../media';
 import { endpoints } from '../../api/endpoints';
@@ -30,11 +31,31 @@ export const createBackgroundImage = async (
       },
     );
 
-    if (response.status !== 200) {
-      throw errorFactory.create(OrganizationErr.CREATE_BACKGROUND_IMAGE_FAILED);
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          OrganizationErr.CREATE_BACKGROUND_IMAGE_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(
+          OrganizationErr.CREATE_BACKGROUND_IMAGE_NOT_FOUND,
+        );
+      case 409:
+        throw errorFactory.create(
+          OrganizationErr.CREATE_BACKGROUND_IMAGE_ALREADY_EXISTS,
+        );
+      default:
+        throw errorFactory.create(
+          OrganizationErr.CREATE_BACKGROUND_IMAGE_FAILED,
+        );
     }
-    return response.data;
   } catch (error) {
-    throw errorFactory.create(OrganizationErr.CREATE_BACKGROUND_IMAGE_FAILED);
+    const filteredError = filterSherlError(
+      error,
+      errorFactory.create(OrganizationErr.CREATE_BACKGROUND_IMAGE_FAILED),
+    );
+    throw filteredError;
   }
 };
