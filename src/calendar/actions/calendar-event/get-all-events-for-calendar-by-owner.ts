@@ -4,7 +4,7 @@ import { ICalendarEvent } from '../../entities';
 import { ISearchResult } from '../../../common';
 import { ICalendarEventFilterDto } from '../../types';
 import { errorFactory, CalendarErr } from '../../errors/errors';
-import { filterSherlError } from '../../../common/utils';
+import { getSherlError } from '../../../common/utils';
 
 /**
  * Retrieves calendar events for a specific owner.
@@ -31,10 +31,9 @@ export const getCalendarEventsForOwner = async (
 
     return response.data;
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(CalendarErr.GET_CALENDAR_EVENTS_FOR_OWNER_FAILED),
     );
-    throw filteredError;
   }
 };

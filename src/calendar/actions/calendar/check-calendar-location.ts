@@ -2,7 +2,7 @@ import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/calendar/endpoints';
 import { ICheckLocationInputDto } from '../../types';
 import { errorFactory, CalendarErr } from '../../errors/errors';
-import { filterSherlError } from '../../../common/utils';
+import { getSherlError } from '../../../common/utils';
 
 /**
  * Checks the availability of a location for the calendar.
@@ -30,12 +30,11 @@ export const checkLocationForCalendar = async (
 
     return response.data;
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(
         CalendarErr.GET_AVAILABILITIY_FOR_LOCATION_CALENDAR_FAILED,
       ),
     );
-    throw filteredError;
   }
 };

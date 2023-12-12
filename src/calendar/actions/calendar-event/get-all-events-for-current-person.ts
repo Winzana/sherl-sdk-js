@@ -4,7 +4,7 @@ import { ICalendarEvent } from '../../entities';
 import { ISearchResult } from '../../../common';
 import { IGetCalendarEventsForCurrentPersonInputDto } from '../../types';
 import { errorFactory, CalendarErr } from '../../errors/errors';
-import { filterSherlError } from '../../../common/utils';
+import { getSherlError } from '../../../common/utils';
 
 /**
  * Retrieves calendar events for the current person.
@@ -31,12 +31,11 @@ export const getCalendarEventsForCurrentPerson = async (
 
     return response.data;
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(
         CalendarErr.GET_CALENDAR_EVENTS_FOR_CURRENT_PERSON_FAILED,
       ),
     );
-    throw filteredError;
   }
 };

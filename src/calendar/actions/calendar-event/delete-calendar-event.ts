@@ -1,5 +1,5 @@
 import { Fetcher } from '../../../common/api';
-import { filterSherlError } from '../../../common/utils';
+import { getSherlError } from '../../../common/utils';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/calendar-event/endpoints';
 import { ICalendarEvent } from '../../entities';
@@ -42,10 +42,9 @@ export const deleteCalendarEvent = async (
         throw errorFactory.create(CalendarErr.UPDATE_CALENDAR_EVENT_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(CalendarErr.UPDATE_CALENDAR_EVENT_FAILED),
     );
-    throw filteredError;
   }
 };

@@ -3,7 +3,7 @@ import { endpoints } from '../../api/calendar/endpoints';
 import { ICheckDatesDto } from '../../types';
 import { errorFactory, CalendarErr } from '../../errors/errors';
 import { Availability } from '../../entities';
-import { filterSherlError } from '../../../common/utils';
+import { getSherlError } from '../../../common/utils';
 
 /**
  * Retrieves availabilities from the calendar for a given set of dates.
@@ -30,12 +30,11 @@ export const checkCalendarDates = async (
 
     return response.data;
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(
         CalendarErr.GET_AVAILABILITIES_FOR_DATES_CALENDAR_FAILED,
       ),
     );
-    throw filteredError;
   }
 };
