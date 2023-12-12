@@ -18,7 +18,6 @@ export enum PersonErr {
   PUT_FAILED = 'person/put-person-failed',
   PUT_FORBIDDEN = 'person/put-person-forbidden',
   PUT_NOT_FOUND = 'person/put-person-not-found',
-  PUT_ALREADY_EXISTS = 'person/put-person-already-exists',
 
   // POST
   POST_FAILED = 'person/post-person-failed',

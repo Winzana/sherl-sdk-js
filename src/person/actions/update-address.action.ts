@@ -28,8 +28,6 @@ export const updateAddress = async (
         throw errorFactory.create(PersonErr.PUT_ADDRESS_FORBIDDEN);
       case 404:
         throw errorFactory.create(PersonErr.PUT_ADDRESS_NOT_FOUND);
-      case 409:
-        throw errorFactory.create(PersonErr.PUT_ALREADY_EXISTS);
       default:
         throw errorFactory.create(PersonErr.PUT_ADDRESS_FAILED);
     }

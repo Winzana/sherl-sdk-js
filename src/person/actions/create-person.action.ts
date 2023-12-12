@@ -16,7 +16,7 @@ export const createPerson = async (
       });
 
     switch (response.status) {
-      case 200:
+      case 201:
         return response.data;
       case 403:
         throw errorFactory.create(PersonErr.CREATE_PERSON_FORBIDDEN);
