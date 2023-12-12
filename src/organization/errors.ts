@@ -173,15 +173,35 @@ export enum OrganizationErr {
   DELETE_PICTURE_FORBIDDEN = 'organization/delete-picture-forbidden',
   DELETE_PICTURE_NOT_FOUND = 'organization/delete-picture-not-found',
 
-  UPDATE_IS_PUBLIC_ORGANIZATION_FAILED = 'organization/update-is-public-organization-failed',
-  ENABLE_ROAMING_FAILED = 'organization/enable-roaming-failed',
+  // DISABLE ROAMING
   DISABLE_ROAMING_FAILED = 'organization/disable-roaming-failed',
+  DISABLE_ROAMING_FORBIDDEN = 'organization/disable-roaming-forbidden',
+  DISABLE_ROAMING_NOT_FOUND = 'organization/disable-roaming-not-found',
+
+  // ENABLE ROAMING
+  ENABLE_ROAMING_FAILED = 'organization/enable-roaming-failed',
+  ENABLE_ROAMING_FORBIDDEN = 'organization/enable-roaming-forbidden',
+  ENABLE_ROAMING_NOT_FOUND = 'organization/enable-roaming-not-found',
+
+  // UNUSED
+  UPDATE_IS_PUBLIC_ORGANIZATION_FAILED = 'organization/update-is-public-organization-failed',
   UPDATE_THIRD_PARTY_FAILED = 'organization/update-third-party-failed',
   UPDATE_THIRD_PARTY_IMPOSSIBLE = 'organization/update-third-party-impossible',
   ADD_KYC_FAILED = 'organization/add-kyc-failed',
 }
 
 export const errors = {
+  // UNUSED
+  [OrganizationErr.ADD_KYC_FAILED]: 'Failed to add KYC',
+  [OrganizationErr.ADD_ADDRESS_FAILED]: 'Failed to add address',
+  [OrganizationErr.REGISTER_ORGANIZATION_FAILED]:
+    'Failed to register organization',
+  [OrganizationErr.UPDATE_IS_PUBLIC_ORGANIZATION_FAILED]:
+    'Failed to update isPublic organization',
+  [OrganizationErr.UPDATE_THIRD_PARTY_FAILED]: 'Failed to update third party',
+  [OrganizationErr.UPDATE_THIRD_PARTY_IMPOSSIBLE]:
+    'Impossible to update third party',
+
   // FETCH
   [OrganizationErr.FETCH_FAILED]: 'Failed to fetch organization API',
   [OrganizationErr.FECTH_FORBIDDEN]:
@@ -199,8 +219,6 @@ export const errors = {
   [OrganizationErr.GET_KYCS_FAILED]: 'Failed to get KYCs',
   [OrganizationErr.GET_KYCS_FORBIDDEN]: 'Failed to get KYCs. Forbidden access',
   [OrganizationErr.GET_KYCS_NOT_FOUND]: 'Failed to get KYCs. KYCs not found',
-
-  [OrganizationErr.ADD_ADDRESS_FAILED]: 'Failed to add address',
 
   // CREATE ORGANIZATION
   [OrganizationErr.CREATE_ORGANIZATION_FAILED]: 'Failed to create organization',
@@ -267,16 +285,6 @@ export const errors = {
     'Failed to create founder. Page not found',
   [OrganizationErr.CREATE_FOUNDER_ALREADY_EXISTS]:
     'Failed to create founder. Founder already exists',
-
-  [OrganizationErr.REGISTER_ORGANIZATION_FAILED]:
-    'Failed to register organization',
-  [OrganizationErr.UPDATE_IS_PUBLIC_ORGANIZATION_FAILED]:
-    'Failed to update isPublic organization',
-  [OrganizationErr.ENABLE_ROAMING_FAILED]: 'Failed to enable roaming',
-  [OrganizationErr.DISABLE_ROAMING_FAILED]: 'Failed to disable roaming',
-  [OrganizationErr.UPDATE_THIRD_PARTY_FAILED]: 'Failed to update third party',
-  [OrganizationErr.UPDATE_THIRD_PARTY_IMPOSSIBLE]:
-    'Impossible to update third party',
 
   // REGISTER ORGANIZATION TO PERSON
   [OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_FAILED]:
@@ -415,8 +423,6 @@ export const errors = {
   [OrganizationErr.DELETE_FOUNDER_NOT_FOUND]:
     'Failed to delete founder. Founder not found',
 
-  [OrganizationErr.ADD_KYC_FAILED]: 'Failed to add KYC',
-
   // DELETE OPENING HOURS SPECIFICATION
   [OrganizationErr.DELETE_OPENING_HOURS_SPECIFICATION_FAILED]:
     'Failed to delete opening hours specification',
@@ -431,6 +437,20 @@ export const errors = {
     'Failed to delete picture. Forbidden access',
   [OrganizationErr.DELETE_PICTURE_NOT_FOUND]:
     'Failed to delete picture. Picture not found',
+
+  // DISABLE ROAMING
+  [OrganizationErr.DISABLE_ROAMING_FAILED]: 'Failed to disable roaming',
+  [OrganizationErr.DISABLE_ROAMING_FORBIDDEN]:
+    'Failed to disable roaming. Forbidden access',
+  [OrganizationErr.DISABLE_ROAMING_NOT_FOUND]:
+    'Failed to disable roaming. Roaming not found',
+
+  // ENABLE ROAMING
+  [OrganizationErr.ENABLE_ROAMING_FAILED]: 'Failed to enable roaming',
+  [OrganizationErr.ENABLE_ROAMING_FORBIDDEN]:
+    'Failed to enable roaming. Forbidden access',
+  [OrganizationErr.ENABLE_ROAMING_NOT_FOUND]:
+    'Failed to enable roaming. Roaming not found',
 };
 
 export const errorFactory = new ErrorFactory<OrganizationErr>(
