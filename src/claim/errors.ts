@@ -4,6 +4,7 @@ export enum ClaimErr {
   GET_ALL_FAILED = 'claim/get-all',
   GET_CLAIM_BY_ID_FAILED = 'claim/get-by-id',
   CREATE_CLAIM_ERROR = 'claim/create-by-id',
+  CREATE_CLAIM_NOT_FOUND_ERROR = 'claim/create-by-id-not-found',
   UPDATE_CLAIM_ERROR = 'claim/update-by-id',
   REFUND_CLAIM_FAILED = 'claim/refund-failed',
   REPLY_CLAIM_FAILED = 'claim/reply-failed',
