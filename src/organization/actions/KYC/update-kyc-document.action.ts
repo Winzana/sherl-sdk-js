@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { filterSherlError } from '../../../common/utils/error';
 import { StringUtils } from '../../../common/utils/string';
 import { IImageObject } from '../../../media';
 import { endpoints } from '../../api/endpoints';
@@ -24,11 +25,21 @@ export const updateKycDocument = async (
       },
     );
 
-    if (response.status !== 200) {
-      throw errorFactory.create(OrganizationErr.UPDATE_DOCUMENT_FAILED);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(OrganizationErr.UPDATE_DOCUMENT_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(OrganizationErr.UPDATE_DOCUMENT_NOT_FOUND);
+      default:
+        throw errorFactory.create(OrganizationErr.UPDATE_DOCUMENT_FAILED);
     }
-    return response.data;
   } catch (error) {
-    throw errorFactory.create(OrganizationErr.UPDATE_DOCUMENT_FAILED);
+    const filteredError = filterSherlError(
+      error,
+      errorFactory.create(OrganizationErr.UPDATE_DOCUMENT_FAILED),
+    );
+    throw filteredError;
   }
 };

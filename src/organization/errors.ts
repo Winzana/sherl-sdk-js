@@ -5,9 +5,6 @@ export enum OrganizationErr {
   FETCH_FAILED = 'organization/fetch-failed',
   NOT_FOUND = 'organization/not-found',
   FECTH_FORBIDDEN = 'organization/forbidden',
-
-  ADD_DOCUMENT_FAILED = 'organization/add-failed',
-  UPDATE_DOCUMENT_FAILED = 'organization/update-failed',
   ADD_RIB_FAILED = 'organization/add-rib-failed',
   GET_RIBS_FAILED = 'organization/fetch-documents-failed',
   ADD_LOGO_FAILED = 'organization/add-logo-failed',
@@ -18,6 +15,11 @@ export enum OrganizationErr {
   CREATE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/create-opening-hours-specification-failed',
   UPDATE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/update-opening-hours-specification-failed',
   DELETE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/delete-opening-hours-specification-failed',
+
+  // GET KYCS
+  GET_KYCS_FAILED = 'organization/get-kycs-failed',
+  GET_KYCS_FORBIDDEN = 'organization/get-kycs-forbidden',
+  GET_KYCS_NOT_FOUND = 'organization/get-kycs-not-found',
 
   // CREATE ORGANIZATION
   CREATE_ORGANIZATION_FAILED = 'organization/create-organization-failed',
@@ -54,6 +56,12 @@ export enum OrganizationErr {
   ADD_ADDRESS_FORBIDDEN = 'organization/add-address-forbidden',
   ADD_ADDRESS_NOT_FOUND = 'organization/add-address-not-found',
   ADD_ADDRESS_ALREADY_EXISTS = 'organization/add-address-already-exists',
+
+  // ADD KYC
+  ADD_DOCUMENT_FAILED = 'organization/add-failed',
+  ADD_DOCUMENT_FORBIDDEN = 'organization/add-forbidden',
+  ADD_DOCUMENT_NOT_FOUND = 'organization/add-not-found',
+  ADD_DOCUMENT_ALREADY_EXISTS = 'organization/add-already-exists',
 
   // REGISTER ORGANIZATION
   REGISTER_ORGANIZATION_FAILED = 'organization/register-organization-failed',
@@ -94,6 +102,11 @@ export enum OrganizationErr {
   UPDATE_FOUNDER_FORBIDDEN = 'organization/update-founder-forbidden',
   UPDATE_FOUNDER_NOT_FOUND = 'organization/update-founder-not-found',
 
+  // UPDATE DOCUMENT
+  UPDATE_DOCUMENT_FAILED = 'organization/update-failed',
+  UPDATE_DOCUMENT_FORBIDDEN = 'organization/update-forbidden',
+  UPDATE_DOCUMENT_NOT_FOUND = 'organization/update-not-found',
+
   // DELETE ADDRESS
   DELETE_ADDRESS_FAILED = 'organization/delete-address-failed',
   DELETE_ADDRESS_FORBIDDEN = 'organization/delete-address-forbidden',
@@ -121,7 +134,6 @@ export enum OrganizationErr {
   UPDATE_THIRD_PARTY_FAILED = 'organization/update-third-party-failed',
   UPDATE_THIRD_PARTY_IMPOSSIBLE = 'organization/update-third-party-impossible',
   ADD_KYC_FAILED = 'organization/add-kyc-failed',
-  GET_KYCS_FAILED = 'organization/get-kycs-failed',
 }
 
 export const errors = {
@@ -131,8 +143,11 @@ export const errors = {
     'Failed to fetch organization API. Forbidden access',
   [OrganizationErr.NOT_FOUND]: 'Failed to fetch organization. Page not found',
 
-  [OrganizationErr.ADD_DOCUMENT_FAILED]: 'Failed to add document',
-  [OrganizationErr.UPDATE_DOCUMENT_FAILED]: 'Failed to update document',
+  // GET KYCS
+  [OrganizationErr.GET_KYCS_FAILED]: 'Failed to get KYCs',
+  [OrganizationErr.GET_KYCS_FORBIDDEN]: 'Failed to get KYCs. Forbidden access',
+  [OrganizationErr.GET_KYCS_NOT_FOUND]: 'Failed to get KYCs. KYCs not found',
+
   [OrganizationErr.ADD_RIB_FAILED]: 'Failed to add RIB',
   [OrganizationErr.ADD_LOGO_FAILED]: 'Failed to add logo',
   [OrganizationErr.DELETE_LOGO_FAILED]: 'Failed to delete logo',
@@ -216,6 +231,15 @@ export const errors = {
   [OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_ALREADY_EXISTS]:
     'Failed to register organization to person. Person already exists in organization',
 
+  // ADD KYC
+  [OrganizationErr.ADD_DOCUMENT_FAILED]: 'Failed to add document',
+  [OrganizationErr.ADD_DOCUMENT_FORBIDDEN]:
+    'Failed to add document. Forbidden access',
+  [OrganizationErr.ADD_DOCUMENT_NOT_FOUND]:
+    'Failed to add document. Document not found',
+  [OrganizationErr.ADD_DOCUMENT_ALREADY_EXISTS]:
+    'Failed to add document. Document already exists',
+
   // SET COMMUNICATION
   [OrganizationErr.SET_COMMUNICATION_FAILED]: 'Failed to set communication',
   [OrganizationErr.SET_COMMUNICATION_FORBIDDEN]: 'Failed to set communication',
@@ -241,6 +265,13 @@ export const errors = {
     'Failed to update founder. Forbidden access',
   [OrganizationErr.UPDATE_FOUNDER_NOT_FOUND]:
     'Failed to update founder. Founder not found',
+
+  // UPDATE DOCUMENT
+  [OrganizationErr.UPDATE_DOCUMENT_FAILED]: 'Failed to update document',
+  [OrganizationErr.UPDATE_DOCUMENT_FORBIDDEN]:
+    'Failed to update document. Forbidden access',
+  [OrganizationErr.UPDATE_DOCUMENT_NOT_FOUND]:
+    'Failed to update document. Document not found',
 
   // UPDATE ADDRESS
   [OrganizationErr.UPDATE_ADDRESS_FAILED]: 'Failed to update address',
@@ -290,7 +321,6 @@ export const errors = {
 
   [OrganizationErr.GET_RIBS_FAILED]: 'Failed to fetch all organization ribs',
   [OrganizationErr.ADD_KYC_FAILED]: 'Failed to add KYC',
-  [OrganizationErr.GET_KYCS_FAILED]: 'Failed to get KYCs',
 };
 
 export const errorFactory = new ErrorFactory<OrganizationErr>(
