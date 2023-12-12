@@ -17,9 +17,17 @@ export const creditWallet = async (
     switch (response.status) {
       case 201:
         return response.data;
+      case 403:
+        throw errorFactory.create(
+          VirtualMoneyErr.CREDIT_WALLET_FAILED_CMS_FORBIDDEN,
+        );
       case 404:
         throw errorFactory.create(
-          VirtualMoneyErr.CREDIT_WALLET_FAILED_CMS_NOT_EXIST,
+          VirtualMoneyErr.CREDIT_WALLET_FAILED_CMS_NOT_FOUND,
+        );
+      case 409:
+        throw errorFactory.create(
+          VirtualMoneyErr.CREDIT_WALLET_FAILED_CMS_ALREADY_EXIST,
         );
       default:
         throw errorFactory.create(VirtualMoneyErr.CREDIT_WALLET_FAILED);

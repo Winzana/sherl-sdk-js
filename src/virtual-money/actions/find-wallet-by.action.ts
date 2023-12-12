@@ -22,9 +22,13 @@ export const findOneWallet = async (
     switch (response.status) {
       case 200:
         return response.data;
+      case 403:
+        throw errorFactory.create(
+          VirtualMoneyErr.FIND_ONE_WALLET_FAILED_CMS_FORBIDDEN,
+        );
       case 404:
         throw errorFactory.create(
-          VirtualMoneyErr.FIND_ONE_WALLET_FAILED_CMS_NOT_EXIST,
+          VirtualMoneyErr.FIND_ONE_WALLET_FAILED_CMS_NOT_FOUND,
         );
       default:
         throw errorFactory.create(VirtualMoneyErr.FIND_ONE_WALLET_FAILED);

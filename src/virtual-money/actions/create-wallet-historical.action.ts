@@ -17,13 +17,17 @@ export const createWalletHistorical = async (
     switch (response.status) {
       case 201:
         return response.data;
+      case 403:
+        throw errorFactory.create(
+          VirtualMoneyErr.CREATE_WALLET_HISTORICAL_FORBIDDEN,
+        );
       case 404:
         throw errorFactory.create(
-          VirtualMoneyErr.CREATE_WALLET_HISTORICAL_FAILED,
+          VirtualMoneyErr.CREATE_WALLET_HISTORICAL_NOT_FOUND,
         );
       case 409:
         throw errorFactory.create(
-          VirtualMoneyErr.CREATE_WALLET_HISTORICAL_FAILED,
+          VirtualMoneyErr.CREATE_WALLET_HISTORICAL_ALREADY_EXIST,
         );
       default:
         throw errorFactory.create(
