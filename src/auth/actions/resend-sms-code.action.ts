@@ -16,7 +16,7 @@ export const resendSMSCode = async (
     );
 
     if (response.status == 404) {
-      throw errorFactory.create(AuthErr.RE_REQUEST_SMS_CODE_NOT_FOUND);
+      throw errorFactory.create(AuthErr.REQUEST_SMS_CODE_NOT_FOUND);
     }
 
     if (!response.data) {
