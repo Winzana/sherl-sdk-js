@@ -3,6 +3,7 @@ import { endpoints } from '../api/endpoints';
 import { IOpinion, IOpinionFilters } from '../types';
 import { Pagination } from '../../common/types/response';
 import { OpinionErr, errorFactory } from '../errors';
+import { getSherlError } from '../../common/utils';
 
 export const getPublicOpinions = async <T, K>(
   fetcher: Fetcher,
@@ -19,12 +20,10 @@ export const getPublicOpinions = async <T, K>(
         return response.data;
       case 403:
         throw errorFactory.create(OpinionErr.FETCH_PUBLIC_OPINIONS_FORBIDDEN);
-      case 404:
-        throw errorFactory.create(OpinionErr.FETCH_PUBLIC_OPINIONS_NOT_FOUND);
       default:
         throw errorFactory.create(OpinionErr.FETCH_FAILED);
     }
   } catch (error) {
-    throw errorFactory.create(OpinionErr.FETCH_FAILED);
+    throw getSherlError(error, errorFactory.create(OpinionErr.FETCH_FAILED));
   }
 };

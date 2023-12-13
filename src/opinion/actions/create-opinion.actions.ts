@@ -3,6 +3,7 @@ import { endpoints } from '../api/endpoints';
 import { ICreateOpinionInput, IOpinion } from '../types';
 import { StringUtils } from '../../common/utils/string';
 import { OpinionErr, errorFactory } from '../errors';
+import { getSherlError } from '../../common/utils';
 
 export const createOpinion = async <T, K>(
   fetcher: Fetcher,
@@ -20,12 +21,13 @@ export const createOpinion = async <T, K>(
         return response.data;
       case 403:
         throw errorFactory.create(OpinionErr.CREATE_OPINION_FORBIDDEN);
-      case 409:
-        throw errorFactory.create(OpinionErr.CREATE_OPINION_ALREADY_EXIST);
       default:
         throw errorFactory.create(OpinionErr.CREATE_OPINION_FAILED);
     }
   } catch (error) {
-    throw errorFactory.create(OpinionErr.CREATE_OPINION_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(OpinionErr.CREATE_OPINION_FAILED),
+    );
   }
 };

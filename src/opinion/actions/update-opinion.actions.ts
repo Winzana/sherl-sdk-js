@@ -3,6 +3,7 @@ import { endpoints } from '../api/endpoints';
 import { IOpinion, IOpinionUpdateStatusInputDto } from '../types';
 import { StringUtils } from '../../common/utils/string';
 import { OpinionErr, errorFactory } from '../errors';
+import { getSherlError } from '../../common/utils';
 
 export const updateOpinion = async <T, K>(
   fetcher: Fetcher,
@@ -21,11 +22,14 @@ export const updateOpinion = async <T, K>(
       case 403:
         throw errorFactory.create(OpinionErr.UPDATE_OPINION_FORBIDDEN);
       case 404:
-        throw errorFactory.create(OpinionErr.UPDATE_OPINION_NOT_FOUND);
+        throw errorFactory.create(OpinionErr.OPINION_NOT_FOUND);
       default:
         throw errorFactory.create(OpinionErr.UPDATE_OPINION_FAILED);
     }
   } catch (error) {
-    throw errorFactory.create(OpinionErr.UPDATE_OPINION_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(OpinionErr.UPDATE_OPINION_FAILED),
+    );
   }
 };

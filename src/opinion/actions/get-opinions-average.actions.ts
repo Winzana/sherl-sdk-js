@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { OpinionErr, errorFactory } from '../errors';
 import { IAverage } from '../types';
@@ -18,12 +19,13 @@ export const getOpinionsAverage = async (
         return response.data;
       case 403:
         throw errorFactory.create(OpinionErr.FETCH_OPINION_AVERAGE_FORBIDDEN);
-      case 404:
-        throw errorFactory.create(OpinionErr.FETCH_OPINION_AVERAGE_NOT_FOUND);
       default:
         throw errorFactory.create(OpinionErr.FETCH_OPINION_AVERAGE_FAILED);
     }
   } catch (error) {
-    throw errorFactory.create(OpinionErr.FETCH_OPINION_AVERAGE_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(OpinionErr.FETCH_OPINION_AVERAGE_FAILED),
+    );
   }
 };

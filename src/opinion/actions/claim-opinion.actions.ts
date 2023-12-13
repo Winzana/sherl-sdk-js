@@ -3,6 +3,7 @@ import { endpoints } from '../api/endpoints';
 import { IClaimOpinionInput } from '../types';
 import { StringUtils } from '../../common/utils/string';
 import { OpinionErr, errorFactory } from '../errors';
+import { getSherlError } from '../../common/utils';
 
 export const createOpinionClaim = async (
   fetcher: Fetcher,
@@ -23,15 +24,14 @@ export const createOpinionClaim = async (
       case 403:
         throw errorFactory.create(OpinionErr.CREATE_OPINION_CLAIM_FORBIDDEN);
       case 404:
-        throw errorFactory.create(OpinionErr.CREATE_OPINION_CLAIM_NOT_FOUND);
-      case 409:
-        throw errorFactory.create(
-          OpinionErr.CREATE_OPINION_CLAIM_ALREADY_EXIST,
-        );
+        throw errorFactory.create(OpinionErr.OPINION_NOT_FOUND);
       default:
         throw errorFactory.create(OpinionErr.CREATE_OPINION_CLAIM_FAILED);
     }
   } catch (error) {
-    throw errorFactory.create(OpinionErr.CREATE_OPINION_CLAIM_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(OpinionErr.CREATE_OPINION_CLAIM_FAILED),
+    );
   }
 };
