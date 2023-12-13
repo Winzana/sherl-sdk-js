@@ -21,10 +21,6 @@ export const getNotificationsAnalytics = async (
         throw errorFactory.create(
           AnalyticsErr.ANALYTICS_NOTIFICATIONS_FAILED_FORBIDDEN,
         );
-      case 404:
-        throw errorFactory.create(
-          AnalyticsErr.ANALYTICS_NOTIFICATIONS_NOT_FOUND,
-        );
       default:
         throw errorFactory.create(AnalyticsErr.ANALYTICS_NOTIFICATIONS_FAILED);
     }

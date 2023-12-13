@@ -19,8 +19,6 @@ export const getCAAnalytics = async (
         return response.data;
       case 403:
         throw errorFactory.create(AnalyticsErr.ANALYTICS_CA_FAILED_FORBIDDEN);
-      case 404:
-        throw errorFactory.create(AnalyticsErr.ANALYTICS_CA_NOT_FOUND);
       default:
         throw errorFactory.create(AnalyticsErr.ANALYTICS_CA_FAILED);
     }

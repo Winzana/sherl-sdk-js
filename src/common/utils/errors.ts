@@ -2,7 +2,7 @@ import { SherlError } from '../errors';
 
 /**
  * Returns either the provided error object if it is an instance of SherlError,
- * or the callBackError object.
+ * or the fallbackError error.
  *
  * @param {unknown} error - The error object to check.
  * @param {SherlError} fallbackError - The fallback error object.

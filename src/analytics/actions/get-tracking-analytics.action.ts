@@ -1,5 +1,6 @@
 import { ISearchResult } from '../../common';
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoint';
 import { AnalyticsErr, errorFactory } from '../errors';
 import { IAnalyticsFindByInputDto, ITrace } from '../types';
@@ -21,14 +22,13 @@ export const getTrackingAnalytics = async (
         throw errorFactory.create(
           AnalyticsErr.ANALYTICS_TRACKING_FAILED_FORBIDDEN,
         );
-      case 404:
-        throw errorFactory.create(AnalyticsErr.ANALYTICS_TRACKING_NOT_FOUND);
       default:
         throw errorFactory.create(AnalyticsErr.ANALYTICS_TRACKING_FAILED);
     }
-
-    return response.data;
   } catch (err) {
-    throw errorFactory.create(AnalyticsErr.ANALYTICS_TRACKING_FAILED);
+    throw getSherlError(
+      err,
+      errorFactory.create(AnalyticsErr.ANALYTICS_TRACKING_FAILED),
+    );
   }
 };

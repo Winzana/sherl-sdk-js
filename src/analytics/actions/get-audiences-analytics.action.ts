@@ -21,8 +21,6 @@ export const getAudienceAnalytics = async (
         throw errorFactory.create(
           AnalyticsErr.ANALYTICS_AUDIENCES_FAILED_FORBIDDEN,
         );
-      case 404:
-        throw errorFactory.create(AnalyticsErr.ANALYTICS_AUDIENCES_NOT_FOUND);
       default:
         throw errorFactory.create(AnalyticsErr.ANALYTICS_AUDIENCES_FAILED);
     }

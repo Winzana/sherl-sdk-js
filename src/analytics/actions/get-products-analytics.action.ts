@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoint';
 import { AnalyticsErr, errorFactory } from '../errors';
 import { IAnalyticResponse, IProductAnalyticsInputDto } from '../types';
@@ -20,12 +21,13 @@ export const getProductsAnalytics = async (
         throw errorFactory.create(
           AnalyticsErr.ANALYTICS_PRODUCTS_FAILED_FORBIDDEN,
         );
-      case 404:
-        throw errorFactory.create(AnalyticsErr.ANALYTICS_PRODUCTS_NOT_FOUND);
       default:
         throw errorFactory.create(AnalyticsErr.ANALYTICS_PRODUCTS_FAILED);
     }
   } catch (err) {
-    throw errorFactory.create(AnalyticsErr.ANALYTICS_PRODUCTS_FAILED);
+    throw getSherlError(
+      err,
+      errorFactory.create(AnalyticsErr.ANALYTICS_PRODUCTS_FAILED),
+    );
   }
 };
