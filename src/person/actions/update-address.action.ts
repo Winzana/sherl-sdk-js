@@ -32,10 +32,9 @@ export const updateAddress = async (
         throw errorFactory.create(PersonErr.PUT_ADDRESS_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(PersonErr.PUT_ADDRESS_FAILED),
     );
-    throw filteredError;
   }
 };

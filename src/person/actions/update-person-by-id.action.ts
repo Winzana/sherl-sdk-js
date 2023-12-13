@@ -31,10 +31,6 @@ export const updatePersonById = async (
         throw errorFactory.create(PersonErr.PUT_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
-      error,
-      errorFactory.create(PersonErr.PUT_FAILED),
-    );
-    throw filteredError;
+    throw filterSherlError(error, errorFactory.create(PersonErr.PUT_FAILED));
   }
 };

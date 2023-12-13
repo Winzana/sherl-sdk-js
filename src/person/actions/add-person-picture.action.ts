@@ -25,18 +25,13 @@ export const addPersonPicture = async (
         return true;
       case 403:
         throw errorFactory.create(PersonErr.ADD_PICTURE_FORBIDDEN);
-      case 404:
-        throw errorFactory.create(PersonErr.ADD_PICTURE_NOT_FOUND);
-      case 409:
-        throw errorFactory.create(PersonErr.ADD_PICTURE_ALREADY_EXISTS);
       default:
         throw errorFactory.create(PersonErr.ADD_PICTURE_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(PersonErr.ADD_PICTURE_FAILED),
     );
-    throw filteredError;
   }
 };

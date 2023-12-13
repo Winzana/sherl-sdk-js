@@ -16,16 +16,10 @@ export const getMe = async (fetcher: Fetcher): Promise<IPerson> => {
         return response.data;
       case 403:
         throw errorFactory.create(PersonErr.FETCH_FORBIDDEN);
-      case 404:
-        throw errorFactory.create(PersonErr.FETCH_NOT_FOUND);
       default:
         throw errorFactory.create(PersonErr.FETCH_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
-      error,
-      errorFactory.create(PersonErr.FETCH_FAILED),
-    );
-    throw filteredError;
+    throw filterSherlError(error, errorFactory.create(PersonErr.FETCH_FAILED));
   }
 };

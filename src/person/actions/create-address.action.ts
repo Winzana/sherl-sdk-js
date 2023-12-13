@@ -21,18 +21,15 @@ export const createAddress = async (
         return response.data;
       case 403:
         throw errorFactory.create(PersonErr.CREATE_ADDRESS_FORBIDDEN);
-      case 404:
-        throw errorFactory.create(PersonErr.CREATE_ADDRESS_NOT_FOUND);
       case 409:
         throw errorFactory.create(PersonErr.CREATE_ADDRESS_ALREADY_EXISTS);
       default:
         throw errorFactory.create(PersonErr.CREATE_ADDRESS_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(PersonErr.CREATE_ADDRESS_FAILED),
     );
-    throw filteredError;
   }
 };

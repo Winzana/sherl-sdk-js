@@ -28,13 +28,11 @@ export enum PersonErr {
   // CREATE PERSON
   CREATE_PERSON_FAILED = 'person/create-person-failed',
   CREATE_PERSON_FORBIDDEN = 'person/create-person-forbidden',
-  CREATE_PERSON_NOT_FOUND = 'person/create-person-not-found',
   CREATE_PERSON_ALREADY_EXISTS = 'person/create-person-already-exists',
 
   // CREATE ADDRESS
   CREATE_ADDRESS_FAILED = 'person/create-address-failed',
   CREATE_ADDRESS_FORBIDDEN = 'person/create-address-forbidden',
-  CREATE_ADDRESS_NOT_FOUND = 'person/create-address-not-found',
   CREATE_ADDRESS_ALREADY_EXISTS = 'person/create-address-already-exists',
 
   // DELETE ADDRESS
@@ -45,26 +43,47 @@ export enum PersonErr {
   // ADD PICTURE
   ADD_PICTURE_FAILED = 'person/post-picture-failed',
   ADD_PICTURE_FORBIDDEN = 'person/post-picture-forbidden',
-  ADD_PICTURE_NOT_FOUND = 'person/post-picture-not-found',
-  ADD_PICTURE_ALREADY_EXISTS = 'person/post-picture-already-exists',
 }
 
 export const errors = {
+  // FETCH
   [PersonErr.FETCH_FAILED]: 'Failed to fetch person API',
   [PersonErr.NOT_FOUND]: 'Person not found',
-  [PersonErr.PUT_FAILED]: 'Failed to update person',
-  [PersonErr.CREATE_PERSON_FAILED]: 'Failed to create new person',
+
+  // POST
   [PersonErr.POST_FAILED]: 'Failed to create person',
+
+  // PUT
+  [PersonErr.PUT_FAILED]: 'Failed to update person',
+
+  // CREATE PERSON
+  [PersonErr.CREATE_PERSON_FAILED]: 'Failed to create new person',
+  [PersonErr.CREATE_PERSON_FORBIDDEN]:
+    'Failed to create new person. Forbidden access',
+  [PersonErr.CREATE_PERSON_ALREADY_EXISTS]:
+    'Failed to create new person. Person already exists',
+
+  // ADD PICTURE
   [PersonErr.ADD_PICTURE_FAILED]: 'Failed to add picture to person profile',
   [PersonErr.ADD_PICTURE_FORBIDDEN]:
     'Failed to add picture to person profile, access denied',
-  [PersonErr.ADD_PICTURE_NOT_FOUND]:
-    'Failed to add picture to person profile, not exists',
-  [PersonErr.ADD_PICTURE_ALREADY_EXISTS]:
-    'Failed to add picture to person profile, already exists',
+
+  // CREATE ADDRESS
   [PersonErr.CREATE_ADDRESS_FAILED]: 'Failed to create new address',
+  [PersonErr.CREATE_ADDRESS_FORBIDDEN]:
+    'Failed to create new address. Forbidden access',
+  [PersonErr.CREATE_ADDRESS_ALREADY_EXISTS]:
+    'Failed to create new address. Address already exists',
+
+  // UPDATE ADDRESS
   [PersonErr.PUT_ADDRESS_FAILED]: 'Failed to update address',
+
+  // DELETE ADDRESS
   [PersonErr.DELETE_ADDRESS_FAILED]: 'Failed to delete address',
+  [PersonErr.DELETE_ADDRESS_FORBIDDEN]:
+    'Failed to delete address. Forbidden access',
+  [PersonErr.DELETE_ADDRESS_NOT_FOUND]:
+    'Failed to delete address. Address not found',
 };
 
 export const errorFactory = new ErrorFactory<PersonErr>('Person', errors);

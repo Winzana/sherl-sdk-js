@@ -20,18 +20,12 @@ export const registerWithEmailAndPassword = async (
         return response.data;
       case 403:
         throw errorFactory.create(PersonErr.POST_FORBIDDEN);
-      case 404:
-        throw errorFactory.create(PersonErr.POST_NOT_FOUND);
       case 409:
         throw errorFactory.create(PersonErr.POST_ALREADY_EXISTS);
       default:
         throw errorFactory.create(PersonErr.POST_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
-      error,
-      errorFactory.create(PersonErr.POST_FAILED),
-    );
-    throw filteredError;
+    throw filterSherlError(error, errorFactory.create(PersonErr.POST_FAILED));
   }
 };
