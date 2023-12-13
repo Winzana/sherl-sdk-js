@@ -15,14 +15,16 @@ export const refundClaim = async (
       {},
     );
 
-    if (response.status == 404) {
-      throw errorFactory.create(ClaimErr.REFUND_CLAIM_NOT_FOUND_ERROR);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(ClaimErr.REFUND_CLAIM_FORBIDDEN_ERROR);
+      case 404:
+        throw errorFactory.create(ClaimErr.REFUND_CLAIM_NOT_FOUND_ERROR);
+      default:
+        throw errorFactory.create(ClaimErr.REFUND_CLAIM_FAILED);
     }
-
-    if (response.status !== 200) {
-      throw errorFactory.create(ClaimErr.REFUND_CLAIM_FAILED);
-    }
-    return response.data;
   } catch (err) {
     throw getSherlError(err, errorFactory.create(ClaimErr.REFUND_CLAIM_FAILED));
   }

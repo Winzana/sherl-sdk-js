@@ -11,14 +11,16 @@ export const findClaimBy = async (
   try {
     const response = await fetcher.get<IClaim>(endpoints.FIND_ONE_BY, filters);
 
-    if (response.status == 404) {
-      throw errorFactory.create(ClaimErr.FIND_CLAIM_BY_NOT_FOUND_ERROR);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(ClaimErr.FIND_CLAIM_BY_FORBIDDEN_ERROR);
+      case 404:
+        throw errorFactory.create(ClaimErr.FIND_CLAIM_BY_NOT_FOUND_ERROR);
+      default:
+        throw errorFactory.create(ClaimErr.FIND_CLAIM_BY_FAILED);
     }
-
-    if (response.status !== 200) {
-      throw errorFactory.create(ClaimErr.FIND_CLAIM_BY_FAILED);
-    }
-    return response.data;
   } catch (err) {
     throw getSherlError(
       err,

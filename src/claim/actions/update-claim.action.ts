@@ -18,15 +18,16 @@ export const updateClaim = async (
       },
     );
 
-    if (response.status == 404) {
-      throw errorFactory.create(ClaimErr.UPDATE_CLAIM_NOT_FOUND_ERROR);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(ClaimErr.UPDATE_CLAIM_FORBIDDEN_ERROR);
+      case 404:
+        throw errorFactory.create(ClaimErr.UPDATE_CLAIM_NOT_FOUND_ERROR);
+      default:
+        throw errorFactory.create(ClaimErr.UPDATE_CLAIM_ERROR);
     }
-
-    if (response.status !== 200) {
-      throw errorFactory.create(ClaimErr.UPDATE_CLAIM_ERROR);
-    }
-
-    return response.data;
   } catch (err) {
     throw getSherlError(err, errorFactory.create(ClaimErr.UPDATE_CLAIM_ERROR));
   }

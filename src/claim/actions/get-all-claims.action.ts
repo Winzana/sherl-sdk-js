@@ -14,14 +14,17 @@ export const getAllClaims = async (
     const response = await fetcher.get<Pagination<IClaim>>(endpoints.CLAIMS, {
       ...filters,
     });
-    if (response.status == 404) {
-      throw errorFactory.create(ClaimErr.GET_CLAIM_BY_ID_NOT_FOUND_ERROR);
-    }
-    if (response.status !== 200) {
-      throw errorFactory.create(ClaimErr.GET_ALL_FAILED);
-    }
 
-    return response.data;
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(ClaimErr.GET_ALL_FORBIDDEN_ERROR);
+      case 404:
+        throw errorFactory.create(ClaimErr.GET_ALL_NOT_FOUND_ERROR);
+      default:
+        throw errorFactory.create(ClaimErr.GET_ALL_FAILED);
+    }
   } catch (err) {
     throw getSherlError(err, errorFactory.create(ClaimErr.GET_ALL_FAILED));
   }
