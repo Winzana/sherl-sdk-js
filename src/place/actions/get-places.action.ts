@@ -31,10 +31,6 @@ export const getPlaces = async (
         throw errorFactory.create(PlaceErr.FETCH_FAILED);
     }
   } catch (error) {
-    const sherlError = getSherlError(
-      error,
-      errorFactory.create(PlaceErr.FETCH_FAILED),
-    );
-    throw sherlError;
+    throw getSherlError(error, errorFactory.create(PlaceErr.FETCH_FAILED));
   }
 };
