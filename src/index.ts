@@ -2,6 +2,7 @@ import { init, SherlError, Pagination, SherlClient, Sort } from './common';
 
 export { init, SherlError, Pagination, SherlClient, Sort };
 export * from './auth';
+export * from './analytics';
 export * from './bug-reports';
 export * from './calendar';
 export * from './claim';
