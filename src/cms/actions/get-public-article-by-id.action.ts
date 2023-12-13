@@ -3,6 +3,7 @@ import { endpoints } from '../api/endpoints';
 import { CmsErr, errorFactory } from '../errors';
 import { IArticle } from '../types';
 import { StringUtils } from '../../common/utils/string';
+import { getSherlError } from '../../common/utils';
 
 export const getPublicArticleById = async (
   fetcher: Fetcher,
@@ -21,13 +22,14 @@ export const getPublicArticleById = async (
           CmsErr.CMS_GET_PUBLIC_FIND_ID_FAILED_POST_FORBIDDEN,
         );
       case 404:
-        throw errorFactory.create(
-          CmsErr.CMS_GET_PUBLIC_FIND_ID_FAILED_POST_NOT_FOUND,
-        );
+        throw errorFactory.create(CmsErr.CMS_NOT_FOUND);
       default:
         throw errorFactory.create(CmsErr.CMS_GET_PUBLIC_FIND_ID_FAILED);
     }
   } catch (error) {
-    throw errorFactory.create(CmsErr.CMS_GET_PUBLIC_FIND_ID_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(CmsErr.CMS_GET_PUBLIC_FIND_ID_FAILED),
+    );
   }
 };

@@ -3,6 +3,7 @@ import { endpoints } from '../api/endpoints';
 import { CmsErr, errorFactory } from '../errors';
 import { IArticle } from '../types';
 import { StringUtils } from '../../common/utils/string';
+import { getSherlError } from '../../common/utils';
 
 export const deleteMediaPage = async (
   fetcher: Fetcher,
@@ -21,11 +22,14 @@ export const deleteMediaPage = async (
       case 403:
         throw errorFactory.create(CmsErr.CREATE_CMS_MEDIA_FAILED_CMS_FORBIDDEN);
       case 404:
-        throw errorFactory.create(CmsErr.CREATE_CMS_MEDIA_FAILED_CMS_NOT_FOUND);
+        throw errorFactory.create(CmsErr.CMS_NOT_FOUND);
       default:
         throw errorFactory.create(CmsErr.CMS_DELETE_MEDIA_FAILED);
     }
-  } catch (err) {
-    throw errorFactory.create(CmsErr.CMS_DELETE_MEDIA_FAILED);
+  } catch (error) {
+    throw getSherlError(
+      error,
+      errorFactory.create(CmsErr.CMS_DELETE_MEDIA_FAILED),
+    );
   }
 };

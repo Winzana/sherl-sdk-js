@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { CmsErr, errorFactory } from '../errors';
 import { IArticle, ICMSArticleCreateInputDto } from '../types';
@@ -18,16 +19,13 @@ export const createPostsPage = async (
         return response.data;
       case 403:
         throw errorFactory.create(CmsErr.CREATE_CMS_POSTS_FAILED_CMS_FORBIDDEN);
-      case 404:
-        throw errorFactory.create(CmsErr.CREATE_CMS_POSTS_FAILED_CMS_NOT_FOUND);
-      case 409:
-        throw errorFactory.create(
-          CmsErr.CMS_CREATE_POSTS_FAILED_POST_ALREADY_EXIST,
-        );
       default:
         throw errorFactory.create(CmsErr.CMS_CREATE_POSTS_FAILED);
     }
-  } catch (err) {
-    throw errorFactory.create(CmsErr.CMS_CREATE_POSTS_FAILED);
+  } catch (error) {
+    throw getSherlError(
+      error,
+      errorFactory.create(CmsErr.CMS_CREATE_POSTS_FAILED),
+    );
   }
 };

@@ -3,7 +3,7 @@ import { endpoints } from '../api/endpoints';
 import { CmsErr, errorFactory } from '../errors';
 import { IArticle, ICMSArticleUpdateInputDto } from '../types';
 import { StringUtils } from '../../common/utils/string';
-import { filterSherlError } from '../../common/utils';
+import { getSherlError } from '../../common/utils';
 
 export const createArticleById = async (
   fetcher: Fetcher,
@@ -24,15 +24,14 @@ export const createArticleById = async (
       case 403:
         throw errorFactory.create(CmsErr.CREATE_CMS_EVENT_FAILED_CMS_FORBIDDEN);
       case 404:
-        throw errorFactory.create(CmsErr.CREATE_CMS_EVENT_FAILED_CMS_NOT_FOUND);
+        throw errorFactory.create(CmsErr.CMS_NOT_FOUND);
       default:
         throw errorFactory.create(CmsErr.CMS_UPDATE_ARTICLE_BY_ID_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(CmsErr.CMS_UPDATE_ARTICLE_BY_ID_FAILED),
     );
-    throw filteredError;
   }
 };

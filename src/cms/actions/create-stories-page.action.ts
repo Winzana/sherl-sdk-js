@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { CmsErr, errorFactory } from '../errors';
 import { IArticle, ICMSArticleStoryCreateInputDto } from '../types';
@@ -20,18 +21,13 @@ export const createStoriesPage = async (
         throw errorFactory.create(
           CmsErr.CREATE_CMS_STORIES_FAILED_CMS_FORBIDDEN,
         );
-      case 404:
-        throw errorFactory.create(
-          CmsErr.CREATE_CMS_STORIES_FAILED_CMS_NOT_FOUND,
-        );
-      case 409:
-        throw errorFactory.create(
-          CmsErr.CMS_CREATE_STORIES_FAILED_STORY_ALREADY_EXIST,
-        );
       default:
         throw errorFactory.create(CmsErr.CMS_CREATE_STORIES_FAILED);
     }
-  } catch (err) {
-    throw errorFactory.create(CmsErr.CMS_CREATE_STORIES_FAILED);
+  } catch (error) {
+    throw getSherlError(
+      error,
+      errorFactory.create(CmsErr.CMS_CREATE_STORIES_FAILED),
+    );
   }
 };

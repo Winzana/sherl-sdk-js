@@ -3,6 +3,7 @@ import { endpoints } from '../api/endpoints';
 import { CmsErr, errorFactory } from '../errors';
 import { FindPostsFilters, IArticle } from '../types';
 import { ISearchResult } from '../../common';
+import { getSherlError } from '../../common/utils';
 
 export const getPublicArticles = async (
   fetcher: Fetcher,
@@ -24,13 +25,14 @@ export const getPublicArticles = async (
           CmsErr.CMS_GET_PUBLIC_ARTICLES_FAILED_POSTS_FORBIDDEN,
         );
       case 404:
-        throw errorFactory.create(
-          CmsErr.CMS_GET_PUBLIC_ARTICLES_FAILED_POSTS_NOT_FOUND,
-        );
+        throw errorFactory.create(CmsErr.CMS_NOT_FOUND);
       default:
         throw errorFactory.create(CmsErr.CMS_GET_PUBLIC_ARTICLES_FAILED);
     }
   } catch (error) {
-    throw errorFactory.create(CmsErr.CMS_GET_PUBLIC_ARTICLES_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(CmsErr.CMS_GET_PUBLIC_ARTICLES_FAILED),
+    );
   }
 };

@@ -1,6 +1,7 @@
 import { ErrorFactory } from '../common/errors';
 
 export enum CmsErr {
+  CMS_NOT_FOUND = 'cms/not_found',
   CMS_CREATE_FAILED = 'cms/cms-create-failed',
   CMS_ADD_MEDIA_FAILED = 'cms/cms-add-media-failed',
   CMS_DELETE_MEDIA_FAILED = 'cms/cms-delete-media-failed',
@@ -19,47 +20,29 @@ export enum CmsErr {
   CREATE_CMS_EVENT_FAILED = 'cms-event/creation-failed',
   CREATE_CMS_EVENT_FAILED_FORBIDDEN = 'cms-event/creation-failed-forbidden',
   CREATE_CMS_EVENT_FAILED_CMS_NOT_EXIST = 'cms-event/creation-failed-cms-not-exist',
-  CREATE_CMS_EVENT_FAILED_EVENT_ALREADY_EXIST = 'cms-event/creation-failed-event-already-exist',
   CREATE_CMS_FAQS_FAILED_CMS_NOT_EXIST = 'cms-faqs/creation-failed-cms-not-exist',
-  CREATE_CMS_FAQS_FAILED_FAQS_ALREADY_EXIST = 'cms-faqs/creation-failed-faqs-already-exist',
   CMS_CREATE_POSTS_FAILED_CMS_NOT_EXIST = 'cms-post/creation-failed-cms-not-exist',
-  CMS_CREATE_POSTS_FAILED_POST_ALREADY_EXIST = 'cms-post/creation-failed-post-already-exist',
   CMS_CREATE_FAILED_CMS_NOT_EXIST = 'cms-static/creation-failed-cms-not-exist',
-  CMS_CREATE_FAILED_STATIC_PAGE_ALREADY_EXIST = 'cms-static/creation-failed-static-already-exist',
   CMS_CREATE_STORIES_FAILED_CMS_NOT_EXIST = 'cms-stories/creation-failed-cms-not-exist',
-  CMS_CREATE_STORIES_FAILED_STORY_ALREADY_EXIST = 'cms-stories/creation-failed-stories-already-exist',
   CMS_CREATE_TRAININGS_FAILED_CMS_NOT_EXIST = 'cms-trainings/creation-failed-cms-not-exist',
-  CMS_CREATE_TRAININGS_FAILED_TRAINING_ALREADY_EXIST = 'cms-trainings/creation-failed-trainings-already-exist',
-  CMS_DELETE_BY_ID_FAILED_CMS_NOT_FOUND = 'cms-delete/creation-failed-delete-not-found',
   CMS_DELETE_BY_ID_FAILED_CMS_FORBIDDEN = 'cms-delete/creation-failed-delete-forbidden',
   CMS_DELETE_MEDIA_FAILED_MEDIA_NOT_EXIST = 'cms-delete/creation-failed-delete-already-exist',
-  CMS_GET_BY_ID_FAILED_POST_NOT_FOUND = 'cms-post/creation-failed-post-get-not-found',
   CMS_GET_BY_ID_FAILED_POST_FORBIDDEN = 'cms-post/creation-failed-post-get-forbidden',
-  CMS_GET_SLUG_FAILED_ARTICLE_NOT_FOUND = 'cms-article/creation-failed-article-get-slug-not-found',
   CMS_GET_SLUG_FAILED_ARTICLE_FORBIDDEN = 'cms-article/creation-failed-article-get-slug-forbidden',
-  CMS_GET_POSTS_FAILED_POSTS_NOT_FOUND = 'cms-post/creation-failed-post-get-not-found',
   CMS_GET_POSTS_FAILED_POSTS_FORBIDDEN = 'cms-post/creation-failed-post-get-forbidden',
-  CMS_GET_PUBLIC_FIND_ID_FAILED_POST_NOT_FOUND = 'cms-public/creation-failed-post-public-not-found',
   CMS_GET_PUBLIC_FIND_ID_FAILED_POST_FORBIDDEN = 'cms-public/creation-failed-post-public-forbidden',
-  CMS_GET_PUBLIC_ARTICLES_FAILED_POSTS_NOT_FOUND = 'cms-article/creation-failed-article-public-not-found',
   CMS_GET_PUBLIC_ARTICLES_FAILED_POSTS_FORBIDDEN = 'cms-article/creation-failed-article-public-forbidden',
   CREATE_CMS_EVENT_FAILED_CMS_FORBIDDEN = 'cms-article/creation-failed-article-slug-forbidden',
-  CREATE_CMS_EVENT_FAILED_CMS_NOT_FOUND = 'cms-article/creation-failed-article-not-found',
   CREATE_CMS_FAQS_FAILED_CMS_FORBIDDEN = 'cms-faqs/creation-failed-article-slug-forbidden',
-  CREATE_CMS_FAQS_FAILED_CMS_NOT_FOUND = 'cms-faqs/creation-failed-article-not-found',
   CREATE_CMS_POSTS_FAILED_CMS_FORBIDDEN = 'cms-faqs/creation-failed-article-slug-forbidden',
-  CREATE_CMS_POSTS_FAILED_CMS_NOT_FOUND = 'cms-faqs/creation-failed-article-not-found',
   CREATE_CMS_STATIC_FAILED_CMS_FORBIDDEN = 'cms-faqs/creation-failed-article-slug-forbidden',
-  CREATE_CMS_STATIC_FAILED_CMS_NOT_FOUND = 'cms-faqs/creation-failed-article-not-found',
   CREATE_CMS_TRAINING_FAILED_CMS_FORBIDDEN = 'cms-faqs/creation-failed-article-slug-forbidden',
-  CREATE_CMS_TRAINING_FAILED_CMS_NOT_FOUND = 'cms-faqs/creation-failed-article-not-found',
   CREATE_CMS_STORIES_FAILED_CMS_FORBIDDEN = 'cms-faqs/creation-failed-article-slug-forbidden',
-  CREATE_CMS_STORIES_FAILED_CMS_NOT_FOUND = 'cms-faqs/creation-failed-article-not-found',
   CREATE_CMS_MEDIA_FAILED_CMS_FORBIDDEN = 'cms-faqs/creation-failed-media-slug-forbidden',
-  CREATE_CMS_MEDIA_FAILED_CMS_NOT_FOUND = 'cms-faqs/creation-failed-media-not-found',
 }
 
 export const errors = {
+  [CmsErr.CMS_NOT_FOUND]: 'Failed to create CMS not found.',
   [CmsErr.CMS_CREATE_FAILED]: 'Failed to create CMS report.',
   [CmsErr.CMS_ADD_MEDIA_FAILED]: 'Failed to create CMS media report.',
   [CmsErr.CMS_DELETE_MEDIA_FAILED]: 'Failed to delete CMS media report.',
@@ -85,86 +68,44 @@ export const errors = {
     'Failed to create CMS event, access denied.',
   [CmsErr.CREATE_CMS_EVENT_FAILED_CMS_NOT_EXIST]:
     'Failed to create CMS event, CMS not exist.',
-  [CmsErr.CREATE_CMS_EVENT_FAILED_EVENT_ALREADY_EXIST]:
-    'Failed to create CMS event, event already exist.',
   [CmsErr.CREATE_CMS_FAQS_FAILED_CMS_NOT_EXIST]:
     'Failed to create CMS FAQs, CMS not exist.',
-  [CmsErr.CREATE_CMS_FAQS_FAILED_FAQS_ALREADY_EXIST]:
-    'Failed to create CMS FAQs, FAQs already exist.',
-  [CmsErr.CREATE_CMS_FAQS_FAILED_FAQS_ALREADY_EXIST]:
-    'Failed to create CMS FAQs, FAQs already exist.',
   [CmsErr.CMS_CREATE_POSTS_FAILED_CMS_NOT_EXIST]:
-    'Failed to create CMS posts, posts already exist.',
-  [CmsErr.CMS_CREATE_POSTS_FAILED_POST_ALREADY_EXIST]:
     'Failed to create CMS posts, posts already exist.',
   [CmsErr.CMS_CREATE_FAILED_CMS_NOT_EXIST]:
     'Failed to create CMS static, static already exist.',
-  [CmsErr.CMS_CREATE_FAILED_STATIC_PAGE_ALREADY_EXIST]:
-    'Failed to create CMS static, static already exist.',
   [CmsErr.CMS_CREATE_STORIES_FAILED_CMS_NOT_EXIST]:
-    'Failed to create CMS stories, stories already exist.',
-  [CmsErr.CMS_CREATE_STORIES_FAILED_STORY_ALREADY_EXIST]:
     'Failed to create CMS stories, stories already exist.',
   [CmsErr.CMS_CREATE_TRAININGS_FAILED_CMS_NOT_EXIST]:
     'Failed to create CMS trainings, trainings already exist.',
-  [CmsErr.CMS_CREATE_TRAININGS_FAILED_TRAINING_ALREADY_EXIST]:
-    'Failed to create CMS trainings, trainings already exist.',
-  [CmsErr.CMS_DELETE_BY_ID_FAILED_CMS_NOT_FOUND]:
-    'Failed to create CMS delete, delete not found.',
   [CmsErr.CMS_DELETE_BY_ID_FAILED_CMS_FORBIDDEN]:
     'Failed to create CMS delete, delete forbidden',
   [CmsErr.CMS_DELETE_MEDIA_FAILED_MEDIA_NOT_EXIST]:
     'Failed to create CMS delete, delete already exist.',
-  [CmsErr.CMS_GET_BY_ID_FAILED_POST_NOT_FOUND]:
-    'Failed to create CMS post, failed not found.',
   [CmsErr.CMS_GET_BY_ID_FAILED_POST_FORBIDDEN]:
     'Failed to create CMS post, failed forbidden.',
-  [CmsErr.CMS_GET_SLUG_FAILED_ARTICLE_NOT_FOUND]:
-    'Failed to create CMS slug, failed article not found.',
   [CmsErr.CMS_GET_SLUG_FAILED_ARTICLE_FORBIDDEN]:
     'Failed to create CMS slug, failed article forbidden.',
-  [CmsErr.CMS_GET_POSTS_FAILED_POSTS_NOT_FOUND]:
-    'Failed to create CMS posts, failed posts not found.',
   [CmsErr.CMS_GET_POSTS_FAILED_POSTS_FORBIDDEN]:
     'Failed to create CMS posts, failed posts forbidden',
-  [CmsErr.CMS_GET_PUBLIC_FIND_ID_FAILED_POST_NOT_FOUND]:
-    'Failed to create CMS posts, failed public not found.',
   [CmsErr.CMS_GET_PUBLIC_FIND_ID_FAILED_POST_FORBIDDEN]:
     'Failed to create CMS posts, failed public forbidden.',
-  [CmsErr.CMS_GET_SLUG_FAILED_ARTICLE_NOT_FOUND]:
-    'Failed to create CMS slug, failed article already exist.',
-  [CmsErr.CMS_GET_PUBLIC_ARTICLES_FAILED_POSTS_NOT_FOUND]:
-    'Failed to create CMS article, failed public articles not found.',
   [CmsErr.CMS_GET_PUBLIC_ARTICLES_FAILED_POSTS_FORBIDDEN]:
     'Failed to create CMS article, failed public articles forbidden.',
   [CmsErr.CREATE_CMS_EVENT_FAILED_CMS_FORBIDDEN]:
     'Failed to create CMS slug, failed article forbidden.',
-  [CmsErr.CREATE_CMS_EVENT_FAILED_CMS_NOT_FOUND]:
-    'Failed to create CMS article, failed  articles not found.',
   [CmsErr.CREATE_CMS_FAQS_FAILED_CMS_FORBIDDEN]:
     'Failed to create CMS FAQs, failed FAQs forbidden.',
-  [CmsErr.CREATE_CMS_FAQS_FAILED_CMS_NOT_FOUND]:
-    'Failed to create CMS FAQs, failed FAQs not found.',
   [CmsErr.CREATE_CMS_POSTS_FAILED_CMS_FORBIDDEN]:
     'Failed to create CMS posts, failed posts forbidden.',
-  [CmsErr.CREATE_CMS_POSTS_FAILED_CMS_NOT_FOUND]:
-    'Failed to create CMS posts, failed posts not found.',
   [CmsErr.CREATE_CMS_STATIC_FAILED_CMS_FORBIDDEN]:
     'Failed to create CMS posts, failed posts forbidden.',
-  [CmsErr.CREATE_CMS_STATIC_FAILED_CMS_NOT_FOUND]:
-    'Failed to create CMS static, failed static not found.',
   [CmsErr.CREATE_CMS_TRAINING_FAILED_CMS_FORBIDDEN]:
     'Failed to create CMS training, failed training forbidden.',
-  [CmsErr.CREATE_CMS_TRAINING_FAILED_CMS_NOT_FOUND]:
-    'Failed to create CMS training, failed training not found.',
   [CmsErr.CREATE_CMS_STORIES_FAILED_CMS_FORBIDDEN]:
     'Failed to create CMS stories, failed stories forbidden.',
-  [CmsErr.CREATE_CMS_STORIES_FAILED_CMS_NOT_FOUND]:
-    'Failed to create CMS stories, failed stories not found.',
   [CmsErr.CREATE_CMS_MEDIA_FAILED_CMS_FORBIDDEN]:
     'Failed to create CMS media, failed media forbidden.',
-  [CmsErr.CREATE_CMS_MEDIA_FAILED_CMS_NOT_FOUND]:
-    'Failed to create CMS media, failed media not found.',
 };
 
 export const errorFactory = new ErrorFactory<CmsErr>('CMS', errors);
