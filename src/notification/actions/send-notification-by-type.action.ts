@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { NotificationErr, errorFactory } from '../errors';
@@ -24,15 +25,17 @@ export const sendNotificationByType = async (
           NotificationErr.SEND_NOTIFICATION_BY_TYPE_FORBIDDEN,
         );
       case 404:
-        throw errorFactory.create(
-          NotificationErr.SEND_NOTIFICATION_BY_TYPE_NOT_FOUND,
-        );
+        throw errorFactory.create(NotificationErr.NOTIFICATION_NOT_FOUND);
       default:
         throw errorFactory.create(
           NotificationErr.SEND_NOTIFICATION_BY_TYPE_FAILED,
         );
     }
-  } catch (err) {
-    throw errorFactory.create(NotificationErr.SEND_NOTIFICATION_BY_TYPE_FAILED);
+  } catch (error) {
+    const sherlError = getSherlError(
+      error,
+      errorFactory.create(NotificationErr.SEND_NOTIFICATION_BY_TYPE_FAILED),
+    );
+    throw sherlError;
   }
 };

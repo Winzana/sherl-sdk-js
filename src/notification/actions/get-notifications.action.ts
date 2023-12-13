@@ -4,6 +4,7 @@ import { INotification } from '../types';
 import { INotificationFilters } from '../types';
 import { errorFactory, NotificationErr } from '../errors';
 import { ISearchResult } from '../../common';
+import { getSherlError } from '../../common/utils';
 
 export const getNotifications = async (
   fetcher: Fetcher,
@@ -21,12 +22,14 @@ export const getNotifications = async (
         return response.data;
       case 403:
         throw errorFactory.create(NotificationErr.GET_NOTIFICATIONS_FORBIDDEN);
-      case 404:
-        throw errorFactory.create(NotificationErr.GET_NOTIFICATIONS_NOT_EXIST);
       default:
         throw errorFactory.create(NotificationErr.FETCH_FAILED);
     }
   } catch (error) {
-    throw errorFactory.create(NotificationErr.FETCH_FAILED);
+    const sherlError = getSherlError(
+      error,
+      errorFactory.create(NotificationErr.FETCH_FAILED),
+    );
+    throw sherlError;
   }
 };

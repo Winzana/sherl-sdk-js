@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { NotificationErr, errorFactory } from '../errors';
 import {
@@ -23,13 +24,15 @@ export const notificationRegistration = async (
           NotificationErr.NOTIFICATION_REGISTRATION_FORBIDDEN,
         );
       case 404:
-        throw errorFactory.create(
-          NotificationErr.NOTIFICATION_REGISTRATION_NOT_FOUND,
-        );
+        throw errorFactory.create(NotificationErr.NOTIFICATION_NOT_FOUND);
       default:
         throw errorFactory.create(NotificationErr.POST_FAILED);
     }
   } catch (error) {
-    throw errorFactory.create(NotificationErr.POST_FAILED);
+    const sherlError = getSherlError(
+      error,
+      errorFactory.create(NotificationErr.POST_FAILED),
+    );
+    throw sherlError;
   }
 };

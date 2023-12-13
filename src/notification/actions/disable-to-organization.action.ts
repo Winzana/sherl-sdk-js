@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { NotificationErr, errorFactory } from '../errors';
@@ -23,13 +24,15 @@ export const disableToOrganization = async (
           NotificationErr.DISABLE_TO_ORGANIZATION_FORBIDDEN,
         );
       case 404:
-        throw errorFactory.create(
-          NotificationErr.DISABLE_TO_ORGANIZATION_NOT_FOUND,
-        );
+        throw errorFactory.create(NotificationErr.NOTIFICATION_NOT_FOUND);
       default:
         throw errorFactory.create(NotificationErr.DISABLED_FAILED);
     }
   } catch (error) {
-    throw errorFactory.create(NotificationErr.DISABLED_FAILED);
+    const sherlError = getSherlError(
+      error,
+      errorFactory.create(NotificationErr.DISABLED_FAILED),
+    );
+    throw sherlError;
   }
 };
