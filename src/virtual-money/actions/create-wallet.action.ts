@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { VirtualMoneyErr, errorFactory } from '../errors';
 import { ICreateWalletInputDto, IWallet } from '../types';
@@ -17,19 +18,13 @@ export const createWallet = async (
         throw errorFactory.create(
           VirtualMoneyErr.CREATE_WALLET_FAILED_CMS_FORBIDDEN,
         );
-
-      case 404:
-        throw errorFactory.create(
-          VirtualMoneyErr.CREATE_WALLET_FAILED_CMS_NOT_FOUND,
-        );
-      case 409:
-        throw errorFactory.create(
-          VirtualMoneyErr.CREATE_WALLET_FAILED_CMS_ALREADY_EXIST,
-        );
       default:
         throw errorFactory.create(VirtualMoneyErr.CREATE_WALLET_FAILED);
     }
   } catch (error) {
-    throw errorFactory.create(VirtualMoneyErr.CREATE_WALLET_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(VirtualMoneyErr.CREATE_WALLET_FAILED),
+    );
   }
 };

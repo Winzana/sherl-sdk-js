@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { VirtualMoneyErr, errorFactory } from '../errors';
@@ -23,13 +24,14 @@ export const getWalletById = async (
           VirtualMoneyErr.GET_ONE_WALLET_BY_ID_FAILED_CMS_FORBIDDEN,
         );
       case 404:
-        throw errorFactory.create(
-          VirtualMoneyErr.GET_ONE_WALLET_BY_ID_FAILED_CMS_NOT_FOUND,
-        );
+        throw errorFactory.create(VirtualMoneyErr.VIRTUAL_MONEY_NOT_FOUND);
       default:
         throw errorFactory.create(VirtualMoneyErr.GET_ONE_WALLET_BY_ID_FAILED);
     }
   } catch (error) {
-    throw errorFactory.create(VirtualMoneyErr.GET_ONE_WALLET_BY_ID_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(VirtualMoneyErr.GET_ONE_WALLET_BY_ID_FAILED),
+    );
   }
 };

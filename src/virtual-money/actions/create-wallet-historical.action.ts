@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { errorFactory, VirtualMoneyErr } from '../errors';
 import { IWalletHistorical } from '../types';
@@ -22,19 +23,16 @@ export const createWalletHistorical = async (
           VirtualMoneyErr.CREATE_WALLET_HISTORICAL_FORBIDDEN,
         );
       case 404:
-        throw errorFactory.create(
-          VirtualMoneyErr.CREATE_WALLET_HISTORICAL_NOT_FOUND,
-        );
-      case 409:
-        throw errorFactory.create(
-          VirtualMoneyErr.CREATE_WALLET_HISTORICAL_ALREADY_EXIST,
-        );
+        throw errorFactory.create(VirtualMoneyErr.VIRTUAL_MONEY_NOT_FOUND);
       default:
         throw errorFactory.create(
           VirtualMoneyErr.CREATE_WALLET_HISTORICAL_FAILED,
         );
     }
   } catch (error) {
-    throw errorFactory.create(VirtualMoneyErr.CREATE_WALLET_HISTORICAL_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(VirtualMoneyErr.CREATE_WALLET_HISTORICAL_FAILED),
+    );
   }
 };
