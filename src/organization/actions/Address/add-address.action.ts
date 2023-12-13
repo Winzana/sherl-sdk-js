@@ -30,10 +30,9 @@ export const addAddress = async (
         throw errorFactory.create(OrganizationErr.ADD_ADDRESS_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(OrganizationErr.ADD_ADDRESS_FAILED),
     );
-    throw filteredError;
   }
 };

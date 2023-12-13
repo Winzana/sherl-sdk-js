@@ -30,10 +30,9 @@ export const updateEmployee = async (
         throw errorFactory.create(OrganizationErr.UPDATE_EMPLOYEE_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(OrganizationErr.UPDATE_EMPLOYEE_FAILED),
     );
-    throw filteredError;
   }
 };

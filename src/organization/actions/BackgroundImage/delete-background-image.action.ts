@@ -33,10 +33,9 @@ export const deleteBackgroundImage = async (
         );
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(OrganizationErr.DELETE_BACKGROUND_IMAGE_FAILED),
     );
-    throw filteredError;
   }
 };

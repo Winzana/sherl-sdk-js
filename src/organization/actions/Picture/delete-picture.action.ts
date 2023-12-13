@@ -29,10 +29,9 @@ export const deletePicture = async (
         throw errorFactory.create(OrganizationErr.DELETE_PICTURE_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(OrganizationErr.DELETE_PICTURE_FAILED),
     );
-    throw filteredError;
   }
 };

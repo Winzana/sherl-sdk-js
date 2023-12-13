@@ -45,10 +45,9 @@ export const createPicture = async (
         throw errorFactory.create(OrganizationErr.CREATE_PICTURE_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(OrganizationErr.CREATE_PICTURE_FAILED),
     );
-    throw filteredError;
   }
 };

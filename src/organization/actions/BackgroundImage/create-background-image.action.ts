@@ -52,10 +52,9 @@ export const createBackgroundImage = async (
         );
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(OrganizationErr.CREATE_BACKGROUND_IMAGE_FAILED),
     );
-    throw filteredError;
   }
 };

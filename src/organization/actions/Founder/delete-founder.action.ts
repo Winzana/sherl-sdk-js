@@ -29,10 +29,9 @@ export const deleteFounder = async (
         throw errorFactory.create(OrganizationErr.DELETE_FOUNDER_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(OrganizationErr.DELETE_FOUNDER_FAILED),
     );
-    throw filteredError;
   }
 };

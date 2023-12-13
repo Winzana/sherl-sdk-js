@@ -25,10 +25,9 @@ export const getAllKycDocuments = async (
         throw errorFactory.create(OrganizationErr.GET_KYCS_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(OrganizationErr.GET_KYCS_FAILED),
     );
-    throw filteredError;
   }
 };

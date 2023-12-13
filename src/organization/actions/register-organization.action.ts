@@ -34,12 +34,11 @@ export const registerOrganization = async (
         );
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(
         OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_FAILED,
       ),
     );
-    throw filteredError;
   }
 };

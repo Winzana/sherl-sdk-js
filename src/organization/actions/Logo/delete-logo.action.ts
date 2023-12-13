@@ -27,10 +27,9 @@ export const deleteLogo = async (
         throw errorFactory.create(OrganizationErr.DELETE_LOGO_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(OrganizationErr.DELETE_LOGO_FAILED),
     );
-    throw filteredError;
   }
 };

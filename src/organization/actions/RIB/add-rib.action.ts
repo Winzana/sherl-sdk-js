@@ -31,10 +31,9 @@ export const addRib = async (
         throw errorFactory.create(OrganizationErr.ADD_RIB_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(OrganizationErr.ADD_RIB_FAILED),
     );
-    throw filteredError;
   }
 };

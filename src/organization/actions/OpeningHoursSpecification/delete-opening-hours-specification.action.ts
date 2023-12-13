@@ -35,12 +35,11 @@ export const deleteOpeningHoursSpecification = async (
         );
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(
         OrganizationErr.DELETE_OPENING_HOURS_SPECIFICATION_FAILED,
       ),
     );
-    throw filteredError;
   }
 };

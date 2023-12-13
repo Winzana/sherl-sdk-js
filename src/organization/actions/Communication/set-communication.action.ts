@@ -29,10 +29,9 @@ export const setCommunication = async (
         throw errorFactory.create(OrganizationErr.SET_COMMUNICATION_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(OrganizationErr.SET_COMMUNICATION_FAILED),
     );
-    throw filteredError;
   }
 };

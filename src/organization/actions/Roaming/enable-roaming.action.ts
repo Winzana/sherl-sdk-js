@@ -28,10 +28,9 @@ export const enableRoaming = async (
         throw errorFactory.create(OrganizationErr.ENABLE_ROAMING_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(OrganizationErr.ENABLE_ROAMING_FAILED),
     );
-    throw filteredError;
   }
 };

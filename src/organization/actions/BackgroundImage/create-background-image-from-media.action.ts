@@ -36,12 +36,11 @@ export const createBackgroundImageFromMedia = async (
         );
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(
         OrganizationErr.CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FAILED,
       ),
     );
-    throw filteredError;
   }
 };

@@ -41,10 +41,9 @@ export const createPictureFromMedia = async (
         );
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(OrganizationErr.CREATE_PICTURE_FROM_MEDIA_FAILED),
     );
-    throw filteredError;
   }
 };

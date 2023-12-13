@@ -33,10 +33,9 @@ export const createEmployee = async (
         throw errorFactory.create(OrganizationErr.CREATE_EMPLOYEE_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(OrganizationErr.CREATE_EMPLOYEE_FAILED),
     );
-    throw filteredError;
   }
 };

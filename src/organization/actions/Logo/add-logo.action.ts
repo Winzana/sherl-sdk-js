@@ -43,10 +43,9 @@ export const addLogo = async (
         throw errorFactory.create(OrganizationErr.ADD_LOGO_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(OrganizationErr.ADD_LOGO_FAILED),
     );
-    throw filteredError;
   }
 };

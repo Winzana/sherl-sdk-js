@@ -33,10 +33,9 @@ export const createOrganization = async (
         throw errorFactory.create(OrganizationErr.CREATE_ORGANIZATION_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(OrganizationErr.CREATE_ORGANIZATION_FAILED),
     );
-    throw filteredError;
   }
 };

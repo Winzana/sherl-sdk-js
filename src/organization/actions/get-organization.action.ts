@@ -25,10 +25,9 @@ export const getOrganization = async (
         throw errorFactory.create(OrganizationErr.FETCH_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw filterSherlError(
       error,
       errorFactory.create(OrganizationErr.FETCH_FAILED),
     );
-    throw filteredError;
   }
 };
