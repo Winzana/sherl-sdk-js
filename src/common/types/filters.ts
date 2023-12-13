@@ -11,3 +11,10 @@ export interface PaginationFilters {
   page?: number;
   itemsPerPage?: number;
 }
+
+export class DateFilter {
+  after?: string;
+  strictlyAfter?: string;
+  before?: string;
+  strictlyBefore?: string;
+}
