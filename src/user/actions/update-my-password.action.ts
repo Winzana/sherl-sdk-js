@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { errorFactory, UserErr } from '../errors';
 import { IUpdatePasswordDto } from '../types';
@@ -24,6 +25,10 @@ export const updateMyPassword = async (
         throw errorFactory.create(UserErr.UPDATE_MY_PASSWORD_FAILED);
     }
   } catch (error) {
-    throw errorFactory.create(UserErr.UPDATE_MY_PASSWORD_FAILED);
+    const sherlError = getSherlError(
+      error,
+      errorFactory.create(UserErr.UPDATE_MY_PASSWORD_FAILED),
+    );
+    throw sherlError;
   }
 };

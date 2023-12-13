@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { errorFactory, UserErr } from '../errors';
 import { IResetPasswordDto } from '../types';
@@ -17,12 +18,14 @@ export const resetPasswordValidate = async (
         return true;
       case 403:
         throw errorFactory.create(UserErr.RESET_PASSWORD_VALIDATE_FORBIDDEN);
-      case 404:
-        throw errorFactory.create(UserErr.RESET_PASSWORD_VALIDATE_NOT_FOUND);
       default:
         throw errorFactory.create(UserErr.RESET_PASSWORD_VALIDATE_FAILED);
     }
   } catch (error) {
-    throw errorFactory.create(UserErr.RESET_PASSWORD_VALIDATE_FAILED);
+    const sherlError = getSherlError(
+      error,
+      errorFactory.create(UserErr.RESET_PASSWORD_VALIDATE_FAILED),
+    );
+    throw sherlError;
   }
 };
