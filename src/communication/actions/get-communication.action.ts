@@ -25,10 +25,9 @@ export const getCommunication = async (
         throw errorFactory.create(CommunicationErr.FETCH_FAILED);
     }
   } catch (error) {
-    const sherlError = getSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(CommunicationErr.FETCH_FAILED),
     );
-    throw sherlError;
   }
 };
