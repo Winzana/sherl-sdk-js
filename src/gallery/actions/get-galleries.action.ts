@@ -21,16 +21,13 @@ export const getGalleries = async (
         return response.data;
       case 403:
         throw errorFactory.create(GalleryErr.GET_GALLERIES_FORBIDDEN);
-      case 404:
-        throw errorFactory.create(GalleryErr.GET_GALLERIES_NOT_FOUND);
       default:
         throw errorFactory.create(GalleryErr.GET_GALLERIES_FAILED);
     }
   } catch (error) {
-    const sherlError = getSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(GalleryErr.GET_GALLERIES_FAILED),
     );
-    throw sherlError;
   }
 };

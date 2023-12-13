@@ -24,16 +24,13 @@ export const getDynamicBackgrounds = async (
         return response.data;
       case 403:
         throw errorFactory.create(GalleryErr.GET_DYNAMIC_BACKGROUNDS_FORBIDDEN);
-      case 404:
-        throw errorFactory.create(GalleryErr.GET_DYNAMIC_BACKGROUNDS_NOT_FOUND);
       default:
         throw errorFactory.create(GalleryErr.GET_DYNAMIC_BACKGROUNDS_FAILED);
     }
   } catch (error) {
-    const sherlError = getSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(GalleryErr.GET_DYNAMIC_BACKGROUNDS_FAILED),
     );
-    throw sherlError;
   }
 };

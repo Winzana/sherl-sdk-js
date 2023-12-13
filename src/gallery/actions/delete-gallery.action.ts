@@ -26,15 +26,14 @@ export const deleteGallery = async (
       case 403:
         throw errorFactory.create(GalleryErr.DELETE_GALLERY_FORBIDDEN);
       case 404:
-        throw errorFactory.create(GalleryErr.DELETE_GALLERY_NOT_FOUND);
+        throw errorFactory.create(GalleryErr.GALLERY_NOT_FOUND);
       default:
         throw errorFactory.create(GalleryErr.DELETE_GALLERY_FAILED);
     }
   } catch (error) {
-    const sherlError = getSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(GalleryErr.DELETE_GALLERY_FAILED),
     );
-    throw sherlError;
   }
 };

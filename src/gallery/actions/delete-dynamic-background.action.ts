@@ -28,17 +28,14 @@ export const deleteDynamicBackground = async (
           GalleryErr.DELETE_DYNAMIC_BACKGROUND_FORBIDDEN,
         );
       case 404:
-        throw errorFactory.create(
-          GalleryErr.DELETE_DYNAMIC_BACKGROUND_NOT_FOUND,
-        );
+        throw errorFactory.create(GalleryErr.DYNAMIC_BACKGROUND_NOT_FOUND);
       default:
         throw errorFactory.create(GalleryErr.DELETE_DYNAMIC_BACKGROUND_FAILED);
     }
   } catch (error) {
-    const sherlError = getSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(GalleryErr.DELETE_DYNAMIC_BACKGROUND_FAILED),
     );
-    throw sherlError;
   }
 };
