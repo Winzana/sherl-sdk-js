@@ -25,6 +25,7 @@ export enum VirtualMoneyErr {
 }
 
 export const errors = {
+  [VirtualMoneyErr.VIRTUAL_MONEY_NOT_FOUND]: 'Failed to find wallet not found',
   [VirtualMoneyErr.FIND_ONE_WALLET_FAILED]: 'Failed to find wallet',
   [VirtualMoneyErr.CREDIT_WALLET_FAILED]: 'Failed to credit wallet',
   [VirtualMoneyErr.DEBIT_WALLET_FAILED]: 'Failed to debit wallet',
