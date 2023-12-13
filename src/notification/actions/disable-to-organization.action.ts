@@ -6,20 +6,30 @@ import { INotification, INotificationUpdateAvailabilityInput } from '../types';
 
 export const disableToOrganization = async (
   fetcher: Fetcher,
-  disableToOrganization: INotificationUpdateAvailabilityInput,
+  disableToOrganizationInput: INotificationUpdateAvailabilityInput,
   id: string,
 ): Promise<INotification> => {
-  const response = await fetcher
-    .post<INotification>(
-      StringUtils.bindContext(endpoints.ENABLE_TO_ORGANIZATION, { id }),
-      disableToOrganization,
-    )
-    .catch((_err) => {
-      throw errorFactory.create(NotificationErr.DISABLED_FAILED);
-    });
-  if (response.status >= 300) {
+  try {
+    const response = await fetcher.post<INotification>(
+      StringUtils.bindContext(endpoints.DISABLE_TO_ORGANIZATION, { id }),
+      disableToOrganizationInput,
+    );
+
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          NotificationErr.DISABLE_TO_ORGANIZATION_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(
+          NotificationErr.DISABLE_TO_ORGANIZATION_NOT_FOUND,
+        );
+      default:
+        throw errorFactory.create(NotificationErr.DISABLED_FAILED);
+    }
+  } catch (error) {
     throw errorFactory.create(NotificationErr.DISABLED_FAILED);
   }
-
-  return response.data;
 };

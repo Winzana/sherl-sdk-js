@@ -10,17 +10,26 @@ export const notificationRegistration = async (
   fetcher: Fetcher,
   notificationRegistration: INotificationRegistration,
 ): Promise<INotificationRegistrationResponse> => {
-  const response = await fetcher
-    .post<INotificationRegistrationResponse>(
+  try {
+    const response = await fetcher.post<INotificationRegistrationResponse>(
       endpoints.REGISTRATION,
       notificationRegistration,
-    )
-    .catch((_err) => {
-      throw errorFactory.create(NotificationErr.POST_FAILED);
-    });
-  if (response.status >= 300) {
+    );
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          NotificationErr.NOTIFICATION_REGISTRATION_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(
+          NotificationErr.NOTIFICATION_REGISTRATION_NOT_FOUND,
+        );
+      default:
+        throw errorFactory.create(NotificationErr.POST_FAILED);
+    }
+  } catch (error) {
     throw errorFactory.create(NotificationErr.POST_FAILED);
   }
-
-  return response.data;
 };
