@@ -20,8 +20,6 @@ export const updateMyPassword = async (
         throw errorFactory.create(UserErr.UPDATE_MY_PASSWORD_FORBIDDEN);
       case 404:
         throw errorFactory.create(UserErr.UPDATE_MY_PASSWORD_NOT_FOUND);
-      case 409:
-        throw errorFactory.create(UserErr.UPDATE_MY_PASSWORD_ALREADY_EXIST);
       default:
         throw errorFactory.create(UserErr.UPDATE_MY_PASSWORD_FAILED);
     }

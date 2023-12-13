@@ -19,10 +19,6 @@ export const resetPasswordValidate = async (
         throw errorFactory.create(UserErr.RESET_PASSWORD_VALIDATE_FORBIDDEN);
       case 404:
         throw errorFactory.create(UserErr.RESET_PASSWORD_VALIDATE_NOT_FOUND);
-      case 409:
-        throw errorFactory.create(
-          UserErr.RESET_PASSWORD_VALIDATE_ALREADY_EXIST,
-        );
       default:
         throw errorFactory.create(UserErr.RESET_PASSWORD_VALIDATE_FAILED);
     }
