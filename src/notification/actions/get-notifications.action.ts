@@ -26,10 +26,9 @@ export const getNotifications = async (
         throw errorFactory.create(NotificationErr.FETCH_FAILED);
     }
   } catch (error) {
-    const sherlError = getSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(NotificationErr.FETCH_FAILED),
     );
-    throw sherlError;
   }
 };

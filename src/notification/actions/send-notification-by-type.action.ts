@@ -32,10 +32,9 @@ export const sendNotificationByType = async (
         );
     }
   } catch (error) {
-    const sherlError = getSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(NotificationErr.SEND_NOTIFICATION_BY_TYPE_FAILED),
     );
-    throw sherlError;
   }
 };

@@ -28,13 +28,10 @@ export const updateNotification = async (
       default:
         throw errorFactory.create(NotificationErr.UPDATE_FAILED);
     }
-
-    return response.data;
   } catch (error) {
-    const sherlError = getSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(NotificationErr.UPDATE_FAILED),
     );
-    throw sherlError;
   }
 };

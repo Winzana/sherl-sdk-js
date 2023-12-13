@@ -28,10 +28,9 @@ export const enableToOrganization = async (
         throw errorFactory.create(NotificationErr.ENABLED_FAILED);
     }
   } catch (error) {
-    const sherlError = getSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(NotificationErr.ENABLED_FAILED),
     );
-    throw sherlError;
   }
 };

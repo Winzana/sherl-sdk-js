@@ -29,10 +29,9 @@ export const notificationRegistration = async (
         throw errorFactory.create(NotificationErr.POST_FAILED);
     }
   } catch (error) {
-    const sherlError = getSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(NotificationErr.POST_FAILED),
     );
-    throw sherlError;
   }
 };
