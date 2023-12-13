@@ -7,8 +7,25 @@ export const updateMyPassword = async (
   fetcher: Fetcher,
   data: IUpdatePasswordDto,
 ): Promise<boolean> => {
-  await fetcher.post<boolean>(endpoints.UPDATE_MY_PASSWORD, data).catch(() => {
+  try {
+    const response = await fetcher.post<boolean>(
+      endpoints.UPDATE_MY_PASSWORD,
+      data,
+    );
+
+    switch (response.status) {
+      case 200:
+        return true;
+      case 403:
+        throw errorFactory.create(UserErr.UPDATE_MY_PASSWORD_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(UserErr.UPDATE_MY_PASSWORD_NOT_FOUND);
+      case 409:
+        throw errorFactory.create(UserErr.UPDATE_MY_PASSWORD_ALREADY_EXIST);
+      default:
+        throw errorFactory.create(UserErr.UPDATE_MY_PASSWORD_FAILED);
+    }
+  } catch (error) {
     throw errorFactory.create(UserErr.UPDATE_MY_PASSWORD_FAILED);
-  });
-  return true;
+  }
 };

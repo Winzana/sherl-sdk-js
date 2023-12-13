@@ -7,10 +7,25 @@ export const resetPasswordRequest = async (
   fetcher: Fetcher,
   data: IResetPasswordRequestDto,
 ): Promise<boolean> => {
-  await fetcher
-    .post<IResetPasswordRequestDto>(endpoints.RESET_PASSWORD_REQUEST, data)
-    .catch((err) => {
-      throw errorFactory.create(UserErr.RESET_PASSWORD_REQUEST_FAILED);
-    });
-  return true;
+  try {
+    const response = await fetcher.post<IResetPasswordRequestDto>(
+      endpoints.RESET_PASSWORD_REQUEST,
+      data,
+    );
+
+    switch (response.status) {
+      case 200:
+        return true;
+      case 403:
+        throw errorFactory.create(UserErr.RESET_PASSWORD_REQUEST_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(UserErr.RESET_PASSWORD_REQUEST_NOT_FOUND);
+      case 409:
+        throw errorFactory.create(UserErr.RESET_PASSWORD_REQUEST_ALREADY_EXIST);
+      default:
+        throw errorFactory.create(UserErr.RESET_PASSWORD_REQUEST_FAILED);
+    }
+  } catch (error) {
+    throw errorFactory.create(UserErr.RESET_PASSWORD_REQUEST_FAILED);
+  }
 };
