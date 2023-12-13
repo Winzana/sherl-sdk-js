@@ -16,3 +16,4 @@ export * from './person';
 export * from './place';
 export * from './shop';
 export * from './user';
+export * from './etl';

@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoint';
 import { EtlErr, errorFactory } from '../errors';
 import { IExtractTransformLoadInputDto, IEtlResponse } from '../types';
@@ -12,9 +13,18 @@ export const extractTransformLoad = async (
       endpoints.EXTRACT_TRANSFORM_LOAD,
       config,
     );
-
-    return response.data;
-  } catch (err) {
-    throw errorFactory.create(EtlErr.EXTRACT_TRANSFORM_LOAD_FAILED);
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(EtlErr.EXTRACT_TRANSFORM_FORBIDDEN);
+      default:
+        throw errorFactory.create(EtlErr.EXTRACT_TRANSFORM_LOAD_FAILED);
+    }
+  } catch (error) {
+    throw getSherlError(
+      error,
+      errorFactory.create(EtlErr.EXTRACT_TRANSFORM_LOAD_FAILED),
+    );
   }
 };
