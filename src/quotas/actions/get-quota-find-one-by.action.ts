@@ -24,10 +24,6 @@ export const getQuotaFindOneBy = async (
         throw errorFactory.create(QuotaErr.FETCH_FAILED);
     }
   } catch (error) {
-    const sherlError = getSherlError(
-      error,
-      errorFactory.create(QuotaErr.FETCH_FAILED),
-    );
-    throw sherlError;
+    throw getSherlError(error, errorFactory.create(QuotaErr.FETCH_FAILED));
   }
 };
