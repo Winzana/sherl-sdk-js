@@ -25,10 +25,9 @@ export const updateMyPassword = async (
         throw errorFactory.create(UserErr.UPDATE_MY_PASSWORD_FAILED);
     }
   } catch (error) {
-    const sherlError = getSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(UserErr.UPDATE_MY_PASSWORD_FAILED),
     );
-    throw sherlError;
   }
 };

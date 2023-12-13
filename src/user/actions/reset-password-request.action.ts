@@ -23,10 +23,9 @@ export const resetPasswordRequest = async (
         throw errorFactory.create(UserErr.RESET_PASSWORD_REQUEST_FAILED);
     }
   } catch (error) {
-    const sherlError = getSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(UserErr.RESET_PASSWORD_REQUEST_FAILED),
     );
-    throw sherlError;
   }
 };
