@@ -3,6 +3,7 @@ import { endpoints } from '../api/endpoints';
 import { IPlace } from '../types';
 import { Pagination } from '../../common';
 import { PlaceErr, errorFactory } from '../errors';
+import { getSherlError } from '../../common/utils';
 
 export const getPlaces = async (
   fetcher: Fetcher,
@@ -25,14 +26,15 @@ export const getPlaces = async (
         return response.data;
       case 403:
         throw errorFactory.create(PlaceErr.FETCH_PLACES_FORBIDDEN);
-      case 404:
-        throw errorFactory.create(PlaceErr.FETCH_PLACES_NOT_FOUND);
-      case 409:
-        throw errorFactory.create(PlaceErr.FETCH_PLACES_ALREADY_EXIST);
+
       default:
         throw errorFactory.create(PlaceErr.FETCH_FAILED);
     }
   } catch (error) {
-    throw errorFactory.create(PlaceErr.FETCH_FAILED);
+    const sherlError = getSherlError(
+      error,
+      errorFactory.create(PlaceErr.FETCH_FAILED),
+    );
+    throw sherlError;
   }
 };
