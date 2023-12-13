@@ -20,7 +20,7 @@ export const getClaimById = async (
       case 403:
         throw errorFactory.create(ClaimErr.GET_CLAIM_BY_ID_FORBIDDEN_ERROR);
       case 404:
-        throw errorFactory.create(ClaimErr.GET_CLAIM_BY_ID_NOT_FOUND_ERROR);
+        throw errorFactory.create(ClaimErr.CLAIM_NOT_FOUND);
       default:
         throw errorFactory.create(ClaimErr.GET_CLAIM_BY_ID_FAILED);
     }

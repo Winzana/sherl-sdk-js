@@ -20,8 +20,6 @@ export const getAllClaims = async (
         return response.data;
       case 403:
         throw errorFactory.create(ClaimErr.GET_ALL_FORBIDDEN_ERROR);
-      case 404:
-        throw errorFactory.create(ClaimErr.GET_ALL_NOT_FOUND_ERROR);
       default:
         throw errorFactory.create(ClaimErr.GET_ALL_FAILED);
     }

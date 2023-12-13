@@ -16,8 +16,6 @@ export const findClaimBy = async (
         return response.data;
       case 403:
         throw errorFactory.create(ClaimErr.FIND_CLAIM_BY_FORBIDDEN_ERROR);
-      case 404:
-        throw errorFactory.create(ClaimErr.FIND_CLAIM_BY_NOT_FOUND_ERROR);
       default:
         throw errorFactory.create(ClaimErr.FIND_CLAIM_BY_FAILED);
     }

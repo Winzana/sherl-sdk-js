@@ -24,7 +24,7 @@ export const replyClaim = async (
       case 403:
         throw errorFactory.create(ClaimErr.REPLY_CLAIM_FORBIDDEN_ERROR);
       case 404:
-        throw errorFactory.create(ClaimErr.REPLY_CLAIM_NOT_FOUND_ERROR);
+        throw errorFactory.create(ClaimErr.CLAIM_NOT_FOUND);
       default:
         throw errorFactory.create(ClaimErr.REPLY_CLAIM_FAILED);
     }
