@@ -28,8 +28,6 @@ export const createBackgroundImageFromMedia = async (
         throw errorFactory.create(OrganizationErr.ADD_ADDRESS_FORBIDDEN);
       case 404:
         throw errorFactory.create(OrganizationErr.ADD_ADDRESS_NOT_FOUND);
-      case 409:
-        throw errorFactory.create(OrganizationErr.ADD_ADDRESS_ALREADY_EXISTS);
       default:
         throw errorFactory.create(
           OrganizationErr.CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FAILED,

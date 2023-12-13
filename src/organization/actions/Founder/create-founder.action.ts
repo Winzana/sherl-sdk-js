@@ -25,10 +25,6 @@ export const createFounder = async (
         throw errorFactory.create(OrganizationErr.CREATE_FOUNDER_FORBIDDEN);
       case 404:
         throw errorFactory.create(OrganizationErr.CREATE_FOUNDER_NOT_FOUND);
-      case 409:
-        throw errorFactory.create(
-          OrganizationErr.CREATE_FOUNDER_ALREADY_EXISTS,
-        );
       default:
         throw errorFactory.create(OrganizationErr.CREATE_FOUNDER_FAILED);
     }

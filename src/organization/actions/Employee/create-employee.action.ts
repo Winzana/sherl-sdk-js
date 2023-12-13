@@ -25,10 +25,6 @@ export const createEmployee = async (
         throw errorFactory.create(OrganizationErr.CREATE_EMPLOYEE_FORBIDDEN);
       case 404:
         throw errorFactory.create(OrganizationErr.CREATE_EMPLOYEE_NOT_FOUND);
-      case 409:
-        throw errorFactory.create(
-          OrganizationErr.CREATE_EMPLOYEE_ALREADY_EXISTS,
-        );
       default:
         throw errorFactory.create(OrganizationErr.CREATE_EMPLOYEE_FAILED);
     }

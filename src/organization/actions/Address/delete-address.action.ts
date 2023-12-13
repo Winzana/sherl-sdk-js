@@ -24,10 +24,6 @@ export const deleteAddress = async (
         throw errorFactory.create(OrganizationErr.DELETE_ADDRESS_FORBIDDEN);
       case 404:
         throw errorFactory.create(OrganizationErr.DELETE_ADDRESS_NOT_FOUND);
-      case 409:
-        throw errorFactory.create(
-          OrganizationErr.DELETE_ADDRESS_ALREADY_EXISTS,
-        );
       default:
         throw errorFactory.create(OrganizationErr.DELETE_ADDRESS_FAILED);
     }

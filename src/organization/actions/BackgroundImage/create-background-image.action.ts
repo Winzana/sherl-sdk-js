@@ -42,10 +42,6 @@ export const createBackgroundImage = async (
         throw errorFactory.create(
           OrganizationErr.CREATE_BACKGROUND_IMAGE_NOT_FOUND,
         );
-      case 409:
-        throw errorFactory.create(
-          OrganizationErr.CREATE_BACKGROUND_IMAGE_ALREADY_EXISTS,
-        );
       default:
         throw errorFactory.create(
           OrganizationErr.CREATE_BACKGROUND_IMAGE_FAILED,

@@ -25,8 +25,6 @@ export const addRib = async (
         throw errorFactory.create(OrganizationErr.ADD_RIB_FORBIDDEN);
       case 404:
         throw errorFactory.create(OrganizationErr.ADD_RIB_NOT_FOUND);
-      case 409:
-        throw errorFactory.create(OrganizationErr.ADD_RIB_ALREADY_EXISTS);
       default:
         throw errorFactory.create(OrganizationErr.ADD_RIB_FAILED);
     }

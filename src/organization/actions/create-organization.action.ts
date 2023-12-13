@@ -21,14 +21,6 @@ export const createOrganization = async (
         throw errorFactory.create(
           OrganizationErr.CREATE_ORGANIZATION_FORBIDDEN,
         );
-      case 404:
-        throw errorFactory.create(
-          OrganizationErr.CREATE_ORGANIZATION_NOT_FOUND,
-        );
-      case 409:
-        throw errorFactory.create(
-          OrganizationErr.CREATE_ORGANIZATION_ALREADY_EXISTS,
-        );
       default:
         throw errorFactory.create(OrganizationErr.CREATE_ORGANIZATION_FAILED);
     }

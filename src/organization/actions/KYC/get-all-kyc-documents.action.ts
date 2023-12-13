@@ -19,8 +19,6 @@ export const getAllKycDocuments = async (
         return response.data;
       case 403:
         throw errorFactory.create(OrganizationErr.GET_KYCS_FORBIDDEN);
-      case 404:
-        throw errorFactory.create(OrganizationErr.GET_KYCS_NOT_FOUND);
       default:
         throw errorFactory.create(OrganizationErr.GET_KYCS_FAILED);
     }

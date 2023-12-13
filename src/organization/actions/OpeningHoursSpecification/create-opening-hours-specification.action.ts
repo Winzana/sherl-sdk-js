@@ -31,10 +31,6 @@ export const createOpeningHoursSpecification = async (
         throw errorFactory.create(
           OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_NOT_FOUND,
         );
-      case 409:
-        throw errorFactory.create(
-          OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_ALREADY_EXISTS,
-        );
       default:
         throw errorFactory.create(
           OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_FAILED,

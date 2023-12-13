@@ -31,10 +31,6 @@ export const createPictureFromMedia = async (
         throw errorFactory.create(
           OrganizationErr.CREATE_PICTURE_FROM_MEDIA_NOT_FOUND,
         );
-      case 409:
-        throw errorFactory.create(
-          OrganizationErr.CREATE_PICTURE_FROM_MEDIA_ALREADY_EXISTS,
-        );
       default:
         throw errorFactory.create(
           OrganizationErr.CREATE_PICTURE_FROM_MEDIA_FAILED,

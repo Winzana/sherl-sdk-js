@@ -19,74 +19,61 @@ export enum OrganizationErr {
   // CREATE ORGANIZATION
   CREATE_ORGANIZATION_FAILED = 'organization/create-organization-failed',
   CREATE_ORGANIZATION_FORBIDDEN = 'organization/create-organization-forbidden',
-  CREATE_ORGANIZATION_NOT_FOUND = 'organization/create-organization-not-found',
-  CREATE_ORGANIZATION_ALREADY_EXISTS = 'organization/create-organization-already-exists',
 
   // CREATE PICTURE FROM MEDIA
   CREATE_PICTURE_FROM_MEDIA_FAILED = 'organization/create-picture-from-media-failed',
   CREATE_PICTURE_FROM_MEDIA_FORBIDDEN = 'organization/create-picture-from-media-forbidden',
   CREATE_PICTURE_FROM_MEDIA_NOT_FOUND = 'organization/create-picture-from-media-not-found',
-  CREATE_PICTURE_FROM_MEDIA_ALREADY_EXISTS = 'organization/create-picture-from-media-already-exists',
 
   // CREATE PICTURE
   CREATE_PICTURE_FAILED = 'organization/create-picture-failed',
   CREATE_PICTURE_FORBIDDEN = 'organization/create-picture-forbidden',
   CREATE_PICTURE_NOT_FOUND = 'organization/create-picture-not-found',
-  CREATE_PICTURE_ALREADY_EXISTS = 'organization/create-picture-already-exists',
 
   // CREATE BACKGROUND IMAGE FROM MEDIA
   CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FAILED = 'organization/create-background-image-from-media-failed',
   CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FORBIDDEN = 'organization/create-background-image-from-media-forbidden',
   CREATE_BACKGROUND_IMAGE_FROM_MEDIA_NOT_FOUND = 'organization/create-background-image-from-media-not-found',
-  CREATE_BACKGROUND_IMAGE_FROM_MEDIA_ALREADY_EXISTS = 'organization/create-background-image-from-media-already-exists',
 
   // CREATE BACKGROUND IMAGE
   CREATE_BACKGROUND_IMAGE_FAILED = 'organization/create-background-image-failed',
   CREATE_BACKGROUND_IMAGE_FORBIDDEN = 'organization/create-background-image-forbidden',
   CREATE_BACKGROUND_IMAGE_NOT_FOUND = 'organization/create-background-image-not-found',
-  CREATE_BACKGROUND_IMAGE_ALREADY_EXISTS = 'organization/create-background-image-already-exists',
 
   // CREATE OPENING HOURS SPECIFICATION
   CREATE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/create-opening-hours-specification-failed',
   CREATE_OPENING_HOURS_SPECIFICATION_FORBIDDEN = 'organization/create-opening-hours-specification-forbidden',
   CREATE_OPENING_HOURS_SPECIFICATION_NOT_FOUND = 'organization/create-opening-hours-specification-not-found',
-  CREATE_OPENING_HOURS_SPECIFICATION_ALREADY_EXISTS = 'organization/create-opening-hours-specification-already-exists',
 
   // CREATE EMPLOYEE
   CREATE_EMPLOYEE_FAILED = 'organization/create-employee-failed',
   CREATE_EMPLOYEE_FORBIDDEN = 'organization/create-employee-forbidden',
   CREATE_EMPLOYEE_NOT_FOUND = 'organization/create-employee-not-found',
-  CREATE_EMPLOYEE_ALREADY_EXISTS = 'organization/create-employee-already-exists',
 
   // CREATE FOUNDER
   CREATE_FOUNDER_FAILED = 'organization/create-founder-failed',
   CREATE_FOUNDER_FORBIDDEN = 'organization/create-founder-forbidden',
   CREATE_FOUNDER_NOT_FOUND = 'organization/create-founder-not-found',
-  CREATE_FOUNDER_ALREADY_EXISTS = 'organization/create-founder-already-exists',
 
   // ADD LOGO
   ADD_LOGO_FAILED = 'organization/add-logo-failed',
   ADD_LOGO_FORBIDDEN = 'organization/add-logo-forbidden',
   ADD_LOGO_NOT_FOUND = 'organization/add-logo-not-found',
-  ADD_LOGO_ALREADY_EXISTS = 'organization/add-logo-already-exists',
 
   // ADD RIB
   ADD_RIB_FAILED = 'organization/add-rib-failed',
   ADD_RIB_FORBIDDEN = 'organization/add-rib-forbidden',
   ADD_RIB_NOT_FOUND = 'organization/add-rib-not-found',
-  ADD_RIB_ALREADY_EXISTS = 'organization/add-rib-already-exists',
 
   // ADD ADDRESS
   ADD_ADDRESS_FAILED = 'organization/add-address-failed',
   ADD_ADDRESS_FORBIDDEN = 'organization/add-address-forbidden',
   ADD_ADDRESS_NOT_FOUND = 'organization/add-address-not-found',
-  ADD_ADDRESS_ALREADY_EXISTS = 'organization/add-address-already-exists',
 
   // ADD KYC
   ADD_DOCUMENT_FAILED = 'organization/add-failed',
   ADD_DOCUMENT_FORBIDDEN = 'organization/add-forbidden',
   ADD_DOCUMENT_NOT_FOUND = 'organization/add-not-found',
-  ADD_DOCUMENT_ALREADY_EXISTS = 'organization/add-already-exists',
 
   // REGISTER ORGANIZATION
   REGISTER_ORGANIZATION_FAILED = 'organization/register-organization-failed',
@@ -95,7 +82,6 @@ export enum OrganizationErr {
   REGISTER_ORGANIZATION_TO_PERSON_FAILED = 'organization/register-organization-to-person-failed',
   REGISTER_ORGANIZATION_TO_PERSON_FORBIDDEN = 'organization/register-organization-to-person-forbidden',
   REGISTER_ORGANIZATION_TO_PERSON_NOT_FOUND = 'organization/register-organization-to-person-not-found',
-  REGISTER_ORGANIZATION_TO_PERSON_ALREADY_EXISTS = 'organization/register-organization-to-person-already-exists',
 
   // SET COMMUNICATION
   SET_COMMUNICATION_FAILED = 'organization/set-communication-failed',
@@ -141,7 +127,6 @@ export enum OrganizationErr {
   DELETE_ADDRESS_FAILED = 'organization/delete-address-failed',
   DELETE_ADDRESS_FORBIDDEN = 'organization/delete-address-forbidden',
   DELETE_ADDRESS_NOT_FOUND = 'organization/delete-address-not-found',
-  DELETE_ADDRESS_ALREADY_EXISTS = 'organization/delete-address-already-exists',
 
   // DELETE BACKGROUND IMAGE
   DELETE_BACKGROUND_IMAGE_FAILED = 'organization/delete-background-image-failed',
@@ -222,10 +207,6 @@ export const errors = {
 
   // CREATE ORGANIZATION
   [OrganizationErr.CREATE_ORGANIZATION_FAILED]: 'Failed to create organization',
-  [OrganizationErr.CREATE_ORGANIZATION_NOT_FOUND]:
-    'Failed to create organization. Organization not found',
-  [OrganizationErr.CREATE_ORGANIZATION_ALREADY_EXISTS]:
-    'Failed to create organization. Organization already exists',
   [OrganizationErr.CREATE_ORGANIZATION_FORBIDDEN]:
     'Failed to create organization. Forbidden access',
 
@@ -236,8 +217,6 @@ export const errors = {
     'Failed to create background image from media. Forbidden access',
   [OrganizationErr.CREATE_BACKGROUND_IMAGE_FROM_MEDIA_NOT_FOUND]:
     'Failed to create background image from media. Media not found',
-  [OrganizationErr.CREATE_BACKGROUND_IMAGE_FROM_MEDIA_ALREADY_EXISTS]:
-    'Failed to create background image from media. Background image already exists',
 
   // CREATE BACKGROUND IMAGE
   [OrganizationErr.CREATE_BACKGROUND_IMAGE_FAILED]:
@@ -246,8 +225,6 @@ export const errors = {
     'Failed to create background image. Forbidden access',
   [OrganizationErr.CREATE_BACKGROUND_IMAGE_NOT_FOUND]:
     'Failed to create background image. Image not found',
-  [OrganizationErr.CREATE_BACKGROUND_IMAGE_ALREADY_EXISTS]:
-    'Failed to create background image. Background image already exists',
 
   // CREATE PICTURE FROM MEDIA
   [OrganizationErr.CREATE_PICTURE_FROM_MEDIA_FAILED]:
@@ -256,8 +233,6 @@ export const errors = {
     'Failed to create picture from media. Forbidden access',
   [OrganizationErr.CREATE_PICTURE_FROM_MEDIA_NOT_FOUND]:
     'Failed to create picture from media. Media not found',
-  [OrganizationErr.CREATE_PICTURE_FROM_MEDIA_ALREADY_EXISTS]:
-    'Failed to create picture from media. Picture already exists',
 
   // CREATE PICTURE
   [OrganizationErr.CREATE_PICTURE_FAILED]: 'Failed to create picture',
@@ -265,8 +240,6 @@ export const errors = {
     'Failed to create picture. Forbidden access',
   [OrganizationErr.CREATE_PICTURE_NOT_FOUND]:
     'Failed to create picture. Picture not found',
-  [OrganizationErr.CREATE_PICTURE_ALREADY_EXISTS]:
-    'Failed to create picture. Picture already exists',
 
   // CREATE EMPLOYEE
   [OrganizationErr.CREATE_EMPLOYEE_FAILED]: 'Failed to create employee',
@@ -274,8 +247,6 @@ export const errors = {
     'Failed to create employee. Forbidden access',
   [OrganizationErr.CREATE_EMPLOYEE_NOT_FOUND]:
     'Failed to create employee. Page not found',
-  [OrganizationErr.CREATE_EMPLOYEE_ALREADY_EXISTS]:
-    'Failed to create employee. Employee already exists',
 
   // CREATE FOUNDER
   [OrganizationErr.CREATE_FOUNDER_FAILED]: 'Failed to create founder',
@@ -283,8 +254,6 @@ export const errors = {
     'Failed to create founder. Forbidden access',
   [OrganizationErr.CREATE_FOUNDER_NOT_FOUND]:
     'Failed to create founder. Page not found',
-  [OrganizationErr.CREATE_FOUNDER_ALREADY_EXISTS]:
-    'Failed to create founder. Founder already exists',
 
   // REGISTER ORGANIZATION TO PERSON
   [OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_FAILED]:
@@ -293,8 +262,6 @@ export const errors = {
     'Failed to register organization to person. Forbidden access',
   [OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_NOT_FOUND]:
     'Failed to register organization to person. Organization not found',
-  [OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_ALREADY_EXISTS]:
-    'Failed to register organization to person. Person already exists in organization',
 
   // CREATE OPENING HOURS SPECIFICATION
   [OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_FAILED]:
@@ -303,15 +270,11 @@ export const errors = {
     'Failed to create opening hours specification. Forbidden access',
   [OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_NOT_FOUND]:
     'Failed to create opening hours specification. Opening hours specification not found',
-  [OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_ALREADY_EXISTS]:
-    'Failed to create opening hours specification. Opening hours specification already exists',
 
   // ADD LOGO
   [OrganizationErr.ADD_LOGO_FAILED]: 'Failed to add logo',
   [OrganizationErr.ADD_LOGO_FORBIDDEN]: 'Failed to add logo. Forbidden access',
   [OrganizationErr.ADD_LOGO_NOT_FOUND]: 'Failed to add logo. Logo not found',
-  [OrganizationErr.ADD_LOGO_ALREADY_EXISTS]:
-    'Failed to add logo. Logo already exists',
 
   // ADD KYC
   [OrganizationErr.ADD_DOCUMENT_FAILED]: 'Failed to add document',
@@ -319,15 +282,11 @@ export const errors = {
     'Failed to add document. Forbidden access',
   [OrganizationErr.ADD_DOCUMENT_NOT_FOUND]:
     'Failed to add document. Document not found',
-  [OrganizationErr.ADD_DOCUMENT_ALREADY_EXISTS]:
-    'Failed to add document. Document already exists',
 
   // ADD RIB
   [OrganizationErr.ADD_RIB_FAILED]: 'Failed to add RIB',
   [OrganizationErr.ADD_RIB_FORBIDDEN]: 'Failed to add RIB. Forbidden access',
   [OrganizationErr.ADD_RIB_NOT_FOUND]: 'Failed to add RIB. RIB not found',
-  [OrganizationErr.ADD_RIB_ALREADY_EXISTS]:
-    'Failed to add RIB. RIB already exists',
 
   // SET COMMUNICATION
   [OrganizationErr.SET_COMMUNICATION_FAILED]: 'Failed to set communication',
@@ -391,8 +350,6 @@ export const errors = {
     'Failed to delete address. Forbidden access',
   [OrganizationErr.DELETE_ADDRESS_NOT_FOUND]:
     'Failed to delete address. Address not found',
-  [OrganizationErr.DELETE_ADDRESS_ALREADY_EXISTS]:
-    "Failed to delete address. Address doesn't exists",
 
   // DELETE LOGO
   [OrganizationErr.DELETE_LOGO_FAILED]: 'Failed to delete logo',

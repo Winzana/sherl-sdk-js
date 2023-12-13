@@ -20,14 +20,6 @@ export const registerOrganization = async (
         throw errorFactory.create(
           OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_FORBIDDEN,
         );
-      case 404:
-        throw errorFactory.create(
-          OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_NOT_FOUND,
-        );
-      case 409:
-        throw errorFactory.create(
-          OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_ALREADY_EXISTS,
-        );
       default:
         throw errorFactory.create(
           OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_FAILED,

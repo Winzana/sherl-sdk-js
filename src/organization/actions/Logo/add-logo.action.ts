@@ -37,8 +37,6 @@ export const addLogo = async (
         throw errorFactory.create(OrganizationErr.ADD_LOGO_FORBIDDEN);
       case 404:
         throw errorFactory.create(OrganizationErr.ADD_LOGO_NOT_FOUND);
-      case 409:
-        throw errorFactory.create(OrganizationErr.ADD_LOGO_ALREADY_EXISTS);
       default:
         throw errorFactory.create(OrganizationErr.ADD_LOGO_FAILED);
     }
