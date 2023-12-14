@@ -17,13 +17,14 @@ const fetcher = new Fetcher(axios.create(), new ErrorFactory('Test'));
 
 describe('signInWithEmailAndPassword', () => {
   it('should execute sign in request and return access token', async () => {
-    jest
-      .spyOn(fetcher, 'post')
-      .mockImplementationOnce(
-        jest.fn(() =>
-          Promise.resolve({ data: { access_token: 'token' } } as any),
-        ),
-      );
+    jest.spyOn(fetcher, 'post').mockImplementationOnce(
+      jest.fn(() =>
+        Promise.resolve({
+          status: 200,
+          data: { access_token: 'token' },
+        } as any),
+      ),
+    );
 
     const payload = {
       email: 'mail@example.com',

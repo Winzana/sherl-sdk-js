@@ -25,12 +25,6 @@ export const loginWithApple = async (
       default:
         throw errorFactory.create(AuthErr.LOGIN_APPLE_FAILED);
     }
-
-    if (!response.data.access_token) {
-      throw errorFactory.create(AuthErr.LOGIN_APPLE_FAILED);
-    }
-
-    return response.data;
   } catch (err) {
     throw getSherlError(err, errorFactory.create(AuthErr.LOGIN_APPLE_FAILED));
   }
