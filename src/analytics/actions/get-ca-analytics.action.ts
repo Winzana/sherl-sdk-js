@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoint';
 import { AnalyticsErr, errorFactory } from '../errors';
 import { IAnalyticResponse, ICAAnalyticsInputDto } from '../types';
@@ -12,8 +13,19 @@ export const getCAAnalytics = async (
       endpoints.ANALYTICS_CA,
       filters,
     );
-    return response.data;
+
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(AnalyticsErr.ANALYTICS_CA_FAILED_FORBIDDEN);
+      default:
+        throw errorFactory.create(AnalyticsErr.ANALYTICS_CA_FAILED);
+    }
   } catch (err) {
-    throw errorFactory.create(AnalyticsErr.ANALYTICS_CA_FAILED);
+    throw getSherlError(
+      err,
+      errorFactory.create(AnalyticsErr.ANALYTICS_CA_FAILED),
+    );
   }
 };
