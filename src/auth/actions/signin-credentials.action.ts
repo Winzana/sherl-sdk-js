@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { AuthErr, errorFactory } from '../errors';
 import { ILoginResponse, ISignInWithEmailAndPasswordRequest } from '../types';
@@ -16,11 +17,18 @@ export const signInWithEmailAndPassword = async (
       },
     );
 
-    if (!response.data || !response.data.access_token) {
-      throw errorFactory.create(AuthErr.LOGIN_FAILED);
+    switch (response.status) {
+      case 200:
+        if (!response.data?.access_token) {
+          throw errorFactory.create(AuthErr.LOGIN_FAILED);
+        }
+        return response.data.access_token;
+      case 401:
+        throw errorFactory.create(AuthErr.LOGIN_FAILED_UNAUTHORIZED);
+      default:
+        throw errorFactory.create(AuthErr.LOGIN_FAILED);
     }
-    return response.data.access_token;
   } catch (error) {
-    throw errorFactory.create(AuthErr.LOGIN_FAILED);
+    throw getSherlError(error, errorFactory.create(AuthErr.LOGIN_FAILED));
   }
 };

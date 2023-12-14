@@ -18,15 +18,24 @@ export const validateCode = async (
       },
     );
 
-    if (response.status == 404) {
-      throw errorFactory.create(AuthErr.VALIDATE_SMS_CODE_NOT_FOUND);
-    }
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 401:
+        throw errorFactory.create(
+          AuthErr.VALIDATE_SMS_CODE_FAILED_UNAUTHORIZED,
+        );
+      case 404:
+        throw errorFactory.create(AuthErr.SMS_CODE_OR_PHONE_NUMBER_NOT_FOUND);
+      case 403:
+        throw errorFactory.create(AuthErr.VALIDATE_SMS_CODE_FAILED_FORBIDDEN);
 
-    if (!response.data) {
-      throw errorFactory.create(AuthErr.VALIDATE_SMS_CODE_FAILED);
-    }
+      case 498:
+        throw errorFactory.create(AuthErr.SMS_VALIDATION_CODE_EXPIRED);
 
-    return response.data;
+      default:
+        throw errorFactory.create(AuthErr.VALIDATE_SMS_CODE_FAILED);
+    }
   } catch (err) {
     throw getSherlError(
       err,

@@ -15,15 +15,17 @@ export const resendSMSCode = async (
       },
     );
 
-    if (response.status == 404) {
-      throw errorFactory.create(AuthErr.REQUEST_SMS_CODE_NOT_FOUND);
-    }
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 404:
+        throw errorFactory.create(AuthErr.PHONE_NUMBER_NOT_FOUND);
+      case 403:
+        throw errorFactory.create(AuthErr.SMS_ALREADY_SENT);
 
-    if (!response.data) {
-      throw errorFactory.create(AuthErr.RE_REQUEST_SMS_CODE_FAILED);
+      default:
+        throw errorFactory.create(AuthErr.RE_REQUEST_SMS_CODE_FAILED);
     }
-
-    return response.data;
   } catch (err) {
     throw getSherlError(
       err,

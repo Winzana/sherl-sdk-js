@@ -14,11 +14,17 @@ export const loginWithFacebook = async (
       facebookInfos,
     );
 
-    if (!response.data.access_token) {
-      throw errorFactory.create(AuthErr.LOGIN_FACEBOOK_FAILED);
+    switch (response.status) {
+      case 200:
+        if (!response.data?.access_token) {
+          throw errorFactory.create(AuthErr.LOGIN_FACEBOOK_FAILED);
+        }
+        return response.data;
+      case 401:
+        throw errorFactory.create(AuthErr.LOGIN_FACEBOOK_FAILED_UNAUTHORIZED);
+      default:
+        throw errorFactory.create(AuthErr.LOGIN_FACEBOOK_FAILED);
     }
-
-    return response.data;
   } catch (err) {
     throw getSherlError(
       err,
