@@ -17,3 +17,4 @@ export * from './place';
 export * from './search';
 export * from './shop';
 export * from './user';
+export * from './notification';

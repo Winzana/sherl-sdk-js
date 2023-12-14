@@ -4,22 +4,31 @@ import { INotification } from '../types';
 import { INotificationFilters } from '../types';
 import { errorFactory, NotificationErr } from '../errors';
 import { ISearchResult } from '../../common';
+import { getSherlError } from '../../common/utils';
 
 export const getNotifications = async (
   fetcher: Fetcher,
   filters: INotificationFilters,
 ): Promise<ISearchResult<INotification>> => {
-  const response = await fetcher
-    .get<ISearchResult<INotification>>(endpoints.GET_NOTIFICATIONS, {
-      ...filters,
-    })
-    .catch((_err) => {
-      throw errorFactory.create(NotificationErr.FETCH_FAILED);
-    });
-
-  if (response.status !== 200) {
-    throw errorFactory.create(NotificationErr.NOT_FOUND);
+  try {
+    const response = await fetcher.get<ISearchResult<INotification>>(
+      endpoints.GET_NOTIFICATIONS,
+      {
+        ...filters,
+      },
+    );
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(NotificationErr.GET_NOTIFICATIONS_FORBIDDEN);
+      default:
+        throw errorFactory.create(NotificationErr.FETCH_FAILED);
+    }
+  } catch (error) {
+    throw getSherlError(
+      error,
+      errorFactory.create(NotificationErr.FETCH_FAILED),
+    );
   }
-
-  return response.data;
 };
