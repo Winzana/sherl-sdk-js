@@ -14,5 +14,6 @@ export * from './opinion';
 export * from './organization';
 export * from './person';
 export * from './place';
+export * from './search';
 export * from './shop';
 export * from './user';
