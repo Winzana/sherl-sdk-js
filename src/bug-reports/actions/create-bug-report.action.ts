@@ -19,9 +19,6 @@ export const createBugReport = async (
         return response.data;
       case 403:
         throw errorFactory.create(BugReportsErr.CREATE_BUG_REPORT_FORBIDDEN);
-      case 404:
-        throw errorFactory.create(BugReportsErr.CREATE_BUG_REPORT_NOT_FOUND);
-
       default:
         throw errorFactory.create(BugReportsErr.CREATE_BUG_REPORT_FAILED);
     }

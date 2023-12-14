@@ -20,7 +20,7 @@ export const getBugReportById = async (
       case 403:
         throw errorFactory.create(BugReportsErr.GET_BUG_REPORT_BY_ID_FORBIDDEN);
       case 404:
-        throw errorFactory.create(BugReportsErr.GET_BUG_REPORT_BY_ID_NOT_FOUND);
+        throw errorFactory.create(BugReportsErr.BUG_REPORT_NOT_FOUND);
 
       default:
         throw errorFactory.create(BugReportsErr.GET_BUG_REPORT_BY_ID_FAILED);
