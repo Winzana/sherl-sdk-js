@@ -22,6 +22,18 @@ export const updateAdvertisement = async (
       }),
       updatedAdvertisement,
     );
+
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(AdvertisementErr.UPDATE_FAILED_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(AdvertisementErr.UNKNOWN_ADVERTISEMENT);
+      default:
+        throw errorFactory.create(AdvertisementErr.UPDATE_FAILED);
+    }
+
     return response.data;
   } catch (error) {
     throw errorFactory.create(AdvertisementErr.UPDATE_FAILED);

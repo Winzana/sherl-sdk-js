@@ -1,5 +1,6 @@
 import { Pagination } from '../../../common';
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils';
 import { endpoints } from '../../api/endpoints';
 import {
   AdvertisementErr,
@@ -20,8 +21,20 @@ export const getAdvertisements = async (
       filters,
     );
 
-    return response.data;
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          AdvertisementErr.GET_ADVERTISEMENTS_FAILED_FORBIDDEN,
+        );
+      default:
+        throw errorFactory.create(AdvertisementErr.GET_ADVERTISEMENTS_FAILED);
+    }
   } catch (error) {
-    throw errorFactory.create(AdvertisementErr.FETCH_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(AdvertisementErr.GET_ADVERTISEMENTS_FAILED),
+    );
   }
 };

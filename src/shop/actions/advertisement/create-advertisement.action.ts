@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils';
 import { endpoints } from '../../api/endpoints';
 import {
   AdvertisementErr,
@@ -19,8 +20,18 @@ export const createAdvertisement = async (
       advertisement,
     );
 
-    return response.data;
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(AdvertisementErr.CREATION_FAILED_FORBIDDEN);
+      default:
+        throw errorFactory.create(AdvertisementErr.CREATION_FAILED);
+    }
   } catch (error) {
-    throw errorFactory.create(AdvertisementErr.CREATION_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(AdvertisementErr.CREATION_FAILED),
+    );
   }
 };
