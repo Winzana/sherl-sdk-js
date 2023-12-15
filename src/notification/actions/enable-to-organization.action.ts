@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { NotificationErr, errorFactory } from '../errors';
@@ -9,17 +10,27 @@ export const enableToOrganization = async (
   enableToOrganization: INotificationUpdateAvailabilityInput,
   id: string,
 ): Promise<INotification> => {
-  const response = await fetcher
-    .post<INotification>(
+  try {
+    const response = await fetcher.post<INotification>(
       StringUtils.bindContext(endpoints.ENABLE_TO_ORGANIZATION, { id }),
       enableToOrganization,
-    )
-    .catch((_err) => {
-      throw errorFactory.create(NotificationErr.ENABLED_FAILED);
-    });
-  if (response.status >= 300) {
-    throw errorFactory.create(NotificationErr.ENABLED_FAILED);
+    );
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          NotificationErr.ENABLE_TO_ORGANIZATION_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(NotificationErr.NOTIFICATION_NOT_FOUND);
+      default:
+        throw errorFactory.create(NotificationErr.ENABLED_FAILED);
+    }
+  } catch (error) {
+    throw getSherlError(
+      error,
+      errorFactory.create(NotificationErr.ENABLED_FAILED),
+    );
   }
-
-  return response.data;
 };
