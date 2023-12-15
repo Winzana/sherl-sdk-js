@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { AuthErr, errorFactory } from '../errors';
 import { ILoginResponse } from '../types';
@@ -17,12 +18,28 @@ export const validateCode = async (
       },
     );
 
-    if (!response.data) {
-      throw errorFactory.create(AuthErr.VALIDATE_SMS_CODE_FAILED);
-    }
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 401:
+        throw errorFactory.create(
+          AuthErr.VALIDATE_SMS_CODE_FAILED_UNAUTHORIZED,
+        );
+      case 404:
+        throw errorFactory.create(AuthErr.SMS_CODE_OR_PHONE_NUMBER_NOT_FOUND);
+      case 403:
+        throw errorFactory.create(AuthErr.VALIDATE_SMS_CODE_FAILED_FORBIDDEN);
 
-    return response.data;
+      case 498:
+        throw errorFactory.create(AuthErr.SMS_VALIDATION_CODE_EXPIRED);
+
+      default:
+        throw errorFactory.create(AuthErr.VALIDATE_SMS_CODE_FAILED);
+    }
   } catch (err) {
-    throw errorFactory.create(AuthErr.VALIDATE_SMS_CODE_FAILED);
+    throw getSherlError(
+      err,
+      errorFactory.create(AuthErr.VALIDATE_SMS_CODE_FAILED),
+    );
   }
 };
