@@ -19,3 +19,4 @@ export * from './search';
 export * from './shop';
 export * from './user';
 export * from './notification';
+export * from './quotas';
