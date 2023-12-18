@@ -11,16 +11,12 @@ export const updateDynamicBackground = async (
   dynamicBackground: Partial<ICreateDynamicBackgroundInputDto>,
 ): Promise<IDynamicBackground> => {
   try {
-    const response = await fetcher
-      .patch<IDynamicBackground>(
-        StringUtils.bindContext(endpoints.MANAGE_DYNAMIC_BACKGROUND, {
-          id: dynamicBackgroundId,
-        }),
-        dynamicBackground,
-      )
-      .catch(() => {
-        throw errorFactory.create(GalleryErr.UPDATE_DYNAMIC_BACKGROUND_FAILED);
-      });
+    const response = await fetcher.patch<IDynamicBackground>(
+      StringUtils.bindContext(endpoints.MANAGE_DYNAMIC_BACKGROUND, {
+        id: dynamicBackgroundId,
+      }),
+      dynamicBackground,
+    );
 
     switch (response.status) {
       case 200:

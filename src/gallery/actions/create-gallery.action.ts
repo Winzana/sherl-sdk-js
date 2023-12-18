@@ -9,11 +9,7 @@ export const createGallery = async (
   gallery: ICreateGalleryInputDto,
 ): Promise<IGallery> => {
   try {
-    const response = await fetcher
-      .post<IGallery>(endpoints.GALLERY, gallery)
-      .catch(() => {
-        throw errorFactory.create(GalleryErr.CREATE_GALLERY_FAILED);
-      });
+    const response = await fetcher.post<IGallery>(endpoints.GALLERY, gallery);
     switch (response.status) {
       case 201:
         return response.data;

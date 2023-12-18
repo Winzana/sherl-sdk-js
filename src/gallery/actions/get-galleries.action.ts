@@ -10,11 +10,10 @@ export const getGalleries = async (
   filters?: IGetGalleriesFilters,
 ): Promise<Pagination<IGallery>> => {
   try {
-    const response = await fetcher
-      .get<Pagination<IGallery>>(endpoints.GALLERY, filters)
-      .catch(() => {
-        throw errorFactory.create(GalleryErr.GET_GALLERIES_FAILED);
-      });
+    const response = await fetcher.get<Pagination<IGallery>>(
+      endpoints.GALLERY,
+      filters,
+    );
 
     switch (response.status) {
       case 200:

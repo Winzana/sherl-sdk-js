@@ -10,15 +10,11 @@ export const deleteGallery = async (
   galleryId: string,
 ): Promise<IGallery> => {
   try {
-    const response = await fetcher
-      .delete<IGallery>(
-        StringUtils.bindContext(endpoints.GALLERY, {
-          id: galleryId,
-        }),
-      )
-      .catch(() => {
-        throw errorFactory.create(GalleryErr.DELETE_GALLERY_FORBIDDEN);
-      });
+    const response = await fetcher.delete<IGallery>(
+      StringUtils.bindContext(endpoints.GALLERY, {
+        id: galleryId,
+      }),
+    );
 
     switch (response.status) {
       case 200:

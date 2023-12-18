@@ -10,15 +10,11 @@ export const deleteDynamicBackground = async (
   dynamicBackgroundId: string,
 ): Promise<IDynamicBackground> => {
   try {
-    const response = await fetcher
-      .delete<IDynamicBackground>(
-        StringUtils.bindContext(endpoints.MANAGE_DYNAMIC_BACKGROUND, {
-          id: dynamicBackgroundId,
-        }),
-      )
-      .catch(() => {
-        throw errorFactory.create(GalleryErr.DELETE_DYNAMIC_BACKGROUND_FAILED);
-      });
+    const response = await fetcher.delete<IDynamicBackground>(
+      StringUtils.bindContext(endpoints.MANAGE_DYNAMIC_BACKGROUND, {
+        id: dynamicBackgroundId,
+      }),
+    );
 
     switch (response.status) {
       case 200:

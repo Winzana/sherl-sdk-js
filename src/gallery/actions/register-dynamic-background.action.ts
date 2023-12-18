@@ -9,11 +9,10 @@ export const registerDynamicBackground = async (
   dynamicBackground: ICreateDynamicBackgroundInputDto,
 ): Promise<IDynamicBackground> => {
   try {
-    const response = await fetcher
-      .post<IDynamicBackground>(endpoints.DYNAMIC_BACKGROUND, dynamicBackground)
-      .catch(() => {
-        throw errorFactory.create(GalleryErr.ADD_DYNAMIC_BACKGROUND_FAILED);
-      });
+    const response = await fetcher.post<IDynamicBackground>(
+      endpoints.DYNAMIC_BACKGROUND,
+      dynamicBackground,
+    );
 
     switch (response.status) {
       case 201:

@@ -10,14 +10,10 @@ export const getDynamicBackgrounds = async (
   filters?: IGetDynamicBackgroundFilters,
 ): Promise<Pagination<IDynamicBackground>> => {
   try {
-    const response = await fetcher
-      .get<Pagination<IDynamicBackground>>(
-        endpoints.DYNAMIC_BACKGROUND,
-        filters,
-      )
-      .catch(() => {
-        throw errorFactory.create(GalleryErr.GET_DYNAMIC_BACKGROUNDS_FAILED);
-      });
+    const response = await fetcher.get<Pagination<IDynamicBackground>>(
+      endpoints.DYNAMIC_BACKGROUND,
+      filters,
+    );
 
     switch (response.status) {
       case 200:
