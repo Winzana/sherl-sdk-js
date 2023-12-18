@@ -4,6 +4,19 @@ import { endpoints } from '../api/endpoints';
 import { errorFactory, UserErr } from '../errors';
 import { IUpdatePasswordDto } from '../types';
 
+/**
+ * Update the user's password.
+ *
+ * This function sends a POST request to update the user's password.
+ * It returns a boolean indicating whether the password update was successful.
+ * It handles different HTTP status codes and throws specific errors for different scenarios.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {IUpdatePasswordDto} data - The data for updating the user's password.
+ * @returns {Promise<boolean>} A promise that resolves to true if the password update is successful.
+ * @throws {UserErr.UPDATE_MY_PASSWORD_FORBIDDEN} Throws an error if the request is forbidden (HTTP 403).
+ * @throws {UserErr.UPDATE_MY_PASSWORD_FAILED} Throws an error for other failure scenarios.
+ */
 export const updateMyPassword = async (
   fetcher: Fetcher,
   data: IUpdatePasswordDto,
