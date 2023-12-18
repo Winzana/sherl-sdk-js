@@ -13,12 +13,15 @@ export const getDiscount = async (
       StringUtils.bindContext(endpoints.MANAGE_DISCOUNT, { id }),
     );
 
-    if (response.status !== 200) {
-      throw errorFactory.create(DiscountErr.FETCH_FAILED);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(DiscountErr.GET_DISCOUNTS_FAILED_FORBIDDEN);
+      default:
+        throw errorFactory.create(DiscountErr.GET_DISCOUNTS_FAILED);
     }
-
-    return response.data;
   } catch (error) {
-    throw errorFactory.create(DiscountErr.FETCH_FAILED);
+    throw errorFactory.create(DiscountErr.GET_DISCOUNTS_FAILED);
   }
 };
