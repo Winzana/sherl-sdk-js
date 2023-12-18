@@ -407,6 +407,21 @@ class ShopProvider extends AbstractProvider {
   getOrganizationLoyaltyCard = this.withFetcher(getOrganizationLoyaltyCard);
 
   // Invoice
+
+  /**
+   * Sends a link for online payment of a specific invoice.
+   *
+   * This function sends a POST request to send a payment link for an invoice identified by its unique ID.
+   * The invoice ID is used to construct the endpoint for the request. On successful operation, it returns the
+   * order's information related to the invoice encapsulated in an IOrderResponse object. If the process of sending
+   * the payment link encounters any errors, such as a failure to connect to the endpoint or other issues, a specific
+   * error indicating the failure of the operation is thrown.
+   *
+   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+   * @param {string} invoiceId - The unique identifier of the invoice for which the payment link is being sent.
+   * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the order related to the invoice.
+   * @throws {InvoiceErr.SEND_FAILED} Throws an error if the operation to send the payment link fails.
+   */
   sendLinkToPaidOnline = this.withFetcher(sendLinkToPaidOnline);
 
   // Payment
