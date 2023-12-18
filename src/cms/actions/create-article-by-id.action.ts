@@ -5,7 +5,7 @@ import { IArticle, ICMSArticleUpdateInputDto } from '../types';
 import { StringUtils } from '../../common/utils/string';
 import { getSherlError } from '../../common/utils';
 
-export const createArticleById = async (
+export const updateArticleById = async (
   fetcher: Fetcher,
   id: string,
   updatedArticle: ICMSArticleUpdateInputDto,

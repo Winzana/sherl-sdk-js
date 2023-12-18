@@ -117,7 +117,7 @@ This call returns an [IArticle](cms-types#iarticle) object
 Create article
 
 ```ts
-const createArticle = await cms(client).createArticleById(data: ICMSArticleUpdateInputDto);
+const createArticle = await cms(client).updateArticleById(data: ICMSArticleUpdateInputDto);
 ```
 
 ```ts
