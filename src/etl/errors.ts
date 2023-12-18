@@ -1,7 +1,6 @@
 import { ErrorFactory } from '../common/errors';
 
 export enum EtlErr {
-  ETL_NOT_FOUND = 'etl/not_found',
   ETL_CONFIG_NOT_FOUND = 'etl/config_not_found',
   EXTRACT_TRANSFORM_FORBIDDEN = 'etl/transform_forbidden',
   EXTRACT_TRANSFORM_LOAD_FORBIDDEN = 'etl/transform_load_forbidden',
@@ -12,7 +11,6 @@ export enum EtlErr {
 
 export const errors = {
   [EtlErr.SAVE_CONFIG_FAILED]: 'Failed to save etl config',
-  [EtlErr.ETL_NOT_FOUND]: 'Failed etl not found',
   [EtlErr.ETL_CONFIG_NOT_FOUND]: 'Failed etl config not found',
   [EtlErr.EXTRACT_TRANSFORM_FORBIDDEN]:
     'Failed to extract load and transform data forbidden',
