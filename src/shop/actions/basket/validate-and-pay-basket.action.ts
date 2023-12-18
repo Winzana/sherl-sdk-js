@@ -1,13 +1,8 @@
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { endpoints } from '../../api/endpoints';
-import { OrderErr, errorFactory } from '../../errors/order/errors';
+import { BasketErr, errorFactory } from '../../errors/basket/error';
 import { IOrderResponse, IShopBasketValidateAndPayDto } from '../../types';
-
-const ERRORS_BY_CODE = {
-  460: OrderErr.NO_DEFAULT_CARD,
-  461: OrderErr.BASKET_ORDER_NOT_VALIDATED,
-  462: OrderErr.BASKET_ALREADY_PAYED,
-};
 
 /**
  * Validates and processes payment for the current shopping basket.
@@ -25,14 +20,26 @@ export const validateAndPayBasket = async (
       endpoints.VALIDATE_PAY_BASKET,
       { validation },
     );
-
-    return response.data;
-  } catch (error) {
-    let err = OrderErr.FETCH_FAILED;
-    if (error && (error as any).status) {
-      err =
-        ERRORS_BY_CODE[(error as any).status as keyof typeof ERRORS_BY_CODE];
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          BasketErr.VALIDATE_AND_PAY_BASKET_FAILED_FORBIDDEN,
+        );
+      case 460:
+        throw errorFactory.create(BasketErr.NO_DEFAULT_CARD);
+      case 461:
+        throw errorFactory.create(BasketErr.BASKET_ORDER_NOT_VALIDATED);
+      case 462:
+        throw errorFactory.create(BasketErr.BASKET_ALREADY_PAYED);
+      default:
+        throw errorFactory.create(BasketErr.VALIDATE_AND_PAY_BASKET_FAILED);
     }
-    throw errorFactory.create(err);
+  } catch (error) {
+    throw getSherlError(
+      error,
+      errorFactory.create(BasketErr.VALIDATE_AND_PAY_BASKET_FAILED),
+    );
   }
 };
