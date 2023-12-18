@@ -15,7 +15,6 @@ export enum UserErr {
   RESET_PASSWORD_VALIDATE_NOT_FOUND = 'user/reset-password-validate-not-found',
 
   UPDATE_MY_PASSWORD_FORBIDDEN = 'user/update-my-password-forbidden',
-  UPDATE_MY_PASSWORD_NOT_FOUND = 'user/update-my-password-not-found',
 }
 
 export const errors = {
@@ -37,8 +36,6 @@ export const errors = {
     'Failed to validate password not found ',
 
   [UserErr.UPDATE_MY_PASSWORD_FORBIDDEN]: 'Failed to update passwordforbidden',
-  [UserErr.UPDATE_MY_PASSWORD_NOT_FOUND]:
-    'Failed to update password not found ',
 };
 
 export const errorFactory = new ErrorFactory<UserErr>('User', errors);
