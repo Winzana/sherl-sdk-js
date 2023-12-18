@@ -402,8 +402,40 @@ class ShopProvider extends AbstractProvider {
   generatePayout = this.withFetcher(generatePayout);
 
   // Loyalty
+
+  /**
+   * Retrieves loyalty cards associated with the current user based on provided filters.
+   *
+   * This function sends a GET request to fetch loyalty cards related to the current user, allowing for filtering based on
+   * various criteria specified in the ILoyaltyCardFindByDto object. It returns a search result containing a list of loyalty
+   * cards, each encapsulated in an ILoyaltyCard object. If the request fails, an error with a specific code indicating the
+   * failure in fetching the loyalty cards is thrown.
+   *
+   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+   * @param {ILoyaltyCardFindByDto} [filters] - Optional filters to apply when fetching loyalty cards for the current user.
+   * @returns {Promise<ISearchResult<ILoyaltyCard>>} A promise that resolves to a search result containing the list of loyalty cards associated with the current user.
+   * @throws {LoyalityErr.FETCH_FAILED} Throws an error if the fetching of loyalty cards fails.
+   */
   getLoyaltiesCardToMe = this.withFetcher(getLoyaltiesCardToMe);
+
+  /**
+   * Updates an existing loyalty card with provided details.
+   *
+   * This function sends a PUT request to update a specific loyalty card identified by its unique ID. The updated loyalty
+   * card details are provided in the IShopLoyaltyCardUpdateInputDto object. On successful update, it returns the updated
+   * loyalty card's information encapsulated in an ILoyaltyCard object. If the update process encounters any errors, such
+   * as a failure to connect to the endpoint or other issues, a specific error indicating the failure of the loyalty card
+   * update is thrown.
+   *
+   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+   * @param {string} cardId - The unique identifier of the loyalty card to be updated.
+   * @param {IShopLoyaltyCardUpdateInputDto} updatedCard - The details of the loyalty card to be updated.
+   * @returns {Promise<ILoyaltyCard>} A promise that resolves to the information of the updated loyalty card.
+   * @throws {LoyalityErr.UPDATE_FAILED} Throws an error if the loyalty card update fails.
+   */
   updateLoyaltyCard = this.withFetcher(updateLoyaltyCard);
+
+  // NOT USED
   getOrganizationLoyaltyCard = this.withFetcher(getOrganizationLoyaltyCard);
 
   // Invoice
