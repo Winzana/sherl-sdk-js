@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { AuthErr, errorFactory } from '../errors';
 import { IAuthExternalServiceUserInfo, ILoginResponse } from '../types';
@@ -13,12 +14,18 @@ export const loginWithApple = async (
       appleInfos,
     );
 
-    if (!response.data.access_token) {
-      throw errorFactory.create(AuthErr.LOGIN_APPLE_FAILED);
+    switch (response.status) {
+      case 200:
+        if (!response.data?.access_token) {
+          throw errorFactory.create(AuthErr.LOGIN_APPLE_FAILED);
+        }
+        return response.data;
+      case 401:
+        throw errorFactory.create(AuthErr.LOGIN_APPLE_FAILED_UNAUTHORIZED);
+      default:
+        throw errorFactory.create(AuthErr.LOGIN_APPLE_FAILED);
     }
-
-    return response.data;
   } catch (err) {
-    throw errorFactory.create(AuthErr.LOGIN_APPLE_FAILED);
+    throw getSherlError(err, errorFactory.create(AuthErr.LOGIN_APPLE_FAILED));
   }
 };
