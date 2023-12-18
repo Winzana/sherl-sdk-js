@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { DiscountErr, errorFactory } from '../../errors/discount/errors';
@@ -24,8 +25,20 @@ export const updateDiscount = async (
       }),
       updatedDiscount,
     );
-    return response.data;
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(DiscountErr.UPDATE_DISCOUNT_FAILED_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(DiscountErr.DISCOUNT_NOT_FOUND);
+      default:
+        throw errorFactory.create(DiscountErr.UPDATE_DISCOUNT_FAILED);
+    }
   } catch (error) {
-    throw errorFactory.create(DiscountErr.UPDATE_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(DiscountErr.UPDATE_DISCOUNT_FAILED),
+    );
   }
 };

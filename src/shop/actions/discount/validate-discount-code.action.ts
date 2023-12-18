@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { endpoints } from '../../api/endpoints';
 import { DiscountErr, errorFactory } from '../../errors/discount/errors';
 import { IDiscount } from '../../types';
@@ -24,8 +25,23 @@ export const validateDiscountCode = async (
         productUri,
       },
     );
-    return response.data;
+
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          DiscountErr.VALIDATE_DISCOUNT_CODE_FAILED_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(DiscountErr.DISCOUNT_CODE_NOT_FOUND);
+      default:
+        throw errorFactory.create(DiscountErr.VALIDATE_DISCOUNT_CODE_FAILED);
+    }
   } catch (error) {
-    throw errorFactory.create(DiscountErr.VALIDATE_CODE_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(DiscountErr.VALIDATE_DISCOUNT_CODE_FAILED),
+    );
   }
 };

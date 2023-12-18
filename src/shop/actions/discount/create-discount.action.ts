@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils';
 import { endpoints } from '../../api/endpoints';
 import { DiscountErr, errorFactory } from '../../errors/discount/errors';
 import { IDiscountParameter, IDiscount } from '../../types';
@@ -18,8 +19,19 @@ export const createDiscount = async (
     const response = await fetcher.post<IDiscount>(endpoints.DISCOUNTS, {
       ...parameter,
     });
-    return response.data;
+
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(DiscountErr.CREATE_DISCOUNT_FAILED_FORBIDDEN);
+      default:
+        throw errorFactory.create(DiscountErr.CREATE_DISCOUNT_FAILED);
+    }
   } catch (error) {
-    throw errorFactory.create(DiscountErr.POST_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(DiscountErr.CREATE_DISCOUNT_FAILED),
+    );
   }
 };
