@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils/errors';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { ClaimErr, errorFactory } from '../errors';
@@ -14,11 +15,17 @@ export const refundClaim = async (
       {},
     );
 
-    if (response.status !== 200) {
-      throw errorFactory.create(ClaimErr.REFUND_CLAIM_FAILED);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(ClaimErr.REFUND_CLAIM_FORBIDDEN_ERROR);
+      case 404:
+        throw errorFactory.create(ClaimErr.CLAIM_NOT_FOUND);
+      default:
+        throw errorFactory.create(ClaimErr.REFUND_CLAIM_FAILED);
     }
-    return response.data;
   } catch (err) {
-    throw errorFactory.create(ClaimErr.REFUND_CLAIM_FAILED);
+    throw getSherlError(err, errorFactory.create(ClaimErr.REFUND_CLAIM_FAILED));
   }
 };

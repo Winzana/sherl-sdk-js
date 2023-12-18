@@ -35,10 +35,11 @@ export enum CmsErr {
   CREATE_CMS_EVENT_FAILED_CMS_FORBIDDEN = 'cms-article/creation-failed-article-slug-forbidden',
   CREATE_CMS_FAQS_FAILED_CMS_FORBIDDEN = 'cms-faqs/creation-failed-article-slug-forbidden',
   CREATE_CMS_POSTS_FAILED_CMS_FORBIDDEN = 'cms-faqs/creation-failed-article-slug-forbidden',
-  CREATE_CMS_STATIC_FAILED_CMS_FORBIDDEN = 'cms-faqs/creation-failed-article-slug-forbidden',
-  CREATE_CMS_TRAINING_FAILED_CMS_FORBIDDEN = 'cms-faqs/creation-failed-article-slug-forbidden',
+  CREATE_CMS_STATIC_PAGES_FAILED_FORBIDDEN = 'cms-faqs/creation-failed-article-slug-forbidden',
+  CREATE_CMS_TRAINING_FAILED_FORBIDDEN = 'cms-faqs/creation-failed-article-slug-forbidden',
   CREATE_CMS_STORIES_FAILED_CMS_FORBIDDEN = 'cms-faqs/creation-failed-article-slug-forbidden',
   CREATE_CMS_MEDIA_FAILED_CMS_FORBIDDEN = 'cms-faqs/creation-failed-media-slug-forbidden',
+  ARTICLE_NOT_FOUND = 'cms/article-not-found',
 }
 
 export const errors = {
@@ -98,14 +99,15 @@ export const errors = {
     'Failed to create CMS FAQs, failed FAQs forbidden.',
   [CmsErr.CREATE_CMS_POSTS_FAILED_CMS_FORBIDDEN]:
     'Failed to create CMS posts, failed posts forbidden.',
-  [CmsErr.CREATE_CMS_STATIC_FAILED_CMS_FORBIDDEN]:
+  [CmsErr.CREATE_CMS_STATIC_PAGES_FAILED_FORBIDDEN]:
     'Failed to create CMS posts, failed posts forbidden.',
-  [CmsErr.CREATE_CMS_TRAINING_FAILED_CMS_FORBIDDEN]:
+  [CmsErr.CREATE_CMS_TRAINING_FAILED_FORBIDDEN]:
     'Failed to create CMS training, failed training forbidden.',
   [CmsErr.CREATE_CMS_STORIES_FAILED_CMS_FORBIDDEN]:
     'Failed to create CMS stories, failed stories forbidden.',
   [CmsErr.CREATE_CMS_MEDIA_FAILED_CMS_FORBIDDEN]:
     'Failed to create CMS media, failed media forbidden.',
+  [CmsErr.ARTICLE_NOT_FOUND]: 'Failed to create CMS article not found.',
 };
 
 export const errorFactory = new ErrorFactory<CmsErr>('CMS', errors);

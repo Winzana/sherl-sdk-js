@@ -19,7 +19,7 @@ export const createStaticPage = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          CmsErr.CREATE_CMS_STATIC_FAILED_CMS_FORBIDDEN,
+          CmsErr.CREATE_CMS_STATIC_PAGES_FAILED_FORBIDDEN,
         );
       default:
         throw errorFactory.create(CmsErr.CMS_CREATE_FAILED);

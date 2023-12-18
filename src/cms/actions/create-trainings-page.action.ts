@@ -18,9 +18,7 @@ export const createTrainingsPage = async (
       case 201:
         return response.data;
       case 403:
-        throw errorFactory.create(
-          CmsErr.CREATE_CMS_TRAINING_FAILED_CMS_FORBIDDEN,
-        );
+        throw errorFactory.create(CmsErr.CREATE_CMS_TRAINING_FAILED_FORBIDDEN);
       default:
         throw errorFactory.create(CmsErr.CMS_CREATE_TRAININGS_FAILED);
     }
