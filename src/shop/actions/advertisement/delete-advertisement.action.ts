@@ -25,7 +25,7 @@ export const deleteAdvertisement = async (
       case 403:
         throw errorFactory.create(AdvertisementErr.DELETE_FAILED_FORBIDDEN);
       case 404:
-        throw errorFactory.create(AdvertisementErr.UNKNOWN_ADVERTISEMENT);
+        throw errorFactory.create(AdvertisementErr.ADVERTISEMENT_NOT_FOUND);
       default:
         throw errorFactory.create(AdvertisementErr.DELETE_FAILED);
     }

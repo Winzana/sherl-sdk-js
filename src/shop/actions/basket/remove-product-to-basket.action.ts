@@ -1,7 +1,8 @@
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
-import { OrderErr, errorFactory } from '../../errors/order/errors';
+import { BasketErr, errorFactory } from '../../errors/basket/error';
 import { IOrderResponse } from '../../types';
 
 export const removeItemToBasket = async (
@@ -14,8 +15,20 @@ export const removeItemToBasket = async (
         id: itemId,
       }),
     );
-    return response.data;
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(BasketErr.BASKET_REMOVE_FAILED_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(BasketErr.PRODUCT_NOT_FOUND);
+      default:
+        throw errorFactory.create(BasketErr.BASKET_REMOVE_FAILED);
+    }
   } catch (error) {
-    throw errorFactory.create(OrderErr.BASKET_REMOVE_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(BasketErr.BASKET_REMOVE_FAILED),
+    );
   }
 };
