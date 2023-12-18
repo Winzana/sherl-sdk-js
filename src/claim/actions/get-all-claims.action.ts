@@ -4,22 +4,26 @@ import { Pagination } from '../../common/types/response';
 
 import { IClaim, IClaimTicketFilters } from '../types/entities';
 import { ClaimErr, errorFactory } from '../errors';
+import { getSherlError } from '../../common/utils/errors';
 
 export const getAllClaims = async (
   fetcher: Fetcher,
   filters: IClaimTicketFilters,
 ): Promise<Pagination<IClaim>> => {
-  const response = await fetcher
-    .get<Pagination<IClaim>>(endpoints.CLAIMS, {
+  try {
+    const response = await fetcher.get<Pagination<IClaim>>(endpoints.CLAIMS, {
       ...filters,
-    })
-    .catch((_err) => {
-      throw errorFactory.create(ClaimErr.GET_ALL_FAILED);
     });
 
-  if (response.status !== 200) {
-    throw errorFactory.create(ClaimErr.GET_ALL_FAILED);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(ClaimErr.GET_ALL_FORBIDDEN_ERROR);
+      default:
+        throw errorFactory.create(ClaimErr.GET_ALL_FAILED);
+    }
+  } catch (err) {
+    throw getSherlError(err, errorFactory.create(ClaimErr.GET_ALL_FAILED));
   }
-
-  return response.data;
 };

@@ -22,7 +22,7 @@ export const extractTransformLoadById = async (
       case 403:
         throw errorFactory.create(EtlErr.EXTRACT_TRANSFORM_FORBIDDEN);
       case 404:
-        throw errorFactory.create(EtlErr.ETL_NOT_FOUND);
+        throw errorFactory.create(EtlErr.ETL_CONFIG_NOT_FOUND);
       default:
         throw errorFactory.create(EtlErr.EXTRACT_TRANSFORM_LOAD_FAILED);
     }

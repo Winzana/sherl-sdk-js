@@ -14,10 +14,10 @@ export const extractTransformLoad = async (
       config,
     );
     switch (response.status) {
-      case 201:
+      case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(EtlErr.EXTRACT_TRANSFORM_FORBIDDEN);
+        throw errorFactory.create(EtlErr.EXTRACT_TRANSFORM_LOAD_FORBIDDEN);
       default:
         throw errorFactory.create(EtlErr.EXTRACT_TRANSFORM_LOAD_FAILED);
     }
