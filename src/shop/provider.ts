@@ -117,13 +117,130 @@ class ShopProvider extends AbstractProvider {
   getPublicProductsWithFilters = this.withFetcher(getPublicProductsWithFilters);
 
   // Discounts
+
+  /**
+   * Retrieves a specific discount by its unique ID.
+   *
+   * This function sends a GET request to fetch details of a discount using its unique identifier. The discount ID is
+   * used to construct the endpoint for the GET request. If the discount is found successfully, it returns the discount's
+   * information encapsulated in an IDiscount object. In case of any errors, such as a failure to find the discount or
+   * connectivity issues, a specific error indicating the failure to find the discount is thrown.
+   *
+   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+   * @param {string} id - The unique identifier of the discount to be retrieved.
+   * @returns {Promise<IDiscount>} A promise that resolves to the information of the specified discount.
+   * @throws {DiscountErr.FETCH_FAILED} Throws an error if the discount is not found.
+   */
   getDiscount = this.withFetcher(getDiscount);
+
+  /**
+   * Retrieves a paginated list of discounts based on provided filter parameters.
+   *
+   * This function sends a GET request to fetch discounts, allowing for filtering based on various criteria specified
+   * in the IDiscountFilter object. It returns a paginated response containing a list of discounts, each encapsulated
+   * in an IDiscount object. If the request fails, an error with a specific code indicating the failure in fetching the
+   * discounts is thrown.
+   *
+   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+   * @param {IDiscountFilter} params - The filter parameters used to query the discounts.
+   * @returns {Promise<Pagination<IDiscount>>} A promise that resolves to a paginated response containing the list of discounts based on the provided filters.
+   * @throws {DiscountErr.FETCH_FAILED} Throws an error if the fetching of discounts fails.
+   */
   getDiscountByParams = this.withFetcher(getDiscountByParams);
+
+  /**
+   * Retrieves a paginated list of discounts based on provided filters.
+   *
+   * This function sends a GET request to fetch discounts, allowing for filtering based on various criteria specified
+   * in the IDiscountFilter object. It returns a paginated response containing a list of discounts, each encapsulated
+   * in an IDiscount object. If the request fails, an error with a specific code indicating the failure in fetching the
+   * discounts is thrown.
+   *
+   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+   * @param {IDiscountFilter} [filters] - Optional filters to apply when fetching discounts.
+   * @returns {Promise<Pagination<IDiscount>>} A promise that resolves to a paginated response containing the list of discounts based on the provided filters.
+   * @throws {DiscountErr.FETCH_FAILED} Throws an error if the fetching of discounts fails.
+   */
   getDiscounts = this.withFetcher(getDiscounts);
+
+  /**
+   * Retrieves a paginated list of public discounts based on provided filters.
+   *
+   * This function sends a GET request to fetch public discounts, allowing for filtering based on various criteria
+   * specified in the IDiscountPublicFilter object. It returns a paginated response containing a list of public discounts,
+   * each encapsulated in an IDiscount object. If the request fails, an error with a specific code indicating the failure
+   * in fetching the public discounts is thrown.
+   *
+   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+   * @param {IDiscountPublicFilter} [filters] - Optional filters to apply when fetching public discounts.
+   * @returns {Promise<Pagination<IDiscount>>} A promise that resolves to a paginated response containing the list of public discounts based on the provided filters.
+   * @throws {DiscountErr.FETCH_FAILED} Throws an error if the fetching of public discounts fails.
+   */
   getPublicDiscounts = this.withFetcher(getPublicDiscounts);
+
+  /**
+   * Validates payment for a shopping basket with pending status.
+   *
+   * This function sends a POST request to validate the payment for a shopping basket that is in a pending state.
+   * The validation details are provided in the IShopBasketValidatePaymentInputDto object. On successful validation,
+   * it returns the updated order's information encapsulated in an IOrderResponse object. If the process of validating
+   * the pending payment encounters any errors, such as a failure to connect to the endpoint or other issues, a specific
+   * error indicating the failure of the validation is thrown.
+   *
+   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+   * @param {IShopBasketValidatePaymentInputDto} validation - The validation details for the pending payment of the basket.
+   * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the updated order after validating the pending payment.
+   * @throws {OrderErr.BASKET_VALIDATE_PENDING_FAILED} Throws an error if the validation of the pending payment fails.
+   */
   createDiscount = this.withFetcher(createDiscount);
+
+  /**
+   * Updates an existing discount with the provided details.
+   *
+   * This function sends a PUT request to update a specific discount identified by its unique ID.
+   * The updated discount details are provided in a Partial<IDiscountParameter> object. On successful update,
+   * it returns the updated discount's information encapsulated in an IDiscount object. If the update process
+   * encounters any errors, such as a failure to connect to the endpoint or other issues, a specific error indicating
+   * the failure of the discount update is thrown.
+   *
+   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+   * @param {string} discountId - The unique identifier of the discount to be updated.
+   * @param {Partial<IDiscountParameter>} updatedDiscount - The partial data of the discount to be updated.
+   * @returns {Promise<IDiscount>} A promise that resolves to the information of the updated discount.
+   * @throws {DiscountErr.UPDATE_FAILED} Throws an error if the discount update fails.
+   */
   updateDiscount = this.withFetcher(updateDiscount);
+
+  /**
+   * Deletes a specific discount identified by its unique ID.
+   *
+   * This function sends a DELETE request to remove a discount. The discount's unique ID is used to construct
+   * the endpoint for the request. On successful deletion, it returns the information of the deleted discount
+   * encapsulated in an IDiscount object. If the deletion process encounters any errors, such as a failure to
+   * connect to the endpoint or other issues, a specific error indicating the failure of the discount deletion is thrown.
+   *
+   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+   * @param {string} discountId - The unique identifier of the discount to be deleted.
+   * @returns {Promise<IDiscount>} A promise that resolves to the information of the deleted discount.
+   * @throws {DiscountErr.DELETE_FAILED} Throws an error if the deletion of the discount fails.
+   */
   deleteDiscount = this.withFetcher(deleteDiscount);
+
+  /**
+   * Validates a discount code against a specific product.
+   *
+   * This function sends a POST request to validate a given discount code for applicability on a specified product.
+   * The discount code and the product's URI are provided as parameters. On successful validation, it returns the
+   * discount's information encapsulated in an IDiscount object. If the validation process encounters any errors,
+   * such as a failure to connect to the endpoint or other issues, a specific error indicating the failure of the
+   * discount code validation is thrown.
+   *
+   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+   * @param {string} code - The discount code to be validated.
+   * @param {string} productUri - The URI of the product against which the discount code is being validated.
+   * @returns {Promise<IDiscount>} A promise that resolves to the information of the discount if the code is valid.
+   * @throws {DiscountErr.VALIDATE_CODE_FAILED} Throws an error if the validation of the discount code fails.
+   */
   validateDiscountCode = this.withFetcher(validateDiscountCode);
 
   // Orders
