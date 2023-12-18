@@ -2,11 +2,11 @@ import { ErrorFactory } from '../common/errors';
 
 export enum PersonErr {
   NOT_FOUND = 'person/not-found',
+  ADDRESS_NOT_FOUND = 'person/address-not-found',
 
   // PUT ADDRESS
   PUT_ADDRESS_FAILED = 'person/put-address-failed',
   PUT_ADDRESS_FORBIDDEN = 'person/put-address-failed',
-  PUT_ADDRESS_NOT_FOUND = 'person/put-address-failed',
 
   // FETCH
   FETCH_FAILED = 'person/fetch-failed',
@@ -14,10 +14,18 @@ export enum PersonErr {
   FETCH_NOT_FOUND = 'person/fetch-failed',
   FETCH_ALREADY_EXISTS = 'person/fetch-failed',
 
-  // PUT
-  PUT_FAILED = 'person/put-person-failed',
-  PUT_FORBIDDEN = 'person/put-person-forbidden',
-  PUT_NOT_FOUND = 'person/put-person-not-found',
+  // GET CONFIGS
+  GET_CONFIGS_FAILED = 'person/get-configs-failed',
+  GET_CONFIGS_FORBIDDEN = 'person/get-configs-forbidden',
+
+  // GET ME
+  GET_ME_FAILED = 'person/get-me-failed',
+  GET_ME_FORBIDDEN = 'person/get-me-forbidden',
+
+  // UPDATE PERSON BY ID
+  UPDATE_PERSON_BY_ID_FAILED = 'person/update-person-by-id-failed',
+  UPDATE_PERSON_BY_ID_FORBIDDEN = 'person/update-person-by-id-forbidden',
+  PERSON_BY_ID_NOT_FOUND = 'person/person-by-id-not-found',
 
   // POST
   POST_FAILED = 'person/post-person-failed',
@@ -38,7 +46,6 @@ export enum PersonErr {
   // DELETE ADDRESS
   DELETE_ADDRESS_FAILED = 'person/delete-address-failed',
   DELETE_ADDRESS_FORBIDDEN = 'person/delete-address-forbidden',
-  DELETE_ADDRESS_NOT_FOUND = 'person/delete-address-not-found',
 
   // ADD PICTURE
   ADD_PICTURE_FAILED = 'person/post-picture-failed',
@@ -49,12 +56,24 @@ export const errors = {
   // FETCH
   [PersonErr.FETCH_FAILED]: 'Failed to fetch person API',
   [PersonErr.NOT_FOUND]: 'Person not found',
+  [PersonErr.ADDRESS_NOT_FOUND]: 'Failed to reach API. Address not found',
 
   // POST
   [PersonErr.POST_FAILED]: 'Failed to create person',
 
-  // PUT
-  [PersonErr.PUT_FAILED]: 'Failed to update person',
+  // UPDATE PERSON BY ID
+  [PersonErr.UPDATE_PERSON_BY_ID_FAILED]: 'Failed to update person',
+  [PersonErr.UPDATE_PERSON_BY_ID_FORBIDDEN]:
+    'Failed to update person. Forbidden access',
+  [PersonErr.PERSON_BY_ID_NOT_FOUND]: 'Failed to fecth API. Person not found',
+
+  // GET CONFIGS
+  [PersonErr.GET_CONFIGS_FAILED]: 'Failed to get configs',
+  [PersonErr.GET_CONFIGS_FORBIDDEN]: 'Failed to get configs. Forbidden access',
+
+  // GET ME
+  [PersonErr.GET_ME_FAILED]: 'Failed to get current user',
+  [PersonErr.GET_ME_FORBIDDEN]: 'Failed to get current user. Forbidden access',
 
   // CREATE PERSON
   [PersonErr.CREATE_PERSON_FAILED]: 'Failed to create new person',
@@ -82,8 +101,6 @@ export const errors = {
   [PersonErr.DELETE_ADDRESS_FAILED]: 'Failed to delete address',
   [PersonErr.DELETE_ADDRESS_FORBIDDEN]:
     'Failed to delete address. Forbidden access',
-  [PersonErr.DELETE_ADDRESS_NOT_FOUND]:
-    'Failed to delete address. Address not found',
 };
 
 export const errorFactory = new ErrorFactory<PersonErr>('Person', errors);

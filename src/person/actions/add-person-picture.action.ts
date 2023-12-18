@@ -3,7 +3,7 @@ import { endpoints } from '../api/endpoints';
 import { PersonErr, errorFactory } from '../errors';
 import { IPictureRegister } from '../types';
 import { StringUtils } from '../../common/utils/string';
-import { filterSherlError } from '../../common/utils/error';
+import { getSherlError } from '../../common/utils';
 
 export const addPersonPicture = async (
   fetcher: Fetcher,
@@ -29,7 +29,7 @@ export const addPersonPicture = async (
         throw errorFactory.create(PersonErr.ADD_PICTURE_FAILED);
     }
   } catch (error) {
-    throw filterSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(PersonErr.ADD_PICTURE_FAILED),
     );

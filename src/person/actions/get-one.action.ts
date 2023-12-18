@@ -3,8 +3,8 @@ import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { IPerson } from '../types';
 import { ApiResponse } from '../../common';
-import { filterSherlError } from '../../common/utils/error';
 import { PersonErr, errorFactory } from '../errors';
+import { getSherlError } from '../../common/utils';
 
 export const getPersonById = async (
   fetcher: Fetcher,
@@ -26,6 +26,6 @@ export const getPersonById = async (
         throw errorFactory.create(PersonErr.FETCH_FAILED);
     }
   } catch (error) {
-    throw filterSherlError(error, errorFactory.create(PersonErr.FETCH_FAILED));
+    throw getSherlError(error, errorFactory.create(PersonErr.FETCH_FAILED));
   }
 };

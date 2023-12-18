@@ -1,5 +1,5 @@
 import { Fetcher } from '../../common/api';
-import { filterSherlError } from '../../common/utils/error';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { PersonErr, errorFactory } from '../errors';
 import { IPersonRegister } from '../types';
@@ -9,11 +9,10 @@ export const createPerson = async (
   person: IPersonRegister,
 ) => {
   try {
-    const response = await fetcher
-      .post<IPersonRegister>(endpoints.CREATE_PERSON, { ...person })
-      .catch((_err) => {
-        throw errorFactory.create(PersonErr.CREATE_PERSON_FAILED);
-      });
+    const response = await fetcher.post<IPersonRegister>(
+      endpoints.CREATE_PERSON,
+      { ...person },
+    );
 
     switch (response.status) {
       case 201:
@@ -26,7 +25,7 @@ export const createPerson = async (
         throw errorFactory.create(PersonErr.CREATE_PERSON_FAILED);
     }
   } catch (error) {
-    throw filterSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(PersonErr.CREATE_PERSON_FAILED),
     );

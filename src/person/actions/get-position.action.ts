@@ -3,7 +3,7 @@ import { endpoints } from '../api/endpoints';
 import { IPositionInputDto } from '../types';
 import { ILocation, Pagination } from '../../common';
 import { PersonErr, errorFactory } from '../errors';
-import { filterSherlError } from '../../common/utils/error';
+import { getSherlError } from '../../common/utils';
 
 export const getCurrentAddress = async (
   fetcher: Fetcher,
@@ -24,6 +24,6 @@ export const getCurrentAddress = async (
         throw errorFactory.create(PersonErr.FETCH_FAILED);
     }
   } catch (error) {
-    throw filterSherlError(error, errorFactory.create(PersonErr.FETCH_FAILED));
+    throw getSherlError(error, errorFactory.create(PersonErr.FETCH_FAILED));
   }
 };

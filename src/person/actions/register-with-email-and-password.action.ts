@@ -2,18 +2,17 @@ import { IPerson, IPersonRegister } from '../types';
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { errorFactory, PersonErr } from '../errors';
-import { filterSherlError } from '../../common/utils/error';
+import { getSherlError } from '../../common/utils';
 
 export const registerWithEmailAndPassword = async (
   fetcher: Fetcher,
   data: IPersonRegister,
 ): Promise<IPerson> => {
   try {
-    const response = await fetcher
-      .post<IPerson>(endpoints.REGISTER_WITH_EMAIL_AND_PASSWORD, data)
-      .catch(() => {
-        throw errorFactory.create(PersonErr.POST_FAILED);
-      });
+    const response = await fetcher.post<IPerson>(
+      endpoints.REGISTER_WITH_EMAIL_AND_PASSWORD,
+      data,
+    );
 
     switch (response.status) {
       case 201:
@@ -26,6 +25,6 @@ export const registerWithEmailAndPassword = async (
         throw errorFactory.create(PersonErr.POST_FAILED);
     }
   } catch (error) {
-    throw filterSherlError(error, errorFactory.create(PersonErr.POST_FAILED));
+    throw getSherlError(error, errorFactory.create(PersonErr.POST_FAILED));
   }
 };

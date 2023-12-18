@@ -1,5 +1,5 @@
 import { Fetcher } from '../../common/api';
-import { filterSherlError } from '../../common/utils/error';
+import { getSherlError } from '../../common/utils';
 import { IPlace } from '../../place';
 import { endpoints } from '../api/endpoints';
 import { PersonErr, errorFactory } from '../errors';
@@ -10,11 +10,9 @@ export const createAddress = async (
   address: IPlace,
 ): Promise<IPerson> => {
   try {
-    const response = await fetcher
-      .post<IPerson>(endpoints.CREATE_ADDRESS, { ...address })
-      .catch(() => {
-        throw errorFactory.create(PersonErr.CREATE_ADDRESS_FAILED);
-      });
+    const response = await fetcher.post<IPerson>(endpoints.CREATE_ADDRESS, {
+      ...address,
+    });
 
     switch (response.status) {
       case 201:
@@ -27,7 +25,7 @@ export const createAddress = async (
         throw errorFactory.create(PersonErr.CREATE_ADDRESS_FAILED);
     }
   } catch (error) {
-    throw filterSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(PersonErr.CREATE_ADDRESS_FAILED),
     );

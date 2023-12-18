@@ -2,8 +2,8 @@ import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { ApiResponse } from '../../common';
 import { IConfig } from '../../config/types';
-import { filterSherlError } from '../../common/utils/error';
 import { errorFactory, PersonErr } from '../errors';
+import { getSherlError } from '../../common/utils';
 
 export const getConfigs = async (fetcher: Fetcher): Promise<IConfig[]> => {
   let response: ApiResponse<IConfig[]> | null = null;
@@ -15,11 +15,14 @@ export const getConfigs = async (fetcher: Fetcher): Promise<IConfig[]> => {
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(PersonErr.FETCH_FORBIDDEN);
+        throw errorFactory.create(PersonErr.GET_CONFIGS_FORBIDDEN);
       default:
-        throw errorFactory.create(PersonErr.FETCH_FAILED);
+        throw errorFactory.create(PersonErr.GET_CONFIGS_FAILED);
     }
   } catch (error) {
-    throw filterSherlError(error, errorFactory.create(PersonErr.FETCH_FAILED));
+    throw getSherlError(
+      error,
+      errorFactory.create(PersonErr.GET_CONFIGS_FAILED),
+    );
   }
 };

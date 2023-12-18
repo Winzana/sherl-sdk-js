@@ -3,8 +3,8 @@ import { endpoints } from '../api/endpoints';
 import { IPerson } from '../types';
 import { IPersonFilters } from '../types';
 import { Pagination } from '../../common/types/response';
-import { filterSherlError } from '../../common/utils/error';
 import { PersonErr, errorFactory } from '../errors';
+import { getSherlError } from '../../common/utils';
 
 export const getPersons = async (
   fetcher: Fetcher,
@@ -30,6 +30,6 @@ export const getPersons = async (
         throw errorFactory.create(PersonErr.FETCH_FAILED);
     }
   } catch (error) {
-    throw filterSherlError(error, errorFactory.create(PersonErr.FETCH_FAILED));
+    throw getSherlError(error, errorFactory.create(PersonErr.FETCH_FAILED));
   }
 };
