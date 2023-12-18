@@ -2,6 +2,7 @@ import { init, SherlError, Pagination, SherlClient, Sort } from './common';
 
 export { init, SherlError, Pagination, SherlClient, Sort };
 export * from './auth';
+export * from './analytics';
 export * from './bug-reports';
 export * from './calendar';
 export * from './claim';
@@ -14,6 +15,9 @@ export * from './opinion';
 export * from './organization';
 export * from './person';
 export * from './place';
+export * from './search';
 export * from './shop';
 export * from './user';
 export * from './virtual-money';
+export * from './notification';
+export * from './quotas';

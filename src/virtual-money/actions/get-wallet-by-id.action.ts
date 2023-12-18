@@ -21,10 +21,10 @@ export const getWalletById = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          VirtualMoneyErr.GET_ONE_WALLET_BY_ID_FAILED_CMS_FORBIDDEN,
+          VirtualMoneyErr.GET_ONE_WALLET_BY_ID_FAILED_FORBIDDEN,
         );
       case 404:
-        throw errorFactory.create(VirtualMoneyErr.VIRTUAL_MONEY_NOT_FOUND);
+        throw errorFactory.create(VirtualMoneyErr.WALLET_NOT_FOUND);
       default:
         throw errorFactory.create(VirtualMoneyErr.GET_ONE_WALLET_BY_ID_FAILED);
     }

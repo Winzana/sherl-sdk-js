@@ -3,20 +3,33 @@ import { endpoints } from '../api/endpoints';
 import { IOpinion, IOpinionUpdateStatusInputDto } from '../types';
 import { StringUtils } from '../../common/utils/string';
 import { OpinionErr, errorFactory } from '../errors';
+import { getSherlError } from '../../common/utils';
 
 export const updateOpinion = async <T, K>(
   fetcher: Fetcher,
   id: string,
   updatedOpinion: IOpinionUpdateStatusInputDto,
 ): Promise<IOpinion<T, K>> => {
-  const response = await fetcher.put<IOpinion<T, K>>(
-    StringUtils.bindContext(endpoints.UPDATE_OPINION_STATUS, { id }),
-    updatedOpinion,
-  );
+  try {
+    const response = await fetcher.put<IOpinion<T, K>>(
+      StringUtils.bindContext(endpoints.UPDATE_OPINION_STATUS, { id }),
+      updatedOpinion,
+    );
 
-  if (response.status !== 200) {
-    errorFactory.create(OpinionErr.UPDATE_OPINION_FAILED);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(OpinionErr.UPDATE_OPINION_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(OpinionErr.OPINION_NOT_FOUND);
+      default:
+        throw errorFactory.create(OpinionErr.UPDATE_OPINION_FAILED);
+    }
+  } catch (error) {
+    throw getSherlError(
+      error,
+      errorFactory.create(OpinionErr.UPDATE_OPINION_FAILED),
+    );
   }
-
-  return response.data;
 };

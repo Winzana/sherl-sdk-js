@@ -16,7 +16,7 @@ export const createWallet = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          VirtualMoneyErr.CREATE_WALLET_FAILED_CMS_FORBIDDEN,
+          VirtualMoneyErr.CREATE_WALLET_FAILED_FORBIDDEN,
         );
       default:
         throw errorFactory.create(VirtualMoneyErr.CREATE_WALLET_FAILED);

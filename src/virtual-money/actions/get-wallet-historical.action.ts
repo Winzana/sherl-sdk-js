@@ -23,10 +23,10 @@ export const getWalletHistorical = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          VirtualMoneyErr.GET_WALLET_HISTORICAL_FAILED_CMS_FORBIDDEN,
+          VirtualMoneyErr.GET_WALLET_HISTORICAL_FAILED_FORBIDDEN,
         );
       case 404:
-        throw errorFactory.create(VirtualMoneyErr.VIRTUAL_MONEY_NOT_FOUND);
+        throw errorFactory.create(VirtualMoneyErr.WALLET_HISTORICAL_NOT_FOUND);
       default:
         throw errorFactory.create(VirtualMoneyErr.GET_WALLET_HISTORICAL_FAILED);
     }

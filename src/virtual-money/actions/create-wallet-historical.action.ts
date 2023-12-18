@@ -23,7 +23,7 @@ export const createWalletHistorical = async (
           VirtualMoneyErr.CREATE_WALLET_HISTORICAL_FORBIDDEN,
         );
       case 404:
-        throw errorFactory.create(VirtualMoneyErr.VIRTUAL_MONEY_NOT_FOUND);
+        throw errorFactory.create(VirtualMoneyErr.WALLET_NOT_FOUND);
       default:
         throw errorFactory.create(
           VirtualMoneyErr.CREATE_WALLET_HISTORICAL_FAILED,

@@ -25,7 +25,7 @@ export const findOneWallet = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          VirtualMoneyErr.FIND_ONE_WALLET_FAILED_CMS_FORBIDDEN,
+          VirtualMoneyErr.FIND_ONE_WALLET_FAILED_FORBIDDEN,
         );
       default:
         throw errorFactory.create(VirtualMoneyErr.FIND_ONE_WALLET_FAILED);
