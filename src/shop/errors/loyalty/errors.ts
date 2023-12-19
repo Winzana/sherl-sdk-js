@@ -27,4 +27,7 @@ export const errors = {
   [LoyalityErr.LOYALTY_CARD_NOT_FOUND]: 'Loyalty card not found',
 };
 
-export const errorFactory = new ErrorFactory<LoyalityErr>('Loyalty', errors);
+export const errorFactory = new ErrorFactory<LoyalityErr>(
+  'Shop/Loyalty',
+  errors,
+);
