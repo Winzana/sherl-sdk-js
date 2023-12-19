@@ -110,14 +110,14 @@ const deleteArticle = await cms(client).deleteArticleById(id:string);
 
 This call returns an [IArticle](cms-types#iarticle) object
 
-## Create article
+## Update article
 
 <span class="badge badge--warning">Require authentication</span>
 
-Create article
+Update article
 
 ```ts
-const createArticle = await cms(client).updateArticleById(data: ICMSArticleUpdateInputDto);
+const updateArticle = await cms(client).updateArticleById(data: ICMSArticleUpdateInputDto);
 ```
 
 ```ts
