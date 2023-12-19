@@ -20,7 +20,7 @@ export const registerWithEmailAndPassword = async (
       case 403:
         throw errorFactory.create(PersonErr.POST_FORBIDDEN);
       case 409:
-        throw errorFactory.create(PersonErr.POST_ALREADY_EXISTS);
+        throw errorFactory.create(PersonErr.PERSON_ALREADY_EXISTS);
       default:
         throw errorFactory.create(PersonErr.POST_FAILED);
     }

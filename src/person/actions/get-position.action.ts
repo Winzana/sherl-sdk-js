@@ -19,11 +19,14 @@ export const getCurrentAddress = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(PersonErr.FETCH_FORBIDDEN);
+        throw errorFactory.create(PersonErr.FETCH_POSITION_FORBIDDEN);
       default:
-        throw errorFactory.create(PersonErr.FETCH_FAILED);
+        throw errorFactory.create(PersonErr.FETCH_POSITION_FAILED);
     }
   } catch (error) {
-    throw getSherlError(error, errorFactory.create(PersonErr.FETCH_FAILED));
+    throw getSherlError(
+      error,
+      errorFactory.create(PersonErr.FETCH_POSITION_FAILED),
+    );
   }
 };

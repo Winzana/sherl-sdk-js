@@ -22,7 +22,7 @@ export const updatePersonById = async (
       case 403:
         throw errorFactory.create(PersonErr.UPDATE_PERSON_BY_ID_FORBIDDEN);
       case 404:
-        throw errorFactory.create(PersonErr.PERSON_BY_ID_NOT_FOUND);
+        throw errorFactory.create(PersonErr.PERSON_NOT_FOUND);
       default:
         throw errorFactory.create(PersonErr.UPDATE_PERSON_BY_ID_FAILED);
     }

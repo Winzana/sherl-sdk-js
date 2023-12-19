@@ -13,6 +13,10 @@ export enum PersonErr {
   FETCH_FORBIDDEN = 'person/fetch-failed',
   FETCH_NOT_FOUND = 'person/fetch-failed',
   FETCH_ALREADY_EXISTS = 'person/fetch-failed',
+  FETCH_PERSONS_FORBIDDEN = 'person/fetch-persons-forbidden',
+  FETCH_PERSONS_FAILED = 'person/fetch-persons-failed',
+  FETCH_POSITION_FORBIDDEN = 'person/fetch-position-forbidden',
+  FETCH_POSITION_FAILED = 'person/fetch-position-failed',
 
   // GET CONFIGS
   GET_CONFIGS_FAILED = 'person/get-configs-failed',
@@ -25,7 +29,7 @@ export enum PersonErr {
   // UPDATE PERSON BY ID
   UPDATE_PERSON_BY_ID_FAILED = 'person/update-person-by-id-failed',
   UPDATE_PERSON_BY_ID_FORBIDDEN = 'person/update-person-by-id-forbidden',
-  PERSON_BY_ID_NOT_FOUND = 'person/person-by-id-not-found',
+  PERSON_NOT_FOUND = 'person/person-not-found',
 
   // POST
   POST_FAILED = 'person/post-person-failed',
@@ -37,6 +41,9 @@ export enum PersonErr {
   CREATE_PERSON_FAILED = 'person/create-person-failed',
   CREATE_PERSON_FORBIDDEN = 'person/create-person-forbidden',
   CREATE_PERSON_ALREADY_EXISTS = 'person/create-person-already-exists',
+
+  // REGISTER WITH EMAIL AND PASSWORD
+  PERSON_ALREADY_EXISTS = 'person/register-with-email-and-password-already-exists',
 
   // CREATE ADDRESS
   CREATE_ADDRESS_FAILED = 'person/create-address-failed',
@@ -57,6 +64,12 @@ export const errors = {
   [PersonErr.FETCH_FAILED]: 'Failed to fetch person API',
   [PersonErr.NOT_FOUND]: 'Person not found',
   [PersonErr.ADDRESS_NOT_FOUND]: 'Failed to reach API. Address not found',
+  [PersonErr.FETCH_PERSONS_FORBIDDEN]:
+    'Failed to fetch persons. Forbidden access',
+  [PersonErr.FETCH_PERSONS_FAILED]: 'Failed to fetch persons',
+  [PersonErr.FETCH_POSITION_FORBIDDEN]:
+    'Failed to fetch position. Forbidden access',
+  [PersonErr.FETCH_POSITION_FAILED]: 'Failed to fetch position',
 
   // POST
   [PersonErr.POST_FAILED]: 'Failed to create person',
@@ -65,7 +78,7 @@ export const errors = {
   [PersonErr.UPDATE_PERSON_BY_ID_FAILED]: 'Failed to update person',
   [PersonErr.UPDATE_PERSON_BY_ID_FORBIDDEN]:
     'Failed to update person. Forbidden access',
-  [PersonErr.PERSON_BY_ID_NOT_FOUND]: 'Failed to fecth API. Person not found',
+  [PersonErr.PERSON_NOT_FOUND]: 'Failed to fecth API. Person not found',
 
   // GET CONFIGS
   [PersonErr.GET_CONFIGS_FAILED]: 'Failed to get configs',
@@ -81,6 +94,10 @@ export const errors = {
     'Failed to create new person. Forbidden access',
   [PersonErr.CREATE_PERSON_ALREADY_EXISTS]:
     'Failed to create new person. Person already exists',
+
+  // REGISTER WITH EMAIL AND PASSWORD
+  [PersonErr.PERSON_ALREADY_EXISTS]:
+    'Failed to register. Person already exists',
 
   // ADD PICTURE
   [PersonErr.ADD_PICTURE_FAILED]: 'Failed to add picture to person profile',
