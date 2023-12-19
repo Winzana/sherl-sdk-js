@@ -13,7 +13,17 @@ export const saveCard = async (
       id: cardId,
       token,
     });
-    return response.data;
+
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(PaymentErr.SAVE_CARD_FAILED_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(PaymentErr.CARD_NOT_FOUND);
+      default:
+        throw errorFactory.create(PaymentErr.SAVE_CARD_FAILED);
+    }
   } catch (error) {
     throw errorFactory.create(PaymentErr.SAVE_CARD_FAILED);
   }

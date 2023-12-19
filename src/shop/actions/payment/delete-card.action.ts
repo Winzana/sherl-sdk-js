@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { StringUtils } from '../../../common/utils/string';
 import { IPerson } from '../../../person';
 import { endpoints } from '../../api/endpoints';
@@ -14,8 +15,21 @@ export const deleteCard = async (
         id: cardId,
       }),
     );
-    return response.data;
+
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(PaymentErr.DELETE_CARD_FAILED_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(PaymentErr.CARD_NOT_FOUND);
+      default:
+        throw errorFactory.create(PaymentErr.DELETE_CARD_FAILED);
+    }
   } catch (error) {
-    throw errorFactory.create(PaymentErr.DELETE_CARD_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(PaymentErr.DELETE_CARD_FAILED),
+    );
   }
 };
