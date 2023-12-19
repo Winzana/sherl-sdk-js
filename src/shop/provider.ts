@@ -244,10 +244,70 @@ class ShopProvider extends AbstractProvider {
   validateDiscountCode = this.withFetcher(validateDiscountCode);
 
   // Orders
+
+  /**
+   * Retrieves a specific order by its unique ID.
+   *
+   * This function sends a GET request to fetch details of an order using its unique identifier. The order ID is
+   * used to construct the endpoint for the GET request. If the order is found successfully, it returns the order's
+   * information encapsulated in an IOrderResponse object. In case of any errors, such as a failure to find the order
+   * or connectivity issues, a specific error indicating the failure to find the order is thrown.
+   *
+   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+   * @param {string} id - The unique identifier of the order to be retrieved.
+   * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the specified order.
+   * @throws {OrderErr.NOT_FOUND} Throws an error if the order is not found.
+   */
   getOrder = this.withFetcher(getOrder);
+
+  /**
+   * Retrieves a paginated list of orders based on provided filter criteria.
+   *
+   * This function sends a GET request to fetch orders, allowing for filtering based on various criteria specified
+   * in the IOrderFindByDto object. It returns a paginated response containing a list of orders, each encapsulated
+   * in an IOrderResponse object. If the request fails, an error with a specific code indicating the failure in fetching
+   * the orders is thrown.
+   *
+   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+   * @param {IOrderFindByDto} filters - The filter criteria used to query the orders.
+   * @returns {Promise<Pagination<IOrderResponse>>} A promise that resolves to a paginated response containing the list of orders based on the provided filters.
+   * @throws {OrderErr.FETCH_FAILED} Throws an error if the fetching of orders fails.
+   */
   getOrders = this.withFetcher(getOrders);
+
+  /**
+   * Cancels an order with specified cancellation details.
+   *
+   * This function sends a POST request to cancel an order identified by its unique ID. The cancellation details are
+   * provided in the ICancelOrderInputDto object. On successful cancellation, it returns the updated order's information
+   * encapsulated in an IOrderResponse object. If the cancellation process encounters any errors, such as a failure to
+   * connect to the endpoint or specific conditions not being met (e.g., bad request, not allowed, or order already
+   * changed), corresponding specific errors are thrown. The function maps various error statuses to predefined error
+   * codes using the `errorsByCode` object.
+   *
+   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+   * @param {string} id - The unique identifier of the order to be cancelled.
+   * @param {ICancelOrderInputDto} cancelOrderDates - The details of the cancellation request for the order.
+   * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the updated order after cancellation.
+   * @throws {OrderErr} Throws specific OrderErr errors based on the encountered condition (e.g., BAD_REQUEST, NOT_ALLOWED, ALREADY_CHANGED).
+   */
   cancelOrder = this.withFetcher(cancelOrder);
   updateOrderStatus = this.withFetcher(updateOrderStatus);
+
+  /**
+   * Retrieves a paginated list of orders associated with a specific organization, based on provided filter criteria.
+   *
+   * This function sends a GET request to fetch orders for an organization, identified by its unique ID, allowing for
+   * filtering based on various criteria specified in the IOrderFindByDto object. It returns a paginated response containing
+   * a list of orders, each encapsulated in an IOrderResponse object. If the request fails, an error with a specific code
+   * indicating the failure in fetching the orders is thrown.
+   *
+   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+   * @param {string} organizationId - The unique identifier of the organization whose orders are being retrieved.
+   * @param {IOrderFindByDto} [filters] - Optional filters to apply when fetching orders for the organization.
+   * @returns {Promise<Pagination<IOrderResponse>>} A promise that resolves to a paginated response containing the list of orders for the specified organization.
+   * @throws {OrderErr.FETCH_FAILED} Throws an error if the fetching of orders for the organization fails.
+   */
   getOrganizationOrders = this.withFetcher(getOrganizationOrders);
 
   // Basket
