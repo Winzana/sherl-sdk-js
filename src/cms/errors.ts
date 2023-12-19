@@ -1,7 +1,6 @@
 import { ErrorFactory } from '../common/errors';
 
 export enum CmsErr {
-  CMS_NOT_FOUND = 'cms/not_found',
   CMS_CREATE_FAILED = 'cms/cms-create-failed',
   CMS_ADD_MEDIA_FAILED = 'cms/cms-add-media-failed',
   CMS_DELETE_MEDIA_FAILED = 'cms/cms-delete-media-failed',
@@ -43,7 +42,6 @@ export enum CmsErr {
 }
 
 export const errors = {
-  [CmsErr.CMS_NOT_FOUND]: 'Failed to create CMS not found.',
   [CmsErr.CMS_CREATE_FAILED]: 'Failed to create CMS report.',
   [CmsErr.CMS_ADD_MEDIA_FAILED]: 'Failed to create CMS media report.',
   [CmsErr.CMS_DELETE_MEDIA_FAILED]: 'Failed to delete CMS media report.',

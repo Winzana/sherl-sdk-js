@@ -24,8 +24,6 @@ export const getPublicArticles = async (
         throw errorFactory.create(
           CmsErr.CMS_GET_PUBLIC_ARTICLES_FAILED_POSTS_FORBIDDEN,
         );
-      case 404:
-        throw errorFactory.create(CmsErr.CMS_NOT_FOUND);
       default:
         throw errorFactory.create(CmsErr.CMS_GET_PUBLIC_ARTICLES_FAILED);
     }
