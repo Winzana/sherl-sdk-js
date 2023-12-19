@@ -4,6 +4,7 @@ import { IOrderFindByDto, IOrderResponse } from '../../types';
 import { Pagination } from '../../../common/types/response';
 import { OrderErr, errorFactory } from '../../errors/order/errors';
 import { StringUtils } from '../../../common/utils/string';
+import { getSherlError } from '../../../common/utils';
 
 export const getOrganizationOrders = async (
   fetcher: Fetcher,
@@ -17,8 +18,22 @@ export const getOrganizationOrders = async (
       }),
       filters,
     );
-    return response.data;
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          OrderErr.GET_ORGANIZATION_ORDERS_FAILED_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(OrderErr.ORGANIZATION_NOT_FOUND);
+      default:
+        throw errorFactory.create(OrderErr.GET_ORGANIZATION_ORDERS_FAILED);
+    }
   } catch (error) {
-    throw errorFactory.create(OrderErr.FETCH_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(OrderErr.GET_ORGANIZATION_ORDERS_FAILED),
+    );
   }
 };
