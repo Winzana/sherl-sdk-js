@@ -101,8 +101,7 @@ class PersonProvider extends AbstractProvider {
    *
    * @param {IPictureRegister} picture - The picture object containing the file and associated person and media IDs.
    * @returns {Promise<boolean>} A promise that resolves to true if the picture is successfully added.
-   * TODO: fix link
-   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/person/#add-picture-to-person Sherl SDK documentation} for further information
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/person/person-picture#add-picture-to-person-profile Sherl SDK documentation} for further information
    */
   public addPersonPicture = this.withFetcher(addPersonPicture);
 
@@ -111,8 +110,7 @@ class PersonProvider extends AbstractProvider {
    *
    * @param {IPlace} address - The address object containing the details of the new address to be created.
    * @returns {Promise<IPerson>} A promise that resolves to the person's information with the newly created address.
-   * TODO: fix link
-   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/person/#create-address-to-person Sherl SDK documentation} for further information
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/person/person-address#create-address-to-person Sherl SDK documentation} for further information
    */
   public createAddress = this.withFetcher(createAddress);
 
@@ -123,7 +121,7 @@ class PersonProvider extends AbstractProvider {
    * @param {IPlace} updatedAddress - The new address details to be updated.
    * @returns {Promise<IPerson>} A promise that resolves to the updated person's information after the address update.
    * TODO: fix link
-   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/person/#update-address-by-id Sherl SDK documentation} for further information
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/person/person-address#update-address-by-id Sherl SDK documentation} for further information
    */
   public updateAddress = this.withFetcher(updateAddress);
 
@@ -132,8 +130,7 @@ class PersonProvider extends AbstractProvider {
    *
    * @param {string} id - The unique identifier of the address to be deleted.
    * @returns {Promise<IPerson>} A promise that resolves to the person's information after the address deletion.
-   * TODO: fix link
-   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/person/#delete-address-by-id Sherl SDK documentation} for further information
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/person/person-address#delete-address-by-id Sherl SDK documentation} for further information
    */
   public deleteAddress = this.withFetcher(deleteAddress);
 }
