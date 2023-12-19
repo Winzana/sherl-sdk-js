@@ -8,14 +8,9 @@ import { filterSherlError } from '../../common/utils/error';
 /**
  * Adds a picture to a person's profile.
  *
- * This function is responsible for uploading a picture and associating it with a specific person.
- * It creates a FormData object, appends the picture file, and sends a POST request to the specified endpoint.
- * The function returns true if the picture is successfully added, otherwise, it throws an error.
- *
  * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
  * @param {IPictureRegister} picture - The picture object containing the file and associated person and media IDs.
  * @returns {Promise<boolean>} A promise that resolves to true if the picture is successfully added.
- * @throws {PersonErr.ADD_PICTURE_FAILED} Throws a specific error if the picture addition fails.
  */
 export const addPersonPicture = async (
   fetcher: Fetcher,

@@ -8,17 +8,10 @@ import { filterSherlError } from '../../common/utils/error';
 /**
  * Deletes an address record associated with a given ID.
  *
- * This function sends a DELETE request to remove an address record from the system.
- * It uses an address ID to identify the specific record to be deleted. The function
- * then returns the updated person's information, excluding the deleted address.
- * If the deletion process encounters any errors, it throws a specific error.
- *
  * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
  * @param {string} id - The unique identifier of the address to be deleted.
  * @returns {Promise<IPerson>} A promise that resolves to the person's information after the address deletion.
- * @throws {PersonErr.DELETE_ADDRESS_FAILED} Throws a specific error if the address deletion fails.
  */
-
 export const deleteAddress = async (
   fetcher: Fetcher,
   id: string,
