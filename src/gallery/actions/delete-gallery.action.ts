@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { GalleryErr, errorFactory } from '../errors';
@@ -14,8 +15,21 @@ export const deleteGallery = async (
         id: galleryId,
       }),
     );
-    return response.data;
-  } catch (err) {
-    throw errorFactory.create(GalleryErr.DELETION_FAILED);
+
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(GalleryErr.DELETE_GALLERY_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(GalleryErr.GALLERY_NOT_FOUND);
+      default:
+        throw errorFactory.create(GalleryErr.DELETE_GALLERY_FAILED);
+    }
+  } catch (error) {
+    throw getSherlError(
+      error,
+      errorFactory.create(GalleryErr.DELETE_GALLERY_FAILED),
+    );
   }
 };
