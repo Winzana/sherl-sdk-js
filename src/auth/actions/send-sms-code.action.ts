@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { AuthErr, errorFactory } from '../errors';
 
@@ -11,12 +12,21 @@ export const sendSMSCode = async (
       mobilePhoneNumber,
     });
 
-    if (!response.data) {
-      throw errorFactory.create(AuthErr.REQUEST_SMS_CODE_FAILED);
-    }
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 404:
+        throw errorFactory.create(AuthErr.PHONE_NUMBER_NOT_FOUND);
+      case 403:
+        throw errorFactory.create(AuthErr.SMS_ALREADY_SENT);
 
-    return response.data;
+      default:
+        throw errorFactory.create(AuthErr.REQUEST_SMS_CODE_FAILED);
+    }
   } catch (err) {
-    throw errorFactory.create(AuthErr.REQUEST_SMS_CODE_FAILED);
+    throw getSherlError(
+      err,
+      errorFactory.create(AuthErr.REQUEST_SMS_CODE_FAILED),
+    );
   }
 };

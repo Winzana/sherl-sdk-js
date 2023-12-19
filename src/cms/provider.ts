@@ -7,7 +7,7 @@ import {
   getArticleBySlug,
   getArticleById,
   deleteArticleById,
-  createArticleById,
+  updateArticleById,
   createTrainingsPage,
   createStoriesPage,
   createFaqsPage,
@@ -29,7 +29,7 @@ class CmsProvider extends AbstractProvider {
   public getArticleBySlug = this.withFetcher(getArticleBySlug);
   public getArticleById = this.withFetcher(getArticleById);
   public deleteArticleById = this.withFetcher(deleteArticleById);
-  public createArticleById = this.withFetcher(createArticleById);
+  public updateArticleById = this.withFetcher(updateArticleById);
   public createTrainingsPage = this.withFetcher(createTrainingsPage);
   public createStoriesPage = this.withFetcher(createStoriesPage);
   public createFaqsPage = this.withFetcher(createFaqsPage);
