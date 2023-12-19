@@ -46,7 +46,8 @@ module.exports = {
         items: [
           'person/person-address',
           'person/person-config',
-          'person/person-index',
+          'person/person-crud',
+          'person/person-picture',
         ],
       },
       'place',
