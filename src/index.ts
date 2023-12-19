@@ -19,5 +19,7 @@ export * from './search';
 export * from './shop';
 export * from './user';
 export * from './virtual-money';
+export * from './cms';
+export * from './gallery';
 export * from './notification';
 export * from './quotas';
