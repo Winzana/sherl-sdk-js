@@ -5,6 +5,13 @@ import { errorFactory, IamErr } from '../errors';
 import { StringUtils } from '../../common/utils/string';
 import { getSherlError } from '../../common/utils/errors';
 
+/**
+ * Get an IAM profile by its unique identifier (ID).
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {string} id - The unique identifier (ID) of the IAM profile to retrieve.
+ * @returns {Promise<IProfile>} A promise that resolves to an IProfile object.
+ */
 export const getIamProfileById = async (
   fetcher: Fetcher,
   id: string,
