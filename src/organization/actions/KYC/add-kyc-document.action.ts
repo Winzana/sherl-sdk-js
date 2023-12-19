@@ -3,7 +3,7 @@ import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import { StringUtils } from '../../../common/utils/string';
 import { IAddKYCDocument, IKYCDocument } from '../../types';
-import { filterSherlError } from '../../../common/utils/error';
+import { getSherlError } from '../../../common/utils';
 
 export const addKycDocument = async (
   fetcher: Fetcher,
@@ -29,12 +29,12 @@ export const addKycDocument = async (
       case 403:
         throw errorFactory.create(OrganizationErr.ADD_DOCUMENT_FORBIDDEN);
       case 404:
-        throw errorFactory.create(OrganizationErr.ADD_DOCUMENT_NOT_FOUND);
+        throw errorFactory.create(OrganizationErr.DOCUMENT_NOT_FOUND);
       default:
         throw errorFactory.create(OrganizationErr.ADD_DOCUMENT_FAILED);
     }
   } catch (error) {
-    throw filterSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(OrganizationErr.ADD_DOCUMENT_FAILED),
     );

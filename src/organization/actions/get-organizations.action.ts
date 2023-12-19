@@ -3,7 +3,7 @@ import { endpoints } from '../api/endpoints';
 import { IOrganizationResponse, OrganizationFiltersDto } from '../types';
 import { Pagination } from '../../common/types/response';
 import { OrganizationErr, errorFactory } from '../errors';
-import { filterSherlError } from '../../common/utils/error';
+import { getSherlError } from '../../common/utils';
 
 export const getOrganizations = async (
   fetcher: Fetcher,
@@ -24,7 +24,7 @@ export const getOrganizations = async (
         throw errorFactory.create(OrganizationErr.FETCH_FAILED);
     }
   } catch (error) {
-    throw filterSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(OrganizationErr.FETCH_FAILED),
     );

@@ -1,5 +1,5 @@
 import { Fetcher } from '../../../common/api';
-import { filterSherlError } from '../../../common/utils/error';
+import { getSherlError } from '../../../common/utils';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
@@ -29,7 +29,7 @@ export const createOpeningHoursSpecification = async (
         );
       case 404:
         throw errorFactory.create(
-          OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_NOT_FOUND,
+          OrganizationErr.OPENING_HOURS_SPECIFICATION_NOT_FOUND,
         );
       default:
         throw errorFactory.create(
@@ -37,7 +37,7 @@ export const createOpeningHoursSpecification = async (
         );
     }
   } catch (error) {
-    throw filterSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(
         OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_FAILED,

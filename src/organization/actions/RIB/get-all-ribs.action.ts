@@ -1,5 +1,5 @@
 import { Fetcher } from '../../../common/api';
-import { filterSherlError } from '../../../common/utils/error';
+import { getSherlError } from '../../../common/utils';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
@@ -19,13 +19,11 @@ export const getAllRibs = async (
         return response.data;
       case 403:
         throw errorFactory.create(OrganizationErr.GET_RIBS_FORBIDDEN);
-      case 404:
-        throw errorFactory.create(OrganizationErr.GET_RIBS_NOT_FOUND);
       default:
         throw errorFactory.create(OrganizationErr.GET_RIBS_FAILED);
     }
   } catch (error) {
-    throw filterSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(OrganizationErr.GET_RIBS_FAILED),
     );

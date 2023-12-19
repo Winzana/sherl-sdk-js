@@ -1,7 +1,6 @@
 import { Fetcher } from '../../../common/api';
-import { filterSherlError } from '../../../common/utils/error';
+import { getSherlError } from '../../../common/utils';
 import { StringUtils } from '../../../common/utils/string';
-import { IUploadData } from '../../../media';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import { IOrganizationResponse } from '../../types';
@@ -39,16 +38,14 @@ export const createBackgroundImage = async (
           OrganizationErr.CREATE_BACKGROUND_IMAGE_FORBIDDEN,
         );
       case 404:
-        throw errorFactory.create(
-          OrganizationErr.CREATE_BACKGROUND_IMAGE_NOT_FOUND,
-        );
+        throw errorFactory.create(OrganizationErr.IMAGE_NOT_FOUND);
       default:
         throw errorFactory.create(
           OrganizationErr.CREATE_BACKGROUND_IMAGE_FAILED,
         );
     }
   } catch (error) {
-    throw filterSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(OrganizationErr.CREATE_BACKGROUND_IMAGE_FAILED),
     );

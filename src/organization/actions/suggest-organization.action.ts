@@ -1,5 +1,5 @@
 import { Fetcher } from '../../common/api';
-import { filterSherlError } from '../../common/utils/error';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { OrganizationErr, errorFactory } from '../errors';
 import { IOrganizationResponse, ISuggestOrganizationRequest } from '../types';
@@ -24,7 +24,7 @@ export const suggestOrganization = async (
         throw errorFactory.create(OrganizationErr.SUGGEST_ORGANIZATION_FAILED);
     }
   } catch (error) {
-    throw filterSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(OrganizationErr.FETCH_FAILED),
     );

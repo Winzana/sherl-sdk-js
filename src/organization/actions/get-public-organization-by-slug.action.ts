@@ -3,7 +3,7 @@ import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { IOrganizationResponse } from '../types';
 import { OrganizationErr, errorFactory } from '../errors';
-import { filterSherlError } from '../../common/utils/error';
+import { getSherlError } from '../../common/utils';
 
 export const getPublicOrganizationBySlug = async (
   fetcher: Fetcher,
@@ -25,7 +25,7 @@ export const getPublicOrganizationBySlug = async (
         throw errorFactory.create(OrganizationErr.FETCH_FAILED);
     }
   } catch (error) {
-    throw filterSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(OrganizationErr.FETCH_FAILED),
     );

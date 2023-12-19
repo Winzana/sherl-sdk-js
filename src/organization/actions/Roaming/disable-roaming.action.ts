@@ -1,5 +1,5 @@
 import { Fetcher } from '../../../common/api';
-import { filterSherlError } from '../../../common/utils/error';
+import { getSherlError } from '../../../common/utils';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
@@ -23,12 +23,12 @@ export const disableRoaming = async (
       case 403:
         throw errorFactory.create(OrganizationErr.DISABLE_ROAMING_FORBIDDEN);
       case 404:
-        throw errorFactory.create(OrganizationErr.DISABLE_ROAMING_NOT_FOUND);
+        throw errorFactory.create(OrganizationErr.ROAMING_NOT_FOUND);
       default:
         throw errorFactory.create(OrganizationErr.DISABLE_ROAMING_FAILED);
     }
   } catch (error) {
-    throw filterSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(OrganizationErr.DISABLE_ROAMING_FAILED),
     );

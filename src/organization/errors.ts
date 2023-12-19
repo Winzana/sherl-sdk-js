@@ -9,7 +9,6 @@ export enum OrganizationErr {
   // GET RIBS
   GET_RIBS_FAILED = 'organization/fetch-documents-failed',
   GET_RIBS_FORBIDDEN = 'organization/fetch-documents-forbidden',
-  GET_RIBS_NOT_FOUND = 'organization/fetch-documents-not-found',
 
   // GET KYCS
   GET_KYCS_FAILED = 'organization/get-kycs-failed',
@@ -23,57 +22,56 @@ export enum OrganizationErr {
   // CREATE PICTURE FROM MEDIA
   CREATE_PICTURE_FROM_MEDIA_FAILED = 'organization/create-picture-from-media-failed',
   CREATE_PICTURE_FROM_MEDIA_FORBIDDEN = 'organization/create-picture-from-media-forbidden',
-  CREATE_PICTURE_FROM_MEDIA_NOT_FOUND = 'organization/create-picture-from-media-not-found',
+  PICTURE_FROM_MEDIA_NOT_FOUND = 'organization/picture-from-media-not-found',
 
   // CREATE PICTURE
   CREATE_PICTURE_FAILED = 'organization/create-picture-failed',
   CREATE_PICTURE_FORBIDDEN = 'organization/create-picture-forbidden',
-  CREATE_PICTURE_NOT_FOUND = 'organization/create-picture-not-found',
+  PICTURE_NOT_FOUND = 'organization/picture-not-found',
 
   // CREATE BACKGROUND IMAGE FROM MEDIA
   CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FAILED = 'organization/create-background-image-from-media-failed',
   CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FORBIDDEN = 'organization/create-background-image-from-media-forbidden',
-  CREATE_BACKGROUND_IMAGE_FROM_MEDIA_NOT_FOUND = 'organization/create-background-image-from-media-not-found',
+  MEDIA_NOT_FOUND = 'organization/media-not-found',
 
   // CREATE BACKGROUND IMAGE
   CREATE_BACKGROUND_IMAGE_FAILED = 'organization/create-background-image-failed',
   CREATE_BACKGROUND_IMAGE_FORBIDDEN = 'organization/create-background-image-forbidden',
-  CREATE_BACKGROUND_IMAGE_NOT_FOUND = 'organization/create-background-image-not-found',
+  IMAGE_NOT_FOUND = 'organization/create-background-image-not-found',
 
   // CREATE OPENING HOURS SPECIFICATION
   CREATE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/create-opening-hours-specification-failed',
   CREATE_OPENING_HOURS_SPECIFICATION_FORBIDDEN = 'organization/create-opening-hours-specification-forbidden',
-  CREATE_OPENING_HOURS_SPECIFICATION_NOT_FOUND = 'organization/create-opening-hours-specification-not-found',
+  OPENING_HOURS_SPECIFICATION_NOT_FOUND = 'organization/opening-hours-specification-not-found',
 
   // CREATE EMPLOYEE
   CREATE_EMPLOYEE_FAILED = 'organization/create-employee-failed',
   CREATE_EMPLOYEE_FORBIDDEN = 'organization/create-employee-forbidden',
-  CREATE_EMPLOYEE_NOT_FOUND = 'organization/create-employee-not-found',
+  EMPLOYEE_NOT_FOUND = 'organization/employee-not-found',
 
   // CREATE FOUNDER
   CREATE_FOUNDER_FAILED = 'organization/create-founder-failed',
   CREATE_FOUNDER_FORBIDDEN = 'organization/create-founder-forbidden',
-  CREATE_FOUNDER_NOT_FOUND = 'organization/create-founder-not-found',
+  FOUNDER_NOT_FOUND = 'organization/founder-not-found',
 
   // ADD LOGO
   ADD_LOGO_FAILED = 'organization/add-logo-failed',
   ADD_LOGO_FORBIDDEN = 'organization/add-logo-forbidden',
-  ADD_LOGO_NOT_FOUND = 'organization/add-logo-not-found',
+  LOGO_NOT_FOUND = 'organization/logo-not-found',
 
   // ADD RIB
   ADD_RIB_FAILED = 'organization/add-rib-failed',
   ADD_RIB_FORBIDDEN = 'organization/add-rib-forbidden',
-  ADD_RIB_NOT_FOUND = 'organization/add-rib-not-found',
+  RIB_NOT_FOUND = 'organization/rib-not-found',
 
   // ADD ADDRESS
   ADD_ADDRESS_FAILED = 'organization/add-address-failed',
   ADD_ADDRESS_FORBIDDEN = 'organization/add-address-forbidden',
-  ADD_ADDRESS_NOT_FOUND = 'organization/add-address-not-found',
 
   // ADD KYC
   ADD_DOCUMENT_FAILED = 'organization/add-failed',
   ADD_DOCUMENT_FORBIDDEN = 'organization/add-forbidden',
-  ADD_DOCUMENT_NOT_FOUND = 'organization/add-not-found',
+  DOCUMENT_NOT_FOUND = 'organization/document-not-found',
 
   // REGISTER ORGANIZATION
   REGISTER_ORGANIZATION_FAILED = 'organization/register-organization-failed',
@@ -86,7 +84,7 @@ export enum OrganizationErr {
   // SET COMMUNICATION
   SET_COMMUNICATION_FAILED = 'organization/set-communication-failed',
   SET_COMMUNICATION_FORBIDDEN = 'organization/set-communication-forbidden',
-  SET_COMMUNICATION_NOT_FOUND = 'organization/set-communication-not-found',
+  COMMUNICATION_NOT_FOUND = 'organization/set-communication-not-found',
 
   // SUGGEST ORGANIZATION
   SUGGEST_ORGANIZATION_FAILED = 'organization/suggest-organization-failed',
@@ -101,72 +99,61 @@ export enum OrganizationErr {
   // UPDATE ADDRESS
   UPDATE_ADDRESS_FAILED = 'organization/update-address-failed',
   UPDATE_ADDRESS_FORBIDDEN = 'organization/update-address-forbidden',
-  UPDATE_ADDRESS_NOT_FOUND = 'organization/update-address-not-found',
 
   // UPDATE EMPLOYEE
   UPDATE_EMPLOYEE_FAILED = 'organization/update-employee-failed',
   UPDATE_EMPLOYEE_FORBIDDEN = 'organization/update-employee-forbidden',
-  UPDATE_EMPLOYEE_NOT_FOUND = 'organization/update-employee-not-found',
 
   // UPDATE FOUNDER
   UPDATE_FOUNDER_FAILED = 'organization/update-founder-failed',
   UPDATE_FOUNDER_FORBIDDEN = 'organization/update-founder-forbidden',
-  UPDATE_FOUNDER_NOT_FOUND = 'organization/update-founder-not-found',
 
   // UPDATE OPENING HOURS SPECIFICATIONS
   UPDATE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/update-opening-hours-specification-failed',
   UPDATE_OPENING_HOURS_SPECIFICATION_FORBIDDEN = 'organization/update-opening-hours-specification-forbidden',
-  UPDATE_OPENING_HOURS_SPECIFICATION_NOT_FOUND = 'organization/update-opening-hours-specification-not-found',
 
   // UPDATE DOCUMENT
   UPDATE_DOCUMENT_FAILED = 'organization/update-failed',
   UPDATE_DOCUMENT_FORBIDDEN = 'organization/update-forbidden',
-  UPDATE_DOCUMENT_NOT_FOUND = 'organization/update-not-found',
 
   // DELETE ADDRESS
   DELETE_ADDRESS_FAILED = 'organization/delete-address-failed',
   DELETE_ADDRESS_FORBIDDEN = 'organization/delete-address-forbidden',
-  DELETE_ADDRESS_NOT_FOUND = 'organization/delete-address-not-found',
+  ADDRESS_NOT_FOUND = 'organization/address-not-found',
 
   // DELETE BACKGROUND IMAGE
   DELETE_BACKGROUND_IMAGE_FAILED = 'organization/delete-background-image-failed',
   DELETE_BACKGROUND_IMAGE_FORBIDDEN = 'organization/delete-background-image-forbidden',
-  DELETE_BACKGROUND_IMAGE_NOT_FOUND = 'organization/delete-background-image-not-found',
+  BACKGROUND_IMAGE_NOT_FOUND = 'organization/delete-background-image-not-found',
 
   // DELETE EMPLOYEE
   DELETE_EMPLOYEE_FAILED = 'organization/delete-employee-failed',
   DELETE_EMPLOYEE_FORBIDDEN = 'organization/delete-employee-forbidden',
-  DELETE_EMPLOYEE_NOT_FOUND = 'organization/delete-employee-not-found',
 
   // DELETE FOUNDER
   DELETE_FOUNDER_FAILED = 'organization/delete-founder-failed',
   DELETE_FOUNDER_FORBIDDEN = 'organization/delete-founder-forbidden',
-  DELETE_FOUNDER_NOT_FOUND = 'organization/delete-founder-not-found',
 
   // DELETE LOGO
   DELETE_LOGO_FAILED = 'organization/delete-logo-failed',
   DELETE_LOGO_FORBIDDEN = 'organization/delete-logo-forbidden',
-  DELETE_LOGO_NOT_FOUND = 'organization/delete-logo-not-found',
 
   // DELETE OPENING HOURS SPECIFICATION
   DELETE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/delete-opening-hours-specification-failed',
   DELETE_OPENING_HOURS_SPECIFICATION_FORBIDDEN = 'organization/delete-opening-hours-specification-forbidden',
-  DELETE_OPENING_HOURS_SPECIFICATION_NOT_FOUND = 'organization/delete-opening-hours-specification-not-found',
 
   // DELETE PICTURE
   DELETE_PICTURE_FAILED = 'organization/delete-picture-failed',
   DELETE_PICTURE_FORBIDDEN = 'organization/delete-picture-forbidden',
-  DELETE_PICTURE_NOT_FOUND = 'organization/delete-picture-not-found',
 
   // DISABLE ROAMING
   DISABLE_ROAMING_FAILED = 'organization/disable-roaming-failed',
   DISABLE_ROAMING_FORBIDDEN = 'organization/disable-roaming-forbidden',
-  DISABLE_ROAMING_NOT_FOUND = 'organization/disable-roaming-not-found',
+  ROAMING_NOT_FOUND = 'organization/roaming-not-found',
 
   // ENABLE ROAMING
   ENABLE_ROAMING_FAILED = 'organization/enable-roaming-failed',
   ENABLE_ROAMING_FORBIDDEN = 'organization/enable-roaming-forbidden',
-  ENABLE_ROAMING_NOT_FOUND = 'organization/enable-roaming-not-found',
 
   // UNUSED
   UPDATE_IS_PUBLIC_ORGANIZATION_FAILED = 'organization/update-is-public-organization-failed',
@@ -187,6 +174,10 @@ export const errors = {
   [OrganizationErr.UPDATE_THIRD_PARTY_IMPOSSIBLE]:
     'Impossible to update third party',
 
+  // ADDRESS
+  [OrganizationErr.ADDRESS_NOT_FOUND]:
+    'Failed to delete address. Address not found',
+
   // FETCH
   [OrganizationErr.FETCH_FAILED]: 'Failed to fetch organization API',
   [OrganizationErr.FECTH_FORBIDDEN]:
@@ -197,8 +188,6 @@ export const errors = {
   [OrganizationErr.GET_RIBS_FAILED]: 'Failed to fetch all organization RIBs',
   [OrganizationErr.GET_RIBS_FORBIDDEN]:
     'Failed to fetch all organization RIBs. Forbidden access',
-  [OrganizationErr.GET_RIBS_NOT_FOUND]:
-    'Failed to fetch all organization RIBs. RIBs not found',
 
   // GET KYCS
   [OrganizationErr.GET_KYCS_FAILED]: 'Failed to get KYCs',
@@ -215,7 +204,7 @@ export const errors = {
     'Failed to create background image from media',
   [OrganizationErr.CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FORBIDDEN]:
     'Failed to create background image from media. Forbidden access',
-  [OrganizationErr.CREATE_BACKGROUND_IMAGE_FROM_MEDIA_NOT_FOUND]:
+  [OrganizationErr.MEDIA_NOT_FOUND]:
     'Failed to create background image from media. Media not found',
 
   // CREATE BACKGROUND IMAGE
@@ -223,7 +212,7 @@ export const errors = {
     'Failed to create background image',
   [OrganizationErr.CREATE_BACKGROUND_IMAGE_FORBIDDEN]:
     'Failed to create background image. Forbidden access',
-  [OrganizationErr.CREATE_BACKGROUND_IMAGE_NOT_FOUND]:
+  [OrganizationErr.IMAGE_NOT_FOUND]:
     'Failed to create background image. Image not found',
 
   // CREATE PICTURE FROM MEDIA
@@ -231,29 +220,29 @@ export const errors = {
     'Failed to create picture from media',
   [OrganizationErr.CREATE_PICTURE_FROM_MEDIA_FORBIDDEN]:
     'Failed to create picture from media. Forbidden access',
-  [OrganizationErr.CREATE_PICTURE_FROM_MEDIA_NOT_FOUND]:
-    'Failed to create picture from media. Media not found',
+  [OrganizationErr.PICTURE_FROM_MEDIA_NOT_FOUND]:
+    'Failed to reach picture API. Media not found',
 
   // CREATE PICTURE
   [OrganizationErr.CREATE_PICTURE_FAILED]: 'Failed to create picture',
   [OrganizationErr.CREATE_PICTURE_FORBIDDEN]:
     'Failed to create picture. Forbidden access',
-  [OrganizationErr.CREATE_PICTURE_NOT_FOUND]:
-    'Failed to create picture. Picture not found',
+  [OrganizationErr.PICTURE_NOT_FOUND]:
+    'Failed to reach picture API. Picture not found',
 
   // CREATE EMPLOYEE
   [OrganizationErr.CREATE_EMPLOYEE_FAILED]: 'Failed to create employee',
   [OrganizationErr.CREATE_EMPLOYEE_FORBIDDEN]:
     'Failed to create employee. Forbidden access',
-  [OrganizationErr.CREATE_EMPLOYEE_NOT_FOUND]:
-    'Failed to create employee. Page not found',
+  [OrganizationErr.EMPLOYEE_NOT_FOUND]:
+    'Failed to reach employee API. Employee not found',
 
   // CREATE FOUNDER
   [OrganizationErr.CREATE_FOUNDER_FAILED]: 'Failed to create founder',
   [OrganizationErr.CREATE_FOUNDER_FORBIDDEN]:
     'Failed to create founder. Forbidden access',
-  [OrganizationErr.CREATE_FOUNDER_NOT_FOUND]:
-    'Failed to create founder. Page not found',
+  [OrganizationErr.FOUNDER_NOT_FOUND]:
+    'Failed to reach founder API. Founder not found',
 
   // REGISTER ORGANIZATION TO PERSON
   [OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_FAILED]:
@@ -268,30 +257,32 @@ export const errors = {
     'Failed to create opening hours specification',
   [OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_FORBIDDEN]:
     'Failed to create opening hours specification. Forbidden access',
-  [OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_NOT_FOUND]:
-    'Failed to create opening hours specification. Opening hours specification not found',
+  [OrganizationErr.OPENING_HOURS_SPECIFICATION_NOT_FOUND]:
+    'Failed to reach opening hours specification API. Opening hours specification not found',
 
   // ADD LOGO
   [OrganizationErr.ADD_LOGO_FAILED]: 'Failed to add logo',
   [OrganizationErr.ADD_LOGO_FORBIDDEN]: 'Failed to add logo. Forbidden access',
-  [OrganizationErr.ADD_LOGO_NOT_FOUND]: 'Failed to add logo. Logo not found',
+  [OrganizationErr.LOGO_NOT_FOUND]: 'Failed to reach logo API. Logo not found',
 
   // ADD KYC
   [OrganizationErr.ADD_DOCUMENT_FAILED]: 'Failed to add document',
   [OrganizationErr.ADD_DOCUMENT_FORBIDDEN]:
     'Failed to add document. Forbidden access',
-  [OrganizationErr.ADD_DOCUMENT_NOT_FOUND]:
-    'Failed to add document. Document not found',
+  [OrganizationErr.DOCUMENT_NOT_FOUND]:
+    'Failed to reach document API. Document not found',
 
   // ADD RIB
   [OrganizationErr.ADD_RIB_FAILED]: 'Failed to add RIB',
   [OrganizationErr.ADD_RIB_FORBIDDEN]: 'Failed to add RIB. Forbidden access',
-  [OrganizationErr.ADD_RIB_NOT_FOUND]: 'Failed to add RIB. RIB not found',
+  [OrganizationErr.RIB_NOT_FOUND]: 'Failed to add RIB. RIB not found',
 
   // SET COMMUNICATION
   [OrganizationErr.SET_COMMUNICATION_FAILED]: 'Failed to set communication',
-  [OrganizationErr.SET_COMMUNICATION_FORBIDDEN]: 'Failed to set communication',
-  [OrganizationErr.SET_COMMUNICATION_NOT_FOUND]: 'Failed to set communication',
+  [OrganizationErr.SET_COMMUNICATION_FORBIDDEN]:
+    'Failed to set communication. Forbidden access',
+  [OrganizationErr.COMMUNICATION_NOT_FOUND]:
+    'Failed to set communication. Communication not found',
 
   // UPDATE ORGANIZATION
   [OrganizationErr.UPDATE_ORGANIZATION_FAILED]: 'Failed to update organization',
@@ -304,37 +295,27 @@ export const errors = {
   [OrganizationErr.UPDATE_EMPLOYEE_FAILED]: 'Failed to update employee',
   [OrganizationErr.UPDATE_EMPLOYEE_FORBIDDEN]:
     'Failed to update employee. Forbidden access',
-  [OrganizationErr.UPDATE_EMPLOYEE_NOT_FOUND]:
-    'Failed to update employee. Employee not found',
 
   // UPDATE FOUNDER
   [OrganizationErr.UPDATE_FOUNDER_FAILED]: 'Failed to update founder',
   [OrganizationErr.UPDATE_FOUNDER_FORBIDDEN]:
     'Failed to update founder. Forbidden access',
-  [OrganizationErr.UPDATE_FOUNDER_NOT_FOUND]:
-    'Failed to update founder. Founder not found',
 
   // UPDATE DOCUMENT
   [OrganizationErr.UPDATE_DOCUMENT_FAILED]: 'Failed to update document',
   [OrganizationErr.UPDATE_DOCUMENT_FORBIDDEN]:
     'Failed to update document. Forbidden access',
-  [OrganizationErr.UPDATE_DOCUMENT_NOT_FOUND]:
-    'Failed to update document. Document not found',
 
   // UPDATE OPENING HOURS SPECIFICATION
   [OrganizationErr.UPDATE_OPENING_HOURS_SPECIFICATION_FAILED]:
     'Failed to update opening hours specification',
   [OrganizationErr.UPDATE_OPENING_HOURS_SPECIFICATION_FORBIDDEN]:
     'Failed to update opening hours specification. Forbidden access',
-  [OrganizationErr.UPDATE_OPENING_HOURS_SPECIFICATION_NOT_FOUND]:
-    'Failed to update opening hours specification. Opening hours specification not found',
 
   // UPDATE ADDRESS
   [OrganizationErr.UPDATE_ADDRESS_FAILED]: 'Failed to update address',
   [OrganizationErr.UPDATE_ADDRESS_FORBIDDEN]:
     'Failed to update address. Forbidden access',
-  [OrganizationErr.UPDATE_ADDRESS_NOT_FOUND]:
-    'Failed to update address. Address not found',
 
   // SUGGEST ORGANIZATION
   [OrganizationErr.SUGGEST_ORGANIZATION_FAILED]:
@@ -348,66 +329,52 @@ export const errors = {
   [OrganizationErr.DELETE_ADDRESS_FAILED]: 'Failed to delete address',
   [OrganizationErr.DELETE_ADDRESS_FORBIDDEN]:
     'Failed to delete address. Forbidden access',
-  [OrganizationErr.DELETE_ADDRESS_NOT_FOUND]:
-    'Failed to delete address. Address not found',
 
   // DELETE LOGO
   [OrganizationErr.DELETE_LOGO_FAILED]: 'Failed to delete logo',
   [OrganizationErr.DELETE_LOGO_FORBIDDEN]:
     'Failed to delete logo. Forbidden access',
-  [OrganizationErr.DELETE_LOGO_NOT_FOUND]:
-    'Failed to delete logo. Logo not found',
 
   // DELETE BACKGROUND IMAGE
   [OrganizationErr.DELETE_BACKGROUND_IMAGE_FAILED]:
     'Failed to delete background image',
   [OrganizationErr.DELETE_BACKGROUND_IMAGE_FORBIDDEN]:
     'Failed to delete background image. Forbidden access',
-  [OrganizationErr.DELETE_BACKGROUND_IMAGE_NOT_FOUND]:
+  [OrganizationErr.BACKGROUND_IMAGE_NOT_FOUND]:
     'Failed to delete background image. Background image not found',
 
   // DELETE EMPLOYEE
   [OrganizationErr.DELETE_EMPLOYEE_FAILED]: 'Failed to delete employee',
   [OrganizationErr.DELETE_EMPLOYEE_FORBIDDEN]:
     'Failed to delete employee. Forbidden access',
-  [OrganizationErr.DELETE_EMPLOYEE_NOT_FOUND]:
-    'Failed to delete employee. Employee not found',
 
   // DELETE FOUNDER
   [OrganizationErr.DELETE_FOUNDER_FAILED]: 'Failed to delete founder',
   [OrganizationErr.DELETE_FOUNDER_FORBIDDEN]:
     'Failed to delete founder. Forbidden access',
-  [OrganizationErr.DELETE_FOUNDER_NOT_FOUND]:
-    'Failed to delete founder. Founder not found',
 
   // DELETE OPENING HOURS SPECIFICATION
   [OrganizationErr.DELETE_OPENING_HOURS_SPECIFICATION_FAILED]:
     'Failed to delete opening hours specification',
   [OrganizationErr.DELETE_OPENING_HOURS_SPECIFICATION_FORBIDDEN]:
     'Failed to delete opening hours specification. Forbidden access',
-  [OrganizationErr.DELETE_OPENING_HOURS_SPECIFICATION_NOT_FOUND]:
-    'Failed to delete opening hours specification. Opening hours specification not found',
 
   // DELETE PICTURE
   [OrganizationErr.DELETE_PICTURE_FAILED]: 'Failed to delete picture',
   [OrganizationErr.DELETE_PICTURE_FORBIDDEN]:
     'Failed to delete picture. Forbidden access',
-  [OrganizationErr.DELETE_PICTURE_NOT_FOUND]:
-    'Failed to delete picture. Picture not found',
 
   // DISABLE ROAMING
   [OrganizationErr.DISABLE_ROAMING_FAILED]: 'Failed to disable roaming',
   [OrganizationErr.DISABLE_ROAMING_FORBIDDEN]:
     'Failed to disable roaming. Forbidden access',
-  [OrganizationErr.DISABLE_ROAMING_NOT_FOUND]:
-    'Failed to disable roaming. Roaming not found',
+  [OrganizationErr.ROAMING_NOT_FOUND]:
+    'Failed to manage roaming. Roaming not found',
 
   // ENABLE ROAMING
   [OrganizationErr.ENABLE_ROAMING_FAILED]: 'Failed to enable roaming',
   [OrganizationErr.ENABLE_ROAMING_FORBIDDEN]:
     'Failed to enable roaming. Forbidden access',
-  [OrganizationErr.ENABLE_ROAMING_NOT_FOUND]:
-    'Failed to enable roaming. Roaming not found',
 };
 
 export const errorFactory = new ErrorFactory<OrganizationErr>(

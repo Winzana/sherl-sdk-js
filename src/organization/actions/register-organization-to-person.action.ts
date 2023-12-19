@@ -1,5 +1,5 @@
 import { Fetcher } from '../../common/api';
-import { filterSherlError } from '../../common/utils/error';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { OrganizationErr, errorFactory } from '../errors';
 import { IOrganizationResponse, IRegisterOrganizationToPerson } from '../types';
@@ -26,7 +26,7 @@ export const registerOrganizationToPerson = async (
         );
     }
   } catch (error) {
-    throw filterSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(
         OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_FAILED,

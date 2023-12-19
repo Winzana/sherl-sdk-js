@@ -4,7 +4,7 @@ import { StringUtils } from '../../../common/utils/string';
 import { OrganizationErr, errorFactory } from '../../errors';
 import { IOrganizationResponse } from '../../types';
 import { IImageObject } from '../../../media';
-import { filterSherlError } from '../../../common/utils/error';
+import { getSherlError } from '../../../common/utils';
 
 export const createBackgroundImageFromMedia = async (
   fetcher: Fetcher,
@@ -25,16 +25,18 @@ export const createBackgroundImageFromMedia = async (
       case 201:
         return response.data;
       case 403:
-        throw errorFactory.create(OrganizationErr.ADD_ADDRESS_FORBIDDEN);
+        throw errorFactory.create(
+          OrganizationErr.CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FORBIDDEN,
+        );
       case 404:
-        throw errorFactory.create(OrganizationErr.ADD_ADDRESS_NOT_FOUND);
+        throw errorFactory.create(OrganizationErr.MEDIA_NOT_FOUND);
       default:
         throw errorFactory.create(
           OrganizationErr.CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FAILED,
         );
     }
   } catch (error) {
-    throw filterSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(
         OrganizationErr.CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FAILED,

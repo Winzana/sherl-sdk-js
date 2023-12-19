@@ -1,5 +1,5 @@
 import { Fetcher } from '../../../common/api';
-import { filterSherlError } from '../../../common/utils/error';
+import { getSherlError } from '../../../common/utils';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
@@ -24,12 +24,12 @@ export const deleteFounder = async (
       case 403:
         throw errorFactory.create(OrganizationErr.DELETE_FOUNDER_FORBIDDEN);
       case 404:
-        throw errorFactory.create(OrganizationErr.DELETE_FOUNDER_NOT_FOUND);
+        throw errorFactory.create(OrganizationErr.FOUNDER_NOT_FOUND);
       default:
         throw errorFactory.create(OrganizationErr.DELETE_FOUNDER_FAILED);
     }
   } catch (error) {
-    throw filterSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(OrganizationErr.DELETE_FOUNDER_FAILED),
     );
