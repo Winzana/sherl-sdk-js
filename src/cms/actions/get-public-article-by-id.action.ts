@@ -3,6 +3,7 @@ import { endpoints } from '../api/endpoints';
 import { CmsErr, errorFactory } from '../errors';
 import { IArticle } from '../types';
 import { StringUtils } from '../../common/utils/string';
+import { getSherlError } from '../../common/utils';
 
 export const getPublicArticleById = async (
   fetcher: Fetcher,
@@ -13,12 +14,22 @@ export const getPublicArticleById = async (
       StringUtils.bindContext(endpoints.MANAGE_POSTS, { id }),
     );
 
-    if (response.status !== 200) {
-      throw errorFactory.create(CmsErr.CMS_GET_PUBLIC_FIND_ID_FAILED);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          CmsErr.CMS_GET_PUBLIC_FIND_ID_FAILED_POST_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(CmsErr.ARTICLE_NOT_FOUND);
+      default:
+        throw errorFactory.create(CmsErr.CMS_GET_PUBLIC_FIND_ID_FAILED);
     }
-
-    return response.data;
   } catch (error) {
-    throw errorFactory.create(CmsErr.CMS_GET_PUBLIC_FIND_ID_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(CmsErr.CMS_GET_PUBLIC_FIND_ID_FAILED),
+    );
   }
 };

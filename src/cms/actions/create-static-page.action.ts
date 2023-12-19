@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { CmsErr, errorFactory } from '../errors';
 import { IArticle, ICMSArticleStaticPageCreateInputDto } from '../types';
@@ -13,11 +14,17 @@ export const createStaticPage = async (
       data,
     );
 
-    if (response.status !== 201) {
-      throw errorFactory.create(CmsErr.CMS_CREATE_FAILED);
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          CmsErr.CREATE_CMS_STATIC_PAGES_FAILED_FORBIDDEN,
+        );
+      default:
+        throw errorFactory.create(CmsErr.CMS_CREATE_FAILED);
     }
-    return response.data;
-  } catch (err) {
-    throw errorFactory.create(CmsErr.CMS_CREATE_FAILED);
+  } catch (error) {
+    throw getSherlError(error, errorFactory.create(CmsErr.CMS_CREATE_FAILED));
   }
 };
