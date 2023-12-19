@@ -532,94 +532,61 @@ class ShopProvider extends AbstractProvider {
   /**
    * Updates an existing advertisement with the provided details.
    *
-   * This function sends a PATCH request to update a specific advertisement identified by its unique ID.
-   * The updated advertisement details are provided in a Partial<ICreateAdvertisementInputDto> object. On successful update,
-   * it returns the updated advertisement's information encapsulated in an IAvertisement object. If the update process
-   * encounters any errors, such as a failure to connect to the endpoint or other issues, a specific error indicating
-   * the failure of the advertisement update is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {string} advertisementId - The unique identifier of the advertisement to be updated.
    * @param {Partial<ICreateAdvertisementInputDto>} updatedAdvertisement - The partial data of the advertisement to be updated.
    * @returns {Promise<IAvertisement>} A promise that resolves to the information of the updated advertisement.
    * @throws {AdvertisementErr.UPDATE_FAILED} Throws an error if the advertisement update fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/advertisement#update-advertisement Sherl SDK documentation} for further information
    */
   updateAdvertisement = this.withFetcher(updateAdvertisement);
 
   /**
    * Creates a new advertisement with the provided details.
    *
-   * This function sends a POST request to create a new advertisement. The advertisement details are provided in the
-   * ICreateAdvertisementInputDto object. On successful creation, it returns the newly created advertisement's
-   * information encapsulated in an IAvertisement object. If the advertisement creation process encounters any errors,
-   * a specific error indicating the failure of the advertisement creation is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {ICreateAdvertisementInputDto} advertisement - The details of the advertisement to be created.
    * @returns {Promise<IAvertisement>} A promise that resolves to the information of the newly created advertisement.
    * @throws {AdvertisementErr.CREATION_FAILED} Throws an error if the advertisement creation fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/advertisement#create-advertisement Sherl SDK documentation} for further information
    */
   createAdvertisement = this.withFetcher(createAdvertisement);
 
   /**
    * Deletes a specific advertisement identified by its unique ID.
    *
-   * This function sends a DELETE request to remove an advertisement. It uses the advertisement's unique ID
-   * to construct the endpoint for the request. On successful deletion, it returns the information of the deleted
-   * advertisement encapsulated in an IAvertisement object. If the deletion process encounters any errors, such as
-   * a failure to connect to the endpoint or other issues, a specific error indicating the failure of the advertisement
-   * deletion is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {string} advertisementId - The unique identifier of the advertisement to be deleted.
    * @returns {Promise<IAvertisement>} A promise that resolves to the information of the deleted advertisement.
    * @throws {AdvertisementErr.DELETE_FAILED} Throws an error if the advertisement deletion fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/advertisement#delete-advertisement Sherl SDK documentation} for further information
    */
   deleteAdvertisement = this.withFetcher(deleteAdvertisement);
 
   /**
    * Retrieves a paginated list of advertisements based on provided filters.
    *
-   * This function sends a GET request to fetch a list of advertisements, allowing for filtering based on various criteria.
-   * The filters are specified through the IFindAdvertisementInputDto object. It returns a paginated response containing
-   * a list of advertisements, each encapsulated in an IAvertisement object. If the request fails, it throws an error
-   * with a specific code indicating the failure in fetching the advertisements.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {IFindAdvertisementInputDto} [filters] - Optional filters to apply when fetching advertisements.
    * @returns {Promise<Pagination<IAvertisement>>} A promise that resolves to a paginated response containing the list of advertisements.
    * @throws {AdvertisementErr.FETCH_FAILED} Throws an error if the fetching of advertisements fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/advertisement#get-advertisements-public-or-not Sherl SDK documentation} for further information
    */
   getAdvertisements = this.withFetcher(getAdvertisements);
 
   /**
    * Retrieves a paginated list of public advertisements based on provided filters.
    *
-   * This function sends a GET request to fetch a list of public-facing advertisements, allowing for filtering based on various criteria.
-   * The filters are specified through the IFindAdvertisementInputDto object. It returns a paginated response containing
-   * a list of public advertisements, each encapsulated in an IAvertisement object. If the request fails, it throws an error
-   * with a specific code indicating the failure in fetching the public advertisements.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {IFindAdvertisementInputDto} [filters] - Optional filters to apply when fetching public advertisements.
    * @returns {Promise<Pagination<IAvertisement>>} A promise that resolves to a paginated response containing the list of public advertisements.
    * @throws {AdvertisementErr.FETCH_FAILED} Throws an error if the fetching of public advertisements fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/advertisement#get-advertisements-public-or-not Sherl SDK documentation} for further information
    */
   getPublicAdvertisements = this.withFetcher(getPublicAdvertisements);
 
   /**
    * Retrieves a specific advertisement by its unique ID.
    *
-   * This function sends a GET request to fetch details of an advertisement using its unique identifier.
-   * The advertisement ID is used to construct the endpoint for the GET request. If the advertisement is
-   * found successfully, it returns the advertisement's information encapsulated in an IAvertisement object.
-   * In case of any errors, such as a failure to find the advertisement or connectivity issues, a specific error
-   * indicating the failure to find the advertisement is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {string} advertisementId - The unique identifier of the advertisement to be retrieved.
    * @returns {Promise<IAvertisement>} A promise that resolves to the information of the specified advertisement.
    * @throws {AdvertisementErr.NOT_FOUND} Throws an error if the advertisement is not found.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/advertisement#get-advertisement-by-id Sherl SDK documentation} for further information
    */
   getAdvertisementById = this.withFetcher(getAdvertisementById);
 
