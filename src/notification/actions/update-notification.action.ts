@@ -5,6 +5,14 @@ import { endpoints } from '../api/endpoints';
 import { NotificationErr, errorFactory } from '../errors';
 import { INotification, INotificationUpdateDto } from '../types';
 
+/**
+ * Update a notification.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {string} id - The ID of the notification to update.
+ * @param {INotificationUpdateDto} body - The update body containing the changes to apply.
+ * @returns {Promise<INotification>} A promise that resolves to the updated notification.
+ */
 export const updateNotification = async (
   fetcher: Fetcher,
   id: string,
