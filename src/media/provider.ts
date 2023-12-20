@@ -14,7 +14,7 @@ class MediaProvider extends AbstractProvider {
    * @param {FormData} data - The FormData object containing the media file to upload.
    * @param {IMediaQuery} query - Query parameters used to specify the media file details.
    * @returns {Promise<IImageObject>} A promise that resolves to the uploaded media file as an IImageObject.
-   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/media#upload-file Sherl SDK documentation} for further
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/media#upload-file Sherl SDK documentation} for further information
    */
   public uploadFile = this.withFetcher(uploadFile);
 
@@ -23,7 +23,7 @@ class MediaProvider extends AbstractProvider {
    *
    * @param {IMediaQuery} query - Query parameters used to specify the media file to retrieve.
    * @returns {Promise<IImageObject>} A promise that resolves to the retrieved media file as an IImageObject.
-   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/media#get-file-by-id Sherl SDK documentation} for further
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/media#get-file-by-id Sherl SDK documentation} for further information
    */
   public getFile = this.withFetcher(getFile);
   /**
@@ -31,7 +31,7 @@ class MediaProvider extends AbstractProvider {
    *
    * @param {string} id - The unique identifier (ID) of the media file to delete.
    * @returns {Promise<string>} A promise that resolves to the ID of the deleted media file.
-   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/media#delete-file Sherl SDK documentation} for further
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/media#delete-file Sherl SDK documentation} for further information
    */
   public deleteFile = this.withFetcher(deleteFile);
 }
