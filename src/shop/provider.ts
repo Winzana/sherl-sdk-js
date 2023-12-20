@@ -121,125 +121,75 @@ class ShopProvider extends AbstractProvider {
   /**
    * Retrieves a specific discount by its unique ID.
    *
-   * This function sends a GET request to fetch details of a discount using its unique identifier. The discount ID is
-   * used to construct the endpoint for the GET request. If the discount is found successfully, it returns the discount's
-   * information encapsulated in an IDiscount object. In case of any errors, such as a failure to find the discount or
-   * connectivity issues, a specific error indicating the failure to find the discount is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {string} id - The unique identifier of the discount to be retrieved.
    * @returns {Promise<IDiscount>} A promise that resolves to the information of the specified discount.
-   * @throws {DiscountErr.FETCH_FAILED} Throws an error if the discount is not found.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/discount#get-discount-by-id Sherl SDK documentation} for further information
    */
   getDiscount = this.withFetcher(getDiscount);
 
   /**
    * Retrieves a paginated list of discounts based on provided filter parameters.
    *
-   * This function sends a GET request to fetch discounts, allowing for filtering based on various criteria specified
-   * in the IDiscountFilter object. It returns a paginated response containing a list of discounts, each encapsulated
-   * in an IDiscount object. If the request fails, an error with a specific code indicating the failure in fetching the
-   * discounts is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {IDiscountFilter} params - The filter parameters used to query the discounts.
    * @returns {Promise<Pagination<IDiscount>>} A promise that resolves to a paginated response containing the list of discounts based on the provided filters.
-   * @throws {DiscountErr.FETCH_FAILED} Throws an error if the fetching of discounts fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/discount#get-discount-by-params Sherl SDK documentation} for further information
    */
   getDiscountByParams = this.withFetcher(getDiscountByParams);
 
   /**
    * Retrieves a paginated list of discounts based on provided filters.
    *
-   * This function sends a GET request to fetch discounts, allowing for filtering based on various criteria specified
-   * in the IDiscountFilter object. It returns a paginated response containing a list of discounts, each encapsulated
-   * in an IDiscount object. If the request fails, an error with a specific code indicating the failure in fetching the
-   * discounts is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {IDiscountFilter} [filters] - Optional filters to apply when fetching discounts.
    * @returns {Promise<Pagination<IDiscount>>} A promise that resolves to a paginated response containing the list of discounts based on the provided filters.
-   * @throws {DiscountErr.FETCH_FAILED} Throws an error if the fetching of discounts fails.
+   * TODO: fix link
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/discount#get-discounts-list Sherl SDK documentation} for further information
    */
   getDiscounts = this.withFetcher(getDiscounts);
 
   /**
    * Retrieves a paginated list of public discounts based on provided filters.
    *
-   * This function sends a GET request to fetch public discounts, allowing for filtering based on various criteria
-   * specified in the IDiscountPublicFilter object. It returns a paginated response containing a list of public discounts,
-   * each encapsulated in an IDiscount object. If the request fails, an error with a specific code indicating the failure
-   * in fetching the public discounts is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {IDiscountPublicFilter} [filters] - Optional filters to apply when fetching public discounts.
    * @returns {Promise<Pagination<IDiscount>>} A promise that resolves to a paginated response containing the list of public discounts based on the provided filters.
-   * @throws {DiscountErr.FETCH_FAILED} Throws an error if the fetching of public discounts fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/discount#get-discounts-list Sherl SDK documentation} for further information
    */
   getPublicDiscounts = this.withFetcher(getPublicDiscounts);
 
   /**
    * Validates payment for a shopping basket with pending status.
    *
-   * This function sends a POST request to validate the payment for a shopping basket that is in a pending state.
-   * The validation details are provided in the IShopBasketValidatePaymentInputDto object. On successful validation,
-   * it returns the updated order's information encapsulated in an IOrderResponse object. If the process of validating
-   * the pending payment encounters any errors, such as a failure to connect to the endpoint or other issues, a specific
-   * error indicating the failure of the validation is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {IShopBasketValidatePaymentInputDto} validation - The validation details for the pending payment of the basket.
    * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the updated order after validating the pending payment.
-   * @throws {OrderErr.BASKET_VALIDATE_PENDING_FAILED} Throws an error if the validation of the pending payment fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/discount#create-a-discount Sherl SDK documentation} for further information
    */
   createDiscount = this.withFetcher(createDiscount);
 
   /**
    * Updates an existing discount with the provided details.
    *
-   * This function sends a PUT request to update a specific discount identified by its unique ID.
-   * The updated discount details are provided in a Partial<IDiscountParameter> object. On successful update,
-   * it returns the updated discount's information encapsulated in an IDiscount object. If the update process
-   * encounters any errors, such as a failure to connect to the endpoint or other issues, a specific error indicating
-   * the failure of the discount update is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {string} discountId - The unique identifier of the discount to be updated.
    * @param {Partial<IDiscountParameter>} updatedDiscount - The partial data of the discount to be updated.
    * @returns {Promise<IDiscount>} A promise that resolves to the information of the updated discount.
-   * @throws {DiscountErr.UPDATE_FAILED} Throws an error if the discount update fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/discount#update-discount Sherl SDK documentation} for further information
    */
   updateDiscount = this.withFetcher(updateDiscount);
 
   /**
    * Deletes a specific discount identified by its unique ID.
    *
-   * This function sends a DELETE request to remove a discount. The discount's unique ID is used to construct
-   * the endpoint for the request. On successful deletion, it returns the information of the deleted discount
-   * encapsulated in an IDiscount object. If the deletion process encounters any errors, such as a failure to
-   * connect to the endpoint or other issues, a specific error indicating the failure of the discount deletion is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {string} discountId - The unique identifier of the discount to be deleted.
    * @returns {Promise<IDiscount>} A promise that resolves to the information of the deleted discount.
-   * @throws {DiscountErr.DELETE_FAILED} Throws an error if the deletion of the discount fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/discount#delete-discount Sherl SDK documentation} for further information
    */
   deleteDiscount = this.withFetcher(deleteDiscount);
 
   /**
    * Validates a discount code against a specific product.
    *
-   * This function sends a POST request to validate a given discount code for applicability on a specified product.
-   * The discount code and the product's URI are provided as parameters. On successful validation, it returns the
-   * discount's information encapsulated in an IDiscount object. If the validation process encounters any errors,
-   * such as a failure to connect to the endpoint or other issues, a specific error indicating the failure of the
-   * discount code validation is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {string} code - The discount code to be validated.
    * @param {string} productUri - The URI of the product against which the discount code is being validated.
    * @returns {Promise<IDiscount>} A promise that resolves to the information of the discount if the code is valid.
-   * @throws {DiscountErr.VALIDATE_CODE_FAILED} Throws an error if the validation of the discount code fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/discount#validate-discount-code Sherl SDK documentation} for further information
    */
   validateDiscountCode = this.withFetcher(validateDiscountCode);
 
@@ -248,65 +198,48 @@ class ShopProvider extends AbstractProvider {
   /**
    * Retrieves a specific order by its unique ID.
    *
-   * This function sends a GET request to fetch details of an order using its unique identifier. The order ID is
-   * used to construct the endpoint for the GET request. If the order is found successfully, it returns the order's
-   * information encapsulated in an IOrderResponse object. In case of any errors, such as a failure to find the order
-   * or connectivity issues, a specific error indicating the failure to find the order is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {string} id - The unique identifier of the order to be retrieved.
    * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the specified order.
-   * @throws {OrderErr.NOT_FOUND} Throws an error if the order is not found.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/order#get-order-by-id Sherl SDK documentation} for further information
    */
   getOrder = this.withFetcher(getOrder);
 
   /**
    * Retrieves a paginated list of orders based on provided filter criteria.
    *
-   * This function sends a GET request to fetch orders, allowing for filtering based on various criteria specified
-   * in the IOrderFindByDto object. It returns a paginated response containing a list of orders, each encapsulated
-   * in an IOrderResponse object. If the request fails, an error with a specific code indicating the failure in fetching
-   * the orders is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {IOrderFindByDto} filters - The filter criteria used to query the orders.
    * @returns {Promise<Pagination<IOrderResponse>>} A promise that resolves to a paginated response containing the list of orders based on the provided filters.
-   * @throws {OrderErr.FETCH_FAILED} Throws an error if the fetching of orders fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/order#get-orders-list Sherl SDK documentation} for further information
    */
   getOrders = this.withFetcher(getOrders);
 
   /**
    * Cancels an order with specified cancellation details.
    *
-   * This function sends a POST request to cancel an order identified by its unique ID. The cancellation details are
-   * provided in the ICancelOrderInputDto object. On successful cancellation, it returns the updated order's information
-   * encapsulated in an IOrderResponse object. If the cancellation process encounters any errors, such as a failure to
-   * connect to the endpoint or specific conditions not being met (e.g., bad request, not allowed, or order already
-   * changed), corresponding specific errors are thrown. The function maps various error statuses to predefined error
-   * codes using the `errorsByCode` object.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {string} id - The unique identifier of the order to be cancelled.
    * @param {ICancelOrderInputDto} cancelOrderDates - The details of the cancellation request for the order.
    * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the updated order after cancellation.
-   * @throws {OrderErr} Throws specific OrderErr errors based on the encountered condition (e.g., BAD_REQUEST, NOT_ALLOWED, ALREADY_CHANGED).
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/order#cancel-order Sherl SDK documentation} for further information
    */
   cancelOrder = this.withFetcher(cancelOrder);
+
+  /**
+   * Updates the status of a specific order.
+   *
+   * @param {string} id - The unique identifier of the order whose status is being updated.
+   * @param {OrderStatusEnum} status - The new status to be set for the order.
+   * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the updated order.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/order#update-order Sherl SDK documentation} for further information
+   */
   updateOrderStatus = this.withFetcher(updateOrderStatus);
 
   /**
    * Retrieves a paginated list of orders associated with a specific organization, based on provided filter criteria.
    *
-   * This function sends a GET request to fetch orders for an organization, identified by its unique ID, allowing for
-   * filtering based on various criteria specified in the IOrderFindByDto object. It returns a paginated response containing
-   * a list of orders, each encapsulated in an IOrderResponse object. If the request fails, an error with a specific code
-   * indicating the failure in fetching the orders is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {string} organizationId - The unique identifier of the organization whose orders are being retrieved.
    * @param {IOrderFindByDto} [filters] - Optional filters to apply when fetching orders for the organization.
    * @returns {Promise<Pagination<IOrderResponse>>} A promise that resolves to a paginated response containing the list of orders for the specified organization.
-   * @throws {OrderErr.FETCH_FAILED} Throws an error if the fetching of orders for the organization fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/order#get-organization-orders Sherl SDK documentation} for further information
    */
   getOrganizationOrders = this.withFetcher(getOrganizationOrders);
 
@@ -315,150 +248,101 @@ class ShopProvider extends AbstractProvider {
   /**
    * Retrieves the current shopping basket for a specified customer.
    *
-   * This function sends a GET request to fetch the current shopping basket associated with a given customer. The customer's
-   * unique URI is provided to identify the specific basket to be retrieved. On successful retrieval, it returns the current
-   * order's information encapsulated in an IOrderResponse object. If the process of fetching the basket encounters any errors,
-   * such as a failure to connect to the endpoint or other issues, a specific error indicating the failure of fetching the basket
-   * is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {string} customerUri - The unique URI of the customer whose basket is being retrieved.
    * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the current order (basket) for the specified customer.
-   * @throws {OrderErr.BASKET_FETCH_FAILED} Throws an error if the fetching of the basket fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/basket#get-current-basket Sherl SDK documentation} for further information
    */
   getCurrentBasket = this.withFetcher(getCurrentBasket);
 
   /**
    * Adds a product to a shopping basket.
    *
-   * This function sends a POST request to add a specified product to a shopping basket. The product details are
-   * provided in the IShopBasketAddProductInputDto object. On successful addition, it returns the updated order's
-   * information encapsulated in an IOrderResponse object. If the process of adding the product to the basket encounters
-   * any errors, such as a failure to connect to the endpoint or other issues, a specific error indicating the failure
-   * of the addition is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {IShopBasketAddProductInputDto} product - The details of the product to be added to the basket.
    * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the updated order.
-   * @throws {OrderErr.BASKET_ADD_FAILED} Throws an error if the addition of the product to the basket fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/basket#add-product-to-basket Sherl SDK documentation} for further information
    */
   addProductToBasket = this.withFetcher(addProductToBasket);
 
   /**
    * Removes an item from a shopping basket.
    *
-   * This function sends a DELETE request to remove a specific item, identified by its unique ID, from a shopping basket.
-   * The item's unique ID is used to construct the endpoint for the request. On successful removal, it returns the updated
-   * order's information encapsulated in an IOrderResponse object. If the process of removing the item from the basket
-   * encounters any errors, such as a failure to connect to the endpoint or other issues, a specific error indicating
-   * the failure of the item removal is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {string} itemId - The unique identifier of the item to be removed from the basket.
    * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the updated order after the item removal.
-   * @throws {OrderErr.BASKET_REMOVE_FAILED} Throws an error if the removal of the item from the basket fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/basket#remove-product-to-basket Sherl SDK documentation} for further information
    */
   removeItemToBasket = this.withFetcher(removeItemToBasket);
 
   /**
    * Clears the shopping basket for a specified customer.
    *
-   * This function sends a POST request to clear the shopping basket of a customer. The customer's unique ID
-   * is provided to identify the basket to be cleared. On successful clearance, it returns a boolean value
-   * indicating the success of the operation. If the process of clearing the basket encounters any errors,
-   * such as a failure to connect to the endpoint or other issues, a specific error indicating the failure
-   * of the basket clearance is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {string} customerId - The unique identifier of the customer whose basket is being cleared.
    * @returns {Promise<boolean>} A promise that resolves to a boolean indicating the success of the basket clearance.
-   * @throws {OrderErr.BASKET_CLEAR_FAILED} Throws an error if the basket clearance fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/basket#clear-basket Sherl SDK documentation} for further information
    */
   clearBasket = this.withFetcher(clearBasket);
 
   /**
    * Applies a discount code to the current shopping basket.
    *
-   * This function sends a POST request to apply a discount code to the current shopping basket. The discount code
-   * is provided as a string. On successful application, it returns the updated order's information encapsulated
-   * in an IOrderResponse object. If the process of applying the discount code to the basket encounters any errors,
-   * such as a failure to connect to the endpoint or other issues, a specific error indicating the failure of the
-   * discount code application is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {string} code - The discount code to be applied to the basket.
    * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the updated order after applying the discount code.
-   * @throws {OrderErr.BASKET_DISCOUNT_CODE_FAILED} Throws an error if the application of the discount code to the basket fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/basket#add-discount-code-to-basket Sherl SDK documentation} for further information
    */
   addDiscountCodeToBasket = this.withFetcher(addDiscountCodeToBasket);
 
   /**
    * Applies a sponsor code to the current shopping basket.
    *
-   * This function sends a POST request to apply a sponsor code to the current shopping basket. The sponsor code
-   * is provided as a string. On successful application, it returns the updated order's information encapsulated
-   * in an IOrderResponse object. If the process of applying the sponsor code to the basket encounters any errors,
-   * such as a non-200 status response or other issues, a specific error indicating the failure of the sponsor code
-   * application is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {string} code - The sponsor code to be applied to the basket.
    * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the updated order after applying the sponsor code.
-   * @throws {OrderErr.BASKET_SPONSOR_CODE_FAILED} Throws an error if the application of the sponsor code to the basket fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/basket#add-sponsor-code-to-basket Sherl SDK documentation} for further information
    */
   addSponsorCodeToBasket = this.withFetcher(addSponsorCodeToBasket);
 
   /**
    * Adds a comment to a shopping basket.
    *
-   * This function sends a POST request to add a comment to the current shopping basket. The comment is provided as a
-   * string. On successful addition, it returns the updated order's information encapsulated in an IOrderResponse object.
-   * If the process of adding the comment to the basket encounters any errors, such as a failure to connect to the endpoint
-   * or other issues, a specific error indicating the failure of the comment addition is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {string} comment - The comment to be added to the basket.
    * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the updated order after adding the comment.
-   * @throws {OrderErr.BASKET_COMMENT_FAILED} Throws an error if the addition of the comment to the basket fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/basket/#add-comment-to-basket Sherl SDK documentation} for further information
    */
   commentBasket = this.withFetcher(commentBasket);
 
   /**
    * Validates and processes payment for the current shopping basket.
    *
-   * This function sends a POST request to validate the shopping basket and process its payment. The validation
-   * details, including payment information, are provided in the IShopBasketValidateAndPayDto object. On successful
-   * validation and payment, it returns the updated order's information encapsulated in an IOrderResponse object. If the
-   * validation or payment process encounters any errors, or if specific conditions are not met (like no default card
-   * available, basket not validated, or basket already paid), corresponding specific errors are thrown.
-   *
-   * The function maps various error statuses to predefined error codes using the ERRORS_BY_CODE object.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {IShopBasketValidateAndPayDto} validation - The validation and payment details for the basket.
    * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the updated order after validation and payment.
-   * @throws {OrderErr} Throws specific OrderErr errors based on the encountered condition (e.g., NO_DEFAULT_CARD, BASKET_ORDER_NOT_VALIDATED, BASKET_ALREADY_PAYED).
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/basket/#validate-and-pay-current-basket Sherl SDK documentation} for further information
    */
   validateAndPayBasket = this.withFetcher(validateAndPayBasket);
 
   /**
    * Validates payment for a shopping basket with pending status.
    *
-   * This function sends a POST request to validate the payment for a shopping basket that is in a pending state.
-   * The validation details are provided in the IShopBasketValidatePaymentInputDto object. On successful validation,
-   * it returns the updated order's information encapsulated in an IOrderResponse object. If the process of validating
-   * the pending payment encounters any errors, such as a failure to connect to the endpoint or other issues, a specific
-   * error indicating the failure of the validation is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {IShopBasketValidatePaymentInputDto} validation - The validation details for the pending payment of the basket.
    * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the updated order after validating the pending payment.
-   * @throws {OrderErr.BASKET_VALIDATE_PENDING_FAILED} Throws an error if the validation of the pending payment fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/basket/#validate-pending-payment-to-basket Sherl SDK documentation} for further information
    */
   validatePaymentBasket = this.withFetcher(validatePaymentBasket);
 
   // Payout
+
+  /**
+   * Submits a request for a payout.
+   *
+   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+   * @returns {Promise<IPayout>} A promise that resolves to the details of the submitted payout.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/payout#submit-payout Sherl SDK documentation} for further information on payouts.
+   */
   submitPayout = this.withFetcher(submitPayout);
+
+  /**
+   * Generates a new payout.
+   *
+   * @returns {Promise<IPayout[]>} A promise that resolves to an array of payout details.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/payout#generate-payout Sherl SDK documentation} for further information on generating payouts.
+   */
   generatePayout = this.withFetcher(generatePayout);
 
   // Loyalty
@@ -466,36 +350,29 @@ class ShopProvider extends AbstractProvider {
   /**
    * Retrieves loyalty cards associated with the current user based on provided filters.
    *
-   * This function sends a GET request to fetch loyalty cards related to the current user, allowing for filtering based on
-   * various criteria specified in the ILoyaltyCardFindByDto object. It returns a search result containing a list of loyalty
-   * cards, each encapsulated in an ILoyaltyCard object. If the request fails, an error with a specific code indicating the
-   * failure in fetching the loyalty cards is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {ILoyaltyCardFindByDto} [filters] - Optional filters to apply when fetching loyalty cards for the current user.
    * @returns {Promise<ISearchResult<ILoyaltyCard>>} A promise that resolves to a search result containing the list of loyalty cards associated with the current user.
-   * @throws {LoyalityErr.FETCH_FAILED} Throws an error if the fetching of loyalty cards fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/loyalty#get-loyalty-cards-current-user-connected Sherl SDK documentation} for further information
    */
   getLoyaltiesCardToMe = this.withFetcher(getLoyaltiesCardToMe);
 
   /**
    * Updates an existing loyalty card with provided details.
    *
-   * This function sends a PUT request to update a specific loyalty card identified by its unique ID. The updated loyalty
-   * card details are provided in the IShopLoyaltyCardUpdateInputDto object. On successful update, it returns the updated
-   * loyalty card's information encapsulated in an ILoyaltyCard object. If the update process encounters any errors, such
-   * as a failure to connect to the endpoint or other issues, a specific error indicating the failure of the loyalty card
-   * update is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {string} cardId - The unique identifier of the loyalty card to be updated.
    * @param {IShopLoyaltyCardUpdateInputDto} updatedCard - The details of the loyalty card to be updated.
    * @returns {Promise<ILoyaltyCard>} A promise that resolves to the information of the updated loyalty card.
-   * @throws {LoyalityErr.UPDATE_FAILED} Throws an error if the loyalty card update fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/loyalty#update-loyalty-card Sherl SDK documentation} for further information
    */
   updateLoyaltyCard = this.withFetcher(updateLoyaltyCard);
 
-  // NOT USED
+  /**
+   * Retrieves the loyalty card associated with a specific organization.
+   *
+   * @param {string} organizationId - The unique identifier of the organization whose loyalty card is being retrieved.
+   * @returns {Promise<ILoyaltyCard>} A promise that resolves to the information of the loyalty card for the specified organization.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/loyalty#get-organization-loyalty-card Sherl SDK documentation} for further information
+   */
   getOrganizationLoyaltyCard = this.withFetcher(getOrganizationLoyaltyCard);
 
   // Invoice
@@ -503,28 +380,77 @@ class ShopProvider extends AbstractProvider {
   /**
    * Sends a link for online payment of a specific invoice.
    *
-   * This function sends a POST request to send a payment link for an invoice identified by its unique ID.
-   * The invoice ID is used to construct the endpoint for the request. On successful operation, it returns the
-   * order's information related to the invoice encapsulated in an IOrderResponse object. If the process of sending
-   * the payment link encounters any errors, such as a failure to connect to the endpoint or other issues, a specific
-   * error indicating the failure of the operation is thrown.
-   *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {string} invoiceId - The unique identifier of the invoice for which the payment link is being sent.
    * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the order related to the invoice.
-   * @throws {InvoiceErr.SEND_FAILED} Throws an error if the operation to send the payment link fails.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/invoice#send-link-to-paid-online Sherl SDK documentation} for further information
    */
   sendLinkToPaidOnline = this.withFetcher(sendLinkToPaidOnline);
 
   // Payment
+
+  /**
+   * Sets a specific payment card as the default card for a person.
+   *
+   * @param {string} cardId - The unique identifier of the card to be set as default.
+   * @returns {Promise<IPerson>} A promise that resolves to the person's information, reflecting the change in the default card.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/payment#set-default-card Sherl SDK documentation} for further information on managing default payment cards.
+   */
   setDefaultCard = this.withFetcher(setDefaultCard);
+
+  /**
+   * Deletes a payment card associated with a person, identified by the card's unique ID.
+   *
+   * @param {string} cardId - The unique identifier of the card to be deleted.
+   * @returns {Promise<IPerson>} A promise that resolves to the person's information, reflecting the updated card details.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/payment#delete-card Sherl SDK documentation} for further information on card management.
+   */
   deleteCard = this.withFetcher(deleteCard);
+
+  /**
+   * Saves a payment card for a person, identified by the card's ID and a provided token.
+   *
+   * @param {string} cardId - The unique identifier of the card to be saved.
+   * @param {string} token - The token associated with the card, used for validation and saving the card.
+   * @returns {Promise<IPerson>} A promise that resolves to the person's information, reflecting the updated card details.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/payment#save-card Sherl SDK documentation} for further information on card management.
+   */
   saveCard = this.withFetcher(saveCard);
+
+  /**
+   * Requests the necessary credentials to add a new credit card.
+   *
+   * @returns {Promise<ICreditCard>} A promise that resolves to the credit card credentials required for adding a new card.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/payment#request-credentials-to-add-card Sherl SDK documentation} for further information on adding credit cards.
+   */
   requestCredentialsToAddCard = this.withFetcher(requestCredentialsToAddCard);
+
+  /**
+   * Validates a payment card based on its unique identifier.
+   *
+   * @param {string} cardId - The unique identifier of the card to be validated.
+   * @returns {Promise<ICreditCard>} A promise that resolves to the credit card information post-validation.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/payment#validate-card Sherl SDK documentation} for further information on credit card validation.
+   */
   validateCard = this.withFetcher(validateCard);
 
   // Subscription
+
+  /**
+   * Retrieves a specific subscription based on provided filter criteria.
+   *
+   * @param {ISubscriptionFindOnByDto} [filters] - Optional filters to apply when searching for a subscription.
+   * @returns {Promise<ISubscription>} A promise that resolves to the subscription's information matching the filter criteria.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/subscription#find-one-subscription Sherl SDK documentation} for further information on finding subscriptions.
+   */
   getSubscriptionFindOneBy = this.withFetcher(getSubscriptionFindOneBy);
+
+  /**
+   * Cancels a specific subscription identified by its unique ID.
+   *
+   * @param {string} subscriptionId - The unique identifier of the subscription to be canceled.
+   * @returns {Promise<ISubscription>} A promise that resolves to the subscription's information after cancellation.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/subscription#cancel-subscription Sherl SDK documentation} for further information on subscription management.
+   */
   cancelSubscription = this.withFetcher(cancelSubscription);
 
   // Advertisement
@@ -591,7 +517,25 @@ class ShopProvider extends AbstractProvider {
   getAdvertisementById = this.withFetcher(getAdvertisementById);
 
   // Picture
+
+  /**
+   * Removes a picture from a specific product using its media ID.
+   *
+   * @param {string} productId - The unique identifier of the product from which the picture is being removed.
+   * @param {string} mediaId - The unique identifier of the media (picture) to be removed from the product.
+   * @returns {Promise<IProductResponse>} A promise that resolves to the product's information after the picture has been removed.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product-picture#remove-picture-on-product Sherl SDK documentation} for further information on managing product pictures.
+   */
   removePictureToProduct = this.withFetcher(removePictureToProduct);
+
+  /**
+   * Adds a picture to a specific product using its media ID.
+   *
+   * @param {string} productId - The unique identifier of the product to which the picture is being added.
+   * @param {string} mediaId - The unique identifier of the media (picture) to be added to the product.
+   * @returns {Promise<IProductResponse>} A promise that resolves to the product's updated information, including the newly added picture.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product-picture#add-picture-on-product Sherl SDK documentation} for further information on managing product pictures.
+   */
   addPictureToProduct = this.withFetcher(addPictureToProduct);
 }
 
