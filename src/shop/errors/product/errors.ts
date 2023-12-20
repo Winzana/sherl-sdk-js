@@ -5,8 +5,10 @@ export enum ProductErr {
   ADD_CATEGORY_TO_ORGANIZATION_FAILED_FORBIDDEN = 'product/add-category-organization-failed-forbidden',
   ADD_OPTION_FAILED = 'product/add-option-failed',
   ADD_OPTION_FAILED_FORBIDDEN = 'product/add-option-failed-forbidden',
-  ADD_PRODUCT_LIKES_FAILED = 'product/add-product-likes-failed',
-  ADD_PRODUCT_LIKES_FAILED_FORBIDDEN = 'product/add-product-likes-failed-forbidden',
+  ADD_PRODUCT_LIKE_FAILED = 'product/add-product-likes-failed',
+  ADD_PRODUCT_LIKE_FAILED_FORBIDDEN = 'product/add-product-likes-failed-forbidden',
+  ADD_COMMENT_ON_PRODUCT_FAILED = 'product/add-product-comment-failed',
+  ADD_COMMENT_ON_PRODUCT_FAILED_FORBIDDEN = 'product/add-product-comment-failed-forbidden',
   ADD_PRODUCT_VIEWS_FAILED = 'product/add-product-views-failed',
   ADD_PRODUCT_VIEWS_FAILED_FORBIDDEN = 'product/add-product-views-failed-forbidden',
   ADD_SUBCATEGORY_FAILED = 'product/add-subcategory-failed',
@@ -65,9 +67,13 @@ export const errors = {
   [ProductErr.ADD_OPTION_FAILED]: 'Failed to add option to product',
   [ProductErr.ADD_OPTION_FAILED_FORBIDDEN]:
     'Failed to add option to product, forbidden',
-  [ProductErr.ADD_PRODUCT_LIKES_FAILED]: 'Failed to add like to product',
-  [ProductErr.ADD_PRODUCT_LIKES_FAILED_FORBIDDEN]:
+  [ProductErr.ADD_PRODUCT_LIKE_FAILED]: 'Failed to add like to product',
+  [ProductErr.ADD_PRODUCT_LIKE_FAILED_FORBIDDEN]:
     'Failed to add like to product, forbidden',
+  [ProductErr.ADD_COMMENT_ON_PRODUCT_FAILED]:
+    'Failed to add comment to product',
+  [ProductErr.ADD_COMMENT_ON_PRODUCT_FAILED_FORBIDDEN]:
+    'Failed to add comment to product, forbidden',
   [ProductErr.ADD_PRODUCT_VIEWS_FAILED]: 'Failed to add product views',
   [ProductErr.ADD_PRODUCT_VIEWS_FAILED_FORBIDDEN]:
     'Failed to add product views, forbidden',

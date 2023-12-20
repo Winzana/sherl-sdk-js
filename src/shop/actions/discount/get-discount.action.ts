@@ -3,6 +3,7 @@ import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { IDiscount } from '../../types';
 import { DiscountErr, errorFactory } from '../../errors/discount/errors';
+import { getSherlError } from '../../../common/utils/errors';
 
 /**
  * Retrieves a specific discount by its unique ID.
@@ -29,6 +30,9 @@ export const getDiscount = async (
         throw errorFactory.create(DiscountErr.GET_DISCOUNTS_FAILED);
     }
   } catch (error) {
-    throw errorFactory.create(DiscountErr.GET_DISCOUNTS_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(DiscountErr.GET_DISCOUNTS_FAILED),
+    );
   }
 };
