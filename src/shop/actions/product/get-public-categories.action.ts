@@ -2,6 +2,7 @@ import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
 import { IPublicCategoryResponse } from '../../types';
 import { ProductErr, errorFactory } from '../../errors/product/errors';
+import { getSherlError } from '../../../common/utils/errors';
 
 /**
  * Retrieves a list of public product categories.
@@ -17,8 +18,20 @@ export const getPublicCategories = async (
       endpoints.GET_PUBLIC_CATEGORIES,
     );
 
-    return response.data;
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          ProductErr.GET_PUBLIC_CATEGORIES_FAILED_FORBIDDEN,
+        );
+      default:
+        throw errorFactory.create(ProductErr.GET_PUBLIC_CATEGORIES_FAILED);
+    }
   } catch (error) {
-    throw errorFactory.create(ProductErr.CATEGORIES_FETCH_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(ProductErr.GET_PUBLIC_CATEGORIES_FAILED),
+    );
   }
 };

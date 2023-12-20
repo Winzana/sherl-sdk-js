@@ -20,7 +20,18 @@ export const addLikeToProduct = async (
       StringUtils.bindContext(endpoints.PRODUCT_LIKE, { id: productId }),
       {},
     );
-    return response.data;
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          ProductErr.ADD_PRODUCT_LIKES_FAILED_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(ProductErr.PRODUCT_NOT_FOUND);
+      default:
+        throw errorFactory.create(ProductErr.ADD_PRODUCT_LIKES_FAILED);
+    }
   } catch (err) {
     throw errorFactory.create(ProductErr.ADD_PRODUCT_LIKES_FAILED);
   }

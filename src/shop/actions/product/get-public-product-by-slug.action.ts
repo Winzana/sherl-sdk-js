@@ -3,6 +3,7 @@ import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { IPublicProductResponse } from '../../types';
 import { ProductErr, errorFactory } from '../../errors/product/errors';
+import { getSherlError } from '../../../common/utils/errors';
 
 /**
  * Retrieves a specific public product identified by its slug.
@@ -20,12 +21,22 @@ export const getPublicProductBySlug = async (
       StringUtils.bindContext(endpoints.GET_PUBLIC_PRODUCT_SLUG, { slug }),
     );
 
-    if (response.status !== 200) {
-      throw errorFactory.create(ProductErr.PRODUCT_NOT_FOUND);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          ProductErr.GET_PUBLIC_PRODUCT_BY_SLUG_FAILED_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(ProductErr.SLUG_PRODUCT_NOT_FOUND);
+      default:
+        throw errorFactory.create(ProductErr.GET_PUBLIC_PRODUCT_BY_SLUG_FAILED);
     }
-
-    return response.data;
   } catch (error) {
-    throw errorFactory.create(ProductErr.PRODUCT_NOT_FOUND);
+    throw getSherlError(
+      error,
+      errorFactory.create(ProductErr.GET_PUBLIC_PRODUCT_BY_SLUG_FAILED),
+    );
   }
 };
