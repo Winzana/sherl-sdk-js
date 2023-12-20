@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils';
 import { endpoints } from '../../api/endpoints';
 import {
   SubscriptionErr,
@@ -25,8 +26,24 @@ export const getSubscriptionFindOneBy = async (
       endpoints.FIND_BY_SUBSCRIPTION,
       filters,
     );
-    return response.data;
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          SubscriptionErr.FIND_ONE_SUBSCRIPTION_WITH_FILTER_FAILED_FORBIDDEN,
+        );
+      default:
+        throw errorFactory.create(
+          SubscriptionErr.FIND_ONE_SUBSCRIPTION_WITH_FILTER_FAILED,
+        );
+    }
   } catch (error) {
-    throw errorFactory.create(SubscriptionErr.FETCH_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(
+        SubscriptionErr.FIND_ONE_SUBSCRIPTION_WITH_FILTER_FAILED,
+      ),
+    );
   }
 };
