@@ -17,7 +17,7 @@ class UserProvider extends AbstractProvider {
    *
    * @param {IUpdatePasswordDto} data - The data for updating the user's password.
    * @returns {Promise<boolean>} A promise that resolves to true if the password update is successful.
-   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/user/#update-current-user-password Sherl SDK documentation} for further
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/user/#update-current-user-password Sherl SDK documentation} for further information
    */
   public updateMyPassword = this.withFetcher(updateMyPassword);
 
@@ -26,7 +26,7 @@ class UserProvider extends AbstractProvider {
    *
    * @param {IResetPasswordRequestDto} data - The data for the password reset request.
    * @returns {Promise<boolean>} A promise that resolves to true if the request is successful.
-   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/user/#reset-password-validate Sherl SDK documentation} for further
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/user/#reset-password-validate Sherl SDK documentation} for further information
    */
   public resetPasswordRequest = this.withFetcher(resetPasswordRequest);
 
@@ -35,7 +35,7 @@ class UserProvider extends AbstractProvider {
    *
    * @param {IResetPasswordDto} data - The data for validating the password reset request.
    * @returns {Promise<boolean>} A promise that resolves to true if the validation is successful.
-   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/user/#reset-password-request Sherl SDK documentation} for further
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/user/#reset-password-request Sherl SDK documentation} for further information
    */
   public resetPasswordValidate = this.withFetcher(resetPasswordValidate);
 }
