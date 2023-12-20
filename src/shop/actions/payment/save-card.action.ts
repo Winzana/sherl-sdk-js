@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { IPerson } from '../../../person';
 import { endpoints } from '../../api/endpoints';
 import { PaymentErr, errorFactory } from '../../errors/payment/errors';
@@ -25,6 +26,9 @@ export const saveCard = async (
         throw errorFactory.create(PaymentErr.SAVE_CARD_FAILED);
     }
   } catch (error) {
-    throw errorFactory.create(PaymentErr.SAVE_CARD_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(PaymentErr.SAVE_CARD_FAILED),
+    );
   }
 };

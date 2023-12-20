@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { endpoints } from '../../api/endpoints';
 import { BasketErr, errorFactory } from '../../errors/basket/error';
 import {
@@ -26,9 +27,10 @@ export const validatePaymentBasket = async (
       default:
         throw errorFactory.create(BasketErr.BASKET_VALIDATE_PENDING_FAILED);
     }
-
-    return response.data;
   } catch (error) {
-    throw errorFactory.create(BasketErr.BASKET_VALIDATE_PENDING_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(BasketErr.BASKET_VALIDATE_PENDING_FAILED),
+    );
   }
 };

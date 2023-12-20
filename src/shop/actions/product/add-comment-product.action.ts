@@ -19,15 +19,15 @@ export const addCommentOnProduct = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          ProductErr.ADD_PRODUCT_LIKES_FAILED_FORBIDDEN,
+          ProductErr.ADD_COMMENT_ON_PRODUCT_FAILED_FORBIDDEN,
         );
       default:
-        throw errorFactory.create(ProductErr.ADD_PRODUCT_LIKES_FAILED);
+        throw errorFactory.create(ProductErr.ADD_COMMENT_ON_PRODUCT_FAILED);
     }
   } catch (err) {
     throw getSherlError(
       err,
-      errorFactory.create(ProductErr.ADD_PRODUCT_LIKES_FAILED),
+      errorFactory.create(ProductErr.ADD_COMMENT_ON_PRODUCT_FAILED),
     );
   }
 };
