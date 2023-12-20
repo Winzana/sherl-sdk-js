@@ -4,6 +4,13 @@ import { endpoints } from '../../api/endpoints';
 import { ProductErr, errorFactory } from '../../errors/product/errors';
 
 // Need `analytics` domain to be used
+/**
+ * Adds a 'like' to a specific product identified by its unique ID.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} productId - The unique identifier of the product to receive the 'like'.
+ * @returns {Promise<number>} A promise that resolves to the updated count of 'likes' for the product.
+ */
 export const addLikeToProduct = async (
   fetcher: Fetcher,
   productId: string,

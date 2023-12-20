@@ -4,6 +4,14 @@ import { endpoints } from '../../api/endpoints';
 import { ProductErr, errorFactory } from '../../errors/product/errors';
 import { IProductResponse } from '../../types';
 
+/**
+ * Adds an option to a specific product.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} productId - The unique identifier of the product to which the option is being added.
+ * @param {any} option - The details of the option to be added to the product. The specific type should ideally be defined.
+ * @returns {Promise<IProductResponse>} A promise that resolves to the product's information, including the newly added option.
+ */
 export const addOptionToProduit = async (
   fetcher: Fetcher,
   productId: string,

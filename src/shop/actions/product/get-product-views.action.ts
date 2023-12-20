@@ -4,6 +4,13 @@ import { endpoints } from '../../api/endpoints';
 import { ProductErr, errorFactory } from '../../errors/product/errors';
 
 // Need `analytics` domain to be used
+/**
+ * Retrieves the total number of views for a specific product identified by its unique ID.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} productId - The unique identifier of the product whose views count is being retrieved.
+ * @returns {Promise<number>} A promise that resolves to the number representing the total views of the product.
+ */
 export const getProductViews = async (
   fetcher: Fetcher,
   productId: string,

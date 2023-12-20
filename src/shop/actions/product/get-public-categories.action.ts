@@ -3,6 +3,12 @@ import { endpoints } from '../../api/endpoints';
 import { IPublicCategoryResponse } from '../../types';
 import { ProductErr, errorFactory } from '../../errors/product/errors';
 
+/**
+ * Retrieves a list of public product categories.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @returns {Promise<IPublicCategoryResponse[]>} A promise that resolves to an array of public category responses.
+ */
 export const getPublicCategories = async (
   fetcher: Fetcher,
 ): Promise<IPublicCategoryResponse[]> => {

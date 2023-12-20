@@ -4,6 +4,13 @@ import { endpoints } from '../../api/endpoints';
 import { IPublicProductResponse } from '../../types';
 import { ProductErr, errorFactory } from '../../errors/product/errors';
 
+/**
+ * Retrieves a specific public product identified by its slug.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} slug - The slug identifier of the public product to be retrieved. Slugs are typically used in URLs to represent the product in a readable format.
+ * @returns {Promise<IPublicProductResponse>} A promise that resolves to the detailed information of the specified public product.
+ */
 export const getPublicProductBySlug = async (
   fetcher: Fetcher,
   slug: string,

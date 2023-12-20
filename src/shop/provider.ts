@@ -77,6 +77,8 @@ import {
   updateCategory,
   getUnrestrictedCategories,
   getPublicProductsWithFilters,
+  addCommentOnProduct,
+  getOrganizationSubCategories,
 } from './actions/product';
 import {
   cancelSubscription,
@@ -91,29 +93,243 @@ class ShopProvider extends AbstractProvider {
   }
 
   // Products
+
+  /**
+   * Retrieves a specific product category by its unique ID.
+   *
+   * @param {string} categoryId - The unique identifier of the category to be retrieved.
+   * @returns {Promise<ICategoryResponse[]>} A promise that resolves to an array containing the response of the requested category.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product-category#get-category-by-id Sherl SDK documentation} for further information on retrieving specific product categories.
+   */
   getCategoryById = this.withFetcher(getCategoryById);
+
+  /**
+   * Retrieves a list of product categories, optionally filtered by specific criteria.
+   *
+   * @param {IShopProductCategoryFindByQuery} [filters] - Optional filters to apply when fetching categories.
+   * @returns {Promise<ICategoryResponse[]>} A promise that resolves to an array of category responses, based on the provided filters.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product-category#get-organization-categories Sherl SDK documentation} for further information on fetching product categories.
+   */
   getCategories = this.withFetcher(getCategories);
+
+  /**
+   * Retrieves details of a specific product identified by its unique ID.
+   *
+   * @param {string} id - The unique identifier of the product to be retrieved.
+   * @returns {Promise<IProductResponse>} A promise that resolves to the detailed information of the specified product.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product#get-product-by-id Sherl SDK documentation} for further information on retrieving product details.
+   */
   getProduct = this.withFetcher(getProduct);
+
+  /**
+   * Retrieves a list of products, optionally filtered by specific criteria.
+   *
+   * @param {IProductFindByDto} filters - The filter criteria used to query the products.
+   * @returns {Promise<Pagination<IProductResponse>>} A promise that resolves to a paginated response containing the list of products based on the provided filters.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product#get-products-list Sherl SDK documentation} for further information on fetching products with specific criteria.
+   */
   getProducts = this.withFetcher(getProducts);
+
+  /**
+   * Retrieves a specific public product category identified by its slug.
+   *
+   * @param {string} slug - The slug identifier of the public category to be retrieved.
+   * @returns {Promise<IPublicCategoryResponse>} A promise that resolves to the detailed information of the specified public category.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product-category#get-public-category-by-slug Sherl SDK documentation} for further information on fetching public categories by slug.
+   */
   getPublicCategoryBySlug = this.withFetcher(getPublicCategoryBySlug);
+
+  /**
+   * Retrieves a list of public categories and their subcategories, optionally filtered by specific criteria.
+   *
+   * @param {IPublicCategoryAndSubCategoryFindByDto} filters - Optional filters to apply when fetching public categories and subcategories.
+   * @returns {Promise<IPublicCategoryResponse[]>} A promise that resolves to an array of public category responses, each including its subcategories, based on the provided filters.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product-category#get-categories-and-subcategories Sherl SDK documentation} for further information on fetching public categories and subcategories.
+   */
   getPublicCategoriesAndSub = this.withFetcher(getPublicCategoriesAndSub);
+
+  /**
+   * Retrieves a list of public product categories.
+   *
+   * @returns {Promise<IPublicCategoryResponse[]>} A promise that resolves to an array of public category responses.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product-category#get-public-categories Sherl SDK documentation} for further information on fetching public product categories.
+   */
   getPublicCategories = this.withFetcher(getPublicCategories);
+
+  /**
+   * Retrieves a specific public product identified by its slug.
+   *
+   * @param {string} slug - The slug identifier of the public product to be retrieved. Slugs are typically used in URLs to represent the product in a readable format.
+   * @returns {Promise<IPublicProductResponse>} A promise that resolves to the detailed information of the specified public product.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product#get-product-by-slug Sherl SDK documentation} for further information on fetching public products by slug.
+   */
   getPublicProductBySlug = this.withFetcher(getPublicProductBySlug);
+
+  /**
+   * Retrieves a specific public product identified by its unique ID.
+   *
+   * @param {string} id - The unique identifier of the public product to be retrieved.
+   * @returns {Promise<IPublicProductResponse>} A promise that resolves to the detailed information of the specified public product.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product#get-product-by-id Sherl SDK documentation} for further information on fetching public products by ID.
+   */
   getPublicProduct = this.withFetcher(getPublicProduct);
+
+  /**
+   * Retrieves a list of public products, filtered by specific criteria.
+   *
+   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+   * @param {IProductFindByDto} filters - The filter criteria used to query the public products. These can include various criteria such as category, price range, etc.
+   * @returns {Promise<Pagination<IProductResponse>>} A promise that resolves to a paginated response containing the list of public products based on the provided filters.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product#get-products-list Sherl SDK documentation} for further information on fetching public products with specific criteria.
+   */
   getPublicProducts = this.withFetcher(getPublicProducts);
+
+  /**
+   * Retrieves the total number of views for a specific product identified by its unique ID.
+   *
+   * @param {string} productId - The unique identifier of the product whose views count is being retrieved.
+   * @returns {Promise<number>} A promise that resolves to the number representing the total views of the product.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product#get-product-views Sherl SDK documentation} for further information on analytics related to product views.
+   */
   getProductViews = this.withFetcher(getProductViews);
+
+  /**
+   * Increments the view count for a specific product identified by its unique ID.
+   *
+   * @param {string} productId - The unique identifier of the product whose view count is being incremented.
+   * @returns {Promise<number>} A promise that resolves to the updated view count of the product.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product#add-view-to-product Sherl SDK documentation} for further information on tracking product views in the analytics domain.
+   */
   addProductViews = this.withFetcher(addProductViews);
+
+  /**
+   * Retrieves the total number of 'likes' for a specific product identified by its unique ID.
+   *
+   * @param {string} productId - The unique identifier of the product whose 'likes' count is being retrieved.
+   * @returns {Promise<number>} A promise that resolves to the number representing the total 'likes' for the product.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product#get-product-likes Sherl SDK documentation} for further information on analytics related to product interactions.
+   */
   getProductLikes = this.withFetcher(getProductLikes);
+
+  /**
+   * Adds a 'like' to a specific product identified by its unique ID.
+   *
+   * @param {string} productId - The unique identifier of the product to receive the 'like'.
+   * @returns {Promise<number>} A promise that resolves to the updated count of 'likes' for the product.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product#add-like-to-product Sherl SDK documentation} for further information on product interaction analytics.
+   */
   addLikeToProduct = this.withFetcher(addLikeToProduct);
+
+  /**
+   * Adds an option to a specific product.
+   *
+   * @param {string} productId - The unique identifier of the product to which the option is being added.
+   * @param {any} option - The details of the option to be added to the product. The specific type should ideally be defined.
+   * @returns {Promise<IProductResponse>} A promise that resolves to the product's information, including the newly added option.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product#add-option-to-product Sherl SDK documentation} for further information on managing product options.
+   */
   addOptionToProduct = this.withFetcher(addOptionToProduit);
+
+  /**
+   * Removes a specific option from a product.
+   *
+   * @param {string} productId - The unique identifier of the product from which the option is being removed.
+   * @param {string} optionId - The unique identifier of the option to be removed from the product.
+   * @returns {Promise<IProductResponse>} A promise that resolves to the product's information after the option has been removed.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product#remove-a-product-option Sherl SDK documentation} for further information on managing product options.
+   */
   removeProductOption = this.withFetcher(removeProductOption);
+
+  /**
+   * Retrieves comments for a specific product, optionally filtered by specific criteria.
+   *
+   * @param {string} productId - The unique identifier of the product for which comments are being retrieved.
+   * @param {IFindProductCommentsInputDto} [filters] - Optional filters to apply when fetching product comments.
+   * @returns {Promise<ISearchResult<IComment>>} A promise that resolves to a search result containing the list of comments for the specified product.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product#get-all-product-comments Sherl SDK documentation} for further information on fetching comments for products.
+   */
   getProductComments = this.withFetcher(getProductComments);
+
+  /**
+   * Adds a comment on a specific product.
+   *
+   * @param {IAddCommentOnProductDto} productComment - The details of the comment to be added to the product.
+   * @returns {Promise<IComment>} A promise that resolves to the information of the newly added comment.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product#add-comment-on-product Sherl SDK documentation} for further information on commenting on products.
+   */
+  addCommentOnProduct = this.withFetcher(addCommentOnProduct);
+
+  /**
+   * Adds a new product category to an organization.
+   *
+   * @param {IShopProductCategoryCreateInputDto} category - The details of the category to be added to the organization.
+   * @returns {Promise<ICategoryResponse>} A promise that resolves to the information of the newly added category.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product-category#add-category-to-organization Sherl SDK documentation} for further information on managing product categories in organizations.
+   */
   addCategoryToOrganization = this.withFetcher(addCategoryToOrganization);
+
+  /**
+   * Adds a subcategory to a specific product category.
+   *
+   * @param {string} categoryId - The unique identifier of the category to which the subcategory is being added.
+   * @param {IShopProductSubCategoryCreateInputDto} subCategory - The details of the subcategory to be added.
+   * @returns {Promise<ICategoryResponse>} A promise that resolves to the updated category information including the newly added subcategory.
+   * @see {@link winzana.github.io/sherl-sdk-js/docs/shop/product-category#add-subcategory-to-category Sherl SDK documentation} for further information on managing product categories and subcategories.
+   */
   addSubCategoryToCategory = this.withFetcher(addSubCategoryToCategory);
+
+  /**
+   * Retrieves all product categories associated with a specific organization.
+   *
+   * @param {string} organizationId - The unique identifier of the organization whose product categories are being retrieved.
+   * @returns {Promise<ICategoryResponse[]>} A promise that resolves to an array of category responses specific to the given organization.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product-category#get-organization-categories-1 Sherl SDK documentation} for further information on fetching organization-specific product categories.
+   */
   getOrganizationCategories = this.withFetcher(getOrganizationCategories);
+
+  /**
+   * Retrieves subcategories for a specific product category within an organization.
+   *
+   * @param {string} categoryId - The unique identifier of the main category whose subcategories are being retrieved.
+   * @returns {Promise<ICategoryResponse[]>} A promise that resolves to an array of category responses, representing the subcategories of the specified main category.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product-category#get-organization-subcategories Sherl SDK documentation} for further information on retrieving subcategories for organization-specific categories.
+   */
+  getOrganizationSubCategories = this.withFetcher(getOrganizationSubCategories);
+
+  /**
+   * Deletes a product category identified by its unique ID.
+   *
+   * @param {string} categoryId - The unique identifier of the category to be deleted.
+   * @returns {Promise<ICategoryResponse>} A promise that resolves to the updated category information post-deletion.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product-category#delete-category Sherl SDK documentation} for further information on category management.
+   */
   deleteCategory = this.withFetcher(deleteCategory);
+
+  /**
+   * Updates a specific product category with new information.
+   *
+   * @param {string} categoryId - The unique identifier of the category to be updated.
+   * @param {Partial<IShopProductCategoryCreateInputDto>} updatedCategory - The new details to update the category with. This is a partial type, allowing for partial updates to the category's properties.
+   * @returns {Promise<ICategoryResponse>} A promise that resolves to the category's updated information.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product-category#update-category Sherl SDK documentation} for further information on updating product categories.
+   */
   updateCategory = this.withFetcher(updateCategory);
+
+  /**
+   * Retrieves a list of categories that are not restricted by any specific criteria.
+   *
+   * @returns {Promise<ICategoryResponse[]>} A promise that resolves to an array of category responses, representing the unrestricted categories.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product-category#get-unrestricted-products Sherl SDK documentation} for further information on fetching unrestricted categories.
+   */
   getUnrestrictedCategories = this.withFetcher(getUnrestrictedCategories);
+
+  /**
+   * Retrieves a list of public products, optionally filtered by specific criteria.
+   *
+   * @param {IProductFindByDto} [filters] - Optional filters to apply when fetching public products. These can include various criteria such as category, price range, etc.
+   * @returns {Promise<Pagination<IProductResponse>>} A promise that resolves to a paginated response containing the list of public products based on the provided filters.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product#get-public-products-with-filters Sherl SDK documentation} for further information on fetching public products with filters.
+   */
   getPublicProductsWithFilters = this.withFetcher(getPublicProductsWithFilters);
 
   // Discounts

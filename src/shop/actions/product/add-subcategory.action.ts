@@ -7,6 +7,14 @@ import {
   IShopProductSubCategoryCreateInputDto,
 } from '../../types';
 
+/**
+ * Adds a subcategory to a specific product category.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} categoryId - The unique identifier of the category to which the subcategory is being added.
+ * @param {IShopProductSubCategoryCreateInputDto} subCategory - The details of the subcategory to be added.
+ * @returns {Promise<ICategoryResponse>} A promise that resolves to the updated category information including the newly added subcategory.
+ */
 export const addSubCategoryToCategory = async (
   fetcher: Fetcher,
   categoryId: string,
