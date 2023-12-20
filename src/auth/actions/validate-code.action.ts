@@ -4,6 +4,14 @@ import { endpoints } from '../api/endpoints';
 import { AuthErr, errorFactory } from '../errors';
 import { ILoginResponse } from '../types';
 
+/**
+ * Validate an SMS code sent to a mobile phone number.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {string} mobilePhoneNumber - The mobile phone number to which the SMS code was sent.
+ * @param {string} code - The SMS validation code to be validated.
+ * @returns {Promise<ILoginResponse>} A promise that resolves to a login response if the code is valid.
+ */
 export const validateCode = async (
   fetcher: Fetcher,
   mobilePhoneNumber: string,
