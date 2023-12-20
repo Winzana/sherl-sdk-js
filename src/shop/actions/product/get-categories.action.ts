@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { endpoints } from '../../api/endpoints';
 import { ProductErr, errorFactory } from '../../errors/product/errors';
 import {
@@ -15,8 +16,18 @@ export const getCategories = async (
       endpoints.CATEGORIES_ALL,
       filters,
     );
-    return response.data;
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(ProductErr.GET_CATEGORIES_FAILED_FORBIDDEN);
+      default:
+        throw errorFactory.create(ProductErr.GET_CATEGORIES_FAILED);
+    }
   } catch (err) {
-    throw errorFactory.create(ProductErr.CATEGORIES_FETCH_FAILED);
+    throw getSherlError(
+      err,
+      errorFactory.create(ProductErr.GET_CATEGORIES_FAILED),
+    );
   }
 };

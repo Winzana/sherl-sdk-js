@@ -3,6 +3,7 @@ import { endpoints } from '../../api/endpoints';
 import { errorFactory, ProductErr } from '../../errors/product/errors';
 import { IProductFindByDto, IProductResponse } from '../../types';
 import { Pagination } from '../../../common/types/response';
+import { getSherlError } from '../../../common/utils/errors';
 
 export const getPublicProductsWithFilters = async (
   fetcher: Fetcher,
@@ -13,8 +14,23 @@ export const getPublicProductsWithFilters = async (
       endpoints.GET_PUBLIC_PRODUCTS_DEFAULT_FILTERS,
       filters,
     );
-    return response.data;
+
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          ProductErr.GET_PUBLIC_PRODUCTS_WITH_FILTERS_FAILED_FORBIDDEN,
+        );
+      default:
+        throw errorFactory.create(
+          ProductErr.GET_PUBLIC_PRODUCTS_WITH_FILTERS_FAILED,
+        );
+    }
   } catch (error) {
-    throw errorFactory.create(ProductErr.PRODUCTS_FETCH_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(ProductErr.GET_PUBLIC_PRODUCTS_WITH_FILTERS_FAILED),
+    );
   }
 };
