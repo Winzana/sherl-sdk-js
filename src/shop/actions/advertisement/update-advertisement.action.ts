@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import {
@@ -33,9 +34,10 @@ export const updateAdvertisement = async (
       default:
         throw errorFactory.create(AdvertisementErr.UPDATE_FAILED);
     }
-
-    return response.data;
   } catch (error) {
-    throw errorFactory.create(AdvertisementErr.UPDATE_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(AdvertisementErr.UPDATE_FAILED),
+    );
   }
 };

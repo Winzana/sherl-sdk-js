@@ -43,8 +43,6 @@ export enum ProductErr {
   GET_PUBLIC_PRODUCT_BY_ID_FAILED_FORBIDDEN = 'product/get-public-product-by-id-failed-forbidden',
   GET_PUBLIC_PRODUCTS_WITH_FILTERS_FAILED = 'product/get-public-products-with-filters-failed',
   GET_PUBLIC_PRODUCTS_WITH_FILTERS_FAILED_FORBIDDEN = 'product/get-public-products-with-filters-failed-forbidden',
-  GET_PUBLIC_PRODUCTS_FAILED = 'product/get-public-products-failed',
-  GET_PUBLIC_PRODUCTS_FAILED_FORBIDDEN = 'product/get-public-products-failed-forbidden',
   GET_UNRESTRICTED_CATEGORIES_FAILED = 'product/get-unrestricted-categories-failed',
   GET_UNRESTRICTED_CATEGORIES_FAILED_FORBIDDEN = 'product/get-unrestricted-categories-failed-forbidden',
   REMOVE_OPTION_FAILED = 'product/remove-option-failed',
@@ -125,9 +123,6 @@ export const errors = {
     'Failed to get public products with filters',
   [ProductErr.GET_PUBLIC_PRODUCTS_WITH_FILTERS_FAILED_FORBIDDEN]:
     'Failed to get public products with filters, forbidden',
-  [ProductErr.GET_PUBLIC_PRODUCTS_FAILED]: 'Failed to get public products',
-  [ProductErr.GET_PUBLIC_PRODUCTS_FAILED_FORBIDDEN]:
-    'Failed to get public products, forbidden',
   [ProductErr.GET_UNRESTRICTED_CATEGORIES_FAILED]:
     'Failed to get unrestricted categories',
   [ProductErr.GET_UNRESTRICTED_CATEGORIES_FAILED_FORBIDDEN]:

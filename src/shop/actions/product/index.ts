@@ -22,4 +22,3 @@ export * from './add-subcategory.action';
 export * from './delete-category.action';
 export * from './update-category.action';
 export * from './get-unrestricted-categories.action';
-export * from './get-public-products-filters.action';

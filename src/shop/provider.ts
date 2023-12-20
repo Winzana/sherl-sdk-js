@@ -76,7 +76,6 @@ import {
   deleteCategory,
   updateCategory,
   getUnrestrictedCategories,
-  getPublicProductsWithFilters,
 } from './actions/product';
 import {
   cancelSubscription,
@@ -114,7 +113,6 @@ class ShopProvider extends AbstractProvider {
   deleteCategory = this.withFetcher(deleteCategory);
   updateCategory = this.withFetcher(updateCategory);
   getUnrestrictedCategories = this.withFetcher(getUnrestrictedCategories);
-  getPublicProductsWithFilters = this.withFetcher(getPublicProductsWithFilters);
 
   // Discounts
   getDiscount = this.withFetcher(getDiscount);
