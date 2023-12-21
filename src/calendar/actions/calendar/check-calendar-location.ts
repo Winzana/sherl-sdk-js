@@ -10,7 +10,6 @@ import { getSherlError } from '../../../common/utils';
  * @param {Fetcher} fetcher - The fetcher object used to make API requests.
  * @param {ICheckLocationInputDto} filter - The filter object containing the location details.
  * @return {Promise<boolean>} A promise that resolves to a boolean indicating the availability of the location.
- * @throws {Error} Throws an error if there is a failure in retrieving the availability.
  */
 export const checkLocationForCalendar = async (
   fetcher: Fetcher,
@@ -22,13 +21,18 @@ export const checkLocationForCalendar = async (
       filter,
     );
 
-    if (response.status >= 400) {
-      throw errorFactory.create(
-        CalendarErr.GET_AVAILABILITIY_FOR_LOCATION_CALENDAR_FAILED,
-      );
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          CalendarErr.GET_AVAILABILITIY_FOR_LOCATION_CALENDAR_FAILED_FORBIDDEN,
+        );
+      default:
+        throw errorFactory.create(
+          CalendarErr.GET_AVAILABILITIY_FOR_LOCATION_CALENDAR_FAILED,
+        );
     }
-
-    return response.data;
   } catch (error) {
     throw getSherlError(
       error,

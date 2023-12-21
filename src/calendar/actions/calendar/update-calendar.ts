@@ -33,7 +33,7 @@ export const updateCalendar = async (
       case 403:
         throw errorFactory.create(CalendarErr.UPDATE_CALENDAR_FAILED_FORBIDDEN);
       case 404:
-        throw errorFactory.create(CalendarErr.UPDATE_CALENDAR_FAILED_NOT_EXIST);
+        throw errorFactory.create(CalendarErr.CALENDAR_NOT_FOUND);
       default:
         throw errorFactory.create(CalendarErr.UPDATE_CALENDAR_FAILED);
     }

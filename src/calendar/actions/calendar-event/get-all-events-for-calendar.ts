@@ -27,14 +27,20 @@ export const getCalendarEventsByCalendarId = async (
       }),
       filter,
     );
-
-    if (response.status >= 400) {
-      throw errorFactory.create(
-        CalendarErr.GET_CALENDAR_EVENTS_WITH_CALENDAR_ID_FAILED,
-      );
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          CalendarErr.GET_CALENDAR_EVENTS_WITH_CALENDAR_ID_FAILED_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(CalendarErr.CALENDAR_NOT_FOUND);
+      default:
+        throw errorFactory.create(
+          CalendarErr.GET_CALENDAR_EVENTS_WITH_CALENDAR_ID_FAILED,
+        );
     }
-
-    return response.data;
   } catch (error) {
     throw getSherlError(
       error,

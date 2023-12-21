@@ -86,7 +86,7 @@ Return a [ICalendar](calendar-types#icalendar) if found.
 Find a calendar by using a ICalendarFilterDto.
 
 ```ts
-const calendar = await Sherl.calendar(client).findCalendarWithFilter(filter: ICalendarFilterDto);
+const calendar = await Sherl.calendar(client).findOneCalendarWithFilter(filter: ICalendarFilterDto);
 ```
 
 ```ts

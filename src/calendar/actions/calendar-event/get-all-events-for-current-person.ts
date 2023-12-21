@@ -23,13 +23,18 @@ export const getCalendarEventsForCurrentPerson = async (
       filter,
     );
 
-    if (response.status >= 400) {
-      throw errorFactory.create(
-        CalendarErr.GET_CALENDAR_EVENTS_FOR_CURRENT_PERSON_FAILED,
-      );
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          CalendarErr.GET_CALENDAR_EVENTS_FOR_CURRENT_PERSON_FAILED_FORBIDDEN,
+        );
+      default:
+        throw errorFactory.create(
+          CalendarErr.GET_CALENDAR_EVENTS_FOR_CURRENT_PERSON_FAILED,
+        );
     }
-
-    return response.data;
   } catch (error) {
     throw getSherlError(
       error,

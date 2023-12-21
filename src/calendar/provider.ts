@@ -29,6 +29,7 @@ class CalendarProvider extends AbstractProvider {
    *
    * @param {ICreateCalendarInputDto} calendar - The input data for creating a calendar.
    * @return {Promise<ICalendar>} The created calendar.
+   * @see {@link https://developers.sherlock.com/api-docs/calendar/#create-a-calendar/ Sherl SDK documentation} for further information.
    */
   public createCalendar = this.withFetcher(createCalendar);
 
@@ -39,6 +40,7 @@ class CalendarProvider extends AbstractProvider {
    * @param {string} calendarId - The ID of the calendar to update.
    * @param {IUpdateCalendarInputDto} calendarData - The data to update the calendar with.
    * @return {Promise<ICalendar>} The updated calendar.
+   * @see {@link https://developers.sherlock.com/api-docs/calendar/#update-a-calendar/ Sherl SDK documentation} for further information.
    */
   public updateCalendar = this.withFetcher(updateCalendar);
 
@@ -47,6 +49,7 @@ class CalendarProvider extends AbstractProvider {
    *
    * @param {string} calendarId - The ID of the calendar to delete.
    * @return {Promise<ICalendar>} The deleted calendar object.
+   * @see {@link https://developers.sherlock.com/api-docs/calendar/#delete-a-calendar/ Sherl SDK documentation} for further information.
    */
   public deleteCalendar = this.withFetcher(deleteCalendar);
 
@@ -55,6 +58,7 @@ class CalendarProvider extends AbstractProvider {
    *
    * @param {string} calendarId - The ID of the calendar to retrieve.
    * @return {Promise<ICalendar>} A promise that resolves to the retrieved calendar.
+   * @see {@link https://developers.sherlock.com/api-docs/calendar/#Retrieve-a-calendar-with-an-id/ Sherl SDK documentation} for further information.
    */
   public getCalendarById = this.withFetcher(getCalendarById);
 
@@ -63,6 +67,7 @@ class CalendarProvider extends AbstractProvider {
    *
    * @param {ICheckDatesDto} filter - The filter object containing the dates to check.
    * @return {Promise<Availability[]>} A promise that resolves to an array of availabilities.
+   * @see {@link https://developers.sherlock.com/api-docs/calendar/#check-availabilities-for-dates/ Sherl SDK documentation} for further information.
    */
   public checkCalendarDates = this.withFetcher(checkCalendarDates);
 
@@ -71,7 +76,7 @@ class CalendarProvider extends AbstractProvider {
    *
    * @param {ICheckLocationInputDto} filter - The filter object containing the location details.
    * @return {Promise<boolean>} A promise that resolves to a boolean indicating the availability of the location.
-   * @throws {Error} Throws an error if there is a failure in retrieving the availability.
+   * @see {@link https://developers.sherlock.com/api-docs/calendar/#Check-calendar-available-for-user-location/ Sherl SDK documentation} for further information.
    */
   public checkLocationForCalendar = this.withFetcher(checkLocationForCalendar);
 
@@ -80,6 +85,7 @@ class CalendarProvider extends AbstractProvider {
    *
    * @param {IFindAvailabilitiesInputDto} filter - The filter to apply when finding availabilities.
    * @return {Promise<IFindAvailabilitiesResult>} A promise that resolves to the result of finding availabilities.
+   * @see {@link https://developers.sherlock.com/api-docs/calendar/#find-availabilities/ Sherl SDK documentation} for further information.
    */
   public findCalendarAvailabilitiesWithFilter = this.withFetcher(
     findCalendarAvailabilitiesWithFilter,
@@ -90,6 +96,7 @@ class CalendarProvider extends AbstractProvider {
    *
    * @param {ICalendarFilterDto} filter - The filter criteria used to search for a calendar.
    * @returns {Promise<ICalendar>} A promise that resolves to the found calendar.
+   * @see {@link https://developers.sherlock.com/api-docs/calendar/Find-one-calendar-with-filters/ Sherl SDK documentation} for further information.
    */
   public findOneCalendarWithFilter = this.withFetcher(
     findOneCalendarWithFilter,
@@ -101,6 +108,7 @@ class CalendarProvider extends AbstractProvider {
    * @param {string} calendarId - the ID of the calendar
    * @param {ICreateCalendarEventInputDto} calendarEvent - the data for the calendar event
    * @return {Promise<ICalendarEvent>} a promise that resolves to the created calendar event
+   * @see {@link https://developers.sherlock.com/api-docs/calendar-event/#create-a-calendar-event/ Sherl SDK documentation} for further information.
    */
   public createCalendarEvent = this.withFetcher(createCalendarEvent);
 
@@ -111,6 +119,7 @@ class CalendarProvider extends AbstractProvider {
    * @param {string} eventId - The ID of the event.
    * @param {IUpdateCalendarEventInputDto} calendarEventData - The data to update the calendar event.
    * @return {Promise<ICalendarEvent>} The updated calendar event.
+   * @see {@link https://developers.sherlock.com/api-docs/calendar-event/#update-a-calendar-event/ Sherl SDK documentation} for further information.
    */
   public updateCalenderEvent = this.withFetcher(updateCalendarEvent);
 
@@ -120,6 +129,7 @@ class CalendarProvider extends AbstractProvider {
    * @param {string} calendarId - The ID of the calendar.
    * @param {string} eventId - The ID of the event to be deleted.
    * @return {Promise<ICalendarEvent>} A Promise that resolves to the deleted calendar event.
+   * @see {@link https://developers.sherlock.com/api-docs/calendar-event/#delete/ Sherl SDK documentation} for further information.
    */
   public deleteCalenderEvent = this.withFetcher(deleteCalendarEvent);
 
@@ -128,6 +138,7 @@ class CalendarProvider extends AbstractProvider {
    *
    * @param {IGetCalendarEventsForCurrentPersonInputDto} filter - The filter object used to specify the search criteria for the calendar events.
    * @return {Promise<ISearchResult<ICalendarEvent>>} A promise that resolves to a search result containing the calendar events.
+   * @see {@link https://developers.sherlock.com/api-docs/calendar-event/#get-all-calendar-events-for-current-person/ Sherl SDK documentation} for further information.
    */
   public getCalendarEventsForCurrentPerson = this.withFetcher(
     getCalendarEventsForCurrentPerson,
@@ -139,6 +150,7 @@ class CalendarProvider extends AbstractProvider {
    * @param {string} calendarId - The ID of the calendar to retrieve events from.
    * @param {ICalendarEventFilterDto} filter - The filter to apply when retrieving events.
    * @return {Promise<ISearchResult<ICalendarEvent>>} A promise that resolves to the search result of calendar events.
+   * @see {@link https://developers.sherlock.com/api-docs/calendar-event/#Get-all-calendar-events/ Sherl SDK documentation} for further information.
    */
   public getCalendarEventsByCalendarId = this.withFetcher(
     getCalendarEventsByCalendarId,
@@ -149,16 +161,16 @@ class CalendarProvider extends AbstractProvider {
    *
    * @param {ICalendarEventFilterDto} eventId - The ID of the calendar event to retrieve.
    * @return {Promise<ICalendarEvent>} - The retrieved calendar event.
+   * @see {@link https://developers.sherlock.com/api-docs/calendar-event/#Get-a-calendar-event-with-its-id/ Sherl SDK documentation} for further information.
    */
-  public getCalenderEventsById = this.withFetcher(
-    getCalendarEventsByCalendarId,
-  );
+  public getCalendarEventById = this.withFetcher(getCalendarEventsByCalendarId);
 
   /**
    * Retrieves calendar events for a specific owner.
    *
    * @param {ICalendarEventFilterDto} filter - The filter object containing criteria for retrieving calendar events.
    * @return {Promise<ISearchResult<ICalendarEvent>>} A promise that resolves to the search result containing calendar events.
+   * @see {@link https://developers.sherlock.com/api-docs/calendar-event/#get-all-calendar-events-for-calendar-owner-uri/ Sherl SDK documentation} for further information.
    */
   public getCalendarEventsForOwner = this.withFetcher(
     getCalendarEventsForOwner,

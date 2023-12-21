@@ -38,9 +38,7 @@ export const updateCalendarEvent = async (
           CalendarErr.UPDATE_CALENDAR_EVENT_FAILED_FORBIDDEN,
         );
       case 404:
-        throw errorFactory.create(
-          CalendarErr.CREATE_CALENDAR_EVENT_FAILED_CALENDAR_NOT_EXIST,
-        );
+        throw errorFactory.create(CalendarErr.CALENDAR_EVENT_NOT_FOUND);
       default:
         throw errorFactory.create(CalendarErr.UPDATE_CALENDAR_EVENT_FAILED);
     }
