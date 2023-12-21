@@ -5,6 +5,13 @@ import { endpoints } from '../api/endpoints';
 import { ClaimErr, errorFactory } from '../errors';
 import { IClaim } from '../types';
 
+/**
+ * Retrieves a claim refund using the provided fetcher and claim ID.
+ *
+ * @param {Fetcher} fetcher - The fetcher object used to make the API call.
+ * @param {string} id - The ID of the claim to refund.
+ * @return {Promise<IClaim>} A promise that resolves to the refunded claim object.
+ */
 export const refundClaim = async (
   fetcher: Fetcher,
   id: string,

@@ -5,6 +5,14 @@ import { endpoints } from '../api/endpoints';
 import { errorFactory, ClaimErr } from '../errors';
 import { ClaimStatusEnum, IClaim } from '../types';
 
+/**
+ * Updates a claim with the specified ID and status.
+ *
+ * @param {Fetcher} fetcher - The fetcher used to make API requests.
+ * @param {string} id - The ID of the claim to update.
+ * @param {ClaimStatusEnum} status - The new status for the claim.
+ * @return {Promise<IClaim>} The updated claim.
+ */
 export const updateClaim = async (
   fetcher: Fetcher,
   id: string,
