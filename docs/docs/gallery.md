@@ -53,7 +53,6 @@ This interface extends [PaginationFilters](pagination#pagination-filters).
 
 This call returns a [paginated](pagination#pagination) array of [IGallery](gallery-types#igallery) objects.
 
-
 ## Register dynamic background
 
 <span class="badge badge--warning">Require authentication</span>
