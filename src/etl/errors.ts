@@ -18,7 +18,7 @@ export const errors = {
     'Failed to extract load and transform data forbidden',
   [EtlErr.EXTRACT_TRANSFORM_LOAD_FAILED]:
     'Failed to extract load and transform data',
-  [EtlErr.SAVE_CONFIG_FAILED]: 'Failed to save etl config forbidden',
+  [EtlErr.SAVE_CONFIG_FORBIDDEN]: 'Failed to save etl config forbidden',
 };
 
 export const errorFactory = new ErrorFactory<EtlErr>('ETL', errors);
