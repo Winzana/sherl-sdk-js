@@ -18,7 +18,7 @@ interface ICreateFounderDto {
   firstName: string;
   lastName: string;
   email: string;
-  birthDate: string
+  birthDate: string;
 }
 ```
 
@@ -36,7 +36,8 @@ await organization(client).updateFounder(
 );
 ```
 
-**Partial** permit to have all properties optional. 
+**Partial** permit to have all properties optional.
+
 ```ts
 interface IOrganizationMemberInputDto {
   firstName: string;

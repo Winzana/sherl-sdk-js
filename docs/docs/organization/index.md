@@ -41,8 +41,6 @@ This call returns an [IOrganizationResponse](../organization-types#iorganization
 
 <span class="badge badge--success">Public</span>
 
-Retrieve one public organization by slug.
-
 ```ts
 const organization = await organization(client).getPublicOrganizationBySlug(slug: string);
 ```
@@ -78,7 +76,7 @@ interface ICreateOrganizationInputDto {
     originId: string;
     latitude: number;
     longitude: number;
-  }
+  };
 }
 ```
 
@@ -158,6 +156,7 @@ interface IUpdateOrganizationRequest {
   };
 }
 ```
+
 This call returns an [IOrganizationResponse](../organization-types#iorganizationresponse) object.
 
 ## Suggest an organization
