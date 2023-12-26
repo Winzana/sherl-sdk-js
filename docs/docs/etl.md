@@ -38,7 +38,7 @@ This call returns an [IConfigModel](etl-types#iconfigmodel) object.
 
 This action launch an asynchronous ETL task using a specific configuration.
 
-**:warning:  The configuration will not be saved.**
+**:warning: The configuration will not be saved.**
 
 ```ts
 await etl(client).extractTransformLoad(config: IExtractTransformLoadInputDto);
