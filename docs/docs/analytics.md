@@ -53,6 +53,7 @@ Get audience analytics by using optional filters.
 ```ts
 await analytics(client).getAudiencesAnalytics(filters?: IAnalyticsInputBaseDto);
 ```
+
 - [IAnalyticsInputBaseDto](analytics-types#ianalyticsinputbasedto).
 
 This call returns an array [IAnalyticResponse](analytics-types#ianalyticresponse) objects.

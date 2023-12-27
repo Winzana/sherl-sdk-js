@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { VirtualMoneyErr, errorFactory } from '../errors';
 import { ITransferWalletInputDto, IWallet } from '../types';
@@ -14,12 +15,23 @@ export const debitWallet = async (
       { walletId },
       data,
     );
-    if (response.status !== 201) {
-      throw errorFactory.create(VirtualMoneyErr.DEBIT_WALLET_FAILED);
-    }
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          VirtualMoneyErr.DEBIT_WALLET_FAILED_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(VirtualMoneyErr.WALLET_NOT_FOUND);
 
-    return response.data;
+      default:
+        throw errorFactory.create(VirtualMoneyErr.DEBIT_WALLET_FAILED);
+    }
   } catch (error) {
-    throw errorFactory.create(VirtualMoneyErr.DEBIT_WALLET_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(VirtualMoneyErr.DEBIT_WALLET_FAILED),
+    );
   }
 };
