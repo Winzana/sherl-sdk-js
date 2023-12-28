@@ -5,6 +5,13 @@ import { FindPostsFilters, IArticle } from '../types';
 import { ISearchResult } from '../../common';
 import { getSherlError } from '../../common/utils';
 
+/**
+ * Get a list of public articles based on filters.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {FindPostsFilters} filters - Filters to apply when retrieving public articles.
+ * @returns {Promise<ISearchResult<IArticle>>} A promise that resolves to a search result containing public articles.
+ */
 export const getPublicArticles = async (
   fetcher: Fetcher,
   filters: FindPostsFilters,

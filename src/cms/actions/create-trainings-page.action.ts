@@ -4,6 +4,13 @@ import { endpoints } from '../api/endpoints';
 import { CmsErr, errorFactory } from '../errors';
 import { IArticle, ICMSArticleTrainingCreateInputDto } from '../types';
 
+/**
+ * Create a new training page in the CMS.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {ICMSArticleTrainingCreateInputDto} data - The data for creating a new training page in the CMS.
+ * @returns {Promise<IArticle>} A promise that resolves to the newly created training page information.
+ */
 export const createTrainingsPage = async (
   fetcher: Fetcher,
   data: ICMSArticleTrainingCreateInputDto,
