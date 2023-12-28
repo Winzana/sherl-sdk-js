@@ -18,13 +18,16 @@ export const registerWithEmailAndPassword = async (
       case 201:
         return response.data;
       case 403:
-        throw errorFactory.create(PersonErr.POST_FORBIDDEN);
+        throw errorFactory.create(PersonErr.REGISTER_PERSON_FORBIDDEN);
       case 409:
         throw errorFactory.create(PersonErr.PERSON_ALREADY_EXISTS);
       default:
-        throw errorFactory.create(PersonErr.POST_FAILED);
+        throw errorFactory.create(PersonErr.REGISTER_PERSON_FAILED);
     }
   } catch (error) {
-    throw getSherlError(error, errorFactory.create(PersonErr.POST_FAILED));
+    throw getSherlError(
+      error,
+      errorFactory.create(PersonErr.REGISTER_PERSON_FAILED),
+    );
   }
 };

@@ -4,9 +4,9 @@ export enum PersonErr {
   NOT_FOUND = 'person/not-found',
   ADDRESS_NOT_FOUND = 'person/address-not-found',
 
-  // PUT ADDRESS
-  PUT_ADDRESS_FAILED = 'person/put-address-failed',
-  PUT_ADDRESS_FORBIDDEN = 'person/put-address-failed',
+  // UPDATE ADDRESS
+  UPDATE_ADDRESS_FAILED = 'person/update-address-failed',
+  UPDATE_ADDRESS_FORBIDDEN = 'person/update-address-forbidden',
 
   // FETCH
   FETCH_FAILED = 'person/fetch-failed',
@@ -32,8 +32,6 @@ export enum PersonErr {
   PERSON_NOT_FOUND = 'person/person-not-found',
 
   // POST
-  POST_FAILED = 'person/post-person-failed',
-  POST_FORBIDDEN = 'person/post-person-forbidden',
   POST_NOT_FOUND = 'person/post-person-not-found',
   POST_ALREADY_EXISTS = 'person/post-person-already-exists',
 
@@ -44,6 +42,8 @@ export enum PersonErr {
 
   // REGISTER WITH EMAIL AND PASSWORD
   PERSON_ALREADY_EXISTS = 'person/register-with-email-and-password-already-exists',
+  REGISTER_PERSON_FAILED = 'person/register-person-failed',
+  REGISTER_PERSON_FORBIDDEN = 'person/register-person-forbidden',
 
   // CREATE ADDRESS
   CREATE_ADDRESS_FAILED = 'person/create-address-failed',
@@ -71,9 +71,6 @@ export const errors = {
     'Failed to fetch position. Forbidden access',
   [PersonErr.FETCH_POSITION_FAILED]: 'Failed to fetch position',
 
-  // POST
-  [PersonErr.POST_FAILED]: 'Failed to create person',
-
   // UPDATE PERSON BY ID
   [PersonErr.UPDATE_PERSON_BY_ID_FAILED]: 'Failed to update person',
   [PersonErr.UPDATE_PERSON_BY_ID_FORBIDDEN]:
@@ -98,6 +95,9 @@ export const errors = {
   // REGISTER WITH EMAIL AND PASSWORD
   [PersonErr.PERSON_ALREADY_EXISTS]:
     'Failed to register. Person already exists',
+  [PersonErr.REGISTER_PERSON_FAILED]: 'Failed to register person',
+  [PersonErr.REGISTER_PERSON_FORBIDDEN]:
+    'Failed to register person. Forbidden access',
 
   // ADD PICTURE
   [PersonErr.ADD_PICTURE_FAILED]: 'Failed to add picture to person profile',
@@ -112,7 +112,9 @@ export const errors = {
     'Failed to create new address. Address already exists',
 
   // UPDATE ADDRESS
-  [PersonErr.PUT_ADDRESS_FAILED]: 'Failed to update address',
+  [PersonErr.UPDATE_ADDRESS_FAILED]: 'Failed to update address',
+  [PersonErr.UPDATE_ADDRESS_FORBIDDEN]:
+    'Failed to update address. Forbidden access',
 
   // DELETE ADDRESS
   [PersonErr.DELETE_ADDRESS_FAILED]: 'Failed to delete address',
