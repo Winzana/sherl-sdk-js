@@ -24,7 +24,7 @@ export const setCommunication = async (
       case 403:
         throw errorFactory.create(OrganizationErr.SET_COMMUNICATION_FORBIDDEN);
       case 404:
-        throw errorFactory.create(OrganizationErr.COMMUNICATION_NOT_FOUND);
+        throw errorFactory.create(OrganizationErr.ORGANIZATION_NOT_FOUND);
       default:
         throw errorFactory.create(OrganizationErr.SET_COMMUNICATION_FAILED);
     }

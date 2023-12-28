@@ -29,7 +29,7 @@ export const addKycDocument = async (
       case 403:
         throw errorFactory.create(OrganizationErr.ADD_DOCUMENT_FORBIDDEN);
       case 404:
-        throw errorFactory.create(OrganizationErr.DOCUMENT_NOT_FOUND);
+        throw errorFactory.create(OrganizationErr.ORGANIZATION_NOT_FOUND);
       default:
         throw errorFactory.create(OrganizationErr.ADD_DOCUMENT_FAILED);
     }

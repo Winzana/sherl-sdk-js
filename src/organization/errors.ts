@@ -32,12 +32,11 @@ export enum OrganizationErr {
   // CREATE BACKGROUND IMAGE FROM MEDIA
   CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FAILED = 'organization/create-background-image-from-media-failed',
   CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FORBIDDEN = 'organization/create-background-image-from-media-forbidden',
-  MEDIA_NOT_FOUND = 'organization/media-not-found',
 
   // CREATE BACKGROUND IMAGE
   CREATE_BACKGROUND_IMAGE_FAILED = 'organization/create-background-image-failed',
   CREATE_BACKGROUND_IMAGE_FORBIDDEN = 'organization/create-background-image-forbidden',
-  IMAGE_NOT_FOUND = 'organization/create-background-image-not-found',
+  ORGANIZATION_NOT_FOUND = 'organization/create-background-organization-not-found',
 
   // CREATE OPENING HOURS SPECIFICATION
   CREATE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/create-opening-hours-specification-failed',
@@ -71,7 +70,7 @@ export enum OrganizationErr {
   // ADD KYC
   ADD_DOCUMENT_FAILED = 'organization/add-failed',
   ADD_DOCUMENT_FORBIDDEN = 'organization/add-forbidden',
-  DOCUMENT_NOT_FOUND = 'organization/document-not-found',
+  KYC_NOT_FOUND = 'organization/kyc-not-found',
 
   // REGISTER ORGANIZATION
   REGISTER_ORGANIZATION_FAILED = 'organization/register-organization-failed',
@@ -204,16 +203,14 @@ export const errors = {
     'Failed to create background image from media',
   [OrganizationErr.CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FORBIDDEN]:
     'Failed to create background image from media. Forbidden access',
-  [OrganizationErr.MEDIA_NOT_FOUND]:
-    'Failed to create background image from media. Media not found',
 
   // CREATE BACKGROUND IMAGE
   [OrganizationErr.CREATE_BACKGROUND_IMAGE_FAILED]:
     'Failed to create background image',
   [OrganizationErr.CREATE_BACKGROUND_IMAGE_FORBIDDEN]:
     'Failed to create background image. Forbidden access',
-  [OrganizationErr.IMAGE_NOT_FOUND]:
-    'Failed to create background image. Image not found',
+  [OrganizationErr.ORGANIZATION_NOT_FOUND]:
+    'Failed to create background image. Organization not found',
 
   // CREATE PICTURE FROM MEDIA
   [OrganizationErr.CREATE_PICTURE_FROM_MEDIA_FAILED]:
@@ -269,8 +266,8 @@ export const errors = {
   [OrganizationErr.ADD_DOCUMENT_FAILED]: 'Failed to add document',
   [OrganizationErr.ADD_DOCUMENT_FORBIDDEN]:
     'Failed to add document. Forbidden access',
-  [OrganizationErr.DOCUMENT_NOT_FOUND]:
-    'Failed to reach document API. Document not found',
+  [OrganizationErr.KYC_NOT_FOUND]:
+    'Failed to reach document API. KYC not found',
 
   // ADD RIB
   [OrganizationErr.ADD_RIB_FAILED]: 'Failed to add RIB',

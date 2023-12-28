@@ -24,7 +24,7 @@ export const deleteBackgroundImage = async (
           OrganizationErr.DELETE_BACKGROUND_IMAGE_FORBIDDEN,
         );
       case 404:
-        throw errorFactory.create(OrganizationErr.BACKGROUND_IMAGE_NOT_FOUND);
+        throw errorFactory.create(OrganizationErr.ORGANIZATION_NOT_FOUND);
       default:
         throw errorFactory.create(
           OrganizationErr.DELETE_BACKGROUND_IMAGE_FAILED,

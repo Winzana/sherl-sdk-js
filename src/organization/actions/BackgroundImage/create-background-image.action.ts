@@ -38,7 +38,7 @@ export const createBackgroundImage = async (
           OrganizationErr.CREATE_BACKGROUND_IMAGE_FORBIDDEN,
         );
       case 404:
-        throw errorFactory.create(OrganizationErr.IMAGE_NOT_FOUND);
+        throw errorFactory.create(OrganizationErr.ORGANIZATION_NOT_FOUND);
       default:
         throw errorFactory.create(
           OrganizationErr.CREATE_BACKGROUND_IMAGE_FAILED,

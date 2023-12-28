@@ -24,7 +24,7 @@ export const deleteFounder = async (
       case 403:
         throw errorFactory.create(OrganizationErr.DELETE_FOUNDER_FORBIDDEN);
       case 404:
-        throw errorFactory.create(OrganizationErr.FOUNDER_NOT_FOUND);
+        throw errorFactory.create(OrganizationErr.ORGANIZATION_NOT_FOUND);
       default:
         throw errorFactory.create(OrganizationErr.DELETE_FOUNDER_FAILED);
     }
