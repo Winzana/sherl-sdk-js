@@ -21,16 +21,16 @@ export const updateAddress = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(PersonErr.PUT_ADDRESS_FORBIDDEN);
+        throw errorFactory.create(PersonErr.UPDATE_ADDRESS_FORBIDDEN);
       case 404:
         throw errorFactory.create(PersonErr.ADDRESS_NOT_FOUND);
       default:
-        throw errorFactory.create(PersonErr.PUT_ADDRESS_FAILED);
+        throw errorFactory.create(PersonErr.UPDATE_ADDRESS_FAILED);
     }
   } catch (error) {
     throw getSherlError(
       error,
-      errorFactory.create(PersonErr.PUT_ADDRESS_FAILED),
+      errorFactory.create(PersonErr.UPDATE_ADDRESS_FAILED),
     );
   }
 };
