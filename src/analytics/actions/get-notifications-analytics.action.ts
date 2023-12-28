@@ -4,6 +4,13 @@ import { endpoints } from '../api/endpoint';
 import { AnalyticsErr, errorFactory } from '../errors';
 import { IAnalyticResponse, INotificationsAnalyticsInputDto } from '../types';
 
+/**
+ * Get analytics data related to notifications.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {INotificationsAnalyticsInputDto} filters - Filters for the notifications analytics data (optional).
+ * @returns {Promise<IAnalyticResponse[]>} A promise that resolves to an array of analytics data.
+ */
 export const getNotificationsAnalytics = async (
   fetcher: Fetcher,
   filters?: INotificationsAnalyticsInputDto,
