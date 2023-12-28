@@ -12,8 +12,28 @@ class IamProvider extends AbstractProvider {
     super(client, errorFactory);
   }
 
+  /**
+   * Get all IAM profiles based on the provided filters.
+   *
+   * @param {IIamProfilesFilters} filters - Filters to apply when fetching IAM profiles.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/iam#get-all-iam-profiles Sherl SDK documentation} for further information
+   */
   public getAllIamProfiles = this.withFetcher(getAllIamProfiles);
+
+  /**
+   * Get an IAM profile by its unique identifier (ID).
+   *
+   * @param {string} id - The unique identifier (ID) of the IAM profile to retrieve.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/iam#get-iam-profile-by-id Sherl SDK documentation} for further information
+   */
   public getIamProfileById = this.withFetcher(getIamProfileById);
+
+  /**
+   * Get an IAM role by its unique identifier (ID).
+   *
+   * @param {string} id - The unique identifier (ID) of the IAM role to retrieve.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/iam#get-iam-role-by-id Sherl SDK documentation} for further information
+   */
   public getIamRoleById = this.withFetcher(getIamRoleById);
 }
 

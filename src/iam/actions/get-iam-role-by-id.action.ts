@@ -5,6 +5,14 @@ import { errorFactory, IamErr } from '../errors';
 import { StringUtils } from '../../common/utils/string';
 import { getSherlError } from '../../common/utils/errors';
 
+/**
+ * Get an IAM role by its unique identifier (ID).
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {string} id - The unique identifier (ID) of the IAM role to retrieve.
+ * @returns {Promise<IRole>} A promise that resolves to an IRole object.
+ */
+
 export const getIamRoleById = async (
   fetcher: Fetcher,
   id: string,
