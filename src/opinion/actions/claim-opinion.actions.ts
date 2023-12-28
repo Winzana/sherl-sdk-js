@@ -13,7 +13,6 @@ import { getSherlError } from '../../common/utils';
  * @param {IClaimOpinionInput} claim - The claim input data.
  * @returns {Promise<any>} A promise that resolves when the claim is successfully created.
  */
-
 export const createOpinionClaim = async (
   fetcher: Fetcher,
   opinionId: string,
