@@ -4,6 +4,13 @@ import { endpoints } from '../api/endpoint';
 import { AnalyticsErr, errorFactory } from '../errors';
 import { IAnalyticsFindBIInputDto } from '../types';
 
+/**
+ * Get Business Intelligence (BI) analytics data.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {IAnalyticsFindBIInputDto} filters - Filters for the BI analytics data.
+ * @returns {Promise<any>} A promise that resolves to the BI analytics data.
+ */
 export const getBIAnalytics = async (
   fetcher: Fetcher,
   filters: IAnalyticsFindBIInputDto,

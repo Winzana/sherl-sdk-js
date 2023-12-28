@@ -4,6 +4,14 @@ import { endpoints } from '../api/endpoints';
 import { AuthErr, errorFactory } from '../errors';
 import { IAuthExternalServiceUserInfo, ILoginResponse } from '../types';
 
+/**
+ * Log in using Apple authentication.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {IAuthExternalServiceUserInfo} appleInfos - Apple authentication information.
+ * @returns {Promise<ILoginResponse>} A promise that resolves to an ILoginResponse containing authentication tokens.
+ */
+
 export const loginWithApple = async (
   fetcher: Fetcher,
   appleInfos: IAuthExternalServiceUserInfo,

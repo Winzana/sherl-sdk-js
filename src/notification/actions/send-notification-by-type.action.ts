@@ -5,6 +5,14 @@ import { endpoints } from '../api/endpoints';
 import { NotificationErr, errorFactory } from '../errors';
 import { NotificationTypeEnum, SendNotificationInput } from '../types';
 
+/**
+ * Send a notification by its type.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {NotificationTypeEnum} notificationType - The type of notification to send.
+ * @param {SendNotificationInput} notificationInfo - Information for sending the notification.
+ * @returns {Promise<boolean>} A promise that resolves to a boolean value (true if successful).
+ */
 export const sendNotificationByType = async (
   fetcher: Fetcher,
   notificationType: NotificationTypeEnum,
