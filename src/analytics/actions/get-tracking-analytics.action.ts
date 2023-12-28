@@ -5,6 +5,13 @@ import { endpoints } from '../api/endpoint';
 import { AnalyticsErr, errorFactory } from '../errors';
 import { IAnalyticsFindByInputDto, ITrace } from '../types';
 
+/**
+ * Get tracking analytics data.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {IAnalyticsFindByInputDto} filters - Filters for the tracking analytics data (optional).
+ * @returns {Promise<ISearchResult<ITrace>>} A promise that resolves to an ISearchResult containing tracking analytics data.
+ */
 export const getTrackingAnalytics = async (
   fetcher: Fetcher,
   filters?: IAnalyticsFindByInputDto,

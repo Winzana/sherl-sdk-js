@@ -5,6 +5,13 @@ import { endpoints } from '../api/endpoint';
 import { EtlErr, errorFactory } from '../errors';
 import { IEtlResponse } from '../types';
 
+/**
+ * Extract, transform, and load (ETL) data by ID.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {string} id - The ID of the data to be processed.
+ * @returns {Promise<IEtlResponse>} A promise that resolves to an IEtlResponse with the ETL result.
+ */
 export const extractTransformLoadById = async (
   fetcher: Fetcher,
   id: string,

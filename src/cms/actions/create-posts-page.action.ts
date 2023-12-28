@@ -3,7 +3,13 @@ import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { CmsErr, errorFactory } from '../errors';
 import { IArticle, ICMSArticleCreateInputDto } from '../types';
-
+/**
+ * Create a new posts page in the CMS.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {ICMSArticleCreateInputDto} data - The data for creating a new posts page in the CMS.
+ * @returns {Promise<IArticle>} A promise that resolves to the newly created posts page information.
+ */
 export const createPostsPage = async (
   fetcher: Fetcher,
   data: ICMSArticleCreateInputDto,

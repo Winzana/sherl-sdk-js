@@ -4,6 +4,13 @@ import { endpoints } from '../api/endpoints';
 import { errorFactory, UserErr } from '../errors';
 import { IUpdatePasswordDto } from '../types';
 
+/**
+ * Update the user's password.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {IUpdatePasswordDto} data - The data for updating the user's password.
+ * @returns {Promise<boolean>} A promise that resolves to true if the password update is successful.
+ */
 export const updateMyPassword = async (
   fetcher: Fetcher,
   data: IUpdatePasswordDto,

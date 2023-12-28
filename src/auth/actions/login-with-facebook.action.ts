@@ -4,6 +4,13 @@ import { endpoints } from '../api/endpoints';
 import { AuthErr, errorFactory } from '../errors';
 import { IAuthExternalServiceUserInfo, ILoginResponse } from '../types';
 
+/**
+ * Log in using Facebook authentication.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {IAuthExternalServiceUserInfo} facebookInfos - Facebook user information used for authentication.
+ * @returns {Promise<ILoginResponse>} A promise that resolves to an ILoginResponse containing authentication tokens.
+ */
 export const loginWithFacebook = async (
   fetcher: Fetcher,
   facebookInfos: IAuthExternalServiceUserInfo,

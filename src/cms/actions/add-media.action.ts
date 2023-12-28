@@ -5,6 +5,14 @@ import { IArticle, ICMSArticleAddMediaDto } from '../types';
 import { StringUtils } from '../../common/utils/string';
 import { getSherlError } from '../../common/utils';
 
+/**
+ * Add media to an existing CMS page.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {string} id - The identifier of the CMS page to which media is being added.
+ * @param {ICMSArticleAddMediaDto} data - The data for adding media to the CMS page.
+ * @returns {Promise<IArticle>} A promise that resolves to the updated article information.
+ */
 export const addMediaPage = async (
   fetcher: Fetcher,
   id: string,

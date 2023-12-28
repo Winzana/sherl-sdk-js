@@ -5,6 +5,13 @@ import { endpoints } from '../api/endpoints';
 import { GalleryErr, errorFactory } from '../errors';
 import { IGallery, IGetGalleriesFilters } from '../types';
 
+/**
+ * Retrieves galleries based on the provided filters.
+ *
+ * @param {Fetcher} fetcher - The fetcher object used to make API requests.
+ * @param {IGetGalleriesFilters} filters - Optional filters to apply to the request.
+ * @return {Promise<Pagination<IGallery>>} A promise that resolves to the paginated list of galleries.
+ */
 export const getGalleries = async (
   fetcher: Fetcher,
   filters?: IGetGalleriesFilters,

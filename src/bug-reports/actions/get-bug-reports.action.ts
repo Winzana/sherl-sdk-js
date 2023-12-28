@@ -4,7 +4,12 @@ import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { BugReportsErr, errorFactory } from '../errors';
 import { IBugReport } from '../types';
-
+/**
+ * Retrieves all the bug reports.
+ *
+ * @param {Fetcher} fetcher - The fetcher object used for making HTTP requests.
+ * @return {Promise<ISearchResult<IBugReport>>} - A promise that resolves to the search result containing bug reports.
+ */
 export const getBugReports = async (
   fetcher: Fetcher,
 ): Promise<ISearchResult<IBugReport>> => {
