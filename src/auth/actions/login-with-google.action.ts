@@ -4,6 +4,14 @@ import { endpoints } from '../api/endpoints';
 import { AuthErr, errorFactory } from '../errors';
 import { IAuthExternalServiceUserInfo, ILoginResponse } from '../types';
 
+/**
+ * Log in using Google authentication.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {IAuthExternalServiceUserInfo} googleInfos - Google user information used for authentication.
+ * @returns {Promise<ILoginResponse>} A promise that resolves to an ILoginResponse containing authentication tokens.
+ */
+
 export const loginWithGoogle = async (
   fetcher: Fetcher,
   googleInfos: IAuthExternalServiceUserInfo,
