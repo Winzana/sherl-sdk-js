@@ -4,6 +4,13 @@ import { endpoints } from '../api/endpoints';
 import { CmsErr, errorFactory } from '../errors';
 import { IArticle, ICMSArticleStaticPageCreateInputDto } from '../types';
 
+/**
+ * Create a new static page in the CMS.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {ICMSArticleStaticPageCreateInputDto} data - The data for creating a new static page in the CMS.
+ * @returns {Promise<IArticle>} A promise that resolves to the newly created static page information.
+ */
 export const createStaticPage = async (
   fetcher: Fetcher,
   data: ICMSArticleStaticPageCreateInputDto,
