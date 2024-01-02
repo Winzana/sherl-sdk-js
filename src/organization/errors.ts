@@ -161,15 +161,6 @@ export enum OrganizationErr {
   DELETE_PICTURE_FAILED = 'organization/delete-picture-failed',
   DELETE_PICTURE_FORBIDDEN = 'organization/delete-picture-forbidden',
 
-  // DISABLE ROAMING
-  DISABLE_ROAMING_FAILED = 'organization/disable-roaming-failed',
-  DISABLE_ROAMING_FORBIDDEN = 'organization/disable-roaming-forbidden',
-  ROAMING_NOT_FOUND = 'organization/roaming-not-found',
-
-  // ENABLE ROAMING
-  ENABLE_ROAMING_FAILED = 'organization/enable-roaming-failed',
-  ENABLE_ROAMING_FORBIDDEN = 'organization/enable-roaming-forbidden',
-
   // UNUSED
   UPDATE_IS_PUBLIC_ORGANIZATION_FAILED = 'organization/update-is-public-organization-failed',
   UPDATE_THIRD_PARTY_FAILED = 'organization/update-third-party-failed',
@@ -399,18 +390,6 @@ export const errors = {
   [OrganizationErr.DELETE_PICTURE_FAILED]: 'Failed to delete picture',
   [OrganizationErr.DELETE_PICTURE_FORBIDDEN]:
     'Failed to delete picture. Forbidden access',
-
-  // DISABLE ROAMING
-  [OrganizationErr.DISABLE_ROAMING_FAILED]: 'Failed to disable roaming',
-  [OrganizationErr.DISABLE_ROAMING_FORBIDDEN]:
-    'Failed to disable roaming. Forbidden access',
-  [OrganizationErr.ROAMING_NOT_FOUND]:
-    'Failed to manage roaming. Roaming not found',
-
-  // ENABLE ROAMING
-  [OrganizationErr.ENABLE_ROAMING_FAILED]: 'Failed to enable roaming',
-  [OrganizationErr.ENABLE_ROAMING_FORBIDDEN]:
-    'Failed to enable roaming. Forbidden access',
 };
 
 export const errorFactory = new ErrorFactory<OrganizationErr>(
