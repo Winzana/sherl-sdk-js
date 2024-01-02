@@ -177,7 +177,6 @@ class ShopProvider extends AbstractProvider {
   /**
    * Retrieves a list of public products, filtered by specific criteria.
    *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {IProductFindByDto} filters - The filter criteria used to query the public products. These can include various criteria such as category, price range, etc.
    * @returns {Promise<Pagination<IProductResponse>>} A promise that resolves to a paginated response containing the list of public products based on the provided filters.
    * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product#get-products-list Sherl SDK documentation} for further information on fetching public products with specific criteria.
@@ -372,11 +371,11 @@ class ShopProvider extends AbstractProvider {
   getPublicDiscounts = this.withFetcher(getPublicDiscounts);
 
   /**
-   * Validates payment for a shopping basket with pending status.
+   * Creates a new discount with specified parameters.
    *
-   * @param {IShopBasketValidatePaymentInputDto} validation - The validation details for the pending payment of the basket.
-   * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the updated order after validating the pending payment.
-   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/discount#create-a-discount Sherl SDK documentation} for further information
+   * @param {IDiscountParameter} parameter - The parameters defining the discount, including details like percentage, validity, etc.
+   * @returns {Promise<IDiscount>} A promise that resolves to the details of the newly created discount.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/discount#create-a-discount Sherl SDK documentation} for further information on creating discounts.
    */
   createDiscount = this.withFetcher(createDiscount);
 
@@ -547,7 +546,6 @@ class ShopProvider extends AbstractProvider {
   /**
    * Submits a request for a payout.
    *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @returns {Promise<IPayout>} A promise that resolves to the details of the submitted payout.
    * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/payout#submit-payout Sherl SDK documentation} for further information on payouts.
    */

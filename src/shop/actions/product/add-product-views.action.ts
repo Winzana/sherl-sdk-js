@@ -3,9 +3,9 @@ import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { ProductErr, errorFactory } from '../../errors/product/errors';
 
-// Need `analytics` domain to be used
 /**
  * Increments the view count for a specific product identified by its unique ID.
+ * Need `Analytics` domain to be used
  *
  * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
  * @param {string} productId - The unique identifier of the product whose view count is being incremented.

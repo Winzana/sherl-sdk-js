@@ -8,7 +8,7 @@ import { DiscountErr, errorFactory } from '../../errors/discount/errors';
  * Retrieves a paginated list of discounts based on provided filters.
  *
  * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
- * @param {IDiscountFilter} [filters] - Optional filters to apply when fetching discounts.
+ * @param {IDiscountFilter} filters - Optional filters to apply when fetching discounts.
  * @returns {Promise<Pagination<IDiscount>>} A promise that resolves to a paginated response containing the list of discounts based on the provided filters.
  */
 export const getDiscounts = async (
