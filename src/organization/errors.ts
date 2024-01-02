@@ -49,7 +49,7 @@ export enum OrganizationErr {
   // CREATE BACKGROUND IMAGE
   CREATE_BACKGROUND_IMAGE_FAILED = 'organization/create-background-image-failed',
   CREATE_BACKGROUND_IMAGE_FORBIDDEN = 'organization/create-background-image-forbidden',
-  ORGANIZATION_NOT_FOUND = 'organization/create-background-organization-not-found',
+  ORGANIZATION_NOT_FOUND = 'organization/organization-not-found',
 
   // CREATE OPENING HOURS SPECIFICATION
   CREATE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/create-opening-hours-specification-failed',
@@ -177,12 +177,6 @@ export const errors = {
   [OrganizationErr.ADDRESS_NOT_FOUND]:
     'Failed to delete address. Address not found',
 
-  // FETCH
-  [OrganizationErr.FETCH_FAILED]: 'Failed to fetch organization API',
-  [OrganizationErr.FECTH_FORBIDDEN]:
-    'Failed to fetch organization API. Forbidden access',
-  [OrganizationErr.NOT_FOUND]: 'Failed to fetch organization. Page not found',
-
   // GET PUBLIC ORGANIZATION
   [OrganizationErr.GET_PUBLIC_ORGANIZATION_FAILED]:
     'Failed to fetch public organization',
@@ -238,7 +232,7 @@ export const errors = {
   [OrganizationErr.CREATE_BACKGROUND_IMAGE_FORBIDDEN]:
     'Failed to create background image. Forbidden access',
   [OrganizationErr.ORGANIZATION_NOT_FOUND]:
-    'Failed to create background image. Organization not found',
+    'Failed to fetch API. Organization not found',
 
   // CREATE PICTURE FROM MEDIA
   [OrganizationErr.CREATE_PICTURE_FROM_MEDIA_FAILED]:
