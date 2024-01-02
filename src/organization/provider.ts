@@ -88,7 +88,6 @@ class OrganizationProvider extends AbstractProvider {
   /**
    * Retrieves a paginated list of public organizations based on provided filters.
    *
-   * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
    * @param {OrganizationFiltersDto} filters - The filtering criteria to apply to the list of public organizations.
    * @returns {Promise<Pagination<IOrganizationResponse>>} A promise that resolves to a paginated response containing the list of public organizations.
    * @see {@link https://winzana.github.io/sherl-sdk-js/docs/organization/#get-organizations-list Sherl SDK documentation} for further information
