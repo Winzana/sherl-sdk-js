@@ -1,11 +1,6 @@
 import { ErrorFactory } from '../common/errors';
 
 export enum OrganizationErr {
-  // FETCH
-  FETCH_FAILED = 'organization/fetch-failed',
-  NOT_FOUND = 'organization/not-found',
-  FECTH_FORBIDDEN = 'organization/forbidden',
-
   // GET PUBLIC ORGANIZATION
   GET_PUBLIC_ORGANIZATION_FAILED = 'organization/get-public-organization-failed',
   GET_PUBLIC_ORGANIZATION_FORBIDDEN = 'organization/get-public-organization-forbidden',
