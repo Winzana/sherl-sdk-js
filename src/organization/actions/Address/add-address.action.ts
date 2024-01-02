@@ -4,6 +4,14 @@ import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import { IAddressRequest, IOrganizationResponse } from '../../types';
 
+/**
+ * Adds an address to an organization specified by its ID.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} organizationId - The unique identifier of the organization to which the address is being added.
+ * @param {IAddressRequest} address - The details of the address to be added.
+ * @returns {Promise<IOrganizationResponse>} A promise that resolves to the updated organization's information post address addition.
+ */
 export const addAddress = async (
   fetcher: Fetcher,
   organizationId: string,

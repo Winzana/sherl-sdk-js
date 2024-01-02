@@ -5,6 +5,14 @@ import { endpoints } from '../api/endpoints';
 import { errorFactory, PersonErr } from '../errors';
 import { IPerson, IPersonUpdate } from '../types';
 
+/**
+ * Updates the details of a person identified by their unique ID.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} id - The unique identifier of the person to be updated.
+ * @param {Partial<IPersonUpdate>} body - The updated information for the person, as a partial update object.
+ * @returns {Promise<IPerson>} A promise that resolves to the updated person's information.
+ */
 export const updatePersonById = async (
   fetcher: Fetcher,
   id: string,

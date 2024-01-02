@@ -5,6 +5,12 @@ import { IConfig } from '../../config/types';
 import { errorFactory, PersonErr } from '../errors';
 import { getSherlError } from '../../common/utils';
 
+/**
+ * Retrieves a list of configuration settings from the API.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @returns {Promise<IConfig[]>} A promise that resolves to an array of configuration objects.
+ */
 export const getConfigs = async (fetcher: Fetcher): Promise<IConfig[]> => {
   let response: ApiResponse<IConfig[]> | null = null;
 

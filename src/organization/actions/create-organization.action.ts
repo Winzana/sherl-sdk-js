@@ -3,6 +3,13 @@ import { endpoints } from '../api/endpoints';
 import { OrganizationErr, errorFactory } from '../errors';
 import { IOrganizationResponse, ICreateOrganizationInputDto } from '../types';
 
+/**
+ * Creates a new organization with the given details.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {ICreateOrganizationInputDto} organization - The data for creating a new organization.
+ * @returns {Promise<IOrganizationResponse>} A promise that resolves to the newly created organization's information.
+ */
 export const createOrganization = async (
   fetcher: Fetcher,
   organization: ICreateOrganizationInputDto,

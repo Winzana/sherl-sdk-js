@@ -5,6 +5,16 @@ import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import { IOrganizationResponse } from '../../types';
 
+/**
+ * Creates a background image for an organization by uploading a file.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} organizationId - The unique identifier of the organization for which the background image is being set.
+ * @param {string} mediaId - The unique identifier of the media associated with the background image.
+ * @param {File} file - The image file to be uploaded and set as the background.
+ * @param {(progressEvent: any) => void} [onUploadProgress] - Optional callback to monitor the progress of the upload.
+ * @returns {Promise<IOrganizationResponse>} A promise that resolves to the updated organization's information after the background image creation.
+ */
 export const createBackgroundImage = async (
   fetcher: Fetcher,
   organizationId: string,

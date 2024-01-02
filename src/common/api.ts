@@ -8,6 +8,13 @@ class Fetcher {
     private readonly errorFactory: ErrorFactory<string>,
   ) {}
 
+  /**
+   * Performs a GET request to the specified URL with optional parameters.
+   * @param url - The URL to send the GET request to.
+   * @param params - Optional parameters to be sent with the request.
+   * @param config - Optional Axios request configuration.
+   * @returns A Promise of ApiResponse containing the response data.
+   */
   public async get<T>(
     url: string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -28,6 +35,14 @@ class Fetcher {
       });
   }
 
+  /**
+   * Performs a POST request to the specified URL with data.
+   * @param url - The URL to send the POST request to.
+   * @param data - The data to be sent in the POST request.
+   * @param params - Optional parameters to be appended to the URL.
+   * @param config - Optional Axios request configuration.
+   * @returns A Promise of ApiResponse containing the response data.
+   */
   public async post<T>(
     url: string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -55,6 +70,13 @@ class Fetcher {
       });
   }
 
+  /**
+   * Performs a PUT request to the specified URL with data.
+   * @param url - The URL to send the PUT request to.
+   * @param data - The data to be sent in the PUT request.
+   * @param config - Optional Axios request configuration.
+   * @returns A Promise of ApiResponse containing the response data.
+   */
   public async put<T>(
     url: string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -75,6 +97,13 @@ class Fetcher {
       });
   }
 
+  /**
+   * Performs a PATCH request to the specified URL with data.
+   * @param url - The URL to send the PATCH request to.
+   * @param data - The data to be sent in the PATCH request.
+   * @param config - Optional Axios request configuration.
+   * @returns A Promise of ApiResponse containing the response data.
+   */
   public async patch<T>(
     url: string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -95,6 +124,12 @@ class Fetcher {
       });
   }
 
+  /**
+   * Performs a DELETE request to the specified URL with optional parameters.
+   * @param url - The URL to send the DELETE request to.
+   * @param params - Optional parameters to be sent with the request.
+   * @returns A Promise of ApiResponse containing the response data.
+   */
   public async delete<T>(
     url: string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -126,6 +161,16 @@ interface CustomAxiosRequestConfig extends Omit<AxiosRequestConfig, 'headers'> {
   headers?: any; // this was "any" at v0.21.1 but now broken between 0.21.4 >= 0.27.2
   // Lets make it any again to make it work again.
 }
+
+/**
+ * Initializes an Axios instance with default headers and interceptors for authentication.
+ *
+ * @param apiKey - The API key for authentication.
+ * @param apiSecret - The API secret for authentication.
+ * @param apiUrl - Optional base URL for the API.
+ * @param referer - Optional referer header value.
+ * @returns The configured Axios instance.
+ */
 export const initializeApi = (
   apiKey: string,
   apiSecret: string,
@@ -162,6 +207,13 @@ export const initializeApi = (
   return axiosInstance;
 };
 
+/**
+ * Registers a bearer token for authentication in the Axios instance.
+ *
+ * @param instance - The Axios instance to register the token with.
+ * @param token - The bearer token to be used for authentication.
+ * @returns The Axios instance with the bearer token interceptor applied.
+ */
 export const registerBearerToken = (instance: AxiosInstance, token: string) => {
   return instance.interceptors.request.use(
     (config: CustomAxiosRequestConfig) => {

@@ -7,6 +7,14 @@ import {
   IOrganizationResponse,
 } from '../../types';
 
+/**
+ * Creates an opening hours specification for a specified organization.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} organizationId - The unique identifier of the organization for which the opening hours are being set.
+ * @param {IOpeningHoursSpecificationInputDto} data - The details of the opening hours specification to be created.
+ * @returns {Promise<IOrganizationResponse>} A promise that resolves to the updated organization's information after creating the opening hours specification.
+ */
 export const createOpeningHoursSpecification = async (
   fetcher: Fetcher,
   organizationId: string,

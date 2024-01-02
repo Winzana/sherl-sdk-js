@@ -4,6 +4,16 @@ import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import { IOrganizationResponse } from '../../types';
 
+/**
+ * Adds a logo to an organization using a media file.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} organizationId - The unique identifier of the organization for which the logo is being set.
+ * @param {string} mediaId - The unique identifier of the media to be used as the logo.
+ * @param {File} logo - The logo file to be uploaded and set.
+ * @param {(progressEvent: any) => void} [onUploadProgress] - Optional callback to monitor the progress of the upload.
+ * @returns {Promise<IOrganizationResponse>} A promise that resolves to the updated organization's information after the logo addition.
+ */
 export const addLogo = async (
   fetcher: Fetcher,
   organizationId: string,

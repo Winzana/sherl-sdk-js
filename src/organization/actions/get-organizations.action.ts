@@ -4,6 +4,13 @@ import { IOrganizationResponse, OrganizationFiltersDto } from '../types';
 import { Pagination } from '../../common/types/response';
 import { OrganizationErr, errorFactory } from '../errors';
 
+/**
+ * Retrieves a paginated list of organizations based on provided filters.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {OrganizationFiltersDto} filters - The filtering criteria to apply to the organization list.
+ * @returns {Promise<Pagination<IOrganizationResponse>>} A promise that resolves to a paginated response containing the list of organizations.
+ */
 export const getOrganizations = async (
   fetcher: Fetcher,
   filters: OrganizationFiltersDto,

@@ -4,6 +4,14 @@ import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import { IOrganizationResponse } from '../../types';
 
+/**
+ * Deletes a picture from a specified organization.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} organizationId - The unique identifier of the organization from which the picture is being deleted.
+ * @param {string} pictureId - The unique identifier of the picture to be deleted.
+ * @returns {Promise<IOrganizationResponse>} A promise that resolves to the updated organization's information after the picture deletion.
+ */
 export const deletePicture = async (
   fetcher: Fetcher,
   organizationId: string,

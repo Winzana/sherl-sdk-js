@@ -4,6 +4,13 @@ import { endpoints } from '../api/endpoints';
 import { PersonErr, errorFactory } from '../errors';
 import { IPersonRegister } from '../types';
 
+/**
+ * Creates a new person record in the system.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {IPersonRegister} person - The person object containing the details of the new person to be created.
+ * @returns {Promise<boolean>} A promise that resolves to true if the person is successfully created.
+ */
 export const createPerson = async (
   fetcher: Fetcher,
   person: IPersonRegister,

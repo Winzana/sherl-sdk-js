@@ -6,6 +6,14 @@ import { IPerson } from '../types';
 import { IPlace } from '../../place';
 import { getSherlError } from '../../common/utils';
 
+/**
+ * Updates the address details for a specific address ID.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} addressId - The unique identifier of the address to be updated.
+ * @param {IPlace} updatedAddress - The new address details to be updated.
+ * @returns {Promise<IPerson>} A promise that resolves to the updated person's information after the address update.
+ */
 export const updateAddress = async (
   fetcher: Fetcher,
   addressId: string,

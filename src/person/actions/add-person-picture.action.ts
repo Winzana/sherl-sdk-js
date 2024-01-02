@@ -5,6 +5,13 @@ import { IPictureRegister } from '../types';
 import { StringUtils } from '../../common/utils/string';
 import { getSherlError } from '../../common/utils';
 
+/**
+ * Adds a picture to a person's profile.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {IPictureRegister} picture - The picture object containing the file and associated person and media IDs.
+ * @returns {Promise<boolean>} A promise that resolves to true if the picture is successfully added.
+ */
 export const addPersonPicture = async (
   fetcher: Fetcher,
   picture: IPictureRegister,

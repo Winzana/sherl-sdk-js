@@ -4,6 +4,14 @@ import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import { IOrganizationResponse } from '../../types';
 
+/**
+ * Deletes an opening hours specification from a specified organization.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} organizationId - The unique identifier of the organization from which the opening hours specification is being deleted.
+ * @param {string} hoursSpecId - The unique identifier of the opening hours specification to be deleted.
+ * @returns {Promise<IOrganizationResponse>} A promise that resolves to the updated organization's information after the deletion of the opening hours specification.
+ */
 export const deleteOpeningHoursSpecification = async (
   fetcher: Fetcher,
   organizationId: string,

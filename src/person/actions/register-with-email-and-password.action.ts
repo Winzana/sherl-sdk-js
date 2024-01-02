@@ -4,6 +4,13 @@ import { endpoints } from '../api/endpoints';
 import { errorFactory, PersonErr } from '../errors';
 import { getSherlError } from '../../common/utils';
 
+/**
+ * Registers a new user with its email and password.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {IPersonRegister} data - The registration data including email and password.
+ * @returns {Promise<IPerson>} A promise that resolves to the information of the newly registered user.
+ */
 export const registerWithEmailAndPassword = async (
   fetcher: Fetcher,
   data: IPersonRegister,

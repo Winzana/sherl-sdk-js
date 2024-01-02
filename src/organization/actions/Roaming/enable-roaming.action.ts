@@ -4,6 +4,13 @@ import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import { IOrganizationResponse } from '../../types';
 
+/**
+ * Enables the roaming feature for a specified organization.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} organizationId - The unique identifier of the organization for which roaming is being enabled.
+ * @returns {Promise<IOrganizationResponse>} A promise that resolves to the updated organization's information after enabling roaming.
+ */
 export const enableRoaming = async (
   fetcher: Fetcher,
   organizationId: string,
