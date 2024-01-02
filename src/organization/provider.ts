@@ -34,8 +34,6 @@ import {
   deleteAddress,
   createOrganization,
   updateOrganization,
-  disableRoaming,
-  enableRoaming,
   registerOrganizationToPerson,
   registerOrganization,
   suggestOrganization,
@@ -103,10 +101,8 @@ class OrganizationProvider extends AbstractProvider {
   public deleteEmployee = this.withFetcher(deleteEmployee);
   public deleteFounder = this.withFetcher(deleteFounder);
   public deleteAddress = this.withFetcher(deleteAddress);
-  public disableRoaming = this.withFetcher(disableRoaming);
 
   // OTHERS
-  public enableRoaming = this.withFetcher(enableRoaming);
   public suggestOrganization = this.withFetcher(suggestOrganization);
 }
 

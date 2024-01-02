@@ -18,6 +18,14 @@ export enum OrganizationErr {
   GET_PUBLIC_ORGANIZATION_BY_SLUG_FAILED = 'organization/get-public-organization-by-slug-failed',
   GET_PUBLIC_ORGANIZATION_BY_SLUG_FORBIDDEN = 'organization/get-public-organization-by-slug-forbidden',
 
+  // GET ORGANIZATIONS
+  GET_ORGANIZATIONS_FAILED = 'organization/get-organizations-failed',
+  GET_ORGANIZATIONS_FORBIDDEN = 'organization/get-organizations-forbidden',
+
+  // GET ORGANIZATION
+  GET_ORGANIZATION_FAILED = 'organization/get-organization-failed',
+  GET_ORGANIZATION_FORBIDDEN = 'organization/get-organization-forbidden',
+
   // GET RIBS
   GET_RIBS_FAILED = 'organization/fetch-documents-failed',
   GET_RIBS_FORBIDDEN = 'organization/fetch-documents-forbidden',
@@ -34,12 +42,10 @@ export enum OrganizationErr {
   // CREATE PICTURE FROM MEDIA
   CREATE_PICTURE_FROM_MEDIA_FAILED = 'organization/create-picture-from-media-failed',
   CREATE_PICTURE_FROM_MEDIA_FORBIDDEN = 'organization/create-picture-from-media-forbidden',
-  PICTURE_FROM_MEDIA_NOT_FOUND = 'organization/picture-from-media-not-found',
 
   // CREATE PICTURE
   CREATE_PICTURE_FAILED = 'organization/create-picture-failed',
   CREATE_PICTURE_FORBIDDEN = 'organization/create-picture-forbidden',
-  PICTURE_NOT_FOUND = 'organization/picture-not-found',
 
   // CREATE BACKGROUND IMAGE FROM MEDIA
   CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FAILED = 'organization/create-background-image-from-media-failed',
@@ -53,7 +59,6 @@ export enum OrganizationErr {
   // CREATE OPENING HOURS SPECIFICATION
   CREATE_OPENING_HOURS_SPECIFICATION_FAILED = 'organization/create-opening-hours-specification-failed',
   CREATE_OPENING_HOURS_SPECIFICATION_FORBIDDEN = 'organization/create-opening-hours-specification-forbidden',
-  OPENING_HOURS_SPECIFICATION_NOT_FOUND = 'organization/opening-hours-specification-not-found',
 
   // CREATE EMPLOYEE
   CREATE_EMPLOYEE_FAILED = 'organization/create-employee-failed',
@@ -73,7 +78,6 @@ export enum OrganizationErr {
   // ADD RIB
   ADD_RIB_FAILED = 'organization/add-rib-failed',
   ADD_RIB_FORBIDDEN = 'organization/add-rib-forbidden',
-  RIB_NOT_FOUND = 'organization/rib-not-found',
 
   // ADD ADDRESS
   ADD_ADDRESS_FAILED = 'organization/add-address-failed',
@@ -211,6 +215,16 @@ export const errors = {
   [OrganizationErr.GET_PUBLIC_ORGANIZATION_BY_SLUG_FORBIDDEN]:
     'Failed to fetch organization by slug. Forbidden access',
 
+  // GET ORGANIZATIONS
+  [OrganizationErr.GET_ORGANIZATIONS_FAILED]: 'Failed to fetch organizations',
+  [OrganizationErr.GET_ORGANIZATIONS_FORBIDDEN]:
+    'Failed to fetch organizations. Forbidden access',
+
+  // GET ORGANIZATION
+  [OrganizationErr.GET_ORGANIZATION_FAILED]: 'Failed to fetch organization',
+  [OrganizationErr.GET_ORGANIZATION_FORBIDDEN]:
+    'Failed to fetch organization. Forbidden access',
+
   // GET RIBs
   [OrganizationErr.GET_RIBS_FAILED]: 'Failed to fetch all organization RIBs',
   [OrganizationErr.GET_RIBS_FORBIDDEN]:
@@ -245,15 +259,11 @@ export const errors = {
     'Failed to create picture from media',
   [OrganizationErr.CREATE_PICTURE_FROM_MEDIA_FORBIDDEN]:
     'Failed to create picture from media. Forbidden access',
-  [OrganizationErr.PICTURE_FROM_MEDIA_NOT_FOUND]:
-    'Failed to reach picture API. Media not found',
 
   // CREATE PICTURE
   [OrganizationErr.CREATE_PICTURE_FAILED]: 'Failed to create picture',
   [OrganizationErr.CREATE_PICTURE_FORBIDDEN]:
     'Failed to create picture. Forbidden access',
-  [OrganizationErr.PICTURE_NOT_FOUND]:
-    'Failed to reach picture API. Picture not found',
 
   // CREATE EMPLOYEE
   [OrganizationErr.CREATE_EMPLOYEE_FAILED]: 'Failed to create employee',
@@ -288,8 +298,6 @@ export const errors = {
     'Failed to create opening hours specification',
   [OrganizationErr.CREATE_OPENING_HOURS_SPECIFICATION_FORBIDDEN]:
     'Failed to create opening hours specification. Forbidden access',
-  [OrganizationErr.OPENING_HOURS_SPECIFICATION_NOT_FOUND]:
-    'Failed to reach opening hours specification API. Opening hours specification not found',
 
   // ADD LOGO
   [OrganizationErr.ADD_LOGO_FAILED]: 'Failed to add logo',
@@ -306,7 +314,6 @@ export const errors = {
   // ADD RIB
   [OrganizationErr.ADD_RIB_FAILED]: 'Failed to add RIB',
   [OrganizationErr.ADD_RIB_FORBIDDEN]: 'Failed to add RIB. Forbidden access',
-  [OrganizationErr.RIB_NOT_FOUND]: 'Failed to add RIB. RIB not found',
 
   // SET COMMUNICATION
   [OrganizationErr.SET_COMMUNICATION_FAILED]: 'Failed to set communication',

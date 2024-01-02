@@ -26,7 +26,7 @@ export const suggestOrganization = async (
   } catch (error) {
     throw getSherlError(
       error,
-      errorFactory.create(OrganizationErr.FETCH_FAILED),
+      errorFactory.create(OrganizationErr.SUGGEST_ORGANIZATION_FAILED),
     );
   }
 };

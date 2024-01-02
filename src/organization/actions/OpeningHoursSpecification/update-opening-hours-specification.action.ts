@@ -31,9 +31,7 @@ export const updateOpeningHoursSpecification = async (
           OrganizationErr.UPDATE_OPENING_HOURS_SPECIFICATION_FORBIDDEN,
         );
       case 404:
-        throw errorFactory.create(
-          OrganizationErr.OPENING_HOURS_SPECIFICATION_NOT_FOUND,
-        );
+        throw errorFactory.create(OrganizationErr.ORGANIZATION_NOT_FOUND);
       default:
         throw errorFactory.create(
           OrganizationErr.UPDATE_OPENING_HOURS_SPECIFICATION_FAILED,

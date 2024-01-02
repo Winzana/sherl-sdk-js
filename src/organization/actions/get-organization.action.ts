@@ -18,14 +18,14 @@ export const getOrganization = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(OrganizationErr.FECTH_FORBIDDEN);
+        throw errorFactory.create(OrganizationErr.GET_ORGANIZATION_FORBIDDEN);
       default:
-        throw errorFactory.create(OrganizationErr.FETCH_FAILED);
+        throw errorFactory.create(OrganizationErr.GET_ORGANIZATION_FAILED);
     }
   } catch (error) {
     throw getSherlError(
       error,
-      errorFactory.create(OrganizationErr.FETCH_FAILED),
+      errorFactory.create(OrganizationErr.GET_ORGANIZATION_FAILED),
     );
   }
 };

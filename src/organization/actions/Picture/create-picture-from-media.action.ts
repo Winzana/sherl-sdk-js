@@ -28,7 +28,7 @@ export const createPictureFromMedia = async (
           OrganizationErr.CREATE_PICTURE_FROM_MEDIA_FORBIDDEN,
         );
       case 404:
-        throw errorFactory.create(OrganizationErr.PICTURE_FROM_MEDIA_NOT_FOUND);
+        throw errorFactory.create(OrganizationErr.ORGANIZATION_NOT_FOUND);
       default:
         throw errorFactory.create(
           OrganizationErr.CREATE_PICTURE_FROM_MEDIA_FAILED,

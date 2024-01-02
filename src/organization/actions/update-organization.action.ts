@@ -33,7 +33,7 @@ export const updateOrganization = async (
   } catch (error) {
     throw getSherlError(
       error,
-      errorFactory.create(OrganizationErr.FETCH_FAILED),
+      errorFactory.create(OrganizationErr.UPDATE_ORGANIZATION_FAILED),
     );
   }
 };
