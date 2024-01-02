@@ -3,6 +3,7 @@ import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { IOrganizationResponse } from '../types';
 import { OrganizationErr, errorFactory } from '../errors';
+import { getSherlError } from '../../common/utils';
 
 /**
  * Retrieves public information about an organization using its slug.
@@ -20,12 +21,26 @@ export const getPublicOrganizationBySlug = async (
       StringUtils.bindContext(endpoints.GET_PUBLIC_ORGANIZATION_SLUG, { slug }),
     );
 
-    if (response.status !== 200) {
-      throw errorFactory.create(OrganizationErr.FETCH_FAILED);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          OrganizationErr.GET_PUBLIC_ORGANIZATION_BY_SLUG_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(OrganizationErr.ORGANIZATION_NOT_FOUND);
+      default:
+        throw errorFactory.create(
+          OrganizationErr.GET_PUBLIC_ORGANIZATION_BY_SLUG_FAILED,
+        );
     }
-
-    return response.data;
   } catch (error) {
-    throw errorFactory.create(OrganizationErr.FETCH_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(
+        OrganizationErr.GET_PUBLIC_ORGANIZATION_BY_SLUG_FAILED,
+      ),
+    );
   }
 };

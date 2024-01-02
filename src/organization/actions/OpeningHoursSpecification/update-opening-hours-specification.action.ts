@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
@@ -31,16 +32,26 @@ export const updateOpeningHoursSpecification = async (
       data,
     );
 
-    if (response.status !== 200) {
-      throw errorFactory.create(
-        OrganizationErr.UPDATE_OPENING_HOURS_SPECIFICATION_FAILED,
-      );
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          OrganizationErr.UPDATE_OPENING_HOURS_SPECIFICATION_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(OrganizationErr.ORGANIZATION_NOT_FOUND);
+      default:
+        throw errorFactory.create(
+          OrganizationErr.UPDATE_OPENING_HOURS_SPECIFICATION_FAILED,
+        );
     }
-
-    return response.data;
-  } catch (err) {
-    throw errorFactory.create(
-      OrganizationErr.UPDATE_OPENING_HOURS_SPECIFICATION_FAILED,
+  } catch (error) {
+    throw getSherlError(
+      error,
+      errorFactory.create(
+        OrganizationErr.UPDATE_OPENING_HOURS_SPECIFICATION_FAILED,
+      ),
     );
   }
 };

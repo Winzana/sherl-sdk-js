@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
@@ -20,12 +21,18 @@ export const getAllRibs = async (
       StringUtils.bindContext(endpoints.GET_RIB, { organizationId }),
     );
 
-    if (response.status !== 200) {
-      throw errorFactory.create(OrganizationErr.GET_RIBS_FAILED);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(OrganizationErr.GET_RIBS_FORBIDDEN);
+      default:
+        throw errorFactory.create(OrganizationErr.GET_RIBS_FAILED);
     }
-
-    return response.data;
-  } catch {
-    throw errorFactory.create(OrganizationErr.FETCH_FAILED);
+  } catch (error) {
+    throw getSherlError(
+      error,
+      errorFactory.create(OrganizationErr.GET_RIBS_FAILED),
+    );
   }
 };

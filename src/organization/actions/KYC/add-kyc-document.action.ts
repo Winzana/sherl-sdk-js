@@ -3,6 +3,7 @@ import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import { StringUtils } from '../../../common/utils/string';
 import { IAddKYCDocument, IKYCDocument } from '../../types';
+import { getSherlError } from '../../../common/utils';
 
 /**
  * Adds a KYC document to a specified organization.
@@ -31,12 +32,20 @@ export const addKycDocument = async (
       },
     );
 
-    if (response.status !== 201) {
-      throw errorFactory.create(OrganizationErr.ADD_DOCUMENT_FAILED);
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(OrganizationErr.ADD_DOCUMENT_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(OrganizationErr.ORGANIZATION_NOT_FOUND);
+      default:
+        throw errorFactory.create(OrganizationErr.ADD_DOCUMENT_FAILED);
     }
-
-    return response.data;
   } catch (error) {
-    throw errorFactory.create(OrganizationErr.ADD_DOCUMENT_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(OrganizationErr.ADD_DOCUMENT_FAILED),
+    );
   }
 };

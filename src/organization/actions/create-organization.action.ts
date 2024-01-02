@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { OrganizationErr, errorFactory } from '../errors';
 import { IOrganizationResponse, ICreateOrganizationInputDto } from '../types';
@@ -20,12 +21,20 @@ export const createOrganization = async (
       organization,
     );
 
-    if (response.status !== 201) {
-      throw errorFactory.create(OrganizationErr.CREATE_ORGANIZATION_FAILED);
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          OrganizationErr.CREATE_ORGANIZATION_FORBIDDEN,
+        );
+      default:
+        throw errorFactory.create(OrganizationErr.CREATE_ORGANIZATION_FAILED);
     }
-
-    return response.data;
   } catch (error) {
-    throw errorFactory.create(OrganizationErr.CREATE_ORGANIZATION_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(OrganizationErr.CREATE_ORGANIZATION_FAILED),
+    );
   }
 };

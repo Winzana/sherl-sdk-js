@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
@@ -17,16 +18,28 @@ export const setCommunication = async (
   organizationId: string,
   communicationInfo: ICommunicationInputDto,
 ): Promise<IOrganizationResponse> => {
-  const response = await fetcher.post<IOrganizationResponse>(
-    StringUtils.bindContext(endpoints.POST_SET_COMMUNICATION, {
-      organizationId,
-    }),
-    communicationInfo,
-  );
+  try {
+    const response = await fetcher.post<IOrganizationResponse>(
+      StringUtils.bindContext(endpoints.POST_SET_COMMUNICATION, {
+        organizationId,
+      }),
+      communicationInfo,
+    );
 
-  if (response.status !== 201) {
-    throw errorFactory.create(OrganizationErr.SET_COMMUNICATION_FAILED);
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(OrganizationErr.SET_COMMUNICATION_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(OrganizationErr.ORGANIZATION_NOT_FOUND);
+      default:
+        throw errorFactory.create(OrganizationErr.SET_COMMUNICATION_FAILED);
+    }
+  } catch (error) {
+    throw getSherlError(
+      error,
+      errorFactory.create(OrganizationErr.SET_COMMUNICATION_FAILED),
+    );
   }
-
-  return response.data;
 };

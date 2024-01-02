@@ -6,11 +6,11 @@ import {
   getPublicOrganization,
   getPublicOrganizationBySlug,
   getPublicOrganizations,
+  getAllRibs,
   addKycDocument,
   updateKycDocument,
   getAllKycDocuments,
   addRib,
-  getAllRibs,
   setCommunication,
   addLogo,
   deleteLogo,
@@ -34,8 +34,6 @@ import {
   deleteAddress,
   createOrganization,
   updateOrganization,
-  disableRoaming,
-  enableRoaming,
   registerOrganizationToPerson,
   registerOrganization,
   suggestOrganization,
@@ -395,24 +393,6 @@ class OrganizationProvider extends AbstractProvider {
    * @see {@link https://winzana.github.io/sherl-sdk-js/docs/organization/#update-organization Sherl SDK documentation} for further information
    */
   public updateOrganization = this.withFetcher(updateOrganization);
-
-  /**
-   * Disables the roaming feature for a specified organization.
-   *
-   * @param {string} organizationId - The unique identifier of the organization for which roaming is being disabled.
-   * @returns {Promise<IOrganizationResponse>} A promise that resolves to the updated organization's information after disabling roaming.
-   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/organization/organization-roaming#disable-roaming Sherl SDK documentation} for further information
-   */
-  public disableRoaming = this.withFetcher(disableRoaming);
-
-  /**
-   * Enables the roaming feature for a specified organization.
-   *
-   * @param {string} organizationId - The unique identifier of the organization for which roaming is being enabled.
-   * @returns {Promise<IOrganizationResponse>} A promise that resolves to the updated organization's information after enabling roaming.
-   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/organization/organization-roaming#enable-roaming Sherl SDK documentation} for further information
-   */
-  public enableRoaming = this.withFetcher(enableRoaming);
 
   /**
    * Registers an organization to a person using the provided data.

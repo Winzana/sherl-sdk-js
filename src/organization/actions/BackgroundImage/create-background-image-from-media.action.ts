@@ -4,6 +4,7 @@ import { StringUtils } from '../../../common/utils/string';
 import { OrganizationErr, errorFactory } from '../../errors';
 import { IOrganizationResponse } from '../../types';
 import { IImageObject } from '../../../media';
+import { getSherlError } from '../../../common/utils';
 
 /**
  * Creates a background image for an organization from a media object.
@@ -29,16 +30,26 @@ export const createBackgroundImageFromMedia = async (
       image,
     );
 
-    if (response.status !== 200) {
-      throw errorFactory.create(
-        OrganizationErr.CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FAILED,
-      );
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          OrganizationErr.CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(OrganizationErr.ORGANIZATION_NOT_FOUND);
+      default:
+        throw errorFactory.create(
+          OrganizationErr.CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FAILED,
+        );
     }
-
-    return response.data;
   } catch (error) {
-    throw errorFactory.create(
-      OrganizationErr.CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FAILED,
+    throw getSherlError(
+      error,
+      errorFactory.create(
+        OrganizationErr.CREATE_BACKGROUND_IMAGE_FROM_MEDIA_FAILED,
+      ),
     );
   }
 };
