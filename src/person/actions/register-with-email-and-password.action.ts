@@ -2,7 +2,7 @@ import { IPerson, IPersonRegister } from '../types';
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { errorFactory, PersonErr } from '../errors';
-import { filterSherlError } from '../../common/utils/error';
+import { getSherlError } from '../../common/utils';
 
 /**
  * Registers a new user with its email and password.
@@ -16,29 +16,25 @@ export const registerWithEmailAndPassword = async (
   data: IPersonRegister,
 ): Promise<IPerson> => {
   try {
-    const response = await fetcher
-      .post<IPerson>(endpoints.REGISTER_WITH_EMAIL_AND_PASSWORD, data)
-      .catch(() => {
-        throw errorFactory.create(PersonErr.POST_FAILED);
-      });
+    const response = await fetcher.post<IPerson>(
+      endpoints.REGISTER_WITH_EMAIL_AND_PASSWORD,
+      data,
+    );
 
     switch (response.status) {
       case 201:
         return response.data;
       case 403:
-        throw errorFactory.create(PersonErr.POST_FORBIDDEN);
-      case 404:
-        throw errorFactory.create(PersonErr.POST_NOT_FOUND);
+        throw errorFactory.create(PersonErr.REGISTER_PERSON_FORBIDDEN);
       case 409:
-        throw errorFactory.create(PersonErr.POST_ALREADY_EXISTS);
+        throw errorFactory.create(PersonErr.PERSON_ALREADY_EXISTS);
       default:
-        throw errorFactory.create(PersonErr.POST_FAILED);
+        throw errorFactory.create(PersonErr.REGISTER_PERSON_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw getSherlError(
       error,
-      errorFactory.create(PersonErr.POST_FAILED),
+      errorFactory.create(PersonErr.REGISTER_PERSON_FAILED),
     );
-    throw filteredError;
   }
 };

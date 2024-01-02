@@ -1,4 +1,5 @@
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { NotificationErr, errorFactory } from '../errors';
 import {
@@ -6,21 +7,38 @@ import {
   INotificationRegistrationResponse,
 } from '../types';
 
+/**
+ * Register a notification.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {INotificationRegistration} notificationRegistration - Data for registering the notification.
+ * @returns {Promise<INotificationRegistrationResponse>} A promise that resolves to an INotificationRegistrationResponse.
+ */
 export const notificationRegistration = async (
   fetcher: Fetcher,
   notificationRegistration: INotificationRegistration,
 ): Promise<INotificationRegistrationResponse> => {
-  const response = await fetcher
-    .post<INotificationRegistrationResponse>(
+  try {
+    const response = await fetcher.post<INotificationRegistrationResponse>(
       endpoints.REGISTRATION,
       notificationRegistration,
-    )
-    .catch((_err) => {
-      throw errorFactory.create(NotificationErr.POST_FAILED);
-    });
-  if (response.status >= 300) {
-    throw errorFactory.create(NotificationErr.POST_FAILED);
+    );
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          NotificationErr.NOTIFICATION_REGISTRATION_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(NotificationErr.NOTIFICATION_NOT_FOUND);
+      default:
+        throw errorFactory.create(NotificationErr.POST_FAILED);
+    }
+  } catch (error) {
+    throw getSherlError(
+      error,
+      errorFactory.create(NotificationErr.POST_FAILED),
+    );
   }
-
-  return response.data;
 };

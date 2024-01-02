@@ -3,7 +3,7 @@ import { endpoints } from '../api/endpoints';
 import { PersonErr, errorFactory } from '../errors';
 import { IPictureRegister } from '../types';
 import { StringUtils } from '../../common/utils/string';
-import { filterSherlError } from '../../common/utils/error';
+import { getSherlError } from '../../common/utils';
 
 /**
  * Adds a picture to a person's profile.
@@ -28,22 +28,17 @@ export const addPersonPicture = async (
     );
 
     switch (response.status) {
-      case 200:
+      case 201:
         return true;
       case 403:
         throw errorFactory.create(PersonErr.ADD_PICTURE_FORBIDDEN);
-      case 404:
-        throw errorFactory.create(PersonErr.ADD_PICTURE_NOT_FOUND);
-      case 409:
-        throw errorFactory.create(PersonErr.ADD_PICTURE_ALREADY_EXISTS);
       default:
         throw errorFactory.create(PersonErr.ADD_PICTURE_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(PersonErr.ADD_PICTURE_FAILED),
     );
-    throw filteredError;
   }
 };

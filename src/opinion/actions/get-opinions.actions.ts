@@ -3,19 +3,34 @@ import { endpoints } from '../api/endpoints';
 import { IOpinion, IOpinionFilters } from '../types';
 import { Pagination } from '../../common/types/response';
 import { OpinionErr, errorFactory } from '../errors';
+import { getSherlError } from '../../common/utils';
 
+/**
+ * Get opinions based on provided filters.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {IOpinionFilters} filters - Filters to apply to the request.
+ * @returns {Promise<Pagination<IOpinion<T, K>>>} A promise that resolves with paginated opinion data.
+ */
 export const getOpinions = async <T, K>(
   fetcher: Fetcher,
   filters: IOpinionFilters,
 ): Promise<Pagination<IOpinion<T, K>>> => {
-  const response = await fetcher.get<Pagination<IOpinion<T, K>>>(
-    endpoints.GET_OPINIONS,
-    filters,
-  );
+  try {
+    const response = await fetcher.get<Pagination<IOpinion<T, K>>>(
+      endpoints.GET_OPINIONS,
+      filters,
+    );
 
-  if (response.status !== 200) {
-    errorFactory.create(OpinionErr.FETCH_FAILED);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(OpinionErr.FETCH_OPINIONS_FORBIDDEN);
+      default:
+        throw errorFactory.create(OpinionErr.FETCH_FAILED);
+    }
+  } catch (error) {
+    throw getSherlError(error, errorFactory.create(OpinionErr.FETCH_FAILED));
   }
-
-  return response.data;
 };

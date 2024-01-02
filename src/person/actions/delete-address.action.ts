@@ -3,7 +3,7 @@ import { endpoints } from '../api/endpoints';
 import { PersonErr, errorFactory } from '../errors';
 import { StringUtils } from '../../common/utils/string';
 import { IPerson } from '../types';
-import { filterSherlError } from '../../common/utils/error';
+import { getSherlError } from '../../common/utils';
 
 /**
  * Deletes an address record associated with a given ID.
@@ -17,13 +17,9 @@ export const deleteAddress = async (
   id: string,
 ): Promise<IPerson> => {
   try {
-    const response = await fetcher
-      .delete<IPerson>(
-        StringUtils.bindContext(endpoints.DELETE_ADDRESS, { id }),
-      )
-      .catch(() => {
-        throw errorFactory.create(PersonErr.DELETE_ADDRESS_FAILED);
-      });
+    const response = await fetcher.delete<IPerson>(
+      StringUtils.bindContext(endpoints.DELETE_ADDRESS, { id }),
+    );
 
     switch (response.status) {
       case 200:
@@ -31,15 +27,14 @@ export const deleteAddress = async (
       case 403:
         throw errorFactory.create(PersonErr.DELETE_ADDRESS_FORBIDDEN);
       case 404:
-        throw errorFactory.create(PersonErr.DELETE_ADDRESS_NOT_FOUND);
+        throw errorFactory.create(PersonErr.ADDRESS_NOT_FOUND);
       default:
         throw errorFactory.create(PersonErr.DELETE_ADDRESS_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw getSherlError(
       error,
       errorFactory.create(PersonErr.DELETE_ADDRESS_FAILED),
     );
-    throw filteredError;
   }
 };

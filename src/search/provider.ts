@@ -8,6 +8,13 @@ class SearchProvider extends AbstractProvider {
     super(client, errorFactory);
   }
 
+  /**
+   * Fetches autocomplete search results from the public API.
+   *
+   * @param {ISearchFilters} filters - Optional filters to apply to the search.
+   * @return {Promise<ISearchResult>} The search result data.
+   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/search#public-search Sherl SDK documentation} for further information
+   */
   getPublicSearchAutocomplete = this.withFetcher(getPublicSearchAutocomplete);
 }
 

@@ -2,7 +2,8 @@ import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { ApiResponse } from '../../common';
 import { IConfig } from '../../config/types';
-import { filterSherlError } from '../../common/utils/error';
+import { errorFactory, PersonErr } from '../errors';
+import { getSherlError } from '../../common/utils';
 
 /**
  * Retrieves a list of configuration settings from the API.
@@ -20,19 +21,14 @@ export const getConfigs = async (fetcher: Fetcher): Promise<IConfig[]> => {
       case 200:
         return response.data;
       case 403:
-        throw new Error(`Access denied to API (status: ${response.status})`);
-      case 404:
-        throw new Error(`Page not found (status: ${response.status})`);
+        throw errorFactory.create(PersonErr.GET_CONFIGS_FORBIDDEN);
       default:
-        throw new Error(
-          `Failed to fetch products API (status: ${response.status})`,
-        );
+        throw errorFactory.create(PersonErr.GET_CONFIGS_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
+    throw getSherlError(
       error,
-      Error(`Failed to fetch API (error: ${error})`),
+      errorFactory.create(PersonErr.GET_CONFIGS_FAILED),
     );
-    throw filteredError;
   }
 };

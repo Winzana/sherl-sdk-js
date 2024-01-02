@@ -3,7 +3,8 @@ import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { IPerson } from '../types';
 import { ApiResponse } from '../../common';
-import { filterSherlError } from '../../common/utils/error';
+import { PersonErr, errorFactory } from '../errors';
+import { getSherlError } from '../../common/utils';
 
 /**
  * Retrieves the information of a person by its unique identifier.
@@ -27,17 +28,11 @@ export const getPersonById = async (
       case 200:
         return response.data;
       case 403:
-        throw new Error(`Access denied to API (status: ${response.status})`);
-      case 404:
-        throw new Error(`Page not found (status: ${response.status})`);
+        throw errorFactory.create(PersonErr.FETCH_FORBIDDEN);
       default:
-        throw new Error('Empty response from API');
+        throw errorFactory.create(PersonErr.FETCH_FAILED);
     }
   } catch (error) {
-    const filteredError = filterSherlError(
-      error,
-      Error(`Failed to fetch API (error: ${error})`),
-    );
-    throw filteredError;
+    throw getSherlError(error, errorFactory.create(PersonErr.FETCH_FAILED));
   }
 };

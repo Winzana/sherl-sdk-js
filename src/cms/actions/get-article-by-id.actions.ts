@@ -3,7 +3,14 @@ import { endpoints } from '../api/endpoints';
 import { CmsErr, errorFactory } from '../errors';
 import { IArticle } from '../types';
 import { StringUtils } from '../../common/utils/string';
-
+import { getSherlError } from '../../common/utils';
+/**
+ * Get an article by its unique identifier.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {string} id - The unique identifier of the article to be retrieved.
+ * @returns {Promise<IArticle>} A promise that resolves to the retrieved article information.
+ */
 export const getArticleById = async (
   fetcher: Fetcher,
   id: string,
@@ -13,12 +20,20 @@ export const getArticleById = async (
       StringUtils.bindContext(endpoints.MANAGE_POSTS, { id }),
     );
 
-    if (response.status !== 200) {
-      throw errorFactory.create(CmsErr.CMS_GET_BY_ID_FAILED);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(CmsErr.CMS_GET_BY_ID_FAILED_POST_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(CmsErr.ARTICLE_NOT_FOUND);
+      default:
+        throw errorFactory.create(CmsErr.CMS_GET_BY_ID_FAILED);
     }
-
-    return response.data;
   } catch (error) {
-    throw errorFactory.create(CmsErr.CMS_GET_BY_ID_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(CmsErr.CMS_GET_BY_ID_FAILED),
+    );
   }
 };
