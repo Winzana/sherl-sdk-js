@@ -5,6 +5,13 @@ import { Pagination } from '../../common/types/response';
 import { OpinionErr, errorFactory } from '../errors';
 import { getSherlError } from '../../common/utils';
 
+/**
+ * Get public opinions based on provided filters.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {IOpinionFilters} filters - Filters to apply to the request.
+ * @returns {Promise<Pagination<IOpinion<T, K>>>} A promise that resolves with paginated public opinion data.
+ */
 export const getPublicOpinions = async <T, K>(
   fetcher: Fetcher,
   filters: IOpinionFilters,

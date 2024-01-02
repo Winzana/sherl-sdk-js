@@ -5,6 +5,13 @@ import { IArticle } from '../types';
 import { StringUtils } from '../../common/utils/string';
 import { getSherlError } from '../../common/utils';
 
+/**
+ * Get a public article by its unique identifier.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {string} id - The unique identifier of the public article to be retrieved.
+ * @returns {Promise<IArticle>} A promise that resolves to the retrieved public article information.
+ */
 export const getPublicArticleById = async (
   fetcher: Fetcher,
   id: string,

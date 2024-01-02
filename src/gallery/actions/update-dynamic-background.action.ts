@@ -5,6 +5,14 @@ import { endpoints } from '../api/endpoints';
 import { GalleryErr, errorFactory } from '../errors';
 import { ICreateDynamicBackgroundInputDto, IDynamicBackground } from '../types';
 
+/**
+ * Updates a dynamic background.
+ *
+ * @param {Fetcher} fetcher - The fetcher object used to make HTTP requests.
+ * @param {string} dynamicBackgroundId - The ID of the dynamic background to update.
+ * @param {Partial<ICreateDynamicBackgroundInputDto>} dynamicBackground - The partial dynamic background object with the updated values.
+ * @return {Promise<IDynamicBackground>} The updated dynamic background.
+ */
 export const updateDynamicBackground = async (
   fetcher: Fetcher,
   dynamicBackgroundId: string,

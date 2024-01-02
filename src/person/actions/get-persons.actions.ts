@@ -3,6 +3,8 @@ import { endpoints } from '../api/endpoints';
 import { IPerson } from '../types';
 import { IPersonFilters } from '../types';
 import { Pagination } from '../../common/types/response';
+import { PersonErr, errorFactory } from '../errors';
+import { getSherlError } from '../../common/utils';
 
 export const getPersons = async (
   fetcher: Fetcher,
@@ -10,20 +12,27 @@ export const getPersons = async (
   itemsPerPage = 10,
   filters: IPersonFilters,
 ): Promise<Pagination<IPerson>> => {
-  const response = await fetcher.get<Pagination<IPerson>>(
-    endpoints.GET_PERSONS,
-    {
-      page,
-      itemsPerPage,
-      ...filters,
-    },
-  );
-
-  if (response.status !== 200) {
-    throw new Error(
-      `Failed to fetch products API (status: ${response.status})`,
+  try {
+    const response = await fetcher.get<Pagination<IPerson>>(
+      endpoints.GET_PERSONS,
+      {
+        page,
+        itemsPerPage,
+        ...filters,
+      },
+    );
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(PersonErr.FETCH_PERSONS_FORBIDDEN);
+      default:
+        throw errorFactory.create(PersonErr.FETCH_PERSONS_FAILED);
+    }
+  } catch (error) {
+    throw getSherlError(
+      error,
+      errorFactory.create(PersonErr.FETCH_PERSONS_FAILED),
     );
   }
-
-  return response.data;
 };

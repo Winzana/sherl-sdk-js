@@ -4,6 +4,13 @@ import { CmsErr, errorFactory } from '../errors';
 import { IArticle } from '../types';
 import { StringUtils } from '../../common/utils/string';
 import { getSherlError } from '../../common/utils';
+/**
+ * Delete an article by its unique identifier.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {string} id - The unique identifier of the article to be deleted.
+ * @returns {Promise<IArticle>} A promise that resolves to the deleted article information.
+ */
 
 export const deleteArticleById = async (
   fetcher: Fetcher,

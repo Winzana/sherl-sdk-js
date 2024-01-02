@@ -5,6 +5,13 @@ import { endpoints } from '../api/endpoints';
 import { GalleryErr, errorFactory } from '../errors';
 import { IGallery } from '../types';
 
+/**
+ * Deletes a gallery.
+ *
+ * @param {Fetcher} fetcher - the fetcher object used to make API requests
+ * @param {string} galleryId - the ID of the gallery to be deleted
+ * @return {Promise<IGallery>} a promise that resolves to the deleted gallery
+ */
 export const deleteGallery = async (
   fetcher: Fetcher,
   galleryId: string,

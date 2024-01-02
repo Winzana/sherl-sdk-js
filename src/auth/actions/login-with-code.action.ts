@@ -4,6 +4,13 @@ import { endpoints } from '../api/endpoints';
 import { AuthErr, errorFactory } from '../errors';
 import { ILoginResponse } from '../types';
 
+/**
+ * Log in using a code.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {string} code - The code used for authentication.
+ * @returns {Promise<ILoginResponse>} A promise that resolves to an ILoginResponse containing authentication tokens.
+ */
 export const loginWithCode = async (
   fetcher: Fetcher,
   code: string,

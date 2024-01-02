@@ -5,6 +5,13 @@ import { IArticle } from '../types';
 import { StringUtils } from '../../common/utils/string';
 import { getSherlError } from '../../common/utils';
 
+/**
+ * Delete a media page in the CMS.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {string} id - The unique identifier of the media page to be deleted.
+ * @returns {Promise<IArticle>} A promise that resolves to the deleted media page information.
+ */
 export const deleteMediaPage = async (
   fetcher: Fetcher,
   id: string,

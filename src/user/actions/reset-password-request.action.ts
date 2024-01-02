@@ -3,7 +3,13 @@ import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { errorFactory, UserErr } from '../errors';
 import { IResetPasswordRequestDto } from '../types';
-
+/**
+ * Send a request to reset the user's password.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {IResetPasswordRequestDto} data - The data for the password reset request.
+ * @returns {Promise<boolean>} A promise that resolves to true if the request is successful.
+ */
 export const resetPasswordRequest = async (
   fetcher: Fetcher,
   data: IResetPasswordRequestDto,

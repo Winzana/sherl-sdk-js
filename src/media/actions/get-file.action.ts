@@ -5,6 +5,13 @@ import { endpoints } from '../api/endpoints';
 import { MediaErr, errorFactory } from '../errors';
 import { IImageObject, IMediaQuery } from '../types';
 
+/**
+ * Get a media file by its query parameters.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {IMediaQuery} query - Query parameters used to specify the media file to retrieve.
+ * @returns {Promise<IImageObject>} A promise that resolves to the retrieved media file as an IImageObject.
+ */
 export const getFile = async (
   fetcher: Fetcher,
   query: IMediaQuery,

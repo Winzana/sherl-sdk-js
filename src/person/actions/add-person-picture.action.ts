@@ -3,6 +3,7 @@ import { endpoints } from '../api/endpoints';
 import { PersonErr, errorFactory } from '../errors';
 import { IPictureRegister } from '../types';
 import { StringUtils } from '../../common/utils/string';
+import { getSherlError } from '../../common/utils';
 
 export const addPersonPicture = async (
   fetcher: Fetcher,
@@ -18,12 +19,19 @@ export const addPersonPicture = async (
       }),
       form,
     );
-    if (response.status !== 201) {
-      throw errorFactory.create(PersonErr.CREATE_PERSON_FAILED);
-    }
 
-    return true;
+    switch (response.status) {
+      case 201:
+        return true;
+      case 403:
+        throw errorFactory.create(PersonErr.ADD_PICTURE_FORBIDDEN);
+      default:
+        throw errorFactory.create(PersonErr.ADD_PICTURE_FAILED);
+    }
   } catch (error) {
-    throw errorFactory.create(PersonErr.CREATE_PERSON_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(PersonErr.ADD_PICTURE_FAILED),
+    );
   }
 };
