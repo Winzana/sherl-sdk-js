@@ -18,19 +18,15 @@ export const registerOrganization = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_FORBIDDEN,
+          OrganizationErr.REGISTER_ORGANIZATION_FORBIDDEN,
         );
       default:
-        throw errorFactory.create(
-          OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_FAILED,
-        );
+        throw errorFactory.create(OrganizationErr.REGISTER_ORGANIZATION_FAILED);
     }
   } catch (error) {
     throw getSherlError(
       error,
-      errorFactory.create(
-        OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_FAILED,
-      ),
+      errorFactory.create(OrganizationErr.REGISTER_ORGANIZATION_FAILED),
     );
   }
 };

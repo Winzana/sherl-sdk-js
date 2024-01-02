@@ -20,16 +20,20 @@ export const getPublicOrganization = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(OrganizationErr.FECTH_FORBIDDEN);
+        throw errorFactory.create(
+          OrganizationErr.GET_PUBLIC_ORGANIZATION_FORBIDDEN,
+        );
       case 404:
-        throw errorFactory.create(OrganizationErr.NOT_FOUND);
+        throw errorFactory.create(OrganizationErr.ORGANIZATION_NOT_FOUND);
       default:
-        throw errorFactory.create(OrganizationErr.FETCH_FAILED);
+        throw errorFactory.create(
+          OrganizationErr.GET_PUBLIC_ORGANIZATION_FAILED,
+        );
     }
   } catch (error) {
     throw getSherlError(
       error,
-      errorFactory.create(OrganizationErr.FETCH_FAILED),
+      errorFactory.create(OrganizationErr.GET_PUBLIC_ORGANIZATION_FAILED),
     );
   }
 };

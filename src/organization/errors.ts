@@ -6,6 +6,18 @@ export enum OrganizationErr {
   NOT_FOUND = 'organization/not-found',
   FECTH_FORBIDDEN = 'organization/forbidden',
 
+  // GET PUBLIC ORGANIZATION
+  GET_PUBLIC_ORGANIZATION_FAILED = 'organization/get-public-organization-failed',
+  GET_PUBLIC_ORGANIZATION_FORBIDDEN = 'organization/get-public-organization-forbidden',
+
+  // GET PUBLIC ORGANIZATIONS
+  GET_PUBLIC_ORGANIZATIONS_FAILED = 'organization/get-public-organizations-failed',
+  GET_PUBLIC_ORGANIZATIONS_FORBIDDEN = 'organization/get-public-organizations-forbidden',
+
+  // GET ORGANIZATION BY SLUG
+  GET_PUBLIC_ORGANIZATION_BY_SLUG_FAILED = 'organization/get-public-organization-by-slug-failed',
+  GET_PUBLIC_ORGANIZATION_BY_SLUG_FORBIDDEN = 'organization/get-public-organization-by-slug-forbidden',
+
   // GET RIBS
   GET_RIBS_FAILED = 'organization/fetch-documents-failed',
   GET_RIBS_FORBIDDEN = 'organization/fetch-documents-forbidden',
@@ -74,6 +86,7 @@ export enum OrganizationErr {
 
   // REGISTER ORGANIZATION
   REGISTER_ORGANIZATION_FAILED = 'organization/register-organization-failed',
+  REGISTER_ORGANIZATION_FORBIDDEN = 'organization/register-organization-forbidden',
 
   // REGISTER ORGANIZATION TO PERSON
   REGISTER_ORGANIZATION_TO_PERSON_FAILED = 'organization/register-organization-to-person-failed',
@@ -93,7 +106,6 @@ export enum OrganizationErr {
   // UPDATE ORGANIZATION
   UPDATE_ORGANIZATION_FAILED = 'organization/update-organization-failed',
   UPDATE_ORGANIZATION_FORBIDDEN = 'organization/update-organization-forbidden',
-  UPDATE_ORGANIZATION_NOT_FOUND = 'organization/update-organization-not-found',
 
   // UPDATE ADDRESS
   UPDATE_ADDRESS_FAILED = 'organization/update-address-failed',
@@ -165,8 +177,6 @@ export const errors = {
   // UNUSED
   [OrganizationErr.ADD_KYC_FAILED]: 'Failed to add KYC',
   [OrganizationErr.ADD_ADDRESS_FAILED]: 'Failed to add address',
-  [OrganizationErr.REGISTER_ORGANIZATION_FAILED]:
-    'Failed to register organization',
   [OrganizationErr.UPDATE_IS_PUBLIC_ORGANIZATION_FAILED]:
     'Failed to update isPublic organization',
   [OrganizationErr.UPDATE_THIRD_PARTY_FAILED]: 'Failed to update third party',
@@ -182,6 +192,24 @@ export const errors = {
   [OrganizationErr.FECTH_FORBIDDEN]:
     'Failed to fetch organization API. Forbidden access',
   [OrganizationErr.NOT_FOUND]: 'Failed to fetch organization. Page not found',
+
+  // GET PUBLIC ORGANIZATION
+  [OrganizationErr.GET_PUBLIC_ORGANIZATION_FAILED]:
+    'Failed to fetch public organization',
+  [OrganizationErr.GET_PUBLIC_ORGANIZATION_FORBIDDEN]:
+    'Failed to fetch public organization. Forbidden access',
+
+  // GET PUBLIC ORGANIZATIONS
+  [OrganizationErr.GET_PUBLIC_ORGANIZATIONS_FAILED]:
+    'Failed to fetch public organizations',
+  [OrganizationErr.GET_PUBLIC_ORGANIZATIONS_FORBIDDEN]:
+    'Failed to fetch public organizations. Forbidden access',
+
+  // GET ORGANIZATION BY SLUG
+  [OrganizationErr.GET_PUBLIC_ORGANIZATION_BY_SLUG_FAILED]:
+    'Failed to fetch organization by slug',
+  [OrganizationErr.GET_PUBLIC_ORGANIZATION_BY_SLUG_FORBIDDEN]:
+    'Failed to fetch organization by slug. Forbidden access',
 
   // GET RIBs
   [OrganizationErr.GET_RIBS_FAILED]: 'Failed to fetch all organization RIBs',
@@ -241,6 +269,12 @@ export const errors = {
   [OrganizationErr.FOUNDER_NOT_FOUND]:
     'Failed to reach founder API. Founder not found',
 
+  // REGISTER ORGANIZATION
+  [OrganizationErr.REGISTER_ORGANIZATION_FAILED]:
+    'Failed to register organization',
+  [OrganizationErr.REGISTER_ORGANIZATION_FORBIDDEN]:
+    'Failed to register organization. Forbidden access',
+
   // REGISTER ORGANIZATION TO PERSON
   [OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_FAILED]:
     'Failed to register organization to person',
@@ -284,8 +318,6 @@ export const errors = {
   // UPDATE ORGANIZATION
   [OrganizationErr.UPDATE_ORGANIZATION_FAILED]: 'Failed to update organization',
   [OrganizationErr.UPDATE_ORGANIZATION_FORBIDDEN]:
-    'Failed to update organization',
-  [OrganizationErr.UPDATE_ORGANIZATION_NOT_FOUND]:
     'Failed to update organization',
 
   // UPDATE EMPLOYEE

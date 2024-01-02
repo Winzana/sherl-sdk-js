@@ -26,9 +26,7 @@ export const updateOrganization = async (
           OrganizationErr.UPDATE_ORGANIZATION_FORBIDDEN,
         );
       case 404:
-        throw errorFactory.create(
-          OrganizationErr.UPDATE_ORGANIZATION_NOT_FOUND,
-        );
+        throw errorFactory.create(OrganizationErr.ORGANIZATION_NOT_FOUND);
       default:
         throw errorFactory.create(OrganizationErr.UPDATE_ORGANIZATION_FAILED);
     }
