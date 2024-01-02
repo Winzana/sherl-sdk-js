@@ -185,6 +185,7 @@ class ShopProvider extends AbstractProvider {
 
   /**
    * Retrieves the total number of views for a specific product identified by its unique ID.
+   * Need `Analytics` domain to be used
    *
    * @param {string} productId - The unique identifier of the product whose views count is being retrieved.
    * @returns {Promise<number>} A promise that resolves to the number representing the total views of the product.
@@ -194,6 +195,7 @@ class ShopProvider extends AbstractProvider {
 
   /**
    * Increments the view count for a specific product identified by its unique ID.
+   * Need `Analytics` domain to be used
    *
    * @param {string} productId - The unique identifier of the product whose view count is being incremented.
    * @returns {Promise<number>} A promise that resolves to the updated view count of the product.
@@ -203,6 +205,7 @@ class ShopProvider extends AbstractProvider {
 
   /**
    * Retrieves the total number of 'likes' for a specific product identified by its unique ID.
+   * Need `Analytics` domain to be used
    *
    * @param {string} productId - The unique identifier of the product whose 'likes' count is being retrieved.
    * @returns {Promise<number>} A promise that resolves to the number representing the total 'likes' for the product.
@@ -212,6 +215,7 @@ class ShopProvider extends AbstractProvider {
 
   /**
    * Adds a 'like' to a specific product identified by its unique ID.
+   * Need `Analytics` domain to be used
    *
    * @param {string} productId - The unique identifier of the product to receive the 'like'.
    * @returns {Promise<number>} A promise that resolves to the updated count of 'likes' for the product.
