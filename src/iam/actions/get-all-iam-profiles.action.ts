@@ -2,9 +2,15 @@ import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { IIamProfilesFilters, IProfile } from '../types';
 import { errorFactory, IamErr } from '../errors';
-import { SherlError } from '../../common';
 import { getSherlError } from '../../common/utils/errors';
 
+/**
+ * Get all IAM profiles based on the provided filters.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {IIamProfilesFilters} filters - Filters to apply when fetching IAM profiles.
+ * @returns {Promise<IProfile[]>} A promise that resolves to an array of IProfile objects.
+ */
 export const getAllIamProfiles = async (
   fetcher: Fetcher,
   filters: IIamProfilesFilters,

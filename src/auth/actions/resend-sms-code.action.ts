@@ -3,6 +3,13 @@ import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { AuthErr, errorFactory } from '../errors';
 
+/**
+ * Resend an SMS verification code to the provided mobile phone number.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {string} mobilePhoneNumber - The mobile phone number to which the SMS code should be resent.
+ * @returns {Promise<boolean>} A promise that resolves to a boolean indicating the success of the resend operation.
+ */
 export const resendSMSCode = async (
   fetcher: Fetcher,
   mobilePhoneNumber: string,

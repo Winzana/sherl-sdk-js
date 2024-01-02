@@ -5,6 +5,14 @@ import { endpoints } from '../api/endpoints';
 import { VirtualMoneyErr, errorFactory } from '../errors';
 import { IWalletHistorical } from '../types';
 
+/**
+ * Retrieves a specific historical record of a wallet using wallet and historical IDs.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} walletId - The unique identifier of the wallet.
+ * @param {string} historicalId - The unique identifier of the historical record to be retrieved.
+ * @returns {Promise<IWalletHistorical>} A promise that resolves to the detailed information of the specified wallet historical record.
+ */
 export const getWalletHistorical = async (
   fetcher: Fetcher,
   walletId: string,

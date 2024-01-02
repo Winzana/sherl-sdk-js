@@ -5,6 +5,13 @@ import { StringUtils } from '../../common/utils/string';
 import { OpinionErr, errorFactory } from '../errors';
 import { getSherlError } from '../../common/utils';
 
+/**
+ * Create an opinion.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {ICreateOpinionInput} opinion - The input data for creating the opinion.
+ * @returns {Promise<IOpinion<T, K>>} A promise that resolves with the created opinion data.
+ */
 export const createOpinion = async <T, K>(
   fetcher: Fetcher,
   opinion: ICreateOpinionInput,

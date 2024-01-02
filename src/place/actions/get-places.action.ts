@@ -5,6 +5,16 @@ import { Pagination } from '../../common';
 import { PlaceErr, errorFactory } from '../errors';
 import { getSherlError } from '../../common/utils';
 
+/**
+ * Retrieves a paginated list of places based on the provided filters.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used to make API requests.
+ * @param {number} page - The page number of the paginated results (default: 1).
+ * @param {number} itemsPerPage - The number of items per page in the paginated results (default: 10).
+ * @param {Object} filters - An object containing filters to apply to the query.
+ * @returns {Promise<Pagination<IPlace>>} A promise that resolves to a paginated list of places.
+ * @throws {Error} If the API request fails or returns an unexpected response.
+ */
 export const getPlaces = async (
   fetcher: Fetcher,
   page = 1,

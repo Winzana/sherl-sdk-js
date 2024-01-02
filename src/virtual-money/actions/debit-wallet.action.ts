@@ -4,6 +4,14 @@ import { endpoints } from '../api/endpoints';
 import { VirtualMoneyErr, errorFactory } from '../errors';
 import { ITransferWalletInputDto, IWallet } from '../types';
 
+/**
+ * Debits a specified amount or transaction from a wallet.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} walletId - The unique identifier of the wallet to be debited.
+ * @param {ITransferWalletInputDto} data - The data for the debit transaction.
+ * @returns {Promise<IWallet>} A promise that resolves to the updated wallet's information after the debit operation.
+ */
 export const debitWallet = async (
   fetcher: Fetcher,
   walletId: string,

@@ -5,6 +5,15 @@ import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import { IAddressRequest, IOrganizationResponse } from '../../types';
 
+/**
+ * Updates an address of an organization specified by IDs.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} organizationId - The unique identifier of the organization whose address is being updated.
+ * @param {string} addressId - The unique identifier of the address to be updated.
+ * @param {IAddressRequest} request - The updated address details.
+ * @returns {Promise<IOrganizationResponse>} A promise that resolves to the updated organization's information after the address update.
+ */
 export const updateAddress = async (
   fetcher: Fetcher,
   organizationId: string,

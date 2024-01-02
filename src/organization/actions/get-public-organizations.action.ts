@@ -5,6 +5,13 @@ import { Pagination } from '../../common/types/response';
 import { OrganizationErr, errorFactory } from '../errors';
 import { getSherlError } from '../../common/utils';
 
+/**
+ * Retrieves a paginated list of public organizations based on provided filters.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {OrganizationFiltersDto} filters - The filtering criteria to apply to the list of public organizations.
+ * @returns {Promise<Pagination<IOrganizationResponse>>} A promise that resolves to a paginated response containing the list of public organizations.
+ */
 export const getPublicOrganizations = async (
   fetcher: Fetcher,
   filters: OrganizationFiltersDto,

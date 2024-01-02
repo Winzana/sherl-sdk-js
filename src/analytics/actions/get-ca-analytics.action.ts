@@ -4,6 +4,13 @@ import { endpoints } from '../api/endpoint';
 import { AnalyticsErr, errorFactory } from '../errors';
 import { IAnalyticResponse, ICAAnalyticsInputDto } from '../types';
 
+/**
+ * Get Customer Analytics (CA) data.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {ICAAnalyticsInputDto} filters - Filters for the CA analytics data (optional).
+ * @returns {Promise<IAnalyticResponse[]>} A promise that resolves to an array of CA analytics data.
+ */
 export const getCAAnalytics = async (
   fetcher: Fetcher,
   filters?: ICAAnalyticsInputDto,

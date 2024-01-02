@@ -6,6 +6,16 @@ import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import { IKYCDocument } from '../../types';
 
+/**
+ * Updates a specific KYC document for an organization.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} organizationId - The unique identifier of the organization to which the KYC document belongs.
+ * @param {string} kycId - The unique identifier of the KYC document to be updated.
+ * @param {IImageObject} document - The updated KYC document details.
+ * @param {(progressEvent: any) => void} [onUploadProgress] - Optional callback to monitor the progress of the upload.
+ * @returns {Promise<IKYCDocument>} A promise that resolves to the information of the updated KYC document.
+ */
 export const updateKycDocument = async (
   fetcher: Fetcher,
   organizationId: string,

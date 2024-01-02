@@ -8,6 +8,15 @@ import {
   IOpeningHoursSpecificationInputDto,
 } from '../../types';
 
+/**
+ * Updates an opening hours specification for a specified organization.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} organizationId - The unique identifier of the organization whose opening hours specification is being updated.
+ * @param {string} hoursSpecId - The unique identifier of the opening hours specification to be updated.
+ * @param {IOpeningHoursSpecificationInputDto} data - The updated opening hours details.
+ * @returns {Promise<IOrganizationResponse>} A promise that resolves to the updated organization's information after the update of the opening hours specification.
+ */
 export const updateOpeningHoursSpecification = async (
   fetcher: Fetcher,
   organizationId: string,

@@ -6,6 +6,13 @@ import { errorFactory, NotificationErr } from '../errors';
 import { ISearchResult } from '../../common';
 import { getSherlError } from '../../common/utils';
 
+/**
+ * Get a list of notifications based on specified filters.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {INotificationFilters} filters - Filters to apply when fetching notifications.
+ * @returns {Promise<ISearchResult<INotification>>} A promise that resolves to an ISearchResult containing the list of notifications.
+ */
 export const getNotifications = async (
   fetcher: Fetcher,
   filters: INotificationFilters,

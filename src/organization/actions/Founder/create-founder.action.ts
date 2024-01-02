@@ -5,6 +5,14 @@ import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import { ICreateFounderDto, IFounder } from '../../types';
 
+/**
+ * Creates a new founder record for a specified organization.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} organizationId - The unique identifier of the organization to which the founder is being added.
+ * @param {ICreateFounderDto} founder - The details of the founder to be added.
+ * @returns {Promise<IFounder>} A promise that resolves to the information of the newly created founder.
+ */
 export const createFounder = async (
   fetcher: Fetcher,
   organizationId: string,

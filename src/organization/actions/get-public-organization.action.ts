@@ -5,6 +5,13 @@ import { IOrganizationResponse } from '../types';
 import { OrganizationErr, errorFactory } from '../errors';
 import { getSherlError } from '../../common/utils';
 
+/**
+ * Retrieves public information about an organization using its unique ID.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} organizationId - The unique identifier of the public organization to be retrieved.
+ * @returns {Promise<IOrganizationResponse>} A promise that resolves to the public information of the specified organization.
+ */
 export const getPublicOrganization = async (
   fetcher: Fetcher,
   organizationId: string,
