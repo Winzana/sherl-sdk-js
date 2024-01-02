@@ -3,6 +3,13 @@ import { endpoints } from '../../api/endpoints';
 import { ProductErr, errorFactory } from '../../errors/product/errors';
 import { IAddCommentOnProductDto, IComment } from '../../types';
 
+/**
+ * Adds a comment on a specific product.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {IAddCommentOnProductDto} productComment - The details of the comment to be added to the product.
+ * @returns {Promise<IComment>} A promise that resolves to the information of the newly added comment.
+ */
 export const addCommentOnProduct = async (
   fetcher: Fetcher,
   productComment: IAddCommentOnProductDto,

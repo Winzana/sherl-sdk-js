@@ -4,6 +4,14 @@ import { endpoints } from '../../api/endpoints';
 import { LoyalityErr, errorFactory } from '../../errors/loyalty/errors';
 import { ILoyaltyCard, IShopLoyaltyCardUpdateInputDto } from '../../types';
 
+/**
+ * Updates an existing loyalty card with provided details.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} cardId - The unique identifier of the loyalty card to be updated.
+ * @param {IShopLoyaltyCardUpdateInputDto} updatedCard - The details of the loyalty card to be updated.
+ * @returns {Promise<ILoyaltyCard>} A promise that resolves to the information of the updated loyalty card.
+ */
 export const updateLoyaltyCard = async (
   fetcher: Fetcher,
   cardId: string,

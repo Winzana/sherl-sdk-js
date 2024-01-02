@@ -6,6 +6,13 @@ import {
   IShopProductCategoryCreateInputDto,
 } from '../../types';
 
+/**
+ * Adds a new product category to an organization.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {IShopProductCategoryCreateInputDto} category - The details of the category to be added to the organization.
+ * @returns {Promise<ICategoryResponse>} A promise that resolves to the information of the newly added category.
+ */
 export const addCategoryToOrganization = async (
   fetcher: Fetcher,
   category: IShopProductCategoryCreateInputDto,

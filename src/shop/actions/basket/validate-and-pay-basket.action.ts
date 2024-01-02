@@ -9,6 +9,13 @@ const ERRORS_BY_CODE = {
   462: OrderErr.BASKET_ALREADY_PAYED,
 };
 
+/**
+ * Validates and processes payment for the current shopping basket.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {IShopBasketValidateAndPayDto} validation - The validation and payment details for the basket.
+ * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the updated order after validation and payment.
+ */
 export const validateAndPayBasket = async (
   fetcher: Fetcher,
   validation: IShopBasketValidateAndPayDto,

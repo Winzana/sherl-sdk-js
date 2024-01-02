@@ -4,6 +4,13 @@ import { IOrderFindByDto, IOrderResponse } from '../../types';
 import { Pagination } from '../../../common/types/response';
 import { OrderErr, errorFactory } from '../../errors/order/errors';
 
+/**
+ * Retrieves a paginated list of orders based on provided filter criteria.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {IOrderFindByDto} filters - The filter criteria used to query the orders.
+ * @returns {Promise<Pagination<IOrderResponse>>} A promise that resolves to a paginated response containing the list of orders based on the provided filters.
+ */
 export const getOrders = async (
   fetcher: Fetcher,
   filters: IOrderFindByDto,

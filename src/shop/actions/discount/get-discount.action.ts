@@ -4,6 +4,13 @@ import { endpoints } from '../../api/endpoints';
 import { IDiscount } from '../../types';
 import { DiscountErr, errorFactory } from '../../errors/discount/errors';
 
+/**
+ * Retrieves a specific discount by its unique ID.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} id - The unique identifier of the discount to be retrieved.
+ * @returns {Promise<IDiscount>} A promise that resolves to the information of the specified discount.
+ */
 export const getDiscount = async (
   fetcher: Fetcher,
   id: string,

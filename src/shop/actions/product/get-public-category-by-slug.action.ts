@@ -2,6 +2,13 @@ import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
 import { IPublicCategoryResponse } from '../../types';
 
+/**
+ * Retrieves a specific public product category identified by its slug.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} slug - The slug identifier of the public category to be retrieved.
+ * @returns {Promise<IPublicCategoryResponse>} A promise that resolves to the detailed information of the specified public category.
+ */
 export const getPublicCategoryBySlug = async (
   fetcher: Fetcher,
   slug: string,
