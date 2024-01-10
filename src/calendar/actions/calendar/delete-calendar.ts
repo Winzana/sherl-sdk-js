@@ -27,7 +27,7 @@ export const deleteCalendar = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(CalendarErr.DELETE_CALENDAR_FAILED_FORBIDDEN);
+        throw errorFactory.create(CalendarErr.DELETE_CALENDAR_FORBIDDEN);
       case 404:
         throw errorFactory.create(CalendarErr.CALENDAR_NOT_FOUND);
       default:

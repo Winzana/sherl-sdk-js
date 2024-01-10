@@ -26,7 +26,7 @@ export const createCalendar = async (
       case 201:
         return response.data;
       case 403:
-        throw errorFactory.create(CalendarErr.CREATE_CALENDAR_FAILED_FORBIDDEN);
+        throw errorFactory.create(CalendarErr.CREATE_CALENDAR_FORBIDDEN);
       default:
         throw errorFactory.create(CalendarErr.CREATE_CALENDAR_FAILED);
     }

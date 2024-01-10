@@ -29,7 +29,7 @@ export const findCalendarAvailabilitiesWithFilter = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          CalendarErr.FIND_CALENDAR_AVAILABILITIES_FAILED_FORBIDDEN,
+          CalendarErr.FIND_CALENDAR_AVAILABILITIES_FORBIDDEN,
         );
       default:
         throw errorFactory.create(

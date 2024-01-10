@@ -29,7 +29,7 @@ export const getCalendarEventById = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          CalendarErr.GET_CALENDAR_EVENT_BY_ID_FAILED_FORBIDDEN,
+          CalendarErr.GET_CALENDAR_EVENT_BY_ID_FORBIDDEN,
         );
       case 404:
         throw errorFactory.create(CalendarErr.CALENDAR_EVENT_NOT_FOUND);

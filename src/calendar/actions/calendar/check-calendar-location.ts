@@ -26,7 +26,7 @@ export const checkLocationForCalendar = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          CalendarErr.GET_AVAILABILITIY_FOR_LOCATION_CALENDAR_FAILED_FORBIDDEN,
+          CalendarErr.GET_AVAILABILITIY_FOR_LOCATION_CALENDAR_FORBIDDEN,
         );
       default:
         throw errorFactory.create(

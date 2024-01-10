@@ -27,7 +27,7 @@ export const checkCalendarDates = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          CalendarErr.GET_AVAILABILITIES_FOR_DATES_CALENDAR_FAILED_FORBIDDEN,
+          CalendarErr.GET_AVAILABILITIES_FOR_DATES_CALENDAR_FORBIDDEN,
         );
       default:
         throw errorFactory.create(

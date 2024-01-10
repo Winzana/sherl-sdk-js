@@ -28,7 +28,7 @@ export const getCalendarEventsForCurrentPerson = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          CalendarErr.GET_CALENDAR_EVENTS_FOR_CURRENT_PERSON_FAILED_FORBIDDEN,
+          CalendarErr.GET_CALENDAR_EVENTS_FOR_CURRENT_PERSON_FORBIDDEN,
         );
       default:
         throw errorFactory.create(
