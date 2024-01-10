@@ -19,7 +19,6 @@ class ClaimProvider extends AbstractProvider {
   /**
    * Creates a claim ticket with the specified ID and parameters.
    *
-   * @param {Fetcher} fetcher - The fetcher object used to make API requests.
    * @param {string} id - The ID of the claim ticket.
    * @param {Partial<IClaimCreate>} params - The parameters used to create the claim ticket.
    * @return {Promise<IClaim>} The created claim ticket.
