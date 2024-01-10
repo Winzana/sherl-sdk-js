@@ -5,6 +5,14 @@ import { Pagination } from '../../../common/types/response';
 import { OrderErr, errorFactory } from '../../errors/order/errors';
 import { StringUtils } from '../../../common/utils/string';
 
+/**
+ * Retrieves a paginated list of orders associated with a specific organization, based on provided filter criteria.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} organizationId - The unique identifier of the organization whose orders are being retrieved.
+ * @param {IOrderFindByDto} [filters] - Optional filters to apply when fetching orders for the organization.
+ * @returns {Promise<Pagination<IOrderResponse>>} A promise that resolves to a paginated response containing the list of orders for the specified organization.
+ */
 export const getOrganizationOrders = async (
   fetcher: Fetcher,
   organizationId: string,

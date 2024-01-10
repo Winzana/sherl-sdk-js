@@ -3,7 +3,17 @@ import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import { StringUtils } from '../../../common/utils/string';
 import { IAddKYCDocument, IKYCDocument } from '../../types';
+import { getSherlError } from '../../../common/utils';
 
+/**
+ * Adds a KYC document to a specified organization.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} organizationId - The unique identifier of the organization to which the KYC document is being added.
+ * @param {IAddKYCDocument} document - The KYC document details to be added.
+ * @param {(progressEvent: any) => void} [onUploadProgress] - Optional callback to monitor the progress of the upload.
+ * @returns {Promise<IKYCDocument>} A promise that resolves to the information of the newly added KYC document.
+ */
 export const addKycDocument = async (
   fetcher: Fetcher,
   organizationId: string,
@@ -22,12 +32,20 @@ export const addKycDocument = async (
       },
     );
 
-    if (response.status !== 201) {
-      throw errorFactory.create(OrganizationErr.ADD_DOCUMENT_FAILED);
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(OrganizationErr.ADD_DOCUMENT_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(OrganizationErr.ORGANIZATION_NOT_FOUND);
+      default:
+        throw errorFactory.create(OrganizationErr.ADD_DOCUMENT_FAILED);
     }
-
-    return response.data;
   } catch (error) {
-    throw errorFactory.create(OrganizationErr.ADD_DOCUMENT_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(OrganizationErr.ADD_DOCUMENT_FAILED),
+    );
   }
 };

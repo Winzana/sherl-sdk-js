@@ -5,6 +5,13 @@ import { endpoints } from '../api/endpoints';
 import { GalleryErr, errorFactory } from '../errors';
 import { IDynamicBackground } from '../types';
 
+/**
+ * Deletes a dynamic background.
+ *
+ * @param {Fetcher} fetcher - The Fetcher object used for making HTTP requests.
+ * @param {string} dynamicBackgroundId - The ID of the dynamic background to delete.
+ * @return {Promise<IDynamicBackground>} A Promise that resolves to the deleted dynamic background.
+ */
 export const deleteDynamicBackground = async (
   fetcher: Fetcher,
   dynamicBackgroundId: string,

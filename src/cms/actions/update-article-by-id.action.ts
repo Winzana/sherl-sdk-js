@@ -5,6 +5,14 @@ import { IArticle, ICMSArticleUpdateInputDto } from '../types';
 import { StringUtils } from '../../common/utils/string';
 import { getSherlError } from '../../common/utils';
 
+/**
+ * Update an article by its unique identifier.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {string} id - The unique identifier of the article to be updated.
+ * @param {ICMSArticleUpdateInputDto} updatedArticle - The updated article data.
+ * @returns {Promise<IArticle>} A promise that resolves to the updated article information.
+ */
 export const updateArticleById = async (
   fetcher: Fetcher,
   id: string,

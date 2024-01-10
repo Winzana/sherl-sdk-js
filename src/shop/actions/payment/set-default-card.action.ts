@@ -4,6 +4,13 @@ import { IPerson } from '../../../person';
 import { endpoints } from '../../api/endpoints';
 import { PaymentErr, errorFactory } from '../../errors/payment/errors';
 
+/**
+ * Sets a specific payment card as the default card for a person.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} cardId - The unique identifier of the card to be set as default.
+ * @returns {Promise<IPerson>} A promise that resolves to the person's information, reflecting the change in the default card.
+ */
 export const setDefaultCard = async (
   fetcher: Fetcher,
   cardId: string,

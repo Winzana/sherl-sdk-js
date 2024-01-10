@@ -3,7 +3,15 @@ import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { IOrganizationResponse } from '../types';
 import { OrganizationErr, errorFactory } from '../errors';
+import { getSherlError } from '../../common/utils';
 
+/**
+ * Retrieves public information about an organization using its unique ID.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} organizationId - The unique identifier of the public organization to be retrieved.
+ * @returns {Promise<IOrganizationResponse>} A promise that resolves to the public information of the specified organization.
+ */
 export const getPublicOrganization = async (
   fetcher: Fetcher,
   organizationId: string,
@@ -15,12 +23,24 @@ export const getPublicOrganization = async (
       }),
     );
 
-    if (response.status !== 200) {
-      throw errorFactory.create(OrganizationErr.FETCH_FAILED);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          OrganizationErr.GET_PUBLIC_ORGANIZATION_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(OrganizationErr.ORGANIZATION_NOT_FOUND);
+      default:
+        throw errorFactory.create(
+          OrganizationErr.GET_PUBLIC_ORGANIZATION_FAILED,
+        );
     }
-
-    return response.data;
   } catch (error) {
-    throw errorFactory.create(OrganizationErr.FETCH_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(OrganizationErr.GET_PUBLIC_ORGANIZATION_FAILED),
+    );
   }
 };

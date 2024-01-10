@@ -4,6 +4,13 @@ import { IDiscount, IDiscountPublicFilter } from '../../types';
 import { Pagination } from '../../../common/types/response';
 import { DiscountErr, errorFactory } from '../../errors/discount/errors';
 
+/**
+ * Retrieves a paginated list of public discounts based on provided filters.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {IDiscountPublicFilter} [filters] - Optional filters to apply when fetching public discounts.
+ * @returns {Promise<Pagination<IDiscount>>} A promise that resolves to a paginated response containing the list of public discounts based on the provided filters.
+ */
 export const getPublicDiscounts = async (
   fetcher: Fetcher,
   filters?: IDiscountPublicFilter,
