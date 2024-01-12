@@ -20,9 +20,14 @@ export const findClaimBy = async (
         throw errorFactory.create(ClaimErr.FIND_CLAIM_BY_FAILED);
     }
   } catch (err) {
-    throw getSherlError(
-      err,
-      errorFactory.create(ClaimErr.FIND_CLAIM_BY_FAILED),
-    );
+    switch ((err as any).response.status) {
+      case 403:
+        throw errorFactory.create(ClaimErr.FIND_CLAIM_BY_FORBIDDEN_ERROR);
+      default:
+        throw getSherlError(
+          err,
+          errorFactory.create(ClaimErr.FIND_CLAIM_BY_FAILED),
+        );
+    }
   }
 };

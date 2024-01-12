@@ -5,6 +5,7 @@ import { Pagination } from '../../common/types/response';
 import { IClaim, IClaimTicketFilters } from '../types/entities';
 import { ClaimErr, errorFactory } from '../errors';
 import { getSherlError } from '../../common/utils/errors';
+import { SherlError } from '../../common';
 
 export const getAllClaims = async (
   fetcher: Fetcher,
@@ -14,16 +15,13 @@ export const getAllClaims = async (
     const response = await fetcher.get<Pagination<IClaim>>(endpoints.CLAIMS, {
       ...filters,
     });
-
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (err) {
+    switch ((err as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(ClaimErr.GET_ALL_FORBIDDEN_ERROR);
       default:
         throw errorFactory.create(ClaimErr.GET_ALL_FAILED);
     }
-  } catch (err) {
-    throw getSherlError(err, errorFactory.create(ClaimErr.GET_ALL_FAILED));
   }
 };

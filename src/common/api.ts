@@ -27,7 +27,10 @@ class Fetcher {
         if (err.response && err.response.status) {
           throw this.errorFactory.create(
             getErrorCodeByHttpStatus(err.response.status),
-            { message: err.response?.data?.message },
+            {
+              message: err.response?.data?.message,
+              status: err.response?.status,
+            },
           );
         }
 

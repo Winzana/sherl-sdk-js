@@ -1,0 +1,96 @@
+import { ClaimStatusEnum, IClaim } from '../../types';
+
+export const claimsFixtures: Array<IClaim> = [
+  {
+    replies: [],
+    schedules: {
+      allowedFromDate: new Date('2022-01-01T10:00:00Z').toString(),
+      allowedUntilDate: new Date('2022-01-02T14:00:00Z').toString(),
+    },
+    id: 'abc123',
+    issueMessage: 'Lorem ipsum dolor sit amet.',
+    issueTitle: 'Claim Title 1',
+    personId: 'person123',
+    orderId: 'order456',
+    createdAt: new Date('2022-01-01T12:00:00Z').toString() as any,
+    updatedAt: new Date('2022-01-02T14:30:00Z').toString() as any,
+    uri: 'http://example.com/claim1',
+    consumerId: 'consumer789',
+    status: ClaimStatusEnum.NEW,
+  },
+  {
+    replies: undefined,
+    schedules: {
+      allowedFromDate: new Date('2022-01-01T10:00:00Z').toString(),
+      allowedUntilDate: new Date('2022-01-02T14:00:00Z').toString(),
+    },
+    id: 'def456',
+    issueMessage: 'Duis aute irure dolor in reprehenderit.',
+    issueTitle: 'Claim Title 2',
+    personId: 'person456',
+    orderId: 'order789',
+    createdAt: new Date('2022-01-03T10:45:00Z').toString() as any,
+    updatedAt: new Date('2022-01-04T16:20:00Z').toString() as any,
+    uri: 'http://example.com/claim2',
+    consumerId: undefined,
+    status: ClaimStatusEnum.READ,
+    person: undefined,
+  },
+  {
+    replies: [],
+    schedules: {
+      /* ISchedules data */
+      allowedFromDate: new Date('2022-01-01T10:00:00Z').toString(),
+      allowedUntilDate: new Date('2022-01-02T14:00:00Z').toString(),
+    },
+    id: 'ghi789',
+    issueMessage: 'Excepteur sint occaecat cupidatat non proident.',
+    issueTitle: 'Claim Title 3',
+    personId: 'person789',
+    orderId: 'order123',
+    createdAt: new Date('2022-01-05T08:15:00Z').toString() as any,
+    updatedAt: new Date('2022-01-06T18:10:00Z').toString() as any,
+    uri: 'http://example.com/claim3',
+    consumerId: undefined,
+    status: ClaimStatusEnum.CLOSED,
+    order: undefined,
+  },
+  {
+    replies: undefined,
+    schedules: {
+      allowedFromDate: new Date('2022-01-01T10:00:00Z').toString(),
+      allowedUntilDate: new Date('2022-01-02T14:00:00Z').toString(),
+    },
+    id: 'jkl012',
+    issueMessage: 'Ut enim ad minim veniam.',
+    issueTitle: 'Claim Title 4',
+    personId: 'person012',
+    orderId: 'order234',
+    createdAt: new Date('2022-01-07T11:30:00Z').toString() as any,
+    updatedAt: new Date('2022-01-08T13:40:00Z').toString() as any,
+    uri: 'http://example.com/claim4',
+    consumerId: 'consumer567',
+    status: ClaimStatusEnum.REFUND,
+    person: undefined,
+  },
+  {
+    replies: [],
+    schedules: {
+      /* ISchedules data */
+
+      allowedFromDate: new Date('2022-01-01T10:00:00Z').toString(),
+      allowedUntilDate: new Date('2022-01-02T14:00:00Z').toString(),
+    },
+    id: 'mno345',
+    issueMessage:
+      'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    issueTitle: 'Claim Title 5',
+    personId: 'person345',
+    orderId: 'order567',
+    createdAt: new Date('2022-01-09T15:00:00Z').toString() as any,
+    updatedAt: new Date('2022-01-10T17:20:00Z').toString() as any,
+    uri: 'http://example.com/claim5',
+    consumerId: 'consumer123',
+    status: ClaimStatusEnum.CLOSED,
+  },
+];
