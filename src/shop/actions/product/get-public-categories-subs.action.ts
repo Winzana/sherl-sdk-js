@@ -22,7 +22,7 @@ export const getPublicCategoriesAndSub = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          ProductErr.GET_PUBLIC_CATEGORIES_AND_SUBS_FAILED_FORBIDDEN,
+          ProductErr.GET_PUBLIC_CATEGORIES_AND_SUBS_FORBIDDEN,
         );
       default:
         throw errorFactory.create(

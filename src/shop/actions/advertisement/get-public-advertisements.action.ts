@@ -25,7 +25,7 @@ export const getPublicAdvertisements = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          AdvertisementErr.GET_PUBLIC_ADVERTISEMENTS_FAILED_FORBIDDEN,
+          AdvertisementErr.GET_PUBLIC_ADVERTISEMENTS_FORBIDDEN,
         );
       default:
         throw errorFactory.create(

@@ -22,7 +22,7 @@ export const addCategoryToOrganization = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          ProductErr.ADD_CATEGORY_TO_ORGANIZATION_FAILED_FORBIDDEN,
+          ProductErr.ADD_CATEGORY_TO_ORGANIZATION_FORBIDDEN,
         );
       default:
         throw errorFactory.create(

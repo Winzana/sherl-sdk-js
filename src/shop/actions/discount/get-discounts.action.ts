@@ -19,9 +19,7 @@ export const getDiscounts = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(
-          DiscountErr.GET_DISCOUNT_BY_ID_FAILED_FORBIDDEN,
-        );
+        throw errorFactory.create(DiscountErr.GET_DISCOUNT_BY_ID_FORBIDDEN);
       case 404:
         throw errorFactory.create(DiscountErr.DISCOUNT_NOT_FOUND);
       default:

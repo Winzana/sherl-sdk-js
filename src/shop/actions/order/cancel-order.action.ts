@@ -24,7 +24,7 @@ export const cancelOrder = async (
       case 401:
         throw errorFactory.create(OrderErr.NOT_ALLOWED);
       case 403:
-        throw errorFactory.create(OrderErr.CANCEL_ORDER_FAILED_FORBIDDEN);
+        throw errorFactory.create(OrderErr.CANCEL_ORDER_FORBIDDEN);
       case 404:
         throw errorFactory.create(OrderErr.ORDER_NOT_FOUND);
       case 409:

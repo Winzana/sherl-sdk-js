@@ -19,7 +19,7 @@ export const getProduct = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          ProductErr.GET_PUBLIC_PRODUCT_BY_ID_FAILED_FORBIDDEN,
+          ProductErr.GET_PUBLIC_PRODUCT_BY_ID_FORBIDDEN,
         );
       case 404:
         throw errorFactory.create(ProductErr.PRODUCT_NOT_FOUND);

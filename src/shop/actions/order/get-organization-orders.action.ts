@@ -22,9 +22,7 @@ export const getOrganizationOrders = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(
-          OrderErr.GET_ORGANIZATION_ORDERS_FAILED_FORBIDDEN,
-        );
+        throw errorFactory.create(OrderErr.GET_ORGANIZATION_ORDERS_FORBIDDEN);
       case 404:
         throw errorFactory.create(OrderErr.ORGANIZATION_NOT_FOUND);
       default:

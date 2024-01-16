@@ -16,7 +16,7 @@ export const getUnrestrictedCategories = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          ProductErr.GET_UNRESTRICTED_CATEGORIES_FAILED_FORBIDDEN,
+          ProductErr.GET_UNRESTRICTED_CATEGORIES_FORBIDDEN,
         );
       default:
         throw errorFactory.create(

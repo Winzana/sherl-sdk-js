@@ -23,7 +23,7 @@ export const deleteAdvertisement = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(AdvertisementErr.DELETE_FAILED_FORBIDDEN);
+        throw errorFactory.create(AdvertisementErr.DELETE_FORBIDDEN);
       case 404:
         throw errorFactory.create(AdvertisementErr.ADVERTISEMENT_NOT_FOUND);
       default:

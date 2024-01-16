@@ -24,7 +24,7 @@ export const createAdvertisement = async (
       case 201:
         return response.data;
       case 403:
-        throw errorFactory.create(AdvertisementErr.CREATION_FAILED_FORBIDDEN);
+        throw errorFactory.create(AdvertisementErr.CREATION_FORBIDDEN);
       default:
         throw errorFactory.create(AdvertisementErr.CREATION_FAILED);
     }

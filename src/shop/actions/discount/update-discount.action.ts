@@ -21,7 +21,7 @@ export const updateDiscount = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(DiscountErr.UPDATE_DISCOUNT_FAILED_FORBIDDEN);
+        throw errorFactory.create(DiscountErr.UPDATE_DISCOUNT_FORBIDDEN);
       case 404:
         throw errorFactory.create(DiscountErr.DISCOUNT_NOT_FOUND);
       default:

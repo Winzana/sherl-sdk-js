@@ -20,7 +20,7 @@ export const deleteCard = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(PaymentErr.DELETE_CARD_FAILED_FORBIDDEN);
+        throw errorFactory.create(PaymentErr.DELETE_CARD_FORBIDDEN);
       case 404:
         throw errorFactory.create(PaymentErr.CARD_NOT_FOUND);
       default:

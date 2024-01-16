@@ -21,9 +21,7 @@ export const validatePaymentBasket = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(
-          BasketErr.BASKET_VALIDATE_PENDING_FAILED_FORBIDDEN,
-        );
+        throw errorFactory.create(BasketErr.BASKET_VALIDATE_PENDING_FORBIDDEN);
       default:
         throw errorFactory.create(BasketErr.BASKET_VALIDATE_PENDING_FAILED);
     }

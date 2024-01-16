@@ -11,7 +11,7 @@ export const updateOrderStatus = async (
   status: OrderStatusEnum,
 ): Promise<IOrderResponse> => {
   try {
-    const response = await fetcher.post<IOrderResponse>(
+    const response = await fetcher.put<IOrderResponse>(
       StringUtils.bindContext(endpoints.UPDATE_ORDER_STATUS, { id, status }),
       {},
     );
@@ -24,7 +24,7 @@ export const updateOrderStatus = async (
       case 401:
         throw errorFactory.create(OrderErr.NOT_ALLOWED);
       case 403:
-        throw errorFactory.create(OrderErr.UPDATE_ORDER_FAILED_FORBIDDEN);
+        throw errorFactory.create(OrderErr.UPDATE_ORDER_FORBIDDEN);
       case 404:
         throw errorFactory.create(OrderErr.ORDER_NOT_FOUND);
       case 409:

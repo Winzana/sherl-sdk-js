@@ -21,7 +21,7 @@ export const getOrganizationSubCategories = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          ProductErr.GET_ORGANIZATION_SUBCATEGORIES_FAILED_FORBIDDEN,
+          ProductErr.GET_ORGANIZATION_SUBCATEGORIES_FORBIDDEN,
         );
       case 404:
         throw errorFactory.create(ProductErr.CATEGORY_NOT_FOUND);

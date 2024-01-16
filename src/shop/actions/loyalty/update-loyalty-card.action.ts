@@ -21,9 +21,7 @@ export const updateLoyaltyCard = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(
-          LoyalityErr.UPDATE_LOYALTY_CARD_FAILED_FORBIDDEN,
-        );
+        throw errorFactory.create(LoyalityErr.UPDATE_LOYALTY_CARD_FORBIDDEN);
       case 404:
         throw errorFactory.create(LoyalityErr.LOYALTY_CARD_NOT_FOUND);
       default:

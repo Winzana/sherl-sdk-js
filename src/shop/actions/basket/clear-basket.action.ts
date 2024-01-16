@@ -15,7 +15,7 @@ export const clearBasket = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(BasketErr.BASKET_CLEAR_FAILED_FORBIDDEN);
+        throw errorFactory.create(BasketErr.BASKET_CLEAR_FORBIDDEN);
       default:
         throw errorFactory.create(BasketErr.BASKET_CLEAR_FAILED);
     }

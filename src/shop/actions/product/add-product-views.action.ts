@@ -18,9 +18,7 @@ export const addProductViews = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(
-          ProductErr.ADD_PRODUCT_VIEWS_FAILED_FORBIDDEN,
-        );
+        throw errorFactory.create(ProductErr.ADD_PRODUCT_VIEWS_FORBIDDEN);
       case 404:
         throw errorFactory.create(ProductErr.PRODUCT_NOT_FOUND);
       default:

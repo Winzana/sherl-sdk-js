@@ -17,9 +17,7 @@ export const getCategoryById = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(
-          ProductErr.GET_CATEGORY_BY_ID_FAILED_FORBIDDEN,
-        );
+        throw errorFactory.create(ProductErr.GET_CATEGORY_BY_ID_FORBIDDEN);
       case 404:
         throw errorFactory.create(ProductErr.CATEGORY_NOT_FOUND);
       default:

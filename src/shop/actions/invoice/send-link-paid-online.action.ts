@@ -21,9 +21,7 @@ export const sendLinkToPaidOnline = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(
-          InvoiceErr.SEND_INVOICE_LINK_FAILED_FORBIDDEN,
-        );
+        throw errorFactory.create(InvoiceErr.SEND_INVOICE_LINK_FORBIDDEN);
       case 404:
         throw errorFactory.create(InvoiceErr.INVOICE_ID_NOT_FOUND);
       default:

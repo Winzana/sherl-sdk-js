@@ -16,9 +16,7 @@ export const getPublicCategories = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(
-          ProductErr.GET_PUBLIC_CATEGORIES_FAILED_FORBIDDEN,
-        );
+        throw errorFactory.create(ProductErr.GET_PUBLIC_CATEGORIES_FORBIDDEN);
       default:
         throw errorFactory.create(ProductErr.GET_PUBLIC_CATEGORIES_FAILED);
     }

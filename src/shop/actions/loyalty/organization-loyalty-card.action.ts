@@ -20,7 +20,7 @@ export const getOrganizationLoyaltyCard = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          LoyalityErr.GET_ORGANIZATION_LOYALTY_CARD_FAILED_FORBIDDEN,
+          LoyalityErr.GET_ORGANIZATION_LOYALTY_CARD_FORBIDDEN,
         );
       case 404:
         throw errorFactory.create(LoyalityErr.ORGANIZATION_ID_NOT_FOUND);
