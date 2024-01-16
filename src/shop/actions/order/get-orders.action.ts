@@ -25,9 +25,7 @@ export const getOrders = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(
-          OrderErr.GET_ORDERS_WITH_FILTER_FAILED_FORBIDDEN,
-        );
+        throw errorFactory.create(OrderErr.GET_ORDERS_WITH_FILTER_FORBIDDEN);
       default:
         throw errorFactory.create(OrderErr.GET_ORDERS_WITH_FILTER_FAILED);
     }

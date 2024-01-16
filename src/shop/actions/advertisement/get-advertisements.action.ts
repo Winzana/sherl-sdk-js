@@ -33,7 +33,7 @@ export const getAdvertisements = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          AdvertisementErr.GET_ADVERTISEMENTS_FAILED_FORBIDDEN,
+          AdvertisementErr.GET_ADVERTISEMENTS_FORBIDDEN,
         );
       default:
         throw errorFactory.create(AdvertisementErr.GET_ADVERTISEMENTS_FAILED);

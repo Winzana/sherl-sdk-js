@@ -26,7 +26,7 @@ export const removeItemToBasket = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(BasketErr.BASKET_REMOVE_FAILED_FORBIDDEN);
+        throw errorFactory.create(BasketErr.BASKET_REMOVE_FORBIDDEN);
       case 404:
         throw errorFactory.create(BasketErr.PRODUCT_NOT_FOUND);
       default:

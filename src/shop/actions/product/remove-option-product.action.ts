@@ -29,7 +29,7 @@ export const removeProductOption = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(ProductErr.REMOVE_OPTION_FAILED_FORBIDDEN);
+        throw errorFactory.create(ProductErr.REMOVE_OPTION_FORBIDDEN);
       case 404:
         throw errorFactory.create(ProductErr.OPTION_OR_PRODUCT_NOT_FOUND);
       default:

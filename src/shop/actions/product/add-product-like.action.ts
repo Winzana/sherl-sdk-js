@@ -25,7 +25,7 @@ export const addLikeToProduct = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(ProductErr.ADD_PRODUCT_LIKE_FAILED_FORBIDDEN);
+        throw errorFactory.create(ProductErr.ADD_PRODUCT_LIKE_FORBIDDEN);
       case 404:
         throw errorFactory.create(ProductErr.PRODUCT_NOT_FOUND);
       default:

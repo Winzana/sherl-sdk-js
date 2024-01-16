@@ -23,7 +23,7 @@ export const requestCredentialsToAddCard = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          PaymentErr.REQUEST_CREDENTIALS_CARD_FAILED_FORBIDDEN,
+          PaymentErr.REQUEST_CREDENTIALS_CARD_FORBIDDEN,
         );
       default:
         throw errorFactory.create(PaymentErr.REQUEST_CREDENTIALS_CARD_FAILED);

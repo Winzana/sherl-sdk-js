@@ -30,9 +30,7 @@ export const addPictureToProduct = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(
-          PictureErr.ADD_PICTURE_PRODUCT_FAILED_FORBIDDEN,
-        );
+        throw errorFactory.create(PictureErr.ADD_PICTURE_PRODUCT_FORBIDDEN);
       case 404:
         throw errorFactory.create(PictureErr.PRODUCT_OR_MEDIA_NOT_FOUND);
       default:

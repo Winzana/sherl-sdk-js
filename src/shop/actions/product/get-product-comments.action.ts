@@ -31,9 +31,7 @@ export const getProductComments = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(
-          ProductErr.GET_PRODUCT_COMMENTS_FAILED_FORBIDDEN,
-        );
+        throw errorFactory.create(ProductErr.GET_PRODUCT_COMMENTS_FORBIDDEN);
       case 404:
         throw errorFactory.create(ProductErr.PRODUCT_NOT_FOUND);
       default:

@@ -33,7 +33,7 @@ export const updateCategory = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(ProductErr.UPDATE_CATEGORY_FAILED_FORBIDDEN);
+        throw errorFactory.create(ProductErr.UPDATE_CATEGORY_FORBIDDEN);
       case 404:
         throw errorFactory.create(ProductErr.CATEGORY_NOT_FOUND);
       default:

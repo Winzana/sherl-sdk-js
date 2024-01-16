@@ -25,7 +25,7 @@ export const commentBasket = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(BasketErr.BASKET_COMMENT_FAILED_FORBIDDEN);
+        throw errorFactory.create(BasketErr.BASKET_COMMENT_FORBIDDEN);
       default:
         throw errorFactory.create(BasketErr.BASKET_COMMENT_FAILED);
     }

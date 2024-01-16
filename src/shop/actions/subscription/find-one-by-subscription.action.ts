@@ -31,7 +31,7 @@ export const getSubscriptionFindOneBy = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          SubscriptionErr.FIND_ONE_SUBSCRIPTION_WITH_FILTER_FAILED_FORBIDDEN,
+          SubscriptionErr.FIND_ONE_SUBSCRIPTION_WITH_FILTER_FORBIDDEN,
         );
       default:
         throw errorFactory.create(

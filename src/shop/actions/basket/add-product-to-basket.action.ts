@@ -25,7 +25,7 @@ export const addProductToBasket = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(BasketErr.BASKET_ADD_FAILED_FORBIDDEN);
+        throw errorFactory.create(BasketErr.BASKET_ADD_FORBIDDEN);
       default:
         throw errorFactory.create(BasketErr.BASKET_ADD_FAILED);
     }

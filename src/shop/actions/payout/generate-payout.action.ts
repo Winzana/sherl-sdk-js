@@ -20,7 +20,7 @@ export const generatePayout = async (fetcher: Fetcher): Promise<IPayout[]> => {
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(PayoutErr.GENERATE_PAYOUT_FAILED_FORBIDDEN);
+        throw errorFactory.create(PayoutErr.GENERATE_PAYOUT_FORBIDDEN);
       default:
         throw errorFactory.create(PayoutErr.GENERATE_PAYOUT_FAILED);
     }

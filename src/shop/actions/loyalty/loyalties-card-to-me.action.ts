@@ -26,7 +26,7 @@ export const getLoyaltiesCardToMe = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          LoyalityErr.GET_USER_CARD_LOYALTIES_FAILED_FORBIDDEN,
+          LoyalityErr.GET_USER_CARD_LOYALTIES_FORBIDDEN,
         );
       default:
         throw errorFactory.create(LoyalityErr.GET_USER_CARD_LOYALTIES_FAILED);

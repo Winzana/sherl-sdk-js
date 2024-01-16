@@ -26,7 +26,7 @@ export const getDiscountByParams = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          DiscountErr.GET_DISCOUNTS_BY_PARAMS_FAILED_FORBIDDEN,
+          DiscountErr.GET_DISCOUNTS_BY_PARAMS_FORBIDDEN,
         );
       default:
         throw errorFactory.create(DiscountErr.GET_DISCOUNTS_BY_PARAMS_FAILED);

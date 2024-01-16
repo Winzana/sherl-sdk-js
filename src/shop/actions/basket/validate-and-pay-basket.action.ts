@@ -24,9 +24,7 @@ export const validateAndPayBasket = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(
-          BasketErr.VALIDATE_AND_PAY_BASKET_FAILED_FORBIDDEN,
-        );
+        throw errorFactory.create(BasketErr.VALIDATE_AND_PAY_BASKET_FORBIDDEN);
       case 460:
         throw errorFactory.create(BasketErr.NO_DEFAULT_CARD);
       case 461:

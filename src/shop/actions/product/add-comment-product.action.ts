@@ -25,9 +25,7 @@ export const addCommentOnProduct = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(
-          ProductErr.ADD_COMMENT_ON_PRODUCT_FAILED_FORBIDDEN,
-        );
+        throw errorFactory.create(ProductErr.ADD_COMMENT_ON_PRODUCT_FORBIDDEN);
       default:
         throw errorFactory.create(ProductErr.ADD_COMMENT_ON_PRODUCT_FAILED);
     }

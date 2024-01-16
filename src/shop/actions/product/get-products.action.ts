@@ -25,7 +25,7 @@ export const getProducts = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(ProductErr.GET_PRODUCTS_FAILED_FORBIDDEN);
+        throw errorFactory.create(ProductErr.GET_PRODUCTS_FORBIDDEN);
       default:
         throw errorFactory.create(ProductErr.GET_PRODUCTS_FAILED);
     }

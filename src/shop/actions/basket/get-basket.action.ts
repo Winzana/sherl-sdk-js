@@ -24,7 +24,7 @@ export const getCurrentBasket = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(BasketErr.GET_BASKET_FAILED_FORBIDDEN);
+        throw errorFactory.create(BasketErr.GET_BASKET_FORBIDDEN);
       case 404:
         throw errorFactory.create(BasketErr.CUSTOMER_NOT_FOUND);
       default:

@@ -24,9 +24,7 @@ export const addSponsorCodeToBasket = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(
-          BasketErr.BASKET_SPONSOR_CODE_FAILED_FORBIDDEN,
-        );
+        throw errorFactory.create(BasketErr.BASKET_SPONSOR_CODE_FORBIDDEN);
       case 404:
         throw errorFactory.create(BasketErr.SPONSOR_CODE_NOT_FOUND);
       default:

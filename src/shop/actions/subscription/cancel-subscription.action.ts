@@ -31,7 +31,7 @@ export const cancelSubscription = async (
         return response.data;
       case 403:
         throw errorFactory.create(
-          SubscriptionErr.CANCEL_SUBSCRIPTION_FAILED_FORBIDDEN,
+          SubscriptionErr.CANCEL_SUBSCRIPTION_FORBIDDEN,
         );
       case 404:
         throw errorFactory.create(SubscriptionErr.SUBSCRIPTION_NOT_FOUND);
