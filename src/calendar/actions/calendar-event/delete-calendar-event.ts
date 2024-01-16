@@ -19,7 +19,7 @@ export const deleteCalendarEvent = async (
   eventId: string,
 ): Promise<ICalendarEvent> => {
   try {
-    const response = await fetcher.put<ICalendarEvent>(
+    const response = await fetcher.delete<ICalendarEvent>(
       StringUtils.bindContext(endpoints.DELETE_CALENDAR_EVENT, {
         calendarId,
         eventId,
