@@ -5,6 +5,14 @@ import { endpoints } from '../api/endpoints';
 import { NotificationErr, errorFactory } from '../errors';
 import { INotification, INotificationUpdateAvailabilityInput } from '../types';
 
+/**
+ * Disable a notification for a specific organization.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {INotificationUpdateAvailabilityInput} disableToOrganizationInput - The input data to disable the notification for an organization.
+ * @param {string} id - The ID of the notification to disable.
+ * @returns {Promise<INotification>} A promise that resolves to the updated notification as an INotification.
+ */
 export const disableToOrganization = async (
   fetcher: Fetcher,
   disableToOrganizationInput: INotificationUpdateAvailabilityInput,

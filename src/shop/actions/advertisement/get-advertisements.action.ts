@@ -10,6 +10,13 @@ import {
   IFindAdvertisementInputDto,
 } from '../../types/advertisement/entities';
 
+/**
+ * Retrieves a paginated list of advertisements based on provided filters.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {IFindAdvertisementInputDto} [filters] - Optional filters to apply when fetching advertisements.
+ * @returns {Promise<Pagination<IAvertisement>>} A promise that resolves to a paginated response containing the list of advertisements.
+ */
 export const getAdvertisements = async (
   fetcher: Fetcher,
   filters?: IFindAdvertisementInputDto,

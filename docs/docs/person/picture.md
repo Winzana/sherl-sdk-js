@@ -1,6 +1,6 @@
 ---
-id: picture
-title: Person picture
+id: person-picture
+title: Picture
 ---
 
 ## Add picture to person profile

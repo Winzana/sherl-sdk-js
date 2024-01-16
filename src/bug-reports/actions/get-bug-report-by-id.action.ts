@@ -4,7 +4,13 @@ import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { BugReportsErr, errorFactory } from '../errors';
 import { IBugReport } from '../types';
-
+/**
+ * Retrieves a bug report by its ID.
+ *
+ * @param {Fetcher} fetcher - The fetcher used to make HTTP requests.
+ * @param {string} id - The ID of the bug report to retrieve.
+ * @return {Promise<IBugReport>} A promise that resolves to the bug report.
+ */
 export const getBugReportById = async (
   fetcher: Fetcher,
   id: string,

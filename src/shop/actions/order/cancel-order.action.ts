@@ -10,6 +10,14 @@ const errorsByCode = {
   409: OrderErr.ALREADY_CHANGED,
 };
 
+/**
+ * Cancels an order with specified cancellation details.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} id - The unique identifier of the order to be cancelled.
+ * @param {ICancelOrderInputDto} cancelOrderDates - The details of the cancellation request for the order.
+ * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the updated order after cancellation.
+ */
 export const cancelOrder = async (
   fetcher: Fetcher,
   id: string,

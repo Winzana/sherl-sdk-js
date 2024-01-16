@@ -5,6 +5,13 @@ import { IArticle } from '../types';
 import { StringUtils } from '../../common/utils/string';
 import { getSherlError } from '../../common/utils';
 
+/**
+ * Get an article by its slug.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {string} slug - The slug of the article to be retrieved.
+ * @returns {Promise<IArticle>} A promise that resolves to the retrieved article information.
+ */
 export const getArticleBySlug = async (
   fetcher: Fetcher,
   slug: string,

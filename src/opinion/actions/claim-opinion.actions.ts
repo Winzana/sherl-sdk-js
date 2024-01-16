@@ -5,6 +5,14 @@ import { StringUtils } from '../../common/utils/string';
 import { OpinionErr, errorFactory } from '../errors';
 import { getSherlError } from '../../common/utils';
 
+/**
+ * Create a claim related to an opinion.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {string} opinionId - The ID of the opinion to which the claim is related.
+ * @param {IClaimOpinionInput} claim - The claim input data.
+ * @returns {Promise<any>} A promise that resolves when the claim is successfully created.
+ */
 export const createOpinionClaim = async (
   fetcher: Fetcher,
   opinionId: string,

@@ -4,6 +4,13 @@ import { endpoints } from '../../api/endpoints';
 import { OrderErr, errorFactory } from '../../errors/order/errors';
 import { IOrderResponse } from '../../types';
 
+/**
+ * Removes an item from a shopping basket.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} itemId - The unique identifier of the item to be removed from the basket.
+ * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the updated order after the item removal.
+ */
 export const removeItemToBasket = async (
   fetcher: Fetcher,
   itemId: string,

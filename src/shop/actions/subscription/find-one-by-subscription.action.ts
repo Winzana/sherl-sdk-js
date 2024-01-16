@@ -9,6 +9,13 @@ import {
   ISubscriptionFindOnByDto,
 } from '../../types/subscription/entities';
 
+/**
+ * Retrieves a specific subscription based on provided filter criteria.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {ISubscriptionFindOnByDto} [filters] - Optional filters to apply when searching for a subscription.
+ * @returns {Promise<ISubscription>} A promise that resolves to the subscription's information matching the filter criteria.
+ */
 export const getSubscriptionFindOneBy = async (
   fetcher: Fetcher,
   filters?: ISubscriptionFindOnByDto,

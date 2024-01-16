@@ -4,6 +4,13 @@ import { endpoints } from '../api/endpoints';
 import { AuthErr, errorFactory } from '../errors';
 import { ILoginResponse, ISignInWithEmailAndPasswordRequest } from '../types';
 
+/**
+ * Sign in a user with their email and password.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {ISignInWithEmailAndPasswordRequest} request - An object containing email and password.
+ * @returns {Promise<string>} A promise that resolves to an access token if the login is successful.
+ */
 export const signInWithEmailAndPassword = async (
   fetcher: Fetcher,
   request: ISignInWithEmailAndPasswordRequest,

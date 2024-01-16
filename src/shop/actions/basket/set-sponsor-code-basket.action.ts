@@ -3,6 +3,13 @@ import { endpoints } from '../../api/endpoints';
 import { OrderErr, errorFactory } from '../../errors/order/errors';
 import { IOrderResponse } from '../../types';
 
+/**
+ * Applies a sponsor code to the current shopping basket.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} code - The sponsor code to be applied to the basket.
+ * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the updated order after applying the sponsor code.
+ */
 export const addSponsorCodeToBasket = async (
   fetcher: Fetcher,
   code: string,

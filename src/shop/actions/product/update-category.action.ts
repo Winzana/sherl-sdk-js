@@ -7,6 +7,14 @@ import {
   IShopProductCategoryCreateInputDto,
 } from '../../types';
 
+/**
+ * Updates a specific product category with new information.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} categoryId - The unique identifier of the category to be updated.
+ * @param {Partial<IShopProductCategoryCreateInputDto>} updatedCategory - The new details to update the category with. This is a partial type, allowing for partial updates to the category's properties.
+ * @returns {Promise<ICategoryResponse>} A promise that resolves to the category's updated information.
+ */
 export const updateCategory = async (
   fetcher: Fetcher,
   categoryId: string,

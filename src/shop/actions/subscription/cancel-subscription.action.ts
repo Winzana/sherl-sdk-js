@@ -7,6 +7,13 @@ import {
 } from '../../errors/subscription/errors';
 import { ISubscription } from '../../types/subscription/entities';
 
+/**
+ * Cancels a specific subscription identified by its unique ID.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} subscriptionId - The unique identifier of the subscription to be canceled.
+ * @returns {Promise<ISubscription>} A promise that resolves to the subscription's information after cancellation.
+ */
 export const cancelSubscription = async (
   fetcher: Fetcher,
   subscriptionId: string,

@@ -10,6 +10,14 @@ import {
   ICreateAdvertisementInputDto,
 } from '../../types/advertisement/entities';
 
+/**
+ * Updates an existing advertisement with the provided details.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} advertisementId - The unique identifier of the advertisement to be updated.
+ * @param {Partial<ICreateAdvertisementInputDto>} updatedAdvertisement - The partial data of the advertisement to be updated.
+ * @returns {Promise<IAvertisement>} A promise that resolves to the information of the updated advertisement.
+ */
 export const updateAdvertisement = async (
   fetcher: Fetcher,
   advertisementId: string,

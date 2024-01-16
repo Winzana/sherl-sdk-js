@@ -4,6 +4,13 @@ import { endpoints } from '../api/endpoints';
 import { GalleryErr, errorFactory } from '../errors';
 import { ICreateDynamicBackgroundInputDto, IDynamicBackground } from '../types';
 
+/**
+ * Registers a dynamic background using the provided fetcher and dynamicBackground input.
+ *
+ * @param {Fetcher} fetcher - The fetcher used to make the HTTP request.
+ * @param {ICreateDynamicBackgroundInputDto} dynamicBackground - The input data for creating a dynamic background.
+ * @return {Promise<IDynamicBackground>} - A promise that resolves to the created dynamic background.
+ */
 export const registerDynamicBackground = async (
   fetcher: Fetcher,
   dynamicBackground: ICreateDynamicBackgroundInputDto,

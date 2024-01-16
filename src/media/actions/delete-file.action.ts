@@ -4,6 +4,13 @@ import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
 import { MediaErr, errorFactory } from '../errors';
 
+/**
+ * Delete a media file by its unique identifier (ID).
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {string} id - The unique identifier (ID) of the media file to delete.
+ * @returns {Promise<string>} A promise that resolves to the ID of the deleted media file.
+ */
 export const deleteFile = async (
   fetcher: Fetcher,
   id: string,

@@ -3,7 +3,13 @@ import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { CmsErr, errorFactory } from '../errors';
 import { IArticle, ICMSArticleFaqCreateInputDto } from '../types';
-
+/**
+ * Create a FAQs page in the CMS.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {ICMSArticleFaqCreateInputDto} data - The data for creating a FAQs page in the CMS.
+ * @returns {Promise<IArticle>} A promise that resolves to the created FAQs page information.
+ */
 export const createFaqsPage = async (
   fetcher: Fetcher,
   data: ICMSArticleFaqCreateInputDto,

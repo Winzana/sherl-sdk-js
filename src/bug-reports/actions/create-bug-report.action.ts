@@ -3,7 +3,13 @@ import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { BugReportsErr, errorFactory } from '../errors';
 import { IBugReportInputDto, IBugReport } from '../types';
-
+/**
+ * Creates a bug report.
+ *
+ * @param {Fetcher} fetcher - The fetcher object used to make HTTP requests.
+ * @param {IBugReportInputDto} bugReport - The bug report data.
+ * @return {Promise<IBugReport>} The created bug report.
+ */
 export const createBugReport = async (
   fetcher: Fetcher,
   bugReport: IBugReportInputDto,

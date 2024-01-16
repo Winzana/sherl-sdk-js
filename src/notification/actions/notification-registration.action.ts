@@ -7,6 +7,13 @@ import {
   INotificationRegistrationResponse,
 } from '../types';
 
+/**
+ * Register a notification.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {INotificationRegistration} notificationRegistration - Data for registering the notification.
+ * @returns {Promise<INotificationRegistrationResponse>} A promise that resolves to an INotificationRegistrationResponse.
+ */
 export const notificationRegistration = async (
   fetcher: Fetcher,
   notificationRegistration: INotificationRegistration,

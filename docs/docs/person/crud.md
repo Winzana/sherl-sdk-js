@@ -1,5 +1,5 @@
 ---
-id: person-index
+id: person-crud
 title: CRUD
 ---
 

@@ -5,6 +5,14 @@ import { endpoints } from '../../api/endpoints';
 import { ProductErr, errorFactory } from '../../errors/product/errors';
 import { IComment, IFindProductCommentsInputDto } from '../../types';
 
+/**
+ * Retrieves comments for a specific product, optionally filtered by specific criteria.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} productId - The unique identifier of the product for which comments are being retrieved.
+ * @param {IFindProductCommentsInputDto} [filters] - Optional filters to apply when fetching product comments.
+ * @returns {Promise<ISearchResult<IComment>>} A promise that resolves to a search result containing the list of comments for the specified product.
+ */
 export const getProductComments = async (
   fetcher: Fetcher,
   productId: string,

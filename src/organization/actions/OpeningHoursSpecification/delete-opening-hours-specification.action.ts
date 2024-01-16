@@ -1,9 +1,18 @@
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { OrganizationErr, errorFactory } from '../../errors';
 import { IOrganizationResponse } from '../../types';
 
+/**
+ * Deletes an opening hours specification from a specified organization.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} organizationId - The unique identifier of the organization from which the opening hours specification is being deleted.
+ * @param {string} hoursSpecId - The unique identifier of the opening hours specification to be deleted.
+ * @returns {Promise<IOrganizationResponse>} A promise that resolves to the updated organization's information after the deletion of the opening hours specification.
+ */
 export const deleteOpeningHoursSpecification = async (
   fetcher: Fetcher,
   organizationId: string,
@@ -17,16 +26,26 @@ export const deleteOpeningHoursSpecification = async (
       }),
     );
 
-    if (response.status !== 200) {
-      throw errorFactory.create(
-        OrganizationErr.DELETE_OPENING_HOURS_SPECIFICATION_FAILED,
-      );
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          OrganizationErr.DELETE_OPENING_HOURS_SPECIFICATION_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(OrganizationErr.ORGANIZATION_NOT_FOUND);
+      default:
+        throw errorFactory.create(
+          OrganizationErr.DELETE_OPENING_HOURS_SPECIFICATION_FAILED,
+        );
     }
-
-    return response.data;
   } catch (error) {
-    throw errorFactory.create(
-      OrganizationErr.DELETE_OPENING_HOURS_SPECIFICATION_FAILED,
+    throw getSherlError(
+      error,
+      errorFactory.create(
+        OrganizationErr.DELETE_OPENING_HOURS_SPECIFICATION_FAILED,
+      ),
     );
   }
 };
