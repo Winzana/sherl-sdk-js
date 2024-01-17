@@ -1,6 +1,5 @@
 const fs = require('fs');
-const filePath =
-  'src/shop/actions/advertisement/create-advertisement.action-copy.ts';
+const { prompt } = require('readline-sync');
 
 const { glob } = require('glob');
 
@@ -45,7 +44,8 @@ function updateCode(data, switchMatch) {
   let errorCode = extractErrorCode(errorCases);
   let catchSwitchCases = updateCatchSwitchCases(errorCases, errorCode);
 
-  const catchRegex = /\} catch \((error)\) {\s*throw getSherlError\([^{}]+\);/;
+  const catchRegex =
+    /\} catch \((error|err)\) {\s*throw getSherlError\([^{}]+\);/;
   if (catchRegex.test(updatedCode)) {
     updatedCode = updatedCode.replace(
       catchRegex,
@@ -95,8 +95,10 @@ const options = {
 };
 
 async function getFilesAndProcess() {
+  console.log('Veuillez choisir un nom de domaine à modifier :');
+  const domain = await prompt();
   const files = await glob(
-    'src/bug-reports/actions/*action.ts',
+    `src/${domain}/actions/*action.ts`,
     options,
     (err, files) => {
       if (err) {
