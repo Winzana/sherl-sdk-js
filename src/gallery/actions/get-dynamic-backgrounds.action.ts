@@ -1,4 +1,3 @@
-import { SherlError } from '../../common';
 import { Pagination } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils';
@@ -23,16 +22,18 @@ export const getDynamicBackgrounds = async (
       filters,
     );
 
-    return response.data;
-  } catch (error: SherlError | Error | any) {
-    switch (error.status) {
+    switch (response.status) {
+      case 200:
+        return response.data;
       case 403:
         throw errorFactory.create(GalleryErr.GET_DYNAMIC_BACKGROUNDS_FORBIDDEN);
       default:
-        throw getSherlError(
-          error,
-          errorFactory.create(GalleryErr.GET_DYNAMIC_BACKGROUNDS_FAILED),
-        );
+        throw errorFactory.create(GalleryErr.GET_DYNAMIC_BACKGROUNDS_FAILED);
     }
+  } catch (error) {
+    throw getSherlError(
+      error,
+      errorFactory.create(GalleryErr.GET_DYNAMIC_BACKGROUNDS_FAILED),
+    );
   }
 };

@@ -1,4 +1,3 @@
-import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
@@ -18,16 +17,18 @@ export const createGallery = async (
 ): Promise<IGallery> => {
   try {
     const response = await fetcher.post<IGallery>(endpoints.GALLERY, gallery);
-    return response.data;
-  } catch (error: SherlError | Error | any) {
-    switch (error.status) {
+    switch (response.status) {
+      case 201:
+        return response.data;
       case 403:
         throw errorFactory.create(GalleryErr.CREATE_GALLERY_FORBIDDEN);
       default:
-        throw getSherlError(
-          error,
-          errorFactory.create(GalleryErr.CREATE_GALLERY_FAILED),
-        );
+        throw errorFactory.create(GalleryErr.CREATE_GALLERY_FAILED);
     }
+  } catch (error) {
+    throw getSherlError(
+      error,
+      errorFactory.create(GalleryErr.CREATE_GALLERY_FAILED),
+    );
   }
 };

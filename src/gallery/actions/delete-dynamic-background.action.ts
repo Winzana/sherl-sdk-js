@@ -1,4 +1,3 @@
-import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils';
 import { StringUtils } from '../../common/utils/string';
@@ -24,9 +23,9 @@ export const deleteDynamicBackground = async (
       }),
     );
 
-    return response.data;
-  } catch (error: SherlError | Error | any) {
-    switch (error.status) {
+    switch (response.status) {
+      case 200:
+        return response.data;
       case 403:
         throw errorFactory.create(
           GalleryErr.DELETE_DYNAMIC_BACKGROUND_FORBIDDEN,
@@ -34,10 +33,12 @@ export const deleteDynamicBackground = async (
       case 404:
         throw errorFactory.create(GalleryErr.DYNAMIC_BACKGROUND_NOT_FOUND);
       default:
-        throw getSherlError(
-          error,
-          errorFactory.create(GalleryErr.DELETE_DYNAMIC_BACKGROUND_FAILED),
-        );
+        throw errorFactory.create(GalleryErr.DELETE_DYNAMIC_BACKGROUND_FAILED);
     }
+  } catch (error) {
+    throw getSherlError(
+      error,
+      errorFactory.create(GalleryErr.DELETE_DYNAMIC_BACKGROUND_FAILED),
+    );
   }
 };
