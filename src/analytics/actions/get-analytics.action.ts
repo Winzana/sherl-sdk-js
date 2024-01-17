@@ -1,4 +1,3 @@
-import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoint';
@@ -18,18 +17,20 @@ export const getAnalytics = async (
 ): Promise<ITrace> => {
   try {
     const response = await fetcher.get<ITrace>(endpoints.ANALYTICS, filters);
-    return response.data;
-  } catch (error: SherlError | Error | any) {
-    switch (error.status) {
+    switch (response.status) {
+      case 200:
+        return response.data;
       case 403:
         throw errorFactory.create(AnalyticsErr.ANALYTICS_FORBIDDEN_ERROR);
       case 404:
         throw errorFactory.create(AnalyticsErr.ANALYTICS_NOT_FOUND);
       default:
-        throw getSherlError(
-          error,
-          errorFactory.create(AnalyticsErr.ANALYTICS_FAILED),
-        );
+        throw errorFactory.create(AnalyticsErr.ANALYTICS_FAILED);
     }
+  } catch (err) {
+    throw getSherlError(
+      err,
+      errorFactory.create(AnalyticsErr.ANALYTICS_FAILED),
+    );
   }
 };

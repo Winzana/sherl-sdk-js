@@ -1,4 +1,3 @@
-import { SherlError } from '../../common';
 import { ISearchResult } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils';
@@ -23,18 +22,20 @@ export const getTrackingAnalytics = async (
       filters,
     );
 
-    return response.data;
-  } catch (error: SherlError | Error | any) {
-    switch (error.status) {
+    switch (response.status) {
+      case 200:
+        return response.data;
       case 403:
         throw errorFactory.create(
           AnalyticsErr.ANALYTICS_TRACKING_FAILED_FORBIDDEN,
         );
       default:
-        throw getSherlError(
-          error,
-          errorFactory.create(AnalyticsErr.ANALYTICS_TRACKING_FAILED),
-        );
+        throw errorFactory.create(AnalyticsErr.ANALYTICS_TRACKING_FAILED);
     }
+  } catch (err) {
+    throw getSherlError(
+      err,
+      errorFactory.create(AnalyticsErr.ANALYTICS_TRACKING_FAILED),
+    );
   }
 };
