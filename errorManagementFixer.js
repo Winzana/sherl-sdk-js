@@ -49,7 +49,7 @@ function updateCode(data, switchMatch) {
   if (catchRegex.test(updatedCode)) {
     updatedCode = updatedCode.replace(
       catchRegex,
-      `} catch (error: Error | any) {\n\t\tswitch (error.status) {\n${catchSwitchCases}\n\t}`,
+      `} catch (error: SherlError | Error | any) {\n\t\tswitch (error.status) {\n${catchSwitchCases}\n\t}`,
     );
   } else {
     console.log('Catch block not found or already modified.');
@@ -64,9 +64,17 @@ function processFile(filePath) {
       return;
     }
 
-    const switchMatch = extractSwitchStatement(data);
+    const importStatement = "import { SherlError } from '../../common';\n";
+    let newData;
+    if (!data.startsWith(importStatement)) {
+      newData = importStatement + data;
+    } else {
+      newData = data;
+    }
+
+    const switchMatch = extractSwitchStatement(newData);
     if (switchMatch) {
-      let updatedCode = updateCode(data, switchMatch);
+      let updatedCode = updateCode(newData, switchMatch);
 
       fs.writeFile(filePath, updatedCode, 'utf8', (err) => {
         if (err) {
