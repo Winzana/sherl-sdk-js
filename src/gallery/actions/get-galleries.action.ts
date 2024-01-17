@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Pagination } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils';
@@ -22,18 +23,16 @@ export const getGalleries = async (
       filters,
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(GalleryErr.GET_GALLERIES_FORBIDDEN);
       default:
-        throw errorFactory.create(GalleryErr.GET_GALLERIES_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(GalleryErr.GET_GALLERIES_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(GalleryErr.GET_GALLERIES_FAILED),
-    );
   }
 };
