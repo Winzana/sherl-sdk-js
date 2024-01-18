@@ -54,7 +54,7 @@ class ClaimProvider extends AbstractProvider {
   public getClaimById = this.withFetcher(getClaimById);
 
   /**
-   * Retrieves a claim refund using the provided fetcher and claim ID.
+   * Makes a refund following a claim.
    *
    * @param {string} id - The ID of the claim to refund.
    * @return {Promise<IClaim>} A promise that resolves to the refunded claim object.

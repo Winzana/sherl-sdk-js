@@ -6,8 +6,7 @@ import { ClaimErr, errorFactory } from '../errors';
 import { IClaim } from '../types';
 
 /**
- * Retrieves a claim refund using the provided fetcher and claim ID.
- *
+ * Makes a refund following a claim.
  * @param {Fetcher} fetcher - The fetcher object used to make the API call.
  * @param {string} id - The ID of the claim to refund.
  * @return {Promise<IClaim>} A promise that resolves to the refunded claim object.
