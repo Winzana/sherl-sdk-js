@@ -22,11 +22,14 @@ export const createCalendar = async (
       calendar,
     );
 
-    if (response.status >= 400) {
-      throw errorFactory.create(CalendarErr.CREATE_CALENDAR_FAILED);
+    switch (response.status) {
+      case 201:
+        return response.data;
+      case 403:
+        throw errorFactory.create(CalendarErr.CREATE_CALENDAR_FORBIDDEN);
+      default:
+        throw errorFactory.create(CalendarErr.CREATE_CALENDAR_FAILED);
     }
-
-    return response.data;
   } catch (error) {
     throw getSherlError(
       error,
