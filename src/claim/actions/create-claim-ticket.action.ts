@@ -5,6 +5,14 @@ import { endpoints } from '../api/endpoints';
 import { ClaimErr, errorFactory } from '../errors';
 import { IClaim, IClaimCreate } from '../types';
 
+/**
+ * Creates a claim ticket with the specified ID and parameters.
+ *
+ * @param {Fetcher} fetcher - The fetcher object used to make API requests.
+ * @param {string} id - The ID of the claim ticket.
+ * @param {Partial<IClaimCreate>} params - The parameters used to create the claim ticket.
+ * @return {Promise<IClaim>} The created claim ticket.
+ */
 export const createClaimTicket = async (
   fetcher: Fetcher,
   id: string,

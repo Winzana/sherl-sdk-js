@@ -5,6 +5,14 @@ import { endpoints } from '../api/endpoints';
 import { ClaimErr, errorFactory } from '../errors';
 import { IClaim } from '../types';
 
+/**
+ * Sends a reply to a claim identified by the given ID.
+ *
+ * @param {Fetcher} fetcher - The fetcher object used for making HTTP requests.
+ * @param {string} id - The ID of the claim to reply to.
+ * @param {string} replyContent - The content of the reply.
+ * @returns {Promise<IClaim>} - A promise that resolves to the updated claim object.
+ */
 export const replyClaim = async (
   fetcher: Fetcher,
   id: string,

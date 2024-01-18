@@ -6,6 +6,13 @@ import { IClaim, IClaimTicketFilters } from '../types/entities';
 import { ClaimErr, errorFactory } from '../errors';
 import { getSherlError } from '../../common/utils/errors';
 
+/**
+ * Retrieves all claims based on the provided filters.
+ *
+ * @param {Fetcher} fetcher - The fetcher object used to make HTTP requests.
+ * @param {IClaimTicketFilters} filters - The filters to apply to the claims.
+ * @return {Promise<Pagination<IClaim>>} - A promise that resolves to a pagination object containing the claims.
+ */
 export const getAllClaims = async (
   fetcher: Fetcher,
   filters: IClaimTicketFilters,

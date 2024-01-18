@@ -4,6 +4,13 @@ import { endpoints } from '../api/endpoints';
 import { ClaimErr, errorFactory } from '../errors';
 import { FindClaimFilter, IClaim } from '../types';
 
+/**
+ * Finds a claim by applying optional filters.
+ *
+ * @param {Fetcher} fetcher - The fetcher used to make API calls.
+ * @param {FindClaimFilter} filters - Optional filters to apply.
+ * @return {Promise<IClaim>} A promise that resolves to the found claim.
+ */
 export const findClaimBy = async (
   fetcher: Fetcher,
   filters?: FindClaimFilter,

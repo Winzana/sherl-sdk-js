@@ -5,6 +5,13 @@ import { endpoints } from '../api/endpoints';
 import { ClaimErr, errorFactory } from '../errors';
 import { IClaim } from '../types';
 
+/**
+ * Retrieves a claim by its ID.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used to make the HTTP request.
+ * @param {string} id - The ID of the claim to retrieve.
+ * @return {Promise<IClaim>} A promise that resolves to the retrieved claim.
+ */
 export const getClaimById = async (
   fetcher: Fetcher,
   id: string,
