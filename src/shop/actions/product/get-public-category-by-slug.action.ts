@@ -28,7 +28,7 @@ export const getPublicCategoryBySlug = async (
           ProductErr.GET_PUBLIC_CATEGORY_BY_SLUG_FORBIDDEN,
         );
       case 404:
-        throw errorFactory.create(ProductErr.SLUG_CATEGORY_NOT_FOUND);
+        throw errorFactory.create(ProductErr.CATEGORY_NOT_FOUND);
       default:
         throw errorFactory.create(
           ProductErr.GET_PUBLIC_CATEGORY_BY_SLUG_FAILED,

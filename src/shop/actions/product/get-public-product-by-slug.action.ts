@@ -29,7 +29,7 @@ export const getPublicProductBySlug = async (
           ProductErr.GET_PUBLIC_PRODUCT_BY_SLUG_FORBIDDEN,
         );
       case 404:
-        throw errorFactory.create(ProductErr.SLUG_PRODUCT_NOT_FOUND);
+        throw errorFactory.create(ProductErr.PRODUCT_NOT_FOUND);
       default:
         throw errorFactory.create(ProductErr.GET_PUBLIC_PRODUCT_BY_SLUG_FAILED);
     }

@@ -28,14 +28,14 @@ export const validatePaymentBasket = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(BasketErr.BASKET_VALIDATE_PENDING_FORBIDDEN);
+        throw errorFactory.create(BasketErr.BASKET_VALIDATE_PAYMENT_FORBIDDEN);
       default:
-        throw errorFactory.create(BasketErr.BASKET_VALIDATE_PENDING_FAILED);
+        throw errorFactory.create(BasketErr.BASKET_VALIDATE_PAYMENT_FAILED);
     }
   } catch (error) {
     throw getSherlError(
       error,
-      errorFactory.create(BasketErr.BASKET_VALIDATE_PENDING_FAILED),
+      errorFactory.create(BasketErr.BASKET_VALIDATE_PAYMENT_FAILED),
     );
   }
 };

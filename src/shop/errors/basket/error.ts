@@ -13,8 +13,8 @@ export enum BasketErr {
   BASKET_COMMENT_FORBIDDEN = 'basket/basket-comment-forbidden',
   VALIDATE_AND_PAY_BASKET_FAILED = 'basket/validate-and-pay-basket-failed',
   VALIDATE_AND_PAY_BASKET_FORBIDDEN = 'basket/validate-and-pay-basket-forbidden',
-  BASKET_VALIDATE_PENDING_FAILED = 'basket/basket-validate-pending-failed',
-  BASKET_VALIDATE_PENDING_FORBIDDEN = 'basket/validate-pending-basket-forbidden',
+  BASKET_VALIDATE_PAYMENT_FAILED = 'basket/basket-validate-payment-failed',
+  BASKET_VALIDATE_PAYMENT_FORBIDDEN = 'basket/validate-payment-forbidden',
   BASKET_DISCOUNT_CODE_FAILED = 'basket/basket-discount-code-failed',
   BASKET_DISCOUNT_CODE_FORBIDDEN = 'basket/apply-discount-code-forbidden',
   BASKET_SPONSOR_CODE_FAILED = 'basket/apply-sponsor-discount-code-failed',
@@ -45,9 +45,9 @@ export const errors = {
     'Failed to validate and pay basket, forbidden',
   [BasketErr.BASKET_COMMENT_FAILED]: 'Failed to comment basket',
   [BasketErr.BASKET_COMMENT_FORBIDDEN]: 'Failed to comment basket, forbidden',
-  [BasketErr.BASKET_VALIDATE_PENDING_FAILED]:
+  [BasketErr.BASKET_VALIDATE_PAYMENT_FAILED]:
     'Failed to validate pending payment',
-  [BasketErr.BASKET_VALIDATE_PENDING_FORBIDDEN]:
+  [BasketErr.BASKET_VALIDATE_PAYMENT_FORBIDDEN]:
     'Failed to validate pending payment, forbidden',
   [BasketErr.BASKET_DISCOUNT_CODE_FAILED]: 'Failed to set discount code',
   [BasketErr.BASKET_DISCOUNT_CODE_FORBIDDEN]:

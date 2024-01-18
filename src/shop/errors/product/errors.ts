@@ -53,8 +53,6 @@ export enum ProductErr {
   UPDATE_CATEGORY_FORBIDDEN = 'product/update-category-forbidden',
   PRODUCT_NOT_FOUND = 'product/product-not-found',
   CATEGORY_NOT_FOUND = 'product/category-not-found',
-  SLUG_CATEGORY_NOT_FOUND = 'product/slug-category-not-found',
-  SLUG_PRODUCT_NOT_FOUND = 'product/slug-product-not-found',
   OPTION_OR_PRODUCT_NOT_FOUND = 'product/option-or-product-not-found',
   ORGANIZATION_NOT_FOUND = 'product/organization-not-found',
 }
@@ -136,8 +134,6 @@ export const errors = {
     'Failed to remove option from product, forbidden',
   [ProductErr.PRODUCT_NOT_FOUND]: 'Product not found',
   [ProductErr.CATEGORY_NOT_FOUND]: 'Category not found',
-  [ProductErr.SLUG_CATEGORY_NOT_FOUND]: 'Slug category not found',
-  [ProductErr.SLUG_PRODUCT_NOT_FOUND]: 'Slug product not found',
   [ProductErr.OPTION_OR_PRODUCT_NOT_FOUND]: 'Option or product not found',
   [ProductErr.ORGANIZATION_NOT_FOUND]: 'Organization not found',
   [ProductErr.GET_PRODUCT_VIEWS_FAILED]: 'Failed to get product views',

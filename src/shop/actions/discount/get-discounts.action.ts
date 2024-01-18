@@ -26,16 +26,14 @@ export const getDiscounts = async (
       case 200:
         return response.data;
       case 403:
-        throw errorFactory.create(DiscountErr.GET_DISCOUNT_BY_ID_FORBIDDEN);
-      case 404:
-        throw errorFactory.create(DiscountErr.DISCOUNT_NOT_FOUND);
+        throw errorFactory.create(DiscountErr.GET_DISCOUNTS_FORBIDDEN);
       default:
-        throw errorFactory.create(DiscountErr.GET_DISCOUNT_BY_ID_FAILED);
+        throw errorFactory.create(DiscountErr.GET_DISCOUNTS_FAILED);
     }
   } catch (error) {
     throw getSherlError(
       error,
-      errorFactory.create(DiscountErr.GET_DISCOUNT_BY_ID_FAILED),
+      errorFactory.create(DiscountErr.GET_DISCOUNTS_FAILED),
     );
   }
 };
