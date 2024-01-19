@@ -78,7 +78,6 @@ import {
   getUnrestrictedCategories,
   addCommentOnProduct,
   getOrganizationSubCategories,
-
 } from './actions/product';
 import {
   cancelSubscription,
