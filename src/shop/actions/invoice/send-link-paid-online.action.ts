@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { InvoiceErr, errorFactory } from '../../errors/invoice/errors';
@@ -22,8 +23,21 @@ export const sendLinkToPaidOnline = async (
       }),
       {},
     );
-    return response.data;
+
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(InvoiceErr.SEND_INVOICE_LINK_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(InvoiceErr.INVOICE_ID_NOT_FOUND);
+      default:
+        throw errorFactory.create(InvoiceErr.SEND_INVOICE_LINK_FAILED);
+    }
   } catch (err) {
-    throw errorFactory.create(InvoiceErr.SEND_FAILED);
+    throw getSherlError(
+      err,
+      errorFactory.create(InvoiceErr.SEND_INVOICE_LINK_FAILED),
+    );
   }
 };

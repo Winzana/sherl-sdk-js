@@ -1,6 +1,7 @@
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { endpoints } from '../../api/endpoints';
-import { OrderErr, errorFactory } from '../../errors/order/errors';
+import { BasketErr, errorFactory } from '../../errors/basket/error';
 import {
   IOrderResponse,
   IShopBasketValidatePaymentInputDto,
@@ -23,8 +24,18 @@ export const validatePaymentBasket = async (
       { validation },
     );
 
-    return response.data;
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(BasketErr.BASKET_VALIDATE_PAYMENT_FORBIDDEN);
+      default:
+        throw errorFactory.create(BasketErr.BASKET_VALIDATE_PAYMENT_FAILED);
+    }
   } catch (error) {
-    throw errorFactory.create(OrderErr.BASKET_VALIDATE_PENDING_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(BasketErr.BASKET_VALIDATE_PAYMENT_FAILED),
+    );
   }
 };

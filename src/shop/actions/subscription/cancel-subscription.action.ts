@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import {
@@ -25,8 +26,22 @@ export const cancelSubscription = async (
       }),
       {},
     );
-    return response.data;
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          SubscriptionErr.CANCEL_SUBSCRIPTION_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(SubscriptionErr.SUBSCRIPTION_NOT_FOUND);
+      default:
+        throw errorFactory.create(SubscriptionErr.CANCEL_SUBSCRIPTION_FAILED);
+    }
   } catch (error) {
-    throw errorFactory.create(SubscriptionErr.FETCH_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(SubscriptionErr.CANCEL_SUBSCRIPTION_FAILED),
+    );
   }
 };

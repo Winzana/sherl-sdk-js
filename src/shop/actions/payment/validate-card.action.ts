@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { PaymentErr, errorFactory } from '../../errors/payment/errors';
@@ -21,8 +22,20 @@ export const validateCard = async (
         id: cardId,
       }),
     );
-    return response.data;
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(PaymentErr.VALIDATE_CARD_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(PaymentErr.CARD_NOT_FOUND);
+      default:
+        throw errorFactory.create(PaymentErr.VALIDATE_CARD_FAILED);
+    }
   } catch (error) {
-    throw errorFactory.create(PaymentErr.VALIDATE_CARD_FAILED);
+    throw getSherlError(
+      error,
+      errorFactory.create(PaymentErr.VALIDATE_CARD_FAILED),
+    );
   }
 };

@@ -1,4 +1,5 @@
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { ProductErr, errorFactory } from '../../errors/product/errors';
@@ -21,8 +22,25 @@ export const getOrganizationSubCategories = async (
         id: categoryId,
       }),
     );
-    return response.data;
+
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(
+          ProductErr.GET_ORGANIZATION_SUBCATEGORIES_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(ProductErr.CATEGORY_NOT_FOUND);
+      default:
+        throw errorFactory.create(
+          ProductErr.GET_ORGANIZATION_SUBCATEGORIES_FAILED,
+        );
+    }
   } catch (err) {
-    throw errorFactory.create(ProductErr.GET_ORGANIZATION_CATEGORIES_FAILED);
+    throw getSherlError(
+      err,
+      errorFactory.create(ProductErr.GET_ORGANIZATION_SUBCATEGORIES_FAILED),
+    );
   }
 };

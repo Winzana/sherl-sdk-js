@@ -3,6 +3,7 @@ import { endpoints } from '../../api/endpoints';
 import { IDiscount, IDiscountFilter } from '../../types';
 import { Pagination } from '../../../common/types/response';
 import { DiscountErr, errorFactory } from '../../errors/discount/errors';
+import { getSherlError } from '../../../common/utils';
 
 /**
  * Retrieves a paginated list of discounts based on provided filters.
@@ -15,14 +16,24 @@ export const getDiscounts = async (
   fetcher: Fetcher,
   filters?: IDiscountFilter,
 ): Promise<Pagination<IDiscount>> => {
-  const response = await fetcher.get<Pagination<IDiscount>>(
-    endpoints.DISCOUNTS,
-    filters,
-  );
+  try {
+    const response = await fetcher.get<Pagination<IDiscount>>(
+      endpoints.DISCOUNTS,
+      filters,
+    );
 
-  if (response.status !== 200) {
-    throw errorFactory.create(DiscountErr.FETCH_FAILED);
+    switch (response.status) {
+      case 200:
+        return response.data;
+      case 403:
+        throw errorFactory.create(DiscountErr.GET_DISCOUNTS_FORBIDDEN);
+      default:
+        throw errorFactory.create(DiscountErr.GET_DISCOUNTS_FAILED);
+    }
+  } catch (error) {
+    throw getSherlError(
+      error,
+      errorFactory.create(DiscountErr.GET_DISCOUNTS_FAILED),
+    );
   }
-
-  return response.data;
 };

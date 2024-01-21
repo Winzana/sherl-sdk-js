@@ -86,7 +86,6 @@ await shop(client).getPublicProducts(filters: IProductFindByDto);
 
 This call returns a [paginated](../pagination#pagination) array of [IPublicProductResponse](../shop-types#ipublicproductresponse) objects.
 
-
 ## Get product by id
 
 <span class="badge badge--warning">Require authentication</span>
@@ -114,63 +113,6 @@ await shop(client).getPublicProductBySlug(id: string);
 ```
 
 This call returns an [IPublicProductResponse](../shop-types#ipublicproductresponse) object.
-
-## Get public products with filters
-
-<span class="badge badge--warning">Require authentication</span>
-
-```ts
-await shop(client).getPublicProductsWithFilters(filters?: IProductFindByDto);
-```
-
-```ts
-interface IProductFindByDto extends PaginationFilters {
-  ids?: string[];
-  externalIds?: string[];
-  excludedExternalIds?: string[];
-  externalIdentifier?: string;
-  uri?: string;
-  versionNumber?: number;
-  slug?: string;
-  parentUri?: string;
-  organizationUri?: string;
-  organizationSlug?: string;
-  id?: string;
-  name?: string;
-  categoryUri?: string;
-  categoryUris?: string[];
-  consumerId?: string;
-  q?: string;
-  isEnable?: boolean;
-  languages?: string[];
-  placeForward?: boolean;
-  strictPlaceForward?: boolean;
-  geopoint?: string;
-  distance?: number;
-  withinHours?: boolean;
-  startDate?: string;
-  endDate?: string;
-  displayAllVersion?: boolean;
-  includeDeleted?: boolean;
-  isUpdatedByHuman?: boolean;
-  tag?: ProductTags;
-  tags?: number;
-  displayMode?: ProductDisplayMode;
-  type?: ShopProductTypeEnum;
-  noBind?: boolean;
-  uriOfPanels?: string[];
-  panel?: string;
-}
-```
-
-This interface extends [PaginationFilters](../pagination#pagination-filters).
-
-- [ProductTags](../shop-types#producttags)(`tag`)
-- [ProductDisplayMode](../shop-types#productdisplaymode)(`displayMode`)
-- [ShopProductTypeEnum](../shop-types#shopproducttypeenum)(`type`)
-
-This call returns a [paginated](../pagination#pagination) array of [IProductResponse](../shop-types#iproductresponse) objects.
-
 
 ## Add comment on product
 
@@ -236,7 +178,7 @@ export interface IShopProductOptionItemCreateInputDto {
 }
 ```
 
-- [IProductOptionItemTranslationDto](../shop-types#iproductoptionitemtranslationdto)(`translations`) 
+- [IProductOptionItemTranslationDto](../shop-types#iproductoptionitemtranslationdto)(`translations`)
 
 This call returns an [IProductResponse](../shop-types#iproductresponse) object.
 
