@@ -1,22 +1,22 @@
 import { SherlClient } from '../common';
 import { AbstractProvider } from '../common/provider';
-import { checkCalendarDates } from './actions/calendar/check-calendar-dates';
-import { checkLocationForCalendar } from './actions/calendar/check-calendar-location';
+import { checkCalendarDates } from './actions/calendar/check-calendar-dates.action';
+import { checkLocationForCalendar } from './actions/calendar/check-calendar-location.action';
 
-import { createCalendar } from './actions/calendar/create-calendar';
-import { deleteCalendar } from './actions/calendar/delete-calendar';
-import { findOneCalendarWithFilter } from './actions/calendar/find-calendar';
-import { findCalendarAvailabilitiesWithFilter } from './actions/calendar/find-calendar-availabilities';
-import { getCalendarById } from './actions/calendar/get-calendar';
-import { updateCalendar } from './actions/calendar/update-calendar';
+import { createCalendar } from './actions/calendar/create-calendar.action';
+import { deleteCalendar } from './actions/calendar/delete-calendar.action';
+import { findOneCalendarWithFilter } from './actions/calendar/find-calendar.action';
+import { findCalendarAvailabilitiesWithFilter } from './actions/calendar/find-calendar-availabilities.action';
+import { getCalendarById } from './actions/calendar/get-calendar.action';
+import { updateCalendar } from './actions/calendar/update-calendar.action';
 
-import { createCalendarEvent } from './actions/calendar-event/create-calendar-event';
+import { createCalendarEvent } from './actions/calendar-event/create-calendar-event.action';
 
-import { updateCalendarEvent } from './actions/calendar-event/update-calendar-event';
-import { deleteCalendarEvent } from './actions/calendar-event/delete-calendar-event';
-import { getCalendarEventsForCurrentPerson } from './actions/calendar-event/get-all-events-for-current-person';
-import { getCalendarEventsForOwner } from './actions/calendar-event/get-all-events-for-calendar-by-owner';
-import { getCalendarEventsByCalendarId } from './actions/calendar-event/get-all-events-for-calendar';
+import { updateCalendarEvent } from './actions/calendar-event/update-calendar-event.action';
+import { deleteCalendarEvent } from './actions/calendar-event/delete-calendar-event.action';
+import { getCalendarEventsForCurrentPerson } from './actions/calendar-event/get-all-events-for-current-person.action';
+import { getCalendarEventsForOwner } from './actions/calendar-event/get-all-events-for-calendar-by-owner.action';
+import { getCalendarEventsByCalendarId } from './actions/calendar-event/get-all-events-for-calendar.action';
 import { errorFactory } from './errors/errors';
 
 class CalendarProvider extends AbstractProvider {

@@ -1,3 +1,4 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/calendar-event/endpoints';
 import { ICalendarEvent } from '../../entities';
@@ -24,9 +25,10 @@ export const getCalendarEventById = async (
       }),
       {},
     );
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch (error.status) {
       case 403:
         throw errorFactory.create(
           CalendarErr.GET_CALENDAR_EVENT_BY_ID_FORBIDDEN,
@@ -34,13 +36,10 @@ export const getCalendarEventById = async (
       case 404:
         throw errorFactory.create(CalendarErr.CALENDAR_EVENT_NOT_FOUND);
       default:
-        throw errorFactory.create(CalendarErr.GET_CALENDAR_EVENT_BY_ID_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(CalendarErr.GET_CALENDAR_EVENT_BY_ID_FAILED),
+        );
     }
-    return response.data;
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(CalendarErr.GET_CALENDAR_EVENT_BY_ID_FAILED),
-    );
   }
 };
