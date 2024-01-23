@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
@@ -20,9 +21,9 @@ export const registerOrganizationToPerson = async (
       endpoints.REGISTER_ORGANIZATION_TO_PERSON,
       organizationToPerson,
     );
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(
           OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_FORBIDDEN,
@@ -32,12 +33,5 @@ export const registerOrganizationToPerson = async (
           OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_FAILED,
         );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(
-        OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_FAILED,
-      ),
-    );
   }
 };

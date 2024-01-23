@@ -1,3 +1,4 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { getSherlError } from '../../../common/utils';
 import { StringUtils } from '../../../common/utils/string';
@@ -35,20 +36,18 @@ export const updateKycDocument = async (
       },
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(OrganizationErr.UPDATE_DOCUMENT_FORBIDDEN);
       case 404:
         throw errorFactory.create(OrganizationErr.KYC_NOT_FOUND);
       default:
-        throw errorFactory.create(OrganizationErr.UPDATE_DOCUMENT_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(OrganizationErr.UPDATE_DOCUMENT_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(OrganizationErr.UPDATE_DOCUMENT_FAILED),
-    );
   }
 };
