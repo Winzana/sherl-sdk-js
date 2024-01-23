@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { INotification } from '../types';
@@ -24,18 +25,16 @@ export const getNotifications = async (
         ...filters,
       },
     );
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(NotificationErr.GET_NOTIFICATIONS_FORBIDDEN);
       default:
-        throw errorFactory.create(NotificationErr.FETCH_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(NotificationErr.FETCH_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(NotificationErr.FETCH_FAILED),
-    );
   }
 };

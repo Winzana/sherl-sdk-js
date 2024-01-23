@@ -26,17 +26,17 @@ export const errors = {
   [NotificationErr.SEND_NOTIFICATION_BY_TYPE_FAILED]:
     'Failed to send notification by type',
   [NotificationErr.DISABLE_TO_ORGANIZATION_FORBIDDEN]:
-    'Failed to enable organization forbidden',
+    'Failed to enable organization, forbidden',
   [NotificationErr.ENABLE_TO_ORGANIZATION_FORBIDDEN]:
-    'Failed to enable organization forbidden',
+    'Failed to enable organization, forbidden',
   [NotificationErr.GET_NOTIFICATIONS_FORBIDDEN]:
-    'Failed to get organization forbidden',
+    'Failed to get organization, forbidden',
   [NotificationErr.NOTIFICATION_REGISTRATION_FORBIDDEN]:
-    'Failed to  notification forbidden',
-  [NotificationErr.NOTIFICATION_REGISTRATION_FORBIDDEN]:
-    'Failed to  notification registration forbidden',
+    'Failed to register notification, forbidden',
+  [NotificationErr.SEND_NOTIFICATION_BY_TYPE_FORBIDDEN]:
+    'Failed to send notification by type, forbidden',
   [NotificationErr.UPDATE_NOTIFICATION_FORBIDDEN]:
-    'Failed to update notification  forbidden',
+    'Failed to update notification, forbidden',
 };
 
 export const errorFactory = new ErrorFactory<NotificationErr>(
