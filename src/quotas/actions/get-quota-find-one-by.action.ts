@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { QuotaErr, errorFactory } from '../errors/errors';
 
@@ -23,15 +24,13 @@ export const getQuotaFindOneBy = async (
       filters,
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(QuotaErr.FETCH_QUOTA_FIND_ONE_BY_FORBIDDEN);
       default:
-        throw errorFactory.create(QuotaErr.FETCH_FAILED);
+        throw getSherlError(error, errorFactory.create(QuotaErr.FETCH_FAILED));
     }
-  } catch (error) {
-    throw getSherlError(error, errorFactory.create(QuotaErr.FETCH_FAILED));
   }
 };
