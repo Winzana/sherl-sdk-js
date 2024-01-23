@@ -1,3 +1,4 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { getSherlError } from '../../../common/utils/errors';
 import { endpoints } from '../../api/endpoints';
@@ -18,18 +19,16 @@ export const clearBasket = async (
     const response = await fetcher.post<boolean>(endpoints.CLEAR_BASKET, {
       customerId,
     });
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(BasketErr.BASKET_CLEAR_FORBIDDEN);
       default:
-        throw errorFactory.create(BasketErr.BASKET_CLEAR_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(BasketErr.BASKET_CLEAR_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(BasketErr.BASKET_CLEAR_FAILED),
-    );
   }
 };

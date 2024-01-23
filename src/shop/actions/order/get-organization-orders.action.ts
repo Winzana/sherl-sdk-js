@@ -1,3 +1,4 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
 import { IOrderFindByDto, IOrderResponse } from '../../types';
@@ -26,20 +27,18 @@ export const getOrganizationOrders = async (
       }),
       filters,
     );
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(OrderErr.GET_ORGANIZATION_ORDERS_FORBIDDEN);
       case 404:
         throw errorFactory.create(OrderErr.ORGANIZATION_NOT_FOUND);
       default:
-        throw errorFactory.create(OrderErr.GET_ORGANIZATION_ORDERS_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(OrderErr.GET_ORGANIZATION_ORDERS_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(OrderErr.GET_ORGANIZATION_ORDERS_FAILED),
-    );
   }
 };

@@ -1,3 +1,4 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
 import { IDiscount, IDiscountPublicFilter } from '../../types';
@@ -22,18 +23,16 @@ export const getPublicDiscounts = async (
       filters,
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(DiscountErr.GET_PUBLIC_DISCOUNTS_FORBIDDEN);
       default:
-        throw errorFactory.create(DiscountErr.GET_PUBLIC_DISCOUNTS_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(DiscountErr.GET_PUBLIC_DISCOUNTS_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(DiscountErr.GET_PUBLIC_DISCOUNTS_FAILED),
-    );
   }
 };

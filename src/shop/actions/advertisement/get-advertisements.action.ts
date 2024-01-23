@@ -1,3 +1,4 @@
+import { SherlError } from '../../../common';
 import { Pagination } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { getSherlError } from '../../../common/utils';
@@ -28,20 +29,18 @@ export const getAdvertisements = async (
       filters,
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(
           AdvertisementErr.GET_ADVERTISEMENTS_FORBIDDEN,
         );
       default:
-        throw errorFactory.create(AdvertisementErr.GET_ADVERTISEMENTS_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(AdvertisementErr.GET_ADVERTISEMENTS_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(AdvertisementErr.GET_ADVERTISEMENTS_FAILED),
-    );
   }
 };

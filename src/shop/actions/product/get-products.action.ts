@@ -1,3 +1,4 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
 import { IProductFindByDto, IProductResponse } from '../../types';
@@ -21,18 +22,16 @@ export const getProducts = async (
       endpoints.GET_PRODUCTS,
       filters,
     );
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(ProductErr.GET_PRODUCTS_FORBIDDEN);
       default:
-        throw errorFactory.create(ProductErr.GET_PRODUCTS_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(ProductErr.GET_PRODUCTS_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(ProductErr.GET_PRODUCTS_FAILED),
-    );
   }
 };

@@ -1,3 +1,4 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
@@ -21,20 +22,18 @@ export const getDiscount = async (
       StringUtils.bindContext(endpoints.MANAGE_DISCOUNT, { id }),
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(DiscountErr.GET_DISCOUNT_BY_ID_FORBIDDEN);
       case 404:
         throw errorFactory.create(DiscountErr.DISCOUNT_NOT_FOUND);
       default:
-        throw errorFactory.create(DiscountErr.GET_DISCOUNT_BY_ID_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(DiscountErr.GET_DISCOUNT_BY_ID_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(DiscountErr.GET_DISCOUNT_BY_ID_FAILED),
-    );
   }
 };

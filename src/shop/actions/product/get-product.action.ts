@@ -1,3 +1,4 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { StringUtils } from '../../../common/utils/string';
 import { IProductResponse } from '../../types';
@@ -21,9 +22,9 @@ export const getProduct = async (
       StringUtils.bindContext(endpoints.GET_PRODUCT, { id }),
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(
           ProductErr.GET_PUBLIC_PRODUCT_BY_ID_FORBIDDEN,
@@ -31,12 +32,10 @@ export const getProduct = async (
       case 404:
         throw errorFactory.create(ProductErr.PRODUCT_NOT_FOUND);
       default:
-        throw errorFactory.create(ProductErr.GET_PUBLIC_PRODUCT_BY_ID_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(ProductErr.GET_PUBLIC_PRODUCT_BY_ID_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(ProductErr.GET_PUBLIC_PRODUCT_BY_ID_FAILED),
-    );
   }
 };

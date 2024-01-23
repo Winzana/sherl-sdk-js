@@ -1,3 +1,4 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { getSherlError } from '../../../common/utils/errors';
 import { StringUtils } from '../../../common/utils/string';
@@ -20,20 +21,18 @@ export const getCategoryById = async (
     const response = await fetcher.get<ICategoryResponse[]>(
       StringUtils.bindContext(endpoints.CATEGORY, { id: categoryId }),
     );
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(ProductErr.GET_CATEGORY_BY_ID_FORBIDDEN);
       case 404:
         throw errorFactory.create(ProductErr.CATEGORY_NOT_FOUND);
       default:
-        throw errorFactory.create(ProductErr.GET_CATEGORY_BY_ID_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(ProductErr.GET_CATEGORY_BY_ID_FAILED),
+        );
     }
-  } catch (err) {
-    throw getSherlError(
-      err,
-      errorFactory.create(ProductErr.GET_CATEGORY_BY_ID_FAILED),
-    );
   }
 };
