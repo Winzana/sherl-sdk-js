@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
@@ -26,9 +27,9 @@ export const validateCode = async (
       },
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 401:
         throw errorFactory.create(
           AuthErr.VALIDATE_SMS_CODE_FAILED_UNAUTHORIZED,
@@ -40,14 +41,11 @@ export const validateCode = async (
 
       case 498:
         throw errorFactory.create(AuthErr.SMS_VALIDATION_CODE_EXPIRED);
-
       default:
-        throw errorFactory.create(AuthErr.VALIDATE_SMS_CODE_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(AuthErr.VALIDATE_SMS_CODE_FAILED),
+        );
     }
-  } catch (err) {
-    throw getSherlError(
-      err,
-      errorFactory.create(AuthErr.VALIDATE_SMS_CODE_FAILED),
-    );
   }
 };

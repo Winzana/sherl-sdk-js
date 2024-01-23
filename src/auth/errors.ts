@@ -2,6 +2,7 @@ import { ErrorFactory } from '../common/errors';
 
 export enum AuthErr {
   AUTH_FAILED = 'auth/auth-failed',
+  AUTH_UNAUTHORIZED = 'auth/auth-unauthorized',
   LOGIN_FAILED = 'auth/login-failed',
   LOGIN_FAILED_UNAUTHORIZED = 'auth/login-failed-unauthorized',
   LOGIN_GOOGLE_FAILED = 'auth/google-login-failed',
@@ -19,6 +20,7 @@ export enum AuthErr {
   VALIDATE_SMS_CODE_FAILED_UNAUTHORIZED = 'auth/validate-sms-code-failed-unauthorized',
   VALIDATE_SMS_CODE_FAILED_FORBIDDEN = 'auth/validate-sms-code-failed-forbidden',
   LOGOUT_FAILED = 'auth/logout-failed',
+  LOGOUT_UNAUTHORIZED = 'auth/logout-unauthorized',
   SMS_ALREADY_SENT = 'auth/sms-already-sent',
   SMS_VALIDATION_CODE_EXPIRED = 'auth/validate-sms-code-failed-expired',
   PHONE_NUMBER_NOT_FOUND = 'auth/phone-number-not-found',
@@ -27,6 +29,7 @@ export enum AuthErr {
 }
 export const errors = {
   [AuthErr.AUTH_FAILED]: 'Could not authenticate',
+  [AuthErr.AUTH_UNAUTHORIZED]: 'Could not authenticate, unauthorized',
   [AuthErr.LOGIN_FAILED]: 'Could not login',
   [AuthErr.LOGIN_FAILED_UNAUTHORIZED]: 'Could not login, unauthorized',
   [AuthErr.LOGIN_GOOGLE_FAILED]: 'Failed to connect with google',
@@ -50,6 +53,7 @@ export const errors = {
   [AuthErr.VALIDATE_SMS_CODE_FAILED_FORBIDDEN]:
     'Failed to connect validate sms code, forbidden',
   [AuthErr.LOGOUT_FAILED]: 'Failed to logout',
+  [AuthErr.LOGOUT_UNAUTHORIZED]: 'Failed to logout, unauthorized',
   [AuthErr.SMS_ALREADY_SENT]: 'SMS already sent',
   [AuthErr.SMS_VALIDATION_CODE_EXPIRED]: 'SMS validation code expired',
   [AuthErr.PHONE_NUMBER_NOT_FOUND]: 'Phone number not found',
