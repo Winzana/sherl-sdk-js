@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { Pagination } from '../../common/types/response';
@@ -22,15 +23,16 @@ export const getAllClaims = async (
       ...filters,
     });
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
-        throw errorFactory.create(ClaimErr.GET_ALL_FORBIDDEN_ERROR);
+        throw errorFactory.create(ClaimErr.GET_ALL_FORBIDDEN);
       default:
-        throw errorFactory.create(ClaimErr.GET_ALL_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(ClaimErr.GET_ALL_FAILED),
+        );
     }
-  } catch (err) {
-    throw getSherlError(err, errorFactory.create(ClaimErr.GET_ALL_FAILED));
   }
 };

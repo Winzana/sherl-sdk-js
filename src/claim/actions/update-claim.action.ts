@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils/errors';
 import { StringUtils } from '../../common/utils/string';
@@ -26,17 +27,18 @@ export const updateClaim = async (
       },
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
-        throw errorFactory.create(ClaimErr.UPDATE_CLAIM_FORBIDDEN_ERROR);
+        throw errorFactory.create(ClaimErr.UPDATE_CLAIM_FORBIDDEN);
       case 404:
         throw errorFactory.create(ClaimErr.CLAIM_NOT_FOUND);
       default:
-        throw errorFactory.create(ClaimErr.UPDATE_CLAIM_ERROR);
+        throw getSherlError(
+          error,
+          errorFactory.create(ClaimErr.UPDATE_CLAIM_ERROR),
+        );
     }
-  } catch (err) {
-    throw getSherlError(err, errorFactory.create(ClaimErr.UPDATE_CLAIM_ERROR));
   }
 };
