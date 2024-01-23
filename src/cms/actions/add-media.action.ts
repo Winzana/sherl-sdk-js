@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { CmsErr, errorFactory } from '../errors';
@@ -25,20 +26,18 @@ export const addMediaPage = async (
       }),
       data,
     );
-    switch (response.status) {
-      case 201:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(CmsErr.CREATE_CMS_EVENT_FAILED_CMS_FORBIDDEN);
       case 404:
         throw errorFactory.create(CmsErr.ARTICLE_NOT_FOUND);
       default:
-        throw errorFactory.create(CmsErr.CMS_ADD_MEDIA_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(CmsErr.CMS_ADD_MEDIA_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(CmsErr.CMS_ADD_MEDIA_FAILED),
-    );
   }
 };

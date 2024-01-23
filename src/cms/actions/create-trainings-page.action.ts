@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
@@ -21,18 +22,16 @@ export const createTrainingsPage = async (
       data,
     );
 
-    switch (response.status) {
-      case 201:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(CmsErr.CREATE_CMS_TRAINING_FAILED_FORBIDDEN);
       default:
-        throw errorFactory.create(CmsErr.CMS_CREATE_TRAININGS_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(CmsErr.CMS_CREATE_TRAININGS_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(CmsErr.CMS_CREATE_TRAININGS_FAILED),
-    );
   }
 };

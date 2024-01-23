@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { CmsErr, errorFactory } from '../errors';
@@ -24,18 +25,16 @@ export const getPosts = async (
       },
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(CmsErr.CMS_GET_POSTS_FAILED_POSTS_FORBIDDEN);
       default:
-        throw errorFactory.create(CmsErr.CMS_GET_POSTS_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(CmsErr.CMS_GET_POSTS_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(CmsErr.CMS_GET_POSTS_FAILED),
-    );
   }
 };
