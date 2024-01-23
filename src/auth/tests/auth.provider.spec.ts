@@ -22,12 +22,10 @@ describe('AuthProvider', () => {
   });
 
   it('should sign in and register token', async () => {
-    const expectedToken = { access_token: 'token' };
+    const expectedToken = 'token';
     jest
       .spyOn(action, 'signInWithEmailAndPassword')
-      .mockImplementation(
-        jest.fn(() => Promise.resolve(expectedToken.access_token)),
-      );
+      .mockImplementation(jest.fn(() => Promise.resolve(expectedToken)));
 
     const result = await provider.signInWithEmailAndPassword(
       'mail@example.com',
@@ -39,6 +37,6 @@ describe('AuthProvider', () => {
       expect.anything(),
       expectedToken,
     );
-    expect(result).toEqual(expectedToken.access_token);
+    expect(result).toEqual(expectedToken);
   });
 });
