@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { IPlace } from '../types';
@@ -31,16 +32,14 @@ export const getPlaces = async (
       },
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(PlaceErr.FETCH_PLACES_FORBIDDEN);
 
       default:
-        throw errorFactory.create(PlaceErr.FETCH_FAILED);
+        throw getSherlError(error, errorFactory.create(PlaceErr.FETCH_FAILED));
     }
-  } catch (error) {
-    throw getSherlError(error, errorFactory.create(PlaceErr.FETCH_FAILED));
   }
 };
