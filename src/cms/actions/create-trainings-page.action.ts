@@ -26,7 +26,7 @@ export const createTrainingsPage = async (
   } catch (error: SherlError | Error | any) {
     switch ((error as SherlError).data?.status) {
       case 403:
-        throw errorFactory.create(CmsErr.CREATE_CMS_TRAINING_FAILED_FORBIDDEN);
+        throw errorFactory.create(CmsErr.CREATE_CMS_TRAINING_FORBIDDEN);
       default:
         throw getSherlError(
           error,

@@ -28,7 +28,7 @@ export const deleteArticleById = async (
   } catch (error: SherlError | Error | any) {
     switch ((error as SherlError).data?.status) {
       case 403:
-        throw errorFactory.create(CmsErr.CMS_DELETE_BY_ID_FAILED_CMS_FORBIDDEN);
+        throw errorFactory.create(CmsErr.CMS_DELETE_ARTICLE_BY_ID_FORBIDDEN);
       case 404:
         throw errorFactory.create(CmsErr.ARTICLE_NOT_FOUND);
       default:

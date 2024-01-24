@@ -26,9 +26,7 @@ export const createStoriesPage = async (
   } catch (error: SherlError | Error | any) {
     switch ((error as SherlError).data?.status) {
       case 403:
-        throw errorFactory.create(
-          CmsErr.CREATE_CMS_STORIES_FAILED_CMS_FORBIDDEN,
-        );
+        throw errorFactory.create(CmsErr.CREATE_CMS_STORIES_CMS_FORBIDDEN);
       default:
         throw getSherlError(
           error,

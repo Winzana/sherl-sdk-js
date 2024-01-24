@@ -26,7 +26,7 @@ export enum CmsErr {
   CMS_CREATE_FAILED_CMS_NOT_EXIST = 'cms-static/creation-failed-cms-not-exist',
   CMS_CREATE_STORIES_FAILED_CMS_NOT_EXIST = 'cms-stories/creation-failed-cms-not-exist',
   CMS_CREATE_TRAININGS_FAILED_CMS_NOT_EXIST = 'cms-trainings/creation-failed-cms-not-exist',
-  CMS_DELETE_BY_ID_FAILED_CMS_FORBIDDEN = 'cms-delete/creation-failed-delete-forbidden',
+  CMS_DELETE_ARTICLE_BY_ID_FORBIDDEN = 'cms-delete/creation-failed-delete-forbidden',
   CMS_DELETE_MEDIA_FAILED_MEDIA_NOT_EXIST = 'cms-delete/creation-failed-delete-already-exist',
   CMS_GET_ARTICLE_BY_ID_FORBIDDEN = 'cms-post/creation-failed-post-get-forbidden',
   CMS_GET_ARTICLE_BY_SLUG_FORBIDDEN = 'cms-article/creation-failed-article-get-slug-forbidden',
@@ -37,9 +37,9 @@ export enum CmsErr {
   CREATE_CMS_FAQS_CMS_FORBIDDEN = 'cms/creation-cms-faqs-forbidden',
   CREATE_CMS_POSTS_CMS_FORBIDDEN = 'cms-faqs/creation-failed-article-slug-forbidden',
   CREATE_CMS_STATIC_PAGES_FAILED_FORBIDDEN = 'cms-faqs/creation-failed-article-slug-forbidden',
-  CREATE_CMS_TRAINING_FAILED_FORBIDDEN = 'cms-faqs/creation-failed-article-slug-forbidden',
-  CREATE_CMS_STORIES_FAILED_CMS_FORBIDDEN = 'cms-faqs/creation-failed-article-slug-forbidden',
-  CREATE_CMS_MEDIA_FAILED_CMS_FORBIDDEN = 'cms-faqs/creation-failed-media-slug-forbidden',
+  CREATE_CMS_TRAINING_FORBIDDEN = 'cms-faqs/creation-failed-article-slug-forbidden',
+  CREATE_CMS_STORIES_CMS_FORBIDDEN = 'cms-faqs/creation-failed-article-slug-forbidden',
+  DELETE_CMS_MEDIA_FORBIDDEN = 'cms-faqs/creation-failed-media-slug-forbidden',
   ARTICLE_NOT_FOUND = 'cms/article-not-found',
   CMS_GET_PUBLIC_ARTICLE_BY_SLUG_FORBIDDEN = 'cms/article-public-article-by-slug-forbidden',
   MEDIA_NOT_FOUND = 'cms/media-not-found',
@@ -86,7 +86,7 @@ export const errors = {
     'Failed to create CMS stories, stories already exist.',
   [CmsErr.CMS_CREATE_TRAININGS_FAILED_CMS_NOT_EXIST]:
     'Failed to create CMS trainings, trainings already exist.',
-  [CmsErr.CMS_DELETE_BY_ID_FAILED_CMS_FORBIDDEN]:
+  [CmsErr.CMS_DELETE_ARTICLE_BY_ID_FORBIDDEN]:
     'Failed to create CMS delete, delete forbidden.',
   [CmsErr.CMS_DELETE_MEDIA_FAILED_MEDIA_NOT_EXIST]:
     'Failed to create CMS delete, delete already exist.',
@@ -110,11 +110,11 @@ export const errors = {
     'Failed to create CMS posts, failed posts forbidden.',
   [CmsErr.CREATE_CMS_STATIC_PAGES_FAILED_FORBIDDEN]:
     'Failed to create CMS posts, failed posts forbidden.',
-  [CmsErr.CREATE_CMS_TRAINING_FAILED_FORBIDDEN]:
+  [CmsErr.CREATE_CMS_TRAINING_FORBIDDEN]:
     'Failed to create CMS training, failed training forbidden.',
-  [CmsErr.CREATE_CMS_STORIES_FAILED_CMS_FORBIDDEN]:
+  [CmsErr.CREATE_CMS_STORIES_CMS_FORBIDDEN]:
     'Failed to create CMS stories, failed stories forbidden.',
-  [CmsErr.CREATE_CMS_MEDIA_FAILED_CMS_FORBIDDEN]:
+  [CmsErr.DELETE_CMS_MEDIA_FORBIDDEN]:
     'Failed to create CMS media, failed media forbidden.',
   [CmsErr.ARTICLE_NOT_FOUND]: 'Failed to create CMS article not found.',
 };
