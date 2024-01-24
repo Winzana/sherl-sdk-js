@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { ICreateOpinionInput, IOpinion } from '../types';
@@ -23,18 +24,16 @@ export const createOpinion = async <T, K>(
       rest,
     );
 
-    switch (response.status) {
-      case 201:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(OpinionErr.CREATE_OPINION_FORBIDDEN);
       default:
-        throw errorFactory.create(OpinionErr.CREATE_OPINION_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(OpinionErr.CREATE_OPINION_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(OpinionErr.CREATE_OPINION_FAILED),
-    );
   }
 };

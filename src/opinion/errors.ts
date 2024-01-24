@@ -1,8 +1,10 @@
 import { ErrorFactory } from '../common/errors';
 
 export enum OpinionErr {
-  FETCH_FAILED = 'opinion/fetch-failed',
+  FETCH_OPINIONS_FAILED = 'opinion/fetch-failed',
+  GET_PUBLIC_OPINIONS_FAILED = 'opinion/get-public-options-failed',
   OPINION_NOT_FOUND = 'opinion/not-found',
+  FETCH_OPINION_I_GIVE_FAILED = 'opinion/fetch-opinion-i-give-failed',
   CREATE_OPINION_FAILED = 'opinion/creation-failed',
   CREATE_OPINION_CLAIM_FAILED = 'opinion/creation-claim-failed',
   UPDATE_OPINION_FAILED = 'opinion/update-failed',
@@ -17,7 +19,9 @@ export enum OpinionErr {
 }
 
 export const errors = {
-  [OpinionErr.FETCH_FAILED]: 'Failed to fetch opinion API',
+  [OpinionErr.FETCH_OPINIONS_FAILED]: 'Failed to fetch opinion API',
+  [OpinionErr.GET_PUBLIC_OPINIONS_FAILED]: 'Failed to get public opinions',
+  [OpinionErr.FETCH_OPINION_I_GIVE_FAILED]: 'Failed to fetch opinion i give',
   [OpinionErr.OPINION_NOT_FOUND]: 'Opinion not found',
   [OpinionErr.CREATE_OPINION_FAILED]: 'Failed to create new opinion',
   [OpinionErr.CREATE_OPINION_CLAIM_FAILED]: 'Failed to create opinion claim',
