@@ -31,7 +31,7 @@ export const getOpinionsIGive = async <T, K>(
       default:
         throw getSherlError(
           error,
-          errorFactory.create(OpinionErr.FETCH_OPINION_AVERAGE_FAILED),
+          errorFactory.create(OpinionErr.FETCH_OPINION_I_GIVE_FAILD),
         );
     }
   }

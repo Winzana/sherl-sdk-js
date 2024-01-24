@@ -31,7 +31,7 @@ export const getPublicOpinions = async <T, K>(
       default:
         throw getSherlError(
           error,
-          errorFactory.create(OpinionErr.FETCH_FAILED),
+          errorFactory.create(OpinionErr.GET_PUBLIC_OPINIONS_FAILED),
         );
     }
   }
