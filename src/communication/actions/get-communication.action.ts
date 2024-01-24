@@ -19,20 +19,20 @@ export const getCommunication = async (
 ): Promise<ISearchResult<ICommunication>> => {
   try {
     const response = await fetcher.get<ISearchResult<ICommunication>>(
-      endpoints.GET_COMMUNICATION_BY_ORGANIZATION_ID,
+      endpoints.FIND_COMMUNICATIONS,
       filters,
     );
     return response.data;
   } catch (error: SherlError | Error | any) {
     switch ((error as SherlError).data?.status) {
       case 403:
-        throw errorFactory.create(CommunicationErr.FETCH_FORBIDDEN);
-      case 404:
-        throw errorFactory.create(CommunicationErr.NOT_FOUND);
+        throw errorFactory.create(
+          CommunicationErr.FIND_COMMUNICATION_FORBIDDEN,
+        );
       default:
         throw getSherlError(
           error,
-          errorFactory.create(CommunicationErr.FETCH_FAILED),
+          errorFactory.create(CommunicationErr.FIND_COMMUNICATION_FAILED),
         );
     }
   }
