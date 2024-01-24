@@ -17,32 +17,33 @@ export enum CmsErr {
   CMS_GET_ARTICLE_BY_SLUG_FAILED = 'cms/cms-get-article-by-slug-failed',
   CMS_GET_PUBLIC_FIND_ID_FAILED = 'cms/cms-get-public-by-id-failed',
   CMS_GET_PUBLIC_ARTICLES_FAILED = 'cms/cms-get-public-articles-failed',
-  CREATE_CMS_EVENT_FAILED = 'cms-event/creation-failed',
+  CREATE_CMS_EVENT_FAILED = 'cms-event/cms-create-failed',
   CMS_ADD_MEDIA_FORBIDDEN = 'cms/cms-add-media-forbidden',
-  CREATE_CMS_EVENT_FAILED_FORBIDDEN = 'cms-event/creation-failed-forbidden',
-  CREATE_CMS_EVENT_FAILED_CMS_NOT_EXIST = 'cms-event/creation-failed-cms-not-exist',
-  CREATE_CMS_FAQS_FAILED_CMS_NOT_EXIST = 'cms-faqs/creation-failed-cms-not-exist',
-  CMS_CREATE_POSTS_FAILED_CMS_NOT_EXIST = 'cms-post/creation-failed-cms-not-exist',
-  CMS_CREATE_FAILED_CMS_NOT_EXIST = 'cms-static/creation-failed-cms-not-exist',
-  CMS_CREATE_STORIES_FAILED_CMS_NOT_EXIST = 'cms-stories/creation-failed-cms-not-exist',
-  CMS_CREATE_TRAININGS_FAILED_CMS_NOT_EXIST = 'cms-trainings/creation-failed-cms-not-exist',
-  CMS_DELETE_ARTICLE_BY_ID_FORBIDDEN = 'cms-delete/creation-failed-delete-forbidden',
-  CMS_DELETE_MEDIA_FAILED_MEDIA_NOT_EXIST = 'cms-delete/creation-failed-delete-already-exist',
-  CMS_GET_ARTICLE_BY_ID_FORBIDDEN = 'cms-post/creation-failed-post-get-forbidden',
-  CMS_GET_ARTICLE_BY_SLUG_FORBIDDEN = 'cms-article/creation-failed-article-get-slug-forbidden',
-  CMS_GET_POSTS_FORBIDDEN = 'cms-post/creation-failed-post-get-forbidden',
-  CMS_GET_PUBLIC_ARTICLE_BY_ID_FORBIDDEN = 'cms-public/creation-failed-post-public-forbidden',
-  CMS_GET_PUBLIC_ARTICLES_FORBIDDEN = 'cms-article/creation-failed-article-public-forbidden',
-  CREATE_CMS_EVENT_FAILED_CMS_FORBIDDEN = 'cms-article/creation-failed-article-slug-forbidden',
-  CREATE_CMS_FAQS_CMS_FORBIDDEN = 'cms/creation-cms-faqs-forbidden',
-  CREATE_CMS_POSTS_CMS_FORBIDDEN = 'cms-faqs/creation-failed-article-slug-forbidden',
-  CREATE_CMS_STATIC_PAGES_FAILED_FORBIDDEN = 'cms-faqs/creation-failed-article-slug-forbidden',
-  CREATE_CMS_TRAINING_FORBIDDEN = 'cms-faqs/creation-failed-article-slug-forbidden',
-  CREATE_CMS_STORIES_CMS_FORBIDDEN = 'cms-faqs/creation-failed-article-slug-forbidden',
-  DELETE_CMS_MEDIA_FORBIDDEN = 'cms-faqs/creation-failed-media-slug-forbidden',
-  ARTICLE_NOT_FOUND = 'cms/article-not-found',
-  CMS_GET_PUBLIC_ARTICLE_BY_SLUG_FORBIDDEN = 'cms/article-public-article-by-slug-forbidden',
-  MEDIA_NOT_FOUND = 'cms/media-not-found',
+  CREATE_CMS_EVENT_FAILED_FORBIDDEN = 'cms-event/cms-create-failed-forbidden',
+  CREATE_CMS_EVENT_FAILED_CMS_NOT_EXIST = 'cms-event/cms-create-failed-cms-not-exist',
+  CREATE_CMS_FAQS_FAILED_CMS_NOT_EXIST = 'cms-faqs/cms-create-failed-cms-not-exist',
+  CMS_CREATE_POSTS_FAILED_CMS_NOT_EXIST = 'cms-post/cms-create-failed-cms-not-exist',
+  CMS_CREATE_FAILED_CMS_NOT_EXIST = 'cms-static/cms-create-failed-cms-not-exist',
+  CMS_CREATE_STORIES_FAILED_CMS_NOT_EXIST = 'cms-stories/cms-create-failed-cms-not-exist',
+  CMS_CREATE_TRAININGS_FAILED_CMS_NOT_EXIST = 'cms-trainings/cms-create-failed-cms-not-exist',
+  CMS_DELETE_ARTICLE_BY_ID_FORBIDDEN = 'cms-delete/cms-create-failed-delete-forbidden',
+  CMS_DELETE_MEDIA_FAILED_MEDIA_NOT_EXIST = 'cms-delete/cms-create-failed-delete-already-exist',
+  CMS_GET_ARTICLE_BY_ID_FORBIDDEN = 'cms-post/cms-create-failed-post-get-forbidden',
+  CMS_GET_ARTICLE_BY_SLUG_FORBIDDEN = 'cms-article/cms-create-failed-article-get-slug-forbidden',
+  CMS_GET_POSTS_FORBIDDEN = 'cms-post/cms-create-failed-post-get-forbidden',
+  CMS_GET_PUBLIC_ARTICLE_BY_ID_FORBIDDEN = 'cms-public/cms-create-failed-post-public-forbidden',
+  CMS_GET_PUBLIC_ARTICLES_FORBIDDEN = 'cms-article/cms-create-failed-article-public-forbidden',
+  CREATE_CMS_EVENT_FAILED_CMS_FORBIDDEN = 'cms-article/cms-create-failed-article-slug-forbidden',
+  CREATE_CMS_FAQS_CMS_FORBIDDEN = 'cms/cms-create-cms-faqs-forbidden',
+  CREATE_CMS_POSTS_CMS_FORBIDDEN = 'cms-faqs/cms-create-failed-article-slug-forbidden',
+  CREATE_CMS_STATIC_PAGES_FORBIDDEN = 'cms-faqs/cms-create-failed-article-slug-forbidden',
+  CREATE_CMS_TRAINING_FORBIDDEN = 'cms-faqs/cms-create-failed-article-slug-forbidden',
+  CREATE_CMS_STORIES_CMS_FORBIDDEN = 'cms-faqs/cms-create-failed-article-slug-forbidden',
+  DELETE_CMS_MEDIA_FORBIDDEN = 'cms-faqs/cms-create-failed-media-slug-forbidden',
+  ARTICLE_NOT_FOUND = 'cms/cms-create-article-not-found',
+  CMS_GET_PUBLIC_ARTICLE_BY_SLUG_FORBIDDEN = 'cms/cms-create-public-article-by-slug-forbidden',
+  MEDIA_NOT_FOUND = 'cms/cms-create-media-not-found',
+  CMS_UPDATE_ARTICLE_BY_ID_FORBIDDEN = 'cms/cms-create-article-update-article-by-id-forbidden',
 }
 
 export const errors = {
@@ -108,7 +109,7 @@ export const errors = {
     'Failed to create CMS posts, failed posts forbidden.',
   [CmsErr.CREATE_CMS_POSTS_CMS_FORBIDDEN]:
     'Failed to create CMS posts, failed posts forbidden.',
-  [CmsErr.CREATE_CMS_STATIC_PAGES_FAILED_FORBIDDEN]:
+  [CmsErr.CREATE_CMS_STATIC_PAGES_FORBIDDEN]:
     'Failed to create CMS posts, failed posts forbidden.',
   [CmsErr.CREATE_CMS_TRAINING_FORBIDDEN]:
     'Failed to create CMS training, failed training forbidden.',
@@ -117,6 +118,8 @@ export const errors = {
   [CmsErr.DELETE_CMS_MEDIA_FORBIDDEN]:
     'Failed to create CMS media, failed media forbidden.',
   [CmsErr.ARTICLE_NOT_FOUND]: 'Failed to create CMS article not found.',
+  [CmsErr.CMS_UPDATE_ARTICLE_BY_ID_FORBIDDEN]:
+    'Failed to update CMS article, failed article forbidden.',
 };
 
 export const errorFactory = new ErrorFactory<CmsErr>('CMS', errors);

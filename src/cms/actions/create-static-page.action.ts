@@ -26,9 +26,7 @@ export const createStaticPage = async (
   } catch (error: SherlError | Error | any) {
     switch ((error as SherlError).data?.status) {
       case 403:
-        throw errorFactory.create(
-          CmsErr.CREATE_CMS_STATIC_PAGES_FAILED_FORBIDDEN,
-        );
+        throw errorFactory.create(CmsErr.CREATE_CMS_STATIC_PAGES_FORBIDDEN);
       default:
         throw getSherlError(
           error,
