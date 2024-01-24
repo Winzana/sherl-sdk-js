@@ -32,14 +32,12 @@ export const createCalendarEvent = async (
   } catch (error: SherlError | Error | any) {
     switch (error.status) {
       case 403:
-        throw errorFactory.create(
-          CalendarErr.CREATE_CALENDAR_EVENT_FAILED_FORBIDDEN,
-        );
+        throw errorFactory.create(CalendarErr.CREATE_CALENDAR_EVENT_FORBIDDEN);
       case 404:
         throw errorFactory.create(CalendarErr.CALENDAR_NOT_FOUND);
       case 409:
         throw errorFactory.create(
-          CalendarErr.CREATE_CALENDAR_EVENT_FAILED_EVENT_ALREADY_EXIST,
+          CalendarErr.CREATE_CALENDAR_EVENT_EVENT_ALREADY_EXIST,
         );
       default:
         throw getSherlError(

@@ -32,9 +32,7 @@ export const deleteCalendarEvent = async (
   } catch (error: SherlError | Error | any) {
     switch (error.status) {
       case 403:
-        throw errorFactory.create(
-          CalendarErr.UPDATE_CALENDAR_EVENT_FAILED_FORBIDDEN,
-        );
+        throw errorFactory.create(CalendarErr.UPDATE_CALENDAR_EVENT_FORBIDDEN);
       case 404:
         throw errorFactory.create(CalendarErr.CALENDAR_NOT_FOUND);
       default:

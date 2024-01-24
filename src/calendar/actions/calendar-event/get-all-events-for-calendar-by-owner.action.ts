@@ -29,7 +29,7 @@ export const getCalendarEventsForOwner = async (
     switch (error.status) {
       case 403:
         throw errorFactory.create(
-          CalendarErr.GET_CALENDAR_EVENTS_FOR_OWNER_FAILED_FORBIDDEN,
+          CalendarErr.GET_CALENDAR_EVENTS_FOR_OWNER_FORBIDDEN,
         );
       default:
         throw errorFactory.create(
