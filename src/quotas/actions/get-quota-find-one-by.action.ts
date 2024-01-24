@@ -30,7 +30,10 @@ export const getQuotaFindOneBy = async (
       case 403:
         throw errorFactory.create(QuotaErr.FETCH_QUOTA_FIND_ONE_BY_FORBIDDEN);
       default:
-        throw getSherlError(error, errorFactory.create(QuotaErr.FETCH_FAILED));
+        throw getSherlError(
+          error,
+          errorFactory.create(QuotaErr.FETCH_QUOTA_FIND_ONE_BY_FAILED),
+        );
     }
   }
 };
