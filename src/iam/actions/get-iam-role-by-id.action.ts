@@ -28,7 +28,7 @@ export const getIamRoleById = async (
       case 403:
         throw errorFactory.create(IamErr.IAM_GET_ROLE_BY_ID_FORBIDDEN);
       case 404:
-        throw errorFactory.create(IamErr.IAM_ROLE_NOT_FOUND_ERROR);
+        throw errorFactory.create(IamErr.IAM_ROLE_NOT_FOUND);
       default:
         throw getSherlError(
           error,

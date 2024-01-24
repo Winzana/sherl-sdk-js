@@ -28,7 +28,7 @@ export const getIamProfileById = async (
       case 403:
         throw errorFactory.create(IamErr.IAM_GET_PROFILE_BY_ID_FORBIDDEN);
       case 404:
-        throw errorFactory.create(IamErr.IAM_PROFILE_NOT_FOUND_ERROR);
+        throw errorFactory.create(IamErr.IAM_PROFILE_NOT_FOUND);
       default:
         throw getSherlError(
           error,
