@@ -37,7 +37,7 @@ export const uploadFile = async (
       default:
         throw getSherlError(
           error,
-          errorFactory.create(MediaErr.GET_FILE_FAILED),
+          errorFactory.create(MediaErr.UPLOAD_FILE_FAILED),
         );
     }
   }
