@@ -1,18 +1,19 @@
 import { ErrorFactory } from '../common/errors';
 
 export enum ConfigErr {
-  FETCH_ERROR = 'config/fetch-failed',
-  FETCH_FORBIDDEN = 'config/fetch-forbidden',
-  SET_CONFIG_ERROR = 'config/set-failed',
+  GET_PUBLIC_CONFIG_FAILED = 'config/fetch-failed',
+  GET_PUBLIC_CONFIG_FORBIDDEN = 'config/fetch-forbidden',
+  SET_CONFIG_FAILED = 'config/set-failed',
   SET_CONFIG_FORBIDDEN = 'config/set-forbidden',
-  NOT_FOUND = 'config/not-found',
+  CONFIG_NOT_FOUND = 'config/not-found',
 }
 export const errors = {
-  [ConfigErr.FETCH_ERROR]: 'Failed to fetch config API',
-  [ConfigErr.FETCH_FORBIDDEN]: 'Failed to fetch config API, forbidden',
-  [ConfigErr.SET_CONFIG_ERROR]: 'Failed to set config',
+  [ConfigErr.GET_PUBLIC_CONFIG_FAILED]: 'Failed to fetch config API',
+  [ConfigErr.GET_PUBLIC_CONFIG_FORBIDDEN]:
+    'Failed to fetch config API, forbidden',
+  [ConfigErr.SET_CONFIG_FAILED]: 'Failed to set config',
   [ConfigErr.SET_CONFIG_FORBIDDEN]: 'Failed to set config, forbidden',
-  [ConfigErr.NOT_FOUND]: 'Config not found',
+  [ConfigErr.CONFIG_NOT_FOUND]: 'Config not found',
 };
 
 export const errorFactory = new ErrorFactory<ConfigErr>('Config', errors);

@@ -22,7 +22,7 @@ export const setConfig = async (
       default:
         throw getSherlError(
           error,
-          errorFactory.create(ConfigErr.SET_CONFIG_ERROR),
+          errorFactory.create(ConfigErr.SET_CONFIG_FAILED),
         );
     }
   }

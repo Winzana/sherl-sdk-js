@@ -18,11 +18,14 @@ export const getPublicConfig = async (
   } catch (error: SherlError | Error | any) {
     switch ((error as SherlError).data?.status) {
       case 403:
-        throw errorFactory.create(ConfigErr.FETCH_FORBIDDEN);
+        throw errorFactory.create(ConfigErr.GET_PUBLIC_CONFIG_FORBIDDEN);
       case 404:
-        throw errorFactory.create(ConfigErr.NOT_FOUND);
+        throw errorFactory.create(ConfigErr.CONFIG_NOT_FOUND);
       default:
-        throw getSherlError(error, errorFactory.create(ConfigErr.FETCH_ERROR));
+        throw getSherlError(
+          error,
+          errorFactory.create(ConfigErr.GET_PUBLIC_CONFIG_FAILED),
+        );
     }
   }
 };
