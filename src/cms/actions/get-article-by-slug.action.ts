@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { CmsErr, errorFactory } from '../errors';
@@ -21,17 +22,18 @@ export const getArticleBySlug = async (
       StringUtils.bindContext(endpoints.GET_SLUG, { slug }),
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
-        throw errorFactory.create(CmsErr.CMS_GET_SLUG_FAILED_ARTICLE_FORBIDDEN);
+        throw errorFactory.create(CmsErr.CMS_GET_ARTICLE_BY_SLUG_FORBIDDEN);
       case 404:
         throw errorFactory.create(CmsErr.ARTICLE_NOT_FOUND);
       default:
-        throw errorFactory.create(CmsErr.CMS_GET_SLUG_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(CmsErr.CMS_GET_ARTICLE_BY_SLUG_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(error, errorFactory.create(CmsErr.CMS_GET_SLUG_FAILED));
   }
 };
