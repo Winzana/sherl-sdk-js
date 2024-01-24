@@ -29,8 +29,11 @@ export const registerOrganizationToPerson = async (
           OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_FORBIDDEN,
         );
       default:
-        throw errorFactory.create(
-          OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_FAILED,
+        throw getSherlError(
+          error,
+          errorFactory.create(
+            OrganizationErr.REGISTER_ORGANIZATION_TO_PERSON_FAILED,
+          ),
         );
     }
   }

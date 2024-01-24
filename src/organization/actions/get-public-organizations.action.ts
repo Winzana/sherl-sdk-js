@@ -30,8 +30,9 @@ export const getPublicOrganizations = async (
           OrganizationErr.GET_PUBLIC_ORGANIZATIONS_FORBIDDEN,
         );
       default:
-        throw errorFactory.create(
-          OrganizationErr.GET_PUBLIC_ORGANIZATIONS_FAILED,
+        throw getSherlError(
+          error,
+          errorFactory.create(OrganizationErr.GET_PUBLIC_ORGANIZATIONS_FAILED),
         );
     }
   }
