@@ -32,10 +32,7 @@ export const deleteMediaPage = async (
       case 404:
         throw errorFactory.create(CmsErr.ARTICLE_NOT_FOUND);
       default:
-        throw getSherlError(
-          error,
-          errorFactory.create(CmsErr.CMS_DELETE_MEDIA_FAILED),
-        );
+        throw getSherlError(error, errorFactory.create(CmsErr.MEDIA_NOT_FOUND));
     }
   }
 };

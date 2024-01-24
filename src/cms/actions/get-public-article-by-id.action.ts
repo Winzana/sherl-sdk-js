@@ -27,7 +27,7 @@ export const getPublicArticleById = async (
     switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(
-          CmsErr.CMS_GET_PUBLIC_FIND_ID_FAILED_POST_FORBIDDEN,
+          CmsErr.CMS_GET_PUBLIC_ARTICLE_BY_ID_FORBIDDEN,
         );
       case 404:
         throw errorFactory.create(CmsErr.ARTICLE_NOT_FOUND);

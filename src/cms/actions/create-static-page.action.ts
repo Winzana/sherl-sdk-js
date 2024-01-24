@@ -32,7 +32,7 @@ export const createStaticPage = async (
       default:
         throw getSherlError(
           error,
-          errorFactory.create(CmsErr.CMS_CREATE_FAILED),
+          errorFactory.create(CmsErr.CREATE_CMS_STATIC_PAGES_FAILED),
         );
     }
   }

@@ -29,7 +29,7 @@ export const getPosts = async (
   } catch (error: SherlError | Error | any) {
     switch ((error as SherlError).data?.status) {
       case 403:
-        throw errorFactory.create(CmsErr.CMS_GET_POSTS_FAILED_POSTS_FORBIDDEN);
+        throw errorFactory.create(CmsErr.CMS_GET_POSTS_FORBIDDEN);
       default:
         throw getSherlError(
           error,

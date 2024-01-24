@@ -26,13 +26,15 @@ export const getPublicArticleBySlug = async (
   } catch (error: SherlError | Error | any) {
     switch ((error as SherlError).data?.status) {
       case 403:
-        throw errorFactory.create(CmsErr.CMS_GET_SLUG_FAILED_ARTICLE_FORBIDDEN);
+        throw errorFactory.create(
+          CmsErr.CMS_GET_PUBLIC_ARTICLE_BY_SLUG_FORBIDDEN,
+        );
       case 404:
         throw errorFactory.create(CmsErr.ARTICLE_NOT_FOUND);
       default:
         throw getSherlError(
           error,
-          errorFactory.create(CmsErr.CMS_GET_SLUG_FAILED),
+          errorFactory.create(CmsErr.CMS_GET_PUBLIC_ARTICLE_BY_SLUG_FAILED),
         );
     }
   }

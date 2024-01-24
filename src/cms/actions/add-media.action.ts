@@ -30,7 +30,7 @@ export const addMediaPage = async (
   } catch (error: SherlError | Error | any) {
     switch ((error as SherlError).data?.status) {
       case 403:
-        throw errorFactory.create(CmsErr.CREATE_CMS_EVENT_FAILED_CMS_FORBIDDEN);
+        throw errorFactory.create(CmsErr.CREATE_CMS_FAQS_CMS_FORBIDDEN);
       case 404:
         throw errorFactory.create(CmsErr.ARTICLE_NOT_FOUND);
       default:
