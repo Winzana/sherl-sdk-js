@@ -34,7 +34,7 @@ export const getPublicArticleById = async (
       default:
         throw getSherlError(
           error,
-          errorFactory.create(CmsErr.CMS_GET_PUBLIC_FIND_ID_FAILED),
+          errorFactory.create(CmsErr.CMS_GET_PUBLIC_ARTICLE_BY_ID_FAILED),
         );
     }
   }
