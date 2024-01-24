@@ -21,7 +21,7 @@ export enum OpinionErr {
 export const errors = {
   [OpinionErr.FETCH_OPINIONS_FAILED]: 'Failed to fetch opinion API',
   [OpinionErr.GET_PUBLIC_OPINIONS_FAILED]: 'Failed to get public opinions',
-  [OpinionErr.FETCH_OPINION_I_GIVE_FAILED]: 'failed to fetch opinion i give',
+  [OpinionErr.FETCH_OPINION_I_GIVE_FAILED]: 'Failed to fetch opinion i give',
   [OpinionErr.OPINION_NOT_FOUND]: 'Opinion not found',
   [OpinionErr.CREATE_OPINION_FAILED]: 'Failed to create new opinion',
   [OpinionErr.CREATE_OPINION_CLAIM_FAILED]: 'Failed to create opinion claim',
