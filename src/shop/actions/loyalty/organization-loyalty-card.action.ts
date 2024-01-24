@@ -33,8 +33,9 @@ export const getOrganizationLoyaltyCard = async (
       case 404:
         throw errorFactory.create(LoyalityErr.ORGANIZATION_ID_NOT_FOUND);
       default:
-        throw errorFactory.create(
-          LoyalityErr.GET_ORGANIZATION_LOYALTY_CARD_FAILED,
+        throw getSherlError(
+          error,
+          errorFactory.create(LoyalityErr.GET_ORGANIZATION_LOYALTY_CARD_FAILED),
         );
     }
   }
