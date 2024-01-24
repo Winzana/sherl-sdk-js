@@ -25,10 +25,16 @@ export const getPublicSearchAutocomplete = async (
   } catch (error: SherlError | Error | any) {
     switch ((error as SherlError).data?.status) {
       case 403:
-        throw errorFactory.create(SearchErr.SEARCH_FORBIDDEN);
+        throw errorFactory.create(SearchErr.GET_PUBLIC_SEARCH_FORBIDDEN);
 
       default:
-        throw getSherlError(error, errorFactory.create(SearchErr.FETCH_FAILED));
+        throw getSherlError(
+          error,
+          getSherlError(
+            error,
+            errorFactory.create(SearchErr.GET_PUBLIC_SEARCH_FAILED),
+          ),
+        );
     }
   }
 };
