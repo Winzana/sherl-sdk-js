@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
@@ -20,13 +21,20 @@ export const getPublicSearchAutocomplete = async (
       endpoints.SEARCH_AUTOCOMPLETE,
       filters,
     );
-
-    if (response.status === 403) {
-      throw errorFactory.create(SearchErr.SEARCH_FORBIDDEN);
-    }
-
     return response.data;
-  } catch (err) {
-    throw getSherlError(err, errorFactory.create(SearchErr.FETCH_FAILED));
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 403:
+        throw errorFactory.create(SearchErr.GET_PUBLIC_SEARCH_FORBIDDEN);
+
+      default:
+        throw getSherlError(
+          error,
+          getSherlError(
+            error,
+            errorFactory.create(SearchErr.GET_PUBLIC_SEARCH_FAILED),
+          ),
+        );
+    }
   }
 };
