@@ -34,7 +34,7 @@ export enum CmsErr {
   CMS_GET_PUBLIC_ARTICLE_BY_ID_FORBIDDEN = 'cms-public/cms-create-failed-post-public-forbidden',
   CMS_GET_PUBLIC_ARTICLES_FORBIDDEN = 'cms-article/cms-create-failed-article-public-forbidden',
   CREATE_CMS_EVENT_FAILED_CMS_FORBIDDEN = 'cms-article/cms-create-failed-article-slug-forbidden',
-  CREATE_CMS_FAQS_CMS_FORBIDDEN = 'cms/cms-create-cms-faqs-forbidden',
+  CREATE_FAQS_CMS_FORBIDDEN = 'cms/cms-create-cms-faqs-forbidden',
   CREATE_CMS_POSTS_CMS_FORBIDDEN = 'cms-faqs/cms-create-failed-article-slug-forbidden',
   CREATE_CMS_STATIC_PAGES_FORBIDDEN = 'cms-faqs/cms-create-failed-article-slug-forbidden',
   CREATE_CMS_TRAINING_FORBIDDEN = 'cms-faqs/cms-create-failed-article-slug-forbidden',
@@ -103,7 +103,7 @@ export const errors = {
     'Failed to create CMS article, failed public articles forbidden.',
   [CmsErr.CREATE_CMS_EVENT_FAILED_CMS_FORBIDDEN]:
     'Failed to create CMS slug, failed article forbidden.',
-  [CmsErr.CREATE_CMS_FAQS_CMS_FORBIDDEN]:
+  [CmsErr.CREATE_FAQS_CMS_FORBIDDEN]:
     'Failed to create CMS FAQs, failed FAQs forbidden.',
   [CmsErr.CMS_GET_PUBLIC_ARTICLE_BY_SLUG_FORBIDDEN]:
     'Failed to create CMS posts, failed posts forbidden.',
