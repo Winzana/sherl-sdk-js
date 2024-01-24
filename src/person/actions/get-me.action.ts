@@ -26,7 +26,7 @@ export const getMe = async (fetcher: Fetcher): Promise<IPerson> => {
       default:
         throw getSherlError(
           error,
-          errorFactory.create(PersonErr.GET_CONFIGS_FAILED),
+          errorFactory.create(PersonErr.GET_ME_FAILED),
         );
     }
   }

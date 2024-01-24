@@ -29,9 +29,12 @@ export const getPersonById = async (
   } catch (error: SherlError | Error | any) {
     switch ((error as SherlError).data?.status) {
       case 403:
-        throw errorFactory.create(PersonErr.FETCH_FORBIDDEN);
+        throw errorFactory.create(PersonErr.GET_ONE_BY_USERID_FORBIDDEN);
       default:
-        throw getSherlError(error, errorFactory.create(PersonErr.FETCH_FAILED));
+        throw getSherlError(
+          error,
+          errorFactory.create(PersonErr.GET_ONE_BY_USERID_FAILED),
+        );
     }
   }
 };
