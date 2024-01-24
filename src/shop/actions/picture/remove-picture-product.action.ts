@@ -1,3 +1,4 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { getSherlError } from '../../../common/utils/errors';
 import { StringUtils } from '../../../common/utils/string';
@@ -25,20 +26,18 @@ export const removePictureToProduct = async (
         mediaId,
       }),
     );
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(PictureErr.REMOVE_PICTURE_PRODUCT_FORBIDDEN);
       case 404:
         throw errorFactory.create(PictureErr.PRODUCT_OR_MEDIA_NOT_FOUND);
       default:
-        throw errorFactory.create(PictureErr.REMOVE_PICTURE_PRODUCT_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(PictureErr.REMOVE_PICTURE_PRODUCT_FAILED),
+        );
     }
-  } catch (err) {
-    throw getSherlError(
-      err,
-      errorFactory.create(PictureErr.REMOVE_PICTURE_PRODUCT_FAILED),
-    );
   }
 };

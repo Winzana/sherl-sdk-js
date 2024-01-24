@@ -1,3 +1,4 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
@@ -26,9 +27,9 @@ export const getAdvertisementById = async (
       }),
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(
           AdvertisementErr.GET_ADVERTISEMENT_BY_ID_FAILED_FORBIDDEN,
@@ -36,14 +37,10 @@ export const getAdvertisementById = async (
       case 404:
         throw errorFactory.create(AdvertisementErr.ADVERTISEMENT_NOT_FOUND);
       default:
-        throw errorFactory.create(
-          AdvertisementErr.GET_ADVERTISEMENT_BY_ID_FAILED,
+        throw getSherlError(
+          error,
+          errorFactory.create(AdvertisementErr.GET_ADVERTISEMENT_BY_ID_FAILED),
         );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(AdvertisementErr.GET_ADVERTISEMENT_BY_ID_FAILED),
-    );
   }
 };

@@ -1,3 +1,4 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { getSherlError } from '../../../common/utils/errors';
 import { endpoints } from '../../api/endpoints';
@@ -24,22 +25,18 @@ export const addCategoryToOrganization = async (
       category,
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(
           ProductErr.ADD_CATEGORY_TO_ORGANIZATION_FORBIDDEN,
         );
       default:
-        throw errorFactory.create(
-          ProductErr.ADD_CATEGORY_TO_ORGANIZATION_FAILED,
+        throw getSherlError(
+          error,
+          errorFactory.create(ProductErr.ADD_CATEGORY_TO_ORGANIZATION_FAILED),
         );
     }
-  } catch (err) {
-    throw getSherlError(
-      err,
-      errorFactory.create(ProductErr.ADD_CATEGORY_TO_ORGANIZATION_FAILED),
-    );
   }
 };

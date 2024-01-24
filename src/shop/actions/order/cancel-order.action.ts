@@ -1,3 +1,4 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
@@ -24,9 +25,9 @@ export const cancelOrder = async (
       cancelOrderDates,
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 400:
         throw errorFactory.create(OrderErr.BAD_REQUEST);
       case 401:
@@ -38,12 +39,10 @@ export const cancelOrder = async (
       case 409:
         throw errorFactory.create(OrderErr.ALREADY_CHANGED);
       default:
-        throw errorFactory.create(OrderErr.CANCEL_ORDER_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(OrderErr.CANCEL_ORDER_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(OrderErr.CANCEL_ORDER_FAILED),
-    );
   }
 };

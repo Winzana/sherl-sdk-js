@@ -1,3 +1,4 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { getSherlError } from '../../../common/utils/errors';
 import { endpoints } from '../../api/endpoints';
@@ -21,18 +22,16 @@ export const addCommentOnProduct = async (
       productComment,
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(ProductErr.ADD_COMMENT_ON_PRODUCT_FORBIDDEN);
       default:
-        throw errorFactory.create(ProductErr.ADD_COMMENT_ON_PRODUCT_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(ProductErr.ADD_COMMENT_ON_PRODUCT_FAILED),
+        );
     }
-  } catch (err) {
-    throw getSherlError(
-      err,
-      errorFactory.create(ProductErr.ADD_COMMENT_ON_PRODUCT_FAILED),
-    );
   }
 };

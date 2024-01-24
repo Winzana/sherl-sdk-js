@@ -1,3 +1,4 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
 import { IOrderFindByDto, IOrderResponse } from '../../types';
@@ -21,18 +22,16 @@ export const getOrders = async (
       endpoints.GET_CUSTOMER_ORDERS,
       filters,
     );
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(OrderErr.GET_ORDERS_WITH_FILTER_FORBIDDEN);
       default:
-        throw errorFactory.create(OrderErr.GET_ORDERS_WITH_FILTER_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(OrderErr.GET_ORDERS_WITH_FILTER_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(OrderErr.GET_ORDERS_WITH_FILTER_FAILED),
-    );
   }
 };
