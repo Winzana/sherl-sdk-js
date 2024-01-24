@@ -32,7 +32,7 @@ export const addMediaPage = async (
       case 403:
         throw errorFactory.create(CmsErr.CMS_ADD_MEDIA_FORBIDDEN);
       case 404:
-        throw errorFactory.create(CmsErr.MEDIA_NOT_FOUND);
+        throw errorFactory.create(CmsErr.ARTICLE_NOT_FOUND);
       default:
         throw getSherlError(
           error,

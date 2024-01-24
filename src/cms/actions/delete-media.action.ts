@@ -30,7 +30,7 @@ export const deleteMediaPage = async (
       case 403:
         throw errorFactory.create(CmsErr.DELETE_CMS_MEDIA_FORBIDDEN);
       case 404:
-        throw errorFactory.create(CmsErr.MEDIA_NOT_FOUND);
+        throw errorFactory.create(CmsErr.ARTICLE_NOT_FOUND);
       default:
         throw getSherlError(error, errorFactory.create(CmsErr.MEDIA_NOT_FOUND));
     }
