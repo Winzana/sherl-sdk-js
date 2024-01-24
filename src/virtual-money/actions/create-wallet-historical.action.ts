@@ -34,8 +34,9 @@ export const createWalletHistorical = async (
       case 404:
         throw errorFactory.create(VirtualMoneyErr.WALLET_NOT_FOUND);
       default:
-        throw errorFactory.create(
-          VirtualMoneyErr.CREATE_WALLET_HISTORICAL_FAILED,
+        throw getSherlError(
+          error,
+          errorFactory.create(VirtualMoneyErr.CREATE_WALLET_HISTORICAL_FAILED),
         );
     }
   }
