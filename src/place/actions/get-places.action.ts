@@ -36,10 +36,13 @@ export const getPlaces = async (
   } catch (error: SherlError | Error | any) {
     switch ((error as SherlError).data?.status) {
       case 403:
-        throw errorFactory.create(PlaceErr.FETCH_PLACES_FORBIDDEN);
+        throw errorFactory.create(PlaceErr.GET_PLACES_FORBIDDEN);
 
       default:
-        throw getSherlError(error, errorFactory.create(PlaceErr.FETCH_FAILED));
+        throw getSherlError(
+          error,
+          errorFactory.create(PlaceErr.GET_PLACES_FAILED),
+        );
     }
   }
 };
