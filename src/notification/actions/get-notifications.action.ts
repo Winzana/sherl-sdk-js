@@ -33,7 +33,7 @@ export const getNotifications = async (
       default:
         throw getSherlError(
           error,
-          errorFactory.create(NotificationErr.FETCH_FAILED),
+          errorFactory.create(NotificationErr.GET_NOTIFICATIONS_FAILED),
         );
     }
   }

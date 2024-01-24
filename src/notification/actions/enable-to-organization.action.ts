@@ -36,7 +36,7 @@ export const enableToOrganization = async (
       default:
         throw getSherlError(
           error,
-          errorFactory.create(NotificationErr.ENABLED_FAILED),
+          errorFactory.create(NotificationErr.ENABLED_TO_ORGANIZATION_FAILED),
         );
     }
   }

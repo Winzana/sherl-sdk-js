@@ -36,7 +36,7 @@ export const notificationRegistration = async (
       default:
         throw getSherlError(
           error,
-          errorFactory.create(NotificationErr.POST_FAILED),
+          errorFactory.create(NotificationErr.NOTIFICATION_REGISTRATION_FAILED),
         );
     }
   }

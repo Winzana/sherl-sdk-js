@@ -37,7 +37,7 @@ export const updateNotification = async (
       default:
         throw getSherlError(
           error,
-          errorFactory.create(NotificationErr.UPDATE_FAILED),
+          errorFactory.create(NotificationErr.UPDATE_NOTIFICATION_FAILED),
         );
     }
   }
