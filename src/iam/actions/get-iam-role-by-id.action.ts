@@ -30,7 +30,10 @@ export const getIamRoleById = async (
       case 404:
         throw errorFactory.create(IamErr.IAM_ROLE_NOT_FOUND_ERROR);
       default:
-        throw getSherlError(error, errorFactory.create(IamErr.FETCH_FAILED));
+        throw getSherlError(
+          error,
+          errorFactory.create(IamErr.GET_IAM_ROLE_BY_ID_FAILED),
+        );
     }
   }
 };

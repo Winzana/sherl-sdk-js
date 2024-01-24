@@ -28,7 +28,10 @@ export const getAllIamProfiles = async (
       case 403:
         throw errorFactory.create(IamErr.IAM_GET_ALL_FORBIDDEN);
       default:
-        throw getSherlError(error, errorFactory.create(IamErr.FETCH_FAILED));
+        throw getSherlError(
+          error,
+          errorFactory.create(IamErr.GET_ALL_IAM_FAILED),
+        );
     }
   }
 };
