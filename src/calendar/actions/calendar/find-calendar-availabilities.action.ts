@@ -1,3 +1,4 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/calendar/endpoints';
 import {
@@ -24,22 +25,18 @@ export const findCalendarAvailabilitiesWithFilter = async (
       filter,
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch (error.status) {
       case 403:
         throw errorFactory.create(
           CalendarErr.FIND_CALENDAR_AVAILABILITIES_FORBIDDEN,
         );
       default:
-        throw errorFactory.create(
-          CalendarErr.FIND_CALENDAR_AVAILABILITIES_FAILED,
+        throw getSherlError(
+          error,
+          errorFactory.create(CalendarErr.FIND_CALENDAR_AVAILABILITIES_FAILED),
         );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(CalendarErr.FIND_CALENDAR_AVAILABILITIES_FAILED),
-    );
   }
 };

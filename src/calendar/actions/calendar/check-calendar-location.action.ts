@@ -1,8 +1,9 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/calendar/endpoints';
 import { ICheckLocationInputDto } from '../../types';
 import { errorFactory, CalendarErr } from '../../errors/errors';
-import { getSherlError } from '../../../common/utils';
+import { getSherlError } from '../../../common/utils/errors';
 
 /**
  * Checks the availability of a location for the calendar.
@@ -21,24 +22,20 @@ export const checkLocationForCalendar = async (
       filter,
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch (error.status) {
       case 403:
         throw errorFactory.create(
           CalendarErr.GET_AVAILABILITIY_FOR_LOCATION_CALENDAR_FORBIDDEN,
         );
       default:
-        throw errorFactory.create(
-          CalendarErr.GET_AVAILABILITIY_FOR_LOCATION_CALENDAR_FAILED,
+        throw getSherlError(
+          error,
+          errorFactory.create(
+            CalendarErr.GET_AVAILABILITIY_FOR_LOCATION_CALENDAR_FAILED,
+          ),
         );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(
-        CalendarErr.GET_AVAILABILITIY_FOR_LOCATION_CALENDAR_FAILED,
-      ),
-    );
   }
 };

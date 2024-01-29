@@ -1,3 +1,4 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { getSherlError } from '../../../common/utils';
 import { endpoints } from '../../api/calendar/endpoints';
@@ -22,18 +23,16 @@ export const createCalendar = async (
       calendar,
     );
 
-    switch (response.status) {
-      case 201:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch (error.status) {
       case 403:
         throw errorFactory.create(CalendarErr.CREATE_CALENDAR_FORBIDDEN);
       default:
-        throw errorFactory.create(CalendarErr.CREATE_CALENDAR_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(CalendarErr.CREATE_CALENDAR_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(CalendarErr.CREATE_CALENDAR_FAILED),
-    );
   }
 };
