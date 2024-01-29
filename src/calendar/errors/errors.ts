@@ -14,8 +14,8 @@ export enum CalendarErr {
   DELETE_CALENDAR_EVENT_FAILED = 'calendar-event/delete-failed',
   DELETE_CALENDAR_EVENT_FORBIDDEN = 'calendar-event/delete-failed-forbidden',
 
-  GET_CALENDAR_EVENTS_WITH_CALENDAR_ID_FAILED = 'calendar-event/get-with-calendar-id-failed',
-  GET_CALENDAR_EVENTS_WITH_CALENDAR_ID_FAILED_FORBIDDEN = 'calendar-event/get-with-calendar-id-failed-forbidden',
+  GET_CALENDAR_EVENTS_BY_CALENDAR_ID_FAILED = 'calendar-event/get-by-calendar-id-failed',
+  GET_CALENDAR_EVENTS_BY_CALENDAR_ID_FAILED_FORBIDDEN = 'calendar-event/get-by-calendar-id-failed-forbidden',
 
   GET_CALENDAR_EVENT_BY_ID_FAILED = 'calendar-event/get-by-id-failed',
   GET_CALENDAR_EVENT_BY_ID_FORBIDDEN = 'calendar-event/get-by-id-failed-forbidden',
@@ -48,6 +48,10 @@ export enum CalendarErr {
 
   CALENDAR_NOT_FOUND = 'calendar/not-found',
   CALENDAR_EVENT_NOT_FOUND = 'calendar-event/not-found',
+
+  GET_CALENDAR_BY_ID_FORBIDDEN = 'calendar/get-calendar-by-id-forbidden',
+  GET_CALENDAR_BY_ID_FAILED = 'calendar/get-calendar-by-id-failed',
+
   USER_NOT_FOUND = 'user/not-found',
 }
 
@@ -65,10 +69,10 @@ export const errors = {
   [CalendarErr.DELETE_CALENDAR_EVENT_FAILED]: 'Failed to delete calendar event',
   [CalendarErr.DELETE_CALENDAR_EVENT_FORBIDDEN]:
     'Failed to delete calendar event, access denied',
-  [CalendarErr.GET_CALENDAR_EVENTS_WITH_CALENDAR_ID_FAILED]:
-    'Failed to get calendar event with calendar id',
-  [CalendarErr.GET_CALENDAR_EVENTS_WITH_CALENDAR_ID_FAILED_FORBIDDEN]:
-    'Failed to get calendar event with calendar id, access denied',
+  [CalendarErr.GET_CALENDAR_EVENTS_BY_CALENDAR_ID_FAILED]:
+    'Failed to get calendar event by calendar id',
+  [CalendarErr.GET_CALENDAR_EVENTS_BY_CALENDAR_ID_FAILED_FORBIDDEN]:
+    'Failed to get calendar event by calendar id, access denied',
   [CalendarErr.GET_CALENDAR_EVENT_BY_ID_FAILED]:
     'Failed to get calendar event by id',
   [CalendarErr.GET_CALENDAR_EVENT_BY_ID_FORBIDDEN]:
@@ -104,7 +108,9 @@ export const errors = {
   [CalendarErr.FIND_ONE_CALENDAR_FAILED]: 'Failed to find calendar',
   [CalendarErr.FIND_ONE_CALENDAR_FORBIDDEN]:
     'Failed to find calendar, access denied',
-
+  [CalendarErr.GET_CALENDAR_BY_ID_FORBIDDEN]:
+    'Failed to get calendar by id, access denied',
+  [CalendarErr.GET_CALENDAR_BY_ID_FAILED]: 'Failed to get calendar by id',
   [CalendarErr.CALENDAR_NOT_FOUND]: 'Calendar not found',
   [CalendarErr.CALENDAR_EVENT_NOT_FOUND]: 'Calendar event not found',
   [CalendarErr.USER_NOT_FOUND]: 'User not found',

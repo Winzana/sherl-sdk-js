@@ -33,7 +33,7 @@ export const getCalendarEventsByCalendarId = async (
     switch (error.status) {
       case 403:
         throw errorFactory.create(
-          CalendarErr.GET_CALENDAR_EVENTS_WITH_CALENDAR_ID_FAILED_FORBIDDEN,
+          CalendarErr.GET_CALENDAR_EVENTS_BY_CALENDAR_ID_FAILED_FORBIDDEN,
         );
       case 404:
         throw errorFactory.create(CalendarErr.CALENDAR_NOT_FOUND);
@@ -41,7 +41,7 @@ export const getCalendarEventsByCalendarId = async (
         throw getSherlError(
           error,
           errorFactory.create(
-            CalendarErr.GET_CALENDAR_EVENTS_WITH_CALENDAR_ID_FAILED,
+            CalendarErr.GET_CALENDAR_EVENTS_BY_CALENDAR_ID_FAILED,
           ),
         );
     }

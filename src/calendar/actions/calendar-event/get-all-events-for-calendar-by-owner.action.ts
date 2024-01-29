@@ -32,8 +32,9 @@ export const getCalendarEventsForOwner = async (
           CalendarErr.GET_CALENDAR_EVENTS_FOR_OWNER_FORBIDDEN,
         );
       default:
-        throw errorFactory.create(
-          CalendarErr.GET_CALENDAR_EVENTS_FOR_OWNER_FAILED,
+        throw getSherlError(
+          error,
+          errorFactory.create(CalendarErr.GET_CALENDAR_EVENTS_FOR_OWNER_FAILED),
         );
     }
   }

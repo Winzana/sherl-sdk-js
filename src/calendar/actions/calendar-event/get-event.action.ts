@@ -26,7 +26,6 @@ export const getCalendarEventById = async (
       {},
     );
     return response.data;
-    return response.data;
   } catch (error: SherlError | Error | any) {
     switch (error.status) {
       case 403:

@@ -25,18 +25,17 @@ export const getCalendarById = async (
       }),
       {},
     );
-
     return response.data;
   } catch (error: SherlError | Error | any) {
     switch (error.status) {
       case 403:
-        throw errorFactory.create(CalendarErr.FIND_ONE_CALENDAR_FORBIDDEN);
+        throw errorFactory.create(CalendarErr.GET_CALENDAR_BY_ID_FORBIDDEN);
       case 404:
         throw errorFactory.create(CalendarErr.CALENDAR_NOT_FOUND);
       default:
         throw getSherlError(
           error,
-          errorFactory.create(CalendarErr.FIND_ONE_CALENDAR_FAILED),
+          errorFactory.create(CalendarErr.GET_CALENDAR_BY_ID_FAILED),
         );
     }
   }
