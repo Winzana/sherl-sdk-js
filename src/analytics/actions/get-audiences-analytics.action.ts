@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoint';
@@ -21,20 +22,18 @@ export const getAudienceAnalytics = async (
       filters,
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(
-          AnalyticsErr.ANALYTICS_AUDIENCES_FAILED_FORBIDDEN,
+          AnalyticsErr.GET_ANALYTICS_AUDIENCES_FORBIDDEN,
         );
       default:
-        throw errorFactory.create(AnalyticsErr.ANALYTICS_AUDIENCES_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(AnalyticsErr.GET_ANALYTICS_AUDIENCES_FAILED),
+        );
     }
-  } catch (err) {
-    throw getSherlError(
-      err,
-      errorFactory.create(AnalyticsErr.ANALYTICS_AUDIENCES_FAILED),
-    );
   }
 };
