@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { PersonErr, errorFactory } from '../errors';
@@ -25,20 +26,18 @@ export const updateAddress = async (
       updatedAddress,
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(PersonErr.UPDATE_ADDRESS_FORBIDDEN);
       case 404:
         throw errorFactory.create(PersonErr.ADDRESS_NOT_FOUND);
       default:
-        throw errorFactory.create(PersonErr.UPDATE_ADDRESS_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(PersonErr.UPDATE_ADDRESS_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(PersonErr.UPDATE_ADDRESS_FAILED),
-    );
   }
 };

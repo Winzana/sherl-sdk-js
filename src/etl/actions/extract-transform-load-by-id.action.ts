@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils';
 import { StringUtils } from '../../common/utils/string';
@@ -23,20 +24,18 @@ export const extractTransformLoadById = async (
       }),
       {},
     );
-    switch (response.status) {
-      case 201:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(EtlErr.EXTRACT_TRANSFORM_FORBIDDEN);
       case 404:
         throw errorFactory.create(EtlErr.ETL_CONFIG_NOT_FOUND);
       default:
-        throw errorFactory.create(EtlErr.EXTRACT_TRANSFORM_LOAD_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(EtlErr.EXTRACT_TRANSFORM_LOAD_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(EtlErr.EXTRACT_TRANSFORM_LOAD_FAILED),
-    );
   }
 };

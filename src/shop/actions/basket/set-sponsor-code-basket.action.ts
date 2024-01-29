@@ -1,6 +1,8 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { endpoints } from '../../api/endpoints';
-import { OrderErr, errorFactory } from '../../errors/order/errors';
+import { BasketErr, errorFactory } from '../../errors/basket/error';
 import { IOrderResponse } from '../../types';
 
 /**
@@ -19,12 +21,18 @@ export const addSponsorCodeToBasket = async (
       endpoints.SPONSOR_CODE_BASKET,
       { code },
     );
-
-    if (response.status !== 200) {
-      throw errorFactory.create(OrderErr.BASKET_SPONSOR_CODE_FAILED);
-    }
     return response.data;
-  } catch (error) {
-    throw errorFactory.create(OrderErr.BASKET_SPONSOR_CODE_FAILED);
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 403:
+        throw errorFactory.create(BasketErr.BASKET_SPONSOR_CODE_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(BasketErr.SPONSOR_CODE_NOT_FOUND);
+      default:
+        throw getSherlError(
+          error,
+          errorFactory.create(BasketErr.BASKET_SPONSOR_CODE_FAILED),
+        );
+    }
   }
 };

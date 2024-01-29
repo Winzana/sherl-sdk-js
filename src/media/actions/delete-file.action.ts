@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils';
 import { StringUtils } from '../../common/utils/string';
@@ -20,17 +21,18 @@ export const deleteFile = async (
       StringUtils.bindContext(endpoints.MANAGE_FILE, { id }),
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(MediaErr.DELETE_FILE_FORBIDDEN);
       case 404:
         throw errorFactory.create(MediaErr.MEDIA_NOT_FOUND);
       default:
-        throw errorFactory.create(MediaErr.DELETE_FILE_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(MediaErr.DELETE_FILE_FAILED),
+        );
     }
-  } catch (err) {
-    throw getSherlError(err, errorFactory.create(MediaErr.DELETE_FILE_FAILED));
   }
 };

@@ -1,4 +1,6 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { LoyalityErr, errorFactory } from '../../errors/loyalty/errors';
@@ -25,7 +27,17 @@ export const updateLoyaltyCard = async (
       updatedCard,
     );
     return response.data;
-  } catch (error) {
-    throw errorFactory.create(LoyalityErr.UPDATE_FAILED);
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 403:
+        throw errorFactory.create(LoyalityErr.UPDATE_LOYALTY_CARD_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(LoyalityErr.LOYALTY_CARD_NOT_FOUND);
+      default:
+        throw getSherlError(
+          error,
+          errorFactory.create(LoyalityErr.UPDATE_LOYALTY_CARD_FAILED),
+        );
+    }
   }
 };

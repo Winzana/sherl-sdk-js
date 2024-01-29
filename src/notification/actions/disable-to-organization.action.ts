@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils';
 import { StringUtils } from '../../common/utils/string';
@@ -24,9 +25,9 @@ export const disableToOrganization = async (
       disableToOrganizationInput,
     );
 
-    switch (response.status) {
-      case 201:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(
           NotificationErr.DISABLE_TO_ORGANIZATION_FORBIDDEN,
@@ -34,12 +35,10 @@ export const disableToOrganization = async (
       case 404:
         throw errorFactory.create(NotificationErr.NOTIFICATION_NOT_FOUND);
       default:
-        throw errorFactory.create(NotificationErr.DISABLED_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(NotificationErr.DISABLED_TO_ORGANIZATION_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(NotificationErr.DISABLED_FAILED),
-    );
   }
 };

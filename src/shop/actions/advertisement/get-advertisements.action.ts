@@ -1,5 +1,7 @@
+import { SherlError } from '../../../common';
 import { Pagination } from '../../../common';
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils';
 import { endpoints } from '../../api/endpoints';
 import {
   AdvertisementErr,
@@ -28,7 +30,17 @@ export const getAdvertisements = async (
     );
 
     return response.data;
-  } catch (error) {
-    throw errorFactory.create(AdvertisementErr.FETCH_FAILED);
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 403:
+        throw errorFactory.create(
+          AdvertisementErr.GET_ADVERTISEMENTS_FORBIDDEN,
+        );
+      default:
+        throw getSherlError(
+          error,
+          errorFactory.create(AdvertisementErr.GET_ADVERTISEMENTS_FAILED),
+        );
+    }
   }
 };

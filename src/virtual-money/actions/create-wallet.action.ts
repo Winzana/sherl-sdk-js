@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
@@ -18,20 +19,18 @@ export const createWallet = async (
   try {
     const response = await fetcher.post<IWallet>(endpoints.CREATE_WALLET, data);
 
-    switch (response.status) {
-      case 201:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(
           VirtualMoneyErr.CREATE_WALLET_FAILED_FORBIDDEN,
         );
       default:
-        throw errorFactory.create(VirtualMoneyErr.CREATE_WALLET_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(VirtualMoneyErr.CREATE_WALLET_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(VirtualMoneyErr.CREATE_WALLET_FAILED),
-    );
   }
 };

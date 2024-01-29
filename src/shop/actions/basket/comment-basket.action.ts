@@ -1,6 +1,8 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { endpoints } from '../../api/endpoints';
-import { OrderErr, errorFactory } from '../../errors/order/errors';
+import { BasketErr, errorFactory } from '../../errors/basket/error';
 import { IOrderResponse } from '../../types';
 
 /**
@@ -21,7 +23,15 @@ export const commentBasket = async (
     );
 
     return response.data;
-  } catch (error) {
-    throw errorFactory.create(OrderErr.BASKET_COMMENT_FAILED);
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 403:
+        throw errorFactory.create(BasketErr.BASKET_COMMENT_FORBIDDEN);
+      default:
+        throw getSherlError(
+          error,
+          errorFactory.create(BasketErr.BASKET_COMMENT_FAILED),
+        );
+    }
   }
 };

@@ -1,4 +1,6 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { endpoints } from '../../api/endpoints';
 import { DiscountErr, errorFactory } from '../../errors/discount/errors';
 import { IDiscount } from '../../types';
@@ -24,8 +26,19 @@ export const validateDiscountCode = async (
         productUri,
       },
     );
+
     return response.data;
-  } catch (error) {
-    throw errorFactory.create(DiscountErr.VALIDATE_CODE_FAILED);
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 403:
+        throw errorFactory.create(DiscountErr.VALIDATE_DISCOUNT_CODE_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(DiscountErr.DISCOUNT_CODE_NOT_FOUND);
+      default:
+        throw getSherlError(
+          error,
+          errorFactory.create(DiscountErr.VALIDATE_DISCOUNT_CODE_FAILED),
+        );
+    }
   }
 };

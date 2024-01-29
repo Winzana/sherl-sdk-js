@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
@@ -15,23 +16,23 @@ export const resetPasswordRequest = async (
   data: IResetPasswordRequestDto,
 ): Promise<boolean> => {
   try {
-    const response = await fetcher.post<IResetPasswordRequestDto>(
+    const response = await fetcher.post<boolean>(
       endpoints.RESET_PASSWORD_REQUEST,
       data,
     );
 
-    switch (response.status) {
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 200:
         return true;
       case 403:
         throw errorFactory.create(UserErr.RESET_PASSWORD_REQUEST_FORBIDDEN);
       default:
-        throw errorFactory.create(UserErr.RESET_PASSWORD_REQUEST_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(UserErr.RESET_PASSWORD_REQUEST_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(UserErr.RESET_PASSWORD_REQUEST_FAILED),
-    );
   }
 };

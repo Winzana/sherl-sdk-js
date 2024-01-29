@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
@@ -20,18 +21,16 @@ export const createBugReport = async (
       bugReport,
     );
 
-    switch (response.status) {
-      case 201:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(BugReportsErr.CREATE_BUG_REPORT_FORBIDDEN);
       default:
-        throw errorFactory.create(BugReportsErr.CREATE_BUG_REPORT_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(BugReportsErr.CREATE_BUG_REPORT_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(BugReportsErr.CREATE_BUG_REPORT_FAILED),
-    );
   }
 };

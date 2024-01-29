@@ -1,3 +1,4 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { getSherlError } from '../../../common/utils';
 import { StringUtils } from '../../../common/utils/string';
@@ -25,20 +26,18 @@ export const deleteAddress = async (
         addressId,
       }),
     );
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(OrganizationErr.DELETE_ADDRESS_FORBIDDEN);
       case 404:
         throw errorFactory.create(OrganizationErr.ADDRESS_NOT_FOUND);
       default:
-        throw errorFactory.create(OrganizationErr.DELETE_ADDRESS_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(OrganizationErr.DELETE_ADDRESS_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(OrganizationErr.DELETE_ADDRESS_FAILED),
-    );
   }
 };

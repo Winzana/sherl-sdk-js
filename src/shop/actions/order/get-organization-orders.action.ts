@@ -1,9 +1,11 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
 import { IOrderFindByDto, IOrderResponse } from '../../types';
 import { Pagination } from '../../../common/types/response';
 import { OrderErr, errorFactory } from '../../errors/order/errors';
 import { StringUtils } from '../../../common/utils/string';
+import { getSherlError } from '../../../common/utils';
 
 /**
  * Retrieves a paginated list of orders associated with a specific organization, based on provided filter criteria.
@@ -26,7 +28,17 @@ export const getOrganizationOrders = async (
       filters,
     );
     return response.data;
-  } catch (error) {
-    throw errorFactory.create(OrderErr.FETCH_FAILED);
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 403:
+        throw errorFactory.create(OrderErr.GET_ORGANIZATION_ORDERS_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(OrderErr.ORGANIZATION_NOT_FOUND);
+      default:
+        throw getSherlError(
+          error,
+          errorFactory.create(OrderErr.GET_ORGANIZATION_ORDERS_FAILED),
+        );
+    }
   }
 };

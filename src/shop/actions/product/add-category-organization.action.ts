@@ -1,4 +1,6 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { endpoints } from '../../api/endpoints';
 import { ProductErr, errorFactory } from '../../errors/product/errors';
 import {
@@ -22,8 +24,19 @@ export const addCategoryToOrganization = async (
       endpoints.ORGANIZATION_CATEGORIES,
       category,
     );
+
     return response.data;
-  } catch (err) {
-    throw errorFactory.create(ProductErr.ADD_CATEGORY_TO_ORGANIZATION_FAILED);
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 403:
+        throw errorFactory.create(
+          ProductErr.ADD_CATEGORY_TO_ORGANIZATION_FORBIDDEN,
+        );
+      default:
+        throw getSherlError(
+          error,
+          errorFactory.create(ProductErr.ADD_CATEGORY_TO_ORGANIZATION_FAILED),
+        );
+    }
   }
 };

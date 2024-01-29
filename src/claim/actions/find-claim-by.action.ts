@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
@@ -18,18 +19,16 @@ export const findClaimBy = async (
   try {
     const response = await fetcher.get<IClaim>(endpoints.FIND_ONE_BY, filters);
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
-        throw errorFactory.create(ClaimErr.FIND_CLAIM_BY_FORBIDDEN_ERROR);
+        throw errorFactory.create(ClaimErr.FIND_CLAIM_BY_FORBIDDEN);
       default:
-        throw errorFactory.create(ClaimErr.FIND_CLAIM_BY_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(ClaimErr.FIND_CLAIM_BY_FAILED),
+        );
     }
-  } catch (err) {
-    throw getSherlError(
-      err,
-      errorFactory.create(ClaimErr.FIND_CLAIM_BY_FAILED),
-    );
   }
 };

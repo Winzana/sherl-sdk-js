@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
@@ -21,18 +22,18 @@ export const updateMyPassword = async (
       data,
     );
 
-    switch (response.status) {
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 200:
         return true;
       case 403:
         throw errorFactory.create(UserErr.UPDATE_MY_PASSWORD_FORBIDDEN);
       default:
-        throw errorFactory.create(UserErr.UPDATE_MY_PASSWORD_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(UserErr.UPDATE_MY_PASSWORD_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(UserErr.UPDATE_MY_PASSWORD_FAILED),
-    );
   }
 };

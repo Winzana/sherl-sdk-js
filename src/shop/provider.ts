@@ -76,7 +76,6 @@ import {
   deleteCategory,
   updateCategory,
   getUnrestrictedCategories,
-  getPublicProductsWithFilters,
   addCommentOnProduct,
   getOrganizationSubCategories,
 } from './actions/product';
@@ -325,15 +324,6 @@ class ShopProvider extends AbstractProvider {
    * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product-category#get-unrestricted-products Sherl SDK documentation} for further information on fetching unrestricted categories.
    */
   getUnrestrictedCategories = this.withFetcher(getUnrestrictedCategories);
-
-  /**
-   * Retrieves a list of public products, optionally filtered by specific criteria.
-   *
-   * @param {IProductFindByDto} [filters] - Optional filters to apply when fetching public products. These can include various criteria such as category, price range, etc.
-   * @returns {Promise<Pagination<IProductResponse>>} A promise that resolves to a paginated response containing the list of public products based on the provided filters.
-   * @see {@link https://winzana.github.io/sherl-sdk-js/docs/shop/product#get-public-products-with-filters Sherl SDK documentation} for further information on fetching public products with filters.
-   */
-  getPublicProductsWithFilters = this.withFetcher(getPublicProductsWithFilters);
 
   // Discounts
 

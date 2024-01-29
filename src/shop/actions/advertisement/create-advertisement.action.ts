@@ -1,4 +1,6 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils';
 import { endpoints } from '../../api/endpoints';
 import {
   AdvertisementErr,
@@ -27,7 +29,15 @@ export const createAdvertisement = async (
     );
 
     return response.data;
-  } catch (error) {
-    throw errorFactory.create(AdvertisementErr.CREATION_FAILED);
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 403:
+        throw errorFactory.create(AdvertisementErr.CREATION_FORBIDDEN);
+      default:
+        throw getSherlError(
+          error,
+          errorFactory.create(AdvertisementErr.CREATION_FAILED),
+        );
+    }
   }
 };

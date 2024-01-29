@@ -1,4 +1,6 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { endpoints } from '../../api/endpoints';
 import { ProductErr, errorFactory } from '../../errors/product/errors';
 import {
@@ -23,7 +25,15 @@ export const getCategories = async (
       filters,
     );
     return response.data;
-  } catch (err) {
-    throw errorFactory.create(ProductErr.CATEGORIES_FETCH_FAILED);
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 403:
+        throw errorFactory.create(ProductErr.GET_CATEGORIES_FORBIDDEN);
+      default:
+        throw getSherlError(
+          error,
+          errorFactory.create(ProductErr.GET_CATEGORIES_FAILED),
+        );
+    }
   }
 };

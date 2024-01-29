@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
@@ -14,7 +15,12 @@ export const logout = async (fetcher: Fetcher): Promise<string> => {
     const response = await fetcher.get<string>(endpoints.LOGOUT);
 
     return response.data;
-  } catch (err) {
-    throw getSherlError(err, errorFactory.create(AuthErr.LOGOUT_FAILED));
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 401:
+        throw errorFactory.create(AuthErr.LOGOUT_UNAUTHORIZED);
+      default:
+        throw getSherlError(error, errorFactory.create(AuthErr.LOGOUT_FAILED));
+    }
   }
 };

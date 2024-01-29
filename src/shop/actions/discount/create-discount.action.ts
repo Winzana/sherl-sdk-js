@@ -1,4 +1,6 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils';
 import { endpoints } from '../../api/endpoints';
 import { DiscountErr, errorFactory } from '../../errors/discount/errors';
 import { IDiscountParameter, IDiscount } from '../../types';
@@ -18,8 +20,17 @@ export const createDiscount = async (
     const response = await fetcher.post<IDiscount>(endpoints.DISCOUNTS, {
       ...parameter,
     });
+
     return response.data;
-  } catch (error) {
-    throw errorFactory.create(DiscountErr.POST_FAILED);
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 403:
+        throw errorFactory.create(DiscountErr.CREATE_DISCOUNT_FORBIDDEN);
+      default:
+        throw getSherlError(
+          error,
+          errorFactory.create(DiscountErr.CREATE_DISCOUNT_FAILED),
+        );
+    }
   }
 };

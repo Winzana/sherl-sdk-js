@@ -1,7 +1,9 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
-import { OrderErr, errorFactory } from '../../errors/order/errors';
+import { BasketErr, errorFactory } from '../../errors/basket/error';
 import { IOrderResponse } from '../../types';
 
 /**
@@ -22,7 +24,17 @@ export const removeItemToBasket = async (
       }),
     );
     return response.data;
-  } catch (error) {
-    throw errorFactory.create(OrderErr.BASKET_REMOVE_FAILED);
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 403:
+        throw errorFactory.create(BasketErr.BASKET_REMOVE_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(BasketErr.PRODUCT_NOT_FOUND);
+      default:
+        throw getSherlError(
+          error,
+          errorFactory.create(BasketErr.BASKET_REMOVE_FAILED),
+        );
+    }
   }
 };

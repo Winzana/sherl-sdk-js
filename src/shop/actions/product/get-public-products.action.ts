@@ -1,8 +1,10 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { endpoints } from '../../api/endpoints';
 import { errorFactory, ProductErr } from '../../errors/product/errors';
 import { IProductFindByDto, IProductResponse } from '../../types';
 import { Pagination } from '../../../common/types/response';
+import { getSherlError } from '../../../common/utils/errors';
 
 /**
  * Retrieves a list of public products, filtered by specific criteria.
@@ -15,16 +17,26 @@ export const getPublicProducts = async (
   fetcher: Fetcher,
   filters: IProductFindByDto,
 ): Promise<Pagination<IProductResponse>> => {
-  const response = await fetcher.get<Pagination<IProductResponse>>(
-    endpoints.GET_PUBLIC_PRODUCTS,
-    filters,
-  );
+  try {
+    const response = await fetcher.get<Pagination<IProductResponse>>(
+      endpoints.GET_PUBLIC_PRODUCTS,
+      filters,
+    );
 
-  if (response.status !== 200) {
-    throw errorFactory.create(ProductErr.PRODUCTS_FETCH_FAILED, {
-      status: response.status,
-    });
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 403:
+        throw errorFactory.create(
+          ProductErr.GET_PUBLIC_PRODUCTS_WITH_FILTERS_FORBIDDEN,
+        );
+      default:
+        throw getSherlError(
+          error,
+          errorFactory.create(
+            ProductErr.GET_PUBLIC_PRODUCTS_WITH_FILTERS_FAILED,
+          ),
+        );
+    }
   }
-
-  return response.data;
 };

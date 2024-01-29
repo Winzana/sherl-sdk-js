@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
@@ -21,9 +22,9 @@ export const getPublicOrganizationBySlug = async (
       StringUtils.bindContext(endpoints.GET_PUBLIC_ORGANIZATION_SLUG, { slug }),
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(
           OrganizationErr.GET_PUBLIC_ORGANIZATION_BY_SLUG_FORBIDDEN,
@@ -31,16 +32,12 @@ export const getPublicOrganizationBySlug = async (
       case 404:
         throw errorFactory.create(OrganizationErr.ORGANIZATION_NOT_FOUND);
       default:
-        throw errorFactory.create(
-          OrganizationErr.GET_PUBLIC_ORGANIZATION_BY_SLUG_FAILED,
+        throw getSherlError(
+          error,
+          errorFactory.create(
+            OrganizationErr.GET_PUBLIC_ORGANIZATION_BY_SLUG_FAILED,
+          ),
         );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(
-        OrganizationErr.GET_PUBLIC_ORGANIZATION_BY_SLUG_FAILED,
-      ),
-    );
   }
 };

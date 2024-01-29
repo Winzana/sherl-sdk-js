@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { StringUtils } from '../../common/utils/string';
 import { endpoints } from '../api/endpoints';
@@ -24,15 +25,16 @@ export const getPersonById = async (
       StringUtils.bindContext(endpoints.GET_ONE_BY_USERID, { id }),
     );
 
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
-        throw errorFactory.create(PersonErr.FETCH_FORBIDDEN);
+        throw errorFactory.create(PersonErr.GET_ONE_BY_USERID_FORBIDDEN);
       default:
-        throw errorFactory.create(PersonErr.FETCH_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(PersonErr.GET_ONE_BY_USERID_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(error, errorFactory.create(PersonErr.FETCH_FAILED));
   }
 };

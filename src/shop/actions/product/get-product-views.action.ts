@@ -1,4 +1,6 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { ProductErr, errorFactory } from '../../errors/product/errors';
@@ -19,8 +21,19 @@ export const getProductViews = async (
     const response = await fetcher.get<number>(
       StringUtils.bindContext(endpoints.PRODUCT_VIEWS, { id: productId }),
     );
+
     return response.data;
-  } catch (err) {
-    throw errorFactory.create(ProductErr.PRODUCT_VIEWS_FAILED);
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 403:
+        throw errorFactory.create(ProductErr.GET_PRODUCT_VIEWS_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(ProductErr.PRODUCT_NOT_FOUND);
+      default:
+        throw getSherlError(
+          error,
+          errorFactory.create(ProductErr.GET_PRODUCT_VIEWS_FAILED),
+        );
+    }
   }
 };

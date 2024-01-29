@@ -1,5 +1,7 @@
+import { SherlError } from '../../../common';
 import { ISearchResult } from '../../../common';
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils';
 import { endpoints } from '../../api/endpoints';
 import { LoyalityErr, errorFactory } from '../../errors/loyalty/errors';
 import { ILoyaltyCard, ILoyaltyCardFindByDto } from '../../types';
@@ -21,7 +23,17 @@ export const getLoyaltiesCardToMe = async (
       filters,
     );
     return response.data;
-  } catch (error) {
-    throw errorFactory.create(LoyalityErr.FETCH_FAILED);
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 403:
+        throw errorFactory.create(
+          LoyalityErr.GET_USER_CARD_LOYALTIES_FORBIDDEN,
+        );
+      default:
+        throw getSherlError(
+          error,
+          errorFactory.create(LoyalityErr.GET_USER_CARD_LOYALTIES_FAILED),
+        );
+    }
   }
 };
