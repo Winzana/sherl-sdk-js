@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { PersonErr, errorFactory } from '../errors';
@@ -27,18 +28,18 @@ export const addPersonPicture = async (
       form,
     );
 
-    switch (response.status) {
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 201:
         return true;
       case 403:
         throw errorFactory.create(PersonErr.ADD_PICTURE_FORBIDDEN);
       default:
-        throw errorFactory.create(PersonErr.ADD_PICTURE_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(PersonErr.ADD_PICTURE_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(PersonErr.ADD_PICTURE_FAILED),
-    );
   }
 };

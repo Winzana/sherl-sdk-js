@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { IPerson, IPersonRegister } from '../types';
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
@@ -21,20 +22,18 @@ export const registerWithEmailAndPassword = async (
       data,
     );
 
-    switch (response.status) {
-      case 201:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(PersonErr.REGISTER_PERSON_FORBIDDEN);
       case 409:
         throw errorFactory.create(PersonErr.PERSON_ALREADY_EXISTS);
       default:
-        throw errorFactory.create(PersonErr.REGISTER_PERSON_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(PersonErr.REGISTER_PERSON_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(PersonErr.REGISTER_PERSON_FAILED),
-    );
   }
 };
