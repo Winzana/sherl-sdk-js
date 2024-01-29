@@ -1,30 +1,38 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { Pagination } from '../../common/types/response';
 
 import { IClaim, IClaimTicketFilters } from '../types/entities';
 import { ClaimErr, errorFactory } from '../errors';
+import { getSherlError } from '../../common/utils/errors';
 
-//TODO replace with the goods entities
+/**
+ * Retrieves all claims based on the provided filters.
+ *
+ * @param {Fetcher} fetcher - The fetcher object used to make HTTP requests.
+ * @param {IClaimTicketFilters} filters - The filters to apply to the claims.
+ * @return {Promise<Pagination<IClaim>>} - A promise that resolves to a pagination object containing the claims.
+ */
 export const getAllClaims = async (
   fetcher: Fetcher,
-  page = 1,
-  itemsPerPage = 10,
   filters: IClaimTicketFilters,
 ): Promise<Pagination<IClaim>> => {
-  const response = await fetcher
-    .get<Pagination<IClaim>>(endpoints.CLAIMS, {
-      page,
-      itemsPerPage,
+  try {
+    const response = await fetcher.get<Pagination<IClaim>>(endpoints.CLAIMS, {
       ...filters,
-    })
-    .catch((_err) => {
-      throw errorFactory.create(ClaimErr.GET_ALL_FAILED);
     });
 
-  if (response.status !== 200) {
-    throw errorFactory.create(ClaimErr.GET_ALL_FAILED);
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 403:
+        throw errorFactory.create(ClaimErr.GET_ALL_CLAIM_FORBIDDEN);
+      default:
+        throw getSherlError(
+          error,
+          errorFactory.create(ClaimErr.GET_ALL_CLAIM_FAILED),
+        );
+    }
   }
-
-  return response.data;
 };

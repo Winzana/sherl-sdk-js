@@ -1,9 +1,18 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
-import { OrderErr, errorFactory } from '../../errors/order/errors';
+import { BasketErr, errorFactory } from '../../errors/basket/error';
 import { IOrderResponse } from '../../types';
 
+/**
+ * Removes an item from a shopping basket.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} itemId - The unique identifier of the item to be removed from the basket.
+ * @returns {Promise<IOrderResponse>} A promise that resolves to the information of the updated order after the item removal.
+ */
 export const removeItemToBasket = async (
   fetcher: Fetcher,
   itemId: string,
@@ -15,7 +24,17 @@ export const removeItemToBasket = async (
       }),
     );
     return response.data;
-  } catch (error) {
-    throw errorFactory.create(OrderErr.BASKET_REMOVE_FAILED);
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 403:
+        throw errorFactory.create(BasketErr.BASKET_REMOVE_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(BasketErr.PRODUCT_NOT_FOUND);
+      default:
+        throw getSherlError(
+          error,
+          errorFactory.create(BasketErr.BASKET_REMOVE_FAILED),
+        );
+    }
   }
 };

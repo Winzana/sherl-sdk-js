@@ -5,6 +5,7 @@ sidebar_label: User
 ---
 
 ## Update current user password
+
 <span class="badge badge--warning">Require authentication</span>
 
 Update current user password based on Bearer token
@@ -22,3 +23,39 @@ interface IUpdatePasswordDto {
 ```
 
 This call returns a boolean according to successfully
+
+## Reset password validate
+
+<span class="badge badge--warning">Require authentication</span>
+
+Send a request to valide the user's password.
+
+```ts
+await user(client).resetPasswordValidate(data: IResetPasswordDto);
+```
+
+```ts
+interface IResetPasswordDto {
+  token: string;
+  password: string;
+  passwordRepeat: string;
+}
+```
+
+This function sends a POST request to reset the user's password and returns a boolean indicating success.
+
+## Reset Password Request
+
+Send a request to reset the user's password.
+
+```ts
+await resetPasswordRequest(fetcher, data: IResetPasswordRequestDto);
+```
+
+```ts
+interface IResetPasswordRequestDto {
+  email: string;
+}
+```
+
+This function sends a POST request to reset the user's password and returns a boolean indicating success.

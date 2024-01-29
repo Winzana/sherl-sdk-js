@@ -4,4 +4,5 @@ export const endpoints = {
   DISABLE_TO_ORGANIZATION: '/api/notifications/:id/disable-to-organization',
   UPDATE_NOTIFICATION: '/api/notifications/:id',
   GET_NOTIFICATIONS: '/api/notifications',
+  SEND_NOTIFICATION_BY_TYPE: '/api/notifications/:type',
 };

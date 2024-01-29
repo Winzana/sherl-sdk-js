@@ -1,8 +1,18 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
-import { VirtualMoneyErr, errorFactory } from '../errors';
+import { errorFactory, VirtualMoneyErr } from '../errors';
 import { IWalletHistorical } from '../types';
 
+/**
+ * Creates a historical record for a wallet.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} walletId - The unique identifier of the wallet for which the historical record is to be created.
+ * @param {IWalletHistorical} data - The historical data to be recorded for the wallet.
+ * @returns {Promise<IWalletHistorical>} A promise that resolves to the newly created wallet historical record.
+ */
 export const createWalletHistorical = async (
   fetcher: Fetcher,
   walletId: string,
@@ -14,14 +24,20 @@ export const createWalletHistorical = async (
       { walletId },
       data,
     );
-    if (response.status !== 201) {
-      throw errorFactory.create(
-        VirtualMoneyErr.CREATE_WALLET_HISTORICAL_FAILED,
-      );
-    }
-
     return response.data;
-  } catch (error) {
-    throw errorFactory.create(VirtualMoneyErr.CREATE_WALLET_HISTORICAL_FAILED);
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 403:
+        throw errorFactory.create(
+          VirtualMoneyErr.CREATE_WALLET_HISTORICAL_FORBIDDEN,
+        );
+      case 404:
+        throw errorFactory.create(VirtualMoneyErr.WALLET_NOT_FOUND);
+      default:
+        throw getSherlError(
+          error,
+          errorFactory.create(VirtualMoneyErr.CREATE_WALLET_HISTORICAL_FAILED),
+        );
+    }
   }
 };

@@ -1,13 +1,13 @@
 import { ErrorFactory } from '../common/errors';
 
 export enum PlaceErr {
-  FETCH_FAILED = 'place/fetch-failed',
-  NOT_FOUND = 'place/not-found',
+  GET_PLACES_FAILED = 'place/fetch-failed',
+  GET_PLACES_FORBIDDEN = 'place/forbidden',
 }
 
 export const errors = {
-  [PlaceErr.FETCH_FAILED]: 'Failed to fetch place API',
-  [PlaceErr.NOT_FOUND]: 'Place not found',
+  [PlaceErr.GET_PLACES_FAILED]: 'Failed to fetch place API',
+  [PlaceErr.GET_PLACES_FORBIDDEN]: 'Place forbidden',
 };
 
 export const errorFactory = new ErrorFactory<PlaceErr>('Place', errors);

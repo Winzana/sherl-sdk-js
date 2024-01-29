@@ -1,4 +1,6 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import {
@@ -7,6 +9,13 @@ import {
 } from '../../errors/advertisement/errors';
 import { IAvertisement } from '../../types/advertisement/entities';
 
+/**
+ * Deletes a specific advertisement identified by its unique ID.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} advertisementId - The unique identifier of the advertisement to be deleted.
+ * @returns {Promise<IAvertisement>} A promise that resolves to the information of the deleted advertisement.
+ */
 export const deleteAdvertisement = async (
   fetcher: Fetcher,
   advertisementId: string,
@@ -17,8 +26,19 @@ export const deleteAdvertisement = async (
         id: advertisementId,
       }),
     );
+
     return response.data;
-  } catch (error) {
-    throw errorFactory.create(AdvertisementErr.DELETE_FAILED);
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 403:
+        throw errorFactory.create(AdvertisementErr.DELETE_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(AdvertisementErr.ADVERTISEMENT_NOT_FOUND);
+      default:
+        throw getSherlError(
+          error,
+          errorFactory.create(AdvertisementErr.DELETE_FAILED),
+        );
+    }
   }
 };

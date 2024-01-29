@@ -1,9 +1,18 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { PersonErr, errorFactory } from '../errors';
 import { IPictureRegister } from '../types';
 import { StringUtils } from '../../common/utils/string';
+import { getSherlError } from '../../common/utils';
 
+/**
+ * Adds a picture to a person's profile.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {IPictureRegister} picture - The picture object containing the file and associated person and media IDs.
+ * @returns {Promise<boolean>} A promise that resolves to true if the picture is successfully added.
+ */
 export const addPersonPicture = async (
   fetcher: Fetcher,
   picture: IPictureRegister,
@@ -18,12 +27,19 @@ export const addPersonPicture = async (
       }),
       form,
     );
-    if (response.status !== 201) {
-      throw errorFactory.create(PersonErr.CREATE_PERSON_FAILED);
-    }
 
-    return true;
-  } catch (error) {
-    throw errorFactory.create(PersonErr.CREATE_PERSON_FAILED);
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 201:
+        return true;
+      case 403:
+        throw errorFactory.create(PersonErr.ADD_PICTURE_FORBIDDEN);
+      default:
+        throw getSherlError(
+          error,
+          errorFactory.create(PersonErr.ADD_PICTURE_FAILED),
+        );
+    }
   }
 };

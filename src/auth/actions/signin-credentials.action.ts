@@ -1,28 +1,40 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
+import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
 import { AuthErr, errorFactory } from '../errors';
-import { ApiLoginResponse } from '../types';
+import { ILoginResponse, ISignInWithEmailAndPasswordRequest } from '../types';
 
-export interface SignInWithEmailAndPasswordRequest {
-  email: string;
-  password: string;
-}
-
+/**
+ * Sign in a user with their email and password.
+ *
+ * @param {Fetcher} fetcher - The Fetcher instance used for making API requests.
+ * @param {ISignInWithEmailAndPasswordRequest} request - An object containing email and password.
+ * @returns {Promise<string>} A promise that resolves to an access token if the login is successful.
+ */
 export const signInWithEmailAndPassword = async (
   fetcher: Fetcher,
-  request: SignInWithEmailAndPasswordRequest,
+  request: ISignInWithEmailAndPasswordRequest,
 ): Promise<string> => {
-  const response = await fetcher
-    .post<ApiLoginResponse>(endpoints.LOGIN_WITH_CREDENTIALS, {
-      username: request.email,
-      password: request.password,
-    })
-    .catch((_err) => {
-      throw errorFactory.create(AuthErr.LOGIN_FAILED);
-    });
+  try {
+    const response = await fetcher.post<ILoginResponse>(
+      endpoints.LOGIN_WITH_CREDENTIALS,
+      {
+        username: request.email,
+        password: request.password,
+      },
+    );
 
-  if (!response.data || !response.data.access_token) {
-    throw errorFactory.create(AuthErr.LOGIN_FAILED);
+    if (!response.data?.access_token) {
+      throw errorFactory.create(AuthErr.LOGIN_FAILED);
+    }
+    return response.data.access_token;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 401:
+        throw errorFactory.create(AuthErr.LOGIN_FAILED_UNAUTHORIZED);
+      default:
+        throw getSherlError(error, errorFactory.create(AuthErr.LOGIN_FAILED));
+    }
   }
-  return response.data.access_token;
 };

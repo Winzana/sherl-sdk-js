@@ -1,9 +1,19 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils/errors';
 import { StringUtils } from '../../../common/utils/string';
 import { endpoints } from '../../api/endpoints';
 import { DiscountErr, errorFactory } from '../../errors/discount/errors';
 import { IDiscountParameter, IDiscount } from '../../types';
 
+/**
+ * Updates an existing discount with the provided details.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {string} discountId - The unique identifier of the discount to be updated.
+ * @param {Partial<IDiscountParameter>} updatedDiscount - The partial data of the discount to be updated.
+ * @returns {Promise<IDiscount>} A promise that resolves to the information of the updated discount.
+ */
 export const updateDiscount = async (
   fetcher: Fetcher,
   discountId: string,
@@ -17,7 +27,17 @@ export const updateDiscount = async (
       updatedDiscount,
     );
     return response.data;
-  } catch (error) {
-    throw errorFactory.create(DiscountErr.UPDATE_FAILED);
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 403:
+        throw errorFactory.create(DiscountErr.UPDATE_DISCOUNT_FORBIDDEN);
+      case 404:
+        throw errorFactory.create(DiscountErr.DISCOUNT_NOT_FOUND);
+      default:
+        throw getSherlError(
+          error,
+          errorFactory.create(DiscountErr.UPDATE_DISCOUNT_FAILED),
+        );
+    }
   }
 };

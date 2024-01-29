@@ -5,13 +5,15 @@ title: CRUD
 
 ## Get organizations list
 
-Retrieve organizations list.
+<span class="badge badge--warning">Require authentication</span>
 
 ```ts
-// Require authentication
 const organizations = await organization(client).getOrganizations(filters: OrganizationFiltersDto);
+```
 
-// Public
+<span class="badge badge--success">Public</span>
+
+```ts
 const organizations = await organization(client).getPublicOrganizations(filters: OrganizationFiltersDto);
 ```
 
@@ -21,13 +23,15 @@ This call return a [paginated](../pagination#pagination) array of [IOrganization
 
 ## Get organization by id
 
-Retrieve an organization by ID.
+<span class="badge badge--warning">Require authentication</span>
 
 ```ts
-// Require authentication
 const organization = await organization(client).getOrganization(id: string);
+```
 
-// Public
+<span class="badge badge--success">Public</span>
+
+```ts
 const organization = await organization(client).getPublicOrganization(id: string);
 ```
 
@@ -35,7 +39,7 @@ This call returns an [IOrganizationResponse](../organization-types#iorganization
 
 ## Get organization by slug
 
-Retrieve one public organization by slug.
+<span class="badge badge--success">Public</span>
 
 ```ts
 const organization = await organization(client).getPublicOrganizationBySlug(slug: string);
@@ -72,7 +76,7 @@ interface ICreateOrganizationInputDto {
     originId: string;
     latitude: number;
     longitude: number;
-  }
+  };
 }
 ```
 
@@ -152,6 +156,7 @@ interface IUpdateOrganizationRequest {
   };
 }
 ```
+
 This call returns an [IOrganizationResponse](../organization-types#iorganizationresponse) object.
 
 ## Suggest an organization

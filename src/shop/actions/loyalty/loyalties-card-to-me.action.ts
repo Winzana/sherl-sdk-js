@@ -1,9 +1,18 @@
+import { SherlError } from '../../../common';
 import { ISearchResult } from '../../../common';
 import { Fetcher } from '../../../common/api';
+import { getSherlError } from '../../../common/utils';
 import { endpoints } from '../../api/endpoints';
 import { LoyalityErr, errorFactory } from '../../errors/loyalty/errors';
 import { ILoyaltyCard, ILoyaltyCardFindByDto } from '../../types';
 
+/**
+ * Retrieves loyalty cards associated with the current user based on provided filters.
+ *
+ * @param {Fetcher} fetcher - The fetcher instance used for making API requests.
+ * @param {ILoyaltyCardFindByDto} [filters] - Optional filters to apply when fetching loyalty cards for the current user.
+ * @returns {Promise<ISearchResult<ILoyaltyCard>>} A promise that resolves to a search result containing the list of loyalty cards associated with the current user.
+ */
 export const getLoyaltiesCardToMe = async (
   fetcher: Fetcher,
   filters?: ILoyaltyCardFindByDto,
@@ -14,7 +23,17 @@ export const getLoyaltiesCardToMe = async (
       filters,
     );
     return response.data;
-  } catch (error) {
-    throw errorFactory.create(LoyalityErr.FETCH_FAILED);
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
+      case 403:
+        throw errorFactory.create(
+          LoyalityErr.GET_USER_CARD_LOYALTIES_FORBIDDEN,
+        );
+      default:
+        throw getSherlError(
+          error,
+          errorFactory.create(LoyalityErr.GET_USER_CARD_LOYALTIES_FAILED),
+        );
+    }
   }
 };

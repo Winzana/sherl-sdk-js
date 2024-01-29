@@ -57,7 +57,3 @@ export * from './Founder/update-founder.action';
 export * from './Address/add-address.action';
 export * from './Address/delete-address.action';
 export * from './Address/update-address.action';
-
-// ROAMING
-export * from './Roaming/disable-roaming.action';
-export * from './Roaming/enable-roaming.action';

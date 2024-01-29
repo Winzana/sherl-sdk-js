@@ -35,7 +35,8 @@ await organization(client).updateEmployee(
   );
 ```
 
-**Partial** permit to have all properties optionnal. 
+**Partial** permit to have all properties optional.
+
 ```ts
 interface IOrganizationMemberInputDto {
   firstName: string;

@@ -12,7 +12,7 @@ await shop(client).createAdvertisement(advertisement: ICreateAdvertisementInputD
 ```
 
 ```ts
- interface ICreateAdvertisementInputDto {
+interface ICreateAdvertisementInputDto {
   description: string;
   displayZones: DisplayZoneEnum[];
   backgroundImage?: IImageObject;
@@ -24,9 +24,10 @@ await shop(client).createAdvertisement(advertisement: ICreateAdvertisementInputD
 ```
 
 This interface using other interfaces :
- - [DisplayZoneEnum](../shop-types#displayzoneenum)(`displayZones`)
- - [IImageObject](../media-types#iimageobject)(`backgroundImage`)
- - [IAdvertisementTranslation](../shop-types#iadvertisementtranslation)(`translations`)
+
+- [DisplayZoneEnum](../shop-types#displayzoneenum)(`displayZones`)
+- [IImageObject](../media-types#iimageobject)(`backgroundImage`)
+- [IAdvertisementTranslation](../shop-types#iadvertisementtranslation)(`translations`)
 
 This call returns an [IAdvertisement](../shop-types#iadvertisement) object.
 
@@ -39,7 +40,6 @@ await shop(client).updateAdvertisement(advertisementId: string, updatedAdvertise
 ```
 
 This call returns an [IAdvertisement](../shop-types#iadvertisement) object.
-
 
 ## Delete advertisement
 
@@ -68,7 +68,7 @@ await shop(client).getPublicAdvertisements(filters?: IFindAdvertisementInputDto)
 ```ts
 interface IFindAdvertisementInputDto extends PaginationFilters {
   displayDeleted?: boolean;
-  displayZones?: string[];
+  displayZones?: DisplayZoneEnum[];
   shuffle?: boolean;
   q?: string;
   displayAllVersion?: boolean;
@@ -81,7 +81,10 @@ interface IFindAdvertisementInputDto extends PaginationFilters {
 
 This interface extends [PaginationFilters](../pagination#pagination-filters)
 
-This call returns a [paginated](../pagination#pagination) array of [IAdvertisement](../shop-types#iadvertisement) objects.
+This interface using other interfaces :
+
+- [DisplayZoneEnum](../shop-types#displayzoneenum)(`displayZones`)
+- This call returns a [paginated](../pagination#pagination) array of [IAdvertisement](../shop-types#iadvertisement) objects.
 
 ## Get advertisement by id
 

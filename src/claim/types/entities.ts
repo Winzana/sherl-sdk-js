@@ -1,8 +1,13 @@
+import { PaginationFilters } from '../../common';
 import { IPerson } from '../../person';
 import { IOrderResponse } from '../../shop/types';
 
-export interface IClaimTicketFilters {
-  [key: string]: any;
+export interface IClaimTicketFilters extends PaginationFilters {
+  id?: string;
+  personId?: string;
+  orderId?: string;
+  consumerId?: string;
+  status?: ClaimStatusEnum;
 }
 
 export interface IClaimCreate {
@@ -47,4 +52,11 @@ export enum ClaimStatusEnum {
   READ = 'READ',
   REFUND = 'REFUND',
   CLOSED = 'CLOSED',
+}
+
+export interface FindClaimFilter {
+  id?: string;
+  personId?: string;
+  orderId?: string;
+  consumerId?: string;
 }

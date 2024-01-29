@@ -1,13 +1,33 @@
 import { ErrorFactory } from '../../../common/errors';
 
 export enum LoyalityErr {
-  FETCH_FAILED = 'loyalty/fetch-failed',
-  UPDATE_FAILED = 'loyalty/update-failed',
+  GET_USER_CARD_LOYALTIES_FAILED = 'loyalty/get-user-card-loyalties-failed',
+  GET_USER_CARD_LOYALTIES_FORBIDDEN = 'loyalty/get-user-card-loyalties-forbidden',
+  UPDATE_LOYALTY_CARD_FAILED = 'loyalty/update-loyalty-card-failed',
+  UPDATE_LOYALTY_CARD_FORBIDDEN = 'loyalty/update-loyalty-card-forbidden',
+  GET_ORGANIZATION_LOYALTY_CARD_FAILED = 'loyalty/get-organization-loyalty-card-by-id-failed',
+  GET_ORGANIZATION_LOYALTY_CARD_FORBIDDEN = 'loyalty/get-organization-loyalty-card-by-id-forbidden',
+  ORGANIZATION_ID_NOT_FOUND = 'loyalty/organization-id-not-found',
+  LOYALTY_CARD_NOT_FOUND = 'loyalty/loyalty-card-not-found',
 }
 
 export const errors = {
-  [LoyalityErr.FETCH_FAILED]: 'Failed to fetch loyalty API',
-  [LoyalityErr.UPDATE_FAILED]: 'Failed to update loyalty',
+  [LoyalityErr.GET_USER_CARD_LOYALTIES_FAILED]:
+    'Failed to get user card loyalties',
+  [LoyalityErr.GET_USER_CARD_LOYALTIES_FORBIDDEN]:
+    'Failed to get user card loyalties, forbidden',
+  [LoyalityErr.UPDATE_LOYALTY_CARD_FAILED]: 'Failed to update loyalty card',
+  [LoyalityErr.UPDATE_LOYALTY_CARD_FORBIDDEN]:
+    'Failed to update loyalty card, forbidden',
+  [LoyalityErr.GET_ORGANIZATION_LOYALTY_CARD_FAILED]:
+    'Failed to get organization loyalty card',
+  [LoyalityErr.GET_ORGANIZATION_LOYALTY_CARD_FORBIDDEN]:
+    'Failed to get organization loyalty card, forbidden',
+  [LoyalityErr.ORGANIZATION_ID_NOT_FOUND]: 'Organization not found',
+  [LoyalityErr.LOYALTY_CARD_NOT_FOUND]: 'Loyalty card not found',
 };
 
-export const errorFactory = new ErrorFactory<LoyalityErr>('Loyalty', errors);
+export const errorFactory = new ErrorFactory<LoyalityErr>(
+  'Shop/Loyalty',
+  errors,
+);
