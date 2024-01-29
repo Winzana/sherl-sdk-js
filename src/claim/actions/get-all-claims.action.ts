@@ -27,11 +27,11 @@ export const getAllClaims = async (
   } catch (error: SherlError | Error | any) {
     switch ((error as SherlError).data?.status) {
       case 403:
-        throw errorFactory.create(ClaimErr.GET_ALL_FORBIDDEN);
+        throw errorFactory.create(ClaimErr.GET_ALL_CLAIM_FORBIDDEN);
       default:
         throw getSherlError(
           error,
-          errorFactory.create(ClaimErr.GET_ALL_FAILED),
+          errorFactory.create(ClaimErr.GET_ALL_CLAIM_FAILED),
         );
     }
   }
