@@ -22,13 +22,13 @@ export const getAnalytics = async (
   } catch (error: SherlError | Error | any) {
     switch ((error as SherlError).data?.status) {
       case 403:
-        throw errorFactory.create(AnalyticsErr.ANALYTICS_FORBIDDEN_ERROR);
+        throw errorFactory.create(AnalyticsErr.GET_ANALYTICS_FORBIDDEN);
       case 404:
         throw errorFactory.create(AnalyticsErr.ANALYTICS_NOT_FOUND);
       default:
         throw getSherlError(
           error,
-          errorFactory.create(AnalyticsErr.ANALYTICS_FAILED),
+          errorFactory.create(AnalyticsErr.GET_ANALYTICS_FAILED),
         );
     }
   }

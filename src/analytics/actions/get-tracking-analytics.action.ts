@@ -28,12 +28,12 @@ export const getTrackingAnalytics = async (
     switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(
-          AnalyticsErr.ANALYTICS_TRACKING_FAILED_FORBIDDEN,
+          AnalyticsErr.GET_ANALYTICS_TRACKING_FORBIDDEN,
         );
       default:
         throw getSherlError(
           error,
-          errorFactory.create(AnalyticsErr.ANALYTICS_TRACKING_FAILED),
+          errorFactory.create(AnalyticsErr.GET_ANALYTICS_TRACKING_FAILED),
         );
     }
   }

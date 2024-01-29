@@ -23,11 +23,11 @@ export const getBIAnalytics = async (
   } catch (error: SherlError | Error | any) {
     switch ((error as SherlError).data?.status) {
       case 403:
-        throw errorFactory.create(AnalyticsErr.ANALYTICS_BI_FAILED_FORBIDDEN);
+        throw errorFactory.create(AnalyticsErr.GET_ANALYTICS_BI_FORBIDDEN);
       default:
         throw getSherlError(
           error,
-          errorFactory.create(AnalyticsErr.ANALYTICS_BI_FAILED),
+          errorFactory.create(AnalyticsErr.GET_ANALYTICS_BI_FAILED),
         );
     }
   }

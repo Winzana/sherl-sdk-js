@@ -27,12 +27,12 @@ export const getProductsAnalytics = async (
     switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(
-          AnalyticsErr.ANALYTICS_PRODUCTS_FAILED_FORBIDDEN,
+          AnalyticsErr.GET_ANALYTICS_PRODUCTS_FORBIDDEN,
         );
       default:
         throw getSherlError(
           error,
-          errorFactory.create(AnalyticsErr.ANALYTICS_PRODUCTS_FAILED),
+          errorFactory.create(AnalyticsErr.GET_ANALYTICS_PRODUCTS_FAILED),
         );
     }
   }
