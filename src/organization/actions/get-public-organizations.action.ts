@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { endpoints } from '../api/endpoints';
 import { IOrganizationResponse, OrganizationFiltersDto } from '../types';
@@ -21,22 +22,18 @@ export const getPublicOrganizations = async (
       endpoints.GET_PUBLIC_ORGANIZATIONS,
       filters,
     );
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(
           OrganizationErr.GET_PUBLIC_ORGANIZATIONS_FORBIDDEN,
         );
       default:
-        throw errorFactory.create(
-          OrganizationErr.GET_PUBLIC_ORGANIZATIONS_FAILED,
+        throw getSherlError(
+          error,
+          errorFactory.create(OrganizationErr.GET_PUBLIC_ORGANIZATIONS_FAILED),
         );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(OrganizationErr.GET_PUBLIC_ORGANIZATIONS_FAILED),
-    );
   }
 };

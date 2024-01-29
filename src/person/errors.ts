@@ -1,7 +1,6 @@
 import { ErrorFactory } from '../common/errors';
 
 export enum PersonErr {
-  NOT_FOUND = 'person/not-found',
   ADDRESS_NOT_FOUND = 'person/address-not-found',
 
   // UPDATE ADDRESS
@@ -9,10 +8,8 @@ export enum PersonErr {
   UPDATE_ADDRESS_FORBIDDEN = 'person/update-address-forbidden',
 
   // FETCH
-  FETCH_FAILED = 'person/fetch-failed',
-  FETCH_FORBIDDEN = 'person/fetch-failed',
-  FETCH_NOT_FOUND = 'person/fetch-failed',
-  FETCH_ALREADY_EXISTS = 'person/fetch-failed',
+  GET_ONE_BY_USERID_FAILED = 'person/fetch-failed',
+  GET_ONE_BY_USERID_FORBIDDEN = 'person/fetch-forbiden',
   FETCH_PERSONS_FORBIDDEN = 'person/fetch-persons-forbidden',
   FETCH_PERSONS_FAILED = 'person/fetch-persons-failed',
   FETCH_POSITION_FORBIDDEN = 'person/fetch-position-forbidden',
@@ -30,10 +27,6 @@ export enum PersonErr {
   UPDATE_PERSON_BY_ID_FAILED = 'person/update-person-by-id-failed',
   UPDATE_PERSON_BY_ID_FORBIDDEN = 'person/update-person-by-id-forbidden',
   PERSON_NOT_FOUND = 'person/person-not-found',
-
-  // POST
-  POST_NOT_FOUND = 'person/post-person-not-found',
-  POST_ALREADY_EXISTS = 'person/post-person-already-exists',
 
   // CREATE PERSON
   CREATE_PERSON_FAILED = 'person/create-person-failed',
@@ -61,8 +54,9 @@ export enum PersonErr {
 
 export const errors = {
   // FETCH
-  [PersonErr.FETCH_FAILED]: 'Failed to fetch person API',
-  [PersonErr.NOT_FOUND]: 'Person not found',
+  [PersonErr.GET_ONE_BY_USERID_FAILED]: 'Failed to fetch person API',
+  [PersonErr.GET_ONE_BY_USERID_FORBIDDEN]:
+    'Failed to fetch person API, access denied',
   [PersonErr.ADDRESS_NOT_FOUND]: 'Failed to reach API. Address not found',
   [PersonErr.FETCH_PERSONS_FORBIDDEN]:
     'Failed to fetch persons. Forbidden access',

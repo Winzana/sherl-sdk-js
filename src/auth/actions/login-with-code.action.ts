@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
@@ -21,23 +22,21 @@ export const loginWithCode = async (
       { code },
     );
 
-    switch (response.status) {
-      case 200:
-        if (!response.data?.access_token) {
-          throw errorFactory.create(AuthErr.LOGIN_WITH_CODE_FAILED);
-        }
-        return response.data;
+    if (!response.data?.access_token) {
+      throw errorFactory.create(AuthErr.LOGIN_WITH_CODE_FAILED);
+    }
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 401:
         throw errorFactory.create(AuthErr.LOGIN_WITH_CODE_FAILED_UNAUTHORIZED);
       case 404:
         throw errorFactory.create(AuthErr.UNKNOWN_LOGIN_CODE);
       default:
-        throw errorFactory.create(AuthErr.LOGIN_WITH_CODE_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(AuthErr.LOGIN_WITH_CODE_FAILED),
+        );
     }
-  } catch (err) {
-    throw getSherlError(
-      err,
-      errorFactory.create(AuthErr.LOGIN_WITH_CODE_FAILED),
-    );
   }
 };

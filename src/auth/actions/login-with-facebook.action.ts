@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils';
 import { endpoints } from '../api/endpoints';
@@ -21,21 +22,19 @@ export const loginWithFacebook = async (
       facebookInfos,
     );
 
-    switch (response.status) {
-      case 200:
-        if (!response.data?.access_token) {
-          throw errorFactory.create(AuthErr.LOGIN_FACEBOOK_FAILED);
-        }
-        return response.data;
+    if (!response.data?.access_token) {
+      throw errorFactory.create(AuthErr.LOGIN_FACEBOOK_FAILED);
+    }
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 401:
         throw errorFactory.create(AuthErr.LOGIN_FACEBOOK_FAILED_UNAUTHORIZED);
       default:
-        throw errorFactory.create(AuthErr.LOGIN_FACEBOOK_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(AuthErr.LOGIN_FACEBOOK_FAILED),
+        );
     }
-  } catch (err) {
-    throw getSherlError(
-      err,
-      errorFactory.create(AuthErr.LOGIN_FACEBOOK_FAILED),
-    );
   }
 };

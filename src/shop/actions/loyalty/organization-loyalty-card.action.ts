@@ -1,3 +1,4 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { getSherlError } from '../../../common/utils/errors';
 import { StringUtils } from '../../../common/utils/string';
@@ -22,9 +23,9 @@ export const getOrganizationLoyaltyCard = async (
         id: organizationId,
       }),
     );
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(
           LoyalityErr.GET_ORGANIZATION_LOYALTY_CARD_FORBIDDEN,
@@ -32,14 +33,10 @@ export const getOrganizationLoyaltyCard = async (
       case 404:
         throw errorFactory.create(LoyalityErr.ORGANIZATION_ID_NOT_FOUND);
       default:
-        throw errorFactory.create(
-          LoyalityErr.GET_ORGANIZATION_LOYALTY_CARD_FAILED,
+        throw getSherlError(
+          error,
+          errorFactory.create(LoyalityErr.GET_ORGANIZATION_LOYALTY_CARD_FAILED),
         );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(LoyalityErr.GET_ORGANIZATION_LOYALTY_CARD_FAILED),
-    );
   }
 };

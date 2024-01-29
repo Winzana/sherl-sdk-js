@@ -1,3 +1,4 @@
+import { SherlError } from '../../../common';
 import { ISearchResult } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { getSherlError } from '../../../common/utils';
@@ -21,20 +22,18 @@ export const getLoyaltiesCardToMe = async (
       endpoints.CURRENT_USER_LOYALTIES_CARDS,
       filters,
     );
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(
           LoyalityErr.GET_USER_CARD_LOYALTIES_FORBIDDEN,
         );
       default:
-        throw errorFactory.create(LoyalityErr.GET_USER_CARD_LOYALTIES_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(LoyalityErr.GET_USER_CARD_LOYALTIES_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(LoyalityErr.GET_USER_CARD_LOYALTIES_FAILED),
-    );
   }
 };

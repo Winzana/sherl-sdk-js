@@ -50,7 +50,7 @@ class AuthProvider extends AbstractProvider {
    */
   public refreshToken = async () => {
     const token = await refreshToken(this.fetcher);
-    this.registerToken(token);
+    this.registerToken(token.access_token);
     return token;
   };
 

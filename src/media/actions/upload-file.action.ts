@@ -1,3 +1,4 @@
+import { SherlError } from '../../common';
 import { Fetcher } from '../../common/api';
 import { getSherlError } from '../../common/utils/errors';
 import { endpoints } from '../api/endpoints';
@@ -28,15 +29,16 @@ export const uploadFile = async (
         },
       },
     );
-    switch (response.status) {
-      case 201:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(MediaErr.UPLOAD_FILE_FORBIDDEN);
       default:
-        throw errorFactory.create(MediaErr.GET_FILE_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(MediaErr.UPLOAD_FILE_FAILED),
+        );
     }
-  } catch (err) {
-    throw getSherlError(err, errorFactory.create(MediaErr.UPLOAD_FILE_FAILED));
   }
 };

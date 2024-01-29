@@ -1,3 +1,4 @@
+import { SherlError } from '../../../common';
 import { Fetcher } from '../../../common/api';
 import { getSherlError } from '../../../common/utils/errors';
 import { endpoints } from '../../api/endpoints';
@@ -20,9 +21,9 @@ export const validateAndPayBasket = async (
       endpoints.VALIDATE_PAY_BASKET,
       { validation },
     );
-    switch (response.status) {
-      case 200:
-        return response.data;
+    return response.data;
+  } catch (error: SherlError | Error | any) {
+    switch ((error as SherlError).data?.status) {
       case 403:
         throw errorFactory.create(BasketErr.VALIDATE_AND_PAY_BASKET_FORBIDDEN);
       case 460:
@@ -32,12 +33,10 @@ export const validateAndPayBasket = async (
       case 462:
         throw errorFactory.create(BasketErr.BASKET_ALREADY_PAYED);
       default:
-        throw errorFactory.create(BasketErr.VALIDATE_AND_PAY_BASKET_FAILED);
+        throw getSherlError(
+          error,
+          errorFactory.create(BasketErr.VALIDATE_AND_PAY_BASKET_FAILED),
+        );
     }
-  } catch (error) {
-    throw getSherlError(
-      error,
-      errorFactory.create(BasketErr.VALIDATE_AND_PAY_BASKET_FAILED),
-    );
   }
 };
